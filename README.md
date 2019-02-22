@@ -21,9 +21,9 @@ a "TriHard" (Entei) for part of the story. The game will inevitably fail to pull
 surely be worthy of some "TriHard"s in the chat. 
 
 At the same time, I don't want this to be just a meme run. It should be able to stand on its own and not be tied
-inexorably to TPP. A Nuzlocke's whole purpose is to add drama to a familiar game by means of the additional constant 
-threat of losing everything at any moment. 
+inexorably to TPP. After all, a Nuzlocke's whole purpose is to add drama to a familiar game by means of the additional 
+constant threat of losing everything at any moment. 
 
-Tustin2121
+Tustin2121  
 Run Manager
 
