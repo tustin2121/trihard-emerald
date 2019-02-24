@@ -1,6 +1,7 @@
 include $(DEVKITARM)/base_tools
 export CPP := $(PREFIX)cpp
 export LD := $(PREFIX)ld
+export NM := $(PREFIX)nm
 
 ifeq ($(OS),Windows_NT)
 EXE := .exe
@@ -15,11 +16,12 @@ REVISION    := 0
 
 SHELL := /bin/bash -o pipefail
 
-ROM := pokeemerald.gba
+ROM := trihardemerald.gba
 OBJ_DIR := build/emerald
 
 ELF = $(ROM:.gba=.elf)
 MAP = $(ROM:.gba=.map)
+SYM = $(ROM:.gba=.sym)
 
 C_SUBDIR = src
 ASM_SUBDIR = asm
@@ -103,7 +105,7 @@ clean: tidy
 	find $(DATA_ASM_SUBDIR)/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
 
 tidy:
-	rm -f $(ROM) $(ELF) $(MAP)
+	rm -f $(ROM) $(ELF) $(MAP) $(SYM)
 	rm -r build/*
 
 include graphics_file_rules.mk
@@ -195,3 +197,4 @@ $(ELF): $(OBJ_DIR)/ld_script.ld $(OBJS)
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary $< $@
 	$(FIX) $@ -p -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(REVISION) --silent
+	$(NM) -SBgn $< > $(SYM)
