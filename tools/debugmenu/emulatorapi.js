@@ -63,7 +63,7 @@ class EmulatorApi {
 		if (symbol) {
 			// If we have a symbol, memoize this symbol for future faster lookup
 			let res;
-			if ((res = /^([a-z0-9_])\+([0-9a-f]+)$/i.exec(symbol))) {
+			if ((res = /^([a-z0-9_]+)\+([0-9a-f]+)$/i.exec(symbol))) {
 				// Check if the symbol has an offset already, and add it on
 				offset += Number.parseInt(res[2],16);
 				symbol = res[1];

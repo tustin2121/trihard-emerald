@@ -780,7 +780,7 @@ SecretBase_RedCave1_Text_23B759: @ 823B759
 	.include "data/maps/Route119_House/scripts.inc"
 	.include "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc"
 
-Std_MsgboxNPC: @ 8271315
+Std_MsgboxNPC:: @ 8271315
 	lock
 	faceplayer
 	message 0x0
@@ -789,7 +789,7 @@ Std_MsgboxNPC: @ 8271315
 	release
 	return
 
-Std_MsgboxSign: @ 8271320
+Std_MsgboxSign:: @ 8271320
 	lockall
 	message 0x0
 	waitmessage
@@ -797,31 +797,31 @@ Std_MsgboxSign: @ 8271320
 	releaseall
 	return
 
-Std_MsgboxDefault: @ 827132A
+Std_MsgboxDefault:: @ 827132A
 	message 0x0
 	waitmessage
 	waitbuttonpress
 	return
 
-Std_MsgboxYesNo: @ 8271332
+Std_MsgboxYesNo:: @ 8271332
 	message 0x0
 	waitmessage
 	yesnobox 20, 8
 	return
 
-Std_9: @ 827133C
+Std_9:: @ 827133C
 	message 0x0
 	playfanfare MUS_ME_POINTGET
 	waitfanfare
 	waitmessage
 	return
 
-Std_10: @ 8271347
+Std_10:: @ 8271347
 	pokenavcall 0x0
 	waitmessage
 	return
 
-EventScript_27134E: @ 827134E
+EventScript_27134E:: @ 827134E
 	return
 
 BattleFrontier_BattleArenaLobby_EventScript_27134F:: @ 827134F
