@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EmScript Debugger</title>
+	<script>window.$ = window.jQuery = require('jquery');</script>
+	<script src="debugger.js"></script>
+	<link rel="stylesheet" href="debugger.css" />
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div class="scriptContext" id="ctx1">
+		<span class="status" status=""></span>
+		<div class="mdata">
+			<label class="stackDepth">stackDepth: <span name="stackDepth">?</span></label>
+			<label class="mode">Mode: <span name="mode">?</span></label>
+			<label class="comparisonResult">Compare: <span name="comparisonResult">?</span></label>
+		</div>
+		<hr/>
+		<label>native* <input type="text" name="nativePtr"/></label>
+		<label>script* <input type="text" name="scriptPtr"/></label>
+		<label>cmdTable* <input type="text" name="cmdTable"/></label>
+		<hr/>
+		<div class="data" name="data">00000000&nbsp;00000000 00000000&nbsp;00000000</div>
+		<div class="stack"></div>
+	</div>
+	<div class="scriptContext" id="ctx2">
+		<span class="status" status=""></span>
+		<div class="mdata">
+			<label class="stackDepth">stackDepth: <span name="stackDepth">?</span></label>
+			<label class="mode">Mode: <span name="mode">?</span></label>
+			<label class="comparisonResult">Compare: <span name="comparisonResult">?</span></label>
+		</div>
+		<hr />
+		<label>native* <input type="text" name="nativePtr" /></label>
+		<label>script* <input type="text" name="scriptPtr" /></label>
+		<label>cmdTable* <input type="text" name="cmdTable" /></label>
+		<hr />
+		<div class="data" name="data">00000000&nbsp;00000000 00000000&nbsp;00000000</div>
+		<div class="stack"></div>
+	</div>
+</body>
+</html>

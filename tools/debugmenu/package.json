@@ -1,0 +1,17 @@
+{
+  "name": "debugmenu",
+  "version": "1.0.0",
+  "description": "Debug menu for use with TriHard Emerald via the modified BizHawk API.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "tustin2121",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.0.5"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

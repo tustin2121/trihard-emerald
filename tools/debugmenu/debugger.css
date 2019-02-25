@@ -1,0 +1,95 @@
+/* debugger.css */
+body {
+	font-family: monospace;
+	display: grid;
+	grid-template: "ctx1" "ctx2" / auto auto;
+	grid-gap: 4px;
+}
+
+#ctx1 {
+	background-color: #ceffce;
+}
+#ctx2 {
+	background-color: #ced2ff;
+}
+.scriptContext {
+	padding: 8px;
+    border: 1px solid gray;
+}
+.scriptContext .status {
+	display: block;
+    margin: -8px -8px 6px -8px;
+    background-color: #a7a7a7;
+    padding: 4px 9px;
+}
+.scriptContext .status[status=enabled] {
+	background-color: #2fde03;
+}
+.scriptContext .status[status=disabled],
+.scriptContext .status[status=stopped] {
+	background-color: #b32302;
+}
+.scriptContext .status::after {
+	content: 'Status: 'attr(status);
+}
+.scriptContext .nativePtr {
+	display: block;
+	border: 1px solid black;
+}
+.scriptContext .scriptPtr {
+	display: block;
+	border: 1px solid black;
+}
+.scriptContext label {
+	display: flex;
+}
+.scriptContext label input[type=text] {
+	width: 80%;
+	flex-grow: 1;
+	margin-left: 1ch;
+}
+.scriptContext .stack {
+    /* width: 8em; */
+    border: 1px solid gray;
+    background-color: #e8e8e8;
+}
+.scriptContext .stack stackframe {
+	display: block;
+	background-color: #efefef;
+	text-align: center;
+}
+.scriptContext .stack stackframe:nth-child(2n) {
+	background-color: #dcdcdc;
+}
+.scriptContext .stack stackframe.active {
+	background-color: #b0d9fd;
+}
+.scriptContext .stack stackframe.active:nth-child(2n) {
+	background-color: #81c4ff;
+}
+.scriptContext .cmdTable {
+	display: block;
+	border: 1px solid black;
+}
+.scriptContext .mdata {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-right: 8px;
+}
+.scriptContext .stackDepth {
+	order: 0;
+}
+.scriptContext .mode {
+	order: 1;
+}
+.scriptContext .comparisonResult {
+	order: 2;
+}
+.scriptContext .data {
+	padding-left: 6ch;
+}
+.scriptContext .data::before {
+	content: 'Data: ';
+	margin-left: -6ch;
+}
