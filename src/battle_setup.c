@@ -342,7 +342,15 @@ static void Task_BattleStart(u8 taskId)
         if (IsBattleTransitionDone() == TRUE)
         {
             CleanupOverworldWindowsAndTilemaps();
-            SetMainCallback2(CB2_InitBattle);
+            if (!gDebugInterrupts.skipBattles)
+            {   // Start battle
+                SetMainCallback2(CB2_InitBattle);
+            }
+            else
+            {   // Immedeately go to the callback for after the battle, pretending we won.
+                gBattleOutcome = B_OUTCOME_WON;
+                SetMainCallback2(gMain.savedCallback);
+            }
             RestartWildEncounterImmunitySteps();
             ClearPoisonStepCounter();
             DestroyTask(taskId);

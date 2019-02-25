@@ -10,12 +10,13 @@ extern const u8* gUnknown_020375C0;
 extern bool32 sub_801B27C(void);
 
 // ewram bss
-IWRAM_DATA static u8 sScriptContext1Status;
-IWRAM_DATA static u32 sUnusedVariable1;
-IWRAM_DATA static struct ScriptContext sScriptContext1;
-IWRAM_DATA static u32 sUnusedVariable2;
-IWRAM_DATA static struct ScriptContext sScriptContext2;
-IWRAM_DATA static bool8 sScriptContext2Enabled;
+// These were static, but I un-static'ed them so they get output to the .sym file --tustin 2019/02/24
+IWRAM_DATA u8 sScriptContext1Status;
+IWRAM_DATA u32 sUnusedVariable1;
+IWRAM_DATA struct ScriptContext sScriptContext1;
+IWRAM_DATA u32 sUnusedVariable2;
+IWRAM_DATA struct ScriptContext sScriptContext2;
+IWRAM_DATA bool8 sScriptContext2Enabled;
 
 extern ScrCmdFunc gScriptCmdTable[];
 extern ScrCmdFunc gScriptCmdTableEnd[];
