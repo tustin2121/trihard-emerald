@@ -7,7 +7,6 @@ const path = require('path');
 
 let windowList = [];
 
-const symbolTablePath = path.resolve(process.argv[2] || '../../trihardemerald.sym');
 const generateId = ()=>Math.floor(Math.random()*Math.pow(36,5)).toString(36);
 
 global.emulator = new EmulatorApi();
@@ -15,7 +14,7 @@ global.emulator = new EmulatorApi();
 function createWindow() {
 	let wid = generateId();
 	let win = new BrowserWindow({ 
-		width: 800, height: 600,
+		width: 1000, height: 800,
 		webPreferences: {
 			webSecurity: false,
 			backgroundThrottling: false,
@@ -36,7 +35,17 @@ function createWindow() {
 	// win.webContents.openDevTools();
 	return win;
 }
-app.on('ready', x=>emulator.loadRomSymbolFile(symbolTablePath).then(createWindow));
+function loadSymbolTable() {
+	let config = require('./config.json');
+	return Promise.all([
+		emulator.loadRomSymbolFile(config.symbolFile),
+		emulator.loadRomVarNameFile(config.varsFile),
+		emulator.loadRomFlagNameFile(config.flagsFile),
+	]);
+}
+
+app.on('reloadSymbolTable', loadSymbolTable);
+app.on('ready', x=>loadSymbolTable().then(createWindow));
 app.on('window-all-closed', ()=>{
 	emulator.destroy();
 	app.quit();

@@ -8,6 +8,11 @@
 	<meta charset="UTF-8">
 </head>
 <body>
+	<div class="mainContext">
+		<label>mainCb1* <input type="text" name="mainCb1" /></label>
+		<label>mainCb2* <input type="text" name="mainCb2" /></label>
+		<label>savedCb* <input type="text" name="savedCb" /></label>
+	</div>
 	<div class="scriptContext" id="ctx1">
 		<span class="status" status=""></span>
 		<div class="mdata">
@@ -37,6 +42,23 @@
 		<hr />
 		<div class="data" name="data">00000000&nbsp;00000000 00000000&nbsp;00000000</div>
 		<div class="stack"></div>
+	</div>
+	<div class="changeBin" id="varBin">
+		<div class="bar">
+			<button name="clearVars">Clear</button>
+		</div>
+		<div class="oftList">
+			<label vid="2a">happiness step (#2a) <span class="curr">?</span></label>
+			<label vid="2b">psn step (#2b) <span class="curr">?</span></label>
+		</div>
+		<hr/>
+		<bin></bin>
+	</div>
+	<div class="changeBin" id="flagBin">
+		<div class="bar">
+			<button name="clearFlags">Clear</button>
+		</div>
+		<bin></bin>
 	</div>
 </body>
 </html>

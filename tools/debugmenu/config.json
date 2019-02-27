@@ -1,0 +1,6 @@
+{
+	"symbolFile": "../../../pokeemerald/pokeemerald.sym3",
+	"symbolFile2": "../../trihardemerald.sym",
+	"varsFile": "../../include/constants/vars.h",
+	"flagsFile": "../../include/constants/flags.h"
+}

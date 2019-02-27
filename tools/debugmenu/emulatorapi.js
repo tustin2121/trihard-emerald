@@ -12,6 +12,9 @@ class EmulatorApi {
 	constructor() {
 		this.symbolTable = null;
 		this.reverseSymbolTable = null;
+		this.varNameTable = null;
+		this.flagNameTable = null;
+		
 		this.callbackTable = new Map(); // windowid=>{path=>callback}
 		this.callbackServer = http.createServer((req, res)=>{
 			let { path } = parseUrl(req.url);
@@ -30,7 +33,9 @@ class EmulatorApi {
 			const rl = require('readline').createInterface({ input: fileStream, crlfDelay:Infinity, terminal:false });
 			rl.on('line', (line)=>{
 				// Each line in the input file will be successively available here
-				let [,addr,size,type,name] = SYMBOL_LINE.exec(line);
+				let res = SYMBOL_LINE.exec(line);
+				if (!res) return; //continue
+				let [,addr,size,type,name] = res;
 				switch (type) {
 					case 'R': type = 'readonly'; break;
 					case 'T': type = 'code'; break; // .text section
@@ -42,6 +47,79 @@ class EmulatorApi {
 			rl.on('close', ()=>{
 				this.symbolTable = table;
 				this.reverseSymbolTable = reverse;
+				resolve(true);
+			});
+		});
+	}
+	
+	loadRomVarNameFile(filename) {
+		if (typeof filename !== 'string') return Promise.reject(new ReferenceError("Filename is not valid!"));
+		const DEFINE_LINE = /^\#define VAR_([A-Z0-9_]+)\s+0x([0-9A-F]+)/i;
+		return new Promise((resolve, reject)=>{
+			const table = {};
+			const fileStream = fs.createReadStream(filename);
+			const rl = require('readline').createInterface({ input: fileStream, crlfDelay:Infinity, terminal:false });
+			rl.on('line', (line)=>{
+				if (!line.trim()) return; //continue
+				if (line.startsWith('//')) return; //continue
+				let res = DEFINE_LINE.exec(line);
+				if (!res) return; //continue
+				let [,name,val] = res;
+				val = Number.parseInt(val,16) - 0x4000;
+				table[val] = `VAR_${name}`;
+			});
+			rl.on('close', ()=>{
+				this.varNameTable = table;
+				resolve(true);
+			});
+		});
+	}
+	
+	loadRomFlagNameFile(filename) {
+		if (typeof filename !== 'string') return Promise.reject(new ReferenceError("Filename is not valid!"));
+		const DEFINE_LINE = /^\#define FLAG_([A-Z0-9_]+)\s+0x([0-9A-F]+)/i;
+		const HIDDEN_LINE = /^\#define FLAG_([A-Z0-9_]+)\s+\(FLAG_HIDDEN_ITEMS_START \+ 0x([0-9A-F]+)\)/i;
+		const SYSTEM_LINE = /^\#define FLAG_([A-Z0-9_]+)\s+\(SYSTEM_FLAGS \+ 0x([0-9A-F]+)\)/i;
+		
+		return new Promise((resolve, reject)=>{
+			const table = {};
+			const SYSTEM_FLAGS = 0x860; //TODO make this less annoying to read
+			const HIDDEN_FLAG = 0x1F4; //TODO read from file?
+			
+			const fileStream = fs.createReadStream(filename);
+			const rl = require('readline').createInterface({ input: fileStream, crlfDelay:Infinity, terminal:false });
+			rl.on('line', (line)=>{
+				if (!line.trim()) return; //continue
+				if (line.startsWith('//')) return; //continue
+				
+				let res = DEFINE_LINE.exec(line);
+				if (res) {
+					let [,name,val] = res;
+					val = Number.parseInt(val,16);
+					table[val] = `FLAG_${name}`;
+					return; //continue
+				}
+				
+				res = HIDDEN_LINE.exec(line);
+				if (res) {
+					let [,name,val] = res;
+					val = Number.parseInt(val,16);
+					val += HIDDEN_FLAG;
+					table[val] = `FLAG_${name}`;
+					return; //continue
+				}
+				
+				res = SYSTEM_LINE.exec(line);
+				if (res) {
+					let [,name,val] = res;
+					val = Number.parseInt(val,16);
+					val += SYSTEM_FLAGS;
+					table[val] = `FLAG_${name}`;
+					return; //continue
+				}
+			});
+			rl.on('close', ()=>{
+				this.flagNameTable = table;
 				resolve(true);
 			});
 		});
@@ -74,6 +152,14 @@ class EmulatorApi {
 		return false;
 	}
 	
+	getVarName(id) { return this.varNameTable[id]; }
+	getFlagName(id) {
+		if (id > 0x500 && id <= 0x500+0x356) {
+			return `TRAINER_FLAG_${(id-0x500).toString(16)}`;
+		}
+		return this.flagNameTable[id]; 
+	}
+	
 	queryEmulator(path, type) {
 		if (type === undefined) {
 			if (path.slice(0, 4) === 'Read') type = 'read';
@@ -103,7 +189,7 @@ class EmulatorApi {
 	}
 	
 	async readSymbols(...symList) {
-		symList = symList.map((addr)=>this._resolveSymbol(addr)).filter(x=>x);
+		symList = symList.map((addr)=>this._resolveSymbol(addr,true)).filter(x=>x);
 		let addrList = symList.map(x=>`${x.addr}/${x.size.toString(16)}`).join('/');
 		
 		let data = await this.queryEmulator(`/ReadByteRange/${addrList}`, 'data');
@@ -114,6 +200,14 @@ class EmulatorApi {
 			doff += sym.size;
 		}
 		return retList;
+	}
+	
+	async readSymbolPointer(symbol, length) {
+		let info = this._resolveSymbol(symbol);
+		if (!info) throw new ReferenceError('Symbol not found: '+symbol);
+		
+		let data = await this.queryEmulator(`/ReadByteRange/*${info.addr}/${length.toString(16)}`, 'data');
+		return data;
 	}
 	
 	readMemory(addr, len) {
@@ -177,12 +271,12 @@ class EmulatorApi {
 		return this._registerCallback(winId, `/${name}/OnMemoryExecuteIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}/${name}`, name, cb);
 	}
 	
-	_resolveSymbol(addr) {
+	_resolveSymbol(addr, strict=false) {
 		// console.log(`_resolveSymbol(${addr}) => ${this.symbolTable && this.symbolTable[addr]}`);
-		if (/^[0-9-A-F]{4,8}$/i.test(addr)) return addr; //already an address
+		if (/^[0-9-A-F]{4,8}$/i.test(addr)) return strict?addr:null; //already an address
 		if (!this.symbolTable) return addr; //cannot resolve on a table we don't have
 		let info = this.symbolTable[addr];
-		if (!info) return addr; //not in table
+		if (!info) return strict?addr:null; //not in table
 		return info;
 	}
 	
