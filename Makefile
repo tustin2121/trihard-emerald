@@ -10,7 +10,7 @@ EXE :=
 endif
 
 TITLE       := POKEMON EMER
-GAME_CODE   := BPEE
+GAME_CODE   := BPEE #THEE
 MAKER_CODE  := 01
 REVISION    := 0
 

@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'pokeplatinum';
+  src: url('fonts/pokeplatinum-regular.woff2') format('woff2'), url('fonts/pokeplatinum-regular.woff') format('woff'), url('fonts/pokeplatinum-regular.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	border-image: url('../../graphics/text_window/1.png') 8 fill / 1rem round;
+	margin: 0;
+	image-rendering: pixelated;
+	position: absolute;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+	font-family: pokeplatinum, monospace;
+	padding: 1rem;
+	font-size: 2rem;
+	line-height: 2rem;
+	text-shadow: 1px 1px #cacaca;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+	cursor: pointer;
+	user-select: none;
+}
+li:hover {
+	background-color: #ffff77;
+}
+li:active {
+	background-color: #ffb9b9;
+}
+li.unchecked::before {
+	content: '\002610  ';
+}
+li.checked::before {
+	content: '\002611  ';
+}

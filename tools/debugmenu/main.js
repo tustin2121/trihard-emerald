@@ -14,7 +14,7 @@ global.emulator = new EmulatorApi();
 function createWindow() {
 	let wid = generateId();
 	let win = new BrowserWindow({ 
-		width: 1000, height: 800,
+		width: 220, height: 360,
 		webPreferences: {
 			webSecurity: false,
 			backgroundThrottling: false,
@@ -23,7 +23,7 @@ function createWindow() {
 		show: false,
 	});
 	win.once('ready-to-show', ()=>win.show());
-	win.loadFile('debugger.html');
+	win.loadFile('debugmenu.html');
 	win.on('closed', ()=> {
 		windowList = windowList.filter(x=>x!=win);
 		emulator.cleanupCallbacks(win);
@@ -35,17 +35,8 @@ function createWindow() {
 	// win.webContents.openDevTools();
 	return win;
 }
-function loadSymbolTable() {
-	let config = require('./config.json');
-	return Promise.all([
-		emulator.loadRomSymbolFile(config.symbolFile),
-		emulator.loadRomVarNameFile(config.varsFile),
-		emulator.loadRomFlagNameFile(config.flagsFile),
-	]);
-}
 
-app.on('reloadSymbolTable', loadSymbolTable);
-app.on('ready', x=>loadSymbolTable().then(createWindow));
+app.on('ready', createWindow);
 app.on('window-all-closed', ()=>{
 	emulator.destroy();
 	app.quit();
