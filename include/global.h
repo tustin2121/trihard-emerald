@@ -917,15 +917,6 @@ struct UnkStruct_8054FF8
     u16 field_C;
 };
 
-// u16 in total
-struct DebugInterrupts
-{
-    bool8 skipBattles : 1;
-    u8 : 0; //remaining byte
-    bool8 performFunc : 1;
-    u8 funcId : 7;
-};
-// Defined in menu.h, put here for visability
-extern struct DebugInterrupts gDebugInterrupts;
+#include "te_debug.h"
 
 #endif // GUARD_GLOBAL_H
