@@ -17,7 +17,23 @@ class EmulatorApi {
 		
 		this.callbackTable = new Map(); // windowid=>{path=>callback}
 		this.callbackServer = http.createServer((req, res)=>{
-			let { path } = parseUrl(req.url);
+			let name = '';
+			req.on('data', (d)=>name+=d);
+			req.on('end', ()=>{
+				let handled = false;
+				for (let [win, table] of this.callbackTable) {
+					if (table[name]) {
+						table[name]();
+						handled = true;
+					}
+				}
+				if (!handled) {
+					console.error('CALLBACK FROM EMULATOR UNHANDLED! path=', path, this.callbackTable);
+					res.end();
+				} else {
+					res.end();
+				}
+			});
 		});
 		
 		this.callbackServer.listen(CALLBACK_PORT, ()=>console.log('listening'));
@@ -219,31 +235,43 @@ class EmulatorApi {
 	}
 	
 	registerOnRead({ winId, addr, len, name, cb }) {
-		addr = this._resolveSymbol(addr);
-		if (len === undefined && typeof addr !== 'string') len = addr.size;
-		if (typeof addr !== 'string') addr = addr.addr;
+		if (typeof addr === 'string') {
+			addr = this._resolveSymbol(addr);
+			if (len === undefined && typeof addr !== 'string') len = addr.size;
+			if (typeof addr !== 'string') addr = addr.addr;
+		}
+		if (typeof addr === 'number') addr = addr.toString(16);
 		
 		return this._registerCallback(winId, `/${name}/OnMemoryRead/${addr}/${len.toString(16)}/${CALLBACK_URL}/${name}`, name, cb);
 	}
 	registerOnWrite({ winId, addr, len, name, cb }) {
-		addr = this._resolveSymbol(addr);
-		if (len === undefined && typeof addr !== 'string') len = addr.size;
-		if (typeof addr !== 'string') addr = addr.addr;
+		if (typeof addr === 'string') {
+			addr = this._resolveSymbol(addr);
+			if (len === undefined && typeof addr !== 'string') len = addr.size;
+			if (typeof addr !== 'string') addr = addr.addr;
+		}
+		if (typeof addr === 'number') addr = addr.toString(16);
 		
 		return this._registerCallback(winId, `/${name}/OnMemoryWrite/${addr}/${len.toString(16)}/${CALLBACK_URL}/${name}`, name, cb);
 	}
 	registerOnExecute({ winId, addr, len, name, cb }) {
-		addr = this._resolveSymbol(addr);
-		if (len === undefined && typeof addr !== 'string') len = addr.size;
-		if (typeof addr !== 'string') addr = addr.addr;
+		if (typeof addr === 'string') {
+			addr = this._resolveSymbol(addr);
+			if (len === undefined && typeof addr !== 'string') len = addr.size;
+			if (typeof addr !== 'string') addr = addr.addr;
+		}
+		if (typeof addr === 'number') addr = addr.toString(16);
 		
 		return this._registerCallback(winId, `/${name}/OnMemoryExecute/${addr}/${len.toString(16)}/${CALLBACK_URL}/${name}`, name, cb);
 	}
 	
 	registerOnReadIfValue({ winId, addr, len, ifAddr, isValue, name, cb }) {
-		addr = this._resolveSymbol(addr);
-		if (len === undefined && typeof addr !== 'string') len = addr.size;
-		if (typeof addr !== 'string') addr = addr.addr;
+		if (typeof addr === 'string') {
+			addr = this._resolveSymbol(addr);
+			if (len === undefined && typeof addr !== 'string') len = addr.size;
+			if (typeof addr !== 'string') addr = addr.addr;
+		}
+		if (typeof addr === 'number') addr = addr.toString(16);
 		
 		ifAddr = this._resolveSymbol(ifAddr);
 		if (typeof ifAddr !== 'string') ifAddr = ifAddr.addr;
@@ -251,9 +279,12 @@ class EmulatorApi {
 		return this._registerCallback(winId, `/${name}/OnMemoryReadIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}/${name}`, name, cb);
 	}
 	registerOnWriteIfValue({ winId, addr, len, ifAddr, isValue, name, cb }) {
-		addr = this._resolveSymbol(addr);
-		if (len === undefined && typeof addr !== 'string') len = addr.size;
-		if (typeof addr !== 'string') addr = addr.addr;
+		if (typeof addr === 'string') {
+			addr = this._resolveSymbol(addr);
+			if (len === undefined && typeof addr !== 'string') len = addr.size;
+			if (typeof addr !== 'string') addr = addr.addr;
+		}
+		if (typeof addr === 'number') addr = addr.toString(16);
 		
 		ifAddr = this._resolveSymbol(ifAddr);
 		if (typeof ifAddr !== 'string') ifAddr = ifAddr.addr;
@@ -261,9 +292,12 @@ class EmulatorApi {
 		return this._registerCallback(winId, `/${name}/OnMemoryWriteIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}/${name}`, name, cb);
 	}
 	registerOnExecuteIfValue({ winId, addr, len, ifAddr, isValue, name, cb }) {
-		addr = this._resolveSymbol(addr);
-		if (len === undefined && typeof addr !== 'string') len = addr.size;
-		if (typeof addr !== 'string') addr = addr.addr;
+		if (typeof addr === 'string') {
+			addr = this._resolveSymbol(addr);
+			if (len === undefined && typeof addr !== 'string') len = addr.size;
+			if (typeof addr !== 'string') addr = addr.addr;
+		}
+		if (typeof addr === 'number') addr = addr.toString(16);
 		
 		ifAddr = this._resolveSymbol(ifAddr);
 		if (typeof ifAddr !== 'string') ifAddr = ifAddr.addr;
@@ -273,10 +307,11 @@ class EmulatorApi {
 	
 	_resolveSymbol(addr, strict=false) {
 		// console.log(`_resolveSymbol(${addr}) => ${this.symbolTable && this.symbolTable[addr]}`);
-		if (/^[0-9-A-F]{4,8}$/i.test(addr)) return strict?addr:null; //already an address
+		if (typeof addr === 'number') addr = addr.toString(16);
+		if (/^[0-9A-F]{4,8}$/i.test(addr) && !strict) return addr; //already an address
 		if (!this.symbolTable) return addr; //cannot resolve on a table we don't have
 		let info = this.symbolTable[addr];
-		if (!info) return strict?addr:null; //not in table
+		if (!info) return strict?null:addr; //not in table
 		return info;
 	}
 	

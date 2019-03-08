@@ -995,17 +995,14 @@ LittlerootTown_Text_1E8C07: @ 81E8C07
 	.string "your own POKéMON.$"
 
 LittlerootTown_Text_1E8C3A: @ 81E8C3A
-	.string "Um, hi!\p"
-	.string "There are scary POKéMON outside!\n"
-	.string "I can hear their cries!\p"
-	.string "I want to go see what's going on,\n"
-	.string "but I don't have any POKéMON…\p"
-	.string "Can you go see what's happening\n"
-	.string "for me?$"
+	.string "I can hear someone shouting down the\n"
+	.string "road here.\p"
+	.string "What should I do? I don't know what to\n"
+	.string "do! Somebody has to go help...$"
 
 LittlerootTown_Text_1E8CE3: @ 81E8CE3
-	.string "You saved PROF. BIRCH!\n"
-	.string "I'm so glad!$"
+	.string "Boy, am I glad you went and rescued\n"
+	.string "the PROFESSOR.$"
 
 LittlerootTown_Text_1E8D07: @ 81E8D07
 	.string "Are you going to catch POKéMON?\n"

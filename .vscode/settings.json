@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"*.inc": "arm"
+	},
+	"[arm]": {
+		"editor.rulers": [12, 55]
+	}
+}
