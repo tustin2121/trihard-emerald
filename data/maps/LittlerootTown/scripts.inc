@@ -998,7 +998,7 @@ LittlerootTown_Text_1E8C3A: @ 81E8C3A
 	.string "I can hear someone shouting down the\n"
 	.string "road here.\p"
 	.string "What should I do? I don't know what to\n"
-	.string "do! Somebody has to go help...$"
+	.string "do! Somebody has to go help…$"
 
 LittlerootTown_Text_1E8CE3: @ 81E8CE3
 	.string "Boy, am I glad you went and rescued\n"

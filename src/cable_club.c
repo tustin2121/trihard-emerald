@@ -782,7 +782,7 @@ static void sub_80B3220(u8 taskId)
     }
 }
 
-void sub_80B3254(void)
+void DoSaveGame(void)
 {
     SaveGame();
 }

@@ -1,8 +1,11 @@
 #include "global.h"
 #include "te_debug.h"
+#include "script.h"
 #include "start_menu.h"
 #include "pokemon_storage_system.h"
 #include "overworld.h"
+#include "event_obj_lock.h"
+#include "event_object_movement.h"
 #include "random.h"
 #include "constants/maps.h"
 
@@ -11,8 +14,15 @@
 extern const int Start;
 extern void nullsub_129(void);
 
+// References to scripts defined in data/scripts/te_debug.inc
+extern const u8 Script_DebugHandleEmergencySave[];
+extern const u8 Script_DebugHandleShowPCBox[];
+
 typedef void (*DebugFunc)(void);
 
+extern bool8 gSoftResetDisabled;
+
+void DebugCheckInterrupts();
 static void DebugHandleEmergencySave();
 static void DebugHandleShowPCBox();
 static void DebugHandleWarpRequest();
@@ -20,8 +30,16 @@ static void DebugHandleReloadMap();
 static void DebugHandleGetRandomSeeds();
 static void DebugHandleSetRandomSeeds();
 
-#define SET_SUCCESS() gDebugInterrupts.returnVal = 1
-#define SET_FAILURE() gDebugInterrupts.returnVal = -1
+void DebugSetCallbackSuccess()
+{
+	gDebugInterrupts.returnVal = 1;
+}
+
+void DebugSetCallbackFailure()
+{
+	gDebugInterrupts.returnVal = -1;
+}
+
 
 static const DebugFunc sDebugCommands[] =
 {
@@ -38,6 +56,8 @@ static const DebugFunc sDebugCommands[] =
 
 void DebugCheckInterrupts()
 {
+	if (gSoftResetDisabled) return; //don't check when the game has disabled soft-resets
+	// if (ScriptContext1_IsScriptSetUp()) return; //don't run it when another script is going
 	if (gDebugInterrupts.funcId != 0)
 	{
 		gDebugInterrupts.returnVal = 0;
@@ -49,20 +69,20 @@ void DebugCheckInterrupts()
 	}
 }
 
+
+
 // parameters: none
 // returns: none
 void DebugHandleEmergencySave()
 {
-	SaveGame(); //"Would you like to save the game?"
-	SET_SUCCESS();
+	ScriptContext1_SetupScript(Script_DebugHandleEmergencySave);
 }
 
 // parameters: none
 // returns: none
 void DebugHandleShowPCBox()
 {
-	ShowPokemonStorageSystemPC();
-	SET_SUCCESS();
+	ScriptContext1_SetupScript(Script_DebugHandleShowPCBox);
 }
 
 // parameters: 
@@ -77,8 +97,8 @@ void DebugHandleWarpRequest()
 	s8 args[5];
 	const struct MapHeader* mapHeader;
 	
-	memcpy(&args, gDebugInterrupts.args, 5);
-	memset(gDebugInterrupts.args, 0, 5);
+	memcpy(&args, (u8*)gDebugInterrupts.args, 5);
+	memset((u8*)gDebugInterrupts.args, 0, 5);
 	
 	if (args[0] < 0 || args[0] >= MAP_GROUPS_COUNT) goto error;
 	
@@ -91,10 +111,10 @@ void DebugHandleWarpRequest()
 	SetWarpDestination(args[0], args[1], args[2], args[3], args[4]);
 	WarpIntoMap();
 	
-	SET_SUCCESS();
+	DebugSetCallbackSuccess();
 	return;
 error:
-	SET_FAILURE();
+	DebugSetCallbackFailure();
 	return;
 }
 
@@ -105,18 +125,18 @@ void DebugHandleReloadMap()
 	
 	SetWarpDestination(data.mapGroup, data.mapNum, -1, data.x, data.y);
 	WarpIntoMap();
-	SET_SUCCESS();
+	DebugSetCallbackSuccess();
 }
 
 // arguments: none
 // returns: gRngValue copied to +4, gRng2Value copied to +8
 void DebugHandleGetRandomSeeds()
 {
-	u32 *val1 = &gDebugInterrupts.args[2]; //choose word-aligned address
-	u32 *val2 = &gDebugInterrupts.args[6];
+	u32 *val1 = (u32*)&gDebugInterrupts.args[2]; //choose word-aligned address
+	u32 *val2 = (u32*)&gDebugInterrupts.args[6];
 	*val1 = gRngValue;
 	*val2 = gRng2Value;
-	SET_SUCCESS();
+	DebugSetCallbackSuccess();
 }
 
 // arguments: 
@@ -125,9 +145,9 @@ void DebugHandleGetRandomSeeds()
 // returns: none
 void DebugHandleSetRandomSeeds()
 {
-	u32 *val1 = &gDebugInterrupts.args[2]; //choose word-aligned address
-	u32 *val2 = &gDebugInterrupts.args[6];
+	u32 *val1 = (u32*)&gDebugInterrupts.args[2]; //choose word-aligned address
+	u32 *val2 = (u32*)&gDebugInterrupts.args[6];
 	gRngValue = *val1;
 	gRng2Value = *val2;
-	SET_SUCCESS();
+	DebugSetCallbackSuccess();
 }

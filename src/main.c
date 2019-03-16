@@ -71,8 +71,10 @@ u8 gLinkVSyncDisabled;
 u32 IntrMain_Buffer[0x200];
 s8 gPcmDmaCounter;
 
+#define DEBUG_SENTINAL 0xAA50
+
 static EWRAM_DATA u16 gTrainerId = 0; //located at 0x02020000
-static EWRAM_DATA u16 sDebugSentinal = 0xAA50; //acts as both a sentinal to find and a version number
+static EWRAM_DATA u16 sDebugSentinal = 0; //acts as both a sentinal to find and a version number
        EWRAM_DATA struct DebugInterrupts gDebugInterrupts = {0};
 
 //EWRAM_DATA void (**gFlashTimerIntrFunc)(void) = NULL;
@@ -115,19 +117,20 @@ void AgbMain()
 
     gLinkTransferringData = FALSE;
     gUnknown_03000000 = 0xFC0;
+    sDebugSentinal = DEBUG_SENTINAL;
 
     for (;;)
     {
         ReadKeys();
 
-        if (gSoftResetDisabled == FALSE
-         && (gMain.heldKeysRaw & A_BUTTON)
-         && (gMain.heldKeysRaw & B_START_SELECT) == B_START_SELECT)
-        {
-            rfu_REQ_stopMode();
-            rfu_waitREQComplete();
-            DoSoftReset();
-        }
+        // if (gSoftResetDisabled == FALSE
+        //  && (gMain.heldKeysRaw & A_BUTTON)
+        //  && (gMain.heldKeysRaw & B_START_SELECT) == B_START_SELECT)
+        // {
+        //     rfu_REQ_stopMode();
+        //     rfu_waitREQComplete();
+        //     DoSoftReset();
+        // }
 
         if (sub_8087634() == 1)
         {

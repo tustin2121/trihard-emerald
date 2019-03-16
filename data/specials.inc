@@ -44,7 +44,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B3968
 	def_special sub_80B3924
 	def_special nullsub_37
-	def_special sub_80B3254
+	def_special DoSaveGame
 	def_special sub_80B2FD8
 	def_special GetLinkPartnerNames
 	def_special SpawnLinkPartnerEventObject
@@ -535,3 +535,4 @@ gSpecials:: @ 81DBA64
 	def_special RemoveRecordsWindow
 	def_special sub_8139C10
 	def_special sub_80B3BC4
+	def_special DebugSetCallbackSuccess

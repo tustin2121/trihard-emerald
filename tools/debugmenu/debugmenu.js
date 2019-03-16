@@ -11,13 +11,13 @@ function initMenuV1() {
 		let $m = $mainMenu = $('<ul>').appendTo('body');
 		$(`<li>Emergency Save</li>`).appendTo($m)
 			.on('click', function(){
-				
+				writeInterrupts({ funcId:1 });
 			});
 		$(`<li>Open PC Storage</li>`).appendTo($m)
 			.on('click', function(){
-				
+				writeInterrupts({ funcId:2 });
 			});
-		$(`<li>Set Debug Options</li>`).appendTo($m)
+		$(`<li>Debug Options</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('debugopts'); });
 	}{
 		let $m = $subMenus['debugopts'] = $('<ul>').appendTo('body');
@@ -25,7 +25,8 @@ function initMenuV1() {
 			.addClass('unchecked')
 			.attr('name', 'flagBattles')
 			.on('click', function(){
-				
+				$(this).toggleClass('unchecked');
+				$(this).toggleClass('checked');
 			});
 		$(`<li>Commit</li>`).appendTo($m)
 			.on('click', function(){
@@ -71,8 +72,7 @@ function switchMenu(id) {
 
 function findConnect() {
 	emulator.readMemory(DEBUG_MENU_LOC-4, 0x04).then((data)=>{
-		data = Buffer.from(data); //No idea why this is needed, but it is...
-		let val = data.readUint16LE(2);
+		let val = data.readUInt16LE(2);
 		switch (val) {
 			case 0xAA50: initMenuV1(); break;
 			default:

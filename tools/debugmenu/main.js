@@ -9,7 +9,7 @@ let windowList = [];
 
 const generateId = ()=>Math.floor(Math.random()*Math.pow(36,5)).toString(36);
 
-global.emulator = new EmulatorApi();
+global.emulator = new EmulatorApi(52113);
 
 function createWindow() {
 	let wid = generateId();

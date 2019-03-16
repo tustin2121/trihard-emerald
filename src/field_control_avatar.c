@@ -139,6 +139,8 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
 
     gSpecialVar_LastTalked = 0;
     gSelectedEventObject = 0;
+    
+    DebugCheckInterrupts();
 
     playerDirection = GetPlayerFacingDirection();
     GetPlayerPosition(&position);

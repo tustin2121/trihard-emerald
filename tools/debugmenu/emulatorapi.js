@@ -4,39 +4,41 @@ const http = require('http');
 const { parse:parseUrl } = require('url');
 const fs = require('fs');
 
-const CALLBACK_PORT = 52121;
-const CALLBACK_URL = `http://localhost:${CALLBACK_PORT}/`;
+const CALLBACK_URL = `http://localhost`;
 const EMULATOR_URL = `http://localhost:5337`;
 
 class EmulatorApi {
-	constructor() {
+	constructor(port=52121) {
 		this.symbolTable = null;
 		this.reverseSymbolTable = null;
 		this.varNameTable = null;
 		this.flagNameTable = null;
+		this.callbackPort = port;
 		
-		this.callbackTable = new Map(); // windowid=>{path=>callback}
-		this.callbackServer = http.createServer((req, res)=>{
-			let name = '';
-			req.on('data', (d)=>name+=d);
-			req.on('end', ()=>{
-				let handled = false;
-				for (let [win, table] of this.callbackTable) {
-					if (table[name]) {
-						table[name]();
-						handled = true;
+		if (!this.callbackPort) {
+			this.callbackTable = new Map(); // windowid=>{path=>callback}
+			this.callbackServer = http.createServer((req, res)=>{
+				let name = '';
+				req.on('data', (d)=>name+=d);
+				req.on('end', ()=>{
+					let handled = false;
+					for (let [win, table] of this.callbackTable) {
+						if (table[name]) {
+							table[name]();
+							handled = true;
+						}
 					}
-				}
-				if (!handled) {
-					console.error('CALLBACK FROM EMULATOR UNHANDLED! path=', path, this.callbackTable);
-					res.end();
-				} else {
-					res.end();
-				}
+					if (!handled) {
+						console.error('CALLBACK FROM EMULATOR UNHANDLED! path=', path, this.callbackTable);
+						res.end();
+					} else {
+						res.end();
+					}
+				});
 			});
-		});
-		
-		this.callbackServer.listen(CALLBACK_PORT, ()=>console.log('listening'));
+			
+			this.callbackServer.listen(this.callbackPort, ()=>console.log('listening'));
+		}
 	}
 	
 	loadRomSymbolFile(filename) {
@@ -235,6 +237,7 @@ class EmulatorApi {
 	}
 	
 	registerOnRead({ winId, addr, len, name, cb }) {
+		if (!this.callbackServer) return Promise.reject(new ReferenceError('No callback server instantiated!'));
 		if (typeof addr === 'string') {
 			addr = this._resolveSymbol(addr);
 			if (len === undefined && typeof addr !== 'string') len = addr.size;
@@ -242,9 +245,10 @@ class EmulatorApi {
 		}
 		if (typeof addr === 'number') addr = addr.toString(16);
 		
-		return this._registerCallback(winId, `/${name}/OnMemoryRead/${addr}/${len.toString(16)}/${CALLBACK_URL}/${name}`, name, cb);
+		return this._registerCallback(winId, `/${name}/OnMemoryRead/${addr}/${len.toString(16)}/${CALLBACK_URL}:${this.callbackPort}/${name}`, name, cb);
 	}
 	registerOnWrite({ winId, addr, len, name, cb }) {
+		if (!this.callbackServer) return Promise.reject(new ReferenceError('No callback server instantiated!'));
 		if (typeof addr === 'string') {
 			addr = this._resolveSymbol(addr);
 			if (len === undefined && typeof addr !== 'string') len = addr.size;
@@ -252,9 +256,10 @@ class EmulatorApi {
 		}
 		if (typeof addr === 'number') addr = addr.toString(16);
 		
-		return this._registerCallback(winId, `/${name}/OnMemoryWrite/${addr}/${len.toString(16)}/${CALLBACK_URL}/${name}`, name, cb);
+		return this._registerCallback(winId, `/${name}/OnMemoryWrite/${addr}/${len.toString(16)}/${CALLBACK_URL}:${this.callbackPort}/${name}`, name, cb);
 	}
 	registerOnExecute({ winId, addr, len, name, cb }) {
+		if (!this.callbackServer) return Promise.reject(new ReferenceError('No callback server instantiated!'));
 		if (typeof addr === 'string') {
 			addr = this._resolveSymbol(addr);
 			if (len === undefined && typeof addr !== 'string') len = addr.size;
@@ -262,10 +267,11 @@ class EmulatorApi {
 		}
 		if (typeof addr === 'number') addr = addr.toString(16);
 		
-		return this._registerCallback(winId, `/${name}/OnMemoryExecute/${addr}/${len.toString(16)}/${CALLBACK_URL}/${name}`, name, cb);
+		return this._registerCallback(winId, `/${name}/OnMemoryExecute/${addr}/${len.toString(16)}/${CALLBACK_URL}:${this.callbackPort}/${name}`, name, cb);
 	}
 	
 	registerOnReadIfValue({ winId, addr, len, ifAddr, isValue, name, cb }) {
+		if (!this.callbackServer) return Promise.reject(new ReferenceError('No callback server instantiated!'));
 		if (typeof addr === 'string') {
 			addr = this._resolveSymbol(addr);
 			if (len === undefined && typeof addr !== 'string') len = addr.size;
@@ -276,9 +282,10 @@ class EmulatorApi {
 		ifAddr = this._resolveSymbol(ifAddr);
 		if (typeof ifAddr !== 'string') ifAddr = ifAddr.addr;
 		
-		return this._registerCallback(winId, `/${name}/OnMemoryReadIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}/${name}`, name, cb);
+		return this._registerCallback(winId, `/${name}/OnMemoryReadIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}:${this.callbackPort}/${name}`, name, cb);
 	}
 	registerOnWriteIfValue({ winId, addr, len, ifAddr, isValue, name, cb }) {
+		if (!this.callbackServer) return Promise.reject(new ReferenceError('No callback server instantiated!'));
 		if (typeof addr === 'string') {
 			addr = this._resolveSymbol(addr);
 			if (len === undefined && typeof addr !== 'string') len = addr.size;
@@ -289,9 +296,10 @@ class EmulatorApi {
 		ifAddr = this._resolveSymbol(ifAddr);
 		if (typeof ifAddr !== 'string') ifAddr = ifAddr.addr;
 		
-		return this._registerCallback(winId, `/${name}/OnMemoryWriteIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}/${name}`, name, cb);
+		return this._registerCallback(winId, `/${name}/OnMemoryWriteIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}:${this.callbackPort}/${name}`, name, cb);
 	}
 	registerOnExecuteIfValue({ winId, addr, len, ifAddr, isValue, name, cb }) {
+		if (!this.callbackServer) return Promise.reject(new ReferenceError('No callback server instantiated!'));
 		if (typeof addr === 'string') {
 			addr = this._resolveSymbol(addr);
 			if (len === undefined && typeof addr !== 'string') len = addr.size;
@@ -302,7 +310,7 @@ class EmulatorApi {
 		ifAddr = this._resolveSymbol(ifAddr);
 		if (typeof ifAddr !== 'string') ifAddr = ifAddr.addr;
 		
-		return this._registerCallback(winId, `/${name}/OnMemoryExecuteIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}/${name}`, name, cb);
+		return this._registerCallback(winId, `/${name}/OnMemoryExecuteIfValue/${addr}/${len.toString(16)}/${ifAddr}/${isValue}/${CALLBACK_URL}:${this.callbackPort}/${name}`, name, cb);
 	}
 	
 	_resolveSymbol(addr, strict=false) {

@@ -32,6 +32,8 @@ li {
 	list-style: none;
 	cursor: pointer;
 	user-select: none;
+	text-indent: -2ch;
+	padding-left: 2ch;
 }
 li:hover {
 	background-color: #ffff77;
