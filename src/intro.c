@@ -1,5 +1,6 @@
 #include "global.h"
 #include "main.h"
+#include "overworld.h"
 #include "palette.h"
 #include "scanline_effect.h"
 #include "task.h"
@@ -955,7 +956,7 @@ static void VBlankCB_Intro(void)
     ScanlineEffect_InitHBlankDmaTransfer();
 }
 
-static void MainCB2_Intro(void)
+void MainCB2_Intro(void)
 {
     RunTasks();
     AnimateSprites();
@@ -967,7 +968,7 @@ static void MainCB2_Intro(void)
         gIntroFrameCounter++;
 }
 
-static void MainCB2_EndIntro(void)
+void MainCB2_EndIntro(void)
 {
     if (!UpdatePaletteFade())
         SetMainCallback2(CB2_InitTitleScreen);
@@ -1074,6 +1075,10 @@ void CB2_InitCopyrightScreenAfterBootup(void)
             Sav2_ClearSetDefault();
         SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
         InitHeap(gHeap, HEAP_SIZE);
+        if (gSaveFileStatus == 1 && gDebugInterrupts.funcId == 0)
+        {
+            SetMainCallback2(CB2_ContinueSavedGame);
+        }
     }
 }
 

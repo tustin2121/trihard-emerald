@@ -19,6 +19,7 @@ struct DebugInterrupts
 }; //size = 0x10
 // Defined in main.c for memory location purposes
 extern volatile struct DebugInterrupts gDebugInterrupts;
+extern void DebugResetInterrupts();
 extern void DebugCheckInterrupts();
 extern void DebugSetCallbackSuccess();
 extern void DebugSetCallbackFailure();

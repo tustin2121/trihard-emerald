@@ -54,6 +54,11 @@ static const DebugFunc sDebugCommands[] =
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
 
+void DebugResetInterrupts()
+{
+	memset((u8*)&gDebugInterrupts, 0, sizeof(struct DebugInterrupts));
+}
+
 void DebugCheckInterrupts()
 {
 	if (gSoftResetDisabled) return; //don't check when the game has disabled soft-resets

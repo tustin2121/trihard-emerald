@@ -1722,6 +1722,7 @@ void CB2_ContinueSavedGame(void)
     ScriptContext1_Init();
     ScriptContext2_Disable();
     InitMatchCallCounters();
+    DebugResetInterrupts();
     if (UseContinueGameWarp() == TRUE)
     {
         ClearContinueGameWarpStatus();
