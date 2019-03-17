@@ -123,6 +123,9 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9E36:: @ 81F9E36
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FA9D5, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_ROUTE_101_BOY
 	setvar VAR_0x4084, 3
+	@ TriHard Emerald: Force Save
+	special ForceSaveGame
+	waitstate
 	releaseall
 	end
 

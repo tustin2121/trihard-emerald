@@ -1164,6 +1164,7 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     PlayBGM(MUS_DOORO_X4);
     ShowBg(0);
     ShowBg(1);
+    DebugResetInterrupts();
 }
 
 static void Task_NewGameBirchSpeech_WaitToShowBirch(u8 taskId)
