@@ -3,13 +3,17 @@ export CPP := $(PREFIX)cpp
 export LD := $(PREFIX)ld
 export NM := $(PREFIX)nm
 
+# Build Variables
+TPP_MODE		?= 1
+EMULATOR_ONLY	?= 1
+
 ifeq ($(OS),Windows_NT)
 EXE := .exe
 else
 EXE :=
 endif
 
-TITLE       := POKEMON EMER
+TITLE       := TRIHARD EMER #POKEMON EMER
 GAME_CODE   := BPEE #THEE
 MAKER_CODE  := 01
 REVISION    := 0
@@ -35,12 +39,11 @@ DATA_ASM_BUILDDIR = $(OBJ_DIR)/$(DATA_ASM_SUBDIR)
 SONG_BUILDDIR = $(OBJ_DIR)/$(SONG_SUBDIR)
 MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 
-ASFLAGS := -mcpu=arm7tdmi
-
 CC1             := tools/agbcc/bin/agbcc$(EXE)
-override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
 
-CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs
+ASFLAGS := -mcpu=arm7tdmi --defsym TPP_MODE=$(TPP_MODE) --defsym EMULATOR_ONLY=$(EMULATOR_ONLY)
+override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
+CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs -D TPP_MODE=$(TPP_MODE) -D EMULATOR_ONLY=$(EMULATOR_ONLY)
 
 LDFLAGS = -Map ../../$(MAP)
 
