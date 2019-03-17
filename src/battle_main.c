@@ -4832,6 +4832,12 @@ static void SetActionsAndBattlersTurnOrder(void)
                 gActiveBattler = 2;
                 turnOrderId = 5;
             }
+            // Give priority to Wally when he recalls his pokemon
+            if ((gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL) && (gChosenActionByBattler[0] == B_ACTION_WALLY_THROW))
+            {
+                gActiveBattler = 0;
+                turnOrderId = 5;
+            }
         }
 
         if (turnOrderId == 5) // One of battlers wants to run.
