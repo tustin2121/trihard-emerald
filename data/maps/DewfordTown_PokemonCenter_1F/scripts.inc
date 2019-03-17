@@ -10,7 +10,7 @@ DewfordTown_PokemonCenter_1F_MapScript1_1FC52E: @ 81FC52E
 
 DewfordTown_PokemonCenter_1F_EventScript_1FC537:: @ 81FC537
 	setvar VAR_0x800B, 1
-	call DewfordTown_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

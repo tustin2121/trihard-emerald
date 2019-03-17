@@ -10,7 +10,7 @@ FallarborTown_PokemonCenter_1F_MapScript1_200BD8: @ 8200BD8
 
 FallarborTown_PokemonCenter_1F_EventScript_200BE1:: @ 8200BE1
 	setvar VAR_0x800B, 1
-	call FallarborTown_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

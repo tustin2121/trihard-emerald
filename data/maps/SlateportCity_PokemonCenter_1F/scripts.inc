@@ -10,7 +10,7 @@ SlateportCity_PokemonCenter_1F_MapScript1_20DACA: @ 820DACA
 
 SlateportCity_PokemonCenter_1F_EventScript_20DAD3:: @ 820DAD3
 	setvar VAR_0x800B, 1
-	call SlateportCity_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

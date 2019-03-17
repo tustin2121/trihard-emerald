@@ -126,6 +126,7 @@ static u8 SaveFileExistsCallback(void);
 static u8 SaveConfirmOverwriteNoCallback(void);
 static u8 SaveConfirmOverwriteCallback(void);
 static u8 SaveOverwriteInputCallback(void);
+static u8 SaveForceSavingMessageCallback(void);
 static u8 SaveSavingMessageCallback(void);
 static u8 SaveDoSaveCallback(void);
 static u8 SaveSuccessCallback(void);
@@ -865,10 +866,10 @@ void SaveGame(void) // Called from cable_club.s
     CreateTask(SaveGameTask, 0x50);
 }
 
-void ForceSave(void) // Called from HealPlayerParty
+void ForceSaveGame(void) // Called from scripts
 {
     InitSave();
-    sSaveDialogCallback = SaveSavingMessageCallback;
+    sSaveDialogCallback = SaveForceSavingMessageCallback;
     CreateTask(SaveGameTask, 0x50);
 }
 
@@ -1047,6 +1048,13 @@ static u8 SaveOverwriteInputCallback(void)
         return SAVE_CANCELED;
     }
 
+    return SAVE_IN_PROGRESS;
+}
+
+static u8 SaveForceSavingMessageCallback(void)
+{
+    ShowSaveInfoWindow();
+    ShowSaveMessage(gText_SavingDontTurnOff, SaveDoSaveCallback);
     return SAVE_IN_PROGRESS;
 }
 

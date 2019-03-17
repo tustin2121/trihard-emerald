@@ -9,7 +9,7 @@ SootopolisCity_PokemonCenter_1F_MapScript1_2264FC: @ 82264FC
 
 SootopolisCity_PokemonCenter_1F_EventScript_226500:: @ 8226500
 	setvar VAR_0x800B, 1
-	call SootopolisCity_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

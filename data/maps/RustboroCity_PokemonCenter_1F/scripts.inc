@@ -10,7 +10,7 @@ RustboroCity_PokemonCenter_1F_MapScript1_214D6D: @ 8214D6D
 
 RustboroCity_PokemonCenter_1F_EventScript_214D76:: @ 8214D76
 	setvar VAR_0x800B, 1
-	call RustboroCity_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

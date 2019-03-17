@@ -14,6 +14,7 @@
 #include "constants/species.h"
 #include "constants/trainers.h"
 #include "constants/vars.h"
+#include "constants/game_stat.h"
 #include "constants/weather.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
@@ -1239,156 +1240,7 @@ OldaleTown_PokemonCenter_1F_EventScript_271918:: @ 8271918
 	setvar VAR_0x4096, 3
 	return
 
-BattleFrontier_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-DewfordTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-EverGrandeCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-EverGrandeCity_PokemonLeague_1F_EventScript_27191E:: @ 827191E
-FallarborTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-FortreeCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-LavaridgeTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-LilycoveCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-MauvilleCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-MossdeepCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-OldaleTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-PacifidlogTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-PetalburgCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-RustboroCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-SlateportCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-SootopolisCity_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-TrainerHill_Entrance_EventScript_27191E:: @ 827191E
-VerdanturfTown_PokemonCenter_1F_EventScript_27191E:: @ 827191E
-	lock
-	faceplayer
-	setvar VAR_0x8004, 0
-	specialvar VAR_RESULT, CountPlayerTrainerStars
-	compare VAR_RESULT, 4
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271A68
-	msgbox gUnknown_082726EB, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_27195A
-	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271954
-	end
-
-OldaleTown_PokemonCenter_1F_EventScript_271954:: @ 8271954
-	message gUnknown_082727DB
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_27195A:: @ 827195A
-	incrementgamestat 15
-	compare VAR_0x8004, 0
-	call_if_eq OldaleTown_PokemonCenter_1F_EventScript_271987
-	compare VAR_0x8004, 1
-	call_if_eq OldaleTown_PokemonCenter_1F_EventScript_27198D
-	waitmessage
-	call OldaleTown_PokemonCenter_1F_EventScript_271993
-	goto_if_unset FLAG_POKERUS_EXPLAINED, OldaleTown_PokemonCenter_1F_EventScript_271A43
-	goto OldaleTown_PokemonCenter_1F_EventScript_2719B1
-	end
-
-OldaleTown_PokemonCenter_1F_EventScript_271987:: @ 8271987
-	message gUnknown_08272768
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_27198D:: @ 827198D
-	message gUnknown_082729C0
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271993:: @ 8271993
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_2725A4
-	waitmovement 0
-	dofieldeffect FLDEFF_POKECENTER_HEAL
-	waitfieldeffect FLDEFF_POKECENTER_HEAL
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_2725AA
-	waitmovement 0
-	special HealPlayerParty
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_2719B1:: @ 82719B1
-	specialvar VAR_RESULT, sub_8139ED0
-	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_2719E2
-	specialvar VAR_RESULT, sp182_move_string
-	copyvar VAR_0x8008, VAR_RESULT
-	compare VAR_0x8008, 0
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_2719E2
-	compare VAR_0x8008, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271A19
-	end
-
-OldaleTown_PokemonCenter_1F_EventScript_2719E2:: @ 82719E2
-	compare VAR_0x8004, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271A03
-	message gUnknown_08272798
-	waitmessage
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_271AD0
-	waitmovement 0
-	message gUnknown_082727DB
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271A03:: @ 8271A03
-	message gUnknown_082729F0
-	waitmessage
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_271AD0
-	waitmovement 0
-	message gUnknown_08272A07
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271A19:: @ 8271A19
-	goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER, OldaleTown_PokemonCenter_1F_EventScript_2719E2
-	msgbox gUnknown_08272798, MSGBOX_DEFAULT
-	setflag FLAG_NURSE_UNION_ROOM_REMINDER
-	message OldaleTown_PokemonCenter_1F_Text_278A48
-	waitmessage
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_271AD0
-	waitmovement 0
-	message gUnknown_082727DB
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271A43:: @ 8271A43
-	specialvar VAR_RESULT, IsPokerusInParty
-	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271A5F
-	compare VAR_RESULT, 0
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_2719B1
-	end
-
-OldaleTown_PokemonCenter_1F_EventScript_271A5F:: @ 8271A5F
-	message gUnknown_08272F07
-	setflag FLAG_POKERUS_EXPLAINED
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271A68:: @ 8271A68
-	goto_if_set FLAG_OLDALE_NURSE_MENTIONS_GOLD_CARD, OldaleTown_PokemonCenter_1F_EventScript_271AAC
-	setflag FLAG_OLDALE_NURSE_MENTIONS_GOLD_CARD
-	msgbox gUnknown_082727F5, MSGBOX_DEFAULT
-	playse SE_PIN
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_272598
-	waitmovement 0
-	applymovement VAR_0x800B, OldaleTown_PokemonCenter_1F_Movement_27259A
-	waitmovement 0
-	msgbox gUnknown_08272860, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271AC5
-	message gUnknown_08272A07
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271AAC:: @ 8271AAC
-	msgbox gUnknown_08272982, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq OldaleTown_PokemonCenter_1F_EventScript_271AC5
-	message gUnknown_08272A07
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271AC5:: @ 8271AC5
-	setvar VAR_0x8004, 1
-	goto OldaleTown_PokemonCenter_1F_EventScript_27195A
-	end
-
-OldaleTown_PokemonCenter_1F_Movement_271AD0: @ 8271AD0
-	nurse_joy_bow
-	delay_4
-	step_end
+	.include "data/pokecenter_scripts.inc"
 
 Std_ObtainItem:: @ 8271AD3
 	giveitem VAR_0x8000, VAR_0x8001
@@ -2509,6 +2361,7 @@ EverGrandeCity_SidneysRoom_EventScript_27255F:: @ 827255F
 	return
 
 SlateportCity_Movement_272596: @ 8272596
+Movement_Emote_QuestionMark:: @ 8272596
 	emote_question_mark
 	step_end
 
@@ -2536,7 +2389,6 @@ MossdeepCity_SpaceCenter_2F_Movement_272598: @ 8272598
 MossdeepCity_StevensHouse_Movement_272598: @ 8272598
 MtChimney_Movement_272598: @ 8272598
 MtPyre_Summit_Movement_272598: @ 8272598
-OldaleTown_PokemonCenter_1F_Movement_272598: @ 8272598
 PetalburgCity_Gym_Movement_272598: @ 8272598
 PetalburgCity_Movement_272598: @ 8272598
 Route103_Movement_272598: @ 8272598
@@ -2554,6 +2406,7 @@ SeafloorCavern_Room9_Movement_272598: @ 8272598
 SlateportCity_Movement_272598: @ 8272598
 SlateportCity_OceanicMuseum_1F_Movement_272598: @ 8272598
 SlateportCity_PokemonFanClub_Movement_272598: @ 8272598
+Movement_Emote_ExclamationPoint:: @ 8272598
 	emote_exclamation_mark
 	step_end
 
@@ -2578,7 +2431,6 @@ MossdeepCity_SpaceCenter_2F_Movement_27259A: @ 827259A
 MossdeepCity_StevensHouse_Movement_27259A: @ 827259A
 MtChimney_Movement_27259A: @ 827259A
 MtPyre_Summit_Movement_27259A: @ 827259A
-OldaleTown_PokemonCenter_1F_Movement_27259A: @ 827259A
 PetalburgCity_Gym_Movement_27259A: @ 827259A
 PetalburgCity_Movement_27259A: @ 827259A
 Route103_Movement_27259A: @ 827259A
@@ -2595,6 +2447,7 @@ SeafloorCavern_Room9_Movement_27259A: @ 827259A
 SlateportCity_Movement_27259A: @ 827259A
 SlateportCity_OceanicMuseum_1F_Movement_27259A: @ 827259A
 SlateportCity_PokemonFanClub_Movement_27259A: @ 827259A
+Movement_Emote_Wait48:: @ 827259A
 	delay_16
 	delay_16
 	delay_16
@@ -2641,10 +2494,12 @@ SeafloorCavern_Room9_Movement_27259E: @ 827259E
 SlateportCity_Movement_27259E: @ 827259E
 SlateportCity_SternsShipyard_1F_Movement_27259E: @ 827259E
 SootopolisCity_Movement_27259E: @ 827259E
+Movement_FacePlayer:: @ 827259E
 	face_player
 	step_end
 
 BattleFrontier_OutsideWest_Movement_2725A0: @ 82725A0
+Movement_FaceAwayFromPlayer:: @ 82725A0
 	face_away_player
 	step_end
 
@@ -2682,6 +2537,7 @@ SlateportCity_OceanicMuseum_2F_Movement_2725A2: @ 82725A2
 SlateportCity_SternsShipyard_1F_Movement_2725A2: @ 82725A2
 SootopolisCity_Movement_2725A2: @ 82725A2
 VerdanturfTown_Movement_2725A2: @ 82725A2
+Movement_FaceOriginalDirection:: @ 82725A2
 	face_original_direction
 	step_end
 
@@ -2706,7 +2562,6 @@ MossdeepCity_SpaceCenter_2F_Movement_2725A4: @ 82725A4
 MossdeepCity_StevensHouse_Movement_2725A4: @ 82725A4
 MtChimney_Movement_2725A4: @ 82725A4
 MtPyre_Summit_Movement_2725A4: @ 82725A4
-OldaleTown_PokemonCenter_1F_Movement_2725A4: @ 82725A4
 PetalburgCity_Gym_Movement_2725A4: @ 82725A4
 PetalburgCity_Movement_2725A4: @ 82725A4
 PetalburgWoods_Movement_2725A4: @ 82725A4
@@ -2726,6 +2581,7 @@ SlateportCity_Movement_2725A4: @ 82725A4
 SlateportCity_OceanicMuseum_1F_Movement_2725A4: @ 82725A4
 SlateportCity_OceanicMuseum_2F_Movement_2725A4: @ 82725A4
 SootopolisCity_Movement_2725A4: @ 82725A4
+Movement_FaceLeftDirection:: @ 82725A4
 	walk_in_place_fastest_left
 	step_end
 
@@ -2773,6 +2629,7 @@ SlateportCity_Movement_2725A6: @ 82725A6
 SlateportCity_OceanicMuseum_2F_Movement_2725A6: @ 82725A6
 SootopolisCity_MysteryEventsHouse_1F_Movement_2725A6: @ 82725A6
 VerdanturfTown_BattleTentBattleRoom_Movement_2725A6: @ 82725A6
+Movement_FaceUpDirection:: @ 82725A6
 	walk_in_place_fastest_up
 	step_end
 
@@ -2816,6 +2673,7 @@ SlateportCity_OceanicMuseum_1F_Movement_2725A8: @ 82725A8
 SlateportCity_OceanicMuseum_2F_Movement_2725A8: @ 82725A8
 SootopolisCity_Movement_2725A8: @ 82725A8
 VerdanturfTown_BattleTentBattleRoom_Movement_2725A8: @ 82725A8
+Movement_FaceRightDirection:: @ 82725A8
 	walk_in_place_fastest_right
 	step_end
 
@@ -2838,7 +2696,6 @@ MeteorFalls_1F_1R_Movement_2725AA: @ 82725AA
 MossdeepCity_SpaceCenter_2F_Movement_2725AA: @ 82725AA
 MtPyre_Summit_Movement_2725AA: @ 82725AA
 NavelRock_Harbor_Movement_2725AA: @ 82725AA
-OldaleTown_PokemonCenter_1F_Movement_2725AA: @ 82725AA
 PetalburgCity_Gym_Movement_2725AA: @ 82725AA
 PetalburgCity_Movement_2725AA: @ 82725AA
 PetalburgWoods_Movement_2725AA: @ 82725AA
@@ -2860,6 +2717,7 @@ SlateportCity_OceanicMuseum_2F_Movement_2725AA: @ 82725AA
 SouthernIsland_Exterior_Movement_2725AA: @ 82725AA
 VerdanturfTown_BattleTentBattleRoom_Movement_2725AA: @ 82725AA
 VictoryRoad_1F_Movement_2725AA: @ 82725AA
+Movement_FaceDownDirection:: @ 82725AA
 	walk_in_place_fastest_down
 	step_end
 
@@ -2982,35 +2840,7 @@ gUnknown_082726C2:: @ 82726C2
 gUnknown_082726D4:: @ 82726D4
 	.string "Accessed LANETTE's PC.$"
 
-gUnknown_082726EB:: @ 82726EB
-	.string "Hello, and welcome to\nthe POKéMON CENTER.\pWe restore your tired POKéMON\nto full health.\pWould you like to rest your POKéMON?$"
-
-gUnknown_08272768:: @ 8272768
-	.string "Okay, I'll take your POKéMON\nfor a few seconds.$"
-
-gUnknown_08272798:: @ 8272798
-	.string "Thank you for waiting.\pWe've restored your POKéMON\nto full health.$"
-
-gUnknown_082727DB:: @ 82727DB
-	.string "We hope to see you again!$"
-
-gUnknown_082727F5:: @ 82727F5
-	.string "Hello, and welcome to\nthe POKéMON CENTER.\pWe restore your tired POKéMON\nto full health.\pWould you like to…$"
-
-gUnknown_08272860:: @ 8272860
-	.string "Th-that card…\nCould it be… The GOLD CARD?!\pOh, the gold color is brilliant!\nThe four stars seem to sparkle!\pI've seen several TRAINERS with\na SILVER CARD before, but, {PLAYER},\lyou're the first TRAINER I've ever\lseen with a GOLD CARD!\pOkay, {PLAYER}, please allow me\nthe honor of resting your POKéMON!$"
-
-gUnknown_08272982:: @ 8272982
-	.string "I'm delighted to see you, {PLAYER}!\nYou want the usual, am I right?$"
-
-gUnknown_082729C0:: @ 82729C0
-	.string "Okay, I'll take your POKéMON\nfor a few seconds.$"
-
-gUnknown_082729F0:: @ 82729F0
-	.string "Thank you for waiting.$"
-
-gUnknown_08272A07:: @ 8272A07
-	.string "We hope to see you again!$"
+@ The pokecenter text is moved into pokecenter_scripts.inc
 
 gUnknown_08272A21:: @ 8272A21
 	.string "Welcome!\pHow may I serve you?$"
@@ -3086,9 +2916,6 @@ gUnknown_08272E0F:: @ 8272E0F
 
 gUnknown_08272E30:: @ 8272E30
 	.string "Do you know the TM SECRET POWER?\pOur group, we love the TM SECRET\nPOWER.\pOne of our members will give it to you.\nCome back and show me if you get it.\pWe'll accept you as a member and sell\nyou good stuff in secrecy.$"
-
-gUnknown_08272F07:: @ 8272F07
-	.string "Your POKéMON may be infected with\nPOKéRUS.\pLittle is known about the POKéRUS\nexcept that they are microscopic life-\lforms that attach to POKéMON.\pWhile infected, POKéMON are said to\ngrow exceptionally well.$"
 
 	.include "data/text/surf.inc"
 

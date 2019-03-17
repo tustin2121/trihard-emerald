@@ -105,7 +105,7 @@ TrainerHill_Entrance_EventScript_2681EE:: @ 82681EE
 
 TrainerHill_Entrance_EventScript_2681EF:: @ 82681EF
 	setvar VAR_0x800B, 2
-	call TrainerHill_Entrance_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

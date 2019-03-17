@@ -10,7 +10,7 @@ OldaleTown_PokemonCenter_1F_MapScript1_1FC011: @ 81FC011
 
 OldaleTown_PokemonCenter_1F_EventScript_1FC01A:: @ 81FC01A
 	setvar VAR_0x800B, 1
-	call OldaleTown_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

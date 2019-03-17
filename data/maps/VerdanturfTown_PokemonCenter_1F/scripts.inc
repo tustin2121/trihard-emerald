@@ -10,7 +10,7 @@ VerdanturfTown_PokemonCenter_1F_MapScript1_202731: @ 8202731
 
 VerdanturfTown_PokemonCenter_1F_EventScript_20273A:: @ 820273A
 	setvar VAR_0x800B, 1
-	call VerdanturfTown_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

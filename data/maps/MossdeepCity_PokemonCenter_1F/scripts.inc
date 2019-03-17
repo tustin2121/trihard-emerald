@@ -9,7 +9,7 @@ MossdeepCity_PokemonCenter_1F_MapScript1_22224A: @ 822224A
 
 MossdeepCity_PokemonCenter_1F_EventScript_22224E:: @ 822224E
 	setvar VAR_0x800B, 1
-	call MossdeepCity_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

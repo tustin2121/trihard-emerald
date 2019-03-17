@@ -9,7 +9,7 @@ FortreeCity_PokemonCenter_1F_MapScript1_2173E3: @ 82173E3
 
 FortreeCity_PokemonCenter_1F_EventScript_2173E7:: @ 82173E7
 	setvar VAR_0x800B, 1
-	call FortreeCity_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

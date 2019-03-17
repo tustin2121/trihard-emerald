@@ -10,7 +10,7 @@ LavaridgeTown_PokemonCenter_1F_MapScript1_1FFB05: @ 81FFB05
 
 LavaridgeTown_PokemonCenter_1F_EventScript_1FFB0E:: @ 81FFB0E
 	setvar VAR_0x800B, 1
-	call LavaridgeTown_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

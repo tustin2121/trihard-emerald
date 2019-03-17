@@ -10,7 +10,7 @@ PetalburgCity_PokemonCenter_1F_MapScript1_2079F3: @ 82079F3
 
 PetalburgCity_PokemonCenter_1F_EventScript_2079FC:: @ 82079FC
 	setvar VAR_0x800B, 1
-	call PetalburgCity_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

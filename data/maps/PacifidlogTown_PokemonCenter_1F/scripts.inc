@@ -9,7 +9,7 @@ PacifidlogTown_PokemonCenter_1F_MapScript1_2034B2: @ 82034B2
 
 PacifidlogTown_PokemonCenter_1F_EventScript_2034B6:: @ 82034B6
 	setvar VAR_0x800B, 1
-	call PacifidlogTown_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release

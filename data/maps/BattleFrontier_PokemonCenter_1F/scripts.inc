@@ -9,7 +9,7 @@ BattleFrontier_PokemonCenter_1F_MapScript1_267904: @ 8267904
 
 BattleFrontier_PokemonCenter_1F_EventScript_267908:: @ 8267908
 	setvar VAR_0x800B, 1
-	call BattleFrontier_PokemonCenter_1F_EventScript_27191E
+	call PokemonCenter_1F_NurseHealScript
 	waitmessage
 	waitbuttonpress
 	release
