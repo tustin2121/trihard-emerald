@@ -361,12 +361,19 @@ static void (*const gUnknown_08339E00[])(struct LinkPlayerEventObject *, struct 
 // code
 void DoWhiteOut(void)
 {
-    ScriptContext2_RunNewScript(EventScript_WhiteOut);
-    SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
-    HealPlayerParty();
-    Overworld_ResetStateAfterWhiteOut();
-    SetWarpDestinationToLastHealLocation();
-    WarpIntoMap();
+    if (!gDebugInterrupts.disableWhiteoutReset)
+    {   //Whiteout
+        DoSoftReset();
+    }
+    else
+    {   // Original code
+        ScriptContext2_RunNewScript(EventScript_WhiteOut);
+        SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
+        HealPlayerParty();
+        Overworld_ResetStateAfterWhiteOut();
+        SetWarpDestinationToLastHealLocation();
+        WarpIntoMap();
+    }
 }
 
 void Overworld_ResetStateAfterFly(void)

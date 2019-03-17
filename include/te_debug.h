@@ -11,8 +11,11 @@ struct DebugInterrupts
     volatile u8 funcId;
 	volatile s8 returnVal;
 	volatile u8 args[12]; //args[2] is word aligned
+    // Skip any battles by returning immedeately to the overworld. See Task_BattleStart() for implementation
     volatile bool8 skipBattles : 1;
-    // 15 bits remaining
+    // Disable the TE whiteout = soft reset feature. 
+    volatile bool8 disableWhiteoutReset : 1;
+    // 14 bits remaining
 }; //size = 0x10
 // Defined in main.c for memory location purposes
 extern volatile struct DebugInterrupts gDebugInterrupts;

@@ -28,10 +28,18 @@ function initMenuV1() {
 				$(this).toggleClass('unchecked');
 				$(this).toggleClass('checked');
 			});
+		$(`<li>Enable Whiteout</li>`).appendTo($m)
+			.addClass('unchecked')
+			.attr('name', 'flagWhiteout')
+			.on('click', function(){
+				$(this).toggleClass('unchecked');
+				$(this).toggleClass('checked');
+			});
 		$(`<li>Commit</li>`).appendTo($m)
 			.on('click', function(){
 				let val = 0;
-				val |= ($(`[name=flagBattles]`).hasClass('unchecked')?0:1) << 0;
+				val |= ($(`[name=flagBattles]`).hasClass('checked')?1:0) << 0;
+				val |= ($(`[name=flagWhiteout]`).hasClass('checked')?1:0) << 0;
 				writeInterruptFlags(val);
 				switchMenu(); 
 			});
@@ -130,18 +138,14 @@ $(function(){
 	window.addEventListener('beforeunload', ()=>{
 		emulator.cleanupCallbacks(__window_id__);
 	});
+	/*
 	emulator.registerOnWrite({ 
 		winId:__window_id__,
 		addr: DEBUG_MENU_LOC, len: 1,
 		name: 'gDebugInterrupt',
 		cb: checkInterrupt,
 	});
-	// emulator.registerOnWrite( 
-	// 	__window_id__,
-	// 	 DEBUG_MENU_LOC, 1,
-	// 	 'gDebugInterrupt',
-	// 	checkInterrupt,
-	// );
+	//*/
 	
 	$titleMenu = $('body div');
 	$('<li>Connect</li>').appendTo($titleMenu)
