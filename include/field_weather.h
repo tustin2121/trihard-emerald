@@ -19,6 +19,8 @@ enum
     FADE_TO_BLACK,
     FADE_FROM_WHITE,
     FADE_TO_WHITE,
+    FADE_FROM_BLACK_NO_WINDOW, //don't fade the standard frame palette
+    FADE_TO_BLACK_NO_WINDOW, 
 };
 
 struct Weather

@@ -1904,11 +1904,16 @@ Route111_OldLadysRestStop_EventScript_272083:: @ 8272083
 Route119_WeatherInstitute_1F_EventScript_272083:: @ 8272083
 RustboroCity_DevonCorp_3F_EventScript_272083:: @ 8272083
 SSTidalRooms_EventScript_272083:: @ 8272083
-	fadescreen 1
+	fadescreen 5 @ FADE_TO_BLACK_NO_WINDOW
 	playfanfare MUS_ME_ASA
 	waitfanfare
 	special HealPlayerParty
-	fadescreen 0
+	@ TriHard Emerald: Force Save
+	special ForceSaveGame
+	waitstate
+	closemessage
+	delay 1 @ delay 1 frame to allow the save game window to actually close
+	fadescreen 4 @ FADE_FROM_BLACK_NO_WINDOW
 	return
 
 EventScript_RegionMap:: @ 827208F

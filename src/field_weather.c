@@ -733,6 +733,7 @@ void sub_80ABC7C(u8 gammaIndex, u8 gammaTargetIndex, u8 gammaStepDelay)
 
 void FadeScreen(u8 mode, s8 delay)
 {
+    u32 paletteMask = 0xFFFFFFFF;
     u32 fadeColor;
     bool8 fadeOut;
     bool8 useWeatherPal;
@@ -747,6 +748,12 @@ void FadeScreen(u8 mode, s8 delay)
         fadeColor = RGB_WHITEALPHA;
         fadeOut = FALSE;
         break;
+    case FADE_FROM_BLACK_NO_WINDOW:
+        fadeColor = RGB_BLACK;
+        fadeOut = FALSE;
+        paletteMask &= ~(1 << 14); //STD_WINDOW_PALETTE_NUM
+        break;
+        
     case FADE_TO_BLACK:
         fadeColor = RGB_BLACK;
         fadeOut = TRUE;
@@ -755,6 +762,12 @@ void FadeScreen(u8 mode, s8 delay)
         fadeColor = RGB_WHITEALPHA;
         fadeOut = TRUE;
         break;
+    case FADE_TO_BLACK_NO_WINDOW:
+        fadeColor = RGB_BLACK;
+        fadeOut = TRUE;
+        paletteMask &= ~(1 << 14); //STD_WINDOW_PALETTE_NUM
+        break;
+    
     default:
         return;
     }
@@ -780,7 +793,7 @@ void FadeScreen(u8 mode, s8 delay)
         if (useWeatherPal)
             CpuFastCopy(gPlttBufferFaded, gPlttBufferUnfaded, 0x400);
 
-        BeginNormalPaletteFade(0xFFFFFFFF, delay, 0, 16, fadeColor);
+        BeginNormalPaletteFade(paletteMask, delay, 0, 16, fadeColor);
         gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_SCREEN_FADING_OUT;
     }
     else
@@ -789,7 +802,7 @@ void FadeScreen(u8 mode, s8 delay)
         if (useWeatherPal)
             gWeatherPtr->fadeScreenCounter = 0;
         else
-            BeginNormalPaletteFade(0xFFFFFFFF, delay, 16, 0, fadeColor);
+            BeginNormalPaletteFade(paletteMask, delay, 16, 0, fadeColor);
 
         gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_SCREEN_FADING_IN;
         gWeatherPtr->unknown_6CA = 1;
