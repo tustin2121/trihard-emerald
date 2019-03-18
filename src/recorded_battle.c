@@ -296,14 +296,21 @@ static u8 sub_8185278(u8 *arg0, u8 *arg1, u8 *arg2)
 
 bool32 CanCopyRecordedBattleSaveData(void)
 {
+#if USE_MEMORIES
+    return FALSE;
+#else
     struct RecordedBattleSave *dst = AllocZeroed(sizeof(struct RecordedBattleSave));
     bool32 ret = CopyRecordedBattleFromSave(dst);
     Free(dst);
     return ret;
+#endif
 }
 
 static bool32 IsRecordedBattleSaveValid(struct RecordedBattleSave *save)
 {
+#if USE_MEMORIES
+    return FALSE;
+#else
     if (save->battleFlags == 0)
         return FALSE;
     if (save->battleFlags & ILLEGAL_BATTLE_TYPES)
@@ -312,10 +319,14 @@ static bool32 IsRecordedBattleSaveValid(struct RecordedBattleSave *save)
         return FALSE;
 
     return TRUE;
+#endif
 }
 
 static bool32 RecordedBattleToSave(struct RecordedBattleSave *battleSave, struct RecordedBattleSave *saveSection)
 {
+#if USE_MEMORIES
+    return FALSE;
+#else
     memset(saveSection, 0, 0x1000);
     memcpy(saveSection, battleSave, sizeof(*battleSave));
 
@@ -325,10 +336,14 @@ static bool32 RecordedBattleToSave(struct RecordedBattleSave *battleSave, struct
         return FALSE;
     else
         return TRUE;
+#endif
 }
 
 bool32 MoveRecordedBattleToSaveData(void)
 {
+#if USE_MEMORIES
+    return FALSE;
+#else
     s32 i, j;
     bool32 ret;
     struct RecordedBattleSave *battleSave, *savSection;
@@ -486,10 +501,14 @@ bool32 MoveRecordedBattleToSaveData(void)
     free(battleSave);
     free(savSection);
     return ret;
+#endif
 }
 
 static bool32 TryCopyRecordedBattleSaveData(struct RecordedBattleSave *dst, struct SaveSection *saveBuffer)
 {
+#if USE_MEMORIES
+    return FALSE;
+#else
     if (TryCopySpecialSaveSection(SECTOR_ID_RECORDED_BATTLE, (void*)(saveBuffer)) != 1)
         return FALSE;
 
@@ -499,15 +518,20 @@ static bool32 TryCopyRecordedBattleSaveData(struct RecordedBattleSave *dst, stru
         return FALSE;
 
     return TRUE;
+#endif
 }
 
 static bool32 CopyRecordedBattleFromSave(struct RecordedBattleSave *dst)
 {
+#if USE_MEMORIES
+    return FALSE;
+#else
     struct SaveSection *savBuffer = AllocZeroed(sizeof(struct SaveSection));
     bool32 ret = TryCopyRecordedBattleSaveData(dst, savBuffer);
     Free(savBuffer);
 
     return ret;
+#endif
 }
 
 static void CB2_RecordedBattleEnd(void)

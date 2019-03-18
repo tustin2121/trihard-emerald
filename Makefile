@@ -5,7 +5,7 @@ export NM := $(PREFIX)nm
 
 # Build Variables
 TPP_MODE		?= 1
-EMULATOR_ONLY	?= 1
+USE_MEMORIES	?= 1
 
 ifeq ($(OS),Windows_NT)
 EXE := .exe
@@ -41,9 +41,9 @@ MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 
 CC1             := tools/agbcc/bin/agbcc$(EXE)
 
-ASFLAGS := -mcpu=arm7tdmi --defsym TPP_MODE=$(TPP_MODE) --defsym EMULATOR_ONLY=$(EMULATOR_ONLY)
+ASFLAGS := -mcpu=arm7tdmi --defsym TPP_MODE=$(TPP_MODE) --defsym USE_MEMORIES=$(USE_MEMORIES)
 override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
-CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs -D TPP_MODE=$(TPP_MODE) -D EMULATOR_ONLY=$(EMULATOR_ONLY)
+CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs -D TPP_MODE=$(TPP_MODE) -D USE_MEMORIES=$(USE_MEMORIES)
 
 LDFLAGS = -Map ../../$(MAP)
 
