@@ -5206,6 +5206,7 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
 {
     if (!gPaletteFade.active)
     {
+        CpuFill32(0, gEnemyParty, sizeof(gEnemyParty));
         ResetSpriteData();
         if (gLeveledUpInBattle == 0 || gBattleOutcome != B_OUTCOME_WON)
         {
