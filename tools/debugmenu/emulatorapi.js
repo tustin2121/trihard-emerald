@@ -206,6 +206,29 @@ class EmulatorApi {
 		});
 	}
 	
+	postToEmulator(path, body) {
+		return new Promise((resolve, reject)=>{
+			try {
+				const opts = {
+					method: 'POST',
+				};
+				const req = http.request(`${EMULATOR_URL}${path}`, opts, (res)=>{
+					let data = '';
+					res.on('data', (c)=>data+=c);
+					res.on('end', ()=>{
+						if (data == 'ok') resolve(true); // Command response
+						else if (res.statusCode === 200) resolve(data);
+						else reject(data);
+					});
+				}).on('error', reject);
+				req.write(body);
+				req.end();
+			} catch (e) {
+				reject(e);
+			}
+		});
+	}
+	
 	async readSymbols(...symList) {
 		symList = symList.map((addr)=>this._resolveSymbol(addr,true)).filter(x=>x);
 		let addrList = symList.map(x=>`${x.addr}/${x.size.toString(16)}`).join('/');
