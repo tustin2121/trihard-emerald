@@ -4,6 +4,7 @@ export LD := $(PREFIX)ld
 export NM := $(PREFIX)nm
 
 # Build Variables
+DEBUG			?= 1
 TPP_MODE		?= 1
 EMULATOR_ONLY	?= 1
 
@@ -41,9 +42,9 @@ MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 
 CC1             := tools/agbcc/bin/agbcc$(EXE)
 
-ASFLAGS := -mcpu=arm7tdmi --defsym TPP_MODE=$(TPP_MODE) --defsym EMULATOR_ONLY=$(EMULATOR_ONLY)
+ASFLAGS := -mcpu=arm7tdmi --defsym DEBUG=$(DEBUG) --defsym TPP_MODE=$(TPP_MODE) --defsym EMULATOR_ONLY=$(EMULATOR_ONLY)
 override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
-CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs -D TPP_MODE=$(TPP_MODE) -D EMULATOR_ONLY=$(EMULATOR_ONLY)
+CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs -D DEBUG=$(DEBUG) -D TPP_MODE=$(TPP_MODE) -D EMULATOR_ONLY=$(EMULATOR_ONLY)
 
 LDFLAGS = -Map ../../$(MAP)
 
