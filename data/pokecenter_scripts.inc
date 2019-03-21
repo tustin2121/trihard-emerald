@@ -38,12 +38,12 @@ PokemonCenter_1F_NurseHealScript_SayTakingPokemonGoldCard:: @ 827198D
 	return
 
 PokemonCenter_1F_NurseHealScript_DoHealMachineAnimation:: @ 8271993
-	applymovement VAR_0x800B, Movement_FaceLeftDirection
+	applymovement VAR_0x800B, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	dofieldeffect FLDEFF_POKECENTER_HEAL
 	waitfieldeffect FLDEFF_POKECENTER_HEAL
-	@ applymovement VAR_0x800B, Movement_FaceDownDirection
-	applymovement VAR_0x800B, Movement_FacePlayer
+	@ applymovement VAR_0x800B, Common_Movement_WalkInPlaceDown
+	applymovement VAR_0x800B, Common_Movement_FacePlayer
 	waitmovement 0
 	special HealPlayerParty
 	@ TriHard Emerald: Force Save
@@ -110,9 +110,9 @@ PokemonCenter_1F_NurseHealScript_MentionGoldCard:: @ 8271A68
 	setflag FLAG_OLDALE_NURSE_MENTIONS_GOLD_CARD
 	msgbox gText_NurseHealGoldCardCutoff, MSGBOX_DEFAULT
 	playse SE_PIN
-	applymovement VAR_0x800B, Movement_Emote_ExclamationPoint
+	applymovement VAR_0x800B, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement VAR_0x800B, Movement_Emote_Wait48
+	applymovement VAR_0x800B, Common_Movement_Delay48
 	waitmovement 0
 	msgbox gText_NurseHealGoldCardMention, MSGBOX_YESNO
 	compare VAR_RESULT, 1

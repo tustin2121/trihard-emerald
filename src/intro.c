@@ -146,10 +146,10 @@ static const struct OamData gUnknown_085E4A94 =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(16x16),
     .x = 0,
     .matrixNum = 0,
-    .size = 1,
+    .size = SPRITE_SIZE(16x16),
     .tileNum = 0,
     .priority = 1,
     .paletteNum = 0,
@@ -215,10 +215,10 @@ static const struct OamData gUnknown_085E4B28 =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(32x32),
     .x = 0,
     .matrixNum = 0,
-    .size = 2,
+    .size = SPRITE_SIZE(32x32),
     .tileNum = 0,
     .priority = 1,
     .paletteNum = 0,
@@ -252,10 +252,10 @@ static const struct OamData gUnknown_085E4B58 =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(32x32),
     .x = 0,
     .matrixNum = 0,
-    .size = 2,
+    .size = SPRITE_SIZE(32x32),
     .tileNum = 0,
     .priority = 1,
     .paletteNum = 0,
@@ -308,10 +308,10 @@ static const struct OamData gUnknown_085E4BBC =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(64x64),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(64x64),
     .tileNum = 0,
     .priority = 1,
     .paletteNum = 0,
@@ -357,10 +357,10 @@ static const struct OamData gUnknown_085E4C14 =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(32x32),
     .x = 0,
     .matrixNum = 0,
-    .size = 2,
+    .size = SPRITE_SIZE(32x32),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -442,10 +442,10 @@ static const struct OamData gUnknown_085E4CF0 =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 2,
+    .shape = SPRITE_SHAPE(16x32),
     .x = 0,
     .matrixNum = 0,
-    .size = 2,
+    .size = SPRITE_SIZE(16x32),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -482,10 +482,10 @@ static const struct OamData gUnknown_085E4D2C =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(32x32),
     .x = 0,
     .matrixNum = 0,
-    .size = 2,
+    .size = SPRITE_SIZE(32x32),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -573,10 +573,10 @@ static const struct OamData gUnknown_085E4DD4 =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(16x16),
     .x = 0,
     .matrixNum = 0,
-    .size = 1,
+    .size = SPRITE_SIZE(16x16),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -589,10 +589,10 @@ static const struct OamData gUnknown_085E4DDC =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(8x8),
     .x = 0,
     .matrixNum = 0,
-    .size = 0,
+    .size = SPRITE_SIZE(8x8),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -605,10 +605,10 @@ static const struct OamData gUnknown_085E4DE4 =
     .objMode = 1,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 2,
+    .shape = SPRITE_SHAPE(32x64),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(32x64),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -805,10 +805,10 @@ static const struct OamData gUnknown_085E4FB0 =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 1,
+    .shape = SPRITE_SHAPE(64x32),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(64x32),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -858,10 +858,10 @@ static const struct OamData gUnknown_085E501C =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
-    .shape = 0,
+    .shape = SPRITE_SHAPE(64x64),
     .x = 0,
     .matrixNum = 0,
-    .size = 3,
+    .size = SPRITE_SIZE(64x64),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -2432,7 +2432,7 @@ static void Task_IntroWaterDrops_1(u8 taskId)
                                    | BLDCNT_TGT2_BG3
                                    | BLDCNT_TGT2_OBJ
                                    | BLDCNT_TGT2_BD);
-        SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropData[31]);
+        SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropAlphaBlend[31]);
         SetGpuReg(REG_OFFSET_BLDY, 0);
         gTasks[taskId].data[1] = 0x40;
         gTasks[taskId].data[0]++;
@@ -2444,11 +2444,11 @@ static void Task_IntroWaterDrops_1(u8 taskId)
 
             gTasks[taskId].data[1]--;
             tmp = gTasks[taskId].data[1] / 2;
-            SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropData[tmp]);
+            SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropAlphaBlend[tmp]);
         }
         else
         {
-            SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropData[0]);
+            SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropAlphaBlend[0]);
             gTasks[taskId].data[1] = 0x10;
             gTasks[taskId].data[0]++;
         }
@@ -2475,7 +2475,7 @@ static void Task_IntroWaterDrops_2(u8 taskId)
                                    | BLDCNT_TGT2_BG3
                                    | BLDCNT_TGT2_OBJ
                                    | BLDCNT_TGT2_BD);
-        SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropData[0]);
+        SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropAlphaBlend[0]);
         SetGpuReg(REG_OFFSET_BLDY, 0);
         gTasks[taskId].data[1] = 0;
         gTasks[taskId].data[0]++;
@@ -2487,11 +2487,11 @@ static void Task_IntroWaterDrops_2(u8 taskId)
 
             gTasks[taskId].data[1]++;
             tmp = gTasks[taskId].data[1] / 2;
-            SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropData[tmp]);
+            SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropAlphaBlend[tmp]);
         }
         else
         {
-            SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropData[31]);
+            SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropAlphaBlend[31]);
             gTasks[taskId].data[1] = 0x10;
             gTasks[taskId].data[0]++;
         }

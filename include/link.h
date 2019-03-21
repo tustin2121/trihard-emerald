@@ -244,7 +244,7 @@ bool8 IsLinkTaskFinished(void);
 void CreateWirelessStatusIndicatorSprite(u8, u8);
 void sub_800ADF8(void);
 void sub_800B488(void);
-void sub_800A620(void);
+void CheckShouldAdvanceLinkState(void);
 void sub_8011BD0(void);
 u8 IsLinkMaster(void);
 void sub_800AC34(void);
@@ -261,6 +261,8 @@ void sub_800B3A4(u32 who);
 bool32 sub_800A07C(void);
 void sub_800AB98(void);
 void sub_800AA04(u8 a0);
+void sub_800B4C0(void);
+bool32 sub_800B504(void);
 
 extern u16 gLinkPartnersHeldKeys[6];
 extern u32 gLinkDebugSeed;
@@ -299,20 +301,20 @@ extern struct LinkPlayer gLocalLinkPlayer;
 
 bool32 Link_AnyPartnersPlayingRubyOrSapphire(void);
 bool32 sub_800A03C(void);
-void sub_8009628(u8);
-u8 sub_800AA48(void);
+void SetLocalLinkPlayerId(u8);
+u8 GetSavedPlayerCount(void);
 void sub_8009FAC(void);
 bool8 sub_800A4D8(u8 a0);
 u8 sub_800A9D8(void);
 u8 sub_800A0C8(s32, s32);
-u16 *sub_801B058(void);
+u16 *GetSaveBlock1Field3564(void);
 u8 sub_800A9A8(void);
 void sub_800AD10(void);
 void sub_800AB18(void);
 void sub_8009F18(void);
 bool8 sub_800AA60(void);
 void sub_800ABF4(u16 a0);
-bool32 sub_8009F3C(void);
-u32 sub_800B4DC(void);
+bool32 IsSendingKeysToLink(void);
+u32 GetLinkRecvQueueLength(void);
 
 #endif // GUARD_LINK_H

@@ -376,7 +376,7 @@ struct BattleFrontier
     /*0xEBC*/ u32 battlesCount;
     /*0xEC0*/ u16 field_EC0[16];
     /*0xEE0*/ u8 field_EE0;
-    /*0xEE1*/ u8 field_EE1[2][PLAYER_NAME_LENGTH + 1];
+    /*0xEE1*/ u8 opponentName[2][PLAYER_NAME_LENGTH + 1];
     /*0xEF1*/ u8 field_EF1[2][4];
     /*0xEF9*/ u8 field_EF9_0:7;
     /*0xEF9*/ u8 field_EF9_1:1;
@@ -446,7 +446,7 @@ struct SaveBlock2
     /*0x90*/ u8 filler_90[0x8];
     /*0x98*/ struct Time localTimeOffset;
     /*0xA0*/ struct Time lastBerryTreeUpdate;
-    /*0xA8*/ u32 field_A8;
+    /*0xA8*/ u32 field_A8; // Written to, but never read.
     /*0xAC*/ u32 encryptionKey;
     /*0xB0*/ struct PlayersApprentice playerApprentice;
     /*0xDC*/ struct Apprentice apprentices[4]; // From record mixing.
@@ -787,7 +787,7 @@ struct WaldaPhrase
     bool8 patternUnlocked;
 };
 
-struct UnkSaveSubstruct_3b98
+struct TrainerNameRecord
 {
     u32 trainerId;
     u8 trainerName[PLAYER_NAME_LENGTH + 1];
@@ -795,15 +795,15 @@ struct UnkSaveSubstruct_3b98
 
 struct SaveTrainerHill
 {
-    /*0x3D64*/ u32 field_3D64;
-    /*0x3D68*/ u32 field_3D68;
+    /*0x3D64*/ u32 timer;
+    /*0x3D68*/ u32 bestTime;
     /*0x3D6C*/ u8 field_3D6C;
     /*0x3D6D*/ u8 unused;
     /*0x3D6E*/ u16 field_3D6E_0a:1; // 1
     /*0x3D6E*/ u16 field_3D6E_0b:1; // 2
     /*0x3D6E*/ u16 field_3D6E_0c:1; // 4
-    /*0x3D6E*/ u16 field_3D6E_0d:1; // 8
-    /*0x3D6E*/ u16 field_3D6E_0e:1; // x10
+    /*0x3D6E*/ u16 hasLost:1; // 8
+    /*0x3D6E*/ u16 maybeECardScanDuringChallenge:1; // x10
     /*0x3D6E*/ u16 field_3D6E_0f:1; // x20
     /*0x3D6E*/ u16 tag:2; // x40, x80 = xC0
 };
@@ -870,13 +870,12 @@ struct SaveBlock1
     /*0x2BA1*/ u8 outbreakPokemonProbability;
     /*0x2BA2*/ u16 outbreakDaysLeft;
     /*0x2BA4*/ struct GabbyAndTyData gabbyAndTyData;
-    /*0x2BB0*/ u16 unk2BB0[6];
-    /*0x2BBC*/ u16 unk2BBC[6];
-    /*0x2BC8*/ u16 unk2BC8[6];
-    /*0x2BD4*/ u16 unk2BD4[6];
+    /*0x2BB0*/ u16 easyChatProfile[6];
+    /*0x2BBC*/ u16 easyChatBattleStart[6];
+    /*0x2BC8*/ u16 easyChatBattleWon[6];
+    /*0x2BD4*/ u16 easyChatBattleLost[6];
     /*0x2BE0*/ struct MailStruct mail[MAIL_COUNT];
-    /*0x2E20*/ u8 additionalPhrases[5]; // bitfield for 33 additional phrases in easy chat system
-    /*0x2E25*/ u8 unk2E25[3]; // possibly padding?
+    /*0x2E20*/ u8 additionalPhrases[8]; // bitfield for 33 additional phrases in easy chat system
     /*0x2E28*/ OldMan oldMan;
     /*0x2e64*/ struct EasyChatPair easyChatPairs[5]; //Dewford trend [0] and some other stuff
     /*0x2e90*/ struct ContestWinner contestWinners[13]; // 0 - 5 used in contest hall, 6 - 7 unused?, 8 - 12 museum
@@ -891,7 +890,7 @@ struct SaveBlock1
     /*0x3B14*/ struct RecordMixingGift recordMixingGift;
     /*0x3B24*/ u8 seen2[DEX_FLAGS_NO];
     /*0x3B58*/ LilycoveLady lilycoveLady;
-    /*0x3B98*/ struct UnkSaveSubstruct_3b98 unk_3B98[20];
+    /*0x3B98*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C88*/ u8 filler_3C88[0xDC];
     /*0x3D64*/ struct SaveTrainerHill trainerHill;
     /*0x3D70*/ struct WaldaPhrase waldaPhrase;
@@ -907,13 +906,13 @@ struct MapPosition
     s8 height;
 };
 
-struct UnkStruct_8054FF8
+struct TradeRoomPlayer
 {
-    u8 a;
-    u8 b;
+    u8 playerId;
+    u8 isLocalPlayer;
     u8 c;
-    u8 d;
-    struct MapPosition sub;
+    u8 facing;
+    struct MapPosition pos;
     u16 field_C;
 };
 
