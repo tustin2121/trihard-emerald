@@ -363,6 +363,7 @@ class EmulatorApi {
 	}
 	
 	cleanupCallbacks(windowid) {
+		if (!this.callbackTable) return;
 		if (typeof windowid !== 'string' && typeof windowid['__window_id__'] === 'string') {
 			windowid = windowid.__window_id__;
 		}
@@ -375,7 +376,9 @@ class EmulatorApi {
 		}
 	}
 	destroy() {
-		this.callbackServer.close();
+		if (this.callbackServer) {
+			this.callbackServer.close();
+		}
 		for (let cblist in this.callbackTable) {
 			this.cleanupCallbacks(cblist[0]);
 		}

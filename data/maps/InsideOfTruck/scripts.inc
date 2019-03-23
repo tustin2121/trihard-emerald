@@ -55,43 +55,7 @@ InsideOfTruck_EventScript_MovingBoxText:: @ 823BF6C
 	msgbox InsideOfTruck_Text_MovingBoxText, MSGBOX_SIGN
 	end
 
-InsideOfTruck_EventScript_DebugMovingBox:: @ 823BF6C
-#if !DEBUG
-	msgbox InsideOfTruck_Text_MovingBoxText, MSGBOX_SIGN
-#else
-	msgbox InsideOfTruck_Text_DebugBoxText, MSGBOX_SIGN
-	call EventScript_GiveDebugPartyAndSetFlags
-#endif
-	end
-
 InsideOfTruck_Text_MovingBoxText: @ 823BF75
 	.string "The box is printed with a POKéMON logo.\p"
 	.string "It's a POKéMON brand moving and\n"
 	.string "delivery service.$"
-
-InsideOfTruck_Text_DebugBoxText: @ 823BF75
-	.string "Oh! There's some Pokemon and badges in\n"
-	.string "this box! Yoink!$"
-
-EventScript_GiveDebugPartyAndSetFlags::
-	lockall
-	@ Give debug party
-	givemon SPECIES_RATTATA, 2, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_WAILMER, 30, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_BRELOOM, 27, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_SWELLOW, 30, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_QUILAVA, 50, ITEM_EVERSTONE, 0, 0, 0
-	setmonmove 1, 3, MOVE_FLY
-	@ Set starting scripts past the end of the prologue
-	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
-	setvar VAR_0x4092, 3
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
-	setflag FLAG_RESCUED_BIRCH
-	setvar VAR_0x4082, 1
-	setvar VAR_0x4050, 4 @ Set mom to after prologue
-	setflag FLAG_SYS_B_DASH @ Give Fast Movement
-	setdynamicwarp MAP_LITTLEROOT_TOWN, 255, 12, 10
-	releaseall
-	return
