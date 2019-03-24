@@ -1,5 +1,6 @@
 #include "global.h"
 #include "te_debug.h"
+#include "main.h"
 #include "script.h"
 #include "start_menu.h"
 #include "pokemon_storage_system.h"
@@ -7,6 +8,7 @@
 #include "event_obj_lock.h"
 #include "event_object_movement.h"
 #include "random.h"
+#include "credits.h"
 #include "constants/maps.h"
 
 // Reference to an assembly defined constant, the start of the ROM
@@ -15,20 +17,22 @@ extern const int Start;
 extern void nullsub_129(void);
 
 // References to scripts defined in data/scripts/te_debug.inc
-extern const u8 Script_DebugHandleEmergencySave[];
-extern const u8 Script_DebugHandleShowPCBox[];
+extern const u8 DebugScript_EmergencySave[];
+extern const u8 DebugScript_ShowPCBox[];
+extern const u8 DebugScript_GiveDebugPartyAndSetFlags[];
 
 typedef void (*DebugFunc)(void);
 
 extern bool8 gSoftResetDisabled;
 
 void DebugCheckInterrupts();
-static void DebugHandleEmergencySave();
-static void DebugHandleShowPCBox();
-static void DebugHandleWarpRequest();
-static void DebugHandleReloadMap();
-static void DebugHandleGetRandomSeeds();
-static void DebugHandleSetRandomSeeds();
+static void DebugHandle_EmergencySave();
+static void DebugHandle_ShowPCBox();
+static void DebugHandle_WarpRequest();
+static void DebugHandle_ReloadMap();
+static void DebugHandle_ShowCredits();
+static void DebugHandle_GetRandomSeeds();
+static void DebugHandle_SetRandomSeeds();
 
 void DebugSetCallbackSuccess()
 {
@@ -44,12 +48,13 @@ void DebugSetCallbackFailure()
 static const DebugFunc sDebugCommands[] =
 {
 	nullsub_129,
-	DebugHandleEmergencySave,
-	DebugHandleShowPCBox,
-	DebugHandleWarpRequest,
-	DebugHandleReloadMap,
-	DebugHandleGetRandomSeeds,
-	DebugHandleSetRandomSeeds,
+	DebugHandle_EmergencySave,
+	DebugHandle_ShowPCBox,
+	DebugHandle_WarpRequest,
+	DebugHandle_ReloadMap,
+	DebugHandle_ShowCredits,
+	DebugHandle_GetRandomSeeds,
+	DebugHandle_SetRandomSeeds,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -78,16 +83,25 @@ void DebugCheckInterrupts()
 
 // parameters: none
 // returns: none
-void DebugHandleEmergencySave()
+void DebugHandle_EmergencySave()
 {
-	ScriptContext1_SetupScript(Script_DebugHandleEmergencySave);
+	ScriptContext1_SetupScript(DebugScript_EmergencySave);
 }
 
 // parameters: none
 // returns: none
-void DebugHandleShowPCBox()
+void DebugHandle_ShowPCBox()
 {
-	ScriptContext1_SetupScript(Script_DebugHandleShowPCBox);
+	ScriptContext1_SetupScript(DebugScript_ShowPCBox);
+}
+
+// parameters: none
+// returns: none
+void DebugHandle_ShowCredits()
+{
+	SetMainCallback2(CB2_StartCreditsSequence);
+	DebugSetCallbackSuccess();
+	// Credits will end with the game soft resetting.
 }
 
 // parameters: 
@@ -97,7 +111,7 @@ void DebugHandleShowPCBox()
 //	 args[3] = x
 //	 args[4] = y
 // returns: none
-void DebugHandleWarpRequest()
+void DebugHandle_WarpRequest()
 {
 	s8 args[5];
 	const struct MapHeader* mapHeader;
@@ -124,7 +138,7 @@ error:
 }
 
 // arguments: none
-void DebugHandleReloadMap()
+void DebugHandle_ReloadMap()
 {
 	struct WarpData data = gSaveBlock1Ptr->location;
 	
@@ -135,7 +149,7 @@ void DebugHandleReloadMap()
 
 // arguments: none
 // returns: gRngValue copied to +4, gRng2Value copied to +8
-void DebugHandleGetRandomSeeds()
+void DebugHandle_GetRandomSeeds()
 {
 	u32 *val1 = (u32*)&gDebugInterrupts.args[2]; //choose word-aligned address
 	u32 *val2 = (u32*)&gDebugInterrupts.args[6];
@@ -148,7 +162,7 @@ void DebugHandleGetRandomSeeds()
 // 	 args[2]+4 = gRngValue to copy
 //   args[6]+4 = gRng2Value to copy
 // returns: none
-void DebugHandleSetRandomSeeds()
+void DebugHandle_SetRandomSeeds()
 {
 	u32 *val1 = (u32*)&gDebugInterrupts.args[2]; //choose word-aligned address
 	u32 *val2 = (u32*)&gDebugInterrupts.args[6];

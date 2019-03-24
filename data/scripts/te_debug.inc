@@ -1,4 +1,4 @@
-Script_DebugHandleEmergencySave::
+DebugScript_EmergencySave::
 	lockall
 	playse SE_SELECT
 	special DoSaveGame
@@ -7,7 +7,7 @@ Script_DebugHandleEmergencySave::
 	releaseall
 	end
 
-Script_DebugHandleShowPCBox::
+DebugScript_ShowPCBox::
 	lockall
 	playse SE_SELECT
 	special ShowPokemonStorageSystemPC
@@ -18,7 +18,7 @@ Script_DebugHandleShowPCBox::
 	releaseall
 	end
 
-Script_GiveDebugPartyAndSetFlags::
+DebugScript_GiveDebugPartyAndSetFlags::
 	lockall
 	@ Give debug party
 	givemon SPECIES_RATTATA, 2, ITEM_NONE, 0, 0, 0

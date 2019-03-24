@@ -5,17 +5,30 @@ const emulator = require('electron').remote.getGlobal('emulator');
 const __window_id__ = require('electron').remote.getCurrentWindow().__window_id__;
 let $titleMenu, $mainMenu, $subMenus = {};
 
+const 
+	DebugHandle_EmergencySave = 1,
+	DebugHandle_ShowPCBox = 2,
+	DebugHandle_WarpRequest = 3,
+	DebugHandle_ReloadMap = 4,
+	DebugHandle_ShowCredits = 5,
+	DebugHandle_GetRandomSeeds = 6,
+	DebugHandle_SetRandomSeeds = 7;
+
 // Menu Functions
 function initMenuV1() {
 	{
 		let $m = $mainMenu = $('<ul>').appendTo('body');
 		$(`<li>Emergency Save</li>`).appendTo($m)
 			.on('click', function(){
-				writeInterrupts({ funcId:1 });
+				writeInterrupts({ funcId: DebugHandle_EmergencySave });
 			});
 		$(`<li>Open PC Storage</li>`).appendTo($m)
 			.on('click', function(){
-				writeInterrupts({ funcId:2 });
+				writeInterrupts({ funcId: DebugHandle_ShowPCBox });
+			});
+		$(`<li>Play Credits</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_ShowCredits });
 			});
 		$(`<li>Debug Options</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('debugopts'); });
