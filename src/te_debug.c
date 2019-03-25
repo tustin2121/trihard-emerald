@@ -24,6 +24,7 @@ extern const u8 DebugScript_GiveDebugPartyAndSetFlags[];
 typedef void (*DebugFunc)(void);
 
 extern bool8 gSoftResetDisabled;
+extern void Debug_CreateTaskMakeItem();
 
 void DebugCheckInterrupts();
 static void DebugHandle_EmergencySave();
@@ -33,6 +34,11 @@ static void DebugHandle_ReloadMap();
 static void DebugHandle_ShowCredits();
 static void DebugHandle_GetRandomSeeds();
 static void DebugHandle_SetRandomSeeds();
+static void DebugHandle_OpenGraphics_Trainer();
+static void DebugHandle_OpenGraphics_Pokemon();
+static void DebugHandle_CreatePokemon();
+static void DebugHandle_CreateItem();
+static void DebugHandle_BattleForDebug();
 
 void DebugSetCallbackSuccess()
 {
@@ -55,6 +61,11 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_ShowCredits,
 	DebugHandle_GetRandomSeeds,
 	DebugHandle_SetRandomSeeds,
+	DebugHandle_OpenGraphics_Trainer,
+	DebugHandle_OpenGraphics_Pokemon,
+	DebugHandle_CreatePokemon,
+	DebugHandle_CreateItem,
+	DebugHandle_BattleForDebug,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -169,4 +180,40 @@ void DebugHandle_SetRandomSeeds()
 	gRngValue = *val1;
 	gRng2Value = *val2;
 	DebugSetCallbackSuccess();
+}
+
+
+void DebugHandle_OpenGraphics_Trainer()
+{
+    // InitSeeTrainers();
+    // ScriptContext2_Enable();
+    // DebugSetCallbackSuccess();
+}
+
+void DebugHandle_OpenGraphics_Pokemon()
+{
+    // InitSeePokemonGraphics();
+    // ScriptContext2_Enable();
+    // DebugSetCallbackSuccess();
+}
+
+void DebugHandle_CreatePokemon()
+{
+    // InitCreatePokemon();
+    // ScriptContext2_Enable();
+    // DebugSetCallbackSuccess();
+}
+
+void DebugHandle_CreateItem()
+{
+	Debug_CreateTaskMakeItem();
+    ScriptContext2_Enable();
+	DebugSetCallbackSuccess();
+}
+
+void DebugHandle_BattleForDebug()
+{
+    // InitBattleForDebug();
+    // ScriptContext2_Enable();
+    // DebugSetCallbackSuccess();
 }

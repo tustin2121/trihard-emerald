@@ -300,6 +300,7 @@ SECTIONS {
         src/unk_transition.o(.text);
         src/international_string_util.o(.text);
         src/te_debug.o(.text);
+        src/te_debug_ruby.o(.text);
     } =0
 
     script_data :
@@ -610,6 +611,7 @@ SECTIONS {
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);
         src/te_debug.o(.rodata);
+        src/te_debug_ruby.o(.rodata);
     } =0
 
     song_data :

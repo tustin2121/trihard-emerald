@@ -10,7 +10,9 @@
             },
             "includePath": [
                 "${workspaceFolder}",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/tools/agbcc/include",
+                "/opt/devkitpro/devkitARM/arm-none-eabi/include"
             ],
             "defines": [],
             "macFrameworkPath": [
