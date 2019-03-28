@@ -9,6 +9,7 @@
 #include "event_object_movement.h"
 #include "random.h"
 #include "credits.h"
+#include "field_weather.h"
 #include "constants/maps.h"
 
 // Reference to an assembly defined constant, the start of the ROM
@@ -33,6 +34,7 @@ static void DebugHandle_ReloadMap();
 static void DebugHandle_ShowCredits();
 static void DebugHandle_GetRandomSeeds();
 static void DebugHandle_SetRandomSeeds();
+static void DebugHandle_SetWeather();
 
 void DebugSetCallbackSuccess()
 {
@@ -55,6 +57,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_ShowCredits,
 	DebugHandle_GetRandomSeeds,
 	DebugHandle_SetRandomSeeds,
+	DebugHandle_SetWeather,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -168,5 +171,14 @@ void DebugHandle_SetRandomSeeds()
 	u32 *val2 = (u32*)&gDebugInterrupts.args[6];
 	gRngValue = *val1;
 	gRng2Value = *val2;
+	DebugSetCallbackSuccess();
+}
+
+// arguments: 
+// 	 args[0] = weather id to set
+// returns: none
+void DebugHandle_SetWeather()
+{
+	SetWeather(gDebugInterrupts.args[0]);
 	DebugSetCallbackSuccess();
 }

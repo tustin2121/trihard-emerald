@@ -5,14 +5,14 @@ const emulator = require('electron').remote.getGlobal('emulator');
 const __window_id__ = require('electron').remote.getCurrentWindow().__window_id__;
 let $titleMenu, $mainMenu, $subMenus = {};
 
-const 
-	DebugHandle_EmergencySave = 1,
-	DebugHandle_ShowPCBox = 2,
-	DebugHandle_WarpRequest = 3,
-	DebugHandle_ReloadMap = 4,
-	DebugHandle_ShowCredits = 5,
-	DebugHandle_GetRandomSeeds = 6,
-	DebugHandle_SetRandomSeeds = 7;
+const DebugHandle_EmergencySave = 1;
+const DebugHandle_ShowPCBox = 2;
+const DebugHandle_WarpRequest = 3;
+const DebugHandle_ReloadMap = 4;
+const DebugHandle_ShowCredits = 5;
+const DebugHandle_GetRandomSeeds = 6;
+const DebugHandle_SetRandomSeeds = 7;
+const DebugHandle_SetWeather = 8;
 
 // Menu Functions
 function initMenuV1() {
@@ -30,7 +30,9 @@ function initMenuV1() {
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowCredits });
 			});
-		$(`<li>Debug Options</li>`).appendTo($m)
+		$(`<li>Set Weather to...</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('weather'); });
+		$(`<li>Debug Options...</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('debugopts'); });
 	}{
 		let $m = $subMenus['debugopts'] = $('<ul>').appendTo('body');
@@ -56,6 +58,36 @@ function initMenuV1() {
 				writeInterruptFlags(val);
 				switchMenu(); 
 			});
+	}{
+		let $m = $subMenus['weather'] = $('<ul>').appendTo('body');
+		let $opts = [
+			$(`<li>No Weather</li>`).attr('value', 0),
+			$(`<li>Cloudy</li>`).attr('value', 1),
+			$(`<li>Sunny</li>`).attr('value', 2),
+			$(`<li>Light Rain</li>`).attr('value', 3),
+			$(`<li>Medium Rain</li>`).attr('value', 5),
+			$(`<li>Heavy Rain</li>`).attr('value', 13),
+			$(`<li>Drought</li>`).attr('value', 12),
+			$(`<li>Snow</li>`).attr('value', 4),
+			$(`<li>Ash fall</li>`).attr('value', 7),
+			$(`<li>Sandstorm</li>`).attr('value', 8),
+			$(`<li>Fog 1</li>`).attr('value', 6),
+			$(`<li>Fog 2</li>`).attr('value', 9),
+			$(`<li>Fog 3</li>`).attr('value', 10),
+			$(`<li>Shade</li>`).attr('value', 11),
+			$(`<li>Bubbles</li>`).attr('value', 14),
+			$(`<li>Alternating</li>`).attr('value', 15),
+			$(`<li>[Route 119]</li>`).attr('value', 20),
+			$(`<li>[Route 123]</li>`).attr('value', 20),
+		];
+		$opts.forEach($x=>$x.appendTo($m)
+			.attr('name', 'weatherid')
+			.on('click', function(){
+			writeInterrupts({ funcId: DebugHandle_SetWeather, args:[
+				Number.parseInt($(this).val())
+			] });
+			switchMenu();
+		}));
 	}{
 		let $m = $subMenus['forceopts'] = $('<ul>').appendTo('body');
 		$(`<li>Text Speed: </li>`).appendTo($m)
@@ -130,12 +162,12 @@ function writeInterrupts({ funcId=0, args=[] }) {
 	for (let i = 0; i < 12; i++) {
 		buf.writeUInt8(args[i] || 0, 2+i);
 	}
-	emulator.queryEmulator(`/WriteByteRange/${DEBUG_MENU_LOC.toString(16)}/${buf.toString('hex')}`, 'command');
+	emulator.queryEmulator(`/WriteByteRange/${DEBUG_MENU_LOC.toString(16)}/${buf.toString('hex').toUpperCase()}`, 'command');
 }
 function writeInterruptFlags(flags) {
 	let buf = Buffer.alloc(0x02);
 	buf.writeUInt16LE(flags), 0;
-	emulator.queryEmulator(`/WriteByteRange/${(DEBUG_MENU_LOC+14).toString(16)}/${buf.toString('hex')}`, 'command');
+	emulator.queryEmulator(`/WriteByteRange/${(DEBUG_MENU_LOC+14).toString(16)}/${buf.toString('hex').toUpperCase()}`, 'command');
 }
 
 function checkInterrupt() {
