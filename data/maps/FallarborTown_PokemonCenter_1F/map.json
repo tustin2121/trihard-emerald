@@ -24,7 +24,7 @@
             "script": "FallarborTown_PokemonCenter_1F_EventScript_200BE1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 7,
+            "x": 10,
             "y": 2
         },
         {
@@ -37,8 +37,8 @@
             "script": "FallarborTown_PokemonCenter_1F_EventScript_200BEF",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 10,
-            "y": 6
+            "x": 4,
+            "y": 11
         },
         {
             "elevation": 3,
@@ -50,8 +50,8 @@
             "script": "FallarborTown_PokemonCenter_1F_EventScript_200BF8",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 2,
-            "y": 3
+            "x": 5,
+            "y": 5
         },
         {
             "elevation": 3,
@@ -63,8 +63,8 @@
             "script": "FallarborTown_PokemonCenter_1F_EventScript_200C01",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 10,
-            "y": 2
+            "x": 14,
+            "y": 8
         }
     ],
     "region_map_section": "MAPSEC_FALLARBOR_TOWN",
@@ -75,15 +75,15 @@
             "dest_map": "MAP_FALLARBOR_TOWN",
             "dest_warp_id": 2,
             "elevation": 3,
-            "x": 7,
-            "y": 8
+            "x": 10,
+            "y": 13
         },
         {
             "dest_map": "MAP_FALLARBOR_TOWN",
             "dest_warp_id": 2,
             "elevation": 3,
-            "x": 6,
-            "y": 8
+            "x": 9,
+            "y": 13
         },
         {
             "dest_map": "MAP_FALLARBOR_TOWN_POKEMON_CENTER_2F",

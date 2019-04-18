@@ -51,7 +51,7 @@
             "elevation": 3,
             "script": "InsideOfTruck_SetPrologueVarsScript",
             "type": "trigger",
-            "var": "VAR_0x4092",
+            "var": "VAR_LITTLEROOT_INTRO_STATE",
             "var_value": "0",
             "x": 3,
             "y": 1
@@ -60,7 +60,7 @@
             "elevation": 3,
             "script": "InsideOfTruck_SetPrologueVarsScript",
             "type": "trigger",
-            "var": "VAR_0x4092",
+            "var": "VAR_LITTLEROOT_INTRO_STATE",
             "var_value": "0",
             "x": 3,
             "y": 2
@@ -69,7 +69,7 @@
             "elevation": 3,
             "script": "InsideOfTruck_SetPrologueVarsScript",
             "type": "trigger",
-            "var": "VAR_0x4092",
+            "var": "VAR_LITTLEROOT_INTRO_STATE",
             "var_value": "0",
             "x": 3,
             "y": 3
