@@ -76,8 +76,8 @@
             "script": "MossdeepCity_PokemonCenter_2F_EventScript_22235B",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 11,
-            "y": 7
+            "x": 7,
+            "y": 6
         }
     ],
     "region_map_section": "MAPSEC_MOSSDEEP_CITY",
@@ -89,7 +89,7 @@
             "dest_warp_id": 2,
             "elevation": 4,
             "x": 1,
-            "y": 6
+            "y": 4
         },
         {
             "dest_map": "MAP_UNION_ROOM",

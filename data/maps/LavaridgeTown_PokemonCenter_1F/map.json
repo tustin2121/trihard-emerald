@@ -24,7 +24,7 @@
             "script": "LavaridgeTown_PokemonCenter_1F_EventScript_1FFB0E",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 7,
+            "x": 15,
             "y": 2
         },
         {
@@ -37,8 +37,8 @@
             "script": "LavaridgeTown_PokemonCenter_1F_EventScript_1FFB1C",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 11,
-            "y": 8
+            "x": 9,
+            "y": 9
         },
         {
             "elevation": 0,
@@ -50,8 +50,8 @@
             "script": "LavaridgeTown_PokemonCenter_1F_EventScript_1FFB25",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 10,
-            "y": 6
+            "x": 18,
+            "y": 5
         },
         {
             "elevation": 3,
@@ -63,8 +63,8 @@
             "script": "LavaridgeTown_PokemonCenter_1F_EventScript_1FFB2E",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 1,
-            "y": 3
+            "x": 9,
+            "y": 5
         }
     ],
     "region_map_section": "MAPSEC_LAVARIDGE_TOWN",
@@ -75,29 +75,29 @@
             "dest_map": "MAP_LAVARIDGE_TOWN",
             "dest_warp_id": 3,
             "elevation": 3,
-            "x": 7,
-            "y": 8
+            "x": 15,
+            "y": 13
         },
         {
             "dest_map": "MAP_LAVARIDGE_TOWN",
             "dest_warp_id": 3,
             "elevation": 3,
-            "x": 6,
-            "y": 8
+            "x": 14,
+            "y": 13
         },
         {
             "dest_map": "MAP_LAVARIDGE_TOWN_POKEMON_CENTER_2F",
             "dest_warp_id": 0,
             "elevation": 4,
-            "x": 1,
+            "x": 2,
             "y": 6
         },
         {
             "dest_map": "MAP_LAVARIDGE_TOWN",
             "dest_warp_id": 5,
             "elevation": 0,
-            "x": 2,
-            "y": 1
+            "x": 4,
+            "y": 5
         }
     ],
     "weather": "WEATHER_NONE"
