@@ -36,23 +36,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276AFF:: @ 8276AFF
 	setflag FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
 	return
 
-BattleFrontier_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-DewfordTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-EverGrandeCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-EverGrandeCity_PokemonLeague_2F_EventScript_276B03:: @ 8276B03
-FallarborTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-FortreeCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-LavaridgeTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-LilycoveCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-MauvilleCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-MossdeepCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-OldaleTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-PacifidlogTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-PetalburgCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-RustboroCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-SlateportCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-SootopolisCity_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
-VerdanturfTown_PokemonCenter_2F_EventScript_276B03:: @ 8276B03
+PokemonCenter_MysteryGiftMan:: @ 8276B03
 	specialvar VAR_RESULT, sub_813B514
 	compare VAR_RESULT, 1
 	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276B23
