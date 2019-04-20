@@ -1213,6 +1213,11 @@
 	.byte 0xf8
 	.byte \param0
 	.endm
+
+	.macro killfaintedmon battler:req
+	.byte 0xf9
+	.byte \battler
+	.endm
 	
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req

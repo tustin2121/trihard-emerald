@@ -107,8 +107,8 @@ struct Struct203CEC4
     u32 unk9_0:7;
     u32 unkA_0:14;
     u8 unkC[3];
-    u8 unkF[8];
-    u8 unk17;
+    u8 menuItems[8];
+    u8 numMenuItems;
     u16 palBuffer[0xB0];
     u8 filler[0xA0];
     s16 data[16];
@@ -246,7 +246,7 @@ static void sub_81B227C(u8);
 static bool8 CanLearnTutorMove(u16, u8);
 static u16 GetTutorMove(u8);
 static bool8 sub_81B314C(void);
-static void sub_81B3414(struct Pokemon*, u8);
+static void DetermineMenuItemsForFieldMons(struct Pokemon*, u8);
 static u8 sub_81B8A2C(struct Pokemon*);
 static u8 sub_81B856C(s8);
 static void sub_81B469C(u8);
@@ -1011,22 +1011,22 @@ static const u16 gUnknown_08615B94[] =
 
 enum
 {
-    MENU_SUMMARY,
+    MENU_SUMMARY, //0
     MENU_SWITCH,
     MENU_CANCEL1,
     MENU_ITEM,
     MENU_GIVE,
-    MENU_TAKE_ITEM,
+    MENU_TAKE_ITEM, //5
     MENU_MAIL,
     MENU_TAKE_MAIL,
     MENU_READ,
     MENU_CANCEL2,
-    MENU_SHIFT,
+    MENU_SHIFT, //10
     MENU_SEND_OUT,
     MENU_ENTER,
     MENU_NO_ENTRY,
     MENU_STORE,
-    MENU_REGISTER,
+    MENU_REGISTER, //15
     MENU_TRADE1,
     MENU_TRADE2,
     MENU_TOSS,
@@ -1095,39 +1095,39 @@ struct
     [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT] = {gMoveNames[MOVE_SWEET_SCENT], CursorCb_FieldMove},
 };
 
-static const u8 gUnknown_08615D10[] = {0, 1, 2};
-static const u8 gUnknown_08615D13[] = {10, 0, 2};
-static const u8 gUnknown_08615D16[] = {11, 0, 2};
-static const u8 gUnknown_08615D19[] = {0, 2};
-static const u8 gUnknown_08615D1B[] = {12, 0, 2};
-static const u8 gUnknown_08615D1E[] = {13, 0, 2};
-static const u8 gUnknown_08615D21[] = {14, 0, 2};
-static const u8 gUnknown_08615D24[] = {4, 5, 9};
-static const u8 gUnknown_08615D27[] = {8, 7, 9};
-static const u8 gUnknown_08615D2A[] = {15, 0, 2};
-static const u8 gUnknown_08615D2D[] = {16, 0, 2};
-static const u8 gUnknown_08615D30[] = {17, 0, 2};
-static const u8 gUnknown_08615D33[] = {5, 18, 2};
+static const u8 sMonSelectedMenu_08615D10[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D13[] = {MENU_SHIFT, MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D16[] = {MENU_SEND_OUT, MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D19[] = {MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D1B[] = {MENU_ENTER, MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D1E[] = {MENU_NO_ENTRY, MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D21[] = {MENU_STORE, MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D24[] = {MENU_GIVE, MENU_TAKE_ITEM, MENU_CANCEL2};
+static const u8 sMonSelectedMenu_08615D27[] = {MENU_READ, MENU_TAKE_MAIL, MENU_CANCEL2};
+static const u8 sMonSelectedMenu_08615D2A[] = {MENU_REGISTER, MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D2D[] = {MENU_TRADE1, MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D30[] = {MENU_TRADE2, MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_08615D33[] = {MENU_TAKE_ITEM, MENU_TOSS, MENU_CANCEL1};
 
-static const u8 *const gUnknown_08615D38[] =
+static const u8 *const sMonSelectedMenuTypes[] =
 {
     NULL,
-    gUnknown_08615D10,
-    gUnknown_08615D13,
-    gUnknown_08615D16,
-    gUnknown_08615D1B,
-    gUnknown_08615D1E,
-    gUnknown_08615D21,
-    gUnknown_08615D19,
-    gUnknown_08615D24,
-    gUnknown_08615D27,
-    gUnknown_08615D2A,
-    gUnknown_08615D2D,
-    gUnknown_08615D30,
-    gUnknown_08615D33,
+    sMonSelectedMenu_08615D10,
+    sMonSelectedMenu_08615D13,
+    sMonSelectedMenu_08615D16,
+    sMonSelectedMenu_08615D1B,
+    sMonSelectedMenu_08615D1E,
+    sMonSelectedMenu_08615D21,
+    sMonSelectedMenu_08615D19,
+    sMonSelectedMenu_08615D24,
+    sMonSelectedMenu_08615D27,
+    sMonSelectedMenu_08615D2A,
+    sMonSelectedMenu_08615D2D,
+    sMonSelectedMenu_08615D30,
+    sMonSelectedMenu_08615D33,
 };
 
-static const u8 gUnknown_08615D70[] = {0x00, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x02, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03};
+static const u8 sMonSelectedMenuTypeSizes[] = {0, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3};
 
 static const u16 sFieldMoves[] =
 {
@@ -3579,7 +3579,7 @@ static bool8 sub_81B314C(void)
     return FALSE;
 }
 
-static u8 sub_81B31B0(u8 a)
+static u8 DisplaySelectedMonMenu(u8 a)
 {
     struct WindowTemplate window;
     u8 cursorDimension;
@@ -3589,7 +3589,7 @@ static u8 sub_81B31B0(u8 a)
     switch (a)
     {
     case 0:
-        SetWindowTemplateFields(&window, 2, 19, 19 - (gUnknown_0203CEC4->unk17 * 2), 10, gUnknown_0203CEC4->unk17 * 2, 14, 0x2E9);
+        SetWindowTemplateFields(&window, 2, 19, 19 - (gUnknown_0203CEC4->numMenuItems * 2), 10, gUnknown_0203CEC4->numMenuItems * 2, 14, 0x2E9);
         break;
     case 1:
         window = gUnknown_08615950;
@@ -3609,13 +3609,13 @@ static u8 sub_81B31B0(u8 a)
     cursorDimension = GetMenuCursorDimensionByFont(1, 0);
     fontAttribute = GetFontAttribute(1, 2);
 
-    for (i = 0; i < gUnknown_0203CEC4->unk17; i++)
+    for (i = 0; i < gUnknown_0203CEC4->numMenuItems; i++)
     {
-        u8 unk = (gUnknown_0203CEC4->unkF[i] > 18) ? 4 : 3;
-        AddTextPrinterParameterized4(gUnknown_0203CEC4->unkC[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, gUnknown_086157FC[unk], 0, sCursorOptions[gUnknown_0203CEC4->unkF[i]].text);
+        u8 unk = (gUnknown_0203CEC4->menuItems[i] > 18) ? 4 : 3;
+        AddTextPrinterParameterized4(gUnknown_0203CEC4->unkC[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, gUnknown_086157FC[unk], 0, sCursorOptions[gUnknown_0203CEC4->menuItems[i]].text);
     }
 
-    InitMenuInUpperLeftCorner(gUnknown_0203CEC4->unkC[0], gUnknown_0203CEC4->unk17, 0, 1);
+    InitMenuInUpperLeftCorner(gUnknown_0203CEC4->unkC[0], gUnknown_0203CEC4->numMenuItems, 0, 1);
     schedule_bg_copy_tilemap_to_vram(2);
 
     return gUnknown_0203CEC4->unkC[0];
@@ -3650,31 +3650,31 @@ static void sub_81B33B4(struct Pokemon *mons, u8 a, u8 b)
 {
     u8 i;
 
-    if (b == 0)
+    if (b == 0) //in field
     {
-        sub_81B3414(mons, a);
+        DetermineMenuItemsForFieldMons(mons, a);
     }
     else
     {
-        gUnknown_0203CEC4->unk17 = gUnknown_08615D70[b];
-        for (i = 0; i < gUnknown_0203CEC4->unk17; i++)
-            gUnknown_0203CEC4->unkF[i] = gUnknown_08615D38[b][i];
+        gUnknown_0203CEC4->numMenuItems = sMonSelectedMenuTypeSizes[b];
+        for (i = 0; i < gUnknown_0203CEC4->numMenuItems; i++)
+            gUnknown_0203CEC4->menuItems[i] = sMonSelectedMenuTypes[b][i];
     }
 }
 
-static void sub_81B3414(struct Pokemon *mons, u8 a)
+static void DetermineMenuItemsForFieldMons(struct Pokemon *mons, u8 a)
 {
     u8 i, j;
 
-    gUnknown_0203CEC4->unk17 = 0;
-    AppendToList(gUnknown_0203CEC4->unkF, &gUnknown_0203CEC4->unk17, 0);
+    gUnknown_0203CEC4->numMenuItems = 0;
+    AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_SUMMARY);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         for (j = 0; sFieldMoves[j] != FIELD_MOVE_TERMINATOR; j++)
         {
             if (GetMonData(&mons[a], i + MON_DATA_MOVE1) == sFieldMoves[j])
             {
-                AppendToList(gUnknown_0203CEC4->unkF, &gUnknown_0203CEC4->unk17, j + 19);
+                AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, j + 19);
                 break;
             }
         }
@@ -3683,16 +3683,16 @@ static void sub_81B3414(struct Pokemon *mons, u8 a)
     if (!InBattlePike())
     {
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
-            AppendToList(gUnknown_0203CEC4->unkF, &gUnknown_0203CEC4->unk17, 1);
+            AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_SWITCH);
         if (ItemIsMail(GetMonData(&mons[a], MON_DATA_HELD_ITEM)))
-            AppendToList(gUnknown_0203CEC4->unkF, &gUnknown_0203CEC4->unk17, 6);
+            AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_MAIL);
         else
-            AppendToList(gUnknown_0203CEC4->unkF, &gUnknown_0203CEC4->unk17, 3);
+            AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_ITEM);
     }
-    AppendToList(gUnknown_0203CEC4->unkF, &gUnknown_0203CEC4->unk17, 2);
+    AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_CANCEL1);
 }
 
-static u8 sub_81B353C(struct Pokemon *mon)
+static u8 DetermineMonSelectedMenuType(struct Pokemon *mon)
 {
     u32 returnVar;
 
@@ -3752,8 +3752,8 @@ static bool8 sub_81B3608(u8 taskId)
     sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
     if (gUnknown_0203CEC8.unk8_0 != 12)
     {
-        sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, sub_81B353C(mon));
-        sub_81B31B0(0);
+        sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, DetermineMonSelectedMenuType(mon));
+        DisplaySelectedMonMenu(0);
         display_pokemon_menu_message(21);
     }
     else
@@ -3761,8 +3761,8 @@ static bool8 sub_81B3608(u8 taskId)
         item = GetMonData(mon, MON_DATA_HELD_ITEM);
         if (item != ITEM_NONE)
         {
-            sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, sub_81B353C(mon));
-            sub_81B31B0(1);
+            sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, DetermineMonSelectedMenuType(mon));
+            DisplaySelectedMonMenu(1);
             CopyItemName(item, gStringVar2);
             display_pokemon_menu_message(26);
         }
@@ -3794,7 +3794,7 @@ static void HandleMenuInput(u8 taskId)
         s8 input;
         s16 *data = gTasks[taskId].data;
 
-        if (gUnknown_0203CEC4->unk17 <= 3)
+        if (gUnknown_0203CEC4->numMenuItems <= 3)
             input = Menu_ProcessInputNoWrapAround_other();
         else
             input = ProcessMenuInput_other();
@@ -3807,11 +3807,11 @@ static void HandleMenuInput(u8 taskId)
         case MENU_B_PRESSED:
             PlaySE(SE_SELECT);
             sub_81B302C(&gUnknown_0203CEC4->unkC[2]);
-            sCursorOptions[gUnknown_0203CEC4->unkF[gUnknown_0203CEC4->unk17 - 1]].func(taskId);
+            sCursorOptions[gUnknown_0203CEC4->menuItems[gUnknown_0203CEC4->numMenuItems - 1]].func(taskId);
             break;
         default:
             sub_81B302C(&gUnknown_0203CEC4->unkC[2]);
-            sCursorOptions[gUnknown_0203CEC4->unkF[input]].func(taskId);
+            sCursorOptions[gUnknown_0203CEC4->menuItems[input]].func(taskId);
             break;
         }
     }
@@ -4093,7 +4093,7 @@ static void CursorCb_Item(u8 taskId)
     sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
     sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
     sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, 8);
-    sub_81B31B0(1);
+    DisplaySelectedMonMenu(1);
     display_pokemon_menu_message(24);
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = HandleMenuInput;
@@ -4375,7 +4375,7 @@ static void CursorCb_Mail(u8 taskId)
     sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
     sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
     sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, 9);
-    sub_81B31B0(2);
+    DisplaySelectedMonMenu(2);
     display_pokemon_menu_message(25);
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = HandleMenuInput;
@@ -4487,15 +4487,15 @@ static void CursorCb_Cancel2(u8 taskId)
     PlaySE(SE_SELECT);
     sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
     sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
-    sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, sub_81B353C(mon));
+    sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, DetermineMonSelectedMenuType(mon));
     if (gUnknown_0203CEC8.unk8_0 != 12)
     {
-        sub_81B31B0(0);
+        DisplaySelectedMonMenu(0);
         display_pokemon_menu_message(21);
     }
     else
     {
-        sub_81B31B0(1);
+        DisplaySelectedMonMenu(1);
         CopyItemName(GetMonData(mon, MON_DATA_HELD_ITEM), gStringVar2);
         display_pokemon_menu_message(26);
     }
@@ -4696,7 +4696,7 @@ static void sub_81B5430(u8 taskId)
 
 static void CursorCb_FieldMove(u8 taskId)
 {
-    u8 fieldMove = gUnknown_0203CEC4->unkF[Menu_GetCursorPos()] - MENU_FIELD_MOVES;
+    u8 fieldMove = gUnknown_0203CEC4->menuItems[Menu_GetCursorPos()] - MENU_FIELD_MOVES;
     const struct MapHeader *mapHeader;
 
     PlaySE(SE_SELECT);
@@ -5561,7 +5561,7 @@ static void sub_81B6A10(u8 slot)
     u8 i;
     u8 moveCount = 0;
     u8 fontId = 1;
-    u8 windowId = sub_81B31B0(3);
+    u8 windowId = DisplaySelectedMonMenu(3);
     u16 move;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -6755,7 +6755,10 @@ void sub_81B89F0(void)
 
 static u8 sub_81B8A2C(struct Pokemon *mon)
 {
-    if (GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) != SPECIES_NONE && GetMonData(mon, MON_DATA_IS_EGG) == FALSE)
+    // I don't know WHY it's checking if the second pokemon is a vaild pokemon before doing this, but it's causing
+    // the game to softlock when we have only 1 pokemon remaining after the rest of the team is killed.
+    // if (GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) != SPECIES_NONE && GetMonData(mon, MON_DATA_IS_EGG) == FALSE)
+    if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE && GetMonData(mon, MON_DATA_IS_EGG) == FALSE)
     {
         if (gUnknown_0203CEC8.unkB == 1)
             return 3;

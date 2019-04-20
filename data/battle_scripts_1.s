@@ -2849,6 +2849,7 @@ BattleScript_FaintTarget::
 	dofaintanimation BS_TARGET
 	cleareffectsonfaint BS_TARGET
 	printstring STRINGID_TARGETFAINTED
+	killfaintedmon BS_TARGET
 	return
 
 BattleScript_GiveExp::

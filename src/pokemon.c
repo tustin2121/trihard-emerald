@@ -4739,6 +4739,41 @@ u8 SendMonToPC(struct Pokemon* mon)
     return MON_CANT_GIVE;
 }
 
+// Sends a pokemon to the PC and removes it from the party.
+void KillMon(int partySlot)
+{
+    struct Pokemon* mon = &gPlayerParty[partySlot];
+    
+    // TODO return if death mechanics are off
+    
+    // sanity check, don't kill "pokemon" beyond our party count
+    if (partySlot >= gPlayerPartyCount) return;
+    // sanity check, can't kill null pokemon or eggs
+    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE) return;
+    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_EGG) return;
+    // Don't bother, as this last pokemon fainting will cause a whiteout anyway, which will reset everything
+    if (gPlayerPartyCount <= 1) return;
+    
+    // if (MonHasMail(mon))
+    // {
+    //     u8 mailId;
+
+    //     StringCopy(daycareMon->mail.OT_name, gSaveBlock2Ptr->playerName);
+    //     GetMonNick(mon, daycareMon->mail.monName);
+    //     StripExtCtrlCodes(daycareMon->mail.monName);
+    //     daycareMon->mail.gameLanguage = LANGUAGE_ENGLISH;
+    //     daycareMon->mail.monLanguage = GetMonData(mon, MON_DATA_LANGUAGE);
+    //     mailId = GetMonData(mon, MON_DATA_MAIL);
+    //     daycareMon->mail.message = gSaveBlock1Ptr->mail[mailId];
+    //     TakeMailFromMon(mon);
+    // }
+    
+    SendMonToPC(mon);
+    ZeroMonData(mon);
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
+}
+
 u8 CalculatePlayerPartyCount(void)
 {
     gPlayerPartyCount = 0;

@@ -323,6 +323,7 @@ static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
 static void atkF8_trainerslideout(void);
+static void atkF9_killfaintedmon(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -574,7 +575,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF5_removeattackerstatus1,
     atkF6_finishaction,
     atkF7_finishturn,
-    atkF8_trainerslideout
+    atkF8_trainerslideout,
+    atkF9_killfaintedmon,
 };
 
 struct StatFractions
@@ -2996,6 +2998,8 @@ static void atk19_tryfaintmon(void)
                 if (gBattleResults.playerFaintCounter < 0xFF)
                     gBattleResults.playerFaintCounter++;
                 AdjustFriendshipOnBattleFaint(gActiveBattler);
+                // Note: We can't kill the pokemon here, because we still need it for its name
+                // during its fainting animation.
             }
             else
             {
@@ -10511,4 +10515,21 @@ static void atkF8_trainerslideout(void)
     MarkBattlerForControllerExec(gActiveBattler);
 
     gBattlescriptCurrInstr += 2;
+}
+
+static void atkF9_killfaintedmon(void)
+{
+    if (gBattleControllerExecFlags == 0)
+    {
+        gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
+        
+        if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER && (gHitMarker & HITMARKER_FAINTED(gActiveBattler)))
+        {
+            KillMon(gBattlerPartyIndexes[gActiveBattler]);
+            gBattlerPartyIndexes[gActiveBattler] = 0xFF; //invalid position
+        }
+        
+        MarkBattlerForControllerExec(gActiveBattler);
+        gBattlescriptCurrInstr += 2;
+    }
 }
