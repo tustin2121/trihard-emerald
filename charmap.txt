@@ -329,17 +329,34 @@ PLAYER         = FD 01
 STR_VAR_1      = FD 02
 STR_VAR_2      = FD 03
 STR_VAR_3      = FD 04
-KUN            = FD 05
-RIVAL          = FD 06
-@ version-dependent strings (originally made for Ruby/Sapphire differences)
-@ Emerald uses the Sapphire strings (except for VERSION).
-VERSION        = FD 07 @ "EMERALD"
-AQUA           = FD 08
-MAGMA          = FD 09
-ARCHIE         = FD 0A
-MAXIE          = FD 0B
-KYOGRE         = FD 0C
-GROUDON        = FD 0D
+RIVAL          = FD 05  @ backwards compatibility
+RIVAL_BIRCH    = FD 05  @ name of the birch rival
+RIVAL_HERO     = FD 06  @ name of the wally replacement "Logan"
+RIVAL_ALOLA    = FD 07  @ name of the alolan friend "Alex"
+AQUA_BOY       = FD 08  @ name of the male team aqua friend "Bailey"
+AQUA_GIRL      = FD 09  @ name of the female team aqua friend "Jessica"
+
+@ pronouns for same-gender characters (the player)
+PLAYER_They    = FD 10  @ "He" or "She"
+PLAYER_Them    = FD 11  @ "Him" or "Her"
+PLAYER_Their   = FD 12  @ "His" or "Her"
+PLAYER_Theirs  = FD 13  @ "His" or "Hers"
+PLAYER_they    = FD 14  @ "he" or "she"
+PLAYER_them    = FD 15  @ "him" or "her"
+PLAYER_their   = FD 16  @ "his" or "her"
+PLAYER_theirs  = FD 17  @ "his" or "hers"
+PLAYER_sir     = FD 18  @ "sir" or "miss" addressing the player
+
+@ pronouns for the opposite-gender characters (rival, alola friend)
+RIVAL_They     = FD 20  @ "He" or "She"
+RIVAL_Them     = FD 21  @ "Him" or "Her"
+RIVAL_Their    = FD 22  @ "His" or "Her"
+RIVAL_Theirs   = FD 23  @ "His" or "Hers"
+RIVAL_they     = FD 24  @ "he" or "she"
+RIVAL_them     = FD 25  @ "him" or "her"
+RIVAL_their    = FD 26  @ "his" or "her"
+RIVAL_theirs   = FD 27  @ "his" or "hers"
+
 
 @ battle string placeholders
 
