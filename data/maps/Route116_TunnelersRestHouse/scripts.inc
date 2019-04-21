@@ -28,12 +28,12 @@ Route116_TunnelersRestHouse_EventScript_22B881:: @ 822B881
 	end
 
 Route116_TunnelersRestHouse_Text_22B88B: @ 822B88B
-	.string "That RUSTURF TUNNEL there…\p"
+	.string "That Rusturf Tunnel there…\p"
 	.string "At first, we had a huge work crew boring\n"
 	.string "through rock with the latest machinery.\l"
 	.string "But, we had to stop.\p"
 	.string "It turns out that we would have had\n"
-	.string "a negative effect on wild POKéMON in\l"
+	.string "a negative effect on wild Pokémon in\l"
 	.string "the area.\p"
 	.string "So, we've got nothing to do but loll\n"
 	.string "around here doing nothing.$"
@@ -44,7 +44,7 @@ Route116_TunnelersRestHouse_Text_22B99F: @ 822B99F
 	.string "He's desperate to get through.\p"
 	.string "He says that if he digs little by little\n"
 	.string "without using machines, he won't\l"
-	.string "disturb POKéMON, and he'll avoid\l"
+	.string "disturb Pokémon, and he'll avoid\l"
 	.string "harming the natural environment.\p"
 	.string "I wonder if he made it through yet.$"
 

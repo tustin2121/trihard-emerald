@@ -298,7 +298,7 @@ LittlerootTown_BrendansHouse_1F_Text_1F7A1C: @ 81F7A1C
 	.string "Isn't it nice in here, too?$"
 
 LittlerootTown_BrendansHouse_1F_Text_1F7A46: @ 81F7A46
-	.string "The mover's POKéMON do all the work\n"
+	.string "The mover's Pokémon do all the work\n"
 	.string "of moving us in and cleaning up after.\l"
 	.string "This is so convenient!\p"
 	.string "{PLAYER}, your room is upstairs.\n"
@@ -336,7 +336,7 @@ LittlerootTown_BrendansHouse_1F_Text_1F7C35: @ 81F7C35
 LittlerootTown_MaysHouse_1F_Text_1F7C35: @ 81F7C35
 	.string "Oh, yes.\n"
 	.string "One of DAD's friends lives in town.\p"
-	.string "PROF. BIRCH is his name.\p"
+	.string "Prof. Birch is his name.\p"
 	.string "He lives right next door, so you should\n"
 	.string "go over and introduce yourself.$"
 
@@ -345,7 +345,7 @@ LittlerootTown_BrendansHouse_1F_Text_1F7CC3: @ 81F7CC3
 
 LittlerootTown_BrendansHouse_1F_Text_1F7CD8: @ 81F7CD8
 	.string "MOM: Did you introduce yourself to\n"
-	.string "PROF. BIRCH?$"
+	.string "Prof. Birch?$"
 
 LittlerootTown_BrendansHouse_1F_Text_1F7D08: @ 81F7D08
 	.string "MOM: How are you doing, {PLAYER}?\n"
@@ -365,7 +365,7 @@ LittlerootTown_BrendansHouse_1F_Text_1F7DBE: @ 81F7DBE
 	.string "Go for it, honey!$"
 
 LittlerootTown_BrendansHouse_1F_Text_1F7E0E: @ 81F7E0E
-	.string "MOM: What is that, honey? A POKéNAV?\n"
+	.string "MOM: What is that, honey? A PokéNav?\n"
 	.string "Someone from DEVON gave it to you?\p"
 	.string "Well, honey, how about registering\n"
 	.string "your mom?\p"
@@ -373,7 +373,7 @@ LittlerootTown_BrendansHouse_1F_Text_1F7E0E: @ 81F7E0E
 
 LittlerootTown_BrendansHouse_1F_Text_1F7E89: @ 81F7E89
 	.string "Registered MOM\n"
-	.string "in the POKéNAV.$"
+	.string "in the PokéNav.$"
 
 LittlerootTown_BrendansHouse_1F_Text_1F7EA8: @ 81F7EA8
 	.string "Fugiiiiih!$"
@@ -400,7 +400,7 @@ LittlerootTown_BrendansHouse_1F_Text_1F7F66: @ 81F7F66
 	.string "the road running!”$"
 
 LittlerootTown_BrendansHouse_1F_Text_1F800E: @ 81F800E
-	.string "DAD: Hm?\p"
+	.string "Norman: Hm?\p"
 	.string "Hey, it's {PLAYER}!\p"
 	.string "It's been a while since I saw you,\n"
 	.string "but you look…stronger, somehow.\p"
@@ -411,7 +411,7 @@ LittlerootTown_BrendansHouse_1F_Text_1F800E: @ 81F800E
 	.string "MR. BRINEY.$"
 
 LittlerootTown_BrendansHouse_1F_Text_1F80FE: @ 81F80FE
-	.string "DAD: Hm, a TICKET for a ferry?\p"
+	.string "Norman: Hm, a TICKET for a ferry?\p"
 	.string "If I recall, there are ferry ports in\n"
 	.string "SLATEPORT and LILYCOVE.$"
 
@@ -423,7 +423,7 @@ LittlerootTown_BrendansHouse_1F_Text_1F815B: @ 81F815B
 LittlerootTown_BrendansHouse_1F_Text_1F81B9: @ 81F81B9
 	.string "MOM: That DAD of yours…\p"
 	.string "He comes home for the first time in a\n"
-	.string "while, but all he talks about is POKéMON.\p"
+	.string "while, but all he talks about is Pokémon.\p"
 	.string "He should relax and stay a little longer.$"
 
 LittlerootTown_BrendansHouse_1F_Text_1F824B: @ 81F824B
@@ -432,10 +432,10 @@ LittlerootTown_BrendansHouse_1F_Text_1F824B: @ 81F824B
 LittlerootTown_BrendansHouse_1F_Text_1F826F: @ 81F826F
 	.string "We bring you this emergency\n"
 	.string "news flash!\p"
-	.string "In various HOENN locales, there have\n"
+	.string "In various Hoenn locales, there have\n"
 	.string "been reports of a BZZT…colored\l"
-	.string "POKéMON in flight.\p"
-	.string "The identity of this POKéMON is\n"
+	.string "Pokémon in flight.\p"
+	.string "The identity of this Pokémon is\n"
 	.string "currently unknown.\p"
 	.string "We now return you to the regular\n"
 	.string "movie program.$"
@@ -443,8 +443,8 @@ LittlerootTown_BrendansHouse_1F_Text_1F826F: @ 81F826F
 LittlerootTown_BrendansHouse_1F_Text_1F8351: @ 81F8351
 	.string "MOM: {PLAYER}, did you catch that?\p"
 	.string "What color did the announcer say\n"
-	.string "that POKéMON was?$"
+	.string "that Pokémon was?$"
 
 LittlerootTown_BrendansHouse_1F_Text_1F83A1: @ 81F83A1
 	.string "MOM: Well, isn't that something!\n"
-	.string "There are still unknown POKéMON.$"
+	.string "There are still unknown Pokémon.$"

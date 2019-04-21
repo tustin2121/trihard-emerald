@@ -582,11 +582,11 @@ gUnknown_082EE984:: @ 82EE984
 
 	.align 2
 gUnknown_082EE9B4:: @ 82EE9B4
-	.string "Sorry! My POKéMON don't seem to\nbe feeling too well right now.\lLet me battle you another time.\p$"
+	.string "Sorry! My Pokémon don't seem to\nbe feeling too well right now.\lLet me battle you another time.\p$"
 
 	.align 2
 gUnknown_082EEA14:: @ 82EEA14
-	.string "I'm terribly sorry, but my POKéMON\naren't feeling well…\pLet's battle another time.\p$"
+	.string "I'm terribly sorry, but my Pokémon\naren't feeling well…\pLet's battle another time.\p$"
 
 	.align 2
 gUnknown_082EEA68:: @ 82EEA68
@@ -625,11 +625,11 @@ gUnknown_082EEB88:: @ 82EEB88
 
 	.align 2
 gUnknown_082EEBD0:: @ 82EEBD0
-	.string "If you want to battle, you need\ntwo POKéMON that are below\lLv. 30.\p$"
+	.string "If you want to battle, you need\ntwo Pokémon that are below\lLv. 30.\p$"
 
 	.align 2
 gUnknown_082EEC14:: @ 82EEC14
-	.string "For a battle, you need two\nPOKéMON that are below Lv. 30.\p$"
+	.string "For a battle, you need two\nPokémon that are below Lv. 30.\p$"
 
 	.align 2
 gUnknown_082EEC50:: @ 82EEC50
@@ -671,11 +671,11 @@ gUnknown_082EED98:: @ 82EED98
 
 	.align 2
 gUnknown_082EEDBC:: @ 82EEDBC
-	.string "Oh! How could you use that\nPOKéMON in that situation?\p$"
+	.string "Oh! How could you use that\nPokémon in that situation?\p$"
 
 	.align 2
 gUnknown_082EEDF4:: @ 82EEDF4
-	.string "That POKéMON…\nIt's been raised really well!\p$"
+	.string "That Pokémon…\nIt's been raised really well!\p$"
 
 	.align 2
 gUnknown_082EEE24:: @ 82EEE24
@@ -687,7 +687,7 @@ gUnknown_082EEE4C:: @ 82EEE4C
 
 	.align 2
 gUnknown_082EEE78:: @ 82EEE78
-	.string "You have exquisite timing for\nswitching POKéMON!\p$"
+	.string "You have exquisite timing for\nswitching Pokémon!\p$"
 
 	.align 2
 gUnknown_082EEEAC:: @ 82EEEAC
@@ -768,19 +768,19 @@ gUnknown_082EF100:: @ 82EF100
 
 	.align 2
 gUnknown_082EF110:: @ 82EF110
-	.string "Yeahah!\nI really wanted this POKéMON!\p$"
+	.string "Yeahah!\nI really wanted this Pokémon!\p$"
 
 	.align 2
 gUnknown_082EF138:: @ 82EF138
-	.string "Finally, a trade got me that\nPOKéMON I'd wanted a long time.\p$"
+	.string "Finally, a trade got me that\nPokémon I'd wanted a long time.\p$"
 
 	.align 2
 gUnknown_082EF178:: @ 82EF178
-	.string "I'm trading POKéMON right now.\p$"
+	.string "I'm trading Pokémon right now.\p$"
 
 	.align 2
 gUnknown_082EF198:: @ 82EF198
-	.string "I finally got that POKéMON I\nwanted in a trade!\p$"
+	.string "I finally got that Pokémon I\nwanted in a trade!\p$"
 
 	.align 2
 gUnknown_082EF1CC:: @ 82EF1CC
@@ -799,25 +799,25 @@ gUnknown_082EF1EC:: @ 82EF1EC
 
 	.align 2
 gUnknown_082EF20C:: @ 82EF20C
-	.string "Welcome to the TRADING BOARD.\pYou may register your POKéMON\nand offer it up for a trade.\pWould you like to register one of\nyour POKéMON?$"
+	.string "Welcome to the TRADING BOARD.\pYou may register your Pokémon\nand offer it up for a trade.\pWould you like to register one of\nyour Pokémon?$"
 
 	.align 2
 gUnknown_082EF298:: @ 82EF298
-	.string "This TRADING BOARD is used for\noffering a POKéMON for a trade.\pAll you need to do is register a\nPOKéMON for a trade.\pAnother TRAINER may offer a party\nPOKéMON in return for the trade.\pWe hope you will register POKéMON\nand trade them with many, many\lother TRAINERS.\pWould you like to register one of\nyour POKéMON?$"
+	.string "This TRADING BOARD is used for\noffering a Pokémon for a trade.\pAll you need to do is register a\nPokémon for a trade.\pAnother TRAINER may offer a party\nPokémon in return for the trade.\pWe hope you will register Pokémon\nand trade them with many, many\lother TRAINERS.\pWould you like to register one of\nyour Pokémon?$"
 
 	.align 2
-	.string "We have registered your POKéMON for\ntrade on the TRADING BOARD.\pThank you for using this service!\p$"
+	.string "We have registered your Pokémon for\ntrade on the TRADING BOARD.\pThank you for using this service!\p$"
 
 	.align 2
-	.string "Nobody has registered any POKéMON\nfor trade on the TRADING BOARD.\p\n$"
+	.string "Nobody has registered any Pokémon\nfor trade on the TRADING BOARD.\p\n$"
 
 	.align 2
 gUnknown_082EF47C:: @ 82EF47C
-	.string "Please choose the type of POKéMON\nthat you would like in the trade.\n$"
+	.string "Please choose the type of Pokémon\nthat you would like in the trade.\n$"
 
 	.align 2
 gUnknown_082EF4C4:: @ 82EF4C4
-	.string "Which of your party POKéMON will\nyou offer in trade?\p$"
+	.string "Which of your party Pokémon will\nyou offer in trade?\p$"
 
 	.align 2
 gUnknown_082EF4FC:: @ 82EF4FC
@@ -847,7 +847,7 @@ gUnknown_082EF5B8:: @ 82EF5B8
 	.string "TRAINERS wishing to make a trade\nwill be listed.$"
 
 	.align 2
-	.string "Please choose the TRAINER with whom\nyou would like to trade POKéMON.$"
+	.string "Please choose the TRAINER with whom\nyou would like to trade Pokémon.$"
 
 	.align 2
 gUnknown_082EF65C:: @ 82EF65C
@@ -857,11 +857,11 @@ gUnknown_082EF65C:: @ 82EF65C
 	.string "Awaiting a response from\nthe other TRAINER…$"
 
 	.align 2
-	.string "You have not registered a POKéMON\nfor trading.\p$"
+	.string "You have not registered a Pokémon\nfor trading.\p$"
 
 	.align 2
 gUnknown_082EF6E4:: @ 82EF6E4
-	.string "You don't have a {STR_VAR_2}-type\nPOKéMON that {STR_VAR_1} wants.\p$"
+	.string "You don't have a {STR_VAR_2}-type\nPokémon that {STR_VAR_1} wants.\p$"
 
 	.align 2
 gUnknown_082EF718:: @ 82EF718
@@ -869,11 +869,11 @@ gUnknown_082EF718:: @ 82EF718
 
 	.align 2
 gUnknown_082EF740:: @ 82EF740
-	.string "{STR_VAR_1} can't make a trade for\nyour POKéMON right now.\p$"
+	.string "{STR_VAR_1} can't make a trade for\nyour Pokémon right now.\p$"
 
 	.align 2
 gUnknown_082EF774:: @ 82EF774
-	.string "You can't make a trade for\n{STR_VAR_1}'s POKéMON right now.\p$"
+	.string "You can't make a trade for\n{STR_VAR_1}'s Pokémon right now.\p$"
 
 	.align 2
 	.4byte gUnknown_082EF740
@@ -921,7 +921,7 @@ gUnknown_082EF908:: @ 82EF908
 
 	.align 2
 gUnknown_082EF940:: @ 82EF940
-	.string "Jump with mini POKéMON!\nPlease choose the LEADER.$"
+	.string "Jump with mini Pokémon!\nPlease choose the LEADER.$"
 
 	.align 2
 gUnknown_082EF974:: @ 82EF974
@@ -997,7 +997,7 @@ gUnknown_082EFBC8:: @ 82EFBC8
 	.string "Searching for a WIRELESS\nCOMMUNICATION SYSTEM. Wait...$"
 
 	.align 2
-	.string "For a DOUBLE BATTLE, you must have\nat least two POKéMON.\p$"
+	.string "For a DOUBLE BATTLE, you must have\nat least two Pokémon.\p$"
 
 	.align 2
 gUnknown_082EFC3C:: @ 82EFC3C
@@ -1069,7 +1069,7 @@ gUnknown_082EFDD0:: @ 82EFDD0
 
 	.align 2
 gUnknown_082EFDE0:: @ 82EFDE0
-	.string "POKéMON TRADES$"
+	.string "Pokémon TRADES$"
 
 	.align 2
 gUnknown_082EFDF0:: @ 82EFDF0
@@ -1089,7 +1089,7 @@ gUnknown_082EFE10:: @ 82EFE10
 
 	.align 2
 gUnknown_082EFE1C:: @ 82EFE1C
-	.string "POKéMON JUMP$"
+	.string "Pokémon JUMP$"
 
 	.align 2
 gUnknown_082EFE2C:: @ 82EFE2C
@@ -1168,7 +1168,7 @@ gUnknown_082EFF50:: @ 82EFF50
 	.4byte gUnknown_082EFF3C
 
 gUnknown_082EFF64:: @ 82EFF64
-	.string "This is {SPECIAL_F7 0x00} {SPECIAL_F7 0x01}'s\nTRAINER CARD…\l{SPECIAL_F7 0x02}\pPOKéDEX: {SPECIAL_F7 0x03}\nTIME:    {SPECIAL_F7 0x04}:{SPECIAL_F7 0x05}\p$"
+	.string "This is {SPECIAL_F7 0x00} {SPECIAL_F7 0x01}'s\nTRAINER CARD…\l{SPECIAL_F7 0x02}\pPokédex: {SPECIAL_F7 0x03}\nTIME:    {SPECIAL_F7 0x04}:{SPECIAL_F7 0x05}\p$"
 
 	.align 2
 gUnknown_082EFFA4:: @ 82EFFA4

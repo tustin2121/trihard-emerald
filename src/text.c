@@ -185,8 +185,12 @@ bool16 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
     gTempTextPrinter.callback = callback;
     gTempTextPrinter.minLetterSpacing = 0;
     gTempTextPrinter.japanese = 0;
+    gTempTextPrinter.fgColor = printerTemplate->fgColor;
+    gTempTextPrinter.bgColor = printerTemplate->bgColor;
+    gTempTextPrinter.shadowColor = printerTemplate->shadowColor;
+    
 
-    GenerateFontHalfRowLookupTable(printerTemplate->fgColor, printerTemplate->bgColor, printerTemplate->shadowColor);
+    GenerateFontHalfRowLookupTable(gTempTextPrinter.fgColor, gTempTextPrinter.bgColor, gTempTextPrinter.shadowColor);
     if (speed != TEXT_SPEED_FF && speed != 0x0)
     {
         --gTempTextPrinter.textSpeed;
@@ -202,7 +206,7 @@ bool16 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
         }
 
         if (speed != TEXT_SPEED_FF)
-          CopyWindowToVram(gTempTextPrinter.printerTemplate.windowId, 2);
+            CopyWindowToVram(gTempTextPrinter.printerTemplate.windowId, 2);
         gTextPrinters[printerTemplate->windowId].active = 0;
     }
     gUnknown_03002F84 = 0;
@@ -1505,28 +1509,34 @@ u16 RenderText(struct TextPrinter *textPrinter)
             switch (currChar)
             {
             case 1:
-                textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar;
+                textPrinter->fgColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+                GenerateFontHalfRowLookupTable(textPrinter->fgColor, textPrinter->bgColor, textPrinter->shadowColor);
                 return 2;
             case 2:
-                textPrinter->printerTemplate.bgColor = *textPrinter->printerTemplate.currentChar;
+                textPrinter->bgColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+                GenerateFontHalfRowLookupTable(textPrinter->fgColor, textPrinter->bgColor, textPrinter->shadowColor);
                 return 2;
             case 3:
-                textPrinter->printerTemplate.shadowColor = *textPrinter->printerTemplate.currentChar;
+                textPrinter->shadowColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+                GenerateFontHalfRowLookupTable(textPrinter->fgColor, textPrinter->bgColor, textPrinter->shadowColor);
                 return 2;
             case 4:
-                textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar;
+                textPrinter->fgColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                textPrinter->printerTemplate.bgColor = *textPrinter->printerTemplate.currentChar;
+                textPrinter->bgColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                textPrinter->printerTemplate.shadowColor = *textPrinter->printerTemplate.currentChar;
+                textPrinter->shadowColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+                GenerateFontHalfRowLookupTable(textPrinter->fgColor, textPrinter->bgColor, textPrinter->shadowColor);
+                return 2;
+            case 0x19: // Reset color to defaults
+                textPrinter->fgColor = textPrinter->printerTemplate.fgColor;
+                textPrinter->bgColor = textPrinter->printerTemplate.bgColor;
+                textPrinter->shadowColor = textPrinter->printerTemplate.shadowColor;
+                GenerateFontHalfRowLookupTable(textPrinter->fgColor, textPrinter->bgColor, textPrinter->shadowColor);
                 return 2;
             case 5:
                 textPrinter->printerTemplate.currentChar++;

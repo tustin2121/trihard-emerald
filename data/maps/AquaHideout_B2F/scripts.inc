@@ -145,7 +145,7 @@ AquaHideout_B2F_Text_2341FE: @ 82341FE
 	.string "chew me out…$"
 
 AquaHideout_B2F_Text_23426F: @ 823426F
-	.string "When I joined TEAM AQUA, the first\n"
+	.string "When I joined Team Aqua, the first\n"
 	.string "thing I had to learn was how these\l"
 	.string "warp panels connected.$"
 

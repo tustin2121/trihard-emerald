@@ -243,7 +243,7 @@ static const u8 gText_FourQuestionMarks[] = _("????");
 static const u8 gText_832DAE4[] = _("");
 static const u8 gText_IsThisTradeOkay[] = _("Is this trade okay?");
 static const u8 gText_Cancel6[] = _("CANCEL");
-static const u8 gText_ChooseAPkmn[] = _("Choose a POKéMON.");
+static const u8 gText_ChooseAPkmn[] = _("Choose a Pokémon.");
 static const u8 gText_Summary3[] = _("SUMMARY");
 static const u8 gText_Trade2[] = _("TRADE");
 static const u8 gText_CancelTrade[] = _("Cancel trade?");
@@ -252,9 +252,9 @@ static const u8 gText_Summary4[] = _("SUMMARY");
 static const u8 gText_Trade3[] = _("TRADE");
 static const u8 gText_CommunicationStandby6[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}Communication standby…\nPlease wait.");
 static const u8 gText_TheTradeHasBeenCanceled[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}The trade has\nbeen canceled.");
-static const u8 gText_YourOnlyPkmnForBattle[] = _("That's your only\nPOKéMON for battle.");
+static const u8 gText_YourOnlyPkmnForBattle[] = _("That's your only\nPokémon for battle.");
 static const u8 gText_WaitingForYourFriend[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}Waiting for your friend\nto finish…");
-static const u8 gText_YourFriendWantsToTrade[] = _("Your friend wants\nto trade POKéMON.");
+static const u8 gText_YourFriendWantsToTrade[] = _("Your friend wants\nto trade Pokémon.");
 
 static const struct OamData gOamData_832DC14 =
 {

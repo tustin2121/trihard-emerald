@@ -2366,7 +2366,7 @@ gUnknown_0827268C:: @ 827268C
 	.string "Accessed SOMEONE'S PC.$"
 
 gUnknown_082726A3:: @ 82726A3
-	.string "POKéMON Storage System opened.$"
+	.string "Pokémon Storage System opened.$"
 
 gUnknown_082726C2:: @ 82726C2
 	.string "Accessed {PLAYER}'s PC.$"
@@ -2413,16 +2413,16 @@ gUnknown_08272B48:: @ 8272B48
 	.string "The {STR_VAR_2} was transferred\nto the PC.$"
 
 gText_PokemartSign:: @ 8272B6A
-	.string "“Selected items for your convenience!”\nPOKéMON MART$"
+	.string "“Selected items for your convenience!”\n{PLACE}Pokémon Mart{END}$"
 
 gText_PokemonCenterSign:: @ 8272B9E
-	.string "“Rejuvenate your tired partners!”\nPOKéMON CENTER$"
+	.string "“Rejuvenate your tired partners!”\n{PLACE}Pokémon Center{END}$"
 
 gUnknown_08272BCF:: @ 8272BCF
 	.string "{STR_VAR_1} might like this program.\n… … … … … … … … … … … … … … … …\pBetter get going!$"
 
 gUnknown_08272C1D:: @ 8272C1D
-	.string "Welcome to LILYCOVE DEPARTMENT STORE.\pWhich floor would you like?$"
+	.string "Welcome to {PLACE}Lilycove Department Store{END}.\pWhich floor would you like?$"
 
 gUnknown_08272C5F:: @ 8272C5F
 	.string "The sandstorm is vicious.\nIt's impossible to keep going.$"
@@ -2431,7 +2431,7 @@ gUnknown_08272C98:: @ 8272C98
 	.string "An item in the BAG can be\nregistered to SELECT for easy use.$"
 
 gUnknown_08272CD5:: @ 8272CD5
-	.string "There's an e-mail from POKéMON TRAINER\nSCHOOL.\p… … … … … …\pA POKéMON may learn up to four moves.\pA TRAINER's expertise is tested on the\nmove sets chosen for POKéMON.\p… … … … … …$"
+	.string "There's an e-mail from Pokémon TRAINER\nSCHOOL.\p… … … … … …\pA Pokémon may learn up to four moves.\pA TRAINER's expertise is tested on the\nmove sets chosen for Pokémon.\p… … … … … …$"
 
 gUnknown_08272D87:: @ 8272D87
 	.string "{PLAYER} booted up the PC.$"
@@ -2443,10 +2443,10 @@ gUnknown_08272DB3:: @ 8272DB3
 	.string "Want to give a nickname to\nthe {STR_VAR_2} you received?$"
 
 gUnknown_08272DE3:: @ 8272DE3
-	.string "{PLAYER} is out of usable\nPOKéMON!\p{PLAYER} whited out!$"
+	.string "{PLAYER} is out of usable\nPokémon!\p{PLAYER} whited out!$"
 
 gUnknown_08272E0F:: @ 8272E0F
-	.string "Registered {STR_VAR_1} {STR_VAR_2}\nin the POKéNAV.$"
+	.string "Registered {STR_VAR_1} {STR_VAR_2}\nin the PokéNav.$"
 
 gUnknown_08272E30:: @ 8272E30
 	.string "Do you know the TM SECRET POWER?\pOur group, we love the TM SECRET\nPOWER.\pOne of our members will give it to you.\nCome back and show me if you get it.\pWe'll accept you as a member and sell\nyou good stuff in secrecy.$"
@@ -2460,7 +2460,7 @@ gUnknown_0827304E:: @ 827304E
 	.string "There is a big hole in the wall.$"
 
 gUnknown_0827306F:: @ 827306F
-	.string "I'm terribly sorry.\nThe POKéMON WIRELESS CLUB is\lundergoing adjustments now.$"
+	.string "I'm terribly sorry.\nThe Pokémon WIRELESS CLUB is\lundergoing adjustments now.$"
 
 gUnknown_082730BC:: @ 82730BC
 	.string "It appears to be undergoing\nadjustments…$"
@@ -2499,7 +2499,7 @@ gText_PkmnBoxLanettesPCFull:: @ 82732D9
 	.string "BOX “{STR_VAR_3}” on\nLANETTE'S PC was full.\p{STR_VAR_2} was transferred to\nBOX “{STR_VAR_1}.”$"
 
 gUnknown_0827331C:: @ 827331C
-	.string "There's no more room for POKéMON!\pThe POKéMON BOXES are full and\ncan't accept any more!$"
+	.string "There's no more room for Pokémon!\pThe Pokémon BOXES are full and\ncan't accept any more!$"
 
 gUnknown_08273374:: @ 8273374
 	.string "Do you want to give a nickname to\nthis {STR_VAR_1}?$"
@@ -2526,7 +2526,7 @@ gUnknown_08273594:: @ 8273594
 	.string "Thank you for using the MYSTERY\nEVENT System.\pYou must be {PLAYER}.\nThere is a ticket here for you.$"
 
 gUnknown_082735F2:: @ 82735F2
-	.string "It appears to be for use at\nthe LILYCOVE CITY port.\pWhy not give it a try and see what\nit is about?$"
+	.string "It appears to be for use at\nthe Lilycove City port.\pWhy not give it a try and see what\nit is about?$"
 
 gText_UnusualWeatherEnded_Rain:: @ 8273656
 	.string "The massive downpour appears to\nhave stopped…$"
@@ -3311,7 +3311,7 @@ gUnknown_0827E973:: @ 827E973
 	.string "{STR_VAR_1}{PAUSE_UNTIL_PRESS}$"
 
 gUnknown_0827E992:: @ 827E992
-	.string "The most impressive POKéMON:\n"
+	.string "The most impressive Pokémon:\n"
 	.string "{STR_VAR_1}'s {STR_VAR_2}{PAUSE_UNTIL_PRESS}$"
 
 gUnknown_0827E9B9:: @ 827E9B9
@@ -3364,7 +3364,7 @@ gContestPaintingCool1::
 
 gContestPaintingCool2::
 	.string "Hey, there!\n"
-	.string "The good-looking POKéMON {STR_VAR_1}$"
+	.string "The good-looking Pokémon {STR_VAR_1}$"
 
 gContestPaintingCool3::
 	.string "The marvelous, wonderful, and\n"
@@ -3379,7 +3379,7 @@ gContestPaintingBeauty2::
 	.string "glittering smile$"
 
 gContestPaintingBeauty3::
-	.string "POKéMON CENTER's super idol--\n"
+	.string "Pokémon CENTER's super idol--\n"
 	.string "the incomparable {STR_VAR_1}$"
 
 gContestPaintingCute1::
@@ -3391,15 +3391,15 @@ gContestPaintingCute2::
 
 gContestPaintingCute3::
 	.string "Give us a wink!\n"
-	.string "The cutie POKéMON {STR_VAR_1}$"
+	.string "The cutie Pokémon {STR_VAR_1}$"
 
 gContestPaintingSmart1::
 	.string "The smartness maestro--\n"
-	.string "the wise POKéMON {STR_VAR_1}$"
+	.string "the wise Pokémon {STR_VAR_1}$"
 
 gContestPaintingSmart2::
 	.string "{STR_VAR_1}--the one chosen\n"
-	.string "above all POKéMON$"
+	.string "above all Pokémon$"
 
 gContestPaintingSmart3::
 	.string "The excellent {STR_VAR_1}'s\n"
@@ -3415,7 +3415,7 @@ gContestPaintingTough2::
 
 gContestPaintingTough3::
 	.string "The mighty tough\n"
-	.string "hyper POKéMON {STR_VAR_1}$"
+	.string "hyper Pokémon {STR_VAR_1}$"
 
 gUnknown_0827ECBC:: @ 27ECBC
 	.string "ODDISH$"
@@ -4035,16 +4035,16 @@ MauvilleCity_GameCorner_EventScript_2A5B0D:: @ 82A5B0D
 	.include "data/text/shoal_cave.inc"
 
 Text_2A81E5: @ 82A81E5
-	.string "There's a set of POKéMON picture books.$"
+	.string "There's a set of Pokémon picture books.$"
 
 Text_2A820D: @ 82A820D
 	.string "It's filled with all sorts of books.$"
 
 Text_2A8232: @ 82A8232
-	.string "POKéMON magazines!\n"
-	.string "POKéMON PAL…\p"
-	.string "POKéMON HANDBOOK…\n"
-	.string "ADORABLE POKéMON…$"
+	.string "Pokémon magazines!\n"
+	.string "Pokémon Pal…\p"
+	.string "Pokémon Handbook…\n"
+	.string "Adorable Pokémon…$"
 
 Text_2A8276: @ 82A8276
 	.string "This vase looks expensive…\n"
@@ -4056,7 +4056,7 @@ Text_2A82B3: @ 82A82B3
 
 Text_2A82BF: @ 82A82BF
 	.string "The shelves brim with all sorts of\n"
-	.string "POKéMON merchandise.$"
+	.string "Pokémon merchandise.$"
 
 Text_2A82F7: @ 82A82F7
 	.string "A blueprint of some sort?\n"
@@ -4918,7 +4918,7 @@ LilycoveCity_PokemonCenter_1F_Text_2A9556: @ 82A9556
 LilycoveCity_PokemonCenter_1F_Text_2A9571: @ 82A9571
 	.string "Yay!\n"
 	.string "Thank you!\p"
-	.string "I'll feed my POKéMON your {POKEBLOCK}\n"
+	.string "I'll feed my Pokémon your {POKEBLOCK}\n"
 	.string "right away.$"
 
 LilycoveCity_PokemonCenter_1F_Text_2A95AD: @ 82A95AD
@@ -5234,7 +5234,7 @@ gBattleDomeOpponentStatsText42::
 	.string "Neglects SP. DEFENSE.$"
 
 gBattleDomeOpponentStatsText43::
-	.string "Raises POKéMON in a well-balanced way.$"
+	.string "Raises Pokémon in a well-balanced way.$"
 
 gBattleDomeWinText1::
 	.string "Let the battle begin!$"
@@ -5718,12 +5718,12 @@ FallarborTown_BattleTentLobby_Text_2C48AC: @ 82C48AC
 	.string "In the FALLARBOR BATTLE TENT,\n"
 	.string "we undertake the Set KO Tourney.\p"
 	.string "All participants enter with a team of\n"
-	.string "three POKéMON.\p"
-	.string "The three POKéMON must be lined up\n"
+	.string "three Pokémon.\p"
+	.string "The three Pokémon must be lined up\n"
 	.string "in the order that they are to appear in.\p"
-	.string "During battle, the POKéMON will appear\n"
+	.string "During battle, the Pokémon will appear\n"
 	.string "one at a time in the preset order.\p"
-	.string "Once a POKéMON enters battle, it must\n"
+	.string "Once a Pokémon enters battle, it must\n"
 	.string "remain out until the match is decided.\p"
 	.string "If a match remains undecided in\n"
 	.string "three turns, it goes to judging.\p"
@@ -5746,11 +5746,11 @@ FallarborTown_BattleTentLobby_Text_2C4B77: @ 82C4B77
 
 FallarborTown_BattleTentLobby_Text_2C4BC8: @ 82C4BC8
 	.string "Very well, now select your\n"
-	.string "three POKéMON, please.$"
+	.string "three Pokémon, please.$"
 
 FallarborTown_BattleTentLobby_Text_2C4BFA: @ 82C4BFA
 	.string "My dear challenger!\p"
-	.string "You do not have the three POKéMON\n"
+	.string "You do not have the three Pokémon\n"
 	.string "required for entry.\p"
 	.string "They also must not hold the same\n"
 	.string "kinds of items.\p"
@@ -5760,10 +5760,10 @@ FallarborTown_BattleTentLobby_Text_2C4BFA: @ 82C4BFA
 
 FallarborTown_BattleTentLobby_Text_2C4CC0: @ 82C4CC0
 	.string "My dear challenger!\p"
-	.string "You do not have the three POKéMON\n"
+	.string "You do not have the three Pokémon\n"
 	.string "required for entry.\p"
 	.string "To qualify, you must bring three\n"
-	.string "different kinds of POKéMON.\p"
+	.string "different kinds of Pokémon.\p"
 	.string "They also must not hold the same\n"
 	.string "kinds of items.\p"
 	.string "EGGS{STR_VAR_1} ineligible.\p"
@@ -5823,7 +5823,7 @@ VerdanturfTown_BattleTentLobby_Text_2C50C3: @ 82C50C3
 	.string "I welcome you to the BATTLE TENT\n"
 	.string "VERDANTURF SITE!\p"
 	.string "Here, the TRAINER's trust toward\n"
-	.string "POKéMON is tested.$"
+	.string "Pokémon is tested.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C5129: @ 82C5129
 	.string "Do you wish to take the VERDANTURF\n"
@@ -5834,13 +5834,13 @@ VerdanturfTown_BattleTentLobby_Text_2C5163: @ 82C5163
 	.string "there is one crucial rule that must\l"
 	.string "be obeyed.\p"
 	.string "TRAINERS are permitted only to switch\n"
-	.string "their POKéMON in and out.\p"
+	.string "their Pokémon in and out.\p"
 	.string "TRAINERS are otherwise forbidden to\n"
-	.string "command their POKéMON.\p"
-	.string "The POKéMON are to behave according\n"
+	.string "command their Pokémon.\p"
+	.string "The Pokémon are to behave according\n"
 	.string "to their nature and battle on their own.\p"
 	.string "You must put your trust in your\n"
-	.string "POKéMON and watch over them.\p"
+	.string "Pokémon and watch over them.\p"
 	.string "If you achieve the honor of beating\n"
 	.string "three TRAINERS in succession,\l"
 	.string "we will present you with a prize.\p"
@@ -5851,7 +5851,7 @@ VerdanturfTown_BattleTentLobby_Text_2C5163: @ 82C5163
 
 VerdanturfTown_BattleTentLobby_Text_2C539A: @ 82C539A
 	.string "When you have fortified your heart\n"
-	.string "and POKéMON, you must return.$"
+	.string "and Pokémon, you must return.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C53DB: @ 82C53DB
 	.string "There are two levels of difficulty,\n"
@@ -5860,10 +5860,10 @@ VerdanturfTown_BattleTentLobby_Text_2C53DB: @ 82C53DB
 
 VerdanturfTown_BattleTentLobby_Text_2C543D: @ 82C543D
 	.string "Sigh…\p"
-	.string "You do not have the three POKéMON\n"
+	.string "You do not have the three Pokémon\n"
 	.string "required for the challenge.\p"
 	.string "To enter, you must provide three\n"
-	.string "different kinds of POKéMON.\p"
+	.string "different kinds of Pokémon.\p"
 	.string "They also must not be holding\n"
 	.string "the same kinds of items.\p"
 	.string "EGGS{STR_VAR_1} ineligible.\p"
@@ -5872,10 +5872,10 @@ VerdanturfTown_BattleTentLobby_Text_2C543D: @ 82C543D
 
 VerdanturfTown_BattleTentLobby_Text_2C5538: @ 82C5538
 	.string "Sigh…\p"
-	.string "You do not have the three POKéMON\n"
+	.string "You do not have the three Pokémon\n"
 	.string "required for the challenge.\p"
 	.string "To enter, you must provide three\n"
-	.string "different kinds of POKéMON.\p"
+	.string "different kinds of Pokémon.\p"
 	.string "They also must not be holding\n"
 	.string "the same kinds of items.\p"
 	.string "EGGS{STR_VAR_1} ineligible.\p"
@@ -5884,7 +5884,7 @@ VerdanturfTown_BattleTentLobby_Text_2C5538: @ 82C5538
 
 VerdanturfTown_BattleTentLobby_Text_2C5633: @ 82C5633
 	.string "Good. Now, you must select your\n"
-	.string "three POKéMON.$"
+	.string "three Pokémon.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C5662: @ 82C5662
 	.string "I must save before I show you to\n"
@@ -5896,14 +5896,14 @@ VerdanturfTown_BattleTentLobby_Text_2C56A2: @ 82C56A2
 
 VerdanturfTown_BattleTentLobby_Text_2C56B8: @ 82C56B8
 	.string "I feel privileged for having seen\n"
-	.string "your POKéMON's exploits.\p"
+	.string "your Pokémon's exploits.\p"
 	.string "The results will be recorded.\n"
 	.string "I must ask you to briefly wait.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C5731: @ 82C5731
 	.string "To achieve a 3-win streak…\p"
 	.string "The bonds that bind your heart with\n"
-	.string "your POKéMON seem firm and true.$"
+	.string "your Pokémon seem firm and true.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C5791: @ 82C5791
 	.string "Your feat will be recorded.\n"
@@ -5926,13 +5926,13 @@ SlateportCity_BattleTentLobby_Text_2C586A: @ 82C586A
 SlateportCity_BattleTentLobby_Text_2C589C: @ 82C589C
 	.string "Here at the SLATEPORT BATTLE TENT,\n"
 	.string "we hold Battle Swap events\l"
-	.string "using rental POKéMON.\p"
+	.string "using rental Pokémon.\p"
 	.string "First, you will be loaned three\n"
-	.string "POKéMON specifically for this event.\p"
-	.string "Using the supplied rental POKéMON,\n"
+	.string "Pokémon specifically for this event.\p"
+	.string "Using the supplied rental Pokémon,\n"
 	.string "you must conduct a SINGLE BATTLE.\p"
 	.string "If you win, you are permitted to trade\n"
-	.string "one of your rental POKéMON.\p"
+	.string "one of your rental Pokémon.\p"
 	.string "Repeat this cycle of battling and\n"
 	.string "trading--if you win three times in\l"
 	.string "a row, you will earn a fine prize.\p"
@@ -5953,7 +5953,7 @@ SlateportCity_BattleTentLobby_Text_2C5B06: @ 82C5B06
 	.string "I need to save data. Is that okay?$"
 
 SlateportCity_BattleTentLobby_Text_2C5B4A: @ 82C5B4A
-	.string "Okay, I will hold your POKéMON for\n"
+	.string "Okay, I will hold your Pokémon for\n"
 	.string "safekeeping while you compete.$"
 
 SlateportCity_BattleTentLobby_Text_2C5B8C: @ 82C5B8C
@@ -5961,20 +5961,20 @@ SlateportCity_BattleTentLobby_Text_2C5B8C: @ 82C5B8C
 
 SlateportCity_BattleTentLobby_Text_2C5BA2: @ 82C5BA2
 	.string "Thank you for participating!\p"
-	.string "I will return your POKéMON in exchange\n"
-	.string "for our rental POKéMON.\p"
+	.string "I will return your Pokémon in exchange\n"
+	.string "for our rental Pokémon.\p"
 	.string "I must also save your event results.\n"
 	.string "Please wait.$"
 
 SlateportCity_BattleTentLobby_Text_2C5C30: @ 82C5C30
-	.string "I will return your POKéMON in exchange\n"
-	.string "for our rental POKéMON.$"
+	.string "I will return your Pokémon in exchange\n"
+	.string "for our rental Pokémon.$"
 
 SlateportCity_BattleTentLobby_Text_2C5C6F: @ 82C5C6F
 	.string "Congratulations!\n"
 	.string "You've won three straight matches!\p"
-	.string "I will return your POKéMON in exchange\n"
-	.string "for our rental POKéMON.\p"
+	.string "I will return your Pokémon in exchange\n"
+	.string "for our rental Pokémon.\p"
 	.string "I must also save your event results.\n"
 	.string "Please wait.$"
 
@@ -6000,7 +6000,7 @@ SlateportCity_BattleTentLobby_Text_2C5DFA: @ 82C5DFA
 	.string "from your challenge.$"
 
 SlateportCity_BattleTentLobby_Text_2C5E85: @ 82C5E85
-	.string "We'll return your personal POKéMON.$"
+	.string "We'll return your personal Pokémon.$"
 
 SlateportCity_BattleTentLobby_Text_2C5EA9: @ 82C5EA9
 	.string "{PLAYER} received the prize\n"
@@ -6014,40 +6014,40 @@ SlateportCity_BattleTentLobby_Text_2C5EE5: @ 82C5EE5
 
 SlateportCity_BattleTentLobby_Text_2C5F08: @ 82C5F08
 	.string "In a Battle Swap event, you may use\n"
-	.string "only three POKéMON.\p"
+	.string "only three Pokémon.\p"
 	.string "Whether you are renting or swapping,\n"
 	.string "your team may not have two or more\l"
-	.string "of the same POKéMON.$"
+	.string "of the same Pokémon.$"
 
 SlateportCity_BattleTentLobby_Text_2C5F9D: @ 82C5F9D
-	.string "You may swap POKéMON only with\n"
+	.string "You may swap Pokémon only with\n"
 	.string "the TRAINER you have just defeated.\p"
-	.string "You may swap for only those POKéMON\n"
+	.string "You may swap for only those Pokémon\n"
 	.string "used by the beaten TRAINER.$"
 
 SlateportCity_BattleTentLobby_Text_2C6020: @ 82C6020
 	.string "After every battle you win, you may\n"
 	.string "swap for one of your defeated\l"
-	.string "opponent's POKéMON.\p"
-	.string "You will not be able to swap POKéMON\n"
+	.string "opponent's Pokémon.\p"
+	.string "You will not be able to swap Pokémon\n"
 	.string "with the third TRAINER in the event.$"
 
 SlateportCity_BattleTentLobby_Text_2C60C0: @ 82C60C0
 	.string "There are two key points to be aware\n"
-	.string "of when swapping POKéMON.\p"
+	.string "of when swapping Pokémon.\p"
 	.string "First, when swapping, you can't check\n"
-	.string "the stats of the POKéMON you are\l"
+	.string "the stats of the Pokémon you are\l"
 	.string "about to receive.\p"
-	.string "Second, the POKéMON on your team\n"
+	.string "Second, the Pokémon on your team\n"
 	.string "are lined up in sequence, depending on\l"
 	.string "the order in which you rented them.\p"
 	.string "This sequence remains unchanged\n"
 	.string "even when swaps are made.$"
 
 SlateportCity_BattleTentLobby_Text_2C61FE: @ 82C61FE
-	.string "The POKéMON of the SLATEPORT\n"
+	.string "The Pokémon of the SLATEPORT\n"
 	.string "BATTLE TENT are all rentals.\p"
-	.string "All rental POKéMON are kept at\n"
+	.string "All rental Pokémon are kept at\n"
 	.string "Level 30.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C6261: @ 82C6261
@@ -6059,20 +6059,20 @@ VerdanturfTown_BattleTentLobby_Text_2C628E: @ 82C628E
 
 VerdanturfTown_BattleTentLobby_Text_2C62B1: @ 82C62B1
 	.string "Here at the VERDANTURF BATTLE TENT,\n"
-	.string "POKéMON are required to think and\l"
+	.string "Pokémon are required to think and\l"
 	.string "battle by themselves.\p"
-	.string "Unlike in the wild, POKéMON that live\n"
+	.string "Unlike in the wild, Pokémon that live\n"
 	.string "with people behave differently\l"
 	.string "depending on their nature.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C636D: @ 82C636D
-	.string "Depending on its nature, a POKéMON\n"
+	.string "Depending on its nature, a Pokémon\n"
 	.string "may prefer to attack no matter what.\p"
-	.string "Another POKéMON may prefer to protect\n"
+	.string "Another Pokémon may prefer to protect\n"
 	.string "itself from any harm.\p"
 	.string "Yet another may enjoy vexing or\n"
 	.string "confounding its foes.\p"
-	.string "Depending on its nature, a POKéMON\n"
+	.string "Depending on its nature, a Pokémon\n"
 	.string "will have favorite moves that it is good\l"
 	.string "at using.\p"
 	.string "It may also dislike certain moves that\n"
@@ -6088,33 +6088,33 @@ VerdanturfTown_BattleTentLobby_Text_2C64BA: @ 82C64BA
 	.string "moves that may enfeeble the foes with\l"
 	.string "stat problems including poison and \l"
 	.string "paralysis.\p"
-	.string "POKéMON will consider using moves in\n"
+	.string "Pokémon will consider using moves in\n"
 	.string "these three categories.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C6612: @ 82C6612
 	.string "When not under command by its TRAINER,\n"
-	.string "a POKéMON may be unable to effectively\l"
+	.string "a Pokémon may be unable to effectively\l"
 	.string "use certain moves.\p"
-	.string "A POKéMON is not good at using any\n"
+	.string "A Pokémon is not good at using any\n"
 	.string "move that it dislikes.\p"
-	.string "If a POKéMON only knows moves that\n"
+	.string "If a Pokémon only knows moves that\n"
 	.string "do not match its nature, it will often\l"
 	.string "be unable to live up to its potential.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C671E: @ 82C671E
-	.string "Depending on its nature, a POKéMON may\n"
+	.string "Depending on its nature, a Pokémon may\n"
 	.string "start using moves that don't match its\l"
 	.string "nature when it is in trouble.\p"
-	.string "If a POKéMON begins behaving oddly\n"
+	.string "If a Pokémon begins behaving oddly\n"
 	.string "in a pinch, watch it carefully.$"
 
 FallarborTown_BattleTentLobby_Text_2C67CD: @ 82C67CD
 VerdanturfTown_BattleTentLobby_Text_2C67CD: @ 82C67CD
 	.string "At this BATTLE TENT, the levels of\n"
 	.string "your opponents will be adjusted to\l"
-	.string "match the levels of your POKéMON.\p"
+	.string "match the levels of your Pokémon.\p"
 	.string "However, no TRAINER you face will\n"
-	.string "have any POKéMON below Level 30.$"
+	.string "have any Pokémon below Level 30.$"
 
 VerdanturfTown_BattleTentLobby_Text_2C6878: @ 82C6878
 	.string "The VERDANTURF BATTLE TENT\n"
@@ -6135,7 +6135,7 @@ LilycoveCity_Harbor_Text_2C6951: @ 82C6951
 	.string "someone that I owe so much to?$"
 
 LilycoveCity_Harbor_Text_2C69AA: @ 82C69AA
-	.string "{PLAYER}{KUN}, I'm terribly sorry.\p"
+	.string "{PLAYER}, I'm terribly sorry.\p"
 	.string "You came to me seeking my help,\n"
 	.string "and we almost turned you away.\p"
 	.string "Well, let me make things right.\p"
@@ -6197,25 +6197,25 @@ MauvilleCity_Text_2C6E05: @ 82C6E05
 	.string "once. Is that okay?$"
 
 SlateportCity_PokemonFanClub_Text_2C6E37: @ 82C6E37
-	.string "Heh! My POKéMON totally rules!\n"
-	.string "It's cooler than any POKéMON!\p"
+	.string "Heh! My Pokémon totally rules!\n"
+	.string "It's cooler than any Pokémon!\p"
 	.string "I was lipping off with a swagger in\n"
 	.string "my step like that when the CHAIRMAN\l"
 	.string "chewed me out.\p"
 	.string "That took the swagger out of my step.\p"
 	.string "If you'd like, I'll teach the move\n"
-	.string "SWAGGER to a POKéMON of yours.$"
+	.string "SWAGGER to a Pokémon of yours.$"
 
 SlateportCity_PokemonFanClub_Text_2C6F33: @ 82C6F33
 	.string "What, no? Can't you get into\n"
 	.string "the spirit of things?$"
 
 SlateportCity_PokemonFanClub_Text_2C6F66: @ 82C6F66
-	.string "All right, which POKéMON wants to\n"
+	.string "All right, which Pokémon wants to\n"
 	.string "learn how to SWAGGER?$"
 
 SlateportCity_PokemonFanClub_Text_2C6F9E: @ 82C6F9E
-	.string "I'll just praise my POKéMON from now\n"
+	.string "I'll just praise my Pokémon from now\n"
 	.string "on without the swagger.$"
 
 MauvilleCity_Text_2C6FDB: @ 82C6FDB
@@ -6224,7 +6224,7 @@ MauvilleCity_Text_2C6FDB: @ 82C6FDB
 	.string "without changing direction?\p"
 	.string "I might even be able to roll\n"
 	.string "that way.\p"
-	.string "Do you think your POKéMON will\n"
+	.string "Do you think your Pokémon will\n"
 	.string "want to roll, too?\p"
 	.string "I can teach one the move ROLLOUT\n"
 	.string "if you'd like.$"
@@ -6235,7 +6235,7 @@ MauvilleCity_Text_2C70C4: @ 82C70C4
 
 MauvilleCity_Text_2C70F3: @ 82C70F3
 	.string "Ehehe, sure thing! It'd be great if\n"
-	.string "the POKéMON looked like me.$"
+	.string "the Pokémon looked like me.$"
 
 MauvilleCity_Text_2C7133: @ 82C7133
 	.string "Rolling around in the grass makes me\n"
@@ -6247,14 +6247,14 @@ VerdanturfTown_PokemonCenter_1F_Text_2C7174: @ 82C7174
 	.string "It's a BUG-type move, and it is\n"
 	.string "wickedly cool.\p"
 	.string "It's called FURY CUTTER.\n"
-	.string "Want me to teach it to a POKéMON?$"
+	.string "Want me to teach it to a Pokémon?$"
 
 VerdanturfTown_PokemonCenter_1F_Text_2C7221: @ 82C7221
 	.string "We're not on the same wavelength.$"
 
 VerdanturfTown_PokemonCenter_1F_Text_2C7243: @ 82C7243
 	.string "Yay!\n"
-	.string "Show me which POKéMON I should teach.$"
+	.string "Show me which Pokémon I should teach.$"
 
 VerdanturfTown_PokemonCenter_1F_Text_2C726E: @ 82C726E
 	.string "I get a thrill watching to see if\n"
@@ -6271,11 +6271,11 @@ LavaridgeTown_House_Text_2C72B6: @ 82C72B6
 
 LavaridgeTown_House_Text_2C737F: @ 82C737F
 	.string "Oh, boo! I wanted to teach MIMIC\n"
-	.string "to your POKéMON!$"
+	.string "to your Pokémon!$"
 
 LavaridgeTown_House_Text_2C73B1: @ 82C73B1
 	.string "Fwofwo! And so I shall!\n"
-	.string "Let me see the POKéMON\l"
+	.string "Let me see the Pokémon\l"
 	.string "you wish me to teach.$"
 
 LavaridgeTown_House_Text_2C73F6: @ 82C73F6
@@ -6289,9 +6289,9 @@ FallarborTown_Mart_Text_2C7449: @ 82C7449
 	.string "Wouldn't it be nice if there were\n"
 	.string "a spell that made money appear when\l"
 	.string "you waggle a finger?\p"
-	.string "If you want, I can teach your POKéMON\n"
+	.string "If you want, I can teach your Pokémon\n"
 	.string "the move METRONOME.\p"
-	.string "Money won't appear, but your POKéMON\n"
+	.string "Money won't appear, but your Pokémon\n"
 	.string "will waggle a finger. Yes?$"
 
 FallarborTown_Mart_Text_2C7556: @ 82C7556
@@ -6300,10 +6300,10 @@ FallarborTown_Mart_Text_2C7556: @ 82C7556
 
 FallarborTown_Mart_Text_2C7582: @ 82C7582
 	.string "Okay! I'll teach it!\n"
-	.string "Which POKéMON should I teach?$"
+	.string "Which Pokémon should I teach?$"
 
 FallarborTown_Mart_Text_2C75B5: @ 82C75B5
-	.string "When a POKéMON waggles its finger\n"
+	.string "When a Pokémon waggles its finger\n"
 	.string "like a METRONOME, all sorts of nice\l"
 	.string "things happen.\p"
 	.string "Wouldn't it be nice if we could\n"
@@ -6314,7 +6314,7 @@ FortreeCity_House2_Text_2C7637: @ 82C7637
 	.string "POWER to stay awake.\p"
 	.string "She should just take a nap like I do,\n"
 	.string "and SLEEP TALK.\p"
-	.string "I can teach your POKéMON how to\n"
+	.string "I can teach your Pokémon how to\n"
 	.string "SLEEP TALK instead. Interested?$"
 
 FortreeCity_House2_Text_2C76E2: @ 82C76E2
@@ -6323,7 +6323,7 @@ FortreeCity_House2_Text_2C76E2: @ 82C76E2
 
 FortreeCity_House2_Text_2C7721: @ 82C7721
 	.string "Ah, an appreciative child!\n"
-	.string "Which POKéMON should I teach?$"
+	.string "Which Pokémon should I teach?$"
 
 FortreeCity_House2_Text_2C775A: @ 82C775A
 	.string "I've never once gotten my wife's\n"
@@ -6340,16 +6340,16 @@ LilycoveCity_DepartmentStoreRooftop_Text_2C77C6: @ 82C77C6
 	.string "Of course it's not possible.\n"
 	.string "Giggle…\p"
 	.string "I know! Would you be interested in\n"
-	.string "having a POKéMON learn SUBSTITUTE?$"
+	.string "having a Pokémon learn SUBSTITUTE?$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_2C78D1: @ 82C78D1
 	.string "Oh, no?\p"
-	.string "A POKéMON can make a copy of\n"
+	.string "A Pokémon can make a copy of\n"
 	.string "itself using it, you know.$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_2C7911: @ 82C7911
 	.string "Giggle…\n"
-	.string "Which POKéMON do you want me to\l"
+	.string "Which Pokémon do you want me to\l"
 	.string "teach SUBSTITUTE?$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_2C794B: @ 82C794B
@@ -6368,7 +6368,7 @@ MossdeepCity_Text_2C79A6: @ 82C79A6
 	.string "What, don't look at me that way!\n"
 	.string "I'm only hitting the ground!\p"
 	.string "Or do you want me to teach your\n"
-	.string "POKéMON DYNAMICPUNCH?$"
+	.string "Pokémon DYNAMICPUNCH?$"
 
 MossdeepCity_Text_2C7AD4: @ 82C7AD4
 	.string "Darn! You're even making fun of me?\n"
@@ -6376,7 +6376,7 @@ MossdeepCity_Text_2C7AD4: @ 82C7AD4
 
 MossdeepCity_Text_2C7B0D: @ 82C7B0D
 	.string "What? You do? You're a good person!\n"
-	.string "Which POKéMON should I teach?$"
+	.string "Which Pokémon should I teach?$"
 
 MossdeepCity_Text_2C7B4F: @ 82C7B4F
 	.string "I want you to win at the MOSSDEEP GYM\n"
@@ -6390,7 +6390,7 @@ SootopolisCity_PokemonCenter_1F_Text_2C7B8E: @ 82C7B8E
 	.string "rivals for his attention.\p"
 	.string "He's got appeal with a DOUBLE-EDGE.\n"
 	.string "I couldn't even catch his eye.\p"
-	.string "Please, let me teach your POKéMON\n"
+	.string "Please, let me teach your Pokémon\n"
 	.string "the move DOUBLE-EDGE!$"
 
 SootopolisCity_PokemonCenter_1F_Text_2C7C7E: @ 82C7C7E
@@ -6398,7 +6398,7 @@ SootopolisCity_PokemonCenter_1F_Text_2C7C7E: @ 82C7C7E
 	.string "Even you rejected me…$"
 
 SootopolisCity_PokemonCenter_1F_Text_2C7C98: @ 82C7C98
-	.string "Okay, which POKéMON should I teach\n"
+	.string "Okay, which Pokémon should I teach\n"
 	.string "DOUBLE-EDGE?$"
 
 SootopolisCity_PokemonCenter_1F_Text_2C7CC8: @ 82C7CC8
@@ -6413,7 +6413,7 @@ PacifidlogTown_PokemonCenter_1F_Text_2C7CFA: @ 82C7CFA
 	.string "Seriously, I'm going to cause\n"
 	.string "a huge EXPLOSION of popularity!\p"
 	.string "If you overheard that, I'll happily\n"
-	.string "teach EXPLOSION to your POKéMON!$"
+	.string "teach EXPLOSION to your Pokémon!$"
 
 PacifidlogTown_PokemonCenter_1F_Text_2C7E04: @ 82C7E04
 	.string "Gaah! You're turning me down because\n"
@@ -6421,10 +6421,10 @@ PacifidlogTown_PokemonCenter_1F_Text_2C7E04: @ 82C7E04
 
 PacifidlogTown_PokemonCenter_1F_Text_2C7E40: @ 82C7E40
 	.string "Fine! An EXPLOSION it is!\n"
-	.string "Which POKéMON wants to blow up?$"
+	.string "Which Pokémon wants to blow up?$"
 
 PacifidlogTown_PokemonCenter_1F_Text_2C7E7A: @ 82C7E7A
-	.string "For a long time, I've taught POKéMON\n"
+	.string "For a long time, I've taught Pokémon\n"
 	.string "how to use EXPLOSION, but I've yet\l"
 	.string "to ignite my own EXPLOSION…\p"
 	.string "Maybe it's because deep down,\n"
@@ -6905,7 +6905,7 @@ gText_082C8611:: @ 82C8611
 	.string "Are you serious?!$"
 
 gText_082C8628:: @ 82C8628
-	.string "Your POKéMON are wimpy because\n"
+	.string "Your Pokémon are wimpy because\n"
 	.string "you're wimpy as a TRAINER!$"
 
 gText_082C8662:: @ 82C8662

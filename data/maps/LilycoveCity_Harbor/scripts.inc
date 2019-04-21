@@ -593,10 +593,10 @@ LilycoveCity_Harbor_Text_21E842: @ 821E842
 	.string "Please sail with us another time!$"
 
 LilycoveCity_Harbor_Text_21E864: @ 821E864
-	.string "SLATEPORT CITY it is, then!$"
+	.string "Slateport City it is, then!$"
 
 LilycoveCity_Harbor_Text_21E880: @ 821E880
-	.string "BATTLE FRONTIER it is, then!$"
+	.string "Battle Frontier it is, then!$"
 
 LilycoveCity_Harbor_Text_21E89D: @ 821E89D
 	.string "Please board the ferry and wait for\n"

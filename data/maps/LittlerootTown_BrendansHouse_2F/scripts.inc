@@ -295,7 +295,7 @@ LittlerootTown_BrendansHouse_2F_Text_1F869A: @ 81F869A
 	.string "Good! Everything's put away neatly!\p"
 	.string "They finished moving everything in\n"
 	.string "downstairs, too.\p"
-	.string "POKéMON movers are so convenient!\p"
+	.string "Pokémon movers are so convenient!\p"
 	.string "Oh, you should make sure that\n"
 	.string "everything's all there on your desk.$"
 
@@ -309,7 +309,7 @@ LittlerootTown_BrendansHouse_2F_Text_1F877F: @ 81F877F
 
 Common_Text_LookCloserAtMap: @ 81F8820
 	.string "{PLAYER} took a closer look at the\n"
-	.string "HOENN region map.$"
+	.string "Hoenn region map.$"
 
 LittlerootTown_BrendansHouse_2F_Text_1F884F: @ 81F884F
 	.string "It's a Nintendo GameCube.\p"

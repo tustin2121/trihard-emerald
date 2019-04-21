@@ -249,8 +249,8 @@ BattleFrontier_ScottsHouse_EventScript_263A34:: @ 8263A34
 BattleFrontier_ScottsHouse_Text_263A3F: @ 8263A3F
 	.string "SCOTT: Well, hello and welcome!\n"
 	.string "Heheh… Sorry about the cramped space.\p"
-	.string "Anyway, {PLAYER}{KUN}, let me formally\n"
-	.string "welcome you to the BATTLE FRONTIER.\p"
+	.string "Anyway, {PLAYER}, let me formally\n"
+	.string "welcome you to the Battle Frontier.\p"
 	.string "This is my dream come true.\n"
 	.string "It took me years and years, but I've\l"
 	.string "finally given shape to my dream.$"
@@ -268,7 +268,7 @@ BattleFrontier_ScottsHouse_Text_263BD4: @ 8263BD4
 	.string "No point dwelling on that!\p"
 	.string "All I want for you is to enjoy battling\n"
 	.string "to your heart's content here.\p"
-	.string "{PLAYER}{KUN}, I want you to have this\n"
+	.string "{PLAYER}, I want you to have this\n"
 	.string "as a memento for all the time our\l"
 	.string "paths crossed on our journeys.$"
 
@@ -280,7 +280,7 @@ BattleFrontier_ScottsHouse_Text_263CD0: @ 8263CD0
 	.string "SCOTT: You can check your Battle\n"
 	.string "Points on your FRONTIER PASS.\p"
 	.string "The more success you have here at\n"
-	.string "the BATTLE FRONTIER, the more Battle\l"
+	.string "the Battle Frontier, the more Battle\l"
 	.string "Points you will collect.\p"
 	.string "Use your Battle Points the way you\n"
 	.string "see fit, like trading them for items.$"
@@ -314,15 +314,15 @@ BattleFrontier_ScottsHouse_Text_263FFE: @ 8263FFE
 	.string "SCOTT: You don't just train for battle,\n"
 	.string "right?\p"
 	.string "I think I remember you working on\n"
-	.string "a POKéDEX as well.\p"
+	.string "a Pokédex as well.\p"
 	.string "Well, guess what?\p"
-	.string "You may run into wild POKéMON in\n"
-	.string "the BATTLE FRONTIER somewhere…\l"
+	.string "You may run into wild Pokémon in\n"
+	.string "the Battle Frontier somewhere…\l"
 	.string "Fufufu!$"
 
 BattleFrontier_ScottsHouse_Text_2640BC: @ 82640BC
 	.string "SCOTT: Are you enjoying things in\n"
-	.string "the BATTLE FRONTIER?\p"
+	.string "the Battle Frontier?\p"
 	.string "…Wait a second…\n"
 	.string "Oh!\p"
 	.string "Your FRONTIER PASS!\n"
@@ -337,7 +337,7 @@ BattleFrontier_ScottsHouse_Text_2640BC: @ 82640BC
 
 BattleFrontier_ScottsHouse_Text_264216: @ 8264216
 	.string "SCOTT: I hope you're enjoying\n"
-	.string "everything in the BATTLE FRONTIER.\p"
+	.string "everything in the Battle Frontier.\p"
 	.string "…Wait a second…\n"
 	.string "Oh, my disbelieving eyes!\p"
 	.string "Your FRONTIER PASS!\n"

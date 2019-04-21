@@ -144,7 +144,7 @@ Route111_Text_29083A: @ 829083A
 	.string "Would you like to use ROCK SMASH?$"
 
 Route111_Text_29087F: @ 829087F
-	.string "It's a rugged rock, but a POKéMON\n"
+	.string "It's a rugged rock, but a Pokémon\n"
 	.string "may be able to smash it.$"
 
 FieryPath_EventScript_2908BA:: @ 82908BA
@@ -202,7 +202,7 @@ FieryPath_EventScript_290929:: @ 8290929
 	end
 
 FieryPath_Text_29092C: @ 829092C
-	.string "It's a big boulder, but a POKéMON\n"
+	.string "It's a big boulder, but a Pokémon\n"
 	.string "may be able to push it aside.\p"
 	.string "Would you like to use STRENGTH?$"
 
@@ -212,7 +212,7 @@ FieryPath_Text_29098C: @ 829098C
 	.string "possible to move boulders around!$"
 
 FieryPath_Text_2909D6: @ 82909D6
-	.string "It's a big boulder, but a POKéMON\n"
+	.string "It's a big boulder, but a Pokémon\n"
 	.string "may be able to push it aside.$"
 
 FieryPath_Text_290A16: @ 8290A16
@@ -306,7 +306,7 @@ EventScript_290BA8:: @ 8290BA8
 	end
 
 Text_290BAA: @ 8290BAA
-	.string "The sea is deep here. A POKéMON\n"
+	.string "The sea is deep here. A Pokémon\n"
 	.string "may be able to go underwater.$"
 
 Text_290BE8: @ 8290BE8
@@ -318,7 +318,7 @@ Text_290C1A: @ 8290C1A
 
 Text_290C28: @ 8290C28
 	.string "Light is filtering down from above.\n"
-	.string "A POKéMON may be able to surface.$"
+	.string "A Pokémon may be able to surface.$"
 
 Text_290C6E: @ 8290C6E
 	.string "Light is filtering down from above.\n"

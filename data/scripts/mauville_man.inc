@@ -326,7 +326,7 @@ MauvilleCity_PokemonCenter_1F_Text_28E9FE:: @ 828E9FE
 	.string "This TRAINER started new trends\n"
 	.string "{STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} is setting trends for all\n"
-	.string "the HOENN region!$"
+	.string "the Hoenn region!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EA7D:: @ 828EA7D
     .string "The BERRY-Planting TRAINER$"
@@ -384,30 +384,30 @@ MauvilleCity_PokemonCenter_1F_Text_28EC81:: @ 828EC81
 	.string "never refuse a chance to battle!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28ED04:: @ 828ED04
-	.string "The POKéMON-Catching TRAINER$"
+	.string "The Pokémon-Catching TRAINER$"
 
 MauvilleCity_PokemonCenter_1F_Text_28ED21:: @ 828ED21
-	.string "Caught POKéMON$"
+	.string "Caught Pokémon$"
 
 MauvilleCity_PokemonCenter_1F_Text_28ED30:: @ 828ED30
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
 	.string "This TRAINER caught\n"
-	.string "{STR_VAR_1} POKéMON!\p"
+	.string "{STR_VAR_1} Pokémon!\p"
 	.string "{STR_VAR_3} is a legendary catcher of\n"
-	.string "wild POKéMON!$"
+	.string "wild Pokémon!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EDA1:: @ 828EDA1
 	.string "The Fishing TRAINER$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EDB5:: @ 828EDB5
-	.string "Caught POKéMON with a ROD$"
+	.string "Caught Pokémon with a ROD$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EDCF:: @ 828EDCF
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
 	.string "This TRAINER caught\n"
-	.string "{STR_VAR_1} POKéMON while fishing!\p"
+	.string "{STR_VAR_1} Pokémon while fishing!\p"
 	.string "{STR_VAR_3} is a legendary fishing\n"
 	.string "expert!$"
 
@@ -420,7 +420,7 @@ MauvilleCity_PokemonCenter_1F_Text_28EE5D:: @ 828EE5D
 MauvilleCity_PokemonCenter_1F_Text_28EE6A:: @ 828EE6A
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER hatched {STR_VAR_1} POKéMON\n"
+	.string "This TRAINER hatched {STR_VAR_1} Pokémon\n"
 	.string "from EGGS!\p"
 	.string "{STR_VAR_3} is a legendary warmer\n"
 	.string "of EGGS!$"
@@ -429,40 +429,40 @@ MauvilleCity_PokemonCenter_1F_Text_28EEDD:: @ 828EEDD
 	.string "The Evolver TRAINER$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EEF1:: @ 828EEF1
-	.string "Evolved POKéMON$"
+	.string "Evolved Pokémon$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EF01:: @ 828EF01
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER made {STR_VAR_1} POKéMON\n"
+	.string "This TRAINER made {STR_VAR_1} Pokémon\n"
 	.string "evolve!\p"
 	.string "{STR_VAR_3} is the ultimate evolver\n"
-	.string "of POKéMON!$"
+	.string "of Pokémon!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EF73:: @ 828EF73
-	.string "The POKéMON CENTER-Loving TRAINER$"
+	.string "The Pokémon CENTER-Loving TRAINER$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EF95:: @ 828EF95
-	.string "Used POKéMON CENTERS$"
+	.string "Used Pokémon CENTERS$"
 
 MauvilleCity_PokemonCenter_1F_Text_28EFAA:: @ 828EFAA
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER healed POKéMON\n"
-	.string "{STR_VAR_1} times at POKéMON CENTERS!\p"
+	.string "This TRAINER healed Pokémon\n"
+	.string "{STR_VAR_1} times at Pokémon CENTERS!\p"
 	.string "There could be no greater lover of\n"
-	.string "POKéMON CENTERS than {STR_VAR_3}!$"
+	.string "Pokémon CENTERS than {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28F045:: @ 828F045
 	.string "The Homebody TRAINER$"
 
 MauvilleCity_PokemonCenter_1F_Text_28F05A:: @ 828F05A
-	.string "Rested POKéMON at home$"
+	.string "Rested Pokémon at home$"
 
 MauvilleCity_PokemonCenter_1F_Text_28F071:: @ 828F071
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER healed POKéMON\n"
+	.string "This TRAINER healed Pokémon\n"
 	.string "{STR_VAR_1} times at home!\p"
 	.string "There could be no more of a homebody\n"
 	.string "than {STR_VAR_3}!$"
@@ -471,15 +471,15 @@ MauvilleCity_PokemonCenter_1F_Text_28F0F3:: @ 828F0F3
 	.string "The SAFARI-Loving TRAINER$"
 
 MauvilleCity_PokemonCenter_1F_Text_28F10D:: @ 828F10D
-	.string "Entered the SAFARI ZONE$"
+	.string "Entered the Safari Zone$"
 
 MauvilleCity_PokemonCenter_1F_Text_28F125:: @ 828F125
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER went into the SAFARI ZONE\n"
+	.string "This TRAINER went into the Safari Zone\n"
 	.string "{STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} is a TRAINER whose wild side\n"
-	.string "must come out in the SAFARI ZONE!$"
+	.string "must come out in the Safari Zone!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28F1BE:: @ 828F1BE
 	.string "The CUT-Frenzy TRAINER$"
@@ -619,7 +619,7 @@ MauvilleCity_PokemonCenter_1F_Text_28F822:: @ 828F822
 	.string "This TRAINER entered CONTESTS\n"
 	.string "{STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} must love showing off\n"
-	.string "POKéMON to others!$"
+	.string "Pokémon to others!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28F89C:: @ 828F89C
 	.string "The CONTEST Master$"
@@ -678,18 +678,18 @@ MauvilleCity_PokemonCenter_1F_Text_28FAA7:: @ 828FAA7
 	.string "attract rain!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FB1D:: @ 828FB1D
-	.string "The Avid POKéDEX Reader$"
+	.string "The Avid Pokédex Reader$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FB35:: @ 828FB35
-	.string "Checked a POKéDEX$"
+	.string "Checked a Pokédex$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FB47:: @ 828FB47
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER checked a POKéDEX\n"
+	.string "This TRAINER checked a Pokédex\n"
 	.string "{STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} must love inspecting\n"
-	.string "POKéMON in a POKéDEX!$"
+	.string "Pokémon in a Pokédex!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FBC4:: @ 828FBC4
 	.string "The RIBBON Collector$"
@@ -747,32 +747,32 @@ MauvilleCity_PokemonCenter_1F_Text_28FDCE:: @ 828FDCE
 	.string "who's conscious of the time.$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FE57:: @ 828FE57
-	.string "The POKéMON LOTTERY Wizard$"
+	.string "The Pokémon LOTTERY Wizard$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FE72:: @ 828FE72
-	.string "Won POKéMON LOTTERIES$"
+	.string "Won Pokémon LOTTERIES$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FE88:: @ 828FE88
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER won POKéMON LOTTERIES\n"
+	.string "This TRAINER won Pokémon LOTTERIES\n"
 	.string "{STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} must have many friends\n"
-	.string "to trade POKéMON with!$"
+	.string "to trade Pokémon with!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FF0C:: @ 828FF0C
 	.string "The DAY CARE-Using Trainer$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FF27:: @ 828FF27
-	.string "Left POKéMON at the DAY CARE$"
+	.string "Left Pokémon at the DAY CARE$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FF44:: @ 828FF44
 	.string "This is a tale of a TRAINER\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This TRAINER left POKéMON with the\n"
+	.string "This TRAINER left Pokémon with the\n"
 	.string "DAY CARE {STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} must be a real go-getter\n"
-	.string "who raises POKéMON aggressively!$"
+	.string "who raises Pokémon aggressively!$"
 
 MauvilleCity_PokemonCenter_1F_Text_28FFDD:: @ 828FFDD
 	.string "The CABLE CAR-Loving TRAINER$"

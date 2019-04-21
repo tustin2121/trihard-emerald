@@ -113,19 +113,19 @@ RustboroCity_Gym_Text_21309D: @ 821309D
 	.string "I'm no TRAINER, not me, but I can\n"
 	.string "sure give you winning advice.\p"
 	.string "That's settled, then! We'll aim for the\n"
-	.string "POKéMON CHAMPIONSHIP together!\p"
+	.string "Pokémon CHAMPIONSHIP together!\p"
 	.string "It's your job as a TRAINER to collect\n"
-	.string "GYM BADGES, am I right?\p"
-	.string "But GYM LEADERS aren't pushovers!\p"
+	.string "Gym BadgeS, am I right?\p"
+	.string "But Gym LeaderS aren't pushovers!\p"
 	.string "And that's where I come in!\n"
 	.string "I'm here to provide expert advice!\p"
-	.string "ROXANNE, the GYM LEADER, is a user\n"
-	.string "of ROCK-type POKéMON.\p"
+	.string "ROXANNE, the Gym Leader, is a user\n"
+	.string "of ROCK-type Pokémon.\p"
 	.string "The ROCK type is very durable, but\n"
 	.string "it can't stand WATER-type and\l"
 	.string "GRASS-type moves.\p"
 	.string "Come see me afterwards, if you beat\n"
-	.string "the GYM LEADER.\p"
+	.string "the Gym Leader.\p"
 	.string "Well, go for it!$"
 
 RustboroCity_Gym_Text_2132E2: @ 82132E2
@@ -166,7 +166,7 @@ RustboroCity_Gym_Text_2134E6: @ 82134E6
 RustboroCity_Gym_Text_213533: @ 8213533
 	.string "We might be in the middle of town,\n"
 	.string "but so what?\p"
-	.string "My ROCK POKéMON need room to\n"
+	.string "My ROCK Pokémon need room to\n"
 	.string "rampage!$"
 
 RustboroCity_Gym_Text_213589: @ 8213589
@@ -180,12 +180,12 @@ RustboroCity_Gym_Text_2135C0: @ 82135C0
 
 RustboroCity_Gym_Text_21362A: @ 821362A
 	.string "Hello, I am ROXANNE, the RUSTBORO\n"
-	.string "POKéMON GYM LEADER.\p"
-	.string "I became a GYM LEADER so that I might\n"
-	.string "apply what I learned at the POKéMON\l"
+	.string "Pokémon Gym Leader.\p"
+	.string "I became a Gym Leader so that I might\n"
+	.string "apply what I learned at the Pokémon\l"
 	.string "TRAINER'S SCHOOL in battle.\p"
 	.string "Would you kindly demonstrate how you\n"
-	.string "battle, and with which POKéMON?$"
+	.string "battle, and with which Pokémon?$"
 
 RustboroCity_Gym_Text_21370B: @ 821370B
 	.string "So…\n"
@@ -193,10 +193,10 @@ RustboroCity_Gym_Text_21370B: @ 821370B
 	.string "It seems that I still have much more\n"
 	.string "to learn…\p"
 	.string "I understand.\p"
-	.string "The POKéMON LEAGUE's rules state\n"
+	.string "The Pokémon League's rules state\n"
 	.string "that TRAINERS are to be given this\l"
-	.string "if they defeat a GYM LEADER.\p"
-	.string "Please accept the official POKéMON\n"
+	.string "if they defeat a Gym Leader.\p"
+	.string "Please accept the official Pokémon\n"
 	.string "LEAGUE STONE BADGE.$"
 
 RustboroCity_Gym_Text_2137EC: @ 82137EC
@@ -205,7 +205,7 @@ RustboroCity_Gym_Text_2137EC: @ 82137EC
 
 RustboroCity_Gym_Text_213816: @ 8213816
 	.string "The STONE BADGE heightens the ATTACK\n"
-	.string "power of your POKéMON.\p"
+	.string "power of your Pokémon.\p"
 	.string "It also enables them to use the HM move\n"
 	.string "CUT outside of battle.\p"
 	.string "Please take this with you, too.$"
@@ -216,21 +216,21 @@ RustboroCity_Gym_Text_2138B1: @ 82138B1
 	.string "It not only inflicts damage by dropping\n"
 	.string "rocks, it also lowers SPEED.\p"
 	.string "If you use a TM, it instantly teaches\n"
-	.string "the move to a POKéMON.\p"
+	.string "the move to a Pokémon.\p"
 	.string "Remember, a TM can be used only once,\n"
 	.string "so think before you use it.$"
 
 RustboroCity_Gym_Text_2139A7: @ 82139A7
 	.string "Since you are so strong, you should\n"
-	.string "challenge other GYM LEADERS.\p"
+	.string "challenge other Gym LeaderS.\p"
 	.string "By battling many TRAINERS, you should\n"
 	.string "learn many things.$"
 
 RustboroCity_Gym_Text_213A21: @ 8213A21
-	.string "RUSTBORO CITY POKéMON GYM$"
+	.string "Rustboro City Pokémon Gym$"
 
 RustboroCity_Gym_Text_213A3B: @ 8213A3B
-	.string "RUSTBORO CITY POKéMON GYM\p"
+	.string "Rustboro City Pokémon Gym\p"
 	.string "ROXANNE'S CERTIFIED TRAINERS:\n"
 	.string "{PLAYER}$"
 
@@ -239,7 +239,7 @@ RustboroCity_Gym_Text_213A76: @ 8213A76
 	.string "… … … … … …\n"
 	.string "… … … … … Beep!\p"
 	.string "ROXANNE: Oh, hello, {PLAYER}?\n"
-	.string "This is ROXANNE of RUSTBORO CITY.\p"
+	.string "This is ROXANNE of Rustboro City.\p"
 	.string "I heard from BRAWLY that you're\n"
 	.string "moving up through the ranks of\l"
 	.string "TRAINERS at an incredible clip.\p"
@@ -253,12 +253,12 @@ RustboroCity_Gym_Text_213A76: @ 8213A76
 	.string "… … … … … Click!$"
 
 RustboroCity_Gym_Text_213C01: @ 8213C01
-	.string "Registered GYM LEADER ROXANNE\n"
-	.string "in the POKéNAV.$"
+	.string "Registered Gym Leader ROXANNE\n"
+	.string "in the PokéNav.$"
 
 RustboroCity_Gym_Text_213C2F: @ 8213C2F
 	.string "ROXANNE: I'm so glad to see you again.\n"
-	.string "I'm ROXANNE, the GYM LEADER here.\p"
+	.string "I'm ROXANNE, the Gym Leader here.\p"
 	.string "I'm sure we've both experienced many\n"
 	.string "battles since we last met.\p"
 	.string "I would like to see how much better\n"
@@ -270,18 +270,18 @@ RustboroCity_Gym_Text_213CF9: @ 8213CF9
 
 RustboroCity_Gym_Text_213D12: @ 8213D12
 	.string "ROXANNE: I still have much to learn\n"
-	.string "when it comes to battling POKéMON.\p"
+	.string "when it comes to battling Pokémon.\p"
 	.string "That awareness makes me love battling\n"
 	.string "all that much more!$"
 
 RustboroCity_Gym_Text_213D93: @ 8213D93
 	.string "ROXANNE: I'm so glad to see you again.\n"
-	.string "I'm ROXANNE, the GYM LEADER here.\p"
+	.string "I'm ROXANNE, the Gym Leader here.\p"
 	.string "I'm sure we've both experienced many\n"
 	.string "battles since we last met.\p"
 	.string "I would like to see how much better\n"
 	.string "we've become…\p"
 	.string "Oh, no…\n"
-	.string "You only have one POKéMON with you?\p"
+	.string "You only have one Pokémon with you?\p"
 	.string "Please return with at least one more\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"

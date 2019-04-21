@@ -590,7 +590,7 @@ Route111_Text_1F1475: @ 81F1475
 	.string "Hello! I take it you're a traveler.\p"
 	.string "How's this? What do you say to taking\n"
 	.string "on our family of four in a series of\l"
-	.string "POKéMON battles?$"
+	.string "Pokémon battles?$"
 
 Route111_Text_1F14F5: @ 81F14F5
 	.string "Is that so?\n"
@@ -648,12 +648,12 @@ Route111_Text_1F1788: @ 81F1788
 	.string "visit with us awhile.$"
 
 Route111_Text_1F17BA: @ 81F17BA
-	.string "If you don't raise your POKéMON some\n"
+	.string "If you don't raise your Pokémon some\n"
 	.string "more, it could be tough to keep winning\l"
 	.string "up through the ranks.\p"
-	.string "I've heard the POKéMON LEAGUE's\n"
+	.string "I've heard the Pokémon League's\n"
 	.string "ELITE FOUR are far stronger than\l"
-	.string "any GYM LEADER.$"
+	.string "any Gym Leader.$"
 
 Route111_Text_1F186E: @ 81F186E
 	.string "I challenged the WINSTRATE family,\n"
@@ -661,28 +661,28 @@ Route111_Text_1F186E: @ 81F186E
 	.string "going… They destroyed me.$"
 
 Route111_Text_1F18CE: @ 81F18CE
-	.string "ROUTE 111\n"
-	.string "{DOWN_ARROW} MAUVILLE CITY$"
+	.string "Route 111\n"
+	.string "{DOWN_ARROW} Mauville City$"
 
 Route111_Text_1F18E8: @ 81F18E8
 	.string "“Our family's hearts beat as one!”\n"
-	.string "THE WINSTRATE'S HOUSE$"
+	.string "{PLACE}The Winstrate's House{END}$"
 
 Route111_Text_1F1921: @ 81F1921
-	.string "ROUTE 111\n"
-	.string "{LEFT_ARROW} ROUTE 112$"
+	.string "Route 111\n"
+	.string "{LEFT_ARROW} Route 112$"
 
 Route111_Text_1F1937: @ 81F1937
-	.string "ROUTE 111\n"
-	.string "{LEFT_ARROW} ROUTE 113$"
+	.string "Route 111\n"
+	.string "{LEFT_ARROW} Route 113$"
 
 Route111_Text_1F194D: @ 81F194D
-	.string "OLD LADY'S REST STOP\n"
+	.string "{PLACE}Old Lady's Rest Stop{END}\n"
 	.string "“Come in and rest your tired bones.”$"
 
 Route111_Text_1F1987: @ 81F1987
-	.string "TRAINER TIPS\p"
-	.string "One of the indicators of a POKéMON's\n"
+	.string "{TIPS} TRAINER TIPS {END}\p"
+	.string "One of the indicators of a Pokémon's\n"
 	.string "powerfulness is SP. ATK. It stands for\l"
 	.string "“SPECIAL ATTACK.”\p"
 	.string "Likewise, SP. DEF stands for “SPECIAL\n"
@@ -717,26 +717,26 @@ Route111_Text_1F1C12: @ 81F1C12
 	.string "Since I spoke to you, the tower of sand\n"
 	.string "hasn't been seen.\p"
 	.string "Perhaps it really was\n"
-	.string "the MIRAGE TOWER…$"
+	.string "the Mirage Tower…$"
 
 Route111_Text_1F1C74: @ 81F1C74
-	.string "The CLAW FOSSIL disappeared into\n"
+	.string "The Claw Fossil disappeared into\n"
 	.string "the sand…$"
 
 Route111_Text_1F1C9F: @ 81F1C9F
-	.string "The ROOT FOSSIL disappeared into\n"
+	.string "The Root Fossil disappeared into\n"
 	.string "the sand…$"
 
 Route111_Text_1F1CCA: @ 81F1CCA
 	.string "Oh, no!\p"
-	.string "My uncle in MAUVILLE told me to take\n"
+	.string "My uncle in Mauville told me to take\n"
 	.string "ROCK SMASH with me if I was going to\l"
-	.string "ROUTE 111!\p"
+	.string "Route 111!\p"
 	.string "My uncle? He lives across from\n"
-	.string "the bike shop in MAUVILLE.$"
+	.string "the bike shop in Mauville.$"
 
 Route111_Text_1F1D61: @ 81F1D61
 	.string "{RIGHT_ARROW} TRAINER HILL ENTRANCE\p"
 	.string "“Scale the heights, you hot-blooded\n"
-	.string "TRAINERS!”$"
+	.string "trainers!”$"
 

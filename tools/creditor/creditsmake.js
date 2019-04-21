@@ -89,7 +89,7 @@ for (const incard of credits) {
 			let strid = strids.get(str);
 			if (!strid) {
 				strid = str;
-				strid = strid.replace(/POKéMON/ig, 'Pkmn');
+				strid = strid.replace(/Pokémon/ig, 'Pkmn');
 				strid = strid.replace(/[^a-zA-Z0-9]/gi, '');
 				strids.set(str, strid);
 				strings.push(`static const u8 gCreditsText_${strid}[] = _("${str}");`)

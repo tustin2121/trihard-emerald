@@ -1,4 +1,4 @@
-@ The scripts there concern pokeblock events in LilyCove City's Contest Lobby 
+@ The scripts there concern pokeblock events in Lilycove City's Contest Lobby 
 
 @ 'PblockX' number of offline opponents
 @ 'Ask' talking with a blender machine
@@ -183,7 +183,7 @@ LilycoveCity_ContestLobby_Text_293842: @ 8293842
 
 LilycoveCity_ContestLobby_Text_29388F: @ 829388F
 	.string "I'm going to make delicious {POKEBLOCK}S\n"
-	.string "and make my POKéMON cuter.$"
+	.string "and make my Pokémon cuter.$"
 
 Text_PblockLink_Ask: @ 82938CD
 	.string "{POKEBLOCK}S will be made with your friends \n"

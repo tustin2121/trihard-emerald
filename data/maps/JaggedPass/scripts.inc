@@ -154,7 +154,7 @@ JaggedPass_EventScript_230871:: @ 8230871
 	end
 
 JaggedPass_Text_230888: @ 8230888
-	.string "MT. CHIMNEY's JAGGED PASS…\p"
+	.string "MT. CHIMNEY's Jagged Pass…\p"
 	.string "Now this is what I've always wanted\n"
 	.string "in a mountain.\p"
 	.string "This jagged bumpiness…\n"
@@ -164,7 +164,7 @@ JaggedPass_Text_2308FF: @ 82308FF
 	.string "Losing left me bitter!$"
 
 JaggedPass_Text_230916: @ 8230916
-	.string "Yes, I did lose at POKéMON…\p"
+	.string "Yes, I did lose at Pokémon…\p"
 	.string "But, when it comes to the love of\n"
 	.string "the mountains, I have you beat!$"
 
@@ -187,7 +187,7 @@ JaggedPass_Text_230A2C: @ 8230A2C
 
 JaggedPass_Text_230A76: @ 8230A76
 	.string "Picnics are fun wherever you go.\n"
-	.string "Just like POKéMON!$"
+	.string "Just like Pokémon!$"
 
 JaggedPass_Text_230AAA: @ 8230AAA
 	.string "I only lost because the ground is\n"
@@ -198,7 +198,7 @@ JaggedPass_Text_230AD7: @ 8230AD7
 	.string "enjoy this bumpy hike.$"
 
 JaggedPass_Text_230B10: @ 8230B10
-	.string "JAGGED PASS is hard to walk on.\n"
+	.string "Jagged Pass is hard to walk on.\n"
 	.string "It's a good place for training.$"
 
 JaggedPass_Text_230B50: @ 8230B50
@@ -212,7 +212,7 @@ JaggedPass_Text_230B93: @ 8230B93
 JaggedPass_Text_230BC6: @ 8230BC6
 	.string "When I get more used to this bumpiness,\n"
 	.string "I'll be sure to win!\p"
-	.string "Can you register me in your POKéNAV?$"
+	.string "Can you register me in your PokéNav?$"
 
 JaggedPass_Text_230C28: @ 8230C28
 	.string "I got used to this bumpiness.\n"
@@ -224,7 +224,7 @@ JaggedPass_Text_230C60: @ 8230C60
 
 JaggedPass_Text_230C94: @ 8230C94
 	.string "I should get an ACRO BIKE from RYDEL\n"
-	.string "in MAUVILLE CITY…$"
+	.string "in Mauville City…$"
 
 JaggedPass_Text_230CCB: @ 8230CCB
 	.string "Wah!\n"

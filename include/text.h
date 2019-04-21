@@ -175,7 +175,10 @@ struct TextPrinter
     u8 delayCounter;
     u8 scrollDistance;
     u8 minLetterSpacing;  // 0x20
-    u8 japanese;
+    u8 japanese:4;
+    u8 fgColor:4;
+    u8 bgColor:4;
+    u8 shadowColor:4;
 };
 
 struct FontInfo

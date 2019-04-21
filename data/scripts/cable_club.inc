@@ -1633,7 +1633,7 @@ MossdeepCity_GameCorner_1F_EventScript_277E9D:: @ 8277E9D
 	releaseall
 	end
 OldaleTown_PokemonCenter_2F_Text_277EA4: @ 8277EA4
-	.string "Welcome to the POKéMON CABLE\n"
+	.string "Welcome to the Pokémon CABLE\n"
 	.string "CLUB.\p"
 	.string "Which of our services do you wish\n"
 	.string "to use?$"
@@ -1643,7 +1643,7 @@ OldaleTown_PokemonCenter_2F_Text_277EF1: @ 8277EF1
 	.string "to use?$"
 
 OldaleTown_PokemonCenter_2F_Text_277F1B:: @ 8277F1B
-	.string "Trade POKéMON with another player\n"
+	.string "Trade Pokémon with another player\n"
 	.string "using a GBA Game Link cable.$"
 
 OldaleTown_PokemonCenter_2F_Text_277F5A:: @ 8277F5A
@@ -1659,14 +1659,14 @@ OldaleTown_PokemonCenter_2F_Text_277FDD: @ 8277FDD
 
 OldaleTown_PokemonCenter_2F_Text_277FEE: @ 8277FEE
 	.string "For a DOUBLE BATTLE, you must\n"
-	.string "have at least two POKéMON.$"
+	.string "have at least two Pokémon.$"
 
 OldaleTown_PokemonCenter_2F_Text_278027: @ 8278027
 	.string "For trading, you must have at\n"
-	.string "least two POKéMON with you.$"
+	.string "least two Pokémon with you.$"
 
 OldaleTown_PokemonCenter_2F_Text_278061: @ 8278061
-	.string "A POKéMON holding the {STR_VAR_1}\n"
+	.string "A Pokémon holding the {STR_VAR_1}\n"
 	.string "BERRY can't be traded.$"
 
 gText_PleaseWaitForLink:: @ 8278091
@@ -1788,7 +1788,7 @@ OldaleTown_PokemonCenter_2F_Text_2785C9: @ 82785C9
 	.string "The other TRAINER is not ready.$"
 
 OldaleTown_PokemonCenter_2F_Text_2785E9: @ 82785E9
-	.string "You have at least one POKéMON\n"
+	.string "You have at least one Pokémon\n"
 	.string "that can't be taken.$"
 
 RecordCorner_Text_27861C: @ 827861C
@@ -1821,7 +1821,7 @@ OldaleTown_PokemonCenter_2F_Text_278792: @ 8278792
 	.string "Please wait.$"
 
 OldaleTown_PokemonCenter_2F_Text_27879F:: @ 827879F
-	.string "You may trade your POKéMON here\n"
+	.string "You may trade your Pokémon here\n"
 	.string "with another TRAINER.$"
 
 OldaleTown_PokemonCenter_2F_Text_2787D5:: @ 82787D5
@@ -1855,14 +1855,14 @@ OldaleTown_PokemonCenter_2F_Text_2788FC: @ 82788FC
 
 OldaleTown_PokemonCenter_2F_Text_27893E: @ 827893E
 	.string "To enter the UNION ROOM, you must\n"
-	.string "have at least two POKéMON.$"
+	.string "have at least two Pokémon.$"
 
 OldaleTown_PokemonCenter_2F_Text_27897B: @ 827897B
-	.string "No POKéMON holding the {STR_VAR_1}\n"
+	.string "No Pokémon holding the {STR_VAR_1}\n"
 	.string "BERRY may enter the UNION ROOM.$"
 
 OldaleTown_PokemonCenter_2F_Text_2789B5: @ 82789B5
-	.string "This is the POKéMON WIRELESS CLUB\n"
+	.string "This is the Pokémon WIRELESS CLUB\n"
 	.string "UNION ROOM.\p"
 	.string "Unfortunately, your Wireless\n"
 	.string "Adapter is not connected properly.\p"
@@ -1883,14 +1883,14 @@ MossdeepCity_GameCorner_1F_Text_278A7D: @ 8278A7D
 	.string "Which game should I describe?$"
 
 MossdeepCity_GameCorner_1F_Text_278ACB: @ 8278ACB
-	.string "“POKéMON JUMP”\p"
-	.string "Make your POKéMON skip the VINE WHIP\n"
+	.string "“Pokémon JUMP”\p"
+	.string "Make your Pokémon skip the VINE WHIP\n"
 	.string "rope with the A Button.\p"
-	.string "Only mini POKéMON around 28 inches\n"
+	.string "Only mini Pokémon around 28 inches\n"
 	.string "or less may participate.\p"
-	.string "POKéMON that only swim, burrow,\n"
+	.string "Pokémon that only swim, burrow,\n"
 	.string "or fly are not good at jumping.\p"
-	.string "As a result, those POKéMON may not\n"
+	.string "As a result, those Pokémon may not\n"
 	.string "participate.\p"
 	.string "Good things happen if everyone\n"
 	.string "jumps in time.$"
@@ -1926,7 +1926,7 @@ MossdeepCity_GameCorner_1F_Text_278DAD: @ 8278DAD
 	.string "to play?$"
 
 MossdeepCity_GameCorner_1F_Text_278DD9: @ 8278DD9
-	.string "Which POKéMON would you like to\n"
+	.string "Which Pokémon would you like to\n"
 	.string "enter?$"
 
 MossdeepCity_GameCorner_1F_Text_278E00: @ 8278E00
@@ -1939,16 +1939,16 @@ MossdeepCity_GameCorner_1F_Text_278E3C: @ 8278E3C
 
 MossdeepCity_GameCorner_1F_Text_278E60: @ 8278E60
 	.string "It doesn't look like you have any\n"
-	.string "POKéMON that you can enter…\p"
+	.string "Pokémon that you can enter…\p"
 	.string "Would you like me to explain what\n"
-	.string "kinds of POKéMON can enter?$"
+	.string "kinds of Pokémon can enter?$"
 
 MossdeepCity_GameCorner_1F_Text_278EDC: @ 8278EDC
-	.string "“POKéMON JUMP” is open to POKéMON\n"
+	.string "“Pokémon JUMP” is open to Pokémon\n"
 	.string "around 28 inches or less.\p"
 	.string "What you can't enter are those\n"
-	.string "POKéMON that can't jump.\p"
-	.string "You know, like POKéMON that only\n"
+	.string "Pokémon that can't jump.\p"
+	.string "You know, like Pokémon that only\n"
 	.string "swim, burrow, or fly.\p"
 	.string "That's all you need to know.$"
 
@@ -1961,7 +1961,7 @@ MossdeepCity_GameCorner_1F_Text_278FE0: @ 8278FE0
 	.string "again, please?$"
 
 OldaleTown_PokemonCenter_2F_Text_279013: @ 8279013
-	.string "Welcome to the POKéMON WIRELESS\n"
+	.string "Welcome to the Pokémon WIRELESS\n"
 	.string "CLUB DIRECT CORNER.\p"
 	.string "You may interact directly with\n"
 	.string "your friends here.\p"
@@ -1969,7 +1969,7 @@ OldaleTown_PokemonCenter_2F_Text_279013: @ 8279013
 	.string "enter?$"
 
 OldaleTown_PokemonCenter_2F_Text_27909D: @ 827909D
-	.string "Would you like to trade POKéMON?$"
+	.string "Would you like to trade Pokémon?$"
 
 OldaleTown_PokemonCenter_2F_Text_2790BE: @ 82790BE
 	.string "Which Battle Mode would you like\n"
@@ -1986,16 +1986,16 @@ OldaleTown_PokemonCenter_2F_Text_279114: @ 8279114
 OldaleTown_PokemonCenter_2F_Text_279142: @ 8279142
 	.string "There are three Battle Modes.\p"
 	.string "SINGLE BATTLE is for two TRAINERS\n"
-	.string "with one or more POKéMON each.\p"
-	.string "Each TRAINER can have one POKéMON\n"
+	.string "with one or more Pokémon each.\p"
+	.string "Each TRAINER can have one Pokémon\n"
 	.string "in battle at a time.\p"
 	.string "DOUBLE BATTLE is for two TRAINERS\n"
-	.string "with two or more POKéMON each.\p"
+	.string "with two or more Pokémon each.\p"
 	.string "Each TRAINER will send out two\n"
-	.string "POKéMON in battle at a time.\p"
+	.string "Pokémon in battle at a time.\p"
 	.string "MULTI BATTLE is for four TRAINERS\n"
-	.string "with one or more POKéMON each.\p"
-	.string "Each TRAINER can have one POKéMON\n"
+	.string "with one or more Pokémon each.\p"
+	.string "Each TRAINER can have one Pokémon\n"
 	.string "in battle at a time.$"
 
 BattleFrontier_BattleTowerLobby_Text_2792CD: @ 82792CD
@@ -2019,7 +2019,7 @@ OldaleTown_PokemonCenter_2F_Text_2793A3: @ 82793A3
 	.string "“JOIN GROUP.”$"
 
 OldaleTown_PokemonCenter_2F_Text_27940D: @ 827940D
-	.string "Welcome to the POKéMON WIRELESS\n"
+	.string "Welcome to the Pokémon WIRELESS\n"
 	.string "CLUB UNION ROOM.\p"
 	.string "You may interact directly with\n"
 	.string "other TRAINERS here, some of\l"
@@ -2032,11 +2032,11 @@ OldaleTown_PokemonCenter_2F_Text_2794B8: @ 82794B8
 	.string "who have also entered the ROOM.\p"
 	.string "You may do all sorts of things\n"
 	.string "here, such as exchanging greetings.\p"
-	.string "You may enter two POKéMON up to\n"
+	.string "You may enter two Pokémon up to\n"
 	.string "Lv. 30 for a one-on-one battle.\p"
 	.string "You may take part in a chat with\n"
 	.string "two to five people.\p"
-	.string "Or, you may register a POKéMON for\n"
+	.string "Or, you may register a Pokémon for\n"
 	.string "trade.\p"
 	.string "Would you like to enter the ROOM?$"
 
@@ -2052,7 +2052,7 @@ OldaleTown_PokemonCenter_2F_Text_27964A: @ 827964A
 	.string "I'll show you how the Wireless\n"
 	.string "Communication System works.\p"
 	.string "First, I need to show you this\n"
-	.string "floor of our POKéMON CENTER.\p"
+	.string "floor of our Pokémon CENTER.\p"
 	.string "Right this way, please.$"
 
 OldaleTown_PokemonCenter_2F_Text_279718: @ 8279718
@@ -2067,7 +2067,7 @@ OldaleTown_PokemonCenter_2F_Text_279718: @ 8279718
 	.string "chat, battle, and trade.\p"
 	.string "Second, the room on the right is\n"
 	.string "the DIRECT CORNER.\p"
-	.string "You may trade or battle POKéMON\n"
+	.string "You may trade or battle Pokémon\n"
 	.string "with your friends in this room.\p"
 	.string "If the Wireless Adapter isn't\n"
 	.string "connected, you may still link up\l"
@@ -2079,13 +2079,13 @@ OldaleTown_PokemonCenter_2F_Text_279718: @ 8279718
 
 OldaleTown_PokemonCenter_2F_Text_279937: @ 8279937
 	.string "Hello, {PLAYER}!\p"
-	.string "It's me, TEALA, the POKéMON\n"
+	.string "It's me, TEALA, the Pokémon\n"
 	.string "CENTER 2F attendant.\p"
 	.string "Is there something you needed to\n"
 	.string "ask me about linking?$"
 
 OldaleTown_PokemonCenter_2F_Text_2799AA: @ 82799AA
-	.string "Let me explain how the POKéMON\n"
+	.string "Let me explain how the Pokémon\n"
 	.string "WIRELESS CLUB works.\p"
 	.string "On this, the top floor, there are\n"
 	.string "two rooms.\p"
@@ -2098,7 +2098,7 @@ OldaleTown_PokemonCenter_2F_Text_2799AA: @ 82799AA
 	.string "chat, battle, and trade.\p"
 	.string "Second, the room on the right is\n"
 	.string "the DIRECT CORNER.\p"
-	.string "You may trade or battle POKéMON\n"
+	.string "You may trade or battle Pokémon\n"
 	.string "with your friends in this room.\p"
 	.string "Sometimes, you may not be able to\n"
 	.string "find your friends in the UNION ROOM\l"

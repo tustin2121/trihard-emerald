@@ -313,7 +313,7 @@ BattleFrontier_OutsideWest_Text_23D6F7: @ 823D6F7
 
 BattleFrontier_OutsideWest_Text_23D737: @ 823D737
 	.string "This is the BATTLE FACTORY!\n"
-	.string "Seek out the toughest POKéMON!$"
+	.string "Seek out the toughest Pokémon!$"
 
 BattleFrontier_OutsideWest_Text_23D772: @ 823D772
 	.string "This is the BATTLE PIKE!\n"
@@ -322,7 +322,7 @@ BattleFrontier_OutsideWest_Text_23D772: @ 823D772
 BattleFrontier_OutsideWest_Text_23D7A6: @ 823D7A6
 	.string "This is the BATTLE TOWER.\p"
 	.string "TRAINERS bring their best-raised\n"
-	.string "POKéMON for elimination-style matches.$"
+	.string "Pokémon for elimination-style matches.$"
 
 BattleFrontier_OutsideWest_Text_23D808: @ 823D808
 	.string "Hello, are you here for the ferry?\n"
@@ -340,10 +340,10 @@ BattleFrontier_OutsideWest_Text_23D89D: @ 823D89D
 	.string "And where would you like to go?$"
 
 BattleFrontier_OutsideWest_Text_23D8F2: @ 823D8F2
-	.string "SLATEPORT CITY it is, then!$"
+	.string "Slateport City it is, then!$"
 
 BattleFrontier_OutsideWest_Text_23D90E: @ 823D90E
-	.string "LILYCOVE CITY it is, then!$"
+	.string "Lilycove City it is, then!$"
 
 BattleFrontier_OutsideWest_Text_23D929: @ 823D929
 	.string "Please sail with us another time!$"
@@ -363,7 +363,7 @@ BattleFrontier_OutsideWest_Text_23D99C: @ 823D99C
 BattleFrontier_OutsideWest_Text_23D9DD: @ 823D9DD
 	.string "I want to go to the BATTLE TOWER,\n"
 	.string "but I can't find it even though I have\l"
-	.string "a map of the BATTLE FRONTIER.\p"
+	.string "a map of the Battle Frontier.\p"
 	.string "This place is just too big!$"
 
 BattleFrontier_OutsideWest_Text_23DA60: @ 823DA60
@@ -378,25 +378,25 @@ BattleFrontier_OutsideWest_Text_23DABF: @ 823DABF
 	.string "Only those TRAINERS who've been\n"
 	.string "recognized as tough are brought here.\p"
 	.string "That's why many TRAINERS don't even\n"
-	.string "know about the BATTLE FRONTIER.$"
+	.string "know about the Battle Frontier.$"
 
 BattleFrontier_OutsideWest_Text_23DB7D: @ 823DB7D
 	.string "Hey, bro…\p"
 	.string "Are you sure we can make challenges\n"
-	.string "even if we don't have any POKéMON?$"
+	.string "even if we don't have any Pokémon?$"
 
 BattleFrontier_OutsideWest_Text_23DBCE: @ 823DBCE
 	.string "Uh…\n"
 	.string "I'm sure it'll be okay.\p"
 	.string "I think…\p"
 	.string "But remember that big scary guy?\n"
-	.string "He said, “I'll lend you POKéMON!”$"
+	.string "He said, “I'll lend you Pokémon!”$"
 
 BattleFrontier_OutsideWest_Text_23DC36: @ 823DC36
 	.string "That's the BATTLE FACTORY.\n"
-	.string "You can rent strong POKéMON there.\p"
+	.string "You can rent strong Pokémon there.\p"
 	.string "But it makes me wonder.\n"
-	.string "Who's raising those rental POKéMON?$"
+	.string "Who's raising those rental Pokémon?$"
 
 BattleFrontier_OutsideWest_Text_23DCB0: @ 823DCB0
 	.string "I'm scared of going into the BATTLE\n"
@@ -498,7 +498,7 @@ BattleFrontier_OutsideWest_Text_23E37E: @ 823E37E
 	.string "Oh, shush!\n"
 	.string "Keep that racket down!\p"
 	.string "You fair-weather fans should stick\n"
-	.string "to cheering for some GYM LEADER!\p"
+	.string "to cheering for some Gym Leader!\p"
 	.string "The DOME ACE is mine!\n"
 	.string "The only idol for me!$"
 
@@ -518,8 +518,8 @@ BattleFrontier_OutsideWest_Text_23E410: @ 823E410
 
 BattleFrontier_OutsideWest_Text_23E5A5: @ 823E5A5
 	.string "I heard a rumor that someone saw\n"
-	.string "a POKéMON with an unusually long tail\l"
-	.string "somewhere in the BATTLE FRONTIER.\p"
+	.string "a Pokémon with an unusually long tail\l"
+	.string "somewhere in the Battle Frontier.\p"
 	.string "It must be adorable. I'm sure of it…\p"
 	.string "Oh, challenges can wait. I feel driven\n"
 	.string "to find the delightful creature!$"

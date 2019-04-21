@@ -32,7 +32,7 @@ PacifidlogTown_PokemonCenter_1F_Text_2034DF: @ 82034DF
 	.string "Mine's copper!$"
 
 PacifidlogTown_PokemonCenter_1F_Text_20350F: @ 820350F
-	.string "PACIFIDLOG TOWN floats on top of\n"
+	.string "Pacifidlog Town floats on top of\n"
 	.string "a colony of CORSOLA.\p"
 	.string "If I told you that, would you believe\n"
 	.string "me?$"

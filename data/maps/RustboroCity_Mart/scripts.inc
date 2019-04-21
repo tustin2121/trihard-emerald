@@ -71,10 +71,10 @@ RustboroCity_Mart_Text_214F8F: @ 8214F8F
 	.string "I'm buying some PARLYZ HEALS and\n"
 	.string "ANTIDOTES.\p"
 	.string "Just in case I run into SHROOMISH\n"
-	.string "in PETALBURG WOODS.$"
+	.string "in Petalburg Woods.$"
 
 RustboroCity_Mart_Text_214FF1: @ 8214FF1
-	.string "My POKéMON evolved.\n"
+	.string "My Pokémon evolved.\n"
 	.string "It has a lot of HP now.\p"
 	.string "I should buy SUPER POTIONS for it\n"
 	.string "instead of ordinary POTIONS.$"

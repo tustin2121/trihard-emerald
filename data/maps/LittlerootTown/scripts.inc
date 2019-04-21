@@ -929,7 +929,7 @@ LittlerootTown_Text_1E86BC: @ 81E86BC
 	.string "MOM: {PLAYER}, we're here, honey!\p"
 	.string "It must be tiring riding with our things\n"
 	.string "in the moving truck.\p"
-	.string "Well, this is LITTLEROOT TOWN.\p"
+	.string "Well, this is Littleroot Town.\p"
 	.string "How do you like it?\n"
 	.string "This is our new home!\p"
 	.string "It has a quaint feel, but it seems to be\n"
@@ -942,11 +942,11 @@ LittlerootTown_Text_1E87E1: @ 81E87E1
 
 LittlerootTown_Text_1E87F0: @ 81E87F0
 	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
-	.string "introduce yourself to PROF. BIRCH?\p"
-	.string "Oh! What an adorable POKéMON!\n"
-	.string "You got it from PROF. BIRCH. How nice!\p"
+	.string "introduce yourself to Prof. Birch?\p"
+	.string "Oh! What an adorable Pokémon!\n"
+	.string "You got it from Prof. Birch. How nice!\p"
 	.string "You're your father's child, all right.\n"
-	.string "You look good together with POKéMON!\p"
+	.string "You look good together with Pokémon!\p"
 	.string "Here, honey! If you're going out on an\n"
 	.string "adventure, wear these RUNNING SHOES.\p"
 	.string "They'll put a zip in your step!$"
@@ -967,7 +967,7 @@ LittlerootTown_Text_1E8A03: @ 81E8A03
 	.string "… … … … … … … …\n"
 	.string "… … … … … … … …\p"
 	.string "To think that you have your very own\n"
-	.string "POKéMON now…\l"
+	.string "Pokémon now…\l"
 	.string "Your father will be overjoyed.\p"
 	.string "…But please be careful.\n"
 	.string "If anything happens, you can come home.\p"
@@ -975,24 +975,24 @@ LittlerootTown_Text_1E8A03: @ 81E8A03
 
 LittlerootTown_Text_1E8ACF: @ 81E8ACF
 	.string "If you use a PC, you can store items\n"
-	.string "and POKéMON.\p"
+	.string "and Pokémon.\p"
 	.string "The power of science is staggering!$"
 
 LittlerootTown_Text_1E8B25: @ 81E8B25
-	.string "PROF. BIRCH spends days in his LAB\n"
+	.string "Prof. Birch spends days in his LAB\n"
 	.string "studying, then he'll suddenly go out in\l"
 	.string "the wild to do more research…\p"
-	.string "When does PROF. BIRCH spend time\n"
+	.string "When does Prof. Birch spend time\n"
 	.string "at home?$"
 
 LittlerootTown_Text_1E8BB8: @ 81E8BB8
 	.string "Um, um, um!\p"
 	.string "If you go outside and go in the grass,\n"
-	.string "wild POKéMON will jump out!$"
+	.string "wild Pokémon will jump out!$"
 
 LittlerootTown_Text_1E8C07: @ 81E8C07
 	.string "It's dangerous if you don't have\n"
-	.string "your own POKéMON.$"
+	.string "your own Pokémon.$"
 
 LittlerootTown_Text_1E8C3A: @ 81E8C3A
 	.string "I can hear someone shouting down the\n"
@@ -1002,33 +1002,33 @@ LittlerootTown_Text_1E8C3A: @ 81E8C3A
 
 LittlerootTown_Text_1E8CE3: @ 81E8CE3
 	.string "Boy, am I glad you went and rescued\n"
-	.string "the PROFESSOR.$"
+	.string "the Professor.$"
 
 LittlerootTown_Text_1E8D07: @ 81E8D07
-	.string "Are you going to catch POKéMON?\n"
+	.string "Are you going to catch Pokémon?\n"
 	.string "Good luck!$"
 
 LittlerootTown_Text_1E8D32: @ 81E8D32
-	.string "LITTLEROOT TOWN\n"
+	.string "{PLACE}Littleroot Town{END}\n"
 	.string "“A town that can't be shaded any hue.”$"
 
 LittlerootTown_Text_1E8D69: @ 81E8D69
-	.string "PROF. BIRCH'S POKéMON LAB$"
+	.string "{PLACE}Prof. Birch'S Pokémon Lab{END}$"
 
 LittlerootTown_Text_1E8D83: @ 81E8D83
-	.string "{PLAYER}'s HOUSE$"
+	.string "{PLACE}{PLAYER}'s House{END}$"
 
 LittlerootTown_Text_1E8D8E: @ 81E8D8E
-	.string "PROF. BIRCH'S HOUSE$"
+	.string "{PLACE}Prof. Birch'S House{END}$"
 
 LittlerootTown_Text_1E8DA2: @ 81E8DA2
-	.string "PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"
+	.string "Prof. Birch: Well, well, {PLAYER}!\n"
 	.string "That was good work out there!\p"
 	.string "I knew there was something special\n"
 	.string "about you when I first saw you,\l"
 	.string "but I never expected this.\p"
-	.string "Oh, yes. Do you still have the POKéDEX\n"
+	.string "Oh, yes. Do you still have the Pokédex\n"
 	.string "I gave you?\p"
 	.string "I have something to show you.\n"
-	.string "Let's go to my LAB.$"
+	.string "Let's go to my lab.$"
 

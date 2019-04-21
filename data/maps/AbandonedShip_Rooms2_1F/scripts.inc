@@ -53,7 +53,7 @@ AbandonedShip_Rooms2_1F_EventScript_238186:: @ 8238186
 
 AbandonedShip_Rooms2_1F_Text_23819D: @ 823819D
 	.string "DAN: While searching for treasures,\n"
-	.string "we discovered a TRAINER!$"
+	.string "we discovered a trainer!$"
 
 AbandonedShip_Rooms2_1F_Text_2381DA: @ 82381DA
 	.string "DAN: We couldn't win even though\n"
@@ -64,13 +64,13 @@ AbandonedShip_Rooms2_1F_Text_23820F: @ 823820F
 	.string "I wonder if someone got them already?$"
 
 AbandonedShip_Rooms2_1F_Text_238257: @ 8238257
-	.string "DAN: You don't even have two POKéMON.\n"
+	.string "DAN: You don't even have two Pokémon.\n"
 	.string "You can't expect to beat us like that.$"
 
 AbandonedShip_Rooms2_1F_Text_2382A4: @ 82382A4
 	.string "KIRA: Oh?\n"
 	.string "We were searching for treasures.\l"
-	.string "But we discovered a TRAINER instead!$"
+	.string "But we discovered a trainer instead!$"
 
 AbandonedShip_Rooms2_1F_Text_2382F4: @ 82382F4
 	.string "KIRA: Ooh, so strong!$"
@@ -81,7 +81,7 @@ AbandonedShip_Rooms2_1F_Text_23830A: @ 823830A
 	.string "when we find the treasures!$"
 
 AbandonedShip_Rooms2_1F_Text_23836F: @ 823836F
-	.string "KIRA: Oh, you don't have two POKéMON?\n"
+	.string "KIRA: Oh, you don't have two Pokémon?\n"
 	.string "We'll have to battle some other time!$"
 
 AbandonedShip_Rooms2_1F_Text_2383BB: @ 82383BB
@@ -91,7 +91,7 @@ AbandonedShip_Rooms2_1F_Text_2383BB: @ 82383BB
 AbandonedShip_Rooms2_1F_Text_2383FF: @ 82383FF
 	.string "DAN: We've been searching for\n"
 	.string "treasures all this time.\p"
-	.string "Our POKéMON have grown stronger, too.\n"
+	.string "Our Pokémon have grown stronger, too.\n"
 	.string "Let us show you, okay?$"
 
 AbandonedShip_Rooms2_1F_Text_238473: @ 8238473
@@ -99,12 +99,12 @@ AbandonedShip_Rooms2_1F_Text_238473: @ 8238473
 
 AbandonedShip_Rooms2_1F_Text_238491: @ 8238491
 	.string "DAN: We can't find any treasures,\n"
-	.string "we lose at POKéMON…\p"
+	.string "we lose at Pokémon…\p"
 	.string "I want to go home… But if I say that,\n"
 	.string "she gets all angry with me…$"
 
 AbandonedShip_Rooms2_1F_Text_238509: @ 8238509
-	.string "DAN: You don't even have two POKéMON.\n"
+	.string "DAN: You don't even have two Pokémon.\n"
 	.string "You can't expect to beat us like that.$"
 
 AbandonedShip_Rooms2_1F_Text_238556: @ 8238556
@@ -119,11 +119,11 @@ AbandonedShip_Rooms2_1F_Text_2385F2: @ 82385F2
 
 AbandonedShip_Rooms2_1F_Text_23860B: @ 823860B
 	.string "KIRA: We're not leaving until we raise\n"
-	.string "our POKéMON some more and we find\l"
+	.string "our Pokémon some more and we find\l"
 	.string "the treasures here!$"
 
 AbandonedShip_Rooms2_1F_Text_238668: @ 8238668
-	.string "KIRA: Oh, you don't have two POKéMON?\n"
+	.string "KIRA: Oh, you don't have two Pokémon?\n"
 	.string "We'll have to battle some other time!$"
 
 AbandonedShip_Rooms2_1F_Text_2386B4: @ 82386B4
@@ -140,7 +140,7 @@ AbandonedShip_Rooms2_1F_Text_238708: @ 8238708
 
 AbandonedShip_Rooms2_1F_Text_23873F: @ 823873F
 	.string "Strength and compassion…\n"
-	.string "Those are a TRAINER's treasures!$"
+	.string "Those are a trainer's treasures!$"
 
 AbandonedShip_Rooms2_1F_Text_238779: @ 8238779
 	.string "Ah, there is something about you\n"
