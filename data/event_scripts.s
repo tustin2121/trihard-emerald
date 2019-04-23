@@ -2413,10 +2413,10 @@ gUnknown_08272B48:: @ 8272B48
 	.string "The {STR_VAR_2} was transferred\nto the PC.$"
 
 gText_PokemartSign:: @ 8272B6A
-	.string "“Selected items for your convenience!”\n{PLACE}Pokémon Mart{END}$"
+	.string "“Selected items for your convenience!”\n{PLACE}Pokémon Mart$"
 
 gText_PokemonCenterSign:: @ 8272B9E
-	.string "“Rejuvenate your tired partners!”\n{PLACE}Pokémon Center{END}$"
+	.string "“Rejuvenate your tired partners!”\n{PLACE}Pokémon Center$"
 
 gUnknown_08272BCF:: @ 8272BCF
 	.string "{STR_VAR_1} might like this program.\n… … … … … … … … … … … … … … … …\pBetter get going!$"
