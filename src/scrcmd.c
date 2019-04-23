@@ -63,6 +63,7 @@ static EWRAM_DATA u16 sMovingNpcMapId = 0;
 static EWRAM_DATA u16 sFieldEffectScriptId = 0;
 
 IWRAM_DATA u8 gUnknown_03000F30;
+IWRAM_DATA struct ScriptContext * sWaitButtonPressScriptContext;
 
 extern const SpecialFunc gSpecials[];
 extern const u8 *gStdScripts[];
@@ -1319,17 +1320,48 @@ bool8 ScrCmd_closemessage(struct ScriptContext *ctx)
     return FALSE;
 }
 
+// Looks ahead to see if the next command is a release
+static bool8 CheckNextCommandForRelease(struct ScriptContext *ctx)
+{
+    const u8* script = ctx->scriptPtr;
+    u8 nextCmd = *script;
+    if (nextCmd == 0x03) //return
+    {   // check the next stack up
+        script = ctx->stack[ctx->stackDepth-1];
+        nextCmd = *script;
+    }
+    if (nextCmd == 0x6B || nextCmd == 0x6C) //release or releaseall
+        return TRUE;
+    else
+        return FALSE;
+}
+
 static bool8 WaitForAorBPress(void)
 {
     if (gMain.newKeys & A_BUTTON)
         return TRUE;
     if (gMain.newKeys & B_BUTTON)
         return TRUE;
+    
+    // Backport sign reading escape from FireRed
+    if (CheckNextCommandForRelease(sWaitButtonPressScriptContext) == TRUE)
+    {
+        if (gMain.heldKeys & DPAD_UP && gSpecialVar_Facing != 2) return TRUE;
+        if (gMain.heldKeys & DPAD_DOWN && gSpecialVar_Facing != 1) return TRUE;
+        if (gMain.heldKeys & DPAD_LEFT && gSpecialVar_Facing != 3) return TRUE;
+        if (gMain.heldKeys & DPAD_RIGHT && gSpecialVar_Facing != 4) return TRUE;
+        if (gMain.newKeys & L_BUTTON) return TRUE;
+        if (gMain.newKeys & R_BUTTON) return TRUE;
+        if (gMain.newKeys & START_BUTTON) return TRUE;
+        if (gMain.newKeys & SELECT_BUTTON) return TRUE;
+    }
+    
     return FALSE;
 }
 
 bool8 ScrCmd_waitbuttonpress(struct ScriptContext *ctx)
 {
+    sWaitButtonPressScriptContext = ctx;
     SetupNativeScript(ctx, WaitForAorBPress);
     return TRUE;
 }
