@@ -43,7 +43,7 @@
         {
             "blockdata_filepath": "data/layouts/FortreeCity/map.bin",
             "border_filepath": "data/layouts/FortreeCity/border.bin",
-            "height": 20,
+            "height": 40,
             "id": "LAYOUT_FORTREE_CITY",
             "name": "FortreeCity_Layout",
             "primary_tileset": "gTileset_General",
