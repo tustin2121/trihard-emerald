@@ -7355,3 +7355,37 @@ u8 *sub_806F4F8(u8 id, u8 arg1)
         return structPtr->byteArrays[arg1];
     }
 }
+
+bool8 CanAnyPartyMonsBeHealed(void)
+{
+    u8 i, j; 
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 curr, max, ppBonuses;
+        struct Pokemon *mon = &gPlayerParty[i];
+        if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE) continue;
+        if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_EGG) continue;
+        
+        curr = GetMonData(mon, MON_DATA_HP, NULL);
+        max = GetMonData(mon, MON_DATA_MAX_HP, NULL);
+        if (curr < max) return TRUE;
+        
+        if (pokemon_ailments_get_primary(GetMonData(mon, MON_DATA_STATUS, NULL)) != AILMENT_NONE) return TRUE;
+        
+        ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES, NULL);
+        for (j = 0; j < MAX_MON_MOVES; j++)
+        {
+            u16 move = GetMonData(mon, MON_DATA_MOVE1 + j, NULL);
+            max = CalculatePPWithBonus(move, ppBonuses, j);
+            curr = GetMonData(mon, MON_DATA_PP1 + j, NULL);
+            if (curr < max) return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+void ScrSpecial_CanAnyPartyMonsBeHealed(void)
+{
+    gSpecialVar_Result = CanAnyPartyMonsBeHealed();
+}

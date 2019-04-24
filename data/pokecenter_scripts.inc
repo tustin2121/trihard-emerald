@@ -2,6 +2,7 @@
 PokemonCenter_1F_NurseHealScript:: @ 827191E
 	lock
 	faceplayer
+	@TODO special ScrSpecial_CanAnyPartyMonsBeHealed
 	setvar VAR_0x8004, 0
 	specialvar VAR_RESULT, CountPlayerTrainerStars
 	compare VAR_RESULT, 4

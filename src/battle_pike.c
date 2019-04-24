@@ -85,7 +85,7 @@ static void BufferRecordMixingTrainerMessage(void);
 static void GetCurrentRoomPikeQueenFightType(void);
 static void HealSomeMonsBeforePikeQueen(void);
 static void SetHealingRoomsDisabled(void);
-static void CanAnyPartyMonsBeHealed(void);
+static void CanAnyPartyMonsBeHealed_Pike(void);
 static void BackupMonHeldItems(void);
 static void RestoreMonHeldItems(void);
 static void InitPikeChallenge(void);
@@ -516,7 +516,7 @@ static void (* const sBattlePikeFunctions[])(void) =
     GetCurrentRoomPikeQueenFightType,
     HealSomeMonsBeforePikeQueen,
     SetHealingRoomsDisabled,
-    CanAnyPartyMonsBeHealed,
+    CanAnyPartyMonsBeHealed_Pike,
     BackupMonHeldItems,
     RestoreMonHeldItems,
     InitPikeChallenge
@@ -1558,7 +1558,7 @@ static void SetHealingRoomsDisabled(void)
     gSaveBlock2Ptr->frontier.pikeHealingRoomsDisabled = gSpecialVar_0x8005;
 }
 
-static void CanAnyPartyMonsBeHealed(void)
+static void CanAnyPartyMonsBeHealed_Pike(void)
 {
     u8 i, j;
 
