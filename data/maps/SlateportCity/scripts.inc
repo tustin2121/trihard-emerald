@@ -939,6 +939,17 @@ SlateportCity_EventScript_1DD643:: @ 81DD643
 	waitstate
 	releaseall
 	end
+	
+SlateportCity_EventScript_DenyEntryResidential::
+	msgbox SlateportCity_Text_DenyEntryResidential, MSGBOX_SIGN
+	end
+	
+SlateportCity_Text_DenyEntryResidential:
+	.string "I'm sorry for blocking the way. There's\n"
+	.string "so much stuff to move...\p"
+	.string "You're not missing anything anyway. Down\n"
+	.string "this street is just a residential section\l"
+	.string "of the city.$"
 
 SlateportCity_Text_1DD64A: @ 81DD64A
 	.string "I'm the ENERGY GURU! I'll go for it and\n"

@@ -18,7 +18,7 @@
             "name": "SlateportCity_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Slateport",
-            "width": 40
+            "width": 48
         },
         {
             "blockdata_filepath": "data/layouts/MauvilleCity/map.bin",
