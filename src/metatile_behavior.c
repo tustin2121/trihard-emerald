@@ -139,8 +139,8 @@ static const u8 sTileBitAttributes[] =
     [MB_UNUSED_7E] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_ROUTE110_BRIDGE] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_COUNTER] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_81] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_82] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_SOOTOPOLIS_BRIDGE_1] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
+    [MB_SOOTOPOLIS_BRIDGE_2] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_PC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_CABLE_BOX_RESULTS_1] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_REGION_MAP] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -890,11 +890,22 @@ bool8 MetatileBehavior_IsFootprints(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsBridge(u8 metatileBehavior)
 {
-    if ((metatileBehavior == MB_WARP_OR_BRIDGE || metatileBehavior == MB_UNUSED_71 || metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_1 || metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_2)
-        || (metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_3 || metatileBehavior == MB_ROUTE120_NORTH_BRIDGE_4 || metatileBehavior == MB_UNUSED_7E || metatileBehavior == MB_ROUTE110_BRIDGE))
-        return TRUE;
-    else
-        return FALSE;
+    switch (metatileBehavior)
+    {
+        case MB_WARP_OR_BRIDGE:
+        case MB_UNUSED_71:
+        case MB_ROUTE120_NORTH_BRIDGE_1:
+        case MB_ROUTE120_NORTH_BRIDGE_2:
+        case MB_ROUTE120_NORTH_BRIDGE_3:
+        case MB_ROUTE120_NORTH_BRIDGE_4:
+        case MB_UNUSED_7E:
+        case MB_ROUTE110_BRIDGE:
+        case MB_SOOTOPOLIS_BRIDGE_1:
+        case MB_SOOTOPOLIS_BRIDGE_2:
+            return TRUE;
+        default:
+            return FALSE;
+    }
 }
 
 u8 MetatileBehavior_GetBridgeType(u8 metatileBehavior)
@@ -910,6 +921,10 @@ u8 MetatileBehavior_GetBridgeType(u8 metatileBehavior)
     result = metatileBehavior - MB_ROUTE120_NORTH_BRIDGE_3;
     if (result < 2)
         return 3;
+    
+    result = metatileBehavior - MB_SOOTOPOLIS_BRIDGE_1;
+    if (result < 2)
+        return 4;
 
     return 0;
 }

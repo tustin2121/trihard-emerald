@@ -63,7 +63,7 @@ static s16 GetReflectionVerticalOffset(struct EventObject *eventObject)
 static void LoadObjectReflectionPalette(struct EventObject *eventObject, struct Sprite *sprite)
 {
     u8 bridgeType;
-    u16 bridgeReflectionVerticalOffsets[] = { 12, 28, 44 };
+    u16 bridgeReflectionVerticalOffsets[] = { 12, 28, 44, 60, 76 };
     sprite->data[2] = 0;
     if (!GetEventObjectGraphicsInfo(eventObject->graphicsId)->disableReflectionPaletteLoad && ((bridgeType = MetatileBehavior_GetBridgeType(eventObject->previousMetatileBehavior)) || (bridgeType = MetatileBehavior_GetBridgeType(eventObject->currentMetatileBehavior))))
     {
