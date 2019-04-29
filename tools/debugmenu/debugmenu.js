@@ -132,7 +132,7 @@ function findConnect() {
 				alert("This ROM does not have a debug menu, or the menu is not supported!");
 				break;
 		}
-	});
+	}).catch(x=>console.error(x));
 }
 
 function readInterrupts() {
@@ -162,12 +162,12 @@ function writeInterrupts({ funcId=0, args=[] }) {
 	for (let i = 0; i < 12; i++) {
 		buf.writeUInt8(args[i] || 0, 2+i);
 	}
-	emulator.queryEmulator(`/WriteByteRange/${DEBUG_MENU_LOC.toString(16)}/${buf.toString('hex').toUpperCase()}`, 'command');
+	emulator.writeMemory(DEBUG_MENU_LOC, buf);
 }
 function writeInterruptFlags(flags) {
 	let buf = Buffer.alloc(0x02);
 	buf.writeUInt16LE(flags), 0;
-	emulator.queryEmulator(`/WriteByteRange/${(DEBUG_MENU_LOC+14).toString(16)}/${buf.toString('hex').toUpperCase()}`, 'command');
+	emulator.writeMemory(DEBUG_MENU_LOC+14, buf);
 }
 
 function checkInterrupt() {
@@ -180,10 +180,9 @@ function checkInterrupt() {
 
 
 $(function(){
-	window.addEventListener('beforeunload', ()=>{
+	/*window.addEventListener('beforeunload', ()=>{
 		emulator.cleanupCallbacks(__window_id__);
 	});
-	/*
 	emulator.registerOnWrite({ 
 		winId:__window_id__,
 		addr: DEBUG_MENU_LOC, len: 1,
@@ -193,8 +192,13 @@ $(function(){
 	//*/
 	
 	$titleMenu = $('body div');
-	$('<li>Connect</li>').appendTo($titleMenu)
+	$('<li>Connect to Bizhawk</li>').appendTo($titleMenu)
 		.on('click', function(){
-			findConnect();
+			emulator.connectToBizhawk(52113).then(()=>findConnect());
+		});
+	
+	$('<li>Connect to mGBA GDB Port</li>').appendTo($titleMenu)
+		.on('click', function(){
+			emulator.connectToGdb().then(()=>findConnect());
 		});
 });

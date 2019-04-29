@@ -2,14 +2,14 @@
 
 const { app, BrowserWindow } = require('electron');
 const { randomBytes } = require('crypto');
-const { EmulatorApi } = require('./emulatorapi');
+const { Emulator } = require('./emulatorapi');
 const path = require('path');
 
 let windowList = [];
 
 const generateId = ()=>Math.floor(Math.random()*Math.pow(36,5)).toString(36);
 
-global.emulator = new EmulatorApi(52113);
+global.emulator = new Emulator();
 
 function createWindow() {
 	let wid = generateId();
