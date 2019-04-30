@@ -4698,7 +4698,10 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
     }
 
     if (i >= PARTY_SIZE)
-        return SendMonToPC(mon);
+    {
+        // Don't try to send the mon to the PC if the party is full.
+        return MON_CANT_GIVE;
+    }
 
     CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
     gPlayerPartyCount = i + 1;
@@ -4902,15 +4905,17 @@ u8 GetSecretBaseTrainerClass(void)
     return gFacilityClassToTrainerClass[facilityClass];
 }
 
-bool8 IsPlayerPartyAndPokemonStorageFull(void)
+bool8 IsPlayerPartyFull(void)
 {
-    s32 i;
+    int i;
 
     for (i = 0; i < PARTY_SIZE; i++)
+    {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
             return FALSE;
+    }
 
-    return IsPokemonStorageFull();
+    return TRUE;
 }
 
 bool8 IsPokemonStorageFull(void)

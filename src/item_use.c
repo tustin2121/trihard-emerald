@@ -918,7 +918,7 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
-    if (IsPlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
+    if (!IsPlayerPartyFull()) // have room for mon?
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
         if (!InBattlePyramid())
@@ -928,7 +928,7 @@ void ItemUseInBattle_PokeBall(u8 taskId)
     }
     else if (!InBattlePyramid())
     {
-        DisplayItemMessage(taskId, 1, gText_BoxFull, bag_menu_inits_lists_menu);
+        DisplayItemMessage(taskId, 1, gText_PartyIsFull, bag_menu_inits_lists_menu);
     }
     else
         DisplayItemMessageInBattlePyramid(taskId, gText_BoxFull, sub_81C6714);

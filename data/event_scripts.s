@@ -2499,7 +2499,7 @@ gText_PkmnBoxLanettesPCFull:: @ 82732D9
 	.string "BOX “{STR_VAR_3}” on\nLANETTE'S PC was full.\p{STR_VAR_2} was transferred to\nBOX “{STR_VAR_1}.”$"
 
 gUnknown_0827331C:: @ 827331C
-	.string "There's no more room for Pokémon!\pThe Pokémon BOXES are full and\ncan't accept any more!$"
+	.string "There's no more room for Pokémon!\pYour party is full!$"
 
 gUnknown_08273374:: @ 8273374
 	.string "Do you want to give a nickname to\nthis {STR_VAR_1}?$"
