@@ -25,6 +25,6 @@ matrix:
       env: _="Build"
       script:
         - ./build_tools.sh
-        - make -j2 compare
+        - make -j2
 after_success:
   - .travis/calcrom/webhook.sh pokeemerald
