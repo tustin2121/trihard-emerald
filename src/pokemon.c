@@ -4698,7 +4698,10 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
     }
 
     if (i >= PARTY_SIZE)
-        return SendMonToPC(mon);
+    {
+        // Don't try to send the mon to the PC if the party is full.
+        return MON_CANT_GIVE;
+    }
 
     CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
     gPlayerPartyCount = i + 1;
