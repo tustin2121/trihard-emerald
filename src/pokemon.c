@@ -4902,15 +4902,17 @@ u8 GetSecretBaseTrainerClass(void)
     return gFacilityClassToTrainerClass[facilityClass];
 }
 
-bool8 IsPlayerPartyAndPokemonStorageFull(void)
+bool8 IsPlayerPartyFull(void)
 {
-    s32 i;
+    int i;
 
     for (i = 0; i < PARTY_SIZE; i++)
+    {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
             return FALSE;
+    }
 
-    return IsPokemonStorageFull();
+    return TRUE;
 }
 
 bool8 IsPokemonStorageFull(void)

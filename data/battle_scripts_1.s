@@ -3106,8 +3106,8 @@ BattleScript_PrintCantEscapeFromBattle::
 	printselectionstringfromtable gNoEscapeStringIds
 	endselectionscript
 
-BattleScript_PrintFullBox::
-	printselectionstring STRINGID_BOXISFULL
+BattleScript_PrintFullParty::
+	printselectionstring STRINGID_PARTYISFULL
 	endselectionscript
 
 BattleScript_ActionSwitch::
