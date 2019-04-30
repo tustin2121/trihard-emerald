@@ -13,9 +13,6 @@
 #define SWAP_ITEM_INDEX data[8]
 #define SWITCH_MODE_ACTIVE data[9]
 
-// this is potentially an ewram access occuring in high ewram. TODO: investigate this further.
-#define NEW_GAME_PC_ITEMS(i, type) ((u16)((u16 *)gNewGamePCItems + type)[i * 2])
-
 // defined and used in the above macro
 enum
 {
@@ -85,7 +82,6 @@ extern const struct MenuAction gMailboxMailOptions[];
 void ReshowPlayerPC(u8 taskId);
 void sub_816B31C(void);
 void Mailbox_ReturnToMailListAfterDeposit(void);
-void NewGameInitPCItems(void);
 
 
 #endif //GUARD_PLAYER_PC_H

@@ -167,12 +167,6 @@ static const struct MenuAction gPCText_ItemPCOptionsText[] =
     { gText_Cancel, ItemStorage_Exit }
 };
 
-static const struct ItemSlot gNewGamePCItems[] =
-{
-    { ITEM_POTION, 1 },
-    { ITEM_NONE, 0 }
-};
-
 const struct MenuAction gMailboxMailOptions[] =
 {
     { gText_Read, Mailbox_DoMailRead },
@@ -300,16 +294,6 @@ static const struct WindowTemplate gUnknown_085DFF84 =
 };
 
 static const u8 gUnknown_085DFF8C[] = {0x01, 0x03, 0x02, 0x00};
-
-// text
-void NewGameInitPCItems(void)
-{
-    u8 i;
-
-    // because Game Freak don't know how to use a struct or a 2d array
-    for(i = 0, ClearItemSlots(gSaveBlock1Ptr->pcItems, ARRAY_COUNT(gSaveBlock1Ptr->pcItems)); NEW_GAME_PC_ITEMS(i, PC_ITEM_ID) && NEW_GAME_PC_ITEMS(i, PC_QUANTITY) &&
-        AddPCItem(NEW_GAME_PC_ITEMS(i, PC_ITEM_ID), NEW_GAME_PC_ITEMS(i, PC_QUANTITY)) == TRUE; i++);
-}
 
 void BedroomPC(void)
 {
@@ -1044,8 +1028,7 @@ static void sub_816C0C8(void)
 
 static void sub_816C110(void)
 {
-    CompactPCItems();
-    sub_812220C(gSaveBlock1Ptr->pcItems, 50, &(playerPCItemPageInfo.pageItems), &(playerPCItemPageInfo.count), 0x8);
+    sub_812220C(gSaveBlock1Ptr->pcItems, PC_ITEMS_COUNT, &(playerPCItemPageInfo.pageItems), &(playerPCItemPageInfo.count), 0x8);
 }
 
 static void sub_816C140(void)
