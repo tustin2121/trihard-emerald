@@ -1,8 +1,8 @@
 Route119_WeatherInstitute_2F_MapScripts:: @ 826FF1E
-	map_script MAP_SCRIPT_ON_TRANSITION, Route119_WeatherInstitute_2F_MapScript1_26FF24
+	map_script MAP_SCRIPT_ON_TRANSITION, Route119_WeatherInstitute_2F_OnTransition
 	.byte 0
 
-Route119_WeatherInstitute_2F_MapScript1_26FF24: @ 826FF24
+Route119_WeatherInstitute_2F_OnTransition: @ 826FF24
 	compare VAR_WEATHER_INSTITUTE_STATE, 0
 	call_if_eq Route119_WeatherInstitute_2F_EventScript_26FF44
 	compare VAR_WEATHER_INSTITUTE_STATE, 1
@@ -94,7 +94,7 @@ Route119_WeatherInstitute_2F_EventScript_27004D:: @ 827004D
 
 Route119_WeatherInstitute_2F_EventScript_270085:: @ 8270085
 	call Route119_WeatherInstitute_2F_EventScript_2700DB
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq Route119_WeatherInstitute_2F_EventScript_2700EA
 	call Route119_WeatherInstitute_2F_EventScript_27378B
@@ -104,7 +104,7 @@ Route119_WeatherInstitute_2F_EventScript_270085:: @ 8270085
 
 Route119_WeatherInstitute_2F_EventScript_2700AD:: @ 82700AD
 	call Route119_WeatherInstitute_2F_EventScript_2700DB
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq Route119_WeatherInstitute_2F_EventScript_2700D0
 	call Route119_WeatherInstitute_2F_EventScript_273797

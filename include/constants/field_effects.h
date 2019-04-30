@@ -65,7 +65,7 @@
 #define FLDEFF_PCTURN_ON                 61
 #define FLDEFF_HALL_OF_FAME_RECORD       62
 #define FLDEFF_USE_TELEPORT              63
-#define FLDEFF_64                        64
+#define FLDEFF_RAYQUAZA                  64
 #define FLDEFF_65                        65
 #define FLDEFF_MOVE_DEOXYS_ROCK          66
 

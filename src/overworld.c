@@ -896,7 +896,7 @@ static void mli0_load_map(u32 a1)
     if (a1 != 1 && isIndoors)
     {
         UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
-        sub_80E9238(1);
+        InitSecretBaseAppearance(TRUE);
     }
 }
 
@@ -1515,7 +1515,7 @@ void SetUnusedCallback(void *func)
 
 static bool8 map_post_load_hook_exec(void)
 {
-    if (gFieldCallback2 != NULL)
+    if (gFieldCallback2)
     {
         if (!gFieldCallback2())
         {
@@ -1529,7 +1529,7 @@ static bool8 map_post_load_hook_exec(void)
     }
     else
     {
-        if (gFieldCallback != NULL)
+        if (gFieldCallback)
             gFieldCallback();
         else
             mapldr_default();
@@ -1708,7 +1708,7 @@ void sub_80861E8(void)
 
 static void sub_8086204(void)
 {
-    if ((gMapHeader.flags & 0xF8) == 8 && sub_80E909C() == TRUE)
+    if ((gMapHeader.flags & 0xF8) == 8 && SecretBaseMapPopupEnabled() == TRUE)
         ShowMapNamePopup();
     sub_80AF3C8();
 }
@@ -1882,7 +1882,7 @@ static bool32 map_loading_iteration_3(u8 *state)
     case 11:
         if (gWirelessCommType != 0)
         {
-            sub_800E0E8();
+            LoadWirelessStatusIndicatorSpriteGfx();
             CreateWirelessStatusIndicatorSprite(0, 0);
         }
         (*state)++;
@@ -1955,7 +1955,7 @@ static bool32 load_map_stuff(u8 *state, u32 a2)
         (*state)++;
         break;
     case 11:
-        if ((gMapHeader.flags & 0xF8) == 8 && sub_80E909C() == 1)
+        if ((gMapHeader.flags & 0xF8) == 8 && SecretBaseMapPopupEnabled() == TRUE)
             ShowMapNamePopup();
         (*state)++;
         break;
@@ -2054,7 +2054,7 @@ static bool32 map_loading_iteration_2_link(u8 *state)
     case 11:
         if (gWirelessCommType != 0)
         {
-            sub_800E0E8();
+            LoadWirelessStatusIndicatorSpriteGfx();
             CreateWirelessStatusIndicatorSprite(0, 0);
         }
         (*state)++;
@@ -2295,7 +2295,7 @@ static void SetKeyInterceptCallback(u16 (*func)(u32))
 static void CheckRfuKeepAliveTimer(void)
 {
     if (gWirelessCommType != 0 && ++sRfuKeepAliveTimer > 60)
-        sub_8010198();
+        LinkRfu_FatalError();
 }
 
 static void ResetAllTradingStates(void)
@@ -2968,7 +2968,7 @@ static void InitLinkPlayerEventObjectPos(struct EventObject *eventObj, s16 x, s1
     eventObj->currentCoords.y = y;
     eventObj->previousCoords.x = x;
     eventObj->previousCoords.y = y;
-    sub_8093038(x, y, &eventObj->initialCoords.x, &eventObj->initialCoords.y);
+    SetSpritePosToMapCoords(x, y, &eventObj->initialCoords.x, &eventObj->initialCoords.y);
     eventObj->initialCoords.x += 8;
     EventObjectUpdateZCoord(eventObj);
 }

@@ -849,7 +849,7 @@ u16 sub_815355C(void)
     return 0;
 }
 
-u32 TryCopySpecialSaveSection(u8 sector, u8* dst)
+u32 TryReadSpecialSaveSection(u8 sector, u8* dst)
 {
     s32 i;
     s32 size;
@@ -858,7 +858,7 @@ u32 TryCopySpecialSaveSection(u8 sector, u8* dst)
     if (sector != SECTOR_ID_TRAINER_HILL && sector != SECTOR_ID_RECORDED_BATTLE)
         return 0xFF;
     ReadFlash(sector, 0, (u8 *)&gSaveDataBuffer, sizeof(struct SaveSection));
-    if (*(u32*)(&gSaveDataBuffer.data[0]) != 0xB39D)
+    if (*(u32*)(&gSaveDataBuffer.data[0]) != SPECIAL_SECTION_SENTINEL)
         return 0xFF;
     // copies whole save section except u32 counter
     i = 0;
@@ -869,7 +869,7 @@ u32 TryCopySpecialSaveSection(u8 sector, u8* dst)
     return 1;
 }
 
-u32 TrySaveToSpecialSaveSection(u8 sector, u8* src)
+u32 TryWriteSpecialSaveSection(u8 sector, u8* src)
 {
     s32 i;
     s32 size;
@@ -880,7 +880,7 @@ u32 TrySaveToSpecialSaveSection(u8 sector, u8* src)
         return 0xFF;
 
     savDataBuffer = &gSaveDataBuffer;
-    *(u32*)(savDataBuffer) = 0xB39D;
+    *(u32*)(savDataBuffer) = SPECIAL_SECTION_SENTINEL;
 
     // copies whole save section except u32 counter
     i = 0;

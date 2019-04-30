@@ -1,9 +1,7 @@
 #ifndef GUARD_FIELD_EFFECTS_H
 #define GUARD_FIELD_EFFECTS_H
 
-extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[2];
 extern const struct SpritePalette gNewGameBirchObjectPaletteInfo;
-extern const struct CompressedSpriteSheet gTrainerFrontPicTable[2];
 extern const struct SpriteTemplate gNewGameBirchObjectTemplate;
 extern const struct OamData gNewGameBirchOamAttributes;
 
