@@ -26,5 +26,3 @@ matrix:
       script:
         - ./build_tools.sh
         - make -j2
-after_success:
-  - .travis/calcrom/webhook.sh pokeemerald
