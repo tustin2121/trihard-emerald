@@ -276,8 +276,6 @@ static void sub_81B48DC(u8);
 static void sub_81B4988(u8);
 static void sub_81B4A98(void);
 static void sub_81B4AE0(void);
-static void sub_81B4B6C(u8);
-static void sub_81B4BA0(u8);
 static void sub_81B4C60(u8);
 static void sub_81B4C94(u8);
 static bool8 sub_81B8A7C(void);
@@ -4407,41 +4405,8 @@ static void CursorCb_TakeMail(u8 taskId)
     sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
     sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
     sub_81B1B5C(gText_SendMailToPC, 1);
-    gTasks[taskId].func = sub_81B4B6C;
-}
-
-static void sub_81B4B6C(u8 taskId)
-{
-    if (sub_81B1BD4() != TRUE)
-    {
-        sub_81B334C();
-        gTasks[taskId].func = sub_81B4BA0;
-    }
-}
-
-static void sub_81B4BA0(u8 taskId)
-{
-    switch (Menu_ProcessInputNoWrapClearOnChoose())
-    {
-    case 0:
-        if (TakeMailFromMon2(&gPlayerParty[gUnknown_0203CEC8.unk9]) != 0xFF)
-        {
-            sub_81B1B5C(gText_MailSentToPC, 0);
-            gTasks[taskId].func = sub_81B469C;
-        }
-        else
-        {
-            sub_81B1B5C(gText_PCMailboxFull, 0);
-            gTasks[taskId].func = sub_81B1C1C;
-        }
-        break;
-    case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
-    case 1:
-        sub_81B1B5C(gText_MailMessageWillBeLost, 1);
-        gTasks[taskId].func = sub_81B4C60;
-        break;
-    }
+    sub_81B1B5C(gText_MailMessageWillBeLost, 1);
+    gTasks[taskId].func = sub_81B4C60;
 }
 
 static void sub_81B4C60(u8 taskId)

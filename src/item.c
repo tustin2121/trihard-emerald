@@ -710,26 +710,6 @@ void RemovePCItem(u8 index, u16 count)
     if (gSaveBlock1Ptr->pcItems[index].quantity == 0)
     {
         gSaveBlock1Ptr->pcItems[index].itemId = ITEM_NONE;
-        CompactPCItems();
-    }
-}
-
-void CompactPCItems(void)
-{
-    u16 i;
-    u16 j;
-
-    for (i = 0; i < PC_ITEMS_COUNT - 1; i++)
-    {
-        for (j = i + 1; j < PC_ITEMS_COUNT; j++)
-        {
-            if (gSaveBlock1Ptr->pcItems[i].itemId == 0)
-            {
-                struct ItemSlot temp = gSaveBlock1Ptr->pcItems[i];
-                gSaveBlock1Ptr->pcItems[i] = gSaveBlock1Ptr->pcItems[j];
-                gSaveBlock1Ptr->pcItems[j] = temp;
-            }
-        }
     }
 }
 
