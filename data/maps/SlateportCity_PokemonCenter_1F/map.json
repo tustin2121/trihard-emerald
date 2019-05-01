@@ -34,7 +34,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "SlateportCity_PokemonCenter_1F_EventScript_20DAE1",
+            "script": "SlateportCity_PokemonCenter_1F_EventScript_BattleTipSailor",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 4,
@@ -76,8 +76,8 @@
             "script": "SlateportCity_Mart_EventScript_20DC76",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 4,
-            "y": 2
+            "x": 17,
+            "y": 7
         },
         {
             "elevation": 3,
@@ -89,8 +89,8 @@
             "script": "SlateportCity_Mart_EventScript_20DC7F",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
-            "y": 5
+            "x": 13,
+            "y": 9
         }
     ],
     "region_map_section": "MAPSEC_SLATEPORT_CITY",
