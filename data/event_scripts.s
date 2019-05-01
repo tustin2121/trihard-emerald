@@ -1202,34 +1202,6 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 	setvar VAR_ELITE_4_STATE, 0
 	return
 
-DewfordTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-FallarborTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-LavaridgeTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-MauvilleCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-OldaleTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-PetalburgCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-RustboroCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-SlateportCity_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-VerdanturfTown_PokemonCenter_1F_EventScript_2718DE:: @ 82718DE
-	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
-	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
-	goto_if_unset FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT, OldaleTown_PokemonCenter_1F_EventScript_27190C
-	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, OldaleTown_PokemonCenter_1F_EventScript_271912
-	goto_if_unset FLAG_HIDE_ROUTE_108_MR_BRINEY, OldaleTown_PokemonCenter_1F_EventScript_271918
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_27190C:: @ 827190C
-	setvar VAR_BRINEY_LOCATION, 1
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271912:: @ 8271912
-	setvar VAR_BRINEY_LOCATION, 2
-	return
-
-OldaleTown_PokemonCenter_1F_EventScript_271918:: @ 8271918
-	setvar VAR_BRINEY_LOCATION, 3
-	return
-
 	.include "data/pokecenter_scripts.inc"
 
 Std_ObtainItem:: @ 8271AD3
@@ -2377,10 +2349,10 @@ gText_AccessedLanettesPC:: @ 82726D4
 
 @ The pokecenter text is moved into pokecenter_scripts.inc
 
-gUnknown_08272A21:: @ 8272A21
+gText_Mart_Welcome:: @ 8272A21
 	.string "Welcome!\pHow may I serve you?$"
 
-gUnknown_08272A3F:: @ 8272A3F
+gText_Mart_Goodbye:: @ 8272A3F
 	.string "Please come again!$"
 
 gUnknown_08272A52:: @ 8272A52
@@ -6285,32 +6257,6 @@ LavaridgeTown_House_Text_2C73F6: @ 82C73F6
 	.string "Could you execute it to perfection\n"
 	.string "as well as me…?$"
 
-FallarborTown_Mart_Text_2C7449: @ 82C7449
-	.string "I want all sorts of things!\n"
-	.string "But I used up my allowance…\p"
-	.string "Wouldn't it be nice if there were\n"
-	.string "a spell that made money appear when\l"
-	.string "you waggle a finger?\p"
-	.string "If you want, I can teach your Pokémon\n"
-	.string "the move METRONOME.\p"
-	.string "Money won't appear, but your Pokémon\n"
-	.string "will waggle a finger. Yes?$"
-
-FallarborTown_Mart_Text_2C7556: @ 82C7556
-	.string "Okay. I'll be here if you change\n"
-	.string "your mind.$"
-
-FallarborTown_Mart_Text_2C7582: @ 82C7582
-	.string "Okay! I'll teach it!\n"
-	.string "Which Pokémon should I teach?$"
-
-FallarborTown_Mart_Text_2C75B5: @ 82C75B5
-	.string "When a Pokémon waggles its finger\n"
-	.string "like a METRONOME, all sorts of nice\l"
-	.string "things happen.\p"
-	.string "Wouldn't it be nice if we could\n"
-	.string "use it, too?$"
-
 FortreeCity_House2_Text_2C7637: @ 82C7637
 	.string "Humph! My wife relies on HIDDEN\n"
 	.string "POWER to stay awake.\p"
@@ -6548,34 +6494,6 @@ LavaridgeTown_House_EventScript_2C80AC:: @ 82C80AC
 	release
 	end
 
-FallarborTown_Mart_EventScript_2C80B6:: @ 82C80B6
-	lock
-	faceplayer
-	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_METRONOME, FallarborTown_Mart_EventScript_2C8114
-	msgbox FallarborTown_Mart_Text_2C7449, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq FallarborTown_Mart_EventScript_2C810A
-	call FallarborTown_Mart_EventScript_2C832D
-	compare VAR_RESULT, 0
-	goto_if_eq FallarborTown_Mart_EventScript_2C810A
-	msgbox FallarborTown_Mart_Text_2C7582, MSGBOX_DEFAULT
-	setvar VAR_0x8005, 8
-	call EventScript_ShowPartyMenu
-	compare VAR_RESULT, 0
-	goto_if_eq FallarborTown_Mart_EventScript_2C810A
-	setflag FLAG_MOVE_TUTOR_TAUGHT_METRONOME
-	goto FallarborTown_Mart_EventScript_2C8114
-	end
-
-FallarborTown_Mart_EventScript_2C810A:: @ 82C810A
-	msgbox FallarborTown_Mart_Text_2C7556, MSGBOX_DEFAULT
-	release
-	end
-
-FallarborTown_Mart_EventScript_2C8114:: @ 82C8114
-	msgbox FallarborTown_Mart_Text_2C75B5, MSGBOX_DEFAULT
-	release
-	end
 
 FortreeCity_House2_EventScript_2C811E:: @ 82C811E
 	lock

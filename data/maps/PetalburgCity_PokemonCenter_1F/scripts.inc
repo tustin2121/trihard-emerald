@@ -5,10 +5,10 @@ PetalburgCity_PokemonCenter_1F_MapScripts:: @ 82079E8
 
 PetalburgCity_PokemonCenter_1F_OnTransition: @ 82079F3
 	setrespawn HEAL_LOCATION_PETALBURG_CITY
-	call PetalburgCity_PokemonCenter_1F_EventScript_2718DE
+	call PokemonCenter_1F_SetMrBrineyLocation
 	end
 
-PetalburgCity_PokemonCenter_1F_EventScript_2079FC:: @ 82079FC
+PetalburgCity_PokemonCenter_1F_NurseScript:: @ 82079FC
 	setvar VAR_0x800B, 1
 	call PokemonCenter_1F_NurseHealScript
 	waitmessage
@@ -16,15 +16,115 @@ PetalburgCity_PokemonCenter_1F_EventScript_2079FC:: @ 82079FC
 	release
 	end
 
+
+PetalburgCity_Mart_MartScript:: @ 8207D69
+	lock
+	faceplayer
+	message gText_Mart_Welcome
+	waitmessage
+	goto_if_set FLAG_PETALBURG_MART_EXPANDED_ITEMS, PetalburgCity_Mart_EventScript_207DA6
+	pokemart PetalburgCity_Mart_Pokemart_207D8C
+	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+PetalburgCity_Mart_Pokemart_207D8C: @ 8207D8C
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_REPEL
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFEND
+	.2byte ITEM_ORANGE_MAIL
+	.2byte ITEM_NONE
+	release
+	end
+
+PetalburgCity_Mart_EventScript_207DA6:: @ 8207DA6
+	pokemart PetalburgCity_Mart_Pokemart_207DB8
+	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+PetalburgCity_Mart_Pokemart_207DB8: @ 8207DB8
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_REPEL
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFEND
+	.2byte ITEM_ORANGE_MAIL
+	.2byte ITEM_NONE
+	release
+	end
+
+
 PetalburgCity_PokemonCenter_1F_EventScript_207A0A:: @ 8207A0A
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207A76, MSGBOX_NPC
 	end
 
-PetalburgCity_PokemonCenter_1F_EventScript_207A13:: @ 8207A13
+PetalburgCity_PokemonCenter_1F_Text_207A76: @ 8207A76
+	.string "That PC-based Pokémon Storage\n"
+	.string "System…\p"
+	.string "Whoever made it must be some kind\n"
+	.string "of a scientific wizard!$"
+
+
+PetalburgCity_PokemonCenter_1F_EventScript_OranBoy:: @ 8207A13
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207AD6, MSGBOX_NPC
 	end
 
-PetalburgCity_PokemonCenter_1F_EventScript_207A1C:: @ 8207A1C
+PetalburgCity_PokemonCenter_1F_Text_207AD6: @ 8207AD6
+	.string "When my Pokémon ate an\n"
+	.string "Oran Berry, it regained HP!$"
+
+
+PetalburgCity_Mart_EventScript_207DD6:: @ 8207DD6
+	msgbox PetalburgCity_Mart_Text_207DF1, MSGBOX_NPC
+	end
+
+PetalburgCity_Mart_Text_207DF1: @ 8207DF1
+	.string "Even if a Pokémon is weak now,\n"
+	.string "it will grow stronger.\p"
+	.string "The most important thing is love!\n"
+	.string "Love for your Pokémon!$"
+
+
+PetalburgCity_Mart_EventScript_RepelBoy:: @ 8207DDF
+	msgbox PetalburgCity_Mart_Text_207E60, MSGBOX_NPC
+	end
+
+PetalburgCity_Mart_Text_207E60: @ 8207E60
+	.string "Do you use Repel?\n"
+	.string "It keeps Pokémon away, so it's\l"
+	.string "useful when you're in a hurry.$"
+
+
+PetalburgCity_Mart_EventScript_AntidoteMan:: @ 8207DE8
+	msgbox PetalburgCity_Mart_Text_207EB0, MSGBOX_NPC
+	end
+
+PetalburgCity_Mart_Text_207EB0: @ 8207EB0
+	.string "Do you have any Antidotes with\n"
+	.string "you?\p"
+	.string "If your Pokémon gets poisoned, it will\n"
+	.string "lose HP in battle until it dies!\l"
+	.string "Take some Antidotes with you.$"
+
+
+PetalburgCity_PokemonCenter_1F_EventScript_StarterLady:: @ 8207A1C
 	lock
 	faceplayer
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207B09, MSGBOX_DEFAULT
@@ -56,16 +156,6 @@ PetalburgCity_PokemonCenter_1F_EventScript_207A6D:: @ 8207A6D
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207CB7, MSGBOX_DEFAULT
 	return
 
-PetalburgCity_PokemonCenter_1F_Text_207A76: @ 8207A76
-	.string "That PC-based Pokémon Storage\n"
-	.string "System…\p"
-	.string "Whoever made it must be some kind\n"
-	.string "of a scientific wizard!$"
-
-PetalburgCity_PokemonCenter_1F_Text_207AD6: @ 8207AD6
-	.string "When my Pokémon ate an\n"
-	.string "ORAN BERRY, it regained HP!$"
-
 PetalburgCity_PokemonCenter_1F_Text_207B09: @ 8207B09
 	.string "There are many types of Pokémon.\p"
 	.string "All types have their strengths and\n"
@@ -74,25 +164,27 @@ PetalburgCity_PokemonCenter_1F_Text_207B09: @ 8207B09
 	.string "a battle could be easy or hard.$"
 
 PetalburgCity_PokemonCenter_1F_Text_207BB0: @ 8207BB0
-	.string "For example, your TREECKO\n"
-	.string "is a GRASS type.\p"
-	.string "It's strong against the WATER and\n"
-	.string "GROUND types.\p"
-	.string "But, it's weak against FIRE-type\n"
+	.string "For example, your Treecko\n"
+	.string "is a Grass type.\p"
+	.string "It's strong against the Water and\n"
+	.string "Ground types.\p"
+	.string "But, it's weak against Fire-type\n"
 	.string "Pokémon.$"
 
 PetalburgCity_PokemonCenter_1F_Text_207C35: @ 8207C35
-	.string "For example, your TORCHIC\n"
-	.string "is a FIRE type.\p"
-	.string "It's strong against the GRASS and\n"
-	.string "BUG types.\p"
-	.string "But, it's weak against WATER-type\n"
+	.string "For example, your Torchic\n"
+	.string "is a Fire type.\p"
+	.string "It's strong against the Grass and\n"
+	.string "Bug types.\p"
+	.string "But, it's weak against Water-type\n"
 	.string "Pokémon.$"
 
 PetalburgCity_PokemonCenter_1F_Text_207CB7: @ 8207CB7
-	.string "For example, your MUDKIP\n"
-	.string "is a WATER type.\p"
-	.string "It's strong against the FIRE type.\p"
-	.string "But, it's weak against GRASS-type\n"
-	.string "and ELECTRIC-type Pokémon.$"
+	.string "For example, your Mudkip\n"
+	.string "is a Water type.\p"
+	.string "It's strong against the Fire type.\p"
+	.string "But, it's weak against Grass-type\n"
+	.string "and Electric-type Pokémon.$"
 
+
+@ Mystery Event boy is in mystery_event_club.inc

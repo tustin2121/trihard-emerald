@@ -21,7 +21,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "FallarborTown_PokemonCenter_1F_EventScript_200BE1",
+            "script": "FallarborTown_PokemonCenter_1F_NurseScript",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 10,
@@ -50,8 +50,8 @@
             "script": "FallarborTown_PokemonCenter_1F_EventScript_200BF8",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
-            "y": 5
+            "x": 15,
+            "y": 9
         },
         {
             "elevation": 3,
@@ -60,11 +60,76 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "FallarborTown_PokemonCenter_1F_EventScript_200C01",
+            "script": "FallarborTown_PokemonCenter_1F_Lanette",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 3,
+            "y": 4
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_MART_EMPLOYEE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "FallarborTown_Mart_MartScript",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 16,
+            "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_WOMAN_2",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "FallarborTown_Mart_EventScript_SkittyLady",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 7,
+            "y": 8
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_POKEFAN_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "FallarborTown_Mart_EventScript_NuggetMan",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 13,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_SKITTY",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "script": "FallarborTown_Mart_EventScript_1FFD06",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 7,
+            "y": 11
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_GIRL_2",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "FallarborTown_Mart_EventScript_MoveTutor",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 14,
-            "y": 8
+            "y": 13
         }
     ],
     "region_map_section": "MAPSEC_FALLARBOR_TOWN",

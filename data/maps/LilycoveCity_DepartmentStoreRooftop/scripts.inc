@@ -21,10 +21,10 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_22022B:: @ 822022B
 LilycoveCity_DepartmentStoreRooftop_EventScript_22022F:: @ 822022F
 	lock
 	faceplayer
-	message gUnknown_08272A21
+	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration LilycoveCity_DepartmentStoreRooftop_PokemartDecor_220248
-	msgbox gUnknown_08272A3F, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
 	release
 	end
 

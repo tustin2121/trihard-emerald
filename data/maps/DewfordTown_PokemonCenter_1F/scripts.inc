@@ -5,7 +5,7 @@ DewfordTown_PokemonCenter_1F_MapScripts:: @ 81FC523
 
 DewfordTown_PokemonCenter_1F_OnTransition: @ 81FC52E
 	setrespawn HEAL_LOCATION_DEWFORD_TOWN
-	call DewfordTown_PokemonCenter_1F_EventScript_2718DE
+	call PokemonCenter_1F_SetMrBrineyLocation
 	end
 
 DewfordTown_PokemonCenter_1F_EventScript_1FC537:: @ 81FC537

@@ -5,10 +5,10 @@ SlateportCity_PokemonCenter_1F_MapScripts:: @ 820DABF
 
 SlateportCity_PokemonCenter_1F_OnTransition: @ 820DACA
 	setrespawn HEAL_LOCATION_SLATEPORT_CITY
-	call SlateportCity_PokemonCenter_1F_EventScript_2718DE
+	call PokemonCenter_1F_SetMrBrineyLocation
 	end
 
-SlateportCity_PokemonCenter_1F_EventScript_20DAD3:: @ 820DAD3
+SlateportCity_PokemonCenter_1F_NurseScript:: @ 820DAD3
 	setvar VAR_0x800B, 1
 	call PokemonCenter_1F_NurseHealScript
 	waitmessage
@@ -16,12 +16,34 @@ SlateportCity_PokemonCenter_1F_EventScript_20DAD3:: @ 820DAD3
 	release
 	end
 
-SlateportCity_PokemonCenter_1F_EventScript_20DAE1:: @ 820DAE1
-	msgbox SlateportCity_PokemonCenter_1F_Text_20DAF3, MSGBOX_NPC
+
+SlateportCity_Mart_MartScript:: @ 820DC49
+	lock
+	faceplayer
+	message gText_Mart_Welcome
+	waitmessage
+	pokemart SlateportCity_Mart_Pokemart_20DC60
+	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	release
 	end
 
-SlateportCity_PokemonCenter_1F_EventScript_20DAEA:: @ 820DAEA
-	msgbox SlateportCity_PokemonCenter_1F_Text_20DBBC, MSGBOX_NPC
+SlateportCity_Mart_Pokemart_20DC60: @ 820DC60
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_REPEL
+	.2byte ITEM_HARBOR_MAIL
+	.2byte ITEM_NONE
+	release
+	end
+
+
+SlateportCity_PokemonCenter_1F_EventScript_BattleTipSailor:: @ 820DAE1
+	msgbox SlateportCity_PokemonCenter_1F_Text_20DAF3, MSGBOX_NPC
 	end
 
 SlateportCity_PokemonCenter_1F_Text_20DAF3: @ 820DAF3
@@ -33,8 +55,36 @@ SlateportCity_PokemonCenter_1F_Text_20DAF3: @ 820DAF3
 	.string "If it has a type disadvantage,\n"
 	.string "it might not stand a chance.$"
 
+
+SlateportCity_PokemonCenter_1F_EventScript_20DAEA:: @ 820DAEA
+	msgbox SlateportCity_PokemonCenter_1F_Text_20DBBC, MSGBOX_NPC
+	end
+
 SlateportCity_PokemonCenter_1F_Text_20DBBC: @ 820DBBC
 	.string "I trade Pokémon with my friends.\p"
 	.string "If a traded Pokémon is holding an\n"
 	.string "item, it makes me twice as happy!$"
+
+
+SlateportCity_Mart_EventScript_20DC76:: @ 820DC76
+	msgbox SlateportCity_Mart_Text_20DC88, MSGBOX_NPC
+	end
+
+SlateportCity_Mart_Text_20DC88: @ 820DC88
+	.string "The Market does have some interesting\n"
+	.string "merchandise.\p"
+	.string "But there are some items you can only\n"
+	.string "get at a Pokémon Center Mart.$"
+
+
+SlateportCity_Mart_EventScript_20DC7F:: @ 820DC7F
+	msgbox SlateportCity_Mart_Text_20DCF8, MSGBOX_NPC
+	end
+
+SlateportCity_Mart_Text_20DCF8: @ 820DCF8
+	.string "A GREAT BALL is better than a POKé BALL\n"
+	.string "at catching Pokémon.\p"
+	.string "With this, I should be able to get that\n"
+	.string "elusive Pokémon…$"
+
 

@@ -6,7 +6,7 @@
     "bg_events": [
         {
             "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
             "script": "PokemonCenter_2F_EventScript_OccupiedSign",
             "type": "sign",
             "x": 14,
@@ -14,7 +14,7 @@
         },
         {
             "elevation": 3,
-            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
             "script": "PokemonCenter_2F_EventScript_OccupiedSign",
             "type": "sign",
             "x": 18,

@@ -1,4 +1,4 @@
-PetalburgCity_PokemonCenter_1F_EventScript_291539:: @ 8291539
+PetalburgCity_PokemonCenter_1F_EventScript_MysteryClubBoy:: @ 8291539
 	lock
 	faceplayer
 	goto_if_set FLAG_SYS_CHAT_USED, PetalburgCity_PokemonCenter_1F_EventScript_2915F5

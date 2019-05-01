@@ -5,10 +5,10 @@ LavaridgeTown_PokemonCenter_1F_MapScripts:: @ 81FFAFA
 
 LavaridgeTown_PokemonCenter_1F_OnTransition: @ 81FFB05
 	setrespawn HEAL_LOCATION_LAVARIDGE_TOWN
-	call LavaridgeTown_PokemonCenter_1F_EventScript_2718DE
+	call PokemonCenter_1F_SetMrBrineyLocation
 	end
 
-LavaridgeTown_PokemonCenter_1F_EventScript_1FFB0E:: @ 81FFB0E
+LavaridgeTown_PokemonCenter_1F_NurseScript:: @ 81FFB0E
 	setvar VAR_0x800B, 1
 	call PokemonCenter_1F_NurseHealScript
 	waitmessage
@@ -16,16 +16,46 @@ LavaridgeTown_PokemonCenter_1F_EventScript_1FFB0E:: @ 81FFB0E
 	release
 	end
 
+
+LavaridgeTown_Mart_MartScript:: @ 81FF9CE
+	lock
+	faceplayer
+	message gText_Mart_Welcome
+	waitmessage
+	pokemart LavaridgeTown_Mart_Pokemart_1FF9E8
+	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+LavaridgeTown_Mart_Pokemart_1FF9E8: @ 81FF9E8
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_BURN_HEAL
+	.2byte ITEM_REVIVE
+	.2byte ITEM_SUPER_REPEL
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_NONE
+	release
+	end
+
+
 LavaridgeTown_PokemonCenter_1F_EventScript_1FFB1C:: @ 81FFB1C
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_1FFBAD, MSGBOX_NPC
 	end
 
+LavaridgeTown_PokemonCenter_1F_Text_1FFBAD: @ 81FFBAD
+	.string "It's sort of magical how just sitting\n"
+	.string "in a hot-spring pool can invigorate.\p"
+	.string "I wish I could let my Pokémon\n"
+	.string "soak, too.$"
+
+
 LavaridgeTown_PokemonCenter_1F_EventScript_1FFB25:: @ 81FFB25
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_1FFB37, MSGBOX_NPC
-	end
-
-LavaridgeTown_PokemonCenter_1F_EventScript_1FFB2E:: @ 81FFB2E
-	msgbox LavaridgeTown_PokemonCenter_1F_Text_1FFC21, MSGBOX_NPC
 	end
 
 LavaridgeTown_PokemonCenter_1F_Text_1FFB37: @ 81FFB37
@@ -34,11 +64,10 @@ LavaridgeTown_PokemonCenter_1F_Text_1FFB37: @ 81FFB37
 	.string "The longer the better.\n"
 	.string "That's what I think.$"
 
-LavaridgeTown_PokemonCenter_1F_Text_1FFBAD: @ 81FFBAD
-	.string "It's sort of magical how just sitting\n"
-	.string "in a hot-spring pool can invigorate.\p"
-	.string "I wish I could let my Pokémon\n"
-	.string "soak, too.$"
+
+LavaridgeTown_PokemonCenter_1F_EventScript_1FFB2E:: @ 81FFB2E
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_1FFC21, MSGBOX_NPC
+	end
 
 LavaridgeTown_PokemonCenter_1F_Text_1FFC21: @ 81FFC21
 	.string "Hohoho! Hey, kid, you can reach\n"
@@ -46,3 +75,23 @@ LavaridgeTown_PokemonCenter_1F_Text_1FFC21: @ 81FFC21
 	.string "If Pokémon are getting rest, so too\n"
 	.string "should their TRAINERS.$"
 
+
+LavaridgeTown_Mart_EventScript_1FF9FE:: @ 81FF9FE
+	msgbox LavaridgeTown_Mart_Text_1FFA10, MSGBOX_NPC
+	end
+
+LavaridgeTown_Mart_Text_1FFA10: @ 81FFA10
+	.string "Use X SPEED to add to a Pokémon's\n"
+	.string "SPEED in battle.\p"
+	.string "That will help it get in the first\n"
+	.string "strike--a decided advantage!$"
+
+
+LavaridgeTown_Mart_EventScript_1FFA07:: @ 81FFA07
+	msgbox LavaridgeTown_Mart_Text_1FFA83, MSGBOX_NPC
+	end
+
+LavaridgeTown_Mart_Text_1FFA83: @ 81FFA83
+	.string "On Mt. Chimney's peak, there's a local\n"
+	.string "specialty that you can buy only there.\p"
+	.string "Give it to a Pokémon--it will be elated.$"

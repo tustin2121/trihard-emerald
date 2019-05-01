@@ -1,4 +1,7 @@
 @ This script is called from every Pokemon Center
+
+@@@@ Pokecenter Nurse Script @@@@
+
 PokemonCenter_1F_NurseHealScript:: @ 827191E
 	lock
 	faceplayer
@@ -198,3 +201,32 @@ gText_NurseExplainPokerus:: @ 8272F07
 	.string "forms that attach to Pokémon.\p"
 	.string "While infected, Pokémon are said to\n"
 	.string "grow exceptionally well.$"
+
+@@@@ Pokecenter Free Pokeball Counter @@@@
+
+PokemonCenter_1F_FreePokeballCounterScript::
+	@ TODO
+	end
+
+
+@@@@ Pokecenter Mr Briney Location @@@@
+
+PokemonCenter_1F_SetMrBrineyLocation:: @ 82718DE
+	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
+	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
+	goto_if_unset FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT, PokemonCenter_1F_SetMrBrineyLocation_A
+	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, PokemonCenter_1F_SetMrBrineyLocation_B
+	goto_if_unset FLAG_HIDE_ROUTE_108_MR_BRINEY, PokemonCenter_1F_SetMrBrineyLocation_C
+	return
+
+PokemonCenter_1F_SetMrBrineyLocation_A: @ 827190C
+	setvar VAR_BRINEY_LOCATION, 1
+	return
+
+PokemonCenter_1F_SetMrBrineyLocation_B: @ 8271912
+	setvar VAR_BRINEY_LOCATION, 2
+	return
+
+PokemonCenter_1F_SetMrBrineyLocation_C: @ 8271918
+	setvar VAR_BRINEY_LOCATION, 3
+	return
