@@ -254,12 +254,7 @@ EventScript_PlayerPCMale:: @ 81F860D
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F8626:: @ 81F8626
-	setvar VAR_0x8004, 1
-	special DoPCTurnOnEffect
-	playse SE_PC_ON
-	msgbox gText_PlayerHouseBootPC, MSGBOX_DEFAULT
-	special BedroomPC
-	waitstate
+	msgbox Text_PCLivestreamEvent, MSGBOX_DEFAULT
 	releaseall
 	end
 
