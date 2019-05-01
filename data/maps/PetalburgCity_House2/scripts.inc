@@ -11,7 +11,7 @@ PetalburgCity_House2_EventScript_2078FC:: @ 82078FC
 
 PetalburgCity_House2_Text_207905: @ 8207905
 	.string "NORMAN became our town's new\n"
-	.string "GYM LEADER.\p"
+	.string "Gym Leader.\p"
 	.string "I think he called his family over from\n"
 	.string "somewhere far away.$"
 
@@ -20,5 +20,5 @@ PetalburgCity_House2_Text_207969: @ 8207969
 	.string "he was way too strong.\p"
 	.string "How would I put it?\p"
 	.string "I just got the feeling that he\n"
-	.string "lives for POKéMON.$"
+	.string "lives for Pokémon.$"
 

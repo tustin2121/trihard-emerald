@@ -44,6 +44,8 @@
 #include "window.h"
 #include "constants/songs.h"
 #include "rom_8011DC0.h"
+#include "union_room.h"
+#include "constants/rgb.h"
 
 // Menu actions
 enum
@@ -291,7 +293,12 @@ static void BuildNormalStartMenu(void)
     }
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
-    //AddStartMenuAction(MENU_ACTION_SAVE);
+    
+    if (InPokeCenter() && !CanAnyPartyMonsBeHealed())
+    {
+        AddStartMenuAction(MENU_ACTION_SAVE);
+    }
+    
     AddStartMenuAction(MENU_ACTION_OPTION);
     AddStartMenuAction(MENU_ACTION_EXIT);
 }
@@ -1199,7 +1206,7 @@ static bool32 sub_80A03E4(u8 *par1)
         InitBgsFromTemplates(0, sUnknown_085105A8, ARRAY_COUNT(sUnknown_085105A8));
         InitWindows(sUnknown_085105AC);
         LoadUserWindowBorderGfx_(0, 8, 224);
-        sub_81978B0(240);
+        Menu_LoadStdPalAt(240);
         break;
     case 3:
         ShowBg(0);
@@ -1248,10 +1255,10 @@ static void sub_80A0550(u8 taskId)
                                         2,
                                         1,
                                         3);
-            sub_8098858(0, 8, 14);
+            DrawTextBorderOuter(0, 8, 14);
             PutWindowTilemap(0);
             CopyWindowToVram(0, 3);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
 
             if (gWirelessCommType != 0 && InUnionRoom())
             {
@@ -1284,7 +1291,7 @@ static void sub_80A0550(u8 taskId)
             }
             break;
         case 3:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             *step = 4;
             break;
         case 4:

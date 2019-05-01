@@ -38,8 +38,8 @@ EverGrandeCity_HallOfFame_EventScript_229850:: @ 8229850
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	delay 20
-	dofieldeffect 62
-	waitfieldeffect 62
+	dofieldeffect FLDEFF_HALL_OF_FAME_RECORD
+	waitfieldeffect FLDEFF_HALL_OF_FAME_RECORD
 	delay 40
 	setvar VAR_TEMP_1, 1
 	call EverGrandeCity_HallOfFame_EventScript_2717C1
@@ -86,7 +86,7 @@ EverGrandeCity_HallOfFame_Movement_229908: @ 8229908
 EverGrandeCity_HallOfFame_Text_22990E: @ 822990E
 	.string "WALLACE: This room…\p"
 	.string "This is where we keep records of\n"
-	.string "POKéMON that prevailed through\l"
+	.string "Pokémon that prevailed through\l"
 	.string "harsh battles.\p"
 	.string "It is here that the LEAGUE CHAMPIONS\n"
 	.string "are honored.$"
@@ -94,6 +94,6 @@ EverGrandeCity_HallOfFame_Text_22990E: @ 822990E
 EverGrandeCity_HallOfFame_Text_2299A3: @ 82299A3
 	.string "WALLACE: Come on, let's record your\n"
 	.string "name as a TRAINER who triumphed over\l"
-	.string "the POKéMON LEAGUE, and the names of\l"
+	.string "the Pokémon League, and the names of\l"
 	.string "the partners who battled with you.$"
 

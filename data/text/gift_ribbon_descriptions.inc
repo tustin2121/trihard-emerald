@@ -35,28 +35,28 @@ gGiftRibbonDescriptionPart1_2005GlobalCup:: @ 8623B4D
 	.string "2005 GLOBAL CUP$"
 
 gGiftRibbonDescriptionPart1_PokemonBattleCup:: @ 8623B5D
-	.string "POKéMON BATTLE CUP$"
+	.string "Pokémon BATTLE CUP$"
 
 gGiftRibbonDescriptionPart2_Participation:: @ 8623B70
 	.string "Participation RIBBON$"
 
 gGiftRibbonDescriptionPart1_PokemonLeague:: @ 8623B85
-	.string "POKéMON LEAGUE$"
+	.string "Pokémon League$"
 
 gGiftRibbonDescriptionPart1_AdvanceCup:: @ 8623B94
 	.string "ADVANCE CUP$"
 
 gGiftRibbonDescriptionPart1_PokemonTournament:: @ 8623BA0
-	.string "POKéMON Tournament$"
+	.string "Pokémon Tournament$"
 
 gGiftRibbonDescriptionPart2_Participation2:: @ 8623BB3
 	.string "Participation RIBBON$"
 
 gGiftRibbonDescriptionPart1_PokemonEvent:: @ 8623BC8
-	.string "POKéMON Event$"
+	.string "Pokémon Event$"
 
 gGiftRibbonDescriptionPart1_PokemonFestival:: @ 8623BD6
-	.string "POKéMON Festival$"
+	.string "Pokémon Festival$"
 
 gGiftRibbonDescriptionPart1_DifficultyClearing:: @ 8623BE7
 	.string "Difficulty-clearing$"
@@ -89,16 +89,16 @@ gGiftRibbonDescriptionPart1_LegendMaking:: @ 8623C9A
 	.string "Legend-making$"
 
 gGiftRibbonDescriptionPart1_PokemonCenterTokyo:: @ 8623CA8
-	.string "POKéMON CENTER TOKYO$"
+	.string "Pokémon CENTER TOKYO$"
 
 gGiftRibbonDescriptionPart1_PokemonCenterOsaka:: @ 8623CBD
-	.string "POKéMON CENTER OSAKA$"
+	.string "Pokémon CENTER OSAKA$"
 
 gGiftRibbonDescriptionPart1_PokemonCenterNagoya:: @ 8623CD2
-	.string "POKéMON CENTER NAGOYA$"
+	.string "Pokémon CENTER NAGOYA$"
 
 gGiftRibbonDescriptionPart1_PokemonCenterNY:: @ 8623CE8
-	.string "POKéMON CENTER NY$"
+	.string "Pokémon CENTER NY$"
 
 gGiftRibbonDescriptionPart1_SummerHolidays:: @ 8623CFA
 	.string "Summer Holidays RIBBON$"
@@ -131,13 +131,13 @@ gGiftRibbonDescriptionPart1_LovedPokemon:: @ 8623DA8
 	.string "A commemorative RIBBON$"
 
 gGiftRibbonDescriptionPart2_LovedPokemon:: @ 8623DBF
-	.string "for a loved POKéMON.$"
+	.string "for a loved Pokémon.$"
 
 gGiftRibbonDescriptionPart1_LoveForPokemon:: @ 8623DD4
 	.string "RIBBON that shows$"
 
 gGiftRibbonDescriptionPart2_LoveForPokemon:: @ 8623DE6
-	.string "love for POKéMON.$"
+	.string "love for Pokémon.$"
 
 	.align 2
 gGiftRibbonDescriptionPointers:: @ 8623DF8

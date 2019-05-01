@@ -23,7 +23,7 @@
 #include "palette.h"
 #include "pokeball.h"
 #include "pokedex.h"
-#include "pokemon_3.h"
+#include "pokemon.h"
 #include "random.h"
 #include "rtc.h"
 #include "save.h"
@@ -38,6 +38,136 @@
 #include "text_window.h"
 #include "title_screen.h"
 #include "window.h"
+#include "mystery_gift.h"
+
+/*
+ * Main menu state machine
+ * -----------------------
+ * 
+ * Entry point: CB2_InitMainMenu
+ * 
+ * Note: States advance sequentially unless otherwise stated.
+ * 
+ * CB2_InitMainMenu / CB2_ReinitMainMenu
+ *  - Both of these states call InitMainMenu, which does all the work.
+ *  - In the Reinit case, the init code will check if the user came from
+ *    the options screen. If they did, then the options menu item is
+ *    pre-selected.
+ * 
+ * Task_MainMenuCheckSaveFile
+ *  - Determines how many menu options to show based on whether
+ *    the save file is Ok, empty, corrupted, etc.
+ *  - If there was an error loading the save file, advance to
+ *    Task_WaitForSaveFileErrorWindow.
+ *  - If there were no errors, advance to Task_MainMenuCheckBattery.
+ *  - Note that the check to enable Mystery Events would normally happen
+ *    here, but this version of Emerald has them disabled.
+ * 
+ * Task_WaitForSaveFileErrorWindow
+ *  - Wait for the text to finish printing and then for the A button
+ *    to be pressed.
+ * 
+ * Task_MainMenuCheckBattery
+ *  - If the battery is OK, advance to Task_DisplayMainMenu.
+ *  - If the battery is dry, advance to Task_WaitForBatteryDryErrorWindow.
+ * 
+ * Task_WaitForBatteryDryErrorWindow
+ *  - Wait for the text to finish printing and then for the A button
+ *    to be pressed.
+ * 
+ * Task_DisplayMainWindow
+ *  - Display the buttons to the user. If the menu is in HAS_MYSTERY_EVENTS
+ *    mode, there are too many buttons for one screen and a scrollbar is added,
+ *    and the scrollbar task is spawned (Task_ScrollIndicatorArrowPairOnMainMenu).
+ * 
+ * Task_HighlightSelectedMainMenuItem
+ *  - Update the UI to match the currently selected item.
+ * 
+ * Task_HandleMainMenuInput
+ *  - If A is pressed, advance to Task_HandleMainMenuAPressed.
+ *  - If B is pressed, return to the title screen via CB2_InitTitleScreen.
+ *  - If Up or Down is pressed, handle scrolling if there is a scroll bar, change
+ *    the selection, then go back to Task_HighlightSelectedMainMenuItem.
+ * 
+ * Task_HandleMainMenuAPressed
+ *  - If the user selected New Game, advance to Task_NewGameBirchSpeech_Init.
+ *  - If the user selected Continue, advance to CB2_ContinueSavedGame.
+ *  - If the user selected the Options menu, advance to CB2_InitOptionMenu.
+ *  - If the user selected Mystery Gift, advance to CB2_MysteryGift. However,
+ *    if the wireless adapter was removed, instead advance to
+ *    Task_DisplayMainMenuInvalidActionError.
+ *  - Code to start a Mystery Event is present here, but is unreachable in this
+ *    version.
+ *    
+ * Task_HandleMainMenuBPressed
+ *  - Clean up the main menu and go back to CB2_InitTitleScreen.
+ * 
+ * Task_DisplayMainMenuInvalidActionError
+ *  - Print one of three different error messages, wait for the text to stop
+ *    printing, and then wait for A or B to be pressed.
+ * - Then advance to Task_HandleMainMenuBPressed.
+ * 
+ * Task_NewGameBirchSpeechInit
+ *  - Load the sprites for the intro speech, start playing music
+ * Task_NewGameBirchSpeech_WaitToShowBirch
+ *  - Spawn Task_NewGameBirchSpeech_FadeInTarget1OutTarget2
+ *  - Spawn Task_NewGameBirchSpeech_FadePlatformOut
+ *  - Both of these tasks destroy themselves when done.
+ * Task_NewGameBirchSpeech_WaitForSpriteFadeInWelcome
+ * Task_NewGameBirchSpeech_ThisIsAPokemon
+ *  - When the text is done printing, spawns Task_NewGameBirchSpeechSub_InitPokeball
+ * Task_NewGameBirchSpeech_MainSpeech
+ * Task_NewGameBirchSpeech_AndYouAre
+ * Task_NewGameBirchSpeech_StartBirchLotadPlatformFade
+ * Task_NewGameBirchSpeech_StartBirchLotadPlatformFade
+ * Task_NewGameBirchSpeech_SlidePlatformAway
+ * Task_NewGameBirchSpeech_StartPlayerFadeIn
+ * Task_NewGameBirchSpeech_WaitForPlayerFadeIn
+ * Task_NewGameBirchSpeech_BoyOrGirl
+ * Task_NewGameBirchSpeech_WaitToShowGenderMenu
+ * Task_NewGameBirchSpeech_ChooseGender
+ *  - Animates by advancing to Task_NewGameBirchSpeech_SlideOutOldGenderSprite
+ *    whenever the player's selection changes.
+ *  - Advances to Task_NewGameBirchSpeech_WhatsYourName when done.
+ * 
+ * Task_NewGameBirchSpeech_SlideOutOldGenderSprite
+ * Task_NewGameBirchSpeech_SlideInNewGenderSprite
+ *  - Returns back to Task_NewGameBirchSpeech_ChooseGender.
+ * 
+ * Task_NewGameBirchSpeech_WhatsYourName
+ * Task_NewGameBirchSpeech_WaitForWhatsYourNameToPrint
+ * Task_NewGameBirchSpeech_WaitPressBeforeNameChoice
+ * Task_NewGameBirchSpeech_StartNamingScreen
+ * C2_NamingScreen
+ *  - Returns to CB2_NewGameBirchSpeech_ReturnFromNamingScreen when done
+ * CB2_NewGameBirchSpeech_ReturnFromNamingScreen
+ * Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox
+ * Task_NewGameBirchSpeech_SoItsPlayerName
+ * Task_NewGameBirchSpeech_CreateNameYesNo
+ * Task_NewGameBirchSpeech_ProcessNameYesNoMenu
+ *  - If confirmed, advance to Task_NewGameBirchSpeech_SlidePlatformAway2.
+ *  - Otherwise, return to Task_NewGameBirchSpeech_BoyOrGirl.
+ * 
+ * Task_NewGameBirchSpeech_SlidePlatformAway2
+ * Task_NewGameBirchSpeech_ReshowBirchLotad
+ * Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter
+ * Task_NewGameBirchSpeech_AreYouReady
+ * Task_NewGameBirchSpeech_ShrinkPlayer
+ * Task_NewGameBirchSpeech_WaitForPlayerShrink
+ * Task_NewGameBirchSpeech_FadePlayerToWhite
+ * Task_NewGameBirchSpeech_Cleanup
+ *  - Advances to CB2_NewGame.
+ * 
+ * Task_NewGameBirchSpeechSub_InitPokeball
+ *  - Advances to Task_NewGameBirchSpeechSub_WaitForLotad
+ * Task_NewGameBirchSpeechSub_WaitForLotad
+ *  - Destroys itself when done.
+ */
+
+// These two defines are used with the sCurrItemAndOptionsMenuCheck,
+// to distinguish between its two parts.
+#define OPTION_MENU_FLAG 0x8000
+#define CURRENT_ITEM_MASK 0x7FFF
 
 /*
  * Main menu state machine
@@ -525,7 +655,7 @@ enum
     ACTION_OPTION,
     ACTION_MYSTERY_GIFT,
     ACTION_MYSTERY_EVENTS,
-    ACTION_UNKNOWN, // TODO: change when rom_8011DC0 decompiled
+    ACTION_EREADER,
     ACTION_INVALID
 };
 
@@ -583,9 +713,9 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
     ResetSpriteData();
     FreeAllSpritePalettes();
     if (returningFromOptionsMenu)
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0x0000); // fade to black
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK); // fade to black
     else
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, 0xFFFF); // fade to white
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_WHITEALPHA); // fade to white
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sMainMenuBgTemplates, ARRAY_COUNT(sMainMenuBgTemplates));
     ChangeBgX(0, 0, 0);
@@ -1033,7 +1163,7 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                         }
                         else
                         {
-                            action = ACTION_UNKNOWN;
+                            action = ACTION_EREADER;
                         }
                         break;
                     case 3:
@@ -1082,8 +1212,8 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                 SetMainCallback2(CB2_InitMysteryEventMenu);
                 DestroyTask(taskId);
                 break;
-            case ACTION_UNKNOWN:
-                SetMainCallback2(sub_801867C);
+            case ACTION_EREADER:
+                SetMainCallback2(c2_ereader);
                 DestroyTask(taskId);
                 break;
             case ACTION_INVALID:
@@ -1097,7 +1227,7 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
                 SetGpuReg(REG_OFFSET_BG1VOFS, 0);
                 SetGpuReg(REG_OFFSET_BG0HOFS, 0);
                 SetGpuReg(REG_OFFSET_BG0VOFS, 0);
-                BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+                BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
                 return;
         }
         FreeAllWindowBuffers();
@@ -1286,7 +1416,7 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     FreeAllSpritePalettes();
     ResetAllPicSprites();
     AddBirchSpeechObjects(taskId);
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     gTasks[taskId].tBG1HOFS = 0;
     gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowBirch;
     gTasks[taskId].tPlayerSpriteId = 0xFF;
@@ -1846,7 +1976,7 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void)
     gSprites[spriteId].invisible = FALSE;
     gTasks[taskId].tPlayerSpriteId = spriteId;
     SetGpuReg(REG_OFFSET_BG1HOFS, -60);
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     SetGpuReg(REG_OFFSET_WIN0H, 0);
     SetGpuReg(REG_OFFSET_WIN0V, 0);
     SetGpuReg(REG_OFFSET_WININ, 0);

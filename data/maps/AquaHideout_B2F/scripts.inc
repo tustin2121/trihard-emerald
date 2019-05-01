@@ -1,8 +1,8 @@
 AquaHideout_B2F_MapScripts:: @ 8233DCF
-	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B2F_MapScript1_233DD5
+	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B2F_OnTransition
 	.byte 0
 
-AquaHideout_B2F_MapScript1_233DD5: @ 8233DD5
+AquaHideout_B2F_OnTransition: @ 8233DD5
 	call_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, AquaHideout_B2F_EventScript_233DDF
 	end
 
@@ -145,7 +145,7 @@ AquaHideout_B2F_Text_2341FE: @ 82341FE
 	.string "chew me out…$"
 
 AquaHideout_B2F_Text_23426F: @ 823426F
-	.string "When I joined TEAM AQUA, the first\n"
+	.string "When I joined Team Aqua, the first\n"
 	.string "thing I had to learn was how these\l"
 	.string "warp panels connected.$"
 

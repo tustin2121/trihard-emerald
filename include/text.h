@@ -99,6 +99,8 @@
 //
 #define EXT_CTRL_CODE_CLEAR     0x11
 //
+#define EXT_CTRL_CODE_CLEAR_TO  0x13
+#define EXT_CTRL_CODE_MIN_LETTER_SPACING 0x14
 #define EXT_CTRL_CODE_JPN       0x15
 #define EXT_CTRL_CODE_ENG       0x16
 
@@ -175,7 +177,10 @@ struct TextPrinter
     u8 delayCounter;
     u8 scrollDistance;
     u8 minLetterSpacing;  // 0x20
-    u8 japanese;
+    u8 japanese:4;
+    u8 fgColor:4;
+    u8 bgColor:4;
+    u8 shadowColor:4;
 };
 
 struct FontInfo

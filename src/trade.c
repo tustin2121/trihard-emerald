@@ -4,7 +4,7 @@
 #include "battle_interface.h"
 #include "bg.h"
 #include "cable_club.h"
-#include "data2.h"
+#include "data.h"
 #include "daycare.h"
 #include "decompress.h"
 #include "event_data.h"
@@ -19,6 +19,8 @@
 #include "load_save.h"
 #include "mail.h"
 #include "main.h"
+#include "mevent2.h"
+#include "mystery_gift.h"
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -39,6 +41,7 @@
 #include "text_window.h"
 #include "trainer_card.h"
 #include "trade.h"
+#include "union_room.h"
 #include "util.h"
 #include "window.h"
 #include "constants/easy_chat.h"
@@ -243,7 +246,7 @@ static const u8 gText_FourQuestionMarks[] = _("????");
 static const u8 gText_832DAE4[] = _("");
 static const u8 gText_IsThisTradeOkay[] = _("Is this trade okay?");
 static const u8 gText_Cancel6[] = _("CANCEL");
-static const u8 gText_ChooseAPkmn[] = _("Choose a POKéMON.");
+static const u8 gText_ChooseAPkmn[] = _("Choose a Pokémon.");
 static const u8 gText_Summary3[] = _("SUMMARY");
 static const u8 gText_Trade2[] = _("TRADE");
 static const u8 gText_CancelTrade[] = _("Cancel trade?");
@@ -252,9 +255,9 @@ static const u8 gText_Summary4[] = _("SUMMARY");
 static const u8 gText_Trade3[] = _("TRADE");
 static const u8 gText_CommunicationStandby6[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}Communication standby…\nPlease wait.");
 static const u8 gText_TheTradeHasBeenCanceled[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}The trade has\nbeen canceled.");
-static const u8 gText_YourOnlyPkmnForBattle[] = _("That's your only\nPOKéMON for battle.");
+static const u8 gText_YourOnlyPkmnForBattle[] = _("That's your only\nPokémon for battle.");
 static const u8 gText_WaitingForYourFriend[] = _("{COLOR DARK_GREY}{HIGHLIGHT WHITE}{SHADOW LIGHT_GREY}Waiting for your friend\nto finish…");
-static const u8 gText_YourFriendWantsToTrade[] = _("Your friend wants\nto trade POKéMON.");
+static const u8 gText_YourFriendWantsToTrade[] = _("Your friend wants\nto trade Pokémon.");
 
 static const struct OamData gOamData_832DC14 =
 {
@@ -1381,10 +1384,6 @@ static const u8 gUnknown_08339090[][2] =
     {0,  0}
 };
 
-// external to this file
-extern const struct CompressedSpriteSheet gMonFrontPicTable[];
-extern const struct MonCoords gMonFrontPicCoords[];
-
 static bool8 sub_8077170(const void *a0, u32 a1)
 {
     if (gUnknown_02022C2C == 29)
@@ -1623,7 +1622,7 @@ static void sub_80773D0(void)
             if (sub_8010500())
             {
                 gMain.state++;
-                sub_800E0E8();
+                LoadWirelessStatusIndicatorSpriteGfx();
                 CreateWirelessStatusIndicatorSprite(0, 0);
             }
         }
@@ -1817,7 +1816,7 @@ static void sub_8077B74(void)
     case 5:
         if (gWirelessCommType)
         {
-            sub_800E0E8();
+            LoadWirelessStatusIndicatorSpriteGfx();
             CreateWirelessStatusIndicatorSprite(0, 0);
         }
         gMain.state++;
@@ -2011,7 +2010,7 @@ static void sub_80781C8(void)
             FreeAllWindowBuffers();
             Free(gUnknown_0203229C);
             gMain.callback1 = NULL;
-            sub_800E084();
+            DestroyWirelessStatusIndicatorSprite();
             SetMainCallback2(sub_807AE50);
         }
     }
@@ -2540,7 +2539,7 @@ static void sub_8078DBC(void)
 
         if (gUnknown_0203229C->tradeMenuCursorPosition < 6)
         {
-            sub_8098858(1, 1, 14);
+            DrawTextBorderOuter(1, 1, 14);
             FillWindowPixelBuffer(1, PIXEL_FILL(1));
             PrintMenuTable(1, 2, gUnknown_0832DEAC);
             InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0);
@@ -2841,7 +2840,7 @@ static void sub_80794CC(void)
             Free(gUnknown_02032184);
             Free(gUnknown_0203229C);
             FreeAllWindowBuffers();
-            sub_800E084();
+            DestroyWirelessStatusIndicatorSprite();
             SetMainCallback2(CB2_ReturnToFieldFromMultiplayer);
         }
     }
@@ -3338,7 +3337,7 @@ static void sub_807A19C(u8 a0)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized(0, 1, gUnknown_0832DEBC[a0], 0, 1, TEXT_SPEED_FF, NULL);
-    sub_8098858(0, 20, 12);
+    DrawTextBorderOuter(0, 20, 12);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
 }
@@ -4243,7 +4242,7 @@ void sub_807AE50(void)
             {
                 if (gWirelessCommType)
                 {
-                    sub_800E0E8();
+                    LoadWirelessStatusIndicatorSpriteGfx();
                     CreateWirelessStatusIndicatorSprite(0, 0);
                 }
                 SetMainCallback2(sub_807EA2C);
@@ -6120,7 +6119,7 @@ static void c2_080543C4(void)
         FreeMonSpritesGfx();
         FREE_AND_SET_NULL(gUnknown_020322A0);
         if (gWirelessCommType)
-            sub_800E084();
+            DestroyWirelessStatusIndicatorSprite();
         SetMainCallback2(gMain.savedCallback);
     }
     RunTasks();

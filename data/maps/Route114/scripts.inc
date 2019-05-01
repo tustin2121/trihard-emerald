@@ -1,10 +1,10 @@
 Route114_MapScripts:: @ 81F252F
-	map_script MAP_SCRIPT_ON_TRANSITION, Route114_MapScript1_1F253F
+	map_script MAP_SCRIPT_ON_TRANSITION, Route114_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route114_MapScript1_1F2561
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route114_MapScript2_1F2578
 	.byte 0
 
-Route114_MapScript1_1F253F: @ 81F253F
+Route114_OnTransition: @ 81F253F
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
 	call_if_eq Route114_EventScript_273D13
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_114_NORTH
@@ -186,26 +186,26 @@ Route114_EventScript_1F27F2:: @ 81F27F2
 	end
 
 Route114_Text_1F2809: @ 81F2809
-	.string "All my POKéMON does is ROAR…\n"
+	.string "All my Pokémon does is ROAR…\n"
 	.string "No one dares to come near me…\p"
 	.string "Sigh… If you would, please take\n"
 	.string "this TM away…$"
 
 Route114_Text_1F2872: @ 81F2872
 	.string "TM05 contains ROAR.\n"
-	.string "A ROAR sends POKéMON scurrying.$"
+	.string "A ROAR sends Pokémon scurrying.$"
 
 Route114_Text_1F28A6: @ 81F28A6
 	.string "Bow! Bowwow!$"
 
 Route114_Text_1F28B3: @ 81F28B3
-	.string "METEOR FALLS\n"
-	.string "RUSTBORO CITY THROUGH HERE$"
+	.string "{PLACE}Meteor Falls{END}\n"
+	.string "Rustboro City through here!$"
 
 Route114_Text_1F28DB: @ 81F28DB
-	.string "FOSSIL MANIAC'S HOUSE\n"
+	.string "{PLACE}Fossil Maniac's House{END}\n"
 	.string "“Fossils gratefully accepted!”$"
 
 Route114_Text_1F2910: @ 81F2910
-	.string "LANETTE'S HOUSE$"
+	.string "{PLACE}Lanette's House{END}$"
 

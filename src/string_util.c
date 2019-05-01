@@ -24,21 +24,6 @@ static const s32 sPowersOfTen[] =
     1000000000,
 };
 
-extern const u8 gExpandedPlaceholder_Empty[];
-extern const u8 gExpandedPlaceholder_Kun[];
-extern const u8 gExpandedPlaceholder_Chan[];
-extern const u8 gExpandedPlaceholder_Sapphire[];
-extern const u8 gExpandedPlaceholder_Ruby[];
-extern const u8 gExpandedPlaceholder_Emerald[];
-extern const u8 gExpandedPlaceholder_Aqua[];
-extern const u8 gExpandedPlaceholder_Magma[];
-extern const u8 gExpandedPlaceholder_Archie[];
-extern const u8 gExpandedPlaceholder_Maxie[];
-extern const u8 gExpandedPlaceholder_Kyogre[];
-extern const u8 gExpandedPlaceholder_Groudon[];
-extern const u8 gExpandedPlaceholder_Brendan[];
-extern const u8 gExpandedPlaceholder_May[];
-
 u8 *StringCopy10(u8 *dest, const u8 *src)
 {
     u8 i;
@@ -423,6 +408,8 @@ u8 *StringBraille(u8 *dest, const u8 *src)
     }
 }
 
+// Placeholder Expansions woo!
+
 static const u8 *ExpandPlaceholder_UnknownStringVar(void)
 {
     return sUnknownStringVar;
@@ -448,15 +435,9 @@ static const u8 *ExpandPlaceholder_StringVar3(void)
     return gStringVar3;
 }
 
-static const u8 *ExpandPlaceholder_KunChan(void)
-{
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        return gExpandedPlaceholder_Kun;
-    else
-        return gExpandedPlaceholder_Chan;
-}
-
-static const u8 *ExpandPlaceholder_RivalName(void)
+extern const u8 gExpandedPlaceholder_Brendan[];
+extern const u8 gExpandedPlaceholder_May[];
+static const u8 *ExpandPlaceholder_RivalBirch(void)
 {
     if (gSaveBlock2Ptr->playerGender == MALE)
         return gExpandedPlaceholder_May;
@@ -464,39 +445,187 @@ static const u8 *ExpandPlaceholder_RivalName(void)
         return gExpandedPlaceholder_Brendan;
 }
 
-static const u8 *ExpandPlaceholder_Version(void)
+extern const u8 gExpandedPlaceholder_Logan[];
+static const u8 *ExpandPlaceholder_RivalHero(void)
 {
-    return gExpandedPlaceholder_Emerald;
+    return gExpandedPlaceholder_Logan;
 }
 
-static const u8 *ExpandPlaceholder_Aqua(void)
+extern const u8 gExpandedPlaceholder_Alex[];
+static const u8 *ExpandPlaceholder_RivalAlola(void)
 {
-    return gExpandedPlaceholder_Aqua;
+    return gExpandedPlaceholder_Alex;
 }
 
-static const u8 *ExpandPlaceholder_Magma(void)
+extern const u8 gExpandedPlaceholder_Bailey[];
+static const u8 *ExpandPlaceholder_AquaBoy(void)
 {
-    return gExpandedPlaceholder_Magma;
+    return gExpandedPlaceholder_Bailey;
 }
 
-static const u8 *ExpandPlaceholder_Archie(void)
+extern const u8 gExpandedPlaceholder_Jessica[];
+static const u8 *ExpandPlaceholder_AquaGirl(void)
 {
-    return gExpandedPlaceholder_Archie;
+    return gExpandedPlaceholder_Jessica;
 }
 
-static const u8 *ExpandPlaceholder_Maxie(void)
+extern const u8 gExpandedPlaceholder_HeUppercase[];
+extern const u8 gExpandedPlaceholder_SheUppercase[];
+extern const u8 gExpandedPlaceholder_HimUppercase[];
+extern const u8 gExpandedPlaceholder_HerUppercase[];
+extern const u8 gExpandedPlaceholder_HisUppercase[];
+extern const u8 gExpandedPlaceholder_HersUppercase[];
+
+static const u8 *ExpandPlaceholder_PlayerTheyUpper(void)
 {
-    return gExpandedPlaceholder_Maxie;
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HeUppercase;
+    else
+        return gExpandedPlaceholder_SheUppercase;
 }
 
-static const u8 *ExpandPlaceholder_Kyogre(void)
+static const u8 *ExpandPlaceholder_PlayerThemUpper(void)
 {
-    return gExpandedPlaceholder_Kyogre;
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HimUppercase;
+    else
+        return gExpandedPlaceholder_HerUppercase;
 }
 
-static const u8 *ExpandPlaceholder_Groudon(void)
+static const u8 *ExpandPlaceholder_PlayerTheirUpper(void)
 {
-    return gExpandedPlaceholder_Groudon;
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HisUppercase;
+    else
+        return gExpandedPlaceholder_HerUppercase;
+}
+
+static const u8 *ExpandPlaceholder_PlayerTheirsUpper(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HisUppercase;
+    else
+        return gExpandedPlaceholder_HersUppercase;
+}
+
+static const u8 *ExpandPlaceholder_RivalTheyUpper(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_SheUppercase;
+    else
+        return gExpandedPlaceholder_HeUppercase;
+}
+
+static const u8 *ExpandPlaceholder_RivalThemUpper(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HerUppercase;
+    else
+        return gExpandedPlaceholder_HimUppercase;
+}
+
+static const u8 *ExpandPlaceholder_RivalTheirUpper(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HerUppercase;
+    else
+        return gExpandedPlaceholder_HisUppercase;
+}
+
+static const u8 *ExpandPlaceholder_RivalTheirsUpper(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HersUppercase;
+    else
+        return gExpandedPlaceholder_HisUppercase;
+}
+
+extern const u8 gExpandedPlaceholder_HeLowercase[];
+extern const u8 gExpandedPlaceholder_SheLowercase[];
+extern const u8 gExpandedPlaceholder_HimLowercase[];
+extern const u8 gExpandedPlaceholder_HerLowercase[];
+extern const u8 gExpandedPlaceholder_HisLowercase[];
+extern const u8 gExpandedPlaceholder_HersLowercase[];
+
+static const u8 *ExpandPlaceholder_PlayerTheyLower(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HeLowercase;
+    else
+        return gExpandedPlaceholder_SheLowercase;
+}
+
+static const u8 *ExpandPlaceholder_PlayerThemLower(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HimLowercase;
+    else
+        return gExpandedPlaceholder_HerLowercase;
+}
+
+static const u8 *ExpandPlaceholder_PlayerTheirLower(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HisLowercase;
+    else
+        return gExpandedPlaceholder_HerLowercase;
+}
+
+static const u8 *ExpandPlaceholder_PlayerTheirsLower(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HisLowercase;
+    else
+        return gExpandedPlaceholder_HersLowercase;
+}
+
+static const u8 *ExpandPlaceholder_RivalTheyLower(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_SheLowercase;
+    else
+        return gExpandedPlaceholder_HeLowercase;
+}
+
+static const u8 *ExpandPlaceholder_RivalThemLower(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HerLowercase;
+    else
+        return gExpandedPlaceholder_HimLowercase;
+}
+
+static const u8 *ExpandPlaceholder_RivalTheirLower(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HerLowercase;
+    else
+        return gExpandedPlaceholder_HisLowercase;
+}
+
+static const u8 *ExpandPlaceholder_RivalTheirsLower(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_HersLowercase;
+    else
+        return gExpandedPlaceholder_HisLowercase;
+}
+
+extern const u8 gExpandedPlaceholder_Sir[];
+extern const u8 gExpandedPlaceholder_Miss[];
+static const u8 *ExpandPlaceholder_SirMiss(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Sir;
+    else
+        return gExpandedPlaceholder_Miss;
+}
+
+
+extern const u8 gExpandedPlaceholder_Empty[];
+static const u8 *ExpandPlaceholder_Invalid(void)
+{
+    return gExpandedPlaceholder_Empty;
 }
 
 const u8 *GetExpandedPlaceholder(u32 id)
@@ -505,20 +634,57 @@ const u8 *GetExpandedPlaceholder(u32 id)
 
     static const ExpandPlaceholderFunc funcs[] =
     {
-        ExpandPlaceholder_UnknownStringVar,
-        ExpandPlaceholder_PlayerName,
+        ExpandPlaceholder_UnknownStringVar, // 00
+        ExpandPlaceholder_PlayerName, // 01
         ExpandPlaceholder_StringVar1,
         ExpandPlaceholder_StringVar2,
         ExpandPlaceholder_StringVar3,
-        ExpandPlaceholder_KunChan,
-        ExpandPlaceholder_RivalName,
-        ExpandPlaceholder_Version,
-        ExpandPlaceholder_Aqua,
-        ExpandPlaceholder_Magma,
-        ExpandPlaceholder_Archie,
-        ExpandPlaceholder_Maxie,
-        ExpandPlaceholder_Kyogre,
-        ExpandPlaceholder_Groudon,
+        ExpandPlaceholder_RivalBirch, // 05
+        ExpandPlaceholder_RivalHero,
+        ExpandPlaceholder_RivalAlola, 
+        ExpandPlaceholder_AquaBoy, 
+        ExpandPlaceholder_AquaGirl, // 09
+        ExpandPlaceholder_Invalid, // 0A
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid, // 0F
+        
+        ExpandPlaceholder_PlayerTheyUpper, // 10
+        ExpandPlaceholder_PlayerThemUpper,
+        ExpandPlaceholder_PlayerTheirUpper,
+        ExpandPlaceholder_PlayerTheirsUpper,
+        ExpandPlaceholder_PlayerTheyLower, // 14
+        ExpandPlaceholder_PlayerThemLower,
+        ExpandPlaceholder_PlayerTheirLower,
+        ExpandPlaceholder_PlayerTheirsLower,
+        ExpandPlaceholder_SirMiss, // 18
+        ExpandPlaceholder_Invalid, // 19
+        ExpandPlaceholder_Invalid, 
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid, // 1F
+        
+        ExpandPlaceholder_RivalTheyUpper, // 20
+        ExpandPlaceholder_RivalThemUpper,
+        ExpandPlaceholder_RivalTheirUpper,
+        ExpandPlaceholder_RivalTheirsUpper,
+        ExpandPlaceholder_RivalTheyLower, // 24
+        ExpandPlaceholder_RivalThemLower,
+        ExpandPlaceholder_RivalTheirLower,
+        ExpandPlaceholder_RivalTheirsLower,
+        ExpandPlaceholder_Invalid, // 28
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid, 
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_Invalid, // 2F
+        
     };
 
     if (id >= ARRAY_COUNT(funcs))

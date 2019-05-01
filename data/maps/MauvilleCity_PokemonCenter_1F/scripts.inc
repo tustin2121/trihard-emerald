@@ -1,9 +1,9 @@
 MauvilleCity_PokemonCenter_1F_MapScripts:: @ 8210E5B
-	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_PokemonCenter_1F_MapScript1_210E66
+	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, MauvilleCity_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
-MauvilleCity_PokemonCenter_1F_MapScript1_210E66: @ 8210E66
+MauvilleCity_PokemonCenter_1F_OnTransition: @ 8210E66
 	setrespawn HEAL_LOCATION_MAUVILLE_CITY
 	call MauvilleCity_PokemonCenter_1F_EventScript_2718DE
 	goto MauvilleCity_PokemonCenter_1F_EventScript_210E74
@@ -48,7 +48,7 @@ MauvilleCity_PokemonCenter_1F_Text_210F06: @ 8210F06
 
 MauvilleCity_PokemonCenter_1F_Text_210F8A: @ 8210F8A
 	.string "A RECORD CORNER opened upstairs in\n"
-	.string "the POKéMON CENTER.\p"
+	.string "the Pokémon CENTER.\p"
 	.string "I don't know what it's about, but it\n"
 	.string "sounds fun. I'll go check it out!$"
 

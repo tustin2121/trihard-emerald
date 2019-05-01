@@ -14,10 +14,11 @@ the game forcing a save when you heal.)
 people will use when we tell them that we think this is a Nuzlocke.
 
 -----
+## Letter
 
 Since this is my first and probably only time I'll be doing a proper Pokémon ROM hack, I've decided to spice up the run
-with some various story changes and playing into the "TriHard" name. Our protagonist is a "TriHard". They'll be chasing
-a "TriHard" (Entei) for part of the story. The game will inevitably fail to pull heart strings occasionally, which will
+with some various story changes and playing into the "TriHard" name. Our protagonist is a "TriHard". ~~They'll be chasing
+a "TriHard" (Entei) for part of the story.~~ The game will inevitably fail to pull heart strings occasionally, which will
 surely be worthy of some "TriHard"s in the chat. 
 
 At the same time, I don't want this to be just a meme run. It should be able to stand on its own and not be tied
@@ -27,3 +28,13 @@ constant threat of losing everything at any moment.
 Tustin2121  
 Run Manager
 
+---
+
+## Run Description
+
+(For the subreddit and/or the stream description)
+
+TriHard Emerald is an Emerald ROM Hack and about as close to a Nuzelocke TPP is ever likely to get. When a Pokemon's HP 
+drops to zero, *they die*. If we white out, the game resets from our last save point. We can only save when healing at 
+a Pokemon Center or heal house. There's no PC, only our team of six. There will be help along the way, but it's up to 
+us to use that help effectively. Can we become Champion under such circumstances?

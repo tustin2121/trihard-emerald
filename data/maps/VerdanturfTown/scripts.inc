@@ -1,8 +1,8 @@
 VerdanturfTown_MapScripts:: @ 81EB566
-	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_MapScript1_1EB56C
+	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_OnTransition
 	.byte 0
 
-VerdanturfTown_MapScript1_1EB56C: @ 81EB56C
+VerdanturfTown_OnTransition: @ 81EB56C
 	setflag FLAG_VISITED_VERDANTURF_TOWN
 	setvar VAR_LINK_CONTEST_ROOM_STATE, 0
 	end
@@ -64,7 +64,7 @@ VerdanturfTown_EventScript_1EB5F4:: @ 81EB5F4
 VerdanturfTown_Text_1EB5FD: @ 81EB5FD
 	.string "My papa told me.\p"
 	.string "He says this tunnel is full of\n"
-	.string "timid POKéMON.\p"
+	.string "timid Pokémon.\p"
 	.string "They get all scared of loud noise and\n"
 	.string "make a big uproar.\p"
 	.string "So they had to stop the big tunnel\n"
@@ -85,14 +85,14 @@ VerdanturfTown_Text_1EB736: @ 81EB736
 	.string "frail and sickly people.$"
 
 VerdanturfTown_Text_1EB7E2: @ 81EB7E2
-	.string "My POKéMON and I, we've been riding\n"
+	.string "My Pokémon and I, we've been riding\n"
 	.string "a hot winning streak.\p"
 	.string "So I decided to make my BATTLE TENT\n"
 	.string "debut in this town.$"
 
 VerdanturfTown_Text_1EB854: @ 81EB854
 	.string "Did you see the cave next to the\n"
-	.string "POKéMON MART?\p"
+	.string "Pokémon Mart?\p"
 	.string "There's a guy in there who's trying to\n"
 	.string "bust up boulders so he can bust out\l"
 	.string "through to the other side.\p"
@@ -100,26 +100,26 @@ VerdanturfTown_Text_1EB854: @ 81EB854
 	.string "It'll make it easy to visit RUSTBORO.$"
 
 VerdanturfTown_Text_1EB935: @ 81EB935
-	.string "That cave next to the POKéMON MART\n"
+	.string "That cave next to the Pokémon MART\n"
 	.string "is now a tunnel to the other side.\p"
 	.string "It's great--it's easy to go shop for\n"
 	.string "new DEVON products in RUSTBORO now.$"
 
 VerdanturfTown_Text_1EB9C4: @ 81EB9C4
-	.string "VERDANTURF TOWN\p"
+	.string "{PLACE}Verdanturf Town{END}\p"
 	.string "“The windswept highlands with the\n"
 	.string "sweet fragrance of grass.”$"
 
 VerdanturfTown_Text_1EBA11: @ 81EBA11
-	.string "WANDA'S HOUSE$"
+	.string "{PLACE}Wanda's House{END}$"
 
 VerdanturfTown_Text_1EBA1F: @ 81EBA1F
-	.string "BATTLE TENT VERDANTURF SITE\n"
+	.string "{PLACE}Battle Tent Verdanturf Site{END}\n"
 	.string "“Feast Your Eyes on Battles!”$"
 
 VerdanturfTown_Text_1EBA59: @ 81EBA59
-	.string "RUSTURF TUNNEL\n"
-	.string "“Linking RUSTBORO and VERDANTURF\p"
+	.string "{PLACE}Rusturf Tunnel{END}\n"
+	.string "“Linking Rustboro and Verdanturf\p"
 	.string "“The tunnel project has been\n"
 	.string "canceled.”$"
 

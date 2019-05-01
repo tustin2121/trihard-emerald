@@ -1,10 +1,10 @@
 Route116_MapScripts:: @ 81F2C0C
-	map_script MAP_SCRIPT_ON_TRANSITION, Route116_MapScript1_1F2C1C
+	map_script MAP_SCRIPT_ON_TRANSITION, Route116_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route116_MapScript1_1F2C4F
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route116_MapScript2_1F2C66
 	.byte 0
 
-Route116_MapScript1_1F2C1C: @ 81F2C1C
+Route116_OnTransition: @ 81F2C1C
 	call_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_1F2C47
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
 	call_if_eq Route116_EventScript_273D13
@@ -386,14 +386,14 @@ Route116_Text_1F3166: @ 81F3166
 	.string "What's going on?\p"
 	.string "I was digging the tunnel without any\n"
 	.string "tools when some goon ordered me out!\p"
-	.string "That tunnel's filled with POKéMON\n"
+	.string "That tunnel's filled with Pokémon\n"
 	.string "that react badly to loud noises.\l"
 	.string "They could cause an uproar.\p"
 	.string "That's why we stopped using heavy\n"
 	.string "equipment for tunneling…\p"
 	.string "I'm worried that the goon will do\n"
 	.string "something stupid and startle the\l"
-	.string "POKéMON into an uproar.$"
+	.string "Pokémon into an uproar.$"
 
 Route116_Text_1F32C1: @ 81F32C1
 	.string "Nnn… Roar!\p"
@@ -403,7 +403,7 @@ Route116_Text_1F32C1: @ 81F32C1
 Route116_Text_1F3317: @ 81F3317
 	.string "Oh! It's you!\p"
 	.string "You're that person who not only helped\n"
-	.string "me in PETALBURG WOODS, but also got\l"
+	.string "me in Petalburg Woods, but also got\l"
 	.string "back my stolen package and then even\l"
 	.string "graciously delivered it to SLATEPORT!\p"
 	.string "CAPT. STERN informed us that the\n"
@@ -421,7 +421,7 @@ Route116_Text_1F3317: @ 81F3317
 
 Route116_Text_1F3521: @ 81F3521
 	.string "Our new POKé BALL will be available\n"
-	.string "at the POKéMON MART in RUSTBORO.\p"
+	.string "at the Pokémon MART in RUSTBORO.\p"
 	.string "Please do try it out!\n"
 	.string "Thank you and bye-bye!$"
 
@@ -461,28 +461,28 @@ Route116_Text_1F375E: @ 81F375E
 	.string "They're not what I'm looking for…$"
 
 Route116_Text_1F379D: @ 81F379D
-	.string "ROUTE 116\n"
-	.string "{LEFT_ARROW} RUSTBORO CITY$"
+	.string "Route 116\n"
+	.string "{LEFT_ARROW} Rustboro City$"
 
 Route116_Text_1F37B7: @ 81F37B7
-	.string "RUSTURF TUNNEL\n"
-	.string "“Linking RUSTBORO and VERDANTURF\p"
+	.string "{PLACE}Rusturf Tunnel{END}\n"
+	.string "“Linking Rustboro and Verdanturf\p"
 	.string "“The tunnel project has been\n"
 	.string "canceled.”$"
 
 Route116_Text_1F380F: @ 81F380F
-	.string "TUNNELER'S REST HOUSE$"
+	.string "{PLACE}Tunneler's Rest House{END}$"
 
 Route116_Text_1F3825: @ 81F3825
-	.string "TRAINER TIPS\p"
-	.string "If you want to stop a POKéMON from\n"
+	.string "{TIPS} TRAINER TIPS {END}\p"
+	.string "If you want to stop a Pokémon from\n"
 	.string "evolving, press the B Button while it\l"
 	.string "is trying to evolve.\l"
-	.string "The startled POKéMON will stop.\p"
+	.string "The startled Pokémon will stop.\p"
 	.string "This is called an evolution cancel.$"
 
 Route116_Text_1F38D4: @ 81F38D4
-	.string "TRAINER TIPS\p"
+	.string "{TIPS} TRAINER TIPS {END}\p"
 	.string "Your BAG has several POCKETS.\p"
 	.string "Items you obtain are automatically\n"
 	.string "placed in the appropriate POCKETS.\p"

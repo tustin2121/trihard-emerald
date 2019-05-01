@@ -1,6 +1,6 @@
 LilycoveCity_PokemonTrainerFanClub_MapScripts:: @ 821C785
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LilycoveCity_PokemonTrainerFanClub_MapScript2_21C790
-	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_PokemonTrainerFanClub_MapScript1_21C80D
+	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_PokemonTrainerFanClub_OnTransition
 	.byte 0
 
 LilycoveCity_PokemonTrainerFanClub_MapScript2_21C790: @ 821C790
@@ -60,7 +60,7 @@ LilycoveCity_PokemonTrainerFanClub_Movement_21C807: @ 821C807
 	walk_in_place_fastest_down
 	step_end
 
-LilycoveCity_PokemonTrainerFanClub_MapScript1_21C80D: @ 821C80D
+LilycoveCity_PokemonTrainerFanClub_OnTransition: @ 821C80D
 	call LilycoveCity_PokemonTrainerFanClub_EventScript_21C8DA
 	compare VAR_LILYCOVE_FAN_CLUB_STATE, 1
 	goto_if_eq LilycoveCity_PokemonTrainerFanClub_EventScript_21C9F8
@@ -654,7 +654,7 @@ LilycoveCity_PokemonTrainerFanClub_Text_21D20C: @ 821D20C
 	.string "I've been hearing things about\n"
 	.string "a tough new TRAINER.\p"
 	.string "This TRAINER's supposed to be beating\n"
-	.string "GYM LEADERS, even.\p"
+	.string "Gym LeaderS, even.\p"
 	.string "Do you know anything about this\n"
 	.string "new TRAINER?$"
 
@@ -686,7 +686,7 @@ LilycoveCity_PokemonTrainerFanClub_Text_21D377: @ 821D377
 
 LilycoveCity_PokemonTrainerFanClub_Text_21D3EE: @ 821D3EE
 	.string "Whatever anyone says, my favorite\n"
-	.string "TRAINER is DEWFORD's GYM LEADER\l"
+	.string "TRAINER is DEWFORD's Gym Leader\l"
 	.string "BRAWLY!$"
 
 LilycoveCity_PokemonTrainerFanClub_Text_21D438: @ 821D438
@@ -720,7 +720,7 @@ LilycoveCity_PokemonTrainerFanClub_Text_21D5DC: @ 821D5DC
 
 LilycoveCity_PokemonTrainerFanClub_Text_21D69C: @ 821D69C
 	.string "Everyone here, we're all huge fans\n"
-	.string "of POKéMON battles.\p"
+	.string "of Pokémon battles.\p"
 	.string "We discuss who we consider to be\n"
 	.string "the strongest of all TRAINERS.\p"
 	.string "If you were to become famous,\n"
@@ -828,7 +828,7 @@ LilycoveCity_PokemonTrainerFanClub_Text_21DD36: @ 821DD36
 LilycoveCity_PokemonTrainerFanClub_Text_21DDCE: @ 821DDCE
 	.string "You are really popular…\p"
 	.string "You're strong, and you're caring to\n"
-	.string "POKéMON. No one can knock you.\p"
+	.string "Pokémon. No one can knock you.\p"
 	.string "But, you know, I believe in {STR_VAR_1}.\p"
 	.string "{STR_VAR_1} is definitely stronger!\n"
 	.string "I'm positive!$"

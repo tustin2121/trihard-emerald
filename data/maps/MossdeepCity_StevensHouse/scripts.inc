@@ -1,6 +1,6 @@
 MossdeepCity_StevensHouse_MapScripts:: @ 8222784
 	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_StevensHouse_MapScript1_222794
-	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_StevensHouse_MapScript1_2227A8
+	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_StevensHouse_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_StevensHouse_MapScript2_2227C0
 	.byte 0
 
@@ -12,7 +12,7 @@ MossdeepCity_StevensHouse_EventScript_22279E:: @ 822279E
 	setmetatile 6, 4, 753, 1
 	return
 
-MossdeepCity_StevensHouse_MapScript1_2227A8: @ 82227A8
+MossdeepCity_StevensHouse_OnTransition: @ 82227A8
 	compare VAR_STEVENS_HOUSE_STATE, 2
 	call_if_eq MossdeepCity_StevensHouse_EventScript_2227B4
 	end
@@ -95,7 +95,7 @@ MossdeepCity_StevensHouse_EventScript_222865:: @ 8222865
 
 MossdeepCity_StevensHouse_EventScript_222895:: @ 8222895
 	call MossdeepCity_StevensHouse_EventScript_2228EB
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq MossdeepCity_StevensHouse_EventScript_222901
 	call MossdeepCity_StevensHouse_EventScript_27378B
@@ -105,7 +105,7 @@ MossdeepCity_StevensHouse_EventScript_222895:: @ 8222895
 
 MossdeepCity_StevensHouse_EventScript_2228BD:: @ 82228BD
 	call MossdeepCity_StevensHouse_EventScript_2228EB
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq MossdeepCity_StevensHouse_EventScript_2228E0
 	call MossdeepCity_StevensHouse_EventScript_273797
@@ -153,7 +153,7 @@ MossdeepCity_StevensHouse_EventScript_222926:: @ 8222926
 	end
 
 MossdeepCity_StevensHouse_Text_222936: @ 8222936
-	.string "STEVEN: {PLAYER}{KUN}…\p"
+	.string "STEVEN: {PLAYER}…\p"
 	.string "As you can see, there's not much here,\n"
 	.string "but this is my home.\p"
 	.string "Thank you for all that you've done.\p"
@@ -181,7 +181,7 @@ MossdeepCity_StevensHouse_Text_222B11: @ 8222B11
 
 MossdeepCity_StevensHouse_Text_222B9E: @ 8222B9E
 	.string "{PLAYER} checked the POKé BALL.\p"
-	.string "It contained the POKéMON\n"
+	.string "It contained the Pokémon\n"
 	.string "BELDUM.\p"
 	.string "Take the POKé BALL?$"
 
@@ -189,7 +189,7 @@ MossdeepCity_StevensHouse_Text_222BED: @ 8222BED
 	.string "{PLAYER} obtained a BELDUM.$"
 
 MossdeepCity_StevensHouse_Text_222C03: @ 8222C03
-	.string "There is no space for another POKéMON.$"
+	.string "There is no space for another Pokémon.$"
 
 MossdeepCity_StevensHouse_Text_222C2A: @ 8222C2A
 	.string "{PLAYER} left the POKé BALL where\n"
@@ -198,7 +198,7 @@ MossdeepCity_StevensHouse_Text_222C2A: @ 8222C2A
 MossdeepCity_StevensHouse_Text_222C4E: @ 8222C4E
 	.string "It's a letter.\p"
 	.string "… … … … … …\p"
-	.string "To {PLAYER}{KUN}…\p"
+	.string "To {PLAYER}…\p"
 	.string "I've decided to do a little soul-\n"
 	.string "searching and train on the road.\p"
 	.string "I don't plan to return home for some\n"
@@ -207,7 +207,7 @@ MossdeepCity_StevensHouse_Text_222C4E: @ 8222C4E
 	.string "I want you to take the POKé BALL on\n"
 	.string "the desk.\p"
 	.string "Inside it is a BELDUM, my favorite\n"
-	.string "POKéMON.\p"
+	.string "Pokémon.\p"
 	.string "I'm counting on you.\p"
 	.string "May our paths cross someday.\p"
 	.string "STEVEN STONE$"

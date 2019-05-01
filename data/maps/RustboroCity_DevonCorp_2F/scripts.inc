@@ -1,8 +1,8 @@
 RustboroCity_DevonCorp_2F_MapScripts:: @ 8211857
-	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_2F_MapScript1_21185D
+	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_2F_OnTransition
 	.byte 0
 
-RustboroCity_DevonCorp_2F_MapScript1_21185D: @ 821185D
+RustboroCity_DevonCorp_2F_OnTransition: @ 821185D
 	compare VAR_FOSSIL_RESURRECTION_STATE, 1
 	call_if_eq RustboroCity_DevonCorp_2F_EventScript_211869
 	end
@@ -167,7 +167,7 @@ RustboroCity_DevonCorp_2F_EventScript_211A3E:: @ 8211A3E
 
 RustboroCity_DevonCorp_2F_EventScript_211A6E:: @ 8211A6E
 	call RustboroCity_DevonCorp_2F_EventScript_211AC4
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211AD7
 	call RustboroCity_DevonCorp_2F_EventScript_27378B
@@ -177,7 +177,7 @@ RustboroCity_DevonCorp_2F_EventScript_211A6E:: @ 8211A6E
 
 RustboroCity_DevonCorp_2F_EventScript_211A96:: @ 8211A96
 	call RustboroCity_DevonCorp_2F_EventScript_211AC4
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211AB9
 	call RustboroCity_DevonCorp_2F_EventScript_273797
@@ -216,7 +216,7 @@ RustboroCity_DevonCorp_2F_EventScript_211AE1:: @ 8211AE1
 
 RustboroCity_DevonCorp_2F_EventScript_211B11:: @ 8211B11
 	call RustboroCity_DevonCorp_2F_EventScript_211B67
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211B7A
 	call RustboroCity_DevonCorp_2F_EventScript_27378B
@@ -226,7 +226,7 @@ RustboroCity_DevonCorp_2F_EventScript_211B11:: @ 8211B11
 
 RustboroCity_DevonCorp_2F_EventScript_211B39:: @ 8211B39
 	call RustboroCity_DevonCorp_2F_EventScript_211B67
-	msgbox gUnknown_08273374, MSGBOX_YESNO
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211B5C
 	call RustboroCity_DevonCorp_2F_EventScript_273797
@@ -294,7 +294,7 @@ RustboroCity_DevonCorp_2F_EventScript_211BF1:: @ 8211BF1
 
 RustboroCity_DevonCorp_2F_Text_211BFB: @ 8211BFB
 	.string "We're developing a device for talking\n"
-	.string "with POKéMON.\p"
+	.string "with Pokémon.\p"
 	.string "But we haven't had much success…$"
 
 RustboroCity_DevonCorp_2F_Text_211C50: @ 8211C50
@@ -306,44 +306,44 @@ RustboroCity_DevonCorp_2F_Text_211C99: @ 8211C99
 	.string "We finally made new kinds of\n"
 	.string "POKé BALLS!\p"
 	.string "The REPEAT BALL makes it easier to\n"
-	.string "catch POKéMON you've caught before.\p"
+	.string "catch Pokémon you've caught before.\p"
 	.string "The TIMER BALL gets better at catching\n"
-	.string "POKéMON the longer a battle runs.\p"
+	.string "Pokémon the longer a battle runs.\p"
 	.string "Both are proudly developed by\n"
 	.string "the DEVON CORPORATION.\p"
 	.string "Please give them a try!$"
 
 RustboroCity_DevonCorp_2F_Text_211D9F: @ 8211D9F
-	.string "I made the POKéNAV!\p"
+	.string "I made the PokéNav!\p"
 	.string "As an engineer, I feel blessed to have\n"
 	.string "made something so great!$"
 
 RustboroCity_DevonCorp_2F_Text_211DF3: @ 8211DF3
 	.string "Oh, wow!\n"
-	.string "That's a POKéNAV!\p"
+	.string "That's a PokéNav!\p"
 	.string "It came about as a result of our\n"
 	.string "PRESIDENT's desire to learn about\l"
-	.string "the feelings of POKéMON.\p"
+	.string "the feelings of Pokémon.\p"
 	.string "Would you like me to describe its\n"
 	.string "features in detail?\p"
 	.string "No, no. I think you'll find out just by\n"
-	.string "trying the POKéNAV out.$"
+	.string "trying the PokéNav out.$"
 
 RustboroCity_DevonCorp_2F_Text_211EE0: @ 8211EE0
 	.string "I'm trying to develop a device that\n"
 	.string "visually reproduces the dreams of\l"
-	.string "POKéMON…\p"
+	.string "Pokémon…\p"
 	.string "But it's not going well.$"
 
 RustboroCity_DevonCorp_2F_Text_211F48: @ 8211F48
 	.string "I've been trying to develop a device\n"
-	.string "that resurrects POKéMON from fossils…\p"
+	.string "that resurrects Pokémon from fossils…\p"
 	.string "And, it's working!$"
 
 RustboroCity_DevonCorp_2F_Text_211FA6: @ 8211FA6
 	.string "Wait! That thing you have there…\n"
-	.string "Is that a POKéMON fossil?\p"
-	.string "Would you like to bring that POKéMON\n"
+	.string "Is that a Pokémon fossil?\p"
+	.string "Would you like to bring that Pokémon\n"
 	.string "back to life?\p"
 	.string "I can with my newly developed\n"
 	.string "FOSSIL REGENERATOR.$"
@@ -357,7 +357,7 @@ RustboroCity_DevonCorp_2F_Text_212092: @ 8212092
 	.string "Oh, now that's a surprise!\n"
 	.string "You have not one, but two, fossils?\p"
 	.string "Unfortunately, my machine can only\n"
-	.string "regenerate one POKéMON at a time.\p"
+	.string "regenerate one Pokémon at a time.\p"
 	.string "Would you like to pick one of your\n"
 	.string "fossils for regeneration?$"
 
@@ -377,9 +377,9 @@ RustboroCity_DevonCorp_2F_Text_2121A2: @ 82121A2
 
 RustboroCity_DevonCorp_2F_Text_212251: @ 8212251
 	.string "Thanks for waiting!\p"
-	.string "Your fossilized POKéMON has been\n"
+	.string "Your fossilized Pokémon has been\n"
 	.string "brought back to life!\p"
-	.string "The fossil was an ancient POKéMON.\n"
+	.string "The fossil was an ancient Pokémon.\n"
 	.string "{STR_VAR_2}, it was!$"
 
 RustboroCity_DevonCorp_2F_Text_2122CB: @ 82122CB
@@ -387,12 +387,12 @@ RustboroCity_DevonCorp_2F_Text_2122CB: @ 82122CB
 	.string "the DEVON RESEARCHER.$"
 
 RustboroCity_DevonCorp_2F_Text_2122F5: @ 82122F5
-	.string "Uh-oh, you've got too many POKéMON.\n"
+	.string "Uh-oh, you've got too many Pokémon.\n"
 	.string "You have no room for this one.$"
 
 RustboroCity_DevonCorp_2F_Text_212338: @ 8212338
 	.string "I'm trying to develop a new feature\n"
-	.string "for the POKéNAV…\p"
+	.string "for the PokéNav…\p"
 	.string "But it's not going well.$"
 
 RustboroCity_DevonCorp_2F_Text_212386: @ 8212386

@@ -67,13 +67,13 @@ PetalburgCity_WallysHouse_EventScript_2042D5:: @ 82042D5
 
 PetalburgCity_WallysHouse_Text_2042DF: @ 82042DF
 	.string "You're…\n"
-	.string "Ah, you must be {PLAYER}{KUN}, right?\p"
+	.string "Ah, you must be {PLAYER}, right?\p"
 	.string "Thank you for playing with WALLY a\n"
 	.string "little while ago.\p"
 	.string "He's been frail and sickly ever\n"
 	.string "since he was a baby.\p"
 	.string "We've sent him to stay with my relatives\n"
-	.string "in VERDANTURF TOWN for a while.\p"
+	.string "in Verdanturf Town for a while.\p"
 	.string "The air is a lot cleaner there\n"
 	.string "than it is here.\p"
 	.string "What's that? Where's WALLY?\n"
@@ -85,13 +85,13 @@ PetalburgCity_WallysHouse_Text_20444D: @ 820444D
 	.string "I wonder how our WALLY is doing?$"
 
 PetalburgCity_WallysHouse_Text_20446E: @ 820446E
-	.string "{PLAYER}{KUN}! Please excuse us for\n"
+	.string "{PLAYER}! Please excuse us for\n"
 	.string "dragging you here this way.\p"
 	.string "But our WALLY's become very healthy\n"
-	.string "since he went to VERDANTURF TOWN.\p"
+	.string "since he went to Verdanturf Town.\p"
 	.string "We owe it all to you!\p"
 	.string "When WALLY left town, you helped\n"
-	.string "him catch a POKéMON, right?\p"
+	.string "him catch a Pokémon, right?\p"
 	.string "I think that made WALLY really\n"
 	.string "happy.\p"
 	.string "Actually, not just WALLY.\n"
@@ -102,7 +102,7 @@ PetalburgCity_WallysHouse_Text_20446E: @ 820446E
 	.string "I'd really like you to have this.$"
 
 PetalburgCity_WallysHouse_Text_20461A: @ 820461A
-	.string "If your POKéMON can SURF, you'll be\n"
+	.string "If your Pokémon can SURF, you'll be\n"
 	.string "able to go to all sorts of places.$"
 
 PetalburgCity_WallysHouse_Text_204661: @ 8204661
@@ -111,22 +111,22 @@ PetalburgCity_WallysHouse_Text_204661: @ 8204661
 
 PetalburgCity_WallysHouse_Text_204698: @ 8204698
 	.string "Oh? You met WALLY in\n"
-	.string "EVER GRANDE CITY?\p"
-	.string "Oh, {PLAYER}{KUN}, don't be silly.\p"
+	.string "Ever Grande City?\p"
+	.string "Oh, {PLAYER}, don't be silly.\p"
 	.string "He may have gotten healthy, but he\n"
 	.string "can't go somewhere far away like\l"
 	.string "that all by himself.$"
 
 PetalburgCity_WallysHouse_Text_204732: @ 8204732
 	.string "WALLY was really happy when he told\n"
-	.string "us that he caught a POKéMON.\p"
+	.string "us that he caught a Pokémon.\p"
 	.string "It's been ages since I've seen him\n"
 	.string "smile like that.$"
 
 PetalburgCity_WallysHouse_Text_2047A7: @ 82047A7
 	.string "I want you to keep this a secret\n"
 	.string "from my husband…\p"
-	.string "But our WALLY left VERDANTURF TOWN\n"
+	.string "But our WALLY left Verdanturf Town\n"
 	.string "without telling anyone.\p"
 	.string "You know, WALLY is frail, but\n"
 	.string "he's surprisingly strong-willed.\p"

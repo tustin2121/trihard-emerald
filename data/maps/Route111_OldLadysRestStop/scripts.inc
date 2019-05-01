@@ -1,8 +1,8 @@
 Route111_OldLadysRestStop_MapScripts:: @ 822A916
-	map_script MAP_SCRIPT_ON_TRANSITION, Route111_OldLadysRestStop_MapScript1_22A91C
+	map_script MAP_SCRIPT_ON_TRANSITION, Route111_OldLadysRestStop_OnTransition
 	.byte 0
 
-Route111_OldLadysRestStop_MapScript1_22A91C: @ 822A91C
+Route111_OldLadysRestStop_OnTransition: @ 822A91C
 	setflag FLAG_LANDMARK_OLD_LADY_REST_SHOP
 	end
 
@@ -34,7 +34,7 @@ Route111_OldLadysRestStop_EventScript_22A96E:: @ 822A96E
 
 Route111_OldLadysRestStop_Text_22A978: @ 822A978
 	.string "Oh, dear, dear.\n"
-	.string "Aren't your POKéMON exhausted?\p"
+	.string "Aren't your Pokémon exhausted?\p"
 	.string "If you'd like, rest up here.\n"
 	.string "That's a fine idea! You should do that.$"
 
@@ -44,7 +44,7 @@ Route111_OldLadysRestStop_Text_22A9EC: @ 822A9EC
 
 Route111_OldLadysRestStop_Text_22AA16: @ 822AA16
 	.string "Oh, dear, dear.\n"
-	.string "Are your POKéMON still tired?\p"
+	.string "Are your Pokémon still tired?\p"
 	.string "You should take another rest here.\n"
 	.string "That's a fine idea. You should do that.$"
 

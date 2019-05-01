@@ -1,8 +1,8 @@
 RustboroCity_DevonCorp_1F_MapScripts:: @ 8211245
-	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_1F_MapScript1_21124B
+	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_1F_OnTransition
 	.byte 0
 
-RustboroCity_DevonCorp_1F_MapScript1_21124B: @ 821124B
+RustboroCity_DevonCorp_1F_OnTransition: @ 821124B
 	call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_211255
 	end
 
@@ -139,6 +139,6 @@ RustboroCity_DevonCorp_1F_Text_211722: @ 8211722
 	.string "DEVON now markets sundries and\l"
 	.string "pharmaceuticals for better lifestyles.\p"
 	.string "“Recently, DEVON has begun marketing\n"
-	.string "tools for POKéMON TRAINERS, including\l"
-	.string "POKé BALLS and POKéNAV systems.”$"
+	.string "tools for Pokémon TRAINERS, including\l"
+	.string "POKé BALLS and PokéNav systems.”$"
 

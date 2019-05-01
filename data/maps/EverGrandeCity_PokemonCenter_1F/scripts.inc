@@ -1,9 +1,9 @@
 EverGrandeCity_PokemonCenter_1F_MapScripts:: @ 8229A34
-	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_PokemonCenter_1F_MapScript1_229A3F
+	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, EverGrandeCity_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
-EverGrandeCity_PokemonCenter_1F_MapScript1_229A3F: @ 8229A3F
+EverGrandeCity_PokemonCenter_1F_OnTransition: @ 8229A3F
 	setrespawn HEAL_LOCATION_EVER_GRANDE_CITY_1
 	call_if_unset FLAG_MET_SCOTT_IN_EVERGRANDE, EverGrandeCity_PokemonCenter_1F_EventScript_229A4C
 	end
@@ -77,26 +77,26 @@ EverGrandeCity_PokemonCenter_1F_Movement_229AD3: @ 8229AD3
 	step_end
 
 EverGrandeCity_PokemonCenter_1F_Text_229ADA: @ 8229ADA
-	.string "The POKéMON LEAGUE is only a short\n"
-	.string "distance after the VICTORY ROAD.\p"
+	.string "The Pokémon League is only a short\n"
+	.string "distance after the Victory Road.\p"
 	.string "If you've come this far, what choice\n"
 	.string "do you have but to keep going?$"
 
 EverGrandeCity_PokemonCenter_1F_Text_229B62: @ 8229B62
-	.string "The long and harrowing VICTORY ROAD…\p"
+	.string "The long and harrowing Victory Road…\p"
 	.string "It's like reliving the path one has\n"
 	.string "traveled in life…\p"
-	.string "Believe in your POKéMON and give it\n"
+	.string "Believe in your Pokémon and give it\n"
 	.string "your very best!$"
 
 EverGrandeCity_PokemonCenter_1F_Text_229BF1: @ 8229BF1
-	.string "SCOTT: {PLAYER}{KUN}, you've clawed your\n"
-	.string "way up to face the POKéMON LEAGUE!\p"
+	.string "SCOTT: {PLAYER}, you've clawed your\n"
+	.string "way up to face the Pokémon League!\p"
 	.string "I'm happy for you!\n"
 	.string "You made my cheering worthwhile!\p"
-	.string "{PLAYER}{KUN}, if you were to become\n"
-	.string "the POKéMON LEAGUE CHAMPION…\p"
+	.string "{PLAYER}, if you were to become\n"
+	.string "the Pokémon League CHAMPION…\p"
 	.string "I'll get in touch with you then.\p"
-	.string "Okay, {PLAYER}{KUN}.\n"
+	.string "Okay, {PLAYER}.\n"
 	.string "Go for greatness!$"
 

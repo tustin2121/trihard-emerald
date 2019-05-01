@@ -1,9 +1,9 @@
 PacifidlogTown_PokemonCenter_1F_MapScripts:: @ 82034A7
-	map_script MAP_SCRIPT_ON_TRANSITION, PacifidlogTown_PokemonCenter_1F_MapScript1_2034B2
+	map_script MAP_SCRIPT_ON_TRANSITION, PacifidlogTown_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, PacifidlogTown_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
-PacifidlogTown_PokemonCenter_1F_MapScript1_2034B2: @ 82034B2
+PacifidlogTown_PokemonCenter_1F_OnTransition: @ 82034B2
 	setrespawn HEAL_LOCATION_PACIFIDLOG_TOWN
 	end
 
@@ -32,7 +32,7 @@ PacifidlogTown_PokemonCenter_1F_Text_2034DF: @ 82034DF
 	.string "Mine's copper!$"
 
 PacifidlogTown_PokemonCenter_1F_Text_20350F: @ 820350F
-	.string "PACIFIDLOG TOWN floats on top of\n"
+	.string "Pacifidlog Town floats on top of\n"
 	.string "a colony of CORSOLA.\p"
 	.string "If I told you that, would you believe\n"
 	.string "me?$"

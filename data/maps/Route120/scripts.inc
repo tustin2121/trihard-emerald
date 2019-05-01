@@ -1,6 +1,6 @@
 Route120_MapScripts:: @ 81F53EC
 	map_script MAP_SCRIPT_ON_RESUME, Route120_MapScript1_1F53FC
-	map_script MAP_SCRIPT_ON_TRANSITION, Route120_MapScript1_1F54CD
+	map_script MAP_SCRIPT_ON_TRANSITION, Route120_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route120_MapScript1_1F5474
 	.byte 0
 
@@ -60,7 +60,7 @@ Route120_EventScript_1F54C8:: @ 81F54C8
 	setobjectmovementtype 36, MOVEMENT_TYPE_FACE_RIGHT
 	return
 
-Route120_MapScript1_1F54CD: @ 81F54CD
+Route120_OnTransition: @ 81F54CD
 	call Route120_EventScript_28CCC7
 	call Route120_EventScript_1F54D8
 	end
@@ -245,10 +245,10 @@ Route120_EventScript_1F572C:: @ 81F572C
 	waitmovement 0
 	delay 50
 	setfieldeffectargument 0, 1
-	dofieldeffect 30
+	dofieldeffect FLDEFF_NPCFLY_OUT
 	delay 15
 	removeobject 31
-	waitfieldeffect 30
+	waitfieldeffect FLDEFF_NPCFLY_OUT
 	setmetatile 13, 15, 663, 0
 	setmetatile 12, 16, 671, 0
 	setmetatile 12, 17, 161, 0
@@ -384,7 +384,7 @@ Route120_EventScript_1F5981:: @ 81F5981
 	end
 
 Route120_Text_1F5998: @ 81F5998
-	.string "STEVEN: Hm? {PLAYER}{KUN}, hi.\n"
+	.string "STEVEN: Hm? {PLAYER}, hi.\n"
 	.string "It's been a while.\p"
 	.string "There's something here that you can't\n"
 	.string "see, right?\p"
@@ -393,7 +393,7 @@ Route120_Text_1F5998: @ 81F5998
 	.string "No, no. Rather than describing it,\n"
 	.string "I should just show you.\l"
 	.string "That would be more fun.\p"
-	.string "{PLAYER}{KUN}, are your POKéMON ready for\n"
+	.string "{PLAYER}, are your Pokémon ready for\n"
 	.string "battle?$"
 
 Route120_Text_1F5AAC: @ 81F5AAC
@@ -401,32 +401,32 @@ Route120_Text_1F5AAC: @ 81F5AAC
 	.string "I'll wait here, so you can get ready.$"
 
 Route120_Text_1F5ADE: @ 81F5ADE
-	.string "STEVEN: {PLAYER}{KUN}, are your POKéMON\n"
+	.string "STEVEN: {PLAYER}, are your Pokémon\n"
 	.string "ready for battle?$"
 
 Route120_Text_1F5B0F: @ 81F5B0F
-	.string "STEVEN: {PLAYER}{KUN}, show me your true\n"
+	.string "STEVEN: {PLAYER}, show me your true\n"
 	.string "power as a TRAINER!$"
 
 Route120_Text_1F5B43: @ 81F5B43
 	.string "STEVEN used the DEVON SCOPE.\p"
-	.string "An invisible POKéMON became completely\n"
+	.string "An invisible Pokémon became completely\n"
 	.string "visible!\p"
-	.string "The startled POKéMON attacked!$"
+	.string "The startled Pokémon attacked!$"
 
 Route120_Text_1F5BAF: @ 81F5BAF
 	.string "STEVEN: I see…\n"
 	.string "Your battle style is intriguing.\p"
-	.string "Your POKéMON have obviously grown\n"
+	.string "Your Pokémon have obviously grown\n"
 	.string "since I first met you in DEWFORD.\p"
 	.string "I'd like you to have this\n"
 	.string "DEVON SCOPE.\p"
 	.string "Who knows, there may be other\n"
-	.string "concealed POKéMON.$"
+	.string "concealed Pokémon.$"
 
 Route120_Text_1F5C7B: @ 81F5C7B
-	.string "STEVEN: {PLAYER}{KUN}.\p"
-	.string "I enjoy seeing POKéMON and TRAINERS\n"
+	.string "STEVEN: {PLAYER}.\p"
+	.string "I enjoy seeing Pokémon and TRAINERS\n"
 	.string "who strive together.\p"
 	.string "I think you're doing great.\p"
 	.string "Well, let's meet again somewhere.$"
@@ -441,14 +441,14 @@ Route119_Text_1F5D23: @ 81F5D23
 
 Route119_Text_1F5D63: @ 81F5D63
 	.string "{PLAYER} used the DEVON SCOPE.\p"
-	.string "An invisible POKéMON became completely\n"
+	.string "An invisible Pokémon became completely\n"
 	.string "visible!\p"
-	.string "The startled POKéMON attacked!$"
+	.string "The startled Pokémon attacked!$"
 
 Route120_Text_1F5DCB: @ 81F5DCB
-	.string "ROUTE 120\n"
-	.string "{LEFT_ARROW} FORTREE CITY$"
+	.string "Route 120\n"
+	.string "{LEFT_ARROW} Fortree City$"
 
 Route120_Text_1F5DE4: @ 81F5DE4
-	.string "{RIGHT_ARROW} ROUTE 121\n"
-	.string "{LEFT_ARROW} ROUTE 120$"
+	.string "{RIGHT_ARROW} Route 121\n"
+	.string "{LEFT_ARROW} Route 120$"

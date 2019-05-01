@@ -30,3 +30,5 @@ build/
 *.ddump
 .vscode/ipch/
 porymap.*
+porymap.project.cfg
+.vscode/

@@ -239,7 +239,7 @@ SlateportCity_OceanicMuseum_1F_Movement_20AFCE: @ 820AFCE
 	step_end
 
 SlateportCity_OceanicMuseum_1F_Text_20AFD5: @ 820AFD5
-	.string "Welcome to the OCEANIC MUSEUM.\p"
+	.string "Welcome to the {PLACE}Oceanic Museum{END}.\p"
 	.string "The entrance fee is ¥50.\n"
 	.string "Would you like to enter?$"
 
@@ -257,13 +257,13 @@ SlateportCity_OceanicMuseum_1F_Text_20B075: @ 820B075
 	.string "You'd better go catch up to them!$"
 
 SlateportCity_OceanicMuseum_1F_Text_20B0E8: @ 820B0E8
-	.string "We, TEAM AQUA, exist for the good\n"
+	.string "We, Team Aqua, exist for the good\n"
 	.string "of all!$"
 
 SlateportCity_OceanicMuseum_1F_Text_20B112: @ 820B112
 	.string "We were told to assemble here,\n"
 	.string "so we did, but…\p"
-	.string "Our BOSS, the linchpin, isn't here.$"
+	.string "Our boss, the linchpin, isn't here.$"
 
 SlateportCity_OceanicMuseum_1F_Text_20B165: @ 820B165
 	.string "If I ripped off the stuff here,\n"
@@ -274,8 +274,8 @@ SlateportCity_OceanicMuseum_1F_Text_20B19C: @ 820B19C
 	.string "nefarious deeds…$"
 
 SlateportCity_OceanicMuseum_1F_Text_20B1D4: @ 820B1D4
-	.string "If our goons didn't bungle things\n"
-	.string "in RUSTBORO, we wouldn't be here!$"
+	.string "If our guys didn't bungle things\n"
+	.string "in Rustboro, we wouldn't be here!$"
 
 SlateportCity_OceanicMuseum_1F_Text_20B218: @ 820B218
 	.string "I didn't have ¥50, so it took a long\n"
@@ -288,26 +288,26 @@ SlateportCity_OceanicMuseum_1F_Text_20B25F: @ 820B25F
 SlateportCity_OceanicMuseum_1F_Text_20B2A2: @ 820B2A2
 	.string "I get all giddy and gooey when\n"
 	.string "I see the sea!\p"
-	.string "For me, CAPT. STERN is the number\n"
+	.string "For me, Capt. Stern is the number\n"
 	.string "one role model!$"
 
 SlateportCity_OceanicMuseum_1F_Text_20B302: @ 820B302
 	.string "The sea is vast without end, and\n"
 	.string "infinitely deep…\p"
-	.string "There must be many POKéMON that\n"
+	.string "There must be many Pokémon that\n"
 	.string "we don't know about.$"
 
 SlateportCity_OceanicMuseum_1F_Text_20B369: @ 820B369
-	.string "I want a sea POKéMON.\p"
+	.string "I want a sea Pokémon.\p"
 	.string "I think it would feel cool and nice\n"
 	.string "to hug.$"
 
 SlateportCity_OceanicMuseum_1F_Text_20B3AB: @ 820B3AB
 	.string "Aiyeeeh!\n"
 	.string "What are you doing here?\p"
-	.string "Me? I'm the TEAM AQUA member\n"
+	.string "Me? I'm the Team Aqua member\n"
 	.string "you thumped before, remember?\l"
-	.string "Back in RUSTURF TUNNEL?\p"
+	.string "Back in Rusturf Tunnel?\p"
 	.string "Here, take this!\n"
 	.string "You have to forgive me!$"
 

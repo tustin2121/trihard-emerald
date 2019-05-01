@@ -1,12 +1,12 @@
 TrainerHill_Entrance_MapScripts:: @ 82680AC
 	map_script MAP_SCRIPT_ON_RESUME, TrainerHill_Entrance_MapScript1_2680D0
 	map_script MAP_SCRIPT_ON_RETURN_TO_FIELD, TrainerHill_Entrance_MapScript1_26811B
-	map_script MAP_SCRIPT_ON_TRANSITION, TrainerHill_Entrance_MapScript1_2680C6
+	map_script MAP_SCRIPT_ON_TRANSITION, TrainerHill_Entrance_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, TrainerHill_Entrance_MapScript1_268128
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, TrainerHill_Entrance_MapScript2_26813E
 	.byte 0
 
-TrainerHill_Entrance_MapScript1_2680C6: @ 82680C6
+TrainerHill_Entrance_OnTransition: @ 82680C6
 	setflag FLAG_LANDMARK_TRAINER_HILL
 	getplayerxy VAR_TEMP_D, VAR_RESULT
 	end
@@ -387,8 +387,8 @@ TrainerHill_Entrance_Text_2687C3: @ 82687C3
 
 TrainerHill_Entrance_Text_26890D: @ 826890D
 	.string "Oh, I'm sorry, but you appear to have\n"
-	.string "only one POKéMON with you.\p"
-	.string "You will need at least two POKéMON\n"
+	.string "only one Pokémon with you.\p"
+	.string "You will need at least two Pokémon\n"
 	.string "to enter this event.$"
 
 TrainerHill_Roof_Text_268986: @ 8268986
@@ -445,7 +445,7 @@ TrainerHill_Entrance_Text_268D47: @ 8268D47
 
 TrainerHill_Entrance_Text_268D5A: @ 8268D5A
 	.string "Who knows what sort of TRAINERS\n"
-	.string "and POKéMON combos are ahead?\p"
+	.string "and Pokémon combos are ahead?\p"
 	.string "All I know is that I'll knock aside\n"
 	.string "anyone that stands in my way!$"
 

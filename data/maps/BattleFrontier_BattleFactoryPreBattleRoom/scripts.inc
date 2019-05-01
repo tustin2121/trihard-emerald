@@ -520,15 +520,15 @@ BattleFrontier_BattleFactoryPreBattleRoom_Movement_25A1C3: @ 825A1C3
 
 BattleFrontier_BattleFactoryPreBattleRoom_Text_25A1C8: @ 825A1C8
 SlateportCity_BattleTentCorridor_Text_25A1C8: @ 825A1C8
-	.string "First, we will hold your POKéMON for\n"
+	.string "First, we will hold your Pokémon for\n"
 	.string "safekeeping.\p"
 	.string "You may then choose from our\n"
-	.string "selection of POKéMON.$"
+	.string "selection of Pokémon.$"
 
 BattleFrontier_BattleFactoryPreBattleRoom_Text_25A22D: @ 825A22D
 SlateportCity_BattleTentCorridor_Text_25A22D: @ 825A22D
 	.string "Thank you for competing!\n"
-	.string "Let us restore your POKéMON!$"
+	.string "Let us restore your Pokémon!$"
 
 BattleFrontier_BattleFactoryPreBattleRoom_Text_25A263: @ 825A263
 SlateportCity_BattleTentCorridor_Text_25A263: @ 825A263
@@ -681,12 +681,12 @@ Text_StyleUnrestrained: @ 825AAE6
 BattleFrontier_BattleFactoryPreBattleRoom_Text_25AB2E: @ 825AB2E
 SlateportCity_BattleTentCorridor_Text_25AB2E: @ 825AB2E
 	.string "Before starting the battle, would you\n"
-	.string "like to swap a POKéMON?$"
+	.string "like to swap a Pokémon?$"
 
 BattleFrontier_BattleFactoryPreBattleRoom_Text_25AB6C: @ 825AB6C
 SlateportCity_BattleTentCorridor_Text_25AB6C: @ 825AB6C
 	.string "Thank you!\n"
-	.string "Your POKéMON swap is complete.$"
+	.string "Your Pokémon swap is complete.$"
 
 BattleFrontier_BattleFactoryPreBattleRoom_Text_25AB96: @ 825AB96
 SlateportCity_BattleTentCorridor_Text_25AB96: @ 825AB96

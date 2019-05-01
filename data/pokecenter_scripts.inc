@@ -2,6 +2,7 @@
 PokemonCenter_1F_NurseHealScript:: @ 827191E
 	lock
 	faceplayer
+	@TODO special ScrSpecial_CanAnyPartyMonsBeHealed
 	setvar VAR_0x8004, 0
 	specialvar VAR_RESULT, CountPlayerTrainerStars
 	compare VAR_RESULT, 4
@@ -139,18 +140,18 @@ PokemonCenter_1F_Movement_NurseBow: @ 8271AD0
 
 gText_NurseHealPrompt:: @ 82726EB
 	.string "Hello, and welcome to\n"
-	.string "the POKéMON CENTER.\p"
-	.string "We restore your tired POKéMON\n"
+	.string "the Pokémon CENTER.\p"
+	.string "We restore your tired Pokémon\n"
 	.string "to full health.\p"
-	.string "Would you like to rest your POKéMON?$"
+	.string "Would you like to rest your Pokémon?$"
 
 gText_NurseHealTakePokemon:: @ 8272768
-	.string "Okay, I'll take your POKéMON\n"
+	.string "Okay, I'll take your Pokémon\n"
 	.string "for a few seconds.$"
 
 gText_NurseHealThankYou:: @ 8272798
 	.string "Thank you for waiting.\p"
-	.string "We've restored your POKéMON\n"
+	.string "We've restored your Pokémon\n"
 	.string "to full health.$"
 
 gText_NurseHealGoodbye:: @ 82727DB
@@ -158,8 +159,8 @@ gText_NurseHealGoodbye:: @ 82727DB
 
 gText_NurseHealGoldCardCutoff:: @ 82727F5
 	.string "Hello, and welcome to\n"
-	.string "the POKéMON CENTER.\p"
-	.string "We restore your tired POKéMON\n"
+	.string "the Pokémon CENTER.\p"
+	.string "We restore your tired Pokémon\n"
 	.string "to full health.\p"
 	.string "Would you like to…$"
 
@@ -173,14 +174,14 @@ gText_NurseHealGoldCardMention:: @ 8272860
 	.string "you're the first TRAINER I've ever\l"
 	.string "seen with a GOLD CARD!\p"
 	.string "Okay, {PLAYER}, please allow me\n"
-	.string "the honor of resting your POKéMON!$"
+	.string "the honor of resting your Pokémon!$"
 
 gText_NurseHealGoldCardWelcome:: @ 8272982
 	.string "I'm delighted to see you, {PLAYER}!\n"
 	.string "You want the usual, am I right?$"
 
 gText_NurseHealGoldCardTakePokemon:: @ 82729C0
-	.string "Okay, I'll take your POKéMON\n"
+	.string "Okay, I'll take your Pokémon\n"
 	.string "for a few seconds.$"
 
 gText_NurseHealGoldCardThankYou:: @ 82729F0
@@ -190,10 +191,10 @@ gText_NurseHealGoldCardGoodbye:: @ 8272A07
 	.string "We hope to see you again!$"
 
 gText_NurseExplainPokerus:: @ 8272F07
-	.string "Your POKéMON may be infected with\n"
-	.string "POKéRUS.\p"
-	.string "Little is known about the POKéRUS\n"
+	.string "Your Pokémon may be infected with\n"
+	.string "Pokérus.\p"
+	.string "Little is known about the Pokérus\n"
 	.string "except that they are microscopic life-\l"
-	.string "forms that attach to POKéMON.\p"
-	.string "While infected, POKéMON are said to\n"
+	.string "forms that attach to Pokémon.\p"
+	.string "While infected, Pokémon are said to\n"
 	.string "grow exceptionally well.$"

@@ -121,7 +121,7 @@ BattleFrontier_OutsideEast_EventScript_242CFC:: @ 8242CFC
 	playse 269
 	applymovement 14, BattleFrontier_OutsideEast_Movement_242D69
 	waitmovement 0
-	msgbox gUnknown_082731BD, MSGBOX_DEFAULT
+	msgbox gText_Sudowoodo_Attacked, MSGBOX_DEFAULT
 	closemessage
 	waitse
 	playmoncry SPECIES_SUDOWOODO, 2
@@ -242,7 +242,7 @@ BattleFrontier_OutsideEast_Text_242E11: @ 8242E11
 
 BattleFrontier_OutsideEast_Text_242E58: @ 8242E58
 	.string "This is the BATTLE PALACE!\n"
-	.string "Keep your eyes on POKéMON battles!$"
+	.string "Keep your eyes on Pokémon battles!$"
 
 BattleFrontier_OutsideEast_Text_242E96: @ 8242E96
 	.string "This is the BATTLE ARENA!\n"
@@ -253,7 +253,7 @@ BattleFrontier_OutsideEast_Text_242ECF: @ 8242ECF
 	.string "Advance through the Battle Quest!$"
 
 BattleFrontier_OutsideEast_Text_242F0D: @ 8242F0D
-	.string "BATTLE FRONTIER RANKING HALL\n"
+	.string "Battle Frontier RANKING HALL\n"
 	.string "Set your sights on new records!$"
 
 BattleFrontier_OutsideEast_Text_242F4A: @ 8242F4A
@@ -268,7 +268,7 @@ BattleFrontier_OutsideEast_Text_242F8C: @ 8242F8C
 
 BattleFrontier_OutsideEast_Text_242FDC: @ 8242FDC
 	.string "My grand ambition is to conquer both\n"
-	.string "the BATTLE FRONTIER and the POKéMON\l"
+	.string "the Battle Frontier and the Pokémon\l"
 	.string "LEAGUE.\p"
 	.string "And if my dream comes true…\p"
 	.string "I… I'm going to ask MIMI next door\n"
@@ -321,7 +321,7 @@ BattleFrontier_OutsideEast_Text_243363: @ 8243363
 
 BattleFrontier_OutsideEast_Text_243425: @ 8243425
 	.string "I may not look that impressive now,\n"
-	.string "but I once beat a GYM LEADER.\p"
+	.string "but I once beat a Gym Leader.\p"
 	.string "Who knows, maybe I should give it\n"
 	.string "another shot at glory.$"
 
@@ -333,7 +333,7 @@ BattleFrontier_OutsideEast_Text_2434A0: @ 82434A0
 
 BattleFrontier_OutsideEast_Text_243504: @ 8243504
 	.string "I'm better than my daddy\n"
-	.string "at POKéMON.$"
+	.string "at Pokémon.$"
 
 BattleFrontier_OutsideEast_Text_243529: @ 8243529
 	.string "Go on, my baby sweetie!\n"
@@ -353,7 +353,7 @@ BattleFrontier_OutsideEast_Text_243598: @ 8243598
 BattleFrontier_OutsideEast_Text_243668: @ 8243668
 	.string "I sometimes see this really important-\n"
 	.string "looking old man going in there.\p"
-	.string "He has these really awesome POKéMON.\n"
+	.string "He has these really awesome Pokémon.\n"
 	.string "He seems really nice, though.$"
 
 BattleFrontier_OutsideEast_Text_2436F2: @ 82436F2
@@ -412,7 +412,7 @@ BattleFrontier_OutsideEast_Text_243A53: @ 8243A53
 	.string "will topple like dominoes!$"
 
 BattleFrontier_OutsideEast_Text_243B68: @ 8243B68
-	.string "The BATTLE FRONTIER isn't exclusively\n"
+	.string "The Battle Frontier isn't exclusively\n"
 	.string "for tough TRAINERS.\p"
 	.string "Many people with special abilities\n"
 	.string "have been invited, it seems.\p"
@@ -435,7 +435,7 @@ BattleFrontier_OutsideEast_Text_243CA3: @ 8243CA3
 BattleFrontier_OutsideEast_Text_243D0B: @ 8243D0B
 	.string "I…\n"
 	.string "I saw it!\p"
-	.string "There was a sticky sort of a POKéMON\n"
+	.string "There was a sticky sort of a Pokémon\n"
 	.string "with a long tail up ahead!\p"
 	.string "It was hiding under a boulder, and\n"
 	.string "it kept staring at me!$"

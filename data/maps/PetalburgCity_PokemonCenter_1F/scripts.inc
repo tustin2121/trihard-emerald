@@ -1,9 +1,9 @@
 PetalburgCity_PokemonCenter_1F_MapScripts:: @ 82079E8
-	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_PokemonCenter_1F_MapScript1_2079F3
+	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, PetalburgCity_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
-PetalburgCity_PokemonCenter_1F_MapScript1_2079F3: @ 82079F3
+PetalburgCity_PokemonCenter_1F_OnTransition: @ 82079F3
 	setrespawn HEAL_LOCATION_PETALBURG_CITY
 	call PetalburgCity_PokemonCenter_1F_EventScript_2718DE
 	end
@@ -57,20 +57,20 @@ PetalburgCity_PokemonCenter_1F_EventScript_207A6D:: @ 8207A6D
 	return
 
 PetalburgCity_PokemonCenter_1F_Text_207A76: @ 8207A76
-	.string "That PC-based POKéMON Storage\n"
+	.string "That PC-based Pokémon Storage\n"
 	.string "System…\p"
 	.string "Whoever made it must be some kind\n"
 	.string "of a scientific wizard!$"
 
 PetalburgCity_PokemonCenter_1F_Text_207AD6: @ 8207AD6
-	.string "When my POKéMON ate an\n"
+	.string "When my Pokémon ate an\n"
 	.string "ORAN BERRY, it regained HP!$"
 
 PetalburgCity_PokemonCenter_1F_Text_207B09: @ 8207B09
-	.string "There are many types of POKéMON.\p"
+	.string "There are many types of Pokémon.\p"
 	.string "All types have their strengths and\n"
 	.string "weaknesses against other types.\p"
-	.string "Depending on the types of POKéMON,\n"
+	.string "Depending on the types of Pokémon,\n"
 	.string "a battle could be easy or hard.$"
 
 PetalburgCity_PokemonCenter_1F_Text_207BB0: @ 8207BB0
@@ -79,7 +79,7 @@ PetalburgCity_PokemonCenter_1F_Text_207BB0: @ 8207BB0
 	.string "It's strong against the WATER and\n"
 	.string "GROUND types.\p"
 	.string "But, it's weak against FIRE-type\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 PetalburgCity_PokemonCenter_1F_Text_207C35: @ 8207C35
 	.string "For example, your TORCHIC\n"
@@ -87,12 +87,12 @@ PetalburgCity_PokemonCenter_1F_Text_207C35: @ 8207C35
 	.string "It's strong against the GRASS and\n"
 	.string "BUG types.\p"
 	.string "But, it's weak against WATER-type\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 PetalburgCity_PokemonCenter_1F_Text_207CB7: @ 8207CB7
 	.string "For example, your MUDKIP\n"
 	.string "is a WATER type.\p"
 	.string "It's strong against the FIRE type.\p"
 	.string "But, it's weak against GRASS-type\n"
-	.string "and ELECTRIC-type POKéMON.$"
+	.string "and ELECTRIC-type Pokémon.$"
 

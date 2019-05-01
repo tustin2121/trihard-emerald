@@ -1,9 +1,9 @@
 MossdeepCity_SpaceCenter_2F_MapScripts:: @ 8223D58
-	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_SpaceCenter_2F_MapScript1_223D63
+	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_SpaceCenter_2F_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_SpaceCenter_2F_MapScript2_223DB5
 	.byte 0
 
-MossdeepCity_SpaceCenter_2F_MapScript1_223D63: @ 8223D63
+MossdeepCity_SpaceCenter_2F_OnTransition: @ 8223D63
 	compare VAR_MOSSDEEP_STATE, 2
 	call_if_eq MossdeepCity_SpaceCenter_2F_EventScript_223D7A
 	compare VAR_MOSSDEEP_SPACE_CENTER_STATE_2, 2
@@ -375,7 +375,7 @@ MossdeepCity_SpaceCenter_2F_Text_2241A1: @ 82241A1
 	.string "rockets.$"
 
 MossdeepCity_SpaceCenter_2F_Text_22420C: @ 822420C
-	.string "Why would TEAM MAGMA want to steal\n"
+	.string "Why would Team Magma want to steal\n"
 	.string "our rocket fuel in the first place?$"
 
 MossdeepCity_SpaceCenter_2F_Text_224253: @ 8224253
@@ -385,7 +385,7 @@ MossdeepCity_SpaceCenter_2F_Text_224253: @ 8224253
 	.string "I can and will try!$"
 
 MossdeepCity_SpaceCenter_2F_Text_2242C5: @ 82242C5
-	.string "If TEAM MAGMA takes the rocket fuel,\n"
+	.string "If Team Magma takes the rocket fuel,\n"
 	.string "I won't be able to go to space!\p"
 	.string "They can't be allowed to get away\n"
 	.string "with such an outrage!$"
@@ -395,7 +395,7 @@ MossdeepCity_SpaceCenter_2F_Text_224342: @ 8224342
 	.string "space one day…$"
 
 MossdeepCity_SpaceCenter_2F_Text_224376: @ 8224376
-	.string "TEAM MAGMA…\n"
+	.string "Team Magma…\n"
 	.string "Do they want to go to space, too?$"
 
 MossdeepCity_SpaceCenter_2F_Text_2243A4: @ 82243A4
@@ -455,7 +455,7 @@ MossdeepCity_SpaceCenter_2F_Text_22467B: @ 822467B
 	.string "Don't you dare interfere!$"
 
 MossdeepCity_SpaceCenter_2F_Text_2246B2: @ 82246B2
-	.string "STEVEN: TEAM MAGMA…\p"
+	.string "STEVEN: Team Magma…\p"
 	.string "What's the point of stealing rocket\n"
 	.string "fuel?$"
 
@@ -463,7 +463,7 @@ MossdeepCity_SpaceCenter_2F_Text_2246F0: @ 82246F0
 	.string "MAXIE: Fufufu… Since you're so\n"
 	.string "curious, you deserve an explanation.\p"
 	.string "We're going to jettison the entire\n"
-	.string "load into MT. CHIMNEY!\p"
+	.string "load into Mt. Chimney!\p"
 	.string "With GROUDON gone, we have no need\n"
 	.string "for that slag heap of a mountain!\p"
 	.string "So we'll use the fuel's power to make\n"
@@ -471,7 +471,7 @@ MossdeepCity_SpaceCenter_2F_Text_2246F0: @ 82246F0
 	.string "It will be savage!$"
 
 MossdeepCity_SpaceCenter_2F_Text_2247FF: @ 82247FF
-	.string "STEVEN: {PLAYER}{KUN}!\n"
+	.string "STEVEN: {PLAYER}!\n"
 	.string "You're going to help me?\p"
 	.string "Let's go into battle together!\n"
 	.string "Are you ready?$"
@@ -497,9 +497,9 @@ MossdeepCity_SpaceCenter_2F_Text_2248C2: @ 82248C2
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
 	.string "If…\n"
-	.string "If we, TEAM MAGMA, are wrong…\l"
+	.string "If we, Team Magma, are wrong…\l"
 	.string "… … … … … …\p"
-	.string "Then might TEAM AQUA's goal to expand\n"
+	.string "Then might Team Aqua's goal to expand\n"
 	.string "the sea also be equally misguided?$"
 
 MossdeepCity_SpaceCenter_2F_Text_2249DC: @ 82249DC
@@ -510,10 +510,10 @@ MossdeepCity_SpaceCenter_2F_Text_2249DC: @ 82249DC
 
 MossdeepCity_SpaceCenter_2F_Text_224A4A: @ 8224A4A
 	.string "STEVEN: Whew, that was too tense.\n"
-	.string "{PLAYER}{KUN}, thank you.\p"
+	.string "{PLAYER}, thank you.\p"
 	.string "I have something to give you as\n"
 	.string "thanks for your support.\p"
 	.string "Please come see me at home\n"
 	.string "after this.\p"
-	.string "Oh, yes, I don't live in RUSTBORO CITY.\n"
+	.string "Oh, yes, I don't live in Rustboro City.\n"
 	.string "I live right here on this island.$"

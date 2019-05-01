@@ -1,8 +1,8 @@
 LilycoveCity_Harbor_MapScripts:: @ 821E000
-	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_Harbor_MapScript1_21E006
+	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_Harbor_OnTransition
 	.byte 0
 
-LilycoveCity_Harbor_MapScript1_21E006: @ 821E006
+LilycoveCity_Harbor_OnTransition: @ 821E006
 	setescapewarp MAP_LILYCOVE_CITY, 255, 12, 33
 	end
 
@@ -593,10 +593,10 @@ LilycoveCity_Harbor_Text_21E842: @ 821E842
 	.string "Please sail with us another time!$"
 
 LilycoveCity_Harbor_Text_21E864: @ 821E864
-	.string "SLATEPORT CITY it is, then!$"
+	.string "Slateport City it is, then!$"
 
 LilycoveCity_Harbor_Text_21E880: @ 821E880
-	.string "BATTLE FRONTIER it is, then!$"
+	.string "Battle Frontier it is, then!$"
 
 LilycoveCity_Harbor_Text_21E89D: @ 821E89D
 	.string "Please board the ferry and wait for\n"

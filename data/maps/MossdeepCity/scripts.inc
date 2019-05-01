@@ -1,8 +1,8 @@
 MossdeepCity_MapScripts:: @ 81E4A96
-	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_MapScript1_1E4A9C
+	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition
 	.byte 0
 
-MossdeepCity_MapScript1_1E4A9C: @ 81E4A9C
+MossdeepCity_OnTransition: @ 81E4A9C
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
@@ -346,11 +346,11 @@ MossdeepCity_Text_1E4F15: @ 81E4F15
 
 MossdeepCity_Text_1E4F50: @ 81E4F50
 	.string "I heard from a SAILOR buddy that\n"
-	.string "TEAM AQUA set up shop in LILYCOVE.\p"
+	.string "Team Aqua set up shop in LILYCOVE.\p"
 	.string "I also heard that someone came along\n"
 	.string "and wiped the floor with them!\p"
 	.string "But MOSSDEEP here's been targeted\n"
-	.string "by that TEAM MAGMA.\p"
+	.string "by that Team Magma.\p"
 	.string "If you want to know what they're up to,\n"
 	.string "go visit the SPACE CENTER.$"
 
@@ -376,7 +376,7 @@ MossdeepCity_Text_1E5135: @ 81E5135
 
 MossdeepCity_Text_1E5213: @ 81E5213
 	.string "A voyage on a ship is fine.\p"
-	.string "But crossing the sea with POKéMON\n"
+	.string "But crossing the sea with Pokémon\n"
 	.string "using SURF…\p"
 	.string "Now that's an exhilarating trip!\n"
 	.string "Wouldn't you agree, youngster?$"
@@ -395,28 +395,28 @@ MossdeepCity_Text_1E5396: @ 81E5396
 	.string "It's a white rock.$"
 
 MossdeepCity_Text_1E53A9: @ 81E53A9
-	.string "MOSSDEEP CITY POKéMON GYM\n"
-	.string "LEADERS: LIZA & TATE\p"
+	.string "{GYM}Mossdeep City Pokémon Gym{END}\n"
+	.string "{GYM}Leaders:{END} Liza & Tate\p"
 	.string "“The mystic combination!”$"
 
 MossdeepCity_Text_1E53F2: @ 81E53F2
-	.string "MOSSDEEP CITY\n"
-	.string "“Our slogan: Cherish POKéMON!”$"
+	.string "{PLACE}Mossdeep City{END}\n"
+	.string "“Our slogan: Cherish Pokémon!”$"
 
 MossdeepCity_Text_1E541F: @ 81E541F
-	.string "MOSSDEEP SPACE CENTER\n"
+	.string "{PLACE}Mossdeep Space Center{END}\n"
 	.string "“The closest place to space.”$"
 
 MossdeepCity_Text_1E5453: @ 81E5453
-	.string "SCOTT: {PLAYER}{KUN}, feeling good?\n"
+	.string "SCOTT: {PLAYER}, feeling good?\n"
 	.string "I'm doing great!\p"
-	.string "I'd heard MOSSDEEP's GYM LEADER is\n"
+	.string "I'd heard Mossdeep's Gym Leader is\n"
 	.string "pretty strong, so I decided to come\l"
 	.string "take a look-see for myself.\p"
 	.string "But there's something wrong about\n"
 	.string "this town.\p"
 	.string "People are going on about a warning\n"
-	.string "letter and the SPACE CENTER…\p"
+	.string "letter and the {REF}Space Center{END}…\p"
 	.string "I don't think it concerns me in any\n"
 	.string "way, though.$"
 
@@ -424,9 +424,9 @@ MossdeepCity_Text_1E5581: @ 81E5581
 	.string "Ahh… It feels great letting the waves\n"
 	.string "wash over my feet…\p"
 	.string "Speaking of the waves, you know that\n"
-	.string "island city SOOTOPOLIS?\p"
-	.string "I think the GYM there had a new\n"
-	.string "LEADER come in.\p"
-	.string "People tell me the new LEADER once\n"
-	.string "mentored WALLACE.$"
+	.string "island city Sootopolis?\p"
+	.string "I think the Gym there had a new\n"
+	.string "Leader come in.\p"
+	.string "People tell me the new Leader once\n"
+	.string "mentored Wallace.$"
 

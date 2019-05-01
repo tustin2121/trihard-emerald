@@ -1,9 +1,9 @@
 Route128_MapScripts:: @ 81F6B38
-	map_script MAP_SCRIPT_ON_TRANSITION, Route128_MapScript1_1F6B43
+	map_script MAP_SCRIPT_ON_TRANSITION, Route128_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route128_MapScript2_1F6B4D
 	.byte 0
 
-Route128_MapScript1_1F6B43: @ 81F6B43
+Route128_OnTransition: @ 81F6B43
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
 	end
 
@@ -48,8 +48,8 @@ Route128_EventScript_1F6B57:: @ 81F6B57
 	removeobject 4
 	delay 100
 	setfieldeffectargument 0, 1
-	dofieldeffect 30
-	waitfieldeffect 30
+	dofieldeffect FLDEFF_NPCFLY_OUT
+	waitfieldeffect FLDEFF_NPCFLY_OUT
 	addobject 3
 	applymovement 3, Route128_Movement_1F6C87
 	waitmovement 0
@@ -69,10 +69,10 @@ Route128_EventScript_1F6B57:: @ 81F6B57
 	waitmovement 0
 	delay 50
 	setfieldeffectargument 0, 1
-	dofieldeffect 30
+	dofieldeffect FLDEFF_NPCFLY_OUT
 	delay 15
 	removeobject 3
-	waitfieldeffect 30
+	waitfieldeffect FLDEFF_NPCFLY_OUT
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	setvar VAR_ROUTE128_STATE, 2
 	releaseall
@@ -275,19 +275,19 @@ Route128_Text_1F6F1E: @ 81F6F1E
 
 Route128_Text_1F704F: @ 81F704F
 	.string "MAXIE: This defies belief…\p"
-	.string "Those super-ancient POKéMON…\p"
+	.string "Those super-ancient Pokémon…\p"
 	.string "Their power is unbelievable.\n"
 	.string "They've upset the balance of nature…$"
 
 Route128_Text_1F70C9: @ 81F70C9
-	.string "STEVEN: {PLAYER}{KUN}!\n"
+	.string "STEVEN: {PLAYER}!\n"
 	.string "What is happening?$"
 
 Route128_Text_1F70EA: @ 81F70EA
 	.string "This is terrible…\p"
 	.string "After the scorching heat wave ended,\n"
 	.string "this deluge began.\p"
-	.string "If this doesn't stop, all of HOENN…\n"
+	.string "If this doesn't stop, all of Hoenn…\n"
 	.string "No, the whole world will drown.\p"
 	.string "This huge rain cloud is spreading\n"
 	.string "from above SOOTOPOLIS…\p"
@@ -296,7 +296,7 @@ Route128_Text_1F70EA: @ 81F70EA
 	.string "SOOTOPOLIS might provide answers…$"
 
 Route128_Text_1F721B: @ 81F721B
-	.string "{PLAYER}{KUN}…\n"
+	.string "{PLAYER}…\n"
 	.string "I don't know what you intend to do,\l"
 	.string "but don't do anything reckless.\p"
 	.string "Okay.\n"

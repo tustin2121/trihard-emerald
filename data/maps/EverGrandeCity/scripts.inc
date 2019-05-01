@@ -1,8 +1,8 @@
 EverGrandeCity_MapScripts:: @ 81E7D1B
-	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_MapScript1_1E7D21
+	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_OnTransition
 	.byte 0
 
-EverGrandeCity_MapScript1_1E7D21: @ 81E7D21
+EverGrandeCity_OnTransition: @ 81E7D21
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
 	end
 
@@ -24,14 +24,14 @@ EverGrandeCity_EventScript_1E7D46:: @ 81E7D46
 	end
 
 EverGrandeCity_Text_1E7D4F: @ 81E7D4F
-	.string "ENTERING VICTORY ROAD$"
+	.string "{PLACE}Entering Victory Road{END}$"
 
 EverGrandeCity_Text_1E7D65: @ 81E7D65
-	.string "ENTERING POKéMON LEAGUE\n"
-	.string "CENTER GATE$"
+	.string "{PLACE}Entering Pokémon League\n"
+	.string "Center Gate{END}$"
 
 EverGrandeCity_Text_1E7D89: @ 81E7D89
-	.string "EVER GRANDE CITY\p"
+	.string "{PLACE}Ever Grande City{END}\p"
 	.string "“The paradise of flowers, the sea,\n"
-	.string "and POKéMON.”$"
+	.string "and Pokémon.”$"
 

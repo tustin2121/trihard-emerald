@@ -1,9 +1,9 @@
 SootopolisCity_MysteryEventsHouse_1F_MapScripts:: @ 8227953
-	map_script MAP_SCRIPT_ON_TRANSITION, SootopolisCity_MysteryEventsHouse_1F_MapScript1_22795E
+	map_script MAP_SCRIPT_ON_TRANSITION, SootopolisCity_MysteryEventsHouse_1F_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SootopolisCity_MysteryEventsHouse_1F_MapScript2_22799D
 	.byte 0
 
-SootopolisCity_MysteryEventsHouse_1F_MapScript1_22795E: @ 822795E
+SootopolisCity_MysteryEventsHouse_1F_OnTransition: @ 822795E
 	setvar VAR_0x8004, 16
 	special CallFrontierUtilFunc
 	compare VAR_RESULT, 0
@@ -181,7 +181,7 @@ SootopolisCity_MysteryEventsHouse_1F_Movement_227B43: @ 8227B43
 
 SootopolisCity_MysteryEventsHouse_1F_Text_227B46: @ 8227B46
 	.string "When I was young, I traveled the world\n"
-	.string "as a POKéMON TRAINER.\p"
+	.string "as a Pokémon TRAINER.\p"
 	.string "Now that I've become an old buzzard,\n"
 	.string "my only amusement is watching young\l"
 	.string "TRAINERS battle.$"

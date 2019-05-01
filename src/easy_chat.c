@@ -2,7 +2,7 @@
 #include "alloc.h"
 #include "bard_music.h"
 #include "bg.h"
-#include "data2.h"
+#include "data.h"
 #include "decompress.h"
 #include "dewford_trend.h"
 #include "dynamic_placeholder_text_util.h"
@@ -14,8 +14,8 @@
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "international_string_util.h"
-#include "link.h"
 #include "main.h"
+#include "mevent.h"
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
@@ -32,6 +32,7 @@
 #include "constants/flags.h"
 #include "constants/songs.h"
 #include "constants/species.h"
+#include "constants/rgb.h"
 
 #define EZCHAT_TASK_STATE        0
 #define EZCHAT_TASK_TYPE         1
@@ -1139,20 +1140,20 @@ static void sub_811A2FC(u8 taskId)
     case 0:
         SetVBlankCallback(VBlankCallback_EasyChatScreen);
         BlendPalettes(0xFFFFFFFF, 16, 0);
-        BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, 0);
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, RGB_BLACK);
         data[EZCHAT_TASK_STATE] = 5;
         break;
     case 1:
         v0 = sub_811AAAC();
         if (sub_811A88C(v0))
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, -2, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, -2, 0, 16, RGB_BLACK);
             data[EZCHAT_TASK_STATE] = 3;
             data[EZCHAT_TASK_UNK06] = v0;
         }
         else if (v0 == 0x18)
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, -1, 0, 16, 0);
+            BeginNormalPaletteFade(0xFFFFFFFF, -1, 0, 16, RGB_BLACK);
             data[EZCHAT_TASK_STATE] = 4;
         }
         else if (v0 != 0)
@@ -1318,7 +1319,7 @@ void ShowEasyChatScreen(void)
         words = gSaveBlock2Ptr->apprentices[0].easyChatWords;
         break;
     case EASY_CHAT_TYPE_QUESTIONNAIRE:
-        words = GetSaveBlock1Field3564();
+        words = sub_801B058();
         break;
     default:
         return;
@@ -3721,7 +3722,7 @@ static void sub_811D0BC(void)
 {
     FillBgTilemapBufferRect(0, 0, 0, 0, 32, 20, 17);
     LoadUserWindowBorderGfx(1, 1, 0xE0);
-    sub_8098858(1, 1, 14);
+    DrawTextBorderOuter(1, 1, 14);
     sub_811D104(0);
     PutWindowTilemap(1);
     CopyBgTilemapBufferToVram(0);
@@ -4882,7 +4883,7 @@ bool8 ECWord_CheckIfOutsideOfValidRange(u16 easyChatWord)
     {
     case EC_GROUP_POKEMON:
     case EC_GROUP_POKEMON_2:
-        numWordsInGroup = gUnknown_085F5490;
+        numWordsInGroup = gNumSpeciesNames;
         break;
     case EC_GROUP_MOVE_1:
     case EC_GROUP_MOVE_2:
@@ -5531,7 +5532,7 @@ void InitializeEasyChatWordArray(u16 *words, u16 length)
 void sub_811F8BC(void)
 {
     int i;
-    u16 *words = GetSaveBlock1Field3564();
+    u16 *words = sub_801B058();
     for (i = 0; i < 4; i++)
         words[i] = 0xFFFF;
 }

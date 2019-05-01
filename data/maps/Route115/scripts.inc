@@ -1,6 +1,6 @@
 Route115_MapScripts:: @ 81F2920
 	map_script MAP_SCRIPT_ON_LOAD, Route115_MapScript1_1F2930
-	map_script MAP_SCRIPT_ON_TRANSITION, Route115_MapScript1_1F2947
+	map_script MAP_SCRIPT_ON_TRANSITION, Route115_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route115_MapScript2_1F2969
 	.byte 0
 
@@ -11,7 +11,7 @@ Route115_MapScript1_1F2930: @ 81F2930
 	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute115East
 	end
 
-Route115_MapScript1_1F2947: @ 81F2947
+Route115_OnTransition: @ 81F2947
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
 	call_if_eq Route115_EventScript_273D13
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_115_WEST
@@ -140,14 +140,14 @@ Route115_EventScript_1F2B3E:: @ 81F2B3E
 Route115_Text_1F2B55: @ 81F2B55
 	.string "Exploring a cave isn't like walking\n"
 	.string "on a road.\p"
-	.string "You never know when wild POKéMON will\n"
+	.string "You never know when wild Pokémon will\n"
 	.string "appear. It's full of suspense.$"
 
 Route115_Text_1F2BC9: @ 81F2BC9
-	.string "ROUTE 115\n"
-	.string "{DOWN_ARROW} RUSTBORO CITY$"
+	.string "Route 115\n"
+	.string "{DOWN_ARROW} Rustboro City$"
 
 Route115_Text_1F2BE3: @ 81F2BE3
-	.string "METEOR FALLS\n"
-	.string "FALLARBOR TOWN THROUGH HERE$"
+	.string "Meteor Falls\n"
+	.string "Fallarbor Town THROUGH HERE$"
 

@@ -1,8 +1,8 @@
 MagmaHideout_1F_MapScripts:: @ 8239880
-	map_script MAP_SCRIPT_ON_TRANSITION, MagmaHideout_1F_MapScript1_239886
+	map_script MAP_SCRIPT_ON_TRANSITION, MagmaHideout_1F_OnTransition
 	.byte 0
 
-MagmaHideout_1F_MapScript1_239886: @ 8239886
+MagmaHideout_1F_OnTransition: @ 8239886
 	setvar VAR_JAGGED_PASS_ASH_WEATHER, 0
 	end
 
@@ -17,7 +17,7 @@ MagmaHideout_1F_EventScript_2398A3:: @ 82398A3
 	end
 
 MagmaHideout_1F_Text_2398BA: @ 82398BA
-	.string "When TEAM MAGMA has roll call, we get\n"
+	.string "When Team Magma has roll call, we get\n"
 	.string "important guarding assignments in\l"
 	.string "the order that we line up.\p"
 	.string "That's why I'm stuck off in this corner.\n"
@@ -34,7 +34,7 @@ MagmaHideout_1F_Text_2399B1: @ 82399B1
 
 MagmaHideout_1F_Text_2399F5: @ 82399F5
 	.string "Our leader told us to dig into\n"
-	.string "MT. CHIMNEY, so we dug and dug.\p"
+	.string "Mt. Chimney, so we dug and dug.\p"
 	.string "And in the course of digging, we came\n"
 	.string "across something that blew our minds!\p"
 	.string "What did we find?\p"

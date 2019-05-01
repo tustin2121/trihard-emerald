@@ -1,6 +1,6 @@
 AquaHideout_B1F_MapScripts:: @ 82339A7
 	map_script MAP_SCRIPT_ON_RESUME, AquaHideout_B1F_MapScript1_2339B2
-	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B1F_MapScript1_2339D0
+	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B1F_OnTransition
 	.byte 0
 
 AquaHideout_B1F_MapScript1_2339B2: @ 82339B2
@@ -14,7 +14,7 @@ AquaHideout_B1F_EventScript_2339BC:: @ 82339BC
 	removeobject VAR_LAST_TALKED
 	return
 
-AquaHideout_B1F_MapScript1_2339D0: @ 82339D0
+AquaHideout_B1F_OnTransition: @ 82339D0
 	call_if_unset FLAG_DEFEATED_ELECTRODE_1_AQUA_HIDEOUT, AquaHideout_B1F_EventScript_2339E3
 	call_if_unset FLAG_DEFEATED_ELECTRODE_2_AQUA_HIDEOUT, AquaHideout_B1F_EventScript_2339E7
 	end
@@ -157,7 +157,7 @@ AquaHideout_B1F_Text_233D1B: @ 8233D1B
 	.string "Hey!\n"
 	.string "You there!\p"
 	.string "Which do you think is cooler?\n"
-	.string "TEAM AQUA's uniform or TEAM MAGMA's?$"
+	.string "Team Aqua's uniform or Team Magma's?$"
 
 AquaHideout_B1F_Text_233D6E: @ 8233D6E
 	.string "I lost in a cool way…$"

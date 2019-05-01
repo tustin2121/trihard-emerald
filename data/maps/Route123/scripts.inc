@@ -1,8 +1,8 @@
 Route123_MapScripts:: @ 81F6147
-	map_script MAP_SCRIPT_ON_TRANSITION, Route123_MapScript1_1F614D
+	map_script MAP_SCRIPT_ON_TRANSITION, Route123_OnTransition
 	.byte 0
 
-Route123_MapScript1_1F614D: @ 81F614D
+Route123_OnTransition: @ 81F614D
 	special SetRoute123Weather
 	end
 
@@ -176,28 +176,28 @@ Route123_EventScript_1F6407:: @ 81F6407
 	end
 
 Route123_Text_1F641E: @ 81F641E
-	.string "I love GRASS-type POKéMON!\p"
-	.string "Do you have any GRASS-type POKéMON?$"
+	.string "I love GRASS-type Pokémon!\p"
+	.string "Do you have any GRASS-type Pokémon?$"
 
 Route123_Text_1F645D: @ 81F645D
 	.string "Oh?\p"
-	.string "You like GRASS-type POKéMON, too,\n"
+	.string "You like GRASS-type Pokémon, too,\n"
 	.string "don't you?\p"
 	.string "I'm so happy, you can have this!\n"
 	.string "It's a token of our friendship.$"
 
 Route123_Text_1F64CF: @ 81F64CF
 	.string "I check trees with my GRASS-type\n"
-	.string "POKéMON. I'm like a tree doctor.$"
+	.string "Pokémon. I'm like a tree doctor.$"
 
 Route123_Text_1F6511: @ 81F6511
-	.string "{RIGHT_ARROW} ROUTE 123\n"
-	.string "{LEFT_ARROW} ROUTE 118$"
+	.string "{RIGHT_ARROW} Route 123\n"
+	.string "{LEFT_ARROW} Route 118$"
 
 Route123_Text_1F6529: @ 81F6529
-	.string "{UP_ARROW} MT. PYRE\n"
+	.string "{UP_ARROW} Mt. Pyre\n"
 	.string "“Forbidden to the faint of heart.”$"
 
 Route123_Text_1F6557: @ 81F6557
-	.string "BERRY MASTER'S HOUSE$"
+	.string "{PLACE}Berry Master's House{END}$"
 

@@ -1,10 +1,10 @@
 SkyPillar_Outside_MapScripts:: @ 82392A8
-	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Outside_MapScript1_2392B8
+	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Outside_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, SkyPillar_Outside_MapScript1_2392DD
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SkyPillar_Outside_MapScript2_2392FA
 	.byte 0
 
-SkyPillar_Outside_MapScript1_2392B8: @ 82392B8
+SkyPillar_Outside_OnTransition: @ 82392B8
 	compare VAR_RAYQUAZA_STATE, 3
 	call_if_eq SkyPillar_Outside_EventScript_2392CF
 	compare VAR_RAYQUAZA_STATE, 4
@@ -147,8 +147,8 @@ SkyPillar_Outside_Text_239416: @ 8239416
 	.string "In my haste, I didn't notice that\n"
 	.string "I'd left you behind!\p"
 	.string "I've opened the locked door of\n"
-	.string "the SKY PILLAR.\p"
-	.string "{PLAYER}{KUN}, let's be on our way!$"
+	.string "the Sky Pillar.\p"
+	.string "{PLAYER}, let's be on our way!$"
 
 SkyPillar_Outside_Text_2394BC: @ 82394BC
 	.string "WALLACE: It's an earthquake!\p"
@@ -163,7 +163,7 @@ SkyPillar_Outside_Text_23953A: @ 823953A
 	.string "WALLACE: This isn't good…\p"
 	.string "The weather distortion is spreading\n"
 	.string "even here…\p"
-	.string "{PLAYER}{KUN}.\p"
+	.string "{PLAYER}.\p"
 	.string "RAYQUAZA should be farther up\n"
 	.string "from here.\p"
 	.string "I'm worried about SOOTOPOLIS.\n"

@@ -1,13 +1,13 @@
 Route113_MapScripts:: @ 81F2153
 	map_script MAP_SCRIPT_ON_RESUME, Route113_MapScript1_1F215E
-	map_script MAP_SCRIPT_ON_TRANSITION, Route113_MapScript1_1F2161
+	map_script MAP_SCRIPT_ON_TRANSITION, Route113_OnTransition
 	.byte 0
 
 Route113_MapScript1_1F215E: @ 81F215E
 	setstepcallback 1
 	end
 
-Route113_MapScript1_1F2161: @ 81F2161
+Route113_OnTransition: @ 81F2161
 	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
 	call Route113_EventScript_1F216A
 	end
@@ -150,21 +150,21 @@ Route113_Text_1F23CA: @ 81F23CA
 	.string "really neat!$"
 
 Route113_Text_1F2440: @ 81F2440
-	.string "ROUTE 113\n"
-	.string "{RIGHT_ARROW} ROUTE 111$"
+	.string "Route 113\n"
+	.string "{RIGHT_ARROW} Route 111$"
 
 Route113_Text_1F2456: @ 81F2456
-	.string "ROUTE 113\n"
-	.string "{LEFT_ARROW} FALLARBOR TOWN$"
+	.string "Route 113\n"
+	.string "{LEFT_ARROW} Fallarbor Town$"
 
 Route113_Text_1F2471: @ 81F2471
-	.string "TRAINER TIPS\p"
+	.string "{TIPS} TRAINER TIPS {END}\p"
 	.string "You may register one of the KEY ITEMS\n"
 	.string "in your BAG as SELECT.\p"
 	.string "Simply press SELECT to use\n"
 	.string "the registered item conveniently.$"
 
 Route113_Text_1F24F8: @ 81F24F8
-	.string "GLASS WORKSHOP\n"
+	.string "{PLACE}Glass Workshop{END}\n"
 	.string "“Turning Volcanic Ash into Glass Items”$"
 

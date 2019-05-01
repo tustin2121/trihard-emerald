@@ -1,8 +1,8 @@
 Route114_FossilManiacsHouse_MapScripts:: @ 822AD30
-	map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsHouse_MapScript1_22AD36
+	map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsHouse_OnTransition
 	.byte 0
 
-Route114_FossilManiacsHouse_MapScript1_22AD36: @ 822AD36
+Route114_FossilManiacsHouse_OnTransition: @ 822AD36
 	setflag FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE
 	end
 
@@ -40,7 +40,7 @@ Route114_FossilManiacsHouse_Text_22AD85: @ 822AD85
 	.string "holes just like my big brother…$"
 
 Route114_FossilManiacsHouse_Text_22AE48: @ 822AE48
-	.string "If you make a POKéMON DIG inside a\n"
+	.string "If you make a Pokémon DIG inside a\n"
 	.string "cave, you're returned to the entrance…$"
 
 Route114_FossilManiacsHouse_Text_22AE92: @ 822AE92

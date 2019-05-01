@@ -1,6 +1,6 @@
 Route105_MapScripts:: @ 81EE1DB
 	map_script MAP_SCRIPT_ON_LOAD, Route105_MapScript1_1EE1EB
-	map_script MAP_SCRIPT_ON_TRANSITION, Route105_MapScript1_1EE21E
+	map_script MAP_SCRIPT_ON_TRANSITION, Route105_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route105_MapScript2_1EE240
 	.byte 0
 
@@ -17,7 +17,7 @@ Route105_EventScript_1EE20B:: @ 81EE20B
 	setmetatile 9, 20, 145, 1
 	return
 
-Route105_MapScript1_1EE21E: @ 81EE21E
+Route105_OnTransition: @ 81EE21E
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
 	call_if_eq Route105_EventScript_273D13
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_105_NORTH
@@ -85,12 +85,12 @@ Route105_EventScript_1EE31F:: @ 81EE31F
 Route104_Text_1EE336: @ 81EE336
 	.string "… … … … … …\n"
 	.string "… … … … … Beep!\p"
-	.string "DAD: Oh, {PLAYER}?\p"
+	.string "Norman: Oh, {PLAYER}?\p"
 	.string "… … … … … …\n"
 	.string "Where are you now?\l"
 	.string "It sounds windy wherever you are.\p"
 	.string "I just heard from DEVON's MR. STONE\n"
-	.string "about your POKéNAV, so I decided\l"
+	.string "about your PokéNav, so I decided\l"
 	.string "to give you a call.\p"
 	.string "It sounds like you're doing fine,\n"
 	.string "so that's fine with me.\p"
@@ -100,4 +100,4 @@ Route104_Text_1EE336: @ 81EE336
 
 Route104_Text_1EE463: @ 81EE463
 	.string "Registered DAD NORMAN\n"
-	.string "in the POKéNAV.$"
+	.string "in the PokéNav.$"

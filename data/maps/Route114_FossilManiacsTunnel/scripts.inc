@@ -1,9 +1,9 @@
 Route114_FossilManiacsTunnel_MapScripts:: @ 822AF28
-	map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsTunnel_MapScript1_22AF33
+	map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsTunnel_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route114_FossilManiacsTunnel_MapScript1_22AF49
 	.byte 0
 
-Route114_FossilManiacsTunnel_MapScript1_22AF33: @ 822AF33
+Route114_FossilManiacsTunnel_OnTransition: @ 822AF33
 	call_if_set FLAG_SYS_GAME_CLEAR, Route114_FossilManiacsTunnel_EventScript_22AF3D
 	end
 
@@ -72,7 +72,7 @@ Route114_FossilManiacsTunnel_Text_22B0D6: @ 822B0D6
 	.string "What are you going to do with that\n"
 	.string "FOSSIL?\p"
 	.string "From what I've heard, DEVON is doing\n"
-	.string "research on reviving POKéMON from\l"
+	.string "research on reviving Pokémon from\l"
 	.string "FOSSILS…\p"
 	.string "I love my FOSSILS, so I would never\n"
 	.string "do anything like that…$"

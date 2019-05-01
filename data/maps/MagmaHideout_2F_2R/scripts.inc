@@ -36,11 +36,11 @@ MagmaHideout_2F_2R_Text_239EBB: @ 8239EBB
 
 MagmaHideout_2F_2R_Text_239F31: @ 8239F31
 	.string "I can't stand heat. Maybe I should've\n"
-	.string "joined TEAM AQUA instead…$"
+	.string "joined Team Aqua instead…$"
 
 MagmaHideout_2F_2R_Text_239F71: @ 8239F71
 	.string "Yeah, I really may not be right for\n"
-	.string "TEAM MAGMA…$"
+	.string "Team Magma…$"
 
 MagmaHideout_2F_2R_Text_239FA1: @ 8239FA1
 	.string "Don't you get lonely for the sea\n"
@@ -60,7 +60,7 @@ MagmaHideout_2F_2R_Text_23A050: @ 823A050
 MagmaHideout_2F_2R_Text_23A07D: @ 823A07D
 	.string "You just happened to win this time,\n"
 	.string "but that doesn't matter.\p"
-	.string "TEAM MAGMA's goal is about to be\n"
+	.string "Team Magma's goal is about to be\n"
 	.string "reached!$"
 
 MagmaHideout_2F_2R_Text_23A0E4: @ 823A0E4

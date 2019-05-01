@@ -2,7 +2,7 @@ Route111_Text_2762C9: @ 82762C9
 	.string "What's that?\n"
 	.string "What am I doing?\p"
 	.string "I'm thinking about making my own room\n"
-	.string "here using a POKéMON move.\p"
+	.string "here using a Pokémon move.\p"
 	.string "I know! I'll give you this TM.\n"
 	.string "Will you use it to make your own room?$"
 
@@ -103,11 +103,3 @@ Route111_Movement_276696: @ 8276696
 	walk_down
 	walk_down
 	step_end
-
-EventScript_SecretPower1:: @ 82766A2
-	special sub_80EB290
-	end
-
-EventScript_SecretPower2:: @ 82766A6
-	special sub_80EB2C8
-	end

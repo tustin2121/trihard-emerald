@@ -1,9 +1,9 @@
 SootopolisCity_PokemonCenter_1F_MapScripts:: @ 82264F1
-	map_script MAP_SCRIPT_ON_TRANSITION, SootopolisCity_PokemonCenter_1F_MapScript1_2264FC
+	map_script MAP_SCRIPT_ON_TRANSITION, SootopolisCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, SootopolisCity_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
-SootopolisCity_PokemonCenter_1F_MapScript1_2264FC: @ 82264FC
+SootopolisCity_PokemonCenter_1F_OnTransition: @ 82264FC
 	setrespawn HEAL_LOCATION_SOOTOPOLIS_CITY
 	end
 
@@ -47,7 +47,7 @@ SootopolisCity_PokemonCenter_1F_EventScript_226558:: @ 8226558
 
 SootopolisCity_PokemonCenter_1F_Text_226562: @ 8226562
 	.string "WALLACE is rumored to be the toughest\n"
-	.string "TRAINER in the whole HOENN region.\p"
+	.string "TRAINER in the whole Hoenn region.\p"
 	.string "This town's GYM is led by the TRAINER\n"
 	.string "who taught WALLACE.\p"
 	.string "But the ELITE FOUR… They're said to be\n"
@@ -63,10 +63,10 @@ SootopolisCity_PokemonCenter_1F_Text_22664B: @ 822664B
 SootopolisCity_PokemonCenter_1F_Text_2266B9: @ 82266B9
 	.string "Whenever, wherever, and whatever\n"
 	.string "happens, I will always be friends with\l"
-	.string "POKéMON.\p"
-	.string "Because it's fun to be with POKéMON!$"
+	.string "Pokémon.\p"
+	.string "Because it's fun to be with Pokémon!$"
 
 SootopolisCity_PokemonCenter_1F_Text_22672F: @ 822672F
-	.string "Aren't POKéMON our friends?\p"
+	.string "Aren't Pokémon our friends?\p"
 	.string "Why are they going wild this way?$"
 

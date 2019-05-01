@@ -1,8 +1,8 @@
 Route110_TrickHousePuzzle5_MapScripts:: @ 826CAF0
-	map_script MAP_SCRIPT_ON_TRANSITION, Route110_TrickHousePuzzle5_MapScript1_26CAF6
+	map_script MAP_SCRIPT_ON_TRANSITION, Route110_TrickHousePuzzle5_OnTransition
 	.byte 0
 
-Route110_TrickHousePuzzle5_MapScript1_26CAF6: @ 826CAF6
+Route110_TrickHousePuzzle5_OnTransition: @ 826CAF6
 	setvar VAR_TEMP_1, 0
 	setvar VAR_TEMP_2, 0
 	setvar VAR_TEMP_3, 0
@@ -980,17 +980,17 @@ Route110_TrickHousePuzzle5_Text_26D6CE: @ 826D6CE
 
 Route110_TrickHousePuzzle5_Text_26D757: @ 826D757
 	.string "MECHADOLL 1 QUIZ.\p"
-	.string "One of these POKéMON is not found\n"
-	.string "on ROUTE 110. Which one is it?$"
+	.string "One of these Pokémon is not found\n"
+	.string "on Route 110. Which one is it?$"
 
 Route110_TrickHousePuzzle5_Text_26D7AA: @ 826D7AA
 	.string "MECHADOLL 1 QUIZ.\p"
-	.string "One of these POKéMON is not of the\n"
+	.string "One of these Pokémon is not of the\n"
 	.string "WATER type. Which one is it?$"
 
 Route110_TrickHousePuzzle5_Text_26D7FC: @ 826D7FC
 	.string "MECHADOLL 1 QUIZ.\p"
-	.string "One of these POKéMON does not use\n"
+	.string "One of these Pokémon does not use\n"
 	.string "LEECH LIFE. Which one is it?$"
 
 Route110_TrickHousePuzzle5_Text_26D84D: @ 826D84D
@@ -1016,17 +1016,17 @@ Route110_TrickHousePuzzle5_Text_26D8EA: @ 826D8EA
 
 Route110_TrickHousePuzzle5_Text_26D940: @ 826D940
 	.string "MECHADOLL 2 QUIZ.\p"
-	.string "Which of these POKéMON did WALLY\n"
+	.string "Which of these Pokémon did WALLY\n"
 	.string "borrow from your father?$"
 
 Route110_TrickHousePuzzle5_Text_26D98C: @ 826D98C
 	.string "MECHADOLL 2 QUIZ.\p"
-	.string "Which of these POKéMON was chasing\n"
-	.string "PROF. BIRCH?$"
+	.string "Which of these Pokémon was chasing\n"
+	.string "Prof. Birch?$"
 
 Route110_TrickHousePuzzle5_Text_26D9CE: @ 826D9CE
 	.string "MECHADOLL 2 QUIZ.\p"
-	.string "Which of these POKéMON did TEAM AQUA\n"
+	.string "Which of these Pokémon did Team Aqua\n"
 	.string "use in PETALBURG FOREST?$"
 
 Route110_TrickHousePuzzle5_Text_26DA1E: @ 826DA1E
@@ -1061,7 +1061,7 @@ Route110_TrickHousePuzzle5_Text_26DB94: @ 826DB94
 
 Route110_TrickHousePuzzle5_Text_26DBD7: @ 826DBD7
 	.string "MECHADOLL 4 QUIZ.\p"
-	.string "In LAVARIDGE TOWN, were there more\n"
+	.string "In Lavaridge Town, were there more\n"
 	.string "elderly men or elderly women?$"
 
 Route110_TrickHousePuzzle5_Text_26DC2A: @ 826DC2A
@@ -1077,12 +1077,12 @@ Route110_TrickHousePuzzle5_Text_26DC78: @ 826DC78
 
 Route110_TrickHousePuzzle5_Text_26DCCB: @ 826DCCB
 	.string "MECHADOLL 5 QUIZ.\p"
-	.string "In SLATEPORT's POKéMON FAN CLUB,\n"
-	.string "how many POKéMON were there?$"
+	.string "In SLATEPORT's Pokémon FAN CLUB,\n"
+	.string "how many Pokémon were there?$"
 
 Route110_TrickHousePuzzle5_Text_26DD1B: @ 826DD1B
 	.string "MECHADOLL 5 QUIZ.\p"
-	.string "In FORTREE CITY, how many\n"
+	.string "In Fortree City, how many\n"
 	.string "tree houses were there?$"
 
 Route110_TrickHousePuzzle5_Text_26DD5F: @ 826DD5F

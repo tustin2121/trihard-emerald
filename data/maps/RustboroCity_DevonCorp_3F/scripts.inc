@@ -1,10 +1,10 @@
 RustboroCity_DevonCorp_3F_MapScripts:: @ 821242D
-	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_3F_MapScript1_21243D
+	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_3F_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, RustboroCity_DevonCorp_3F_MapScript2_212455
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_DevonCorp_3F_MapScript2_212464
 	.byte 0
 
-RustboroCity_DevonCorp_3F_MapScript1_21243D: @ 821243D
+RustboroCity_DevonCorp_3F_OnTransition: @ 821243D
 	compare VAR_DEVON_CORP_3F_STATE, 0
 	call_if_eq RustboroCity_DevonCorp_3F_EventScript_212449
 	end
@@ -208,7 +208,7 @@ RustboroCity_DevonCorp_3F_Text_212609: @ 8212609
 	.string "I understand that you're delivering\n"
 	.string "a package to SLATEPORT's SHIPYARD.\p"
 	.string "Well, on the way, could you stop off in\n"
-	.string "DEWFORD TOWN?\p"
+	.string "Dewford Town?\p"
 	.string "I was hoping that you'd deliver a\n"
 	.string "LETTER to STEVEN in DEWFORD.$"
 
@@ -220,15 +220,15 @@ RustboroCity_DevonCorp_3F_Text_21277C: @ 821277C
 	.string "That's why I want you to have this!$"
 
 RustboroCity_DevonCorp_3F_Text_212820: @ 8212820
-	.string "{PLAYER} received a POKéNAV.$"
+	.string "{PLAYER} received a PokéNav.$"
 
 RustboroCity_DevonCorp_3F_Text_212837: @ 8212837
 	.string "MR. STONE: That device…\p"
-	.string "It's a POKéMON NAVIGATOR, or POKéNAV\n"
+	.string "It's a Pokémon NAVIGATOR, or PokéNav\n"
 	.string "for short.\p"
 	.string "It's an indispensable tool for any\n"
 	.string "TRAINER on an adventure.\p"
-	.string "It has a map of the HOENN region.\p"
+	.string "It has a map of the Hoenn region.\p"
 	.string "You can check the locations of\n"
 	.string "DEWFORD and SLATEPORT easily!\p"
 	.string "By the way, I've heard that sinister\n"
@@ -238,7 +238,7 @@ RustboroCity_DevonCorp_3F_Text_212837: @ 8212837
 	.string "up before you go on your way.$"
 
 RustboroCity_DevonCorp_3F_Text_2129D2: @ 82129D2
-	.string "MR. STONE: Well, then, {PLAYER}{KUN},\n"
+	.string "MR. STONE: Well, then, {PLAYER},\n"
 	.string "go with caution and care!$"
 
 RustboroCity_DevonCorp_3F_Text_212A09: @ 8212A09
@@ -251,13 +251,13 @@ RustboroCity_DevonCorp_3F_Text_212A29: @ 8212A29
 	.string "It should help you, a TRAINER.$"
 
 RustboroCity_DevonCorp_3F_Text_212A9E: @ 8212A9E
-	.string "MR. STONE: A POKéMON holding that\n"
+	.string "MR. STONE: A Pokémon holding that\n"
 	.string "EXP. SHARE will be given some of the\l"
 	.string "EXP Points from battle.\p"
 	.string "It will get EXP Points even if it didn't\n"
 	.string "actually battle.\p"
 	.string "I would say EXP. SHARE is quite useful\n"
-	.string "for raising weak POKéMON.$"
+	.string "for raising weak Pokémon.$"
 
 RustboroCity_DevonCorp_3F_Text_212B78: @ 8212B78
 	.string "MR. STONE: Since my youth, I've immersed\n"
@@ -265,7 +265,7 @@ RustboroCity_DevonCorp_3F_Text_212B78: @ 8212B78
 	.string "Consequently, I'm not familiar with\n"
 	.string "trends and that sort of thing.\p"
 	.string "But do young people all want to be\n"
-	.string "TRAINERS in the POKéMON LEAGUE?$"
+	.string "TRAINERS in the Pokémon League?$"
 
 RustboroCity_DevonCorp_3F_Text_212C37: @ 8212C37
 	.string "This is the DEVON CORPORATION's\n"
