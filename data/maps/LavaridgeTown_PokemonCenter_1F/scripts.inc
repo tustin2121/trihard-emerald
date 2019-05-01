@@ -70,11 +70,8 @@ LavaridgeTown_PokemonCenter_1F_EventScript_1FFB2E:: @ 81FFB2E
 	end
 
 LavaridgeTown_PokemonCenter_1F_Text_1FFC21: @ 81FFC21
-	.string "Hohoho! Hey, kid, you can reach\n"
-	.string "the hot springs from here.\p"
-	.string "If Pokémon are getting rest, so too\n"
-	.string "should their TRAINERS.$"
-
+	.string "That girl by the PC is so mean!\n"
+	.string "…sniffle… …sob…$"
 
 LavaridgeTown_Mart_EventScript_1FF9FE:: @ 81FF9FE
 	msgbox LavaridgeTown_Mart_Text_1FFA10, MSGBOX_NPC
@@ -95,3 +92,20 @@ LavaridgeTown_Mart_Text_1FFA83: @ 81FFA83
 	.string "On Mt. Chimney's peak, there's a local\n"
 	.string "specialty that you can buy only there.\p"
 	.string "Give it to a Pokémon--it will be elated.$"
+
+LavaridgeTown_PokemonCenter_1F_PC_Girl::
+	lock
+	faceplayer
+	msgbox LavaridgeTown_PokemonCenter_1F_PC_Girl_Text, MSGBOX_DEFAULT
+	applymovement 8, LavaridgeTown_PokemonCenter_1F_PC_Girl_Movement
+	waitmovement 0
+	release
+	end
+
+LavaridgeTown_PokemonCenter_1F_PC_Girl_Text:
+	.string "Stop it and leave.\p"
+	.string "Now. Get out!$"
+
+LavaridgeTown_PokemonCenter_1F_PC_Girl_Movement:
+	face_up
+	step_end

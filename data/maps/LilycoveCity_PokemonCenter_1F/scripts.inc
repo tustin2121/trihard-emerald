@@ -65,3 +65,30 @@ LilycoveCity_PokemonCenter_1F_Text_21C6F6: @ 821C6F6
 	.string "Pokémon and rip off METEORITES…\p"
 	.string "I haven't seen them around recently.$"
 
+LilycoveCity_PokemonCenter_1F_PCMan::
+	lock
+	faceplayer
+	msgbox LilycoveCity_PokemonCenter_1F_PCMan_Text1, MSGBOX_DEFAULT
+	closemessage
+	applymovement 6, LilycoveCity_PokemonCenter_1F_PCMan_Movement
+	waitmovement 0
+	delay 30
+	special DoPCBangShakingEffect
+	playse SE_W070
+	waitstate
+	delay 30
+	msgbox LilycoveCity_PokemonCenter_1F_PCMan_Text3, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_PokemonCenter_1F_PCMan_Text1:
+	.string "What do you kids do to these PCs?!\p"
+	.string "I haven't seen one working PC in the\n"
+	.string "entire region!$"
+
+LilycoveCity_PokemonCenter_1F_PCMan_Movement:
+	face_up
+	step_end
+
+LilycoveCity_PokemonCenter_1F_PCMan_Text3:
+	.string "Work, you stupid thing!$"
