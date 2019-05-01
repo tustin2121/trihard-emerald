@@ -487,7 +487,6 @@ void EnterNewlyCreatedSecretBase(void)
 bool8 CurMapIsSecretBase(void)
 {
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SECRET_BASE_RED_CAVE1))// && (u8)gSaveBlock1Ptr->location.mapNum <= MAP_NUM(SECRET_BASE_SHRUB4))
-    {
         return TRUE;
     else
         return FALSE;
