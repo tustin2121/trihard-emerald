@@ -312,12 +312,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F956C:: @ 81F956C
 	end
 
 LittlerootTown_MaysHouse_2F_EventScript_1F9576:: @ 81F9576
-	setvar VAR_0x8004, 2
-	special DoPCTurnOnEffect
-	playse SE_PC_ON
-	msgbox gText_PlayerHouseBootPC, MSGBOX_DEFAULT
-	special BedroomPC
-	waitstate
+	msgbox Text_PCLivestreamEvent, MSGBOX_DEFAULT
 	releaseall
 	end
 

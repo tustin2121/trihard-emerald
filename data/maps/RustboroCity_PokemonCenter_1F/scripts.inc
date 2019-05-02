@@ -138,4 +138,23 @@ RustboroCity_Mart_Text_21505C: @ 821505C
 	.string "I just need to use it to get back to\n"
 	.string "the entrance.$"
 
+RustboroCity_PokemonCenter_1F_PC::
+	lock
+	setvar VAR_0x8004, 0
+	special DoPCTurnOnEffect
+	playse SE_PC_ON
+	message RustboroCity_PokemonCenter_1F_PC_Text
+	waitse
+	msgbox RustboroCity_PokemonCenter_1F_PC_Text_NoKeyboard, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 0
+	playse SE_PC_OFF
+	special DoPCTurnOffEffect
+	release
+	end
 
+RustboroCity_PokemonCenter_1F_PC_Text:
+	.string "{PLAYER} booted up the PC.$"
+
+RustboroCity_PokemonCenter_1F_PC_Text_NoKeyboard:
+	.string "It says “No keyboard detected. Press\n"
+	.string "F1 to continue.”$"

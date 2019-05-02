@@ -34,3 +34,16 @@ MossdeepCity_PokemonCenter_1F_Text_2222D9: @ 82222D9
 	.string "Pokémon, some moves might change\l"
 	.string "or not work at all.$"
 
+MossdeepCity_PokemonCenter_1F_PC::
+	lockall
+	msgbox MossdeepCity_PokemonCenter_1F_PC_Text, MSGBOX_DEFAULT
+	releaseall
+	end
+
+MossdeepCity_PokemonCenter_1F_PC_Text:
+	.string "There's a music video playing on loop.\p"
+	.string "A man is dancing and singing about how\n"
+	.string "he intends to never give up someone,\l"
+	.string "nor let them down,\l"
+	.string "nor run them around,\l"
+	.string "and desert them.$"

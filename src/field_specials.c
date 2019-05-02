@@ -4206,3 +4206,70 @@ u8 sub_813BF7C(void)
 {
     return sub_813BADC(gSpecialVar_0x8004);
 }
+
+static void PCBangShakingEffect(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    if (++task->data[1] % task->data[5] == 0)
+    {
+        task->data[1] = 0;
+        task->data[2]++;
+        task->data[4] = -task->data[4];
+        if (task->data[4] > 0)
+            task->data[4]--;
+
+        SetCameraPanning(0, task->data[4]);
+        if (task->data[4] == 0)
+        {
+            DestroyTask(taskId);
+            EnableBothScriptContexts();
+            InstallCameraPanAheadCallback();
+        }
+    }
+}
+
+void DoPCBangShakingEffect(void)
+{
+    u8 taskId = CreateTask(PCBangShakingEffect, 3);
+    gTasks[taskId].data[1] = 0;
+    gTasks[taskId].data[2] = 0;
+    gTasks[taskId].data[4] = 6;
+    gTasks[taskId].data[5] = 3;
+    SetCameraPanningCallback(0);
+}
+
+static void EvilPCFaceFade(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    int metatile;
+
+    if (++task->data[0] == task->data[1])
+    {
+        int x = 3;
+        int y = 3;
+        task->data[0] = 0;
+        task->data[2]++;
+        if (task->data[2] == 4)
+        {
+            metatile = (0x04 | METATILE_COLLISION_MASK);
+            MapGridSetMetatileIdAt(x + 7, y + 7, metatile);
+            DestroyTask(taskId);
+        }
+        else
+        {
+            metatile = (0x31D + task->data[2]) | METATILE_COLLISION_MASK;
+            MapGridSetMetatileIdAt(x + 7, y + 7, metatile);
+        }
+
+        CurrentMapDrawMetatileAt(x + 7, y + 7);
+    }
+}
+
+void DoEvilPCFaceFade(void)
+{
+    u8 taskId = CreateTask(EvilPCFaceFade, 3);
+    gTasks[taskId].data[0] = -10;
+    gTasks[taskId].data[1] = 5;
+    gTasks[taskId].data[2] = 0;
+}

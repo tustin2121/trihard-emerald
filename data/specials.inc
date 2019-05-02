@@ -539,3 +539,5 @@ gSpecials:: @ 81DBA64
 	def_special DebugSetCallbackSuccess
 	def_special DebugSetCallbackFailure
 	def_special ScrSpecial_CanAnyPartyMonsBeHealed
+	def_special DoPCBangShakingEffect
+	def_special DoEvilPCFaceFade

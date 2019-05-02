@@ -6,6 +6,7 @@
 #include "field_effect.h"
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
+#include "field_specials.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "fieldmap.h"
@@ -28,6 +29,7 @@
 #include "util.h"
 #include "constants/field_effects.h"
 #include "constants/event_object_movement_constants.h"
+#include "constants/maps.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -1615,6 +1617,7 @@ static bool8 sub_80B6EE0(struct Task *task)
         }
         PlaySE(SE_ESUKA);
     }
+
     return FALSE;
 }
 
@@ -1759,6 +1762,14 @@ static bool8 sub_80B71D0(struct Task *task)
     if (task->data[2] & 1)
     {
         task->data[1]--;
+        if (task->data[1] == 8)
+        {
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAUVILLE_CITY_POKEMON_CENTER_1F)
+             && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAUVILLE_CITY_POKEMON_CENTER_1F))
+            {
+                DoEvilPCFaceFade();
+            }
+        }
     }
     if (task->data[1] == 0)
     {

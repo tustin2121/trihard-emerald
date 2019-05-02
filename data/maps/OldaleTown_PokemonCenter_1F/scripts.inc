@@ -89,6 +89,12 @@ OldaleTown_PokemonCenter_1F_EventScript_1FC04F:: @ 81FC04F
 	release
 	end
 
+OldaleTown_PokemonCenter_1F_PC::
+	lockall
+	msgbox Text_PCOutOfOrder, MSGBOX_DEFAULT
+	releaseall
+	end
+
 OldaleTown_PokemonCenter_1F_Text_1FC148: @ 81FC148
 	.string "The Pokémon WIRELESS CLUB on\n"
 	.string "the second floor was built recently.\p"
@@ -136,3 +142,6 @@ OldaleTown_Mart_Text_1FC338: @ 81FC338
 	.string "To prevent your Pokémon from fainting,\n"
 	.string "restore its HP with a Potion.$"
 
+Text_PCOutOfOrder:
+	.string "There's a sign on the PC that says\n"
+	.string "“Out of Order” with a frowny face.$"

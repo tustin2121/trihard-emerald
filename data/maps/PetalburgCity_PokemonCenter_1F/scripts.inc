@@ -156,6 +156,20 @@ PetalburgCity_PokemonCenter_1F_EventScript_207A6D:: @ 8207A6D
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207CB7, MSGBOX_DEFAULT
 	return
 
+PetalburgCity_PokemonCenter_1F_PCGirl::
+	lock
+	msgbox PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part1, MSGBOX_DEFAULT
+	playse SE_PIN
+	applymovement 9, Common_Movement_ExclamationMark
+	waitmovement 0
+	delay 30
+	faceplayer
+	msgbox PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part2, MSGBOX_DEFAULT
+	applymovement 9, PetalburgCity_PokemonCenter_1F_Text_PCGirl_Movement
+	waitmovement 0
+	release
+	end
+
 PetalburgCity_PokemonCenter_1F_Text_207B09: @ 8207B09
 	.string "There are many types of Pokémon.\p"
 	.string "All types have their strengths and\n"
@@ -186,5 +200,16 @@ PetalburgCity_PokemonCenter_1F_Text_207CB7: @ 8207CB7
 	.string "But, it's weak against Grass-type\n"
 	.string "and Electric-type Pokémon.$"
 
+PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part1:
+	.string "Yes, Mom…\n"
+	.string "No, Mom…\l"
+	.string "Yes, Mom…$"
+
+PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part2:
+	.string "Excuse me. Some privacy, please?$"
+
+PetalburgCity_PokemonCenter_1F_Text_PCGirl_Movement:
+	face_up
+	step_end
 
 @ Mystery Event boy is in mystery_event_club.inc

@@ -1438,69 +1438,8 @@ EventScript_271D89:: @ 8271D89
 
 EventScript_PC:: @ 8271D92
 	lockall
-	setvar VAR_0x8004, 0
-	special DoPCTurnOnEffect
-	playse SE_PC_ON
-	msgbox Text_BootUpPC, MSGBOX_DEFAULT
-	goto EventScript_271DAC
-	end
-
-EventScript_271DAC:: @ 8271DAC
-	message gText_WhichPCShouldBeAccessed
-	waitmessage
-	special ScrSpecial_CreatePCMenu
-	waitstate
-	goto EventScript_271DBC
-	end
-
-EventScript_271DBC:: @ 8271DBC
-	switch VAR_RESULT
-	case 0, EventScript_271E0E
-	case 1, EventScript_271DF9
-	case 2, EventScript_271E54
-	case 3, EventScript_271E47
-	case 127, EventScript_271E47
-	end
-
-EventScript_271DF9:: @ 8271DF9
-	playse SE_PC_LOGIN
-	msgbox gText_AccessedPlayersPC, MSGBOX_DEFAULT
-	special PlayerPC
-	waitstate
-	goto EventScript_271DAC
-	end
-
-EventScript_271E0E:: @ 8271E0E
-	playse SE_PC_LOGIN
-	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_271E35
-	call_if_set FLAG_SYS_PC_LANETTE, EventScript_271E3E
-	msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT
-	special ShowPokemonStorageSystemPC
-	waitstate
-	goto EventScript_271DAC
-	end
-
-EventScript_271E35:: @ 8271E35
-	msgbox gText_AccessedSomeonesPC, MSGBOX_DEFAULT
-	return
-
-EventScript_271E3E:: @ 8271E3E
-	msgbox gText_AccessedLanettesPC, MSGBOX_DEFAULT
-	return
-
-EventScript_271E47:: @ 8271E47
-	setvar VAR_0x8004, 0
-	playse SE_PC_OFF
-	special DoPCTurnOffEffect
+	msgbox Text_BrokenPC, MSGBOX_DEFAULT
 	releaseall
-	end
-
-EventScript_271E54:: @ 8271E54
-	goto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_271E47
-	playse SE_PC_LOGIN
-	special AccessHallOfFamePC
-	waitstate
-	goto EventScript_271DBC
 	end
 
 Common_EventScript_ShowPokemartSign:: @ 8271E6A
@@ -2329,8 +2268,9 @@ Text_WouldYouLikeToMixRecords: @ 827260D
 Text_WouldNotLikeToMixRecords: @ 8272640
 	.string "We hope to see you again!$"
 
-Text_BootUpPC: @ 827265A
-	.string "{PLAYER} booted up the PC.$"
+Text_BrokenPC: @ 827265A
+	.string "It looks like someone tried to\n"
+	.string "pull the power supply out.$"
 
 gText_WhichPCShouldBeAccessed:: @ 827266F
 	.string "Which PC should be accessed?$"
@@ -2406,8 +2346,11 @@ gText_SelectWithoutRegisteredItem:: @ 8272C98
 gUnknown_08272CD5:: @ 8272CD5
 	.string "There's an e-mail from Pokémon TRAINER\nSCHOOL.\p… … … … … …\pA Pokémon may learn up to four moves.\pA TRAINER's expertise is tested on the\nmove sets chosen for Pokémon.\p… … … … … …$"
 
-gText_PlayerHouseBootPC:: @ 8272D87
-	.string "{PLAYER} booted up the PC.$"
+Text_PCLivestreamEvent::
+	.string "There's a live stream where a whole\n"
+	.string "bunch of people are controlling a\l"
+	.string "single video game by typing in chat…\p"
+	.string "Welp, time to get going.$"
 
 gUnknown_08272D9C:: @ 8272D9C
 	.string "The link was canceled.$"

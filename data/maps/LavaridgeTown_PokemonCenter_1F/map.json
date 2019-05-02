@@ -56,15 +56,15 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_GENTLEMAN",
+            "graphics_id": "EVENT_OBJ_GFX_TWIN",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "LavaridgeTown_PokemonCenter_1F_EventScript_1FFB2E",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 9,
-            "y": 5
+            "x": 8,
+            "y": 7
         },
         {
             "elevation": 3,
@@ -104,6 +104,19 @@
             "trainer_type": "0",
             "x": 19,
             "y": 9
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_GIRL_1",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "LavaridgeTown_PokemonCenter_1F_PC_Girl",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 8,
+            "y": 4
         }
     ],
     "region_map_section": "MAPSEC_LAVARIDGE_TOWN",

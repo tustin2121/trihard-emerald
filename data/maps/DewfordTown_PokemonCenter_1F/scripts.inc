@@ -35,3 +35,12 @@ DewfordTown_PokemonCenter_1F_Text_1FC5AE: @ 81FC5AE
 	.string "battle, it can still use a move learned\l"
 	.string "from a HIDDEN MACHINE (HM).$"
 
+DewfordTown_PokemonCenter_1F_PC::
+	lockall
+	msgbox DewfordTown_PokemonCenter_1F_PC_Text, MSGBOX_DEFAULT
+	releaseall
+	end
+
+DewfordTown_PokemonCenter_1F_PC_Text:
+	.string "{PLAYER} tries to turn on the PC, but it\n"
+	.string "seems to be unplugged.$"

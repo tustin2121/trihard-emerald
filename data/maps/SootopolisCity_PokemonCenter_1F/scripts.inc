@@ -70,3 +70,18 @@ SootopolisCity_PokemonCenter_1F_Text_22672F: @ 822672F
 	.string "Aren't Pokémon our friends?\p"
 	.string "Why are they going wild this way?$"
 
+SootopolisCity_PokemonCenter_1F_PC_Boy::
+	lockall
+	faceplayer
+	msgbox SootopolisCity_PokemonCenter_1F_PC_Boy_Text, MSGBOX_DEFAULT
+	applymovement 8, SootopolisCity_PokemonCenter_1F_PC_Boy_Movement
+	waitmovement 0
+	releaseall
+	end
+
+SootopolisCity_PokemonCenter_1F_PC_Boy_Text:
+	.string "Wait your turn.$"
+
+SootopolisCity_PokemonCenter_1F_PC_Boy_Movement:
+	face_up
+	step_end

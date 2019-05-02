@@ -53,3 +53,12 @@ FortreeCity_PokemonCenter_1F_Text_21751F: @ 821751F
 	.string "It's really nifty! Those DEVON guys\n"
 	.string "sure know what they're doing!$"
 
+FortreeCity_PokemonCenter_1F_PC::
+	lockall
+	msgbox FortreeCity_PokemonCenter_1F_PC_Text, MSGBOX_DEFAULT
+	releaseall
+	end
+
+FortreeCity_PokemonCenter_1F_PC_Text:
+	.string "The screen is blue, and there is random\n"
+	.string "text all over it.$"

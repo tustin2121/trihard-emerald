@@ -46,6 +46,24 @@ SlateportCity_PokemonCenter_1F_EventScript_BattleTipSailor:: @ 820DAE1
 	msgbox SlateportCity_PokemonCenter_1F_Text_20DAF3, MSGBOX_NPC
 	end
 
+SlateportCity_PokemonCenter_1F_PCMan::
+	lock
+	faceplayer
+	msgbox PetalburgCity_PokemonCenter_1F_Text_PCMan, MSGBOX_DEFAULT
+	applymovement 7, PetalburgCity_PokemonCenter_1F_PCMan_Movement
+	waitmovement 0
+	release
+	end
+
+PetalburgCity_PokemonCenter_1F_Text_PCMan:
+	.string "Just five more minutes!\p"
+	.string "Someone is wrong on the internet, and I\n"
+	.string "need to correct them.$"
+
+PetalburgCity_PokemonCenter_1F_PCMan_Movement:
+	face_up
+	step_end
+
 SlateportCity_PokemonCenter_1F_Text_20DAF3: @ 820DAF3
 	.string "Want a tip for battling?\p"
 	.string "I'd say it's raising different kinds\n"
