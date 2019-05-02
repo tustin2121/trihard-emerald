@@ -4238,3 +4238,38 @@ void DoPCBangShakingEffect(void)
     gTasks[taskId].data[5] = 3;
     SetCameraPanningCallback(0);
 }
+
+static void EvilPCFaceFade(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    int metatile;
+
+    if (++task->data[0] == task->data[1])
+    {
+        int x = 3;
+        int y = 3;
+        task->data[0] = 0;
+        task->data[2]++;
+        if (task->data[2] == 4)
+        {
+            metatile = (0x04 | METATILE_COLLISION_MASK);
+            MapGridSetMetatileIdAt(x + 7, y + 7, metatile);
+            DestroyTask(taskId);
+        }
+        else
+        {
+            metatile = (0x31D + task->data[2]) | METATILE_COLLISION_MASK;
+            MapGridSetMetatileIdAt(x + 7, y + 7, metatile);
+        }
+
+        CurrentMapDrawMetatileAt(x + 7, y + 7);
+    }
+}
+
+void DoEvilPCFaceFade(void)
+{
+    u8 taskId = CreateTask(EvilPCFaceFade, 3);
+    gTasks[taskId].data[0] = -10;
+    gTasks[taskId].data[1] = 5;
+    gTasks[taskId].data[2] = 0;
+}

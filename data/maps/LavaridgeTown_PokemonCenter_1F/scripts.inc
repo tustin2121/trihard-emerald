@@ -104,7 +104,7 @@ LavaridgeTown_PokemonCenter_1F_PC_Girl::
 
 LavaridgeTown_PokemonCenter_1F_PC_Girl_Text:
 	.string "Stop it and leave.\p"
-	.string "Now. Get out!$"
+	.string "Now get out!$"
 
 LavaridgeTown_PokemonCenter_1F_PC_Girl_Movement:
 	face_up

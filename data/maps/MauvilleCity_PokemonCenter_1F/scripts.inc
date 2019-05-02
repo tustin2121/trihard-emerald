@@ -1,7 +1,23 @@
 MauvilleCity_PokemonCenter_1F_MapScripts:: @ 8210E5B
+	map_script MAP_SCRIPT_ON_LOAD, MauvilleCity_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, MauvilleCity_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
+
+MauvilleCity_PokemonCenter_1F_OnLoad:
+	@ Set the PC screen metatile to the evil face if it is out of view.
+	getplayerxy VAR_TEMP_1, VAR_TEMP_2
+	compare VAR_TEMP_1, 10
+	goto_if_gt MauvilleCity_PokemonCenter_1F_OnLoad_SetEvilFace
+	compare VAR_TEMP_1, 2
+	goto_if_lt MauvilleCity_PokemonCenter_1F_OnLoad_SetEvilFace
+	compare VAR_TEMP_2, 8
+	goto_if_gt MauvilleCity_PokemonCenter_1F_OnLoad_SetEvilFace
+	return
+
+MauvilleCity_PokemonCenter_1F_OnLoad_SetEvilFace:
+	setmetatile 3, 3, 0x31D, 1
+	return
 
 MauvilleCity_PokemonCenter_1F_OnTransition: @ 8210E66
 	setrespawn HEAL_LOCATION_MAUVILLE_CITY
@@ -50,8 +66,6 @@ MauvilleCity_Mart_Pokemart_211100: @ 8211100
 	release
 	end
 
-
-
 MauvilleCity_PokemonCenter_1F_EventScript_210E86:: @ 8210E86
 	msgbox MauvilleCity_PokemonCenter_1F_Text_210EA1, MSGBOX_NPC
 	end
@@ -65,7 +79,8 @@ MauvilleCity_PokemonCenter_1F_Text_210EA1: @ 8210EA1
 
 MauvilleCity_PokemonCenter_1F_EventScript_PCLady:: @ 8210E8F
 	msgbox MauvilleCity_PokemonCenter_1F_Text_210F06, MSGBOX_NPC
-	@TODO reset PC event
+	setvar VAR_TEMP_0, 0
+	setmetatile 3, 3, 0x31D, 1
 	end
 
 MauvilleCity_PokemonCenter_1F_Text_210F06: @ 8210F06
@@ -109,3 +124,16 @@ MauvilleCity_Mart_Text_2111D8: @ 82111D8
 	.string "The Trainer's decisions determine how\n"
 	.string "battles turn out, I think.$"
 
+MauvilleCity_PokemonCenter_1F_PC::
+	lockall
+	msgbox MauvilleCity_PokemonCenter_1F_PC_Text, MSGBOX_DEFAULT
+	releaseall
+	end
+
+MauvilleCity_PokemonCenter_1F_PC_Text:
+	.string "Is… is that faint laughter?$"
+
+MauvilleCity_PokemonCenter_1F_PC_TriggerFace::
+	special DoEvilPCFaceFade
+	setvar VAR_TEMP_0, 1
+	end
