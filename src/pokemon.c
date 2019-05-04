@@ -4371,13 +4371,22 @@ void KillMon(int partySlot)
 {
     struct Pokemon* mon = &gPlayerParty[partySlot];
     
-    // TODO return if death mechanics are off
-    
     // sanity check, don't kill "pokemon" beyond our party count
     if (partySlot >= gPlayerPartyCount) return;
     // sanity check, can't kill null pokemon or eggs
-    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE) return;
-    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_EGG) return;
+    if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_NONE) return;
+    if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_EGG) return;
+
+    if (FlagGet(FLAG_DEATH_PREVENT))
+    {
+        if (FlagGet(FLAG_DEATH_PREVENT_1HP))
+            gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_1HP;
+        else
+            gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_0HP;
+
+        return;
+    }
+
     // Don't bother, as this last pokemon fainting will cause a whiteout anyway, which will reset everything
     if (gPlayerPartyCount <= 1) return;
     
@@ -4399,6 +4408,27 @@ void KillMon(int partySlot)
     ZeroMonData(mon);
     CompactPartySlots();
     CalculatePlayerPartyCount();
+}
+
+void Restore1HPDeathPreventedMons(void)
+{
+    int i;
+
+    if (FlagGet(FLAG_DEATH_PREVENT) && FlagGet(FLAG_DEATH_PREVENT_1HP))
+    {
+        for (i = 0; i < gPlayerPartyCount; i++)
+        {
+            struct Pokemon* mon = &gPlayerParty[i];
+            if (GetMonData(mon, MON_DATA_SPECIES2, NULL) != SPECIES_NONE
+             && GetMonData(mon, MON_DATA_SPECIES2, NULL) != SPECIES_EGG
+             && GetMonData(mon, MON_DATA_HP, NULL) == 0
+             && gPlayerDeathPreventions[i] == DEATH_PREVENT_1HP)
+            {
+                u16 hp = 1;
+                SetMonData(mon, MON_DATA_HP, &hp);
+            }
+        }
+    }
 }
 
 u8 CalculatePlayerPartyCount(void)
