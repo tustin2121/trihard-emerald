@@ -2631,12 +2631,12 @@ void OverrideSecretBaseDecorationSpriteScript(u8 localId, u8 mapNum, u8 mapGroup
     {
         switch (decorationCategory)
         {
-            case DECORCAT_DOLL:
+        case DECORCAT_DOLL:
             OverrideEventObjectTemplateScript(&gEventObjects[eventObjectId], SecretBase_EventScript_DollInteract);
-                break;
-            case DECORCAT_CUSHION:
+            break;
+        case DECORCAT_CUSHION:
             OverrideEventObjectTemplateScript(&gEventObjects[eventObjectId], SecretBase_EventScript_CushionInteract);
-                break;
+            break;
         }
     }
 }

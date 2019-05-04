@@ -69,6 +69,13 @@ struct ResourceFlags
 
 #define RESOURCE_FLAG_FLASH_FIRE 1
 
+enum
+{
+    DEATH_PREVENT_NONE,
+    DEATH_PREVENT_0HP,
+    DEATH_PREVENT_1HP,
+};
+
 struct DisableStruct
 {
     u32 transformedMonPersonality;
@@ -701,6 +708,7 @@ extern struct BattleHealthboxInfo *gUnknown_020244DC;
 extern u16 gBattleMovePower;
 extern u16 gMoveToLearn;
 extern u8 gBattleMonForms[MAX_BATTLERS_COUNT];
+extern u8 gPlayerDeathPreventions[PARTY_SIZE];
 
 extern void (*gPreBattleCallback1)(void);
 extern void (*gBattleMainFunc)(void);
