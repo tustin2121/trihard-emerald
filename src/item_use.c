@@ -918,7 +918,11 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
-    if (!IsPlayerPartyFull()) // have room for mon?
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    {
+        DisplayItemMessage(taskId, 1, gText_DontBeAThief, bag_menu_inits_lists_menu);
+    }
+    else if (!IsPlayerPartyFull()) // have room for mon?
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
         if (!InBattlePyramid())

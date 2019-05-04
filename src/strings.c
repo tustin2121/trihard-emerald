@@ -253,6 +253,7 @@ const u8 gText_RepelEffectsLingered[] = _("But the effects of a REPEL\nlingered 
 const u8 gText_UsedVar2WildLured[] = _("{PLAYER} used the\n{STR_VAR_2}.\pWild Pokémon will be lured.{PAUSE_UNTIL_PRESS}");
 const u8 gText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}.\pWild Pokémon will be repelled.{PAUSE_UNTIL_PRESS}");
 const u8 gText_BoxFull[] = _("The BOX is full.{PAUSE_UNTIL_PRESS}");
+const u8 gText_DontBeAThief[] = _("Don't be a thief!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PartyIsFull[] = _("Your party is full!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PowderQty[] = _("POWDER QTY: {STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 const u8 gText_TheField[] = _("the field");
