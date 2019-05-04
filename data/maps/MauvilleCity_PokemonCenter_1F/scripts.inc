@@ -29,6 +29,8 @@ MauvilleCity_PokemonCenter_1F_EventScript_210E74:: @ 8210E74
 	special ScrSpecial_SetMauvilleOldManEventObjGfx
 	end
 
+@ -----------------------------------------------------
+
 MauvilleCity_PokemonCenter_1F_NurseScript:: @ 8210E78
 	setvar VAR_0x800B, 1
 	call PokemonCenter_1F_NurseHealScript
@@ -66,10 +68,26 @@ MauvilleCity_Mart_Pokemart_211100: @ 8211100
 	release
 	end
 
+@ -----------------------------------------------------
+
+MauvilleCity_PokemonCenter_1F_PC::
+	lockall
+	msgbox MauvilleCity_PokemonCenter_1F_PC_Text, MSGBOX_DEFAULT
+	releaseall
+	end
+MauvilleCity_PokemonCenter_1F_PC_Text:
+	.string "Is… is that faint laughter?$"
+
+MauvilleCity_PokemonCenter_1F_PC_TriggerFace::
+	special DoEvilPCFaceFade
+	setvar VAR_TEMP_0, 1
+	end
+
+@ -----------------------------------------------------
+
 MauvilleCity_PokemonCenter_1F_EventScript_210E86:: @ 8210E86
 	msgbox MauvilleCity_PokemonCenter_1F_Text_210EA1, MSGBOX_NPC
 	end
-
 MauvilleCity_PokemonCenter_1F_Text_210EA1: @ 8210EA1
 	.string "That man over there, he says weird\n"
 	.string "things!\p"
@@ -82,7 +100,6 @@ MauvilleCity_PokemonCenter_1F_EventScript_PCLady:: @ 8210E8F
 	setvar VAR_TEMP_0, 0
 	setmetatile 3, 3, 0x31D, 1
 	end
-
 MauvilleCity_PokemonCenter_1F_Text_210F06: @ 8210F06
 	.string "I think I'm seeing things…\p"
 	.string "Is it just me, or did that PC in the\n"
@@ -92,7 +109,6 @@ MauvilleCity_PokemonCenter_1F_Text_210F06: @ 8210F06
 MauvilleCity_PokemonCenter_1F_EventScript_210E98:: @ 8210E98
 	msgbox MauvilleCity_PokemonCenter_1F_Text_210F8A, MSGBOX_NPC
 	end
-
 MauvilleCity_PokemonCenter_1F_Text_210F8A: @ 8210F8A
 	@ TODO remove record corner reference, it no longer exists
 	.string "A RECORD CORNER opened upstairs in\n"
@@ -104,7 +120,6 @@ MauvilleCity_PokemonCenter_1F_Text_210F8A: @ 8210F8A
 MauvilleCity_Mart_EventScript_21111C:: @ 821111C
 	msgbox MauvilleCity_Mart_Text_21112E, MSGBOX_NPC
 	end
-
 MauvilleCity_Mart_Text_21112E: @ 821112E
 	.string "There are items that temporarily\n"
 	.string "elevate the stats of Pokémon.\p"
@@ -117,23 +132,9 @@ MauvilleCity_Mart_Text_21112E: @ 821112E
 MauvilleCity_Mart_EventScript_211125:: @ 8211125
 	msgbox MauvilleCity_Mart_Text_2111D8, MSGBOX_NPC
 	end
-
 MauvilleCity_Mart_Text_2111D8: @ 82111D8
 	.string "Use a certain move, or use an item\n"
 	.string "instead…\p"
 	.string "The Trainer's decisions determine how\n"
 	.string "battles turn out, I think.$"
 
-MauvilleCity_PokemonCenter_1F_PC::
-	lockall
-	msgbox MauvilleCity_PokemonCenter_1F_PC_Text, MSGBOX_DEFAULT
-	releaseall
-	end
-
-MauvilleCity_PokemonCenter_1F_PC_Text:
-	.string "Is… is that faint laughter?$"
-
-MauvilleCity_PokemonCenter_1F_PC_TriggerFace::
-	special DoEvilPCFaceFade
-	setvar VAR_TEMP_0, 1
-	end

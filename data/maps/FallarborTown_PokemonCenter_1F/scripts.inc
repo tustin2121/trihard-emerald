@@ -1,12 +1,20 @@
 FallarborTown_PokemonCenter_1F_MapScripts:: @ 8200BCD
+	map_script MAP_SCRIPT_ON_LOAD, FallarborTown_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, FallarborTown_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
+
+FallarborTown_PokemonCenter_1F_OnLoad:
+	@ Set the PC to "On"
+	setmetatile 3, 3, 0x5, 1
+	return
 
 FallarborTown_PokemonCenter_1F_OnTransition: @ 8200BD8
 	setrespawn HEAL_LOCATION_FALLARBOR_TOWN
 	call PokemonCenter_1F_SetMrBrineyLocation
 	end
+
+@ -----------------------------------------------------
 
 FallarborTown_PokemonCenter_1F_NurseScript:: @ 8200BE1
 	setvar VAR_0x800B, 1
@@ -15,6 +23,7 @@ FallarborTown_PokemonCenter_1F_NurseScript:: @ 8200BE1
 	waitbuttonpress
 	release
 	end
+
 
 FallarborTown_Mart_MartScript:: @ 81FFCBF
 	lock
@@ -44,11 +53,11 @@ FallarborTown_Mart_Pokemart_1FFCD8: @ 81FFCD8
 	release
 	end
 
+@ -----------------------------------------------------
 
 FallarborTown_PokemonCenter_1F_EventScript_200BEF:: @ 8200BEF
 	msgbox FallarborTown_PokemonCenter_1F_Text_200E22, MSGBOX_NPC
 	end
-
 FallarborTown_PokemonCenter_1F_Text_200E22: @ 8200E22
 	.string "I wonder what Pokémon looked like\n"
 	.string "long, long ago?\p"
@@ -59,7 +68,6 @@ FallarborTown_PokemonCenter_1F_Text_200E22: @ 8200E22
 FallarborTown_PokemonCenter_1F_EventScript_200BF8:: @ 8200BF8
 	msgbox FallarborTown_PokemonCenter_1F_Text_200E8B, MSGBOX_NPC
 	end
-
 FallarborTown_PokemonCenter_1F_Text_200E8B: @ 8200E8B
 	.string "In the fields of Fallarbor, we plant\n"
 	.string "seedlings of hardy trees that thrive\l"
@@ -69,7 +77,6 @@ FallarborTown_PokemonCenter_1F_Text_200E8B: @ 8200E8B
 FallarborTown_Mart_EventScript_SkittyLady:: @ 81FFCF4
 	msgbox FallarborTown_Mart_Text_1FFD19, MSGBOX_NPC
 	end
-
 FallarborTown_Mart_Text_1FFD19: @ 81FFD19
 	.string "I'm having a hard time deciding if I\n"
 	.string "should make my Skitty evolve or not.\p"
@@ -89,7 +96,6 @@ FallarborTown_Mart_EventScript_1FFD06:: @ 81FFD06
 	waitmoncry
 	release
 	end
-
 FallarborTown_Mart_Text_1FFDFA: @ 81FFDFA
 	.string "Skitty: Miyao?$"
 
@@ -98,13 +104,13 @@ FallarborTown_Mart_Text_1FFDFA: @ 81FFDFA
 FallarborTown_Mart_EventScript_NuggetMan:: @ 81FFCFD
 	msgbox FallarborTown_Mart_Text_1FFE09, MSGBOX_NPC
 	end
-
 FallarborTown_Mart_Text_1FFE09: @ 81FFE09
 	.string "This {ITEM}Nugget{END} I found here…\n"
 	.string "I suppose I'll have to sell it, seeing\l"
 	.string "as how it has no other use.$"
 
 
+@ -----------------------------------------------------
 @ Move Tutor
 FallarborTown_Mart_EventScript_MoveTutor:: @ 82C80B6
 	lock
@@ -162,6 +168,7 @@ FallarborTown_Mart_Text_2C75B5: @ 82C75B5
 	.string "use it, too?$"
 
 
+@ -----------------------------------------------------
 @ Lanette
 @ TODO: Remove all of this fluff and movement
 FallarborTown_PokemonCenter_1F_Lanette:: @ 8200C01

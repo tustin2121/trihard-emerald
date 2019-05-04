@@ -1,12 +1,20 @@
 SlateportCity_PokemonCenter_1F_MapScripts:: @ 820DABF
+	map_script MAP_SCRIPT_ON_LOAD, SlateportCity_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, SlateportCity_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
+
+SlateportCity_PokemonCenter_1F_OnLoad:
+	@ Set the PC to "On"
+	setmetatile 3, 3, 0x5, 1
+	return
 
 SlateportCity_PokemonCenter_1F_OnTransition: @ 820DACA
 	setrespawn HEAL_LOCATION_SLATEPORT_CITY
 	call PokemonCenter_1F_SetMrBrineyLocation
 	end
+
+@ -----------------------------------------------------
 
 SlateportCity_PokemonCenter_1F_NurseScript:: @ 820DAD3
 	setvar VAR_0x800B, 1
@@ -41,28 +49,30 @@ SlateportCity_Mart_Pokemart_20DC60: @ 820DC60
 	release
 	end
 
-
-SlateportCity_PokemonCenter_1F_EventScript_BattleTipSailor:: @ 820DAE1
-	msgbox SlateportCity_PokemonCenter_1F_Text_20DAF3, MSGBOX_NPC
-	end
+@ -----------------------------------------------------
 
 SlateportCity_PokemonCenter_1F_PCMan::
 	lock
 	faceplayer
-	msgbox PetalburgCity_PokemonCenter_1F_Text_PCMan, MSGBOX_DEFAULT
-	applymovement 7, PetalburgCity_PokemonCenter_1F_PCMan_Movement
+	msgbox SlateportCity_PokemonCenter_1F_Text_PCMan, MSGBOX_DEFAULT
+	applymovement 7, SlateportCity_PokemonCenter_1F_PCMan_Movement
 	waitmovement 0
 	release
 	end
 
-PetalburgCity_PokemonCenter_1F_Text_PCMan:
+SlateportCity_PokemonCenter_1F_Text_PCMan:
 	.string "Just five more minutes!\p"
 	.string "Someone is wrong on the internet, and I\n"
 	.string "need to correct them.$"
 
-PetalburgCity_PokemonCenter_1F_PCMan_Movement:
+SlateportCity_PokemonCenter_1F_PCMan_Movement:
 	face_up
 	step_end
+
+
+SlateportCity_PokemonCenter_1F_EventScript_BattleTipSailor:: @ 820DAE1
+	msgbox SlateportCity_PokemonCenter_1F_Text_20DAF3, MSGBOX_NPC
+	end
 
 SlateportCity_PokemonCenter_1F_Text_20DAF3: @ 820DAF3
 	.string "Want a tip for battling?\p"

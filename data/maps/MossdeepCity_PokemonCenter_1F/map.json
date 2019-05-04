@@ -29,11 +29,37 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "MossdeepCity_PokemonCenter_1F_EventScript_22224E",
+            "script": "MossdeepCity_PokemonCenter_1F_NurseScript",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 10,
             "y": 2
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_MART_EMPLOYEE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "MossdeepCity_Mart_MartScript",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 16,
+            "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_LINK_RECEPTIONIST",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "PokemonCenter_1F_FreePokeballCounterScript",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 15,
+            "y": 4
         },
         {
             "elevation": 3,
@@ -58,21 +84,8 @@
             "script": "MossdeepCity_PokemonCenter_1F_EventScript_222265",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 6,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_MART_EMPLOYEE",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "MossdeepCity_Mart_EventScript_2223C8",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 13,
-            "y": 6
+            "x": 14,
+            "y": 11
         },
         {
             "elevation": 3,
@@ -84,8 +97,8 @@
             "script": "MossdeepCity_Mart_EventScript_2223F6",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 1,
-            "y": 5
+            "x": 4,
+            "y": 9
         },
         {
             "elevation": 3,
@@ -97,8 +110,8 @@
             "script": "MossdeepCity_Mart_EventScript_2223FF",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 8,
-            "y": 3
+            "x": 12,
+            "y": 7
         },
         {
             "elevation": 3,
@@ -111,7 +124,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 5,
-            "y": 3
+            "y": 5
         }
     ],
     "region_map_section": "MAPSEC_MOSSDEEP_CITY",

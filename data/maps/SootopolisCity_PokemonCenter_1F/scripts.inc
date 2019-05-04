@@ -1,3 +1,12 @@
+
+	.macro SootopolisCity_GotoIfNoWeather pointer:req
+	compare VAR_SKY_PILLAR_STATE, 2
+	goto_if_ge \pointer
+	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, \pointer
+	.endm
+
+@ -----------------------------------------------------
+
 SootopolisCity_PokemonCenter_1F_MapScripts:: @ 82264F1
 	map_script MAP_SCRIPT_ON_TRANSITION, SootopolisCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, SootopolisCity_PokemonCenter_1F_MapScript1_277C30
@@ -7,7 +16,9 @@ SootopolisCity_PokemonCenter_1F_OnTransition: @ 82264FC
 	setrespawn HEAL_LOCATION_SOOTOPOLIS_CITY
 	end
 
-SootopolisCity_PokemonCenter_1F_EventScript_226500:: @ 8226500
+@ -----------------------------------------------------
+
+SootopolisCity_PokemonCenter_1F_NurseScript:: @ 8226500
 	setvar VAR_0x800B, 1
 	call PokemonCenter_1F_NurseHealScript
 	waitmessage
@@ -15,73 +26,205 @@ SootopolisCity_PokemonCenter_1F_EventScript_226500:: @ 8226500
 	release
 	end
 
-SootopolisCity_PokemonCenter_1F_EventScript_22650E:: @ 822650E
+
+SootopolisCity_Mart_MartScript:: @ 8226795
 	lock
 	faceplayer
-	compare VAR_SKY_PILLAR_STATE, 2
-	goto_if_ge SootopolisCity_PokemonCenter_1F_EventScript_22652E
-	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_PokemonCenter_1F_EventScript_22652E
+	message gText_Mart_Welcome
+	waitmessage
+	pokemart SootopolisCity_Mart_Pokemart_2267AC
+	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_Mart_Pokemart_2267AC: @ 82267AC
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_MAX_POTION
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_REVIVE
+	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFEND
+	.2byte ITEM_SHADOW_MAIL
+	.2byte ITEM_NONE
+	release
+	end
+
+
+@ -----------------------------------------------------
+
+SootopolisCity_PokemonCenter_1F_EventScript_PC::
+	lock
+	SootopolisCity_GotoIfNoWeather SootopolisCity_PokemonCenter_1F_EventScript_PCNoStorm
+	msgbox SootopolisCity_PokemonCenter_1F_Text_PC, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_PokemonCenter_1F_Text_PC:
+	.string "The center's power is out from the\n"
+	.string "raging Pokémon outside.\p"
+	.string "There's no way the PC is going to turn\n"
+	.string "on in these conditions.$"
+SootopolisCity_PokemonCenter_1F_EventScript_PCNoStorm:
+	msgbox SootopolisCity_PokemonCenter_1F_Text_PCNoStorm, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_PokemonCenter_1F_Text_PCNoStorm:
+	.string "The PC keeps booting, and then flashing\n"
+	.string "a blue screen before rebooting again.$"
+
+
+SootopolisCity_PokemonCenter_1F_EventScript_WallaceGentleman:: @ 822650E
+	lock
+	faceplayer
+	SootopolisCity_GotoIfNoWeather SootopolisCity_PokemonCenter_1F_EventScript_22652E
 	msgbox SootopolisCity_PokemonCenter_1F_Text_22664B, MSGBOX_DEFAULT
 	release
 	end
-
-SootopolisCity_PokemonCenter_1F_EventScript_22652E:: @ 822652E
-	msgbox SootopolisCity_PokemonCenter_1F_Text_226562, MSGBOX_DEFAULT
-	release
-	end
-
-SootopolisCity_PokemonCenter_1F_EventScript_226538:: @ 8226538
-	lock
-	faceplayer
-	compare VAR_SKY_PILLAR_STATE, 2
-	goto_if_ge SootopolisCity_PokemonCenter_1F_EventScript_226558
-	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_PokemonCenter_1F_EventScript_226558
-	msgbox SootopolisCity_PokemonCenter_1F_Text_22672F, MSGBOX_DEFAULT
-	release
-	end
-
-SootopolisCity_PokemonCenter_1F_EventScript_226558:: @ 8226558
-	msgbox SootopolisCity_PokemonCenter_1F_Text_2266B9, MSGBOX_DEFAULT
-	release
-	end
-
-SootopolisCity_PokemonCenter_1F_Text_226562: @ 8226562
-	.string "WALLACE is rumored to be the toughest\n"
-	.string "TRAINER in the whole Hoenn region.\p"
-	.string "This town's GYM is led by the TRAINER\n"
-	.string "who taught WALLACE.\p"
-	.string "But the ELITE FOUR… They're said to be\n"
-	.string "even stronger than WALLACE's mentor.\p"
-	.string "How strong could they be?$"
-
 SootopolisCity_PokemonCenter_1F_Text_22664B: @ 822664B
 	.string "Everyone in town has taken refuge\n"
 	.string "and won't come out of their homes.\p"
 	.string "Even I would rather not venture\n"
 	.string "outside.$"
+SootopolisCity_PokemonCenter_1F_EventScript_22652E:: @ 822652E
+	msgbox SootopolisCity_PokemonCenter_1F_Text_226562, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_PokemonCenter_1F_Text_226562: @ 8226562
+	.string "Wallace is rumored to be the toughest\n"
+	.string "trainer in the whole Hoenn region.\p"
+	.string "This town's Gym is led by the trainer\n"
+	.string "who taught Wallace.\p"
+	.string "But the Elite Four… They're said to be\n"
+	.string "even stronger than Wallace's mentor.\p"
+	.string "How strong could they be?$"
 
+
+SootopolisCity_PokemonCenter_1F_EventScript_FriendsWoman:: @ 8226538
+	lock
+	faceplayer
+	SootopolisCity_GotoIfNoWeather SootopolisCity_PokemonCenter_1F_EventScript_226558
+	msgbox SootopolisCity_PokemonCenter_1F_Text_22672F, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_PokemonCenter_1F_Text_22672F: @ 822672F
+	.string "Aren't Pokémon our friends?\p"
+	.string "Why are they going wild this way?$"
+SootopolisCity_PokemonCenter_1F_EventScript_226558:: @ 8226558
+	msgbox SootopolisCity_PokemonCenter_1F_Text_2266B9, MSGBOX_DEFAULT
+	release
+	end
 SootopolisCity_PokemonCenter_1F_Text_2266B9: @ 82266B9
 	.string "Whenever, wherever, and whatever\n"
 	.string "happens, I will always be friends with\l"
 	.string "Pokémon.\p"
 	.string "Because it's fun to be with Pokémon!$"
 
-SootopolisCity_PokemonCenter_1F_Text_22672F: @ 822672F
-	.string "Aren't Pokémon our friends?\p"
-	.string "Why are they going wild this way?$"
 
-SootopolisCity_PokemonCenter_1F_PC_Boy::
-	lockall
+SootopolisCity_Mart_EventScript_PPUpMan:: @ 82267C2
+	lock
 	faceplayer
-	msgbox SootopolisCity_PokemonCenter_1F_PC_Boy_Text, MSGBOX_DEFAULT
-	applymovement 8, SootopolisCity_PokemonCenter_1F_PC_Boy_Movement
-	waitmovement 0
-	releaseall
+	SootopolisCity_GotoIfNoWeather SootopolisCity_Mart_EventScript_2267E2
+	msgbox SootopolisCity_Mart_Text_22685D, MSGBOX_DEFAULT
+	release
 	end
+SootopolisCity_Mart_Text_22685D: @ 822685D
+	.string "What…\n"
+	.string "What is happening?\p"
+	.string "I really want to know, but it's too\n"
+	.string "scary to go outside.$"
+SootopolisCity_Mart_EventScript_2267E2:: @ 82267E2
+	msgbox SootopolisCity_Mart_Text_226816, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_Mart_Text_226816: @ 8226816
+	.string "PP Up is great!\p"
+	.string "It raises the Power Points, the PP,\n"
+	.string "of a Pokémon move.\p"
+	.string "… … … I see you smirking.\n"
+	.string "Get your mind out of the gutter!$"
 
-SootopolisCity_PokemonCenter_1F_PC_Boy_Text:
-	.string "Wait your turn.$"
 
-SootopolisCity_PokemonCenter_1F_PC_Boy_Movement:
-	face_up
-	step_end
+SootopolisCity_Mart_EventScript_FullRestoreMan:: @ 82267EC
+	lock
+	faceplayer
+	SootopolisCity_GotoIfNoWeather SootopolisCity_Mart_EventScript_22680C
+	msgbox SootopolisCity_Mart_Text_226928, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_Mart_Text_226928: @ 8226928
+	.string "This weather…\n"
+	.string "Did something awaken?$"
+SootopolisCity_Mart_EventScript_22680C:: @ 822680C
+	msgbox SootopolisCity_Mart_Text_2268AF, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_Mart_Text_2268AF: @ 82268AF
+	.string "Do you know Full Restore?\p"
+	.string "Full restoration of HP!\n"
+	.string "Eradication of all status problems!\p"
+	.string "It's truly an item of your dreams!$"
+
+
+@ -----------------------------------------------------
+@ Move Tutor
+
+SootopolisCity_PokemonCenter_1F_EventScript_MoveTutor:: @ 82C8256
+	lock
+	faceplayer
+	SootopolisCity_GotoIfNoWeather SootopolisCity_PokemonCenter_1F_EventScript_MoveTutor2
+	msgbox SootopolisCity_Mart_Text_226928, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_PokemonCenter_1F_Text_MoveTutorScared:
+	.string "AAAHHH!!\p"
+	.string "I hope Wallace is alright in this\n"
+	.string "terrible weather!$"
+	
+SootopolisCity_PokemonCenter_1F_EventScript_MoveTutor2:
+	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_DOUBLE_EDGE, SootopolisCity_PokemonCenter_1F_EventScript_2C82B4
+	msgbox SootopolisCity_PokemonCenter_1F_Text_2C7B8E, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq SootopolisCity_PokemonCenter_1F_EventScript_2C82AA
+	call SootopolisCity_PokemonCenter_1F_EventScript_2C832D
+	compare VAR_RESULT, 0
+	goto_if_eq SootopolisCity_PokemonCenter_1F_EventScript_2C82AA
+	msgbox SootopolisCity_PokemonCenter_1F_Text_2C7C98, MSGBOX_DEFAULT
+	setvar VAR_0x8005, 4
+	call EventScript_ShowPartyMenu
+	compare VAR_RESULT, 0
+	goto_if_eq SootopolisCity_PokemonCenter_1F_EventScript_2C82AA
+	setflag FLAG_MOVE_TUTOR_TAUGHT_DOUBLE_EDGE
+	goto SootopolisCity_PokemonCenter_1F_EventScript_2C82B4
+	end
+SootopolisCity_PokemonCenter_1F_Text_2C7B8E: @ 82C7B8E
+	.string "Sigh…\p"
+	.string "Sootopolis's Gym Leader is really\n"
+	.string "lovably admirable.\p"
+	.string "But that also means I have many\n"
+	.string "rivals for his attention.\p"
+	.string "He's got appeal with a Double-Edge.\n"
+	.string "I couldn't even catch his eye.\p"
+	.string "Please, let me teach your Pokémon\n"
+	.string "the move Double-Edge!$"
+SootopolisCity_PokemonCenter_1F_Text_2C7C98: @ 82C7C98
+	.string "Okay, which Pokémon should I teach\n"
+	.string "Double-Edge?$"
+
+SootopolisCity_PokemonCenter_1F_EventScript_2C82AA:: @ 82C82AA
+	msgbox SootopolisCity_PokemonCenter_1F_Text_2C7C7E, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_PokemonCenter_1F_Text_2C7C7E: @ 82C7C7E
+	.string "Oh…\n"
+	.string "Even you rejected me…$"
+
+SootopolisCity_PokemonCenter_1F_EventScript_2C82B4:: @ 82C82B4
+	msgbox SootopolisCity_PokemonCenter_1F_Text_2C7CC8, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_PokemonCenter_1F_Text_2C7CC8: @ 82C7CC8
+	.string "I won't live for love anymore!\n"
+	.string "I'll become tough!$"
+
+
+
