@@ -132,6 +132,11 @@ include songs.mk
 sound/direct_sound_samples/cry_%.bin: sound/direct_sound_samples/cry_%.aif ; $(AIF) $< $@ --compress
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
 
+$(OBJ_DIR)/copystamp.bin: .git/index
+	tools/copystamp/copystamp $(OBJ_DIR)/copystamped.bin `git log -1 --format="-18:s %h -19:t %ct"`
+$(OBJ_DIR)/copystamped.bin.lz: $(OBJ_DIR)/copystamp.bin
+	$(GFX) $(OBJ_DIR)/copystamped.bin $@
+
 
 $(C_BUILDDIR)/libc.o: CC1 := tools/agbcc/bin/old_agbcc
 $(C_BUILDDIR)/libc.o: CFLAGS := -O2
@@ -145,6 +150,8 @@ $(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork
 $(C_BUILDDIR)/m4a.o: CC1 := tools/agbcc/bin/old_agbcc
 
 $(C_BUILDDIR)/record_mixing.o: CFLAGS += -ffreestanding
+
+$(C_BUILDDIR)/graphics.o: $(OBJ_DIR)/copystamped.bin.lz
 
 ifeq ($(NODEP),1)
 $(C_BUILDDIR)/%.o: c_dep :=

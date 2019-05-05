@@ -9,3 +9,4 @@ make -C tools/ramscrgen CXX=${1:-g++}
 make -C tools/gbafix CXX=${1:-g++}
 make -C tools/mid2agb CXX=${1:-g++}
 make -C tools/mapjson CXX=${1:-g++}
+make -C tools/copystamp CXX=${1:-g++}
