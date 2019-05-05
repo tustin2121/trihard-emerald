@@ -490,6 +490,11 @@ static const u8 sText_ItemAllowsOnlyYMove[] = _("{B_LAST_ITEM} allows the\nuse o
 static const u8 sText_PkmnHungOnWithX[] = _("{B_DEF_NAME_WITH_PREFIX} hung on\nusing its {B_LAST_ITEM}!");
 const u8 gText_EmptyString3[] = _("");
 static const u8 sText_YouThrowABallNowRight[] = _("You throw a BALL now, right?\nI… I'll do my best!");
+static const u8 sText_AffectionCureSleep[] = _("{B_ATK_NAME_WITH_PREFIX} shook itself awake\nso that {B_PLAYER_NAME} wouldn't worry!");
+static const u8 sText_AffectionCurePoison[] = _("{B_ATK_NAME_WITH_PREFIX} expelled the poison\nso that {B_PLAYER_NAME} wouldn't worry!");
+static const u8 sText_AffectionCureBurn[] = _("{B_ATK_NAME_WITH_PREFIX} blew on its burn and made\nit better so that {B_PLAYER_NAME}\lwouldn't worry!");
+static const u8 sText_AffectionCureFreeze[] = _("{B_ATK_NAME_WITH_PREFIX} melted the ice with its\nfiery determination so that {B_PLAYER_NAME}\lwouldn't worry!");
+static const u8 sText_AffectionCureParalysis[] = _("{B_ATK_NAME_WITH_PREFIX} gathered all its energy to\nbreak through its paralysis so that\l{B_PLAYER_NAME} wouldn't worry!");
 
 // early declaration of strings
 static const u8 sText_PkmnIncapableOfPower[];
@@ -878,6 +883,11 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNBOXLANETTESPCFULL - 12] = gText_PkmnBoxLanettesPCFull,
     [STRINGID_TRAINER1WINTEXT - 12] = sText_Trainer1WinText,
     [STRINGID_TRAINER2WINTEXT - 12] = sText_Trainer2WinText,
+    [STRINGID_PKMNSHOOKAWAKE - 12] = sText_AffectionCureSleep,
+    [STRINGID_PKMNSHOOKPOISON - 12] = sText_AffectionCurePoison,
+    [STRINGID_PKMNSHOOKBURN - 12] = sText_AffectionCureBurn,
+    [STRINGID_PKMNSHOOKFREEZE - 12] = sText_AffectionCureFreeze,
+    [STRINGID_PKMNSHOOKPARALYSIS - 12] = sText_AffectionCureParalysis,
 };
 
 const u16 gMissStringIds[] =

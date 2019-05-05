@@ -134,6 +134,15 @@
 #define MAX_TOTAL_EVS 510
 #define UNOWN_FORM_COUNT 28
 
+#define AFFECTION_LEVEL_1 100
+#define AFFECTION_LEVEL_2 140
+#define AFFECTION_LEVEL_3 170
+#define AFFECTION_LEVEL_4 200
+#define AFFECTION_LEVEL_5 255
+
+// Chances are divided by 10.  A chance value of 125 would be a 12.5% chance.
+#define AFFECTION_STATUS_CURE_CHANCE 125
+
 struct PokemonSubstruct0
 {
     u16 species;
@@ -510,6 +519,7 @@ u8 GetMonsStateToDoubles(void);
 u8 GetMonsStateToDoubles_2(void);
 u8 GetAbilityBySpecies(u16 species, bool8 altAbility);
 u8 GetMonAbility(struct Pokemon *mon);
+u8 GetMonAffectionLevel(struct Pokemon *mon);
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord);
 u8 GetSecretBaseTrainerPicIndex(void);
 u8 GetSecretBaseTrainerClass(void);

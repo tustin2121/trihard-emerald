@@ -783,6 +783,7 @@ enum
     ENDTURN_TAUNT,
     ENDTURN_YAWN,
     ENDTURN_ITEMS2,
+    ENDTURN_AFFECTION_CURE,
     ENDTURN_BATTLER_COUNT
 };
 
@@ -1094,6 +1095,11 @@ u8 DoBattlerEndTurnEffects(void)
                 }
                 gBattleStruct->turnEffectsTracker++;
                 break;
+            case ENDTURN_AFFECTION_CURE:
+                if (DoBattlerAffectionStatusCure())
+                    effect++;
+                gBattleStruct->turnEffectsTracker++;
+                break;
             case ENDTURN_BATTLER_COUNT:  // done
                 gBattleStruct->turnEffectsTracker = 0;
                 gBattleStruct->turnEffectsBattlerId++;
@@ -1105,6 +1111,58 @@ u8 DoBattlerEndTurnEffects(void)
     }
     gHitMarker &= ~(HITMARKER_GRUDGE | HITMARKER_x20);
     return 0;
+}
+
+static void ExecuteAffectionStatusCure(const u8 *battleScript)
+{
+    BattleScriptExecute(battleScript);
+    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
+    MarkBattlerForControllerExec(gActiveBattler);
+}
+
+bool8 DoBattlerAffectionStatusCure(void)
+{
+    struct Pokemon *mon;
+    if (GetBattlerSide(gActiveBattler) != B_SIDE_PLAYER)
+        return;
+
+    mon = &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]];
+    if (GetMonAffectionLevel(mon) >= AFFECTION_LEVEL_3 && Random() % 1000 < AFFECTION_STATUS_CURE_CHANCE)
+    {
+        if ((gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP) && gBattleMons[gActiveBattler].hp != 0)
+        {
+            gBattleMons[gActiveBattler].status1 &= ~(STATUS1_SLEEP);
+            gBattleMons[gActiveBattler].status2 &= ~(STATUS2_NIGHTMARE);
+            ExecuteAffectionStatusCure(BattleScript_AffectionCureSleep);
+            return TRUE;
+        }
+        else if ((gBattleMons[gActiveBattler].status1 & STATUS1_PSN_ANY) && gBattleMons[gActiveBattler].hp != 0)
+        {
+            gBattleMons[gActiveBattler].status1 &= ~(STATUS1_PSN_ANY | STATUS1_TOXIC_COUNTER);
+            ExecuteAffectionStatusCure(BattleScript_AffectionCurePoison);
+            return TRUE;
+        }
+        else if ((gBattleMons[gActiveBattler].status1 & STATUS1_BURN) && gBattleMons[gActiveBattler].hp != 0)
+        {
+            gBattleMons[gActiveBattler].status1 &= ~STATUS1_BURN;
+            ExecuteAffectionStatusCure(BattleScript_AffectionCureBurn);
+            return TRUE;
+        }
+        else if ((gBattleMons[gActiveBattler].status1 & STATUS1_FREEZE) && gBattleMons[gActiveBattler].hp != 0)
+        {
+            gBattleMons[gActiveBattler].status1 &= ~STATUS1_FREEZE;
+            ExecuteAffectionStatusCure(BattleScript_AffectionCureFreeze);
+            return TRUE;
+        }
+        else if ((gBattleMons[gActiveBattler].status1 & STATUS1_PARALYSIS) && gBattleMons[gActiveBattler].hp != 0)
+        {
+            gBattleMons[gActiveBattler].status1 &= ~STATUS1_PARALYSIS;
+            ExecuteAffectionStatusCure(BattleScript_AffectionCureParalysis);
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }
 
 bool8 HandleWishPerishSongOnTurnEnd(void)
