@@ -4518,6 +4518,23 @@ u8 GetMonAbility(struct Pokemon *mon)
     return GetAbilityBySpecies(species, altAbility);
 }
 
+u8 GetMonAffectionLevel(struct Pokemon *mon)
+{
+    u8 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
+    if (friendship >= AFFECTION_LEVEL_5)
+        return 5;
+    if (friendship >= AFFECTION_LEVEL_4)
+        return 4;
+    if (friendship >= AFFECTION_LEVEL_3)
+        return 3;
+    if (friendship >= AFFECTION_LEVEL_2)
+        return 2;
+    if (friendship >= AFFECTION_LEVEL_1)
+        return 1;
+
+    return 0;
+}
+
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord)
 {
     s32 i, j;

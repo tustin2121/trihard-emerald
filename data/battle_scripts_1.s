@@ -3873,6 +3873,36 @@ BattleScript_CurseTurnDmg::
 	status2animation BS_ATTACKER, STATUS2_CURSED
 	goto BattleScript_DoTurnDmg
 
+BattleScript_AffectionCureSleep::
+	printstring STRINGID_PKMNSHOOKAWAKE
+	waitmessage 0x40
+	updatestatusicon BS_ATTACKER
+	end2
+
+BattleScript_AffectionCurePoison::
+	printstring STRINGID_PKMNSHOOKPOISON
+	waitmessage 0x40
+	updatestatusicon BS_ATTACKER
+	end2
+
+BattleScript_AffectionCureBurn::
+	printstring STRINGID_PKMNSHOOKBURN
+	waitmessage 0x40
+	updatestatusicon BS_ATTACKER
+	end2
+
+BattleScript_AffectionCureFreeze::
+	printstring STRINGID_PKMNSHOOKFREEZE
+	waitmessage 0x40
+	updatestatusicon BS_ATTACKER
+	end2
+
+BattleScript_AffectionCureParalysis::
+	printstring STRINGID_PKMNSHOOKPARALYSIS
+	waitmessage 0x40
+	updatestatusicon BS_ATTACKER
+	end2
+
 BattleScript_TargetPRLZHeal::
 	printstring STRINGID_PKMNHEALEDPARALYSIS
 	waitmessage 0x40
