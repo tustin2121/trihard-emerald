@@ -4383,9 +4383,10 @@ void KillMon(int partySlot)
             gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_1HP;
         else
             gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_0HP;
-
-        return;
     }
+    
+    // If this pokemon has a death prevention flag on it, don't kill it.
+    if (gPlayerDeathPreventions[partySlot] != DEATH_PREVENT_NONE) return;
 
     // Don't bother, as this last pokemon fainting will cause a whiteout anyway, which will reset everything
     if (gPlayerPartyCount <= 1) return;
@@ -4414,19 +4415,23 @@ void Restore1HPDeathPreventedMons(void)
 {
     int i;
 
-    if (FlagGet(FLAG_DEATH_PREVENT) && FlagGet(FLAG_DEATH_PREVENT_1HP))
+    for (i = 0; i < gPlayerPartyCount; i++)
     {
-        for (i = 0; i < gPlayerPartyCount; i++)
+        struct Pokemon* mon = &gPlayerParty[i];
+        // sanity checks
+        if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_NONE) continue;
+        if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_EGG) continue;
+        if (GetMonData(mon, MON_DATA_HP, NULL) == 0 && gPlayerDeathPreventions[i] != DEATH_PREVENT_NONE)
         {
-            struct Pokemon* mon = &gPlayerParty[i];
-            if (GetMonData(mon, MON_DATA_SPECIES2, NULL) != SPECIES_NONE
-             && GetMonData(mon, MON_DATA_SPECIES2, NULL) != SPECIES_EGG
-             && GetMonData(mon, MON_DATA_HP, NULL) == 0
-             && gPlayerDeathPreventions[i] == DEATH_PREVENT_1HP)
+            u16 hp = 0;
+            u16 maxhp = GetMonData(mon, MON_DATA_MAX_HP, NULL);
+            switch (gPlayerDeathPreventions[i])
             {
-                u16 hp = 1;
-                SetMonData(mon, MON_DATA_HP, &hp);
+                case DEATH_PREVENT_1HP: hp = 1; break;
+                case DEATH_PREVENT_25HP: hp = maxhp / 4; break;
+                case DEATH_PREVENT_50HP: hp = maxhp / 2; break;
             }
+            SetMonData(mon, MON_DATA_HP, &hp);
         }
     }
 }

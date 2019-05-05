@@ -6840,6 +6840,11 @@ static void atk79_setatkhptozero(void)
         return;
 
     gActiveBattler = gBattlerAttacker;
+    // Trihard Emerald: Pokemon fainted from their own attacks do not die.
+    if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+    {
+        gPlayerDeathPreventions[gBattlerPartyIndexes[gActiveBattler]] = DEATH_PREVENT_SELF_DESTRUCT;
+    }
     gBattleMons[gActiveBattler].hp = 0;
     BtlController_EmitSetMonData(0, REQUEST_HP_BATTLE, 0, 2, &gBattleMons[gActiveBattler].hp);
     MarkBattlerForControllerExec(gActiveBattler);
