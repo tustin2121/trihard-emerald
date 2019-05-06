@@ -1683,10 +1683,17 @@ static void atk07_adjustnormaldamage(void)
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
     }
+    else if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
+          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_2
+          && Random() % 1000 < AFFECTION_SURVIVE_ATTACK_CHANCE)
+    {
+        gSpecialStatuses[gBattlerTarget].affectionHeldOn = 1;
+    }
+
     if (gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
         goto END;
     if (gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE && !gProtectStructs[gBattlerTarget].endured
-     && !gSpecialStatuses[gBattlerTarget].focusBanded)
+     && !gSpecialStatuses[gBattlerTarget].focusBanded && !gSpecialStatuses[gBattlerTarget].affectionHeldOn)
         goto END;
 
     if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
@@ -1702,6 +1709,10 @@ static void atk07_adjustnormaldamage(void)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
         gLastUsedItem = gBattleMons[gBattlerTarget].item;
+    }
+    else if (gSpecialStatuses[gBattlerTarget].affectionHeldOn)
+    {
+        gMoveResultFlags |= MOVE_RESULT_AFFECTION_SURVIVE;
     }
 
     END:
@@ -1732,9 +1743,16 @@ static void atk08_adjustnormaldamage2(void) // The same as 0x7 except it doesn't
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
     }
+    else if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
+          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_2
+          && Random() % 1000 < AFFECTION_SURVIVE_ATTACK_CHANCE)
+    {
+        gSpecialStatuses[gBattlerTarget].affectionHeldOn = 1;
+    }
+
     if (gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
         goto END;
-    if (!gProtectStructs[gBattlerTarget].endured && !gSpecialStatuses[gBattlerTarget].focusBanded)
+    if (!gProtectStructs[gBattlerTarget].endured && !gSpecialStatuses[gBattlerTarget].focusBanded && !gSpecialStatuses[gBattlerTarget].affectionHeldOn)
         goto END;
     if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
         goto END;
@@ -1749,6 +1767,10 @@ static void atk08_adjustnormaldamage2(void) // The same as 0x7 except it doesn't
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
         gLastUsedItem = gBattleMons[gBattlerTarget].item;
+    }
+    else if (gSpecialStatuses[gBattlerTarget].affectionHeldOn)
+    {
+        gMoveResultFlags |= MOVE_RESULT_AFFECTION_SURVIVE;
     }
 
     END:
@@ -1998,7 +2020,7 @@ static void atk0E_effectivenesssound(void)
     gActiveBattler = gBattlerTarget;
     if (!(gMoveResultFlags & MOVE_RESULT_MISSED))
     {
-        switch (gMoveResultFlags & (u8)(~(MOVE_RESULT_MISSED)))
+        switch (gMoveResultFlags & (u16)(~(MOVE_RESULT_MISSED)))
         {
         case MOVE_RESULT_SUPER_EFFECTIVE:
             BtlController_EmitPlaySE(0, SE_KOUKA_H);
@@ -2015,6 +2037,7 @@ static void atk0E_effectivenesssound(void)
         case MOVE_RESULT_FOE_ENDURED:
         case MOVE_RESULT_ONE_HIT_KO:
         case MOVE_RESULT_FOE_HUNG_ON:
+        case MOVE_RESULT_AFFECTION_SURVIVE:
         default:
             if (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
             {
@@ -2052,7 +2075,7 @@ static void atk0F_resultmessage(void)
     else
     {
         gBattleCommunication[MSG_DISPLAY] = 1;
-        switch (gMoveResultFlags & (u8)(~(MOVE_RESULT_MISSED)))
+        switch (gMoveResultFlags & (u16)(~(MOVE_RESULT_MISSED)))
         {
         case MOVE_RESULT_SUPER_EFFECTIVE:
             stringId = STRINGID_SUPEREFFECTIVE;
@@ -2079,6 +2102,11 @@ static void atk0F_resultmessage(void)
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_HangedOnMsg;
             return;
+        case MOVE_RESULT_AFFECTION_SURVIVE:
+            gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_AFFECTION_SURVIVE);
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_AffectionSurvivedMsg;
+            return;
         default:
             if (gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE)
             {
@@ -2095,7 +2123,7 @@ static void atk0F_resultmessage(void)
             }
             else if (gMoveResultFlags & MOVE_RESULT_FOE_ENDURED)
             {
-                gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
+                gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON | MOVE_RESULT_AFFECTION_SURVIVE);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_EnduredMsg;
                 return;
@@ -2107,6 +2135,13 @@ static void atk0F_resultmessage(void)
                 gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_HangedOnMsg;
+                return;
+            }
+            else if (gMoveResultFlags & MOVE_RESULT_AFFECTION_SURVIVE)
+            {
+                gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_AFFECTION_SURVIVE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AffectionSurvivedMsg;
                 return;
             }
             else if (gMoveResultFlags & MOVE_RESULT_FAILED)
@@ -6156,10 +6191,17 @@ static void atk69_adjustsetdamage(void) // The same as 0x7, except there's no ra
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
     }
+    else if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
+          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_2
+          && Random() % 1000 < AFFECTION_SURVIVE_ATTACK_CHANCE)
+    {
+        gSpecialStatuses[gBattlerTarget].affectionHeldOn = 1;
+    }
+
     if (gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
         goto END;
     if (gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE && !gProtectStructs[gBattlerTarget].endured
-     && !gSpecialStatuses[gBattlerTarget].focusBanded)
+     && !gSpecialStatuses[gBattlerTarget].focusBanded && !gSpecialStatuses[gBattlerTarget].affectionHeldOn)
         goto END;
 
     if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
@@ -6175,6 +6217,10 @@ static void atk69_adjustsetdamage(void) // The same as 0x7, except there's no ra
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
         gLastUsedItem = gBattleMons[gBattlerTarget].item;
+    }
+    else if (gSpecialStatuses[gBattlerTarget].affectionHeldOn)
+    {
+        gMoveResultFlags |= MOVE_RESULT_AFFECTION_SURVIVE;
     }
 
     END:
@@ -7740,6 +7786,12 @@ static void atk93_tryKO(void)
         RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_FOCUS_BAND);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
     }
+    else if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
+          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_2
+          && Random() % 1000 < AFFECTION_SURVIVE_ATTACK_CHANCE)
+    {
+        gSpecialStatuses[gBattlerTarget].affectionHeldOn = 1;
+    }
 
     if (gBattleMons[gBattlerTarget].ability == ABILITY_STURDY)
     {
@@ -7784,6 +7836,11 @@ static void atk93_tryKO(void)
                 gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
                 gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
                 gLastUsedItem = gBattleMons[gBattlerTarget].item;
+            }
+            else if (gSpecialStatuses[gBattlerTarget].affectionHeldOn)
+            {
+                gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+                gMoveResultFlags |= MOVE_RESULT_AFFECTION_SURVIVE;
             }
             else
             {
