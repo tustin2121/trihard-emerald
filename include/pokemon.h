@@ -142,7 +142,8 @@
 
 // Chances are divided by 10.  A chance value of 125 would be a 12.5% chance.
 #define AFFECTION_STATUS_CURE_CHANCE 125
-#define AFFECTION_SURVIVE_ATTACK_CHANCE 125
+#define AFFECTION_SURVIVE_ATTACK_CHANCE 50
+#define AFFECTION_EVADE_ATTACK_CHANCE 50
 
 struct PokemonSubstruct0
 {

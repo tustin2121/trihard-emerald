@@ -8,6 +8,7 @@ extern const u8 BattleScript_PrintMoveMissed[];
 extern const u8 BattleScript_MoveMissedPause[];
 extern const u8 BattleScript_MoveMissed[];
 extern const u8 BattleScript_ButItFailed[];
+extern const u8 BattleScript_AffectionEvadeAttack[];
 extern const u8 BattleScript_StatUp[];
 extern const u8 BattleScript_StatDown[];
 extern const u8 BattleScript_AlreadyAtFullHp[];
