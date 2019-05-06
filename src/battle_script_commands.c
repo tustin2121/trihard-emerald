@@ -1105,16 +1105,34 @@ static bool8 AccuracyCalcHelper(u16 move)
 
 static void atk01_accuracycheck(void)
 {
+    bool32 affectionEvade = FALSE;
     u16 move = T2_READ_16(gBattlescriptCurrInstr + 5);
+
+    if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
+     && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_4
+     && Random() % 1000 < AFFECTION_EVADE_ATTACK_CHANCE)
+    {
+        affectionEvade = TRUE;
+    }
 
     if (move == NO_ACC_CALC || move == NO_ACC_CALC_CHECK_LOCK_ON)
     {
-        if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && move == NO_ACC_CALC_CHECK_LOCK_ON && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+        if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && move == NO_ACC_CALC_CHECK_LOCK_ON && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker && !affectionEvade)
             gBattlescriptCurrInstr += 7;
         else if (gStatuses3[gBattlerTarget] & (STATUS3_ON_AIR | STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         else if (!JumpIfMoveAffectedByProtect(0))
             gBattlescriptCurrInstr += 7;
+    }
+    else if (affectionEvade)
+    {
+        gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_AFFECTION_EVADE);
+        gBattleCommunication[6] = 5;
+
+        if (move == 0)
+            move = gCurrentMove;
+
+        JumpIfMoveFailed(7, move);
     }
     else
     {
