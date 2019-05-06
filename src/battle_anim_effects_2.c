@@ -539,6 +539,14 @@ const union AffineAnimCmd gGrowAndShrinkAffineAnimCmds[] =
     AFFINEANIMCMD_END,
 };
 
+const union AffineAnimCmd gGrowAndShrinkFastAffineAnimCmds[] =
+{
+    AFFINEANIMCMD_FRAME(-4, -5, 0, 6),
+    AFFINEANIMCMD_FRAME(0, 0, 0, 12),
+    AFFINEANIMCMD_FRAME(4, 5, 0, 6),
+    AFFINEANIMCMD_END,
+};
+
 const union AnimCmd gUnknown_08593628[] =
 {
     ANIMCMD_FRAME(0, 4, .hFlip = TRUE),
@@ -2210,12 +2218,16 @@ static void AnimTask_SplashStep(u8 taskId)
 
 // Grows, pauses, then shrinks the attacking mon.
 // Used by MOVE_SWAGGER and MOVE_BULK_UP
-// No args.
+// arg0: 0 = slow, 1 = fast
 void AnimTask_GrowAndShrink(u8 taskId)
 {
     struct Task* task = &gTasks[taskId];
     u8 spriteId = GetAnimBattlerSpriteId(ANIM_ATTACKER);
-    PrepareAffineAnimInTaskData(task, spriteId, gGrowAndShrinkAffineAnimCmds);
+    if (gBattleAnimArgs[0])
+        PrepareAffineAnimInTaskData(task, spriteId, gGrowAndShrinkFastAffineAnimCmds);
+    else
+        PrepareAffineAnimInTaskData(task, spriteId, gGrowAndShrinkAffineAnimCmds);
+
     task->func = AnimTask_GrowAndShrinkStep;
 }
 

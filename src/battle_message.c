@@ -495,6 +495,7 @@ static const u8 sText_AffectionCurePoison[] = _("{B_ATK_NAME_WITH_PREFIX} expell
 static const u8 sText_AffectionCureBurn[] = _("{B_ATK_NAME_WITH_PREFIX} blew on its burn and made\nit better so that {B_PLAYER_NAME}\lwouldn't worry!");
 static const u8 sText_AffectionCureFreeze[] = _("{B_ATK_NAME_WITH_PREFIX} melted the ice with its\nfiery determination so that {B_PLAYER_NAME}\lwouldn't worry!");
 static const u8 sText_AffectionCureParalysis[] = _("{B_ATK_NAME_WITH_PREFIX} gathered all its energy to\nbreak through its paralysis so that\l{B_PLAYER_NAME} wouldn't worry!");
+static const u8 sText_AffectionSurvive[] = _("{B_DEF_NAME_WITH_PREFIX} toughed it out to\nshow its best side to {B_PLAYER_NAME}!");
 
 // early declaration of strings
 static const u8 sText_PkmnIncapableOfPower[];
@@ -888,6 +889,7 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNSHOOKBURN - 12] = sText_AffectionCureBurn,
     [STRINGID_PKMNSHOOKFREEZE - 12] = sText_AffectionCureFreeze,
     [STRINGID_PKMNSHOOKPARALYSIS - 12] = sText_AffectionCureParalysis,
+    [STRINGID_PKMNAFFECTIONSURVIVE - 12] = sText_AffectionSurvive,
 };
 
 const u16 gMissStringIds[] =

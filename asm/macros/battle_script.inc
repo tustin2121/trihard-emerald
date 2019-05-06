@@ -1426,7 +1426,7 @@
 	.endm
 	
 	.macro jumpifmovehadnoeffect jumpptr:req
-	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_NO_EFFECT, \jumpptr
+	jumpifhalfword CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_NO_EFFECT, \jumpptr
 	.endm
 	
 	.macro jumpifbattletype flags:req, jumpptr:req

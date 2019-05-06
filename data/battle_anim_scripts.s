@@ -409,6 +409,7 @@ gBattleAnims_General::
 	.4byte General_FocusPunchSetUp
 	.4byte General_IngrainHeal
 	.4byte General_WishHeal
+	.4byte General_AffectionSurvive
 
 	.align 2
 gBattleAnims_Special::
@@ -3278,7 +3279,7 @@ Move_FALSE_SWIPE:
 Move_SWAGGER:
 	loadspritegfx ANIM_TAG_BREATH
 	loadspritegfx ANIM_TAG_ANGER
-	createvisualtask AnimTask_GrowAndShrink, 2
+	createvisualtask AnimTask_GrowAndShrink, 2, 0
 	playsewithpan SE_W207, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	createsprite gBreathPuffSpriteTemplate, ANIM_ATTACKER, 2
@@ -4381,7 +4382,7 @@ Move_HOWL:
 
 Move_BULK_UP:
 	loadspritegfx ANIM_TAG_BREATH
-	createvisualtask AnimTask_GrowAndShrink, 2
+	createvisualtask AnimTask_GrowAndShrink, 2, 0
 	playsewithpan SE_W207, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	createsprite gBreathPuffSpriteTemplate, ANIM_ATTACKER, 2
@@ -10661,6 +10662,17 @@ General_WishHeal:
 	call HealingEffect
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, 1, 3, 10, 0, RGB_BLACK
+	end
+
+General_AffectionSurvive:
+	loadspritegfx ANIM_TAG_MAGENTA_HEART
+	createsprite gMagentaHeartSpriteTemplate, ANIM_ATTACKER, 3, 0, 20
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 2, 4, 0, 4, RGB_RED
+	createvisualtask AnimTask_GrowAndShrink, 2, 1
+	playsewithpan SE_W204, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 2, 4, 4, 0, RGB_RED
+	waitforvisualfinish
 	end
 
 AnimScript_82D85A3:
