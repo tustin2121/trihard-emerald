@@ -370,14 +370,19 @@ Route104_EventScript_1ED099:: @ 81ED099
 	end
 
 Route104_EventScript_1ED0D9:: @ 81ED0D9
-	applymovement 7, Route104_Movement_1ED28C
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED28C
+	applymovement 7, Route104_Movement_NoMatchCallPart1
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_NoMatchCallPart1
+	waitmovement 0
+	call_if_unset FLAG_RECEIVED_OLD_ROD, GiveOldRod
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_AfterOldRod
+	applymovement 7, Route104_Movement_AfterOldRod, MAP_ROUTE104
+	waitmovement 7, MAP_ROUTE104
 	waitmovement 0
 	goto Route104_EventScript_1ED139
 
 Route104_EventScript_1ED0EF:: @ 81ED0EF
-	applymovement 7, Route104_Movement_1ED1C8
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED1C8
+	applymovement 7, Route104_Movement_MatchCallPart1
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_MatchCallPart1
 	waitmovement 0
 	pokenavcall Route104_Text_1EE336
 	waitmessage
@@ -388,11 +393,29 @@ Route104_EventScript_1ED0EF:: @ 81ED0EF
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED22A
-	applymovement 7, Route104_Movement_1ED22A, MAP_ROUTE104
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_MatchCallPart2
+	applymovement 7, Route104_Movement_MatchCallPart2, MAP_ROUTE104
+	waitmovement 7, MAP_ROUTE104
+	waitmovement 0
+	call_if_unset FLAG_RECEIVED_OLD_ROD, GiveOldRod
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_AfterOldRod
+	applymovement 7, Route104_Movement_AfterOldRod, MAP_ROUTE104
 	waitmovement 7, MAP_ROUTE104
 	waitmovement 0
 	goto Route104_EventScript_1ED139
+
+GiveOldRod:
+	msgbox Route104_Text_BrineyOldRod, MSGBOX_DEFAULT
+	giveitem_std ITEM_OLD_ROD
+	setflag FLAG_RECEIVED_OLD_ROD
+	msgbox Route104_Text_BrineyOldRod2, MSGBOX_DEFAULT
+	closemessage
+	fadescreen 1
+	delay 120
+	fadescreen 0
+	msgbox Route104_Text_BrineyOldRod3, MSGBOX_DEFAULT
+	closemessage
+	return
 
 Route104_EventScript_1ED139:: @ 81ED139
 	delay 50
@@ -432,7 +455,7 @@ Route104_EventScript_1ED1BE:: @ 81ED1BE
 	releaseall
 	end
 
-Route104_Movement_1ED1C8: @ 81ED1C8
+Route104_Movement_MatchCallPart1: @ 81ED1C8
 	walk_down
 	walk_down
 	walk_down
@@ -532,7 +555,7 @@ Route104_Movement_1ED1C8: @ 81ED1C8
 	walk_fastest_down
 	step_end
 
-Route104_Movement_1ED22A: @ 81ED22A
+Route104_Movement_MatchCallPart2: @ 81ED22A
 	walk_fastest_down
 	walk_fastest_down
 	walk_fastest_down
@@ -607,8 +630,11 @@ Route104_Movement_1ED22A: @ 81ED22A
 	walk_fastest_right
 	walk_fast_right
 	walk_fast_right
-	walk_fast_right
-	walk_fast_right
+	walk_right
+	walk_right
+	step_end
+
+Route104_Movement_AfterOldRod:
 	walk_right
 	walk_right
 	walk_down
@@ -632,7 +658,7 @@ Route104_Movement_1ED22A: @ 81ED22A
 	walk_down
 	step_end
 
-Route104_Movement_1ED28C: @ 81ED28C
+Route104_Movement_NoMatchCallPart1: @ 81ED28C
 	walk_down
 	walk_down
 	walk_down
@@ -802,31 +828,10 @@ Route104_Movement_1ED28C: @ 81ED28C
 	walk_fastest_right
 	walk_fastest_right
 	walk_fastest_right
-	walk_fast_right
-	walk_fast_right
 	walk_fast_right
 	walk_fast_right
 	walk_right
 	walk_right
-	walk_down
-	walk_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_down
-	walk_down
 	step_end
 
 Route104_Movement_1ED34F: @ 81ED34F
@@ -1185,3 +1190,16 @@ Route104_Text_1EE120: @ 81EE120
 	.string "making Pokémon battle.\p"
 	.string "Like MR. BRINEY, it's important to\n"
 	.string "become friends with your Pokémon.$"
+
+Route104_Text_BrineyOldRod:
+	.string "BRINEY: Time to go fishing for awhile!\p"
+	.string "What? You don't know how to fish?!\p"
+	.string "I'll teach you!$"
+
+Route104_Text_BrineyOldRod2:
+	.string "Now, let's see if the fish are biting.$"
+
+Route104_Text_BrineyOldRod3:
+	.string "That was a great haul!\p"
+	.string "We're almost to DEWFORD TOWN,\n"
+	.string "so let's be on our way.$"
