@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_interface.h"
 #include "battle_setup.h"
 #include "bike.h"
 #include "coord_event_weather.h"
@@ -32,6 +33,7 @@
 #include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
+#include "constants/species.h"
 
 static EWRAM_DATA u8 sWildEncounterImmunitySteps = 0;
 static EWRAM_DATA u16 sPreviousPlayerMetatileBehavior = 0;
@@ -65,6 +67,7 @@ static bool8 TryStartWarpEventScript(struct MapPosition *, u16);
 static bool8 TryStartMiscWalkingScripts(u16);
 static bool8 TryStartStepCountScript(u16);
 static void UpdateHappinessStepCounter(void);
+static void UpdateRedBarHealthStepCounter(void);
 
 void FieldClearPlayerInput(struct FieldInput *input)
 {
@@ -538,6 +541,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
 
     IncrementRematchStepCounter();
     UpdateHappinessStepCounter();
+    UpdateRedBarHealthStepCounter();
     UpdateFarawayIslandStepCounter();
 
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_6) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior))
@@ -616,6 +620,33 @@ static void UpdateHappinessStepCounter(void)
         {
             AdjustFriendship(mon, FRIENDSHIP_EVENT_WALKING);
             mon++;
+        }
+    }
+}
+
+// Increment the HP of any red-bar mon in the party every 128 player steps.
+static void UpdateRedBarHealthStepCounter(void)
+{
+    int i;
+    u16 *ptr = GetVarPointer(VAR_RED_BAR_HEALTH_STEP_COUNTER);
+
+    (*ptr)++;
+    (*ptr) %= 128;
+    if (*ptr == 0)
+    {
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            struct Pokemon *mon = &gPlayerParty[i];
+            if (GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) && GetMonData(mon, MON_DATA_SPECIES2) != SPECIES_EGG)
+            {
+                s16 hp = GetMonData(mon, MON_DATA_HP);
+                s16 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
+                if (GetHPBarLevel(hp, maxHp) == HP_BAR_RED)
+                {
+                    hp++;
+                    SetMonData(mon, MON_DATA_HP, &hp);
+                }
+            }
         }
     }
 }
