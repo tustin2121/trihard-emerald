@@ -1127,7 +1127,8 @@ bool8 DoBattlerAffectionStatusCure(void)
         return;
 
     mon = &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]];
-    if (GetMonAffectionLevel(mon) >= 3 && Random() % 1000 < AFFECTION_STATUS_CURE_CHANCE)
+    if (GetMonAffectionLevel(mon) >= AFFECTION_LEVEL_STATUS_CURE
+     && Random() % 1000 < AFFECTION_CHANCE_STATUS_CURE)
     {
         if ((gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP) && gBattleMons[gActiveBattler].hp != 0)
         {

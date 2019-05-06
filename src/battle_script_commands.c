@@ -1109,8 +1109,8 @@ static void atk01_accuracycheck(void)
     u16 move = T2_READ_16(gBattlescriptCurrInstr + 5);
 
     if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
-     && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= 4
-     && Random() % 1000 < AFFECTION_EVADE_ATTACK_CHANCE)
+     && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_EVADE
+     && Random() % 1000 < AFFECTION_CHANCE_EVADE)
     {
         affectionEvade = TRUE;
     }
@@ -1287,7 +1287,7 @@ static void atk04_critcalc(void)
         holdEffect = ItemId_GetHoldEffect(item);
 
     // High affection doubles crit chance.
-    if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]]) >= 5)
+    if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]]) >= AFFECTION_LEVEL_CRIT)
         affectionCrit = 1;
     else
         affectionCrit = 0;
@@ -1710,8 +1710,8 @@ static void atk07_adjustnormaldamage(void)
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
     }
     else if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
-          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= 2
-          && Random() % 1000 < AFFECTION_SURVIVE_ATTACK_CHANCE)
+          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_SURVIVE
+          && Random() % 1000 < AFFECTION_CHANCE_SURVIVE)
     {
         gSpecialStatuses[gBattlerTarget].affectionHeldOn = 1;
     }
@@ -1770,8 +1770,8 @@ static void atk08_adjustnormaldamage2(void) // The same as 0x7 except it doesn't
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
     }
     else if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
-          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= 2
-          && Random() % 1000 < AFFECTION_SURVIVE_ATTACK_CHANCE)
+          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_SURVIVE
+          && Random() % 1000 < AFFECTION_CHANCE_SURVIVE)
     {
         gSpecialStatuses[gBattlerTarget].affectionHeldOn = 1;
     }
@@ -6218,8 +6218,8 @@ static void atk69_adjustsetdamage(void) // The same as 0x7, except there's no ra
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
     }
     else if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
-          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= 2
-          && Random() % 1000 < AFFECTION_SURVIVE_ATTACK_CHANCE)
+          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_SURVIVE
+          && Random() % 1000 < AFFECTION_CHANCE_SURVIVE)
     {
         gSpecialStatuses[gBattlerTarget].affectionHeldOn = 1;
     }
@@ -7813,8 +7813,8 @@ static void atk93_tryKO(void)
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
     }
     else if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER
-          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= 2
-          && Random() % 1000 < AFFECTION_SURVIVE_ATTACK_CHANCE)
+          && GetMonAffectionLevel(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]]) >= AFFECTION_LEVEL_SURVIVE
+          && Random() % 1000 < AFFECTION_CHANCE_SURVIVE)
     {
         gSpecialStatuses[gBattlerTarget].affectionHeldOn = 1;
     }
