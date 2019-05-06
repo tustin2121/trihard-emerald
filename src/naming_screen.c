@@ -26,6 +26,7 @@
 #include "menu.h"
 #include "text_window.h"
 #include "overworld.h"
+#include "random.h"
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
 
@@ -916,7 +917,14 @@ static void CursorInit(void)
     gSprites[gNamingScreenData->cursorSpriteId].oam.objMode = 1;
     gSprites[gNamingScreenData->cursorSpriteId].data[6] = 1;
     gSprites[gNamingScreenData->cursorSpriteId].data[6] = 2;
+#if TPP_MODE
+    {
+        u16 rval = Random();
+        SetCursorPos(rval % 9, (rval >> 8) % 4);
+    }
+#else
     SetCursorPos(0, 0);
+#endif
 }
 
 static void SetCursorPos(s16 x, s16 y)
