@@ -117,11 +117,11 @@
 #define FLAG_UNUSED_0x068                    0x68  // Unused Flag
 
 #define FLAG_OCEANIC_MUSEUM_MET_REPORTER     0x69
-#define FLAG_RECEIVED_HM04                   0x6A
-#define FLAG_RECEIVED_HM06                   0x6B
+#define FLAG_RECEIVED_TM54                   0x6A
+#define FLAG_RECEIVED_TM56                   0x6B
 #define FLAG_FLANNERY_GIVES_BADGE_INFO       0x6C
-#define FLAG_RECEIVED_HM05                   0x6D
-#define FLAG_RECEIVED_HM02                   0x6E
+#define FLAG_RECEIVED_TM55                   0x6D
+#define FLAG_RECEIVED_TM52                   0x6E
 #define FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT  0x6F
 #define FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE  0x70
 #define FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE 0x71 // Unused Flag. Used in R/S to indicate whether player defeated or caught Groudon/Kyogre in Cave of Origin.
@@ -135,8 +135,8 @@
 
 #define FLAG_LANDMARK_MIRAGE_TOWER           0x78
 #define FLAG_RECEIVED_TM31                   0x79
-#define FLAG_RECEIVED_HM03                   0x7A
-#define FLAG_RECEIVED_HM08                   0x7B
+#define FLAG_RECEIVED_TM53                   0x7A
+#define FLAG_RECEIVED_TM58                   0x7B
 #define FLAG_REGISTER_RIVAL_POKENAV          0x7C
 #define FLAG_DEFEATED_RIVAL_ROUTE_104        0x7D
 #define FLAG_DEFEATED_WALLY_VICTORY_ROAD     0x7E
@@ -150,7 +150,7 @@
 #define FLAG_PENDING_DAYCARE_EGG             0x86
 #define FLAG_THANKED_FOR_PLAYING_WITH_WALLY  0x87
 #define FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL 0x88 // Set after defeating Wally outside Mauville Gym. Will activate a call later to register Wally.
-#define FLAG_RECEIVED_HM01                   0x89
+#define FLAG_RECEIVED_TM51                   0x89
 #define FLAG_REGISTER_WINONA_POKENAV         0x8A // Set after obtaining registering Winona, and cleared after Scott's call.
 #define FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY   0x8B
 #define FLAG_RECEIVED_6_SODA_POP             0x8C
@@ -331,7 +331,7 @@
 #define FLAG_MET_MAXIE_SOOTOPOLIS            0x135
 #define FLAG_MET_SCOTT_RUSTBORO              0x136
 #define FLAG_WALLACE_GOES_TO_SKY_PILLAR      0x137 // Set after speaking to Wallace within the Cave of Origin.
-#define FLAG_RECEIVED_HM07                   0x138
+#define FLAG_RECEIVED_TM57                   0x138
 #define FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS    0x139 // Beat Magma Grunt blocking Magma Hideout entrance.
 #define FLAG_RECEIVED_AURORA_TICKET          0x13A // RECEIVED Aurora Ticket in Mystery Gift
 #define FLAG_RECEIVED_MYSTIC_TICKET          0x13B // RECEIVED Mystic Ticket in Mystery Gift

@@ -13,7 +13,7 @@ MossdeepCity_OnTransition: @ 81E4A9C
 MossdeepCity_EventScript_1E4AB2:: @ 81E4AB2
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_HM08, MossdeepCity_EventScript_1E4AC7
+	goto_if_set FLAG_RECEIVED_TM58, MossdeepCity_EventScript_1E4AC7
 	msgbox MossdeepCity_Text_1E4E90, MSGBOX_DEFAULT
 	release
 	end
@@ -26,7 +26,7 @@ MossdeepCity_EventScript_1E4AC7:: @ 81E4AC7
 MossdeepCity_EventScript_1E4AD1:: @ 81E4AD1
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_HM08, MossdeepCity_EventScript_1E4AE6
+	goto_if_set FLAG_RECEIVED_TM58, MossdeepCity_EventScript_1E4AE6
 	msgbox MossdeepCity_Text_1E4F50, MSGBOX_DEFAULT
 	release
 	end

@@ -310,6 +310,11 @@ static void SetShopMenuCallback(void (* callback)(void))
     gMartInfo.callback = callback;
 }
 
+static bool32 IsTMAlreadyOwned(u16 item)
+{
+    return ItemId_GetPocket(item) == POCKET_TM_HM && CheckBagHasItem(item, 1);
+}
+
 static void SetShopItemsForSale(const u16 *items)
 {
     u16 i = 0;
@@ -319,9 +324,12 @@ static void SetShopItemsForSale(const u16 *items)
 
     while (gMartInfo.itemList[i])
     {
-        gMartInfo.itemCount++;
+        if (!IsTMAlreadyOwned(gMartInfo.itemList[i]))
+            gMartInfo.itemCount++;
         i++;
     }
+
+    gMartInfo.originalItemCount =  i;
 }
 
 static void Task_ShopMenu(u8 taskId)
@@ -485,19 +493,24 @@ static void BuyMenuFreeMemory(void)
     FreeAllWindowBuffers();
 }
 
-static void BuyMenuBuildListMenuTemplate(void)
+static void BuildItemList(void)
 {
-    u16 i;
-    u16 itemCount;
+    int i, index;
+    for (i = 0, index = 0; i < gMartInfo.originalItemCount; i++)
+    {
+        // Exclude owned TMs from the list of items to buy.
+        if (!IsTMAlreadyOwned(gMartInfo.itemList[i]))
+        {
+            BuyMenuSetListEntry(&gUnknown_02039F74[index], gMartInfo.itemList[i], gUnknown_02039F78[index]);
+            index++;
+        }
+    }
 
-    gUnknown_02039F74 = Alloc((gMartInfo.itemCount + 1) * sizeof(*gUnknown_02039F74));
-    gUnknown_02039F78 = Alloc((gMartInfo.itemCount + 1) * sizeof(*gUnknown_02039F78));
-    for (i = 0; i < gMartInfo.itemCount; i++)
-        BuyMenuSetListEntry(&gUnknown_02039F74[i], gMartInfo.itemList[i], gUnknown_02039F78[i]);
+    gMartInfo.itemCount = index;
 
-    StringCopy(gUnknown_02039F78[i], gText_Cancel2);
-    gUnknown_02039F74[i].name = gUnknown_02039F78[i];
-    gUnknown_02039F74[i].id = -2;
+    StringCopy(gUnknown_02039F78[index], gText_Cancel2);
+    gUnknown_02039F74[index].name = gUnknown_02039F78[index];
+    gUnknown_02039F74[index].id = -2;
 
     gMultiuseListMenuTemplate = sShopBuyMenuListTemplate;
     gMultiuseListMenuTemplate.items = gUnknown_02039F74;
@@ -508,6 +521,13 @@ static void BuyMenuBuildListMenuTemplate(void)
         gMultiuseListMenuTemplate.maxShowed = gMultiuseListMenuTemplate.totalItems;
 
     gShopDataPtr->itemsShowed = gMultiuseListMenuTemplate.maxShowed;
+}
+
+static void BuyMenuBuildListMenuTemplate(void)
+{
+    gUnknown_02039F74 = Alloc((gMartInfo.itemCount + 1) * sizeof(*gUnknown_02039F74));
+    gUnknown_02039F78 = Alloc((gMartInfo.itemCount + 1) * sizeof(*gUnknown_02039F78));
+    BuildItemList();
 }
 
 static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, u16 item, u8 *name)
@@ -1131,8 +1151,13 @@ static void Task_ReturnToItemListAfterDecorationPurchase(u8 taskId)
 static void BuyMenuReturnToItemList(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    u16 scrollPos;
+    u16 cursorPos;
 
     ClearDialogWindowAndFrameToTransparent(5, 0);
+    BuildItemList();
+    DestroyListMenuTask(tListTaskId, &scrollPos, &cursorPos);
+    tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, scrollPos, cursorPos);
     BuyMenuPrintCursor(tListTaskId, 1);
     PutWindowTilemap(1);
     PutWindowTilemap(2);

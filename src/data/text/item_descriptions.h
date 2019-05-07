@@ -286,14 +286,14 @@ const u8 gTM48ItemDescription[] = _("Switches abilities\nwith the foe on the\ntu
 const u8 gTM49ItemDescription[] = _("Steals the effects\nof the move the foe\nis trying to use.");
 const u8 gTM50ItemDescription[] = _("Enables full-power\nattack, but sharply\nlowers SP. ATK.");
 
-const u8 gHM01ItemDescription[] = _("Attacks the foe\nwith sharp blades\nor claws.");
-const u8 gHM02ItemDescription[] = _("Flies up on the\nfirst turn, then\nattacks next turn.");
-const u8 gHM03ItemDescription[] = _("Creates a huge\nwave, then crashes\nit down on the foe.");
-const u8 gHM04ItemDescription[] = _("Builds enormous\npower, then slams\nthe foe.");
-const u8 gHM05ItemDescription[] = _("Looses a powerful\nblast of light that\nreduces accuracy.");
-const u8 gHM06ItemDescription[] = _("A rock-crushingly\ntough attack that\nmay lower DEFENSE.");
-const u8 gHM07ItemDescription[] = _("Attacks the foe\nwith enough power\nto climb waterfalls.");
-const u8 gHM08ItemDescription[] = _("Dives underwater\nthe 1st turn, then\nattacks next turn.");
+const u8 gTM51ItemDescription[] = _("Attacks the foe\nwith sharp blades\nor claws.");
+const u8 gTM52ItemDescription[] = _("Flies up on the\nfirst turn, then\nattacks next turn.");
+const u8 gTM53ItemDescription[] = _("Creates a huge\nwave, then crashes\nit down on the foe.");
+const u8 gTM54ItemDescription[] = _("Builds enormous\npower, then slams\nthe foe.");
+const u8 gTM55ItemDescription[] = _("Looses a powerful\nblast of light that\nreduces accuracy.");
+const u8 gTM56ItemDescription[] = _("A rock-crushingly\ntough attack that\nmay lower DEFENSE.");
+const u8 gTM57ItemDescription[] = _("Attacks the foe\nwith enough power\nto climb waterfalls.");
+const u8 gTM58ItemDescription[] = _("Dives underwater\nthe 1st turn, then\nattacks next turn.");
 // FireRed/LeafGreen key items
 const u8 gOaksParcelItemDescription[] = _("A parcel for PROF.\nOAK from a Pokémon\nMART's clerk.");
 const u8 gPokeFluteItemDescription[] = _("A sweet-sounding\nflute that awakens\nPokémon.");

@@ -1342,7 +1342,7 @@ SootopolisCity_EventScript_1E6446:: @ 81E6446
 	faceplayer
 	compare VAR_RAYQUAZA_STATE, 4
 	goto_if_eq SootopolisCity_EventScript_1E64D8
-	goto_if_set FLAG_RECEIVED_HM07, SootopolisCity_EventScript_1E64E2
+	goto_if_set FLAG_RECEIVED_TM57, SootopolisCity_EventScript_1E64E2
 	goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, SootopolisCity_EventScript_1E646F
 	msgbox SootopolisCity_Text_1E7A3E, MSGBOX_DEFAULT
 	release
@@ -1350,8 +1350,8 @@ SootopolisCity_EventScript_1E6446:: @ 81E6446
 
 SootopolisCity_EventScript_1E646F:: @ 81E646F
 	msgbox SootopolisCity_Text_1E7ACF, MSGBOX_DEFAULT
-	giveitem_std ITEM_HM07
-	setflag FLAG_RECEIVED_HM07
+	giveitem_std ITEM_TM57
+	setflag FLAG_RECEIVED_TM57
 	msgbox SootopolisCity_Text_1E7B86, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_FACING, 2

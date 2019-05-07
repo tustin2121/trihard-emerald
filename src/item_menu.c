@@ -788,16 +788,8 @@ void get_name(s8 *dest, u16 itemId)
     {
         case TMHM_POCKET:
             StringCopy(gStringVar2, gMoveNames[ItemIdToBattleMoveId(itemId)]);
-            if (itemId >= ITEM_HM01)
-            {
-                ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_HM01 + 1, 2, 1);
-                StringExpandPlaceholders(dest, gText_ClearTo11Var1Clear5Var2);
-            }
-            else
-            {
-                ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_TM01 + 1, 2, 2);
-                StringExpandPlaceholders(dest, gText_UnkF908Var1Clear7Var2);
-            }
+            ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_TM01 + 1, 2, 2);
+            StringExpandPlaceholders(dest, gText_UnkF908Var1Clear7Var2);
             break;
         case BERRIES_POCKET:
             ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_CHERI_BERRY + 1, 2, 2);
@@ -847,8 +839,6 @@ void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a)
         }
         itemId = BagGetItemIdByPocketPosition(gUnknown_0203CE58.pocket + 1, item_index_in_pocket);
         itemQuantity = BagGetQuantityByPocketPosition(gUnknown_0203CE58.pocket + 1, item_index_in_pocket);
-        if (itemId >= ITEM_HM01 && itemId <= ITEM_HM08)
-            BlitBitmapToWindow(rboxId, gBagMenuHMIcon_Gfx, 8, a - 1, 16, 16);
         if (gUnknown_0203CE58.pocket == BERRIES_POCKET)
         {
             ConvertIntToDecimalStringN(gStringVar1, itemQuantity, 1, 3);
@@ -1909,7 +1899,7 @@ void display_sell_item_ask_str(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
-    if (ItemId_GetPrice(gSpecialVar_ItemId) == 0)
+    if (ItemId_GetImportance(gSpecialVar_ItemId))
     {
         CopyItemName(gSpecialVar_ItemId, gStringVar2);
         StringExpandPlaceholders(gStringVar4, gText_CantBuyKeyItem);

@@ -5645,18 +5645,6 @@ u16 ItemIdToBattleMoveId(u16 item)
     return gTMHMMoves[tmNumber];
 }
 
-bool8 IsMoveHm(u16 move)
-{
-    u8 i;
-
-    for (i = 0; i < NUM_HIDDEN_MACHINES; i++)
-    {
-        if (gTMHMMoves[i + NUM_TECHNICAL_MACHINES] == move)
-            return TRUE;
-    }
-    return FALSE;
-}
-
 bool8 MonKnowsMove(struct Pokemon *mon, u16 move)
 {
     u8 i;
@@ -5724,13 +5712,10 @@ static void sub_81B6EB4(u8 taskId)
 {
     struct Pokemon *mon = &gPlayerParty[gUnknown_0203CEC8.unk9];
     s16 *move = &gUnknown_0203CEC8.unkE;
-    u16 item = gSpecialVar_ItemId;
 
     if (move[1] == 0)
     {
         AdjustFriendship(mon, 4);
-        if (item < ITEM_HM01_CUT)
-            RemoveBagItem(item, 1);
     }
     GetMonNickname(mon, gStringVar1);
     StringCopy(gStringVar2, gMoveNames[move[0]]);
