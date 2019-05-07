@@ -75,7 +75,6 @@ void sub_81B67C8(u8 taskId, TaskFunc task);
 void dp05_ether(u8 taskId, TaskFunc task);
 void dp05_pp_up(u8 taskId, TaskFunc task);
 u16 ItemIdToBattleMoveId(u16 item);
-bool8 IsMoveHm(u16 move);
 bool8 MonKnowsMove(struct Pokemon *mon, u16 move);
 void sub_81B6DC4(u8 taskId, TaskFunc task);
 void dp05_rare_candy(u8 taskId, TaskFunc task);

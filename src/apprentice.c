@@ -1307,7 +1307,7 @@ static u16 sub_819FF98(u8 arg0)
             {
                 do
                 {
-                    id = Random() % (NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES);
+                    id = Random() % NUM_TECHNICAL_MACHINES;
                     valid = CanSpeciesLearnTMHM(species, id);
                 }
                 while (!valid);

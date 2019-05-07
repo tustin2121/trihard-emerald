@@ -62,8 +62,8 @@ RusturfTunnel_EventScript_22CEAE:: @ 822CEAE
 	call_if_eq RusturfTunnel_EventScript_22CFC8
 	compare VAR_TEMP_1, 3
 	call_if_eq RusturfTunnel_EventScript_22CFC8
-	giveitem_std ITEM_HM04
-	setflag FLAG_RECEIVED_HM04
+	giveitem_std ITEM_TM54
+	setflag FLAG_RECEIVED_TM54
 	msgbox RusturfTunnel_Text_22D6D2, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_TEMP_1, 1

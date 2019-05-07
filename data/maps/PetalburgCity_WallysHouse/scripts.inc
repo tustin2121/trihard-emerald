@@ -19,8 +19,8 @@ PetalburgCity_WallysHouse_MapScript2_204247: @ 8204247
 PetalburgCity_WallysHouse_EventScript_204251:: @ 8204251
 	lockall
 	msgbox PetalburgCity_WallysHouse_Text_20446E, MSGBOX_DEFAULT
-	giveitem_std ITEM_HM03
-	setflag FLAG_RECEIVED_HM03
+	giveitem_std ITEM_TM53
+	setflag FLAG_RECEIVED_TM53
 	msgbox PetalburgCity_WallysHouse_Text_20461A, MSGBOX_DEFAULT
 	setvar VAR_PETALBURG_STATE, 5
 	releaseall
@@ -30,7 +30,7 @@ PetalburgCity_WallysHouse_EventScript_204278:: @ 8204278
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, PetalburgCity_WallysHouse_EventScript_2042AC
-	goto_if_set FLAG_RECEIVED_HM03, PetalburgCity_WallysHouse_EventScript_2042A2
+	goto_if_set FLAG_RECEIVED_TM53, PetalburgCity_WallysHouse_EventScript_2042A2
 	goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY, PetalburgCity_WallysHouse_EventScript_2042B6
 	msgbox PetalburgCity_WallysHouse_Text_2042DF, MSGBOX_DEFAULT
 	setflag FLAG_THANKED_FOR_PLAYING_WITH_WALLY
@@ -55,7 +55,7 @@ PetalburgCity_WallysHouse_EventScript_2042B6:: @ 82042B6
 PetalburgCity_WallysHouse_EventScript_2042C0:: @ 82042C0
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_HM03, PetalburgCity_WallysHouse_EventScript_2042D5
+	goto_if_set FLAG_RECEIVED_TM53, PetalburgCity_WallysHouse_EventScript_2042D5
 	msgbox PetalburgCity_WallysHouse_Text_204732, MSGBOX_DEFAULT
 	release
 	end
