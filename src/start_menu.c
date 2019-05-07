@@ -294,10 +294,10 @@ static void BuildNormalStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     
-    if (InPokeCenter() && !CanAnyPartyMonsBeHealed())
-    {
-        AddStartMenuAction(MENU_ACTION_SAVE);
-    }
+    // if (InPokeCenter() && !CanAnyPartyMonsBeHealed())
+    // {
+    //     AddStartMenuAction(MENU_ACTION_SAVE);
+    // }
     
     AddStartMenuAction(MENU_ACTION_OPTION);
     AddStartMenuAction(MENU_ACTION_EXIT);
