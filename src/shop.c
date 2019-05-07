@@ -42,7 +42,7 @@
 EWRAM_DATA struct MartInfo gMartInfo = {0};
 EWRAM_DATA struct ShopData *gShopDataPtr = NULL;
 EWRAM_DATA struct ListMenuItem *gUnknown_02039F74 = NULL;
-EWRAM_DATA u8 (*gUnknown_02039F78)[16] = {0};
+EWRAM_DATA u8 (*gUnknown_02039F78)[18] = {0};
 EWRAM_DATA u8 gMartPurchaseHistoryId = 0;
 EWRAM_DATA struct ItemSlot gMartPurchaseHistory[3] = {0};
 
@@ -533,7 +533,14 @@ static void BuyMenuBuildListMenuTemplate(void)
 static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, u16 item, u8 *name)
 {
     if (gMartInfo.martType == MART_TYPE_NORMAL)
+    {
         CopyItemName(item, name);
+        if (ItemId_GetPocket(item) == POCKET_TM_HM)
+        {
+            const u8 space[] = _(" ");
+            StringAppend(StringAppend(name, space), gMoveNames[ItemIdToBattleMoveId(item)]);
+        }
+    }
     else
         StringCopy(name, gDecorations[item].name);
 
