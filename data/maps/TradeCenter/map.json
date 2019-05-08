@@ -9,7 +9,7 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "EventScript_TradeCenter_Chair0",
+            "script": "NULL",
             "type": "trigger",
             "var": "VAR_TEMP_0",
             "var_value": "0",
@@ -18,7 +18,7 @@
         },
         {
             "elevation": 3,
-            "script": "EventScript_TradeCenter_Chair1",
+            "script": "NULL",
             "type": "trigger",
             "var": "VAR_TEMP_0",
             "var_value": "0",
@@ -39,7 +39,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "TradeCenter_EventScript_2774B6",
+            "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 9,

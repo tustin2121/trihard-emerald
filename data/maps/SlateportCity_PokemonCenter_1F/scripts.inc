@@ -1,7 +1,7 @@
 SlateportCity_PokemonCenter_1F_MapScripts:: @ 820DABF
 	map_script MAP_SCRIPT_ON_LOAD, SlateportCity_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, SlateportCity_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_RESUME, PokemonCenter_1F_MapScript1_InitUnionRoom
 	.byte 0
 
 SlateportCity_PokemonCenter_1F_OnLoad:

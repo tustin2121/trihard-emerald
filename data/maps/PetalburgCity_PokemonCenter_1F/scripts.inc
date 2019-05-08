@@ -1,7 +1,7 @@
 PetalburgCity_PokemonCenter_1F_MapScripts:: @ 82079E8
 	map_script MAP_SCRIPT_ON_LOAD, PetalburgCity_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, PetalburgCity_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_RESUME, PokemonCenter_1F_MapScript1_InitUnionRoom
 	.byte 0
 
 PetalburgCity_PokemonCenter_1F_OnLoad:

@@ -1,47 +1,34 @@
 MossdeepCity_GameCorner_1F_MapScripts:: @ 8224B27
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_GameCorner_1F_MapScript2_224B41
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, MossdeepCity_GameCorner_1F_MapScript2_224B37
-	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_GameCorner_1F_MapScript1_276BBE
 	.byte 0
 
-MossdeepCity_GameCorner_1F_MapScript2_224B37: @ 8224B37
-	map_script_2 VAR_CABLE_CLUB_STATE, 8, MossdeepCity_GameCorner_1F_EventScript_276BAE
-	.2byte 0
+MossdeepCity_GameCorner_1F_EventScript_BingoLeaderboards1:
+	msgbox 
+MossdeepCity_GameCorner_1F_Text_BingoLeaderboards1:
+	.string "Tuesday Night Bingo Leaderboards:\n"
+	.string "1. Gary\l"
+	.string "2. Vince\l"
+	.string "3. Betty\l4.$"
+	
 
-MossdeepCity_GameCorner_1F_MapScript2_224B41: @ 8224B41
-	map_script_2 VAR_CABLE_CLUB_STATE, 8, MossdeepCity_GameCorner_1F_EventScript_276C9D
-	.2byte 0
-
-MossdeepCity_GameCorner_1F_EventScript_224B4B:: @ 8224B4B
-	lock
-	faceplayer
-	goto MossdeepCity_GameCorner_1F_EventScript_277C34
-	release
+MossdeepCity_GameCorner_1F_EventScript_OldMan:: @ 8224B5D
+	msgbox MossdeepCity_GameCorner_1F_Text_224B66, MSGBOX_NPC
 	end
-
-MossdeepCity_GameCorner_1F_EventScript_224B54:: @ 8224B54
-	lock
-	faceplayer
-	goto MossdeepCity_GameCorner_1F_EventScript_277C91
-	release
-	end
-
-MossdeepCity_GameCorner_1F_EventScript_224B5D:: @ 8224B5D
-	msgbox MossdeepCity_GameCorner_1F_Text_224BFD, MSGBOX_SIGN
-	end
-
 MossdeepCity_GameCorner_1F_Text_224B66: @ 8224B66
 	.string "When I was young, I traveled the world\n"
-	.string "as a Pokémon TRAINER.\p"
+	.string "as a Pokémon Trainer.\p"
 	.string "Now that I've become an old buzzard,\n"
 	.string "my only amusement is watching young\l"
-	.string "TRAINERS battle.$"
+	.string "trainers battle in my basement.\p"
+	.string "… … … … What?! That's not weird!\n"
+	.string "What is it with young people these days?$"
+
+
 
 MossdeepCity_GameCorner_1F_Text_224BFD: @ 8224BFD
 	.string "The door appears to be locked.$"
 
 MossdeepCity_GameCorner_1F_Text_224C1C: @ 8224C1C
-	.string "A TRAINER named {STR_VAR_1} is\n"
+	.string "A trainer named {STR_VAR_1} is\n"
 	.string "visiting my home.\p"
 	.string "Would you like to challenge\n"
 	.string "{STR_VAR_1}?$"

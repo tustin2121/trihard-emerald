@@ -1,7 +1,7 @@
 FallarborTown_PokemonCenter_1F_MapScripts:: @ 8200BCD
 	map_script MAP_SCRIPT_ON_LOAD, FallarborTown_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, FallarborTown_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_RESUME, PokemonCenter_1F_MapScript1_InitUnionRoom
 	.byte 0
 
 FallarborTown_PokemonCenter_1F_OnLoad:

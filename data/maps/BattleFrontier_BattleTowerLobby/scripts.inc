@@ -926,35 +926,9 @@ BattleFrontier_BattleTowerLobby_EventScript_23F2B7:: @ 823F2B7
 	return
 
 BattleFrontier_BattleTowerLobby_EventScript_23F2C5:: @ 823F2C5
-	setvar VAR_0x8004, 9
-	message gText_PleaseWaitForLink
-	waitmessage
-	setvar VAR_0x8005, 0
-	special sub_80B2DA4
-	waitstate
-	compare VAR_RESULT, 1
-	goto_if_eq BattleFrontier_BattleTowerLobby_EventScript_23F3AF
-	compare VAR_RESULT, 2
-	goto_if_eq BattleFrontier_BattleTowerLobby_EventScript_2772D2
-	compare VAR_RESULT, 3
-	goto_if_eq BattleFrontier_BattleTowerLobby_EventScript_23F327
-	compare VAR_RESULT, 4
-	goto_if_eq BattleFrontier_BattleTowerLobby_EventScript_23F351
-	compare VAR_RESULT, 5
-	goto_if_eq BattleFrontier_BattleTowerLobby_EventScript_23F0E6
-	compare VAR_RESULT, 6
-	goto_if_eq BattleFrontier_BattleTowerLobby_EventScript_2772C5
-	compare VAR_RESULT, 11
-	goto_if_eq BattleFrontier_BattleTowerLobby_EventScript_23F366
+	@ dummied out
 	end
 
-BattleFrontier_BattleTowerLobby_EventScript_23F327:: @ 823F327
-	special CloseLink
-	compare VAR_0x8005, 3
-	goto_if_eq BattleFrontier_BattleTowerLobby_EventScript_23F33F
-	msgbox BattleFrontier_BattleTowerLobby_Text_278255, MSGBOX_DEFAULT
-	release
-	end
 
 BattleFrontier_BattleTowerLobby_EventScript_23F33F:: @ 823F33F
 	msgbox BattleFrontier_BattleTowerLobby_Text_2412E8, MSGBOX_DEFAULT

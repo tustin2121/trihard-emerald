@@ -88,20 +88,20 @@ extern const u8 EventScript_DoLinkRoomExit[];
 extern const u8 gEventScript_TradeRoom_TooBusyToNotice[];
 extern const u8 gEventScript_TradeRoom_ReadTrainerCard_NoColor[];
 extern const u8 gEventScript_TradeRoom_ReadTrainerCard_Normal[];
-extern const u8 EventScript_DoubleBattleColosseum_PlayerSpot0[];
-extern const u8 EventScript_DoubleBattleColosseum_PlayerSpot1[];
-extern const u8 EventScript_DoubleBattleColosseum_PlayerSpot2[];
-extern const u8 EventScript_DoubleBattleColosseum_PlayerSpot3[];
-extern const u8 EventScript_RecordCenter_Spot0[];
-extern const u8 EventScript_RecordCenter_Spot1[];
-extern const u8 EventScript_RecordCenter_Spot2[];
-extern const u8 EventScript_RecordCenter_Spot3[];
-extern const u8 EventScript_SingleBattleColosseum_PlayerSpot0[];
-extern const u8 EventScript_SingleBattleColosseum_PlayerSpot1[];
-extern const u8 EventScript_TradeCenter_Chair1[];
-extern const u8 EventScript_TradeCenter_Chair0[];
-extern const u8 EventScript_ConfirmLeaveTradeRoom[];
-extern const u8 EventScript_TerminateLink[];
+// extern const u8 EventScript_DoubleBattleColosseum_PlayerSpot0[];
+// extern const u8 EventScript_DoubleBattleColosseum_PlayerSpot1[];
+// extern const u8 EventScript_DoubleBattleColosseum_PlayerSpot2[];
+// extern const u8 EventScript_DoubleBattleColosseum_PlayerSpot3[];
+// extern const u8 EventScript_RecordCenter_Spot0[];
+// extern const u8 EventScript_RecordCenter_Spot1[];
+// extern const u8 EventScript_RecordCenter_Spot2[];
+// extern const u8 EventScript_RecordCenter_Spot3[];
+// extern const u8 EventScript_SingleBattleColosseum_PlayerSpot0[];
+// extern const u8 EventScript_SingleBattleColosseum_PlayerSpot1[];
+// extern const u8 EventScript_TradeCenter_Chair1[];
+// extern const u8 EventScript_TradeCenter_Chair0[];
+// extern const u8 EventScript_ConfirmLeaveTradeRoom[];
+// extern const u8 EventScript_TerminateLink[];
 
 extern const struct MapLayout *const gMapLayouts[];
 extern const struct MapHeader *const *const gMapGroups[];
@@ -2789,31 +2789,31 @@ static const u8 *TryInteractWithPlayer(struct TradeRoomPlayer *player)
 // these event scripts runs.
 static u16 GetDirectionForEventScript(const u8 *script)
 {
-    if (script == EventScript_DoubleBattleColosseum_PlayerSpot0)
-        return FACING_FORCED_RIGHT;
-    else if (script == EventScript_DoubleBattleColosseum_PlayerSpot1)
-        return FACING_FORCED_LEFT;
-    else if (script == EventScript_DoubleBattleColosseum_PlayerSpot2)
-        return FACING_FORCED_RIGHT;
-    else if (script == EventScript_DoubleBattleColosseum_PlayerSpot3)
-        return FACING_FORCED_LEFT;
-    else if (script == EventScript_RecordCenter_Spot0)
-        return FACING_FORCED_RIGHT;
-    else if (script == EventScript_RecordCenter_Spot1)
-        return FACING_FORCED_LEFT;
-    else if (script == EventScript_RecordCenter_Spot2)
-        return FACING_FORCED_RIGHT;
-    else if (script == EventScript_RecordCenter_Spot3)
-        return FACING_FORCED_LEFT;
-    else if (script == EventScript_SingleBattleColosseum_PlayerSpot0)
-        return FACING_FORCED_RIGHT;
-    else if (script == EventScript_SingleBattleColosseum_PlayerSpot1)
-        return FACING_FORCED_LEFT;
-    else if (script == EventScript_TradeCenter_Chair0)
-        return FACING_FORCED_RIGHT;
-    else if (script == EventScript_TradeCenter_Chair1)
-        return FACING_FORCED_LEFT;
-    else
+    // if (script == EventScript_DoubleBattleColosseum_PlayerSpot0)
+    //     return FACING_FORCED_RIGHT;
+    // else if (script == EventScript_DoubleBattleColosseum_PlayerSpot1)
+    //     return FACING_FORCED_LEFT;
+    // else if (script == EventScript_DoubleBattleColosseum_PlayerSpot2)
+    //     return FACING_FORCED_RIGHT;
+    // else if (script == EventScript_DoubleBattleColosseum_PlayerSpot3)
+    //     return FACING_FORCED_LEFT;
+    // else if (script == EventScript_RecordCenter_Spot0)
+    //     return FACING_FORCED_RIGHT;
+    // else if (script == EventScript_RecordCenter_Spot1)
+    //     return FACING_FORCED_LEFT;
+    // else if (script == EventScript_RecordCenter_Spot2)
+    //     return FACING_FORCED_RIGHT;
+    // else if (script == EventScript_RecordCenter_Spot3)
+    //     return FACING_FORCED_LEFT;
+    // else if (script == EventScript_SingleBattleColosseum_PlayerSpot0)
+    //     return FACING_FORCED_RIGHT;
+    // else if (script == EventScript_SingleBattleColosseum_PlayerSpot1)
+    //     return FACING_FORCED_LEFT;
+    // else if (script == EventScript_TradeCenter_Chair0)
+    //     return FACING_FORCED_RIGHT;
+    // else if (script == EventScript_TradeCenter_Chair1)
+    //     return FACING_FORCED_LEFT;
+    // else
         return FACING_NONE;
 }
 
@@ -2838,9 +2838,9 @@ static void sub_8087530(const u8 *script)
 
 static void CreateConfirmLeaveTradeRoomPrompt(void)
 {
-    PlaySE(SE_WIN_OPEN);
-    ScriptContext1_SetupScript(EventScript_ConfirmLeaveTradeRoom);
-    ScriptContext2_Enable();
+    // PlaySE(SE_WIN_OPEN);
+    // ScriptContext1_SetupScript(EventScript_ConfirmLeaveTradeRoom);
+    // ScriptContext2_Enable();
 }
 
 static void InitMenuBasedScript(const u8 *script)
@@ -2852,8 +2852,8 @@ static void InitMenuBasedScript(const u8 *script)
 
 static void sub_8087584(void)
 {
-    ScriptContext1_SetupScript(EventScript_TerminateLink);
-    ScriptContext2_Enable();
+    // ScriptContext1_SetupScript(EventScript_TerminateLink);
+    // ScriptContext2_Enable();
 }
 
 bool32 sub_8087598(void)

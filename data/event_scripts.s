@@ -2375,23 +2375,8 @@ gUnknown_0827301B:: @ 827301B
 gUnknown_0827304E:: @ 827304E
 	.string "There is a big hole in the wall.$"
 
-gUnknown_0827306F:: @ 827306F
-	.string "I'm terribly sorry.\nThe Pokémon WIRELESS CLUB is\lundergoing adjustments now.$"
-
-gUnknown_082730BC:: @ 82730BC
-	.string "It appears to be undergoing\nadjustments…$"
-
-gUnknown_082730E5:: @ 82730E5
-	.string "I'm terribly sorry. The TRADE CENTER\nis undergoing inspections.$"
-
-gUnknown_08273125:: @ 8273125
-	.string "I'm terribly sorry. The RECORD CORNER\nis under preparation.$"
-
 gUnknown_08273161:: @ 8273161
 	.string "{PLAYER} handed over the\n{STR_VAR_1}.$"
-
-gUnknown_08273178:: @ 8273178
-	.string "Thank you for accessing the\nMYSTERY GIFT System.$"
 
 gText_PlayerFoundOneItemTwoLines:: @ 82731A9
 	.string "{PLAYER} found one {STR_VAR_1}\n{STR_VAR_2}!$"
@@ -2426,24 +2411,6 @@ gUnknown_0827339F:: @ 827339F
 gUnknown_082733D8:: @ 82733D8
 	.string "Thank you for taking the time to\nfill out our questionnaire.\pYour feedback will be used for\nfuture reference.$"
 
-gUnknown_08273446:: @ 8273446
-	.string "Oh, hello!\nYou know those words?\pThat means you must know about\nthe MYSTERY GIFT.\pFrom now on, you should be\nreceiving MYSTERY GIFTS!$"
-
-gUnknown_082734CC:: @ 82734CC
-	.string "Once you save your game, you can\naccess the MYSTERY GIFT.$"
-
-gUnknown_08273506:: @ 8273506
-	.string "Oh, hello!\nYou know those words?\pThat means you must know about\nthe MYSTERY EVENT.$"
-
-gUnknown_08273559:: @ 8273559
-	.string "Once you save your game, you can\naccess the MYSTERY EVENT.$"
-
-gUnknown_08273594:: @ 8273594
-	.string "Thank you for using the MYSTERY\nEVENT System.\pYou must be {PLAYER}.\nThere is a ticket here for you.$"
-
-gUnknown_082735F2:: @ 82735F2
-	.string "It appears to be for use at\nthe Lilycove City port.\pWhy not give it a try and see what\nit is about?$"
-
 gText_UnusualWeatherEnded_Rain:: @ 8273656
 	.string "The massive downpour appears to\nhave stopped…$"
 
@@ -2464,66 +2431,6 @@ EventScript_UnusedSetVarResult1:: @ 827374F
 OldaleTown_PokemonCenter_2F_EventScript_273755:: @ 8273755
 	setvar VAR_RESULT, 0
 	return
-
-BattleFrontier_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-DewfordTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-EverGrandeCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-EverGrandeCity_PokemonLeague_2F_EventScript_27375B:: @ 827375B
-FallarborTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-FortreeCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-LavaridgeTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-LilycoveCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-MauvilleCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-MossdeepCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-OldaleTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-PacifidlogTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-PetalburgCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-RustboroCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-SlateportCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-SootopolisCity_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-VerdanturfTown_PokemonCenter_2F_EventScript_27375B:: @ 827375B
-	call OldaleTown_PokemonCenter_2F_EventScript_27751B
-	end
-
-BattleFrontier_PokemonCenter_2F_EventScript_273761:: @ 8273761
-DewfordTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
-EverGrandeCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-EverGrandeCity_PokemonLeague_2F_EventScript_273761:: @ 8273761
-FallarborTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
-FortreeCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-LavaridgeTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
-LilycoveCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-MauvilleCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-MossdeepCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-OldaleTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
-PacifidlogTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
-PetalburgCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-RustboroCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-SlateportCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-SootopolisCity_PokemonCenter_2F_EventScript_273761:: @ 8273761
-VerdanturfTown_PokemonCenter_2F_EventScript_273761:: @ 8273761
-	call OldaleTown_PokemonCenter_2F_EventScript_277672
-	end
-
-BattleFrontier_PokemonCenter_2F_EventScript_273767:: @ 8273767
-DewfordTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
-EverGrandeCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-EverGrandeCity_PokemonLeague_2F_EventScript_273767:: @ 8273767
-FallarborTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
-FortreeCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-LavaridgeTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
-LilycoveCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-MauvilleCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-MossdeepCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-OldaleTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
-PacifidlogTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
-PetalburgCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-RustboroCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-SlateportCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-SootopolisCity_PokemonCenter_2F_EventScript_273767:: @ 8273767
-VerdanturfTown_PokemonCenter_2F_EventScript_273767:: @ 8273767
-	call OldaleTown_PokemonCenter_2F_EventScript_2776A4
-	end
 
 AncientTomb_EventScript_27376D:: @ 827376D
 AquaHideout_B1F_EventScript_27376D:: @ 827376D

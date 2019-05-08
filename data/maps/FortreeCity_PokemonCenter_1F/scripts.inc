@@ -1,7 +1,7 @@
 FortreeCity_PokemonCenter_1F_MapScripts:: @ 82173D8
 	map_script MAP_SCRIPT_ON_LOAD, FortreeCity_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, FortreeCity_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_RESUME, PokemonCenter_1F_MapScript1_InitUnionRoom
 	.byte 0
 
 FortreeCity_PokemonCenter_1F_OnLoad:

@@ -1,7 +1,7 @@
 MossdeepCity_PokemonCenter_1F_MapScripts:: @ 822223F
 	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, MossdeepCity_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_RESUME, PokemonCenter_1F_MapScript1_InitUnionRoom
 	.byte 0
 
 MossdeepCity_PokemonCenter_1F_OnLoad:

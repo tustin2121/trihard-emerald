@@ -1,6 +1,7 @@
 @ This script is called from every Pokemon Center
 
-@@@@ Pokecenter Nurse Script @@@@
+@------------------------------------------------------
+@ Pokecenter Nurse Script
 
 PokemonCenter_1F_NurseHealScript:: @ 827191E
 	lock
@@ -202,14 +203,87 @@ gText_NurseExplainPokerus:: @ 8272F07
 	.string "While infected, Pokémon are said to\n"
 	.string "grow exceptionally well.$"
 
-@@@@ Pokecenter Free Pokeball Counter @@@@
+@------------------------------------------------------
+@ Pokecenter Mystery Man
+
+PokemonCenter_2F_OnTransition: @ 8276ACF
+	call PokemonCenter_2F_EventScript_OnTransitionCheckMysteryGift
+	end
+
+PokemonCenter_2F_EventScript_OnTransitionCheckMysteryGift:: @ 8276AD5
+	specialvar VAR_RESULT, sub_813B514
+	compare VAR_RESULT, 1
+	goto_if_eq PokemonCenter_2F_EventScript_276AFB
+	specialvar VAR_RESULT, ValidateReceivedWonderCard
+	compare VAR_RESULT, 0
+	goto_if_eq PokemonCenter_2F_EventScript_276AFF
+	goto PokemonCenter_2F_EventScript_276AFB
+	end
+
+PokemonCenter_2F_EventScript_276AFB:: @ 8276AFB
+	clearflag FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
+	return
+
+PokemonCenter_2F_EventScript_276AFF:: @ 8276AFF
+	setflag FLAG_HIDE_POKEMON_CENTER_2F_MYSTERY_GIFT_MAN
+	return
+
+
+PokemonCenter_MysteryGiftMan:: @ 8276B03
+	specialvar VAR_RESULT, sub_813B514
+	compare VAR_RESULT, 1
+	goto_if_eq PokemonCenter_2F_EventScript_276B23
+	goto PokemonCenter_2F_EventScript_276B19
+	end
+
+PokemonCenter_2F_EventScript_276B23:: @ 8276B23
+	checkitem ITEM_EON_TICKET, 1
+	compare VAR_RESULT, 1
+	goto_if_eq PokemonCenter_2F_EventScript_276B19
+	goto_if_set FLAG_SYS_HAS_EON_TICKET, PokemonCenter_2F_EventScript_276B19
+	msgbox gText_MysteryGift_EonTicket1, MSGBOX_DEFAULT
+	giveitem_std ITEM_EON_TICKET
+	setflag FLAG_SYS_HAS_EON_TICKET
+	setvar VAR_ALWAYS_ZERO_0x403F, 0
+	msgbox gText_MysteryGift_EonTicket2, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonCenter_2F_EventScript_276B19:: @ 8276B19
+	gotoram
+
+gText_MysteryGiftThanks_08273178:: @ 8273178
+	.string "Thank you for accessing the\nMystery Gift System.$"
+
+gText_MysteryGift_08273446:: @ 8273446
+	.string "Oh, hello!\nYou know those words?\pThat means you must know about\nthe Mystery Gift.\pFrom now on, you should be\nreceiving Mystery Gifts!$"
+
+gText_MysteryGift_082734CC:: @ 82734CC
+	.string "Once you save your game, you can\naccess the Mystery Gift.$"
+
+gText_MysteryGift_08273506:: @ 8273506
+	.string "Oh, hello!\nYou know those words?\pThat means you must know about\nthe Mystery Event.$"
+
+gText_MysteryGift_08273559:: @ 8273559
+	.string "Once you save your game, you can\naccess the Mystery Event.$"
+
+gText_MysteryGift_EonTicket1:: @ 8273594
+	.string "Thank you for using the Mystery\nEvent System.\pYou must be {PLAYER}.\nThere is a ticket here for you.$"
+
+gText_MysteryGift_EonTicket2:: @ 82735F2
+	.string "It appears to be for use at\nthe Lilycove City port.\pWhy not give it a try and see what\nit is about?$"
+
+
+@------------------------------------------------------
+@ Pokecenter Free Pokeball Counter
 
 PokemonCenter_1F_FreePokeballCounterScript::
 	@ TODO
 	end
 
 
-@@@@ Pokecenter Mr Briney Location @@@@
+@------------------------------------------------------
+@ Pokecenter Mr Briney Location
 
 PokemonCenter_1F_SetMrBrineyLocation:: @ 82718DE
 	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
