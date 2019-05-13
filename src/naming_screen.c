@@ -270,8 +270,10 @@ static void LoadKeyboardTilemap(u8, const void *);
 static void nullsub_10(u8, u8);
 static void sub_80E4D10(void);
 static void sub_80E4DE4(u8, u8);
+static void PrintKeyboard(u8, u8);
 static void LoadNextKeyboardTilemap(void);
 static void sub_80E4EF0(void);
+static void LoadInitialKeyboardTilemap(void);
 static void CB2NamingScreenLoop(void);
 static void NamingScreen_TurnOffScreen(void);
 static void NamingScreen_InitDisplayMode(void);
@@ -492,13 +494,13 @@ static bool8 MainState_BeginFadeIn(void)
     gNamingScreenData->currentPage = PAGE_UPPER;
     LoadKeyboardTilemap(2, gNamingScreenTilemap_KeyboardUpper);
     LoadKeyboardTilemap(1, gNamingScreenTilemap_KeyboardLower);
-    sub_80E4DE4(gNamingScreenData->windows[1], 0);
-    sub_80E4DE4(gNamingScreenData->windows[0], 1);
+    PrintKeyboard(gNamingScreenData->windows[1], 0);
+    PrintKeyboard(gNamingScreenData->windows[0], 1);
     nullsub_10(2, 0);
     nullsub_10(1, 1);
     sub_80E4D10();
     sub_80E4964();
-    sub_80E4EF0();
+    LoadInitialKeyboardTilemap();
     CopyBgTilemapBufferToVram(1);
     CopyBgTilemapBufferToVram(2);
     CopyBgTilemapBufferToVram(3);
@@ -1063,6 +1065,7 @@ static void sub_80E4050(void)
     struct Sprite *sprite = &gSprites[gNamingScreenData->selectBtnFrameSpriteId];
 
     sprite->data[0] = 2;
+    // sprite->data[1] = gNamingScreenData->nextPage;
     sprite->data[1] = gNamingScreenData->currentPage;
 }
 
@@ -1333,6 +1336,8 @@ static bool8 KeyboardKeyHandler_OK(u8 event)
 static bool8 TriggerPageSwap(void)
 {
     gNamingScreenData->state = MAIN_STATE_START_PAGE_SWAP;
+    // gNamingScreenData->nextPage = gNamingScreenData->currentPage+1;
+    // gNamingScreenData->nextPage %= 3;
     return TRUE;
 }
 
@@ -1630,20 +1635,34 @@ static void DeleteTextCharacter(void)
     if (var2 == KEY_ROLE_CHAR || var2 == KEY_ROLE_BACKSPACE)
         sub_80E3948(1, 0, 1);
     PlaySE(SE_BOWA);
+// #if TPP_MODE
+//     if (index == 0 && gNamingScreenData->currentPage == PAGE_LOWER)
+//     {
+//         TriggerPageSwap();
+//         gNamingScreenData->nextPage = PAGE_UPPER;
+//     }
+// #endif
 }
 
 static bool8 AddCurrentlySelectedCharacter(void)
 {
     s16 x;
     s16 y;
+    u8 prevIndex = GetTextCaretPosition();
 
     GetCursorPos(&x, &y);
     AddTextCharacter(GetCharAtKeyboardPos(x, y));
     sub_80E4D10();
     CopyBgTilemapBufferToVram(3);
     PlaySE(SE_SELECT);
-
-    if (GetPreviousTextCaretPosition() != gNamingScreenData->template->maxChars - 1)
+    
+#if TPP_MODE
+    if (prevIndex == 0 && gNamingScreenData->currentPage == PAGE_UPPER)
+    {
+        TriggerPageSwap();
+    }
+#endif
+    if (prevIndex != gNamingScreenData->template->maxChars - 1)
         return FALSE;
     else
         return TRUE;
@@ -1755,15 +1774,15 @@ static const u8 *const sUnkColors[3] =
     sUnkColorStruct.colors[2]
 };
 
-static void sub_80E4DE4(u8 window, u8 a1)
+static void PrintKeyboard(u8 window, u8 keyboard)
 {
     u8 i;
 
-    FillWindowPixelBuffer(window, sFillValues[a1]);
+    FillWindowPixelBuffer(window, sFillValues[keyboard]);
 
     for (i = 0; i < 4; i++)
     {
-        AddTextPrinterParameterized3(window, 1, 0, i * 16 + 1, sUnkColors[a1], 0, gUnknown_0858C198[a1][i]);
+        AddTextPrinterParameterized3(window, 1, 0, i * 16 + 1, sUnkColors[keyboard], 0, gUnknown_0858C198[keyboard][i]);
     }
 
     PutWindowTilemap(window);
@@ -1779,7 +1798,7 @@ static const u8 *const sKeyboardTilemaps[] =
 static void LoadNextKeyboardTilemap(void)
 {
     u8 bgIdx1;
-    u8 ggIdx2;
+    u8 bgIdx2;
     u8 winId;
     u8 bg1Priority = GetGpuReg(REG_OFFSET_BG1CNT) & 3;
     u8 bg2Priority = GetGpuReg(REG_OFFSET_BG2CNT) & 3;
@@ -1787,23 +1806,22 @@ static void LoadNextKeyboardTilemap(void)
     if (bg1Priority > bg2Priority)
     {
         bgIdx1 = 1;
-        ggIdx2 = 1;
+        bgIdx2 = 1;
         winId = gNamingScreenData->windows[0];
     }
     else
     {
         bgIdx1 = 2;
-        ggIdx2 = 2;
+        bgIdx2 = 2;
         winId = gNamingScreenData->windows[1];
     }
 
     LoadKeyboardTilemap(bgIdx1, sKeyboardTilemaps[gNamingScreenData->currentPage]);
-    sub_80E4DE4(winId, sub_80E3254());
-    nullsub_10(bgIdx1, sub_80E3254());
-    CopyBgTilemapBufferToVram(ggIdx2);
+    PrintKeyboard(winId, sub_80E3254());
+    CopyBgTilemapBufferToVram(bgIdx2);
 }
 
-static void sub_80E4EF0(void)
+static void LoadInitialKeyboardTilemap(void)
 {
     const u8 color[3] = { 15, 1, 2 };
 
