@@ -269,10 +269,8 @@ static void choose_name_or_words_screen_apply_bg_pals(void);
 static void LoadKeyboardTilemap(u8, const void *);
 static void nullsub_10(u8, u8);
 static void sub_80E4D10(void);
-static void sub_80E4DE4(u8, u8);
 static void PrintKeyboard(u8, u8);
 static void LoadNextKeyboardTilemap(void);
-static void sub_80E4EF0(void);
 static void LoadInitialKeyboardTilemap(void);
 static void CB2NamingScreenLoop(void);
 static void NamingScreen_TurnOffScreen(void);
@@ -480,6 +478,7 @@ static u8 GetPreviousPageIndex(u8 a1)
 
 static u8 sub_80E3254(void)
 {
+    // return gNamingScreenData->nextPage;
     return sEnumToNextPageTranslation[gNamingScreenData->currentPage];
 }
 
@@ -622,6 +621,7 @@ static bool8 MainState_StartPageSwap(void)
     StartPageSwapAnim();
     sub_80E3E3C(1);
     sub_80E3948(0, 0, 1);
+    LoadNextKeyboardTilemap();
     PlaySE(SE_WIN_OPEN);
     gNamingScreenData->state = MAIN_STATE_WAIT_PAGE_SWAP;
     return FALSE;
@@ -640,6 +640,7 @@ static bool8 MainState_WaitPageSwap(void)
         var3 = (cursorX == GetCurrentPageColumnCount());
 
         gNamingScreenData->state = MAIN_STATE_HANDLE_INPUT;
+        // gNamingScreenData->currentPage = gNamingScreenData->nextPage;
         gNamingScreenData->currentPage++;
         gNamingScreenData->currentPage %= 3;
 
