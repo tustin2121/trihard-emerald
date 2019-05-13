@@ -26,8 +26,9 @@ struct MartInfo
     /*0x4*/ const struct MenuAction *menuActions;
     /*0x8*/ const u16 *itemList;
     /*0xC*/ u16 itemCount;
-    /*0xE*/ u8 windowId;
-    /*0xF*/ u8 martType;
+    /*0xE*/ u16 originalItemCount;
+    /*0x10*/ u8 windowId;
+    /*0x11*/ u8 martType;
 };
 
 struct ShopData
