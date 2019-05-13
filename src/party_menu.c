@@ -141,7 +141,7 @@ static EWRAM_DATA u16 *gUnknown_0203CEF4 = 0;
 EWRAM_DATA u8 gSelectedOrderFromParty[4] = {0};
 static EWRAM_DATA u16 gUnknown_0203CEFC = 0;
 static EWRAM_DATA u16 gUnknown_0203CEFE = 0; // unused
-EWRAM_DATA u8 gUnknown_0203CF00[3] = {0};
+EWRAM_DATA u8 gBattleReorderSlots[3] = {0}; // This is actually an array of nibbles (u4)
 
 // IWRAM common
 void (*gUnknown_03006328)(u8, TaskFunc);
@@ -207,7 +207,7 @@ static void AnimateSelectedPartyIcon(u8, u8);
 static void StartSpriteAnimById(u8, u8);
 static u8 GetPartyBoxPalBitfield(u8, bool8);
 static bool8 PartyBoxPal_PartnerOrDisqualifiedInArena(u8);
-static u8 sub_81B8F38(u8);
+static u8 getSlot_BattleReorderSlotsArray(u8);
 static void c3_0811FAB4(u8);
 static void sub_81B9080(void);
 static void sub_81B4F88(void);
@@ -1099,6 +1099,7 @@ static const u8 sMonSelectedMenu_08615D10[] = {MENU_SUMMARY, MENU_SWITCH, MENU_C
 static const u8 sMonSelectedMenu_08615D13[] = {MENU_SHIFT, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sMonSelectedMenu_08615D16[] = {MENU_SEND_OUT, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sMonSelectedMenu_08615D19[] = {MENU_SUMMARY, MENU_CANCEL1};
+static const u8 sMonSelectedMenu_Cancel[]   = {MENU_CANCEL1};
 static const u8 sMonSelectedMenu_08615D1B[] = {MENU_ENTER, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sMonSelectedMenu_08615D1E[] = {MENU_NO_ENTRY, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sMonSelectedMenu_08615D21[] = {MENU_STORE, MENU_SUMMARY, MENU_CANCEL1};
@@ -1112,19 +1113,20 @@ static const u8 sMonSelectedMenu_08615D33[] = {MENU_TAKE_ITEM, MENU_TOSS, MENU_C
 static const u8 *const sMonSelectedMenuTypes[] =
 {
     NULL,
-    sMonSelectedMenu_08615D10,
+    sMonSelectedMenu_08615D10, //1
     sMonSelectedMenu_08615D13,
     sMonSelectedMenu_08615D16,
     sMonSelectedMenu_08615D1B,
     sMonSelectedMenu_08615D1E,
     sMonSelectedMenu_08615D21,
-    sMonSelectedMenu_08615D19,
+    sMonSelectedMenu_08615D19, //7
     sMonSelectedMenu_08615D24,
     sMonSelectedMenu_08615D27,
     sMonSelectedMenu_08615D2A,
     sMonSelectedMenu_08615D2D,
     sMonSelectedMenu_08615D30,
-    sMonSelectedMenu_08615D33,
+    sMonSelectedMenu_08615D33, //13
+    sMonSelectedMenu_Cancel, //14
 };
 
 static const u8 sMonSelectedMenuTypeSizes[] = {0, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3};
@@ -2237,7 +2239,7 @@ static bool8 PartyBoxPal_PartnerOrDisqualifiedInArena(u8 slot)
     if (gUnknown_0203CEC8.mode == 2 && (slot == 1 || slot == 4 || slot == 5))
         return TRUE;
 
-    if (slot < 3 && (gBattleTypeFlags & BATTLE_TYPE_ARENA) && gMain.inBattle && (gBattleStruct->arenaLostPlayerMons >> sub_81B8F38(slot) & 1))
+    if (slot < 3 && (gBattleTypeFlags & BATTLE_TYPE_ARENA) && gMain.inBattle && (gBattleStruct->arenaLostPlayerMons >> getSlot_BattleReorderSlotsArray(slot) & 1))
         return TRUE;
 
     return FALSE;
@@ -5345,7 +5347,7 @@ static bool8 IsItemFlute(u16 item)
 static bool8 ExecuteTableBasedItemEffect__(u8 partyMonIndex, u16 item, u8 monMoveIndex)
 {
     if (gMain.inBattle)
-        return ExecuteTableBasedItemEffect(&gPlayerParty[partyMonIndex], item, sub_81B8F38(partyMonIndex), monMoveIndex);
+        return ExecuteTableBasedItemEffect(&gPlayerParty[partyMonIndex], item, getSlot_BattleReorderSlotsArray(partyMonIndex), monMoveIndex);
     else
         return ExecuteTableBasedItemEffect(&gPlayerParty[partyMonIndex], item, partyMonIndex, monMoveIndex);
 }
@@ -6717,6 +6719,7 @@ static u8 sub_81B8A2C(struct Pokemon *mon)
         if (!(gBattleTypeFlags & BATTLE_TYPE_ARENA))
             return 2;
     }
+    if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE) return 14;
     return 7;
 }
 
@@ -6740,7 +6743,7 @@ static bool8 sub_81B8A7C(void)
     }
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (GetBattlerSide(i) == B_SIDE_PLAYER && sub_81B8F38(slot) == gBattlerPartyIndexes[i])
+        if (GetBattlerSide(i) == B_SIDE_PLAYER && getSlot_BattleReorderSlotsArray(slot) == gBattlerPartyIndexes[i])
         {
             GetMonNickname(&gPlayerParty[slot], gStringVar1);
             StringExpandPlaceholders(gStringVar4, gText_PkmnAlreadyInBattle);
@@ -6752,7 +6755,7 @@ static bool8 sub_81B8A7C(void)
         StringExpandPlaceholders(gStringVar4, gText_EggCantBattle);
         return FALSE;
     }
-    if (sub_81B8F38(slot) == gBattleStruct->field_8B)
+    if (getSlot_BattleReorderSlotsArray(slot) == gBattleStruct->field_8B)
     {
         GetMonNickname(&gPlayerParty[slot], gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_PkmnAlreadySelected);
@@ -6766,21 +6769,21 @@ static bool8 sub_81B8A7C(void)
     if (gUnknown_0203CEC8.unkB == 2)
     {
         u8 currBattler = gBattlerInMenuId;
-        GetMonNickname(&gPlayerParty[pokemon_order_func(gBattlerPartyIndexes[currBattler])], gStringVar1);
+        GetMonNickname(&gPlayerParty[getIndexOfSlot_BattleReorderSlotsArray(gBattlerPartyIndexes[currBattler])], gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_PkmnCantSwitchOut);
         return FALSE;
     }
-    gUnknown_0203CEE9 = sub_81B8F38(slot);
+    gUnknown_0203CEE9 = getSlot_BattleReorderSlotsArray(slot);
     gUnknown_0203CEE8 = 1;
-    newSlot = pokemon_order_func(gBattlerPartyIndexes[gBattlerInMenuId]);
-    sub_81B8FB0(newSlot, slot);
+    newSlot = getIndexOfSlot_BattleReorderSlotsArray(gBattlerPartyIndexes[gBattlerInMenuId]);
+    swapSlots_BattleReorderSlotsArray(newSlot, slot);
     sub_81B1288(&gPlayerParty[newSlot], &gPlayerParty[slot]);
     return TRUE;
 }
 
 void sub_81B8C68(void)
 {
-    sub_81B8C88(gUnknown_0203CF00, sub_806D7EC());
+    sub_81B8C88(gBattleReorderSlots, sub_806D7EC());
 }
 
 static void sub_81B8C88(u8 *ptr, bool8 multiplayerFlag)
@@ -6943,47 +6946,47 @@ void sub_81B8E80(u8 battlerId, u8 unk, u8 arrayIndex)
     }
 }
 
-static u8 sub_81B8F38(u8 slot)
+static u8 getSlot_BattleReorderSlotsArray(u8 index)
 {
-    u8 modResult = slot & 1;
+    u8 modResult = index & 1;
     u8 retVal;
 
-    slot /= 2;
+    index /= 2;
     if (modResult != 0)
-        retVal = gUnknown_0203CF00[slot] & 0xF;
+        retVal = gBattleReorderSlots[index] & 0xF;
     else
-        retVal = gUnknown_0203CF00[slot] >> 4;
+        retVal = gBattleReorderSlots[index] >> 4;
     return retVal;
 }
 
-static void sub_81B8F6C(u8 slot, u8 setVal)
+static void setSlot_BattleReorderSlotsArray(u8 index, u8 setVal)
 {
-    bool32 modResult = slot & 1;
+    bool32 modResult = index & 1;
 
-    slot /= 2;
+    index /= 2;
     if (modResult != 0)
-        gUnknown_0203CF00[slot] = (gUnknown_0203CF00[slot] & 0xF0) | setVal;
+        gBattleReorderSlots[index] = (gBattleReorderSlots[index] & 0xF0) | setVal;
     else
-        gUnknown_0203CF00[slot] = (gUnknown_0203CF00[slot] & 0xF) | (setVal << 4);
+        gBattleReorderSlots[index] = (gBattleReorderSlots[index] & 0xF) | (setVal << 4);
 }
 
-void sub_81B8FB0(u8 slot, u8 slot2)
+void swapSlots_BattleReorderSlotsArray(u8 index1, u8 index2)
 {
-    u8 valBuffer = sub_81B8F38(slot);
-    sub_81B8F6C(slot, sub_81B8F38(slot2));
-    sub_81B8F6C(slot2, valBuffer);
+    u8 slot1 = getSlot_BattleReorderSlotsArray(index1);
+    setSlot_BattleReorderSlotsArray(index1, getSlot_BattleReorderSlotsArray(index2));
+    setSlot_BattleReorderSlotsArray(index2, slot1);
 }
 
-u8 pokemon_order_func(u8 slot)
+u8 getIndexOfSlot_BattleReorderSlotsArray(u8 slot)
 {
     u8 i, j;
 
     for (j = i = 0; i < 3; j++, i++)
     {
-        if ((gUnknown_0203CF00[i] >> 4) != slot)
+        if ((gBattleReorderSlots[i] >> 4) != slot)
         {
             j++;
-            if ((gUnknown_0203CF00[i] & 0xF) == slot)
+            if ((gBattleReorderSlots[i] & 0xF) == slot)
                 return j;
         }
         else
@@ -7001,7 +7004,7 @@ static void pokemon_change_order(void)
 
     memcpy(partyBuffer, gPlayerParty, sizeof(gPlayerParty));
     for (i = 0; i < PARTY_SIZE; i++)
-        memcpy(&gPlayerParty[pokemon_order_func(i)], &partyBuffer[i], sizeof(struct Pokemon));
+        memcpy(&gPlayerParty[getIndexOfSlot_BattleReorderSlotsArray(i)], &partyBuffer[i], sizeof(struct Pokemon));
     Free(partyBuffer);
 }
 
@@ -7012,7 +7015,7 @@ static void sub_81B9080(void)
 
     memcpy(partyBuffer, gPlayerParty, sizeof(gPlayerParty));
     for (i = 0; i < PARTY_SIZE; i++)
-        memcpy(&gPlayerParty[sub_81B8F38(i)], &partyBuffer[i], sizeof(struct Pokemon));
+        memcpy(&gPlayerParty[getSlot_BattleReorderSlotsArray(i)], &partyBuffer[i], sizeof(struct Pokemon));
     Free(partyBuffer);
 }
 
@@ -7024,11 +7027,11 @@ static void sub_81B90D0(void)
 
     for (i = 1; i < PARTY_SIZE; i++)
     {
-        mon = &gPlayerParty[sub_81B8F38(i)];
+        mon = &gPlayerParty[getSlot_BattleReorderSlotsArray(i)];
         if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE && GetMonData(mon, MON_DATA_HP) != 0)
         {
-            leadVal = sub_81B8F38(0);
-            sub_81B8FB0(0, i);
+            leadVal = getSlot_BattleReorderSlotsArray(0);
+            swapSlots_BattleReorderSlotsArray(0, i);
             sub_81B1288(&gPlayerParty[leadVal], mon);
             break;
         }

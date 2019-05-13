@@ -1342,7 +1342,7 @@ static void WaitForMonSelection(void)
     if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
     {
         if (gUnknown_0203CEE8 == 1)
-            BtlController_EmitChosenMonReturnValue(1, gUnknown_0203CEE9, gUnknown_0203CF00);
+            BtlController_EmitChosenMonReturnValue(1, gUnknown_0203CEE9, gBattleReorderSlots);
         else
             BtlController_EmitChosenMonReturnValue(1, 6, NULL);
 
@@ -2633,7 +2633,7 @@ static void PlayerHandleChooseItem(void)
     gBattlerInMenuId = gActiveBattler;
 
     for (i = 0; i < 3; i++)
-        gUnknown_0203CF00[i] = gBattleBufferA[gActiveBattler][1 + i];
+        gBattleReorderSlots[i] = gBattleBufferA[gActiveBattler][1 + i];
 }
 
 static void PlayerHandleChoosePokemon(void)
@@ -2641,11 +2641,11 @@ static void PlayerHandleChoosePokemon(void)
     s32 i;
 
     for (i = 0; i < 3; i++)
-        gUnknown_0203CF00[i] = gBattleBufferA[gActiveBattler][4 + i];
+        gBattleReorderSlots[i] = gBattleBufferA[gActiveBattler][4 + i];
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA && (gBattleBufferA[gActiveBattler][1] & 0xF) != PARTY_CANT_SWITCH)
     {
-        BtlController_EmitChosenMonReturnValue(1, gBattlerPartyIndexes[gActiveBattler] + 1, gUnknown_0203CF00);
+        BtlController_EmitChosenMonReturnValue(1, gBattlerPartyIndexes[gActiveBattler] + 1, gBattleReorderSlots);
         PlayerBufferExecCompleted();
     }
     else

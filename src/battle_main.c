@@ -4129,25 +4129,25 @@ void sub_803BDA0(u8 battler)
     // gBattleStruct->field_60[battler][i]
 
     for (i = 0; i < 3; i++)
-        gUnknown_0203CF00[i] = *(battler * 3 + i + (u8*)(gBattleStruct->field_60));
+        gBattleReorderSlots[i] = *(battler * 3 + i + (u8*)(gBattleStruct->field_60));
 
-    r4 = pokemon_order_func(gBattlerPartyIndexes[battler]);
-    r1 = pokemon_order_func(*(gBattleStruct->monToSwitchIntoId + battler));
-    sub_81B8FB0(r4, r1);
+    r4 = getIndexOfSlot_BattleReorderSlotsArray(gBattlerPartyIndexes[battler]);
+    r1 = getIndexOfSlot_BattleReorderSlotsArray(*(gBattleStruct->monToSwitchIntoId + battler));
+    swapSlots_BattleReorderSlotsArray(r4, r1);
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         for (i = 0; i < 3; i++)
         {
-            *(battler * 3 + i + (u8*)(gBattleStruct->field_60)) = gUnknown_0203CF00[i];
-            *(BATTLE_PARTNER(battler) * 3 + i + (u8*)(gBattleStruct->field_60)) = gUnknown_0203CF00[i];
+            *(battler * 3 + i + (u8*)(gBattleStruct->field_60)) = gBattleReorderSlots[i];
+            *(BATTLE_PARTNER(battler) * 3 + i + (u8*)(gBattleStruct->field_60)) = gBattleReorderSlots[i];
         }
     }
     else
     {
         for (i = 0; i < 3; i++)
         {
-            *(battler * 3 + i + (u8*)(gBattleStruct->field_60)) = gUnknown_0203CF00[i];
+            *(battler * 3 + i + (u8*)(gBattleStruct->field_60)) = gBattleReorderSlots[i];
         }
     }
 }

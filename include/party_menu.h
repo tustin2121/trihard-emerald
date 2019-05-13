@@ -46,7 +46,7 @@ extern u8 gUnknown_0203CEE8;
 extern u8 gUnknown_0203CEE9;
 extern MainCallback gPostMenuFieldCallback;
 extern u8 gSelectedOrderFromParty[4];
-extern u8 gUnknown_0203CF00[3];
+extern u8 gBattleReorderSlots[3]; // This is actually an array of nibbles (u4)
 
 extern void (*gUnknown_03006328)(u8, TaskFunc);
 
@@ -94,8 +94,8 @@ void sub_81B89F0(void);
 void sub_81B8C68(void);
 void sub_81B8D64(u8 battlerId, u8 multiplayerFlag);
 void sub_81B8E80(u8 battlerId, u8 unk, u8 arrayIndex);
-void sub_81B8FB0(u8 slot, u8 slot2);
-u8 pokemon_order_func(u8 slot);
+void swapSlots_BattleReorderSlotsArray(u8 slot, u8 slot2);
+u8 getIndexOfSlot_BattleReorderSlotsArray(u8 slot);
 void sub_81B9150(void);
 void sub_81B9328(void);
 bool8 hm_add_c3_without_phase_2(void);
