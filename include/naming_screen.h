@@ -44,7 +44,8 @@ struct NamingScreenData {
  /*0x1E1E*/ u16 bg2Priority;
  /*0x1E20*/ u8 bgToReveal;
  /*0x1E21*/ u8 bgToHide;
- /*0x1E22*/ u8 currentPage;
+ /*0x1E22*/ u8 currentPage:4;
+ /*0x1E22*/ u8 nextPage:4;
  /*0x1E23*/ u8 cursorSpriteId;
  /*0x1E24*/ u8 selectBtnFrameSpriteId;
  /*0x1E25*/ u8 keyRepeatStartDelayCopy;
@@ -55,33 +56,6 @@ struct NamingScreenData {
  /*0x1E36*/ u16 monGender;
  /*0x1E38*/ u32 monPersonality;
  /*0x1E3C*/ MainCallback returnCallback;
-};
-
-enum
-{
-    PAGE_OTHERS,
-    PAGE_UPPER,
-    PAGE_LOWER,
-};
-
-enum
-{
-    MAIN_STATE_BEGIN_FADE_IN,
-    MAIN_STATE_WAIT_FADE_IN,
-    MAIN_STATE_HANDLE_INPUT,
-    MAIN_STATE_MOVE_TO_OK_BUTTON,
-    MAIN_STATE_START_PAGE_SWAP,
-    MAIN_STATE_WAIT_PAGE_SWAP,
-    MAIN_STATE_6,
-    MAIN_STATE_UPDATE_SENT_TO_PC_MESSAGE,
-    MAIN_STATE_BEGIN_FADE_OUT,
-};
-
-enum
-{
-    INPUT_STATE_DISABLED,
-    INPUT_STATE_ENABLED,
-    INPUT_STATE_2,
 };
 
 void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGender, u32 monPersonality, MainCallback returnCallback);

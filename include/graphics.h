@@ -4,6 +4,8 @@
 // overworld
 extern const u32 gMessageBox_Gfx[];
 extern const u16 gMessageBox_Pal[];
+extern const u16 gMessageBoxSign_Gfx[];
+extern const u16 gMessageBoxSign_Pal[];
 
 // interface pokeballs
 extern const u32 gInterfaceGfx_PokeBall[];
@@ -4060,10 +4062,10 @@ extern const u8 gHealthboxElementsGfxTable[][32];
 
 extern const u16 gNamingScreenMenu_Pal[];
 extern const u32 gNamingScreenMenu_Gfx[];
-extern const u32 gUnknown_08DD4544[];
-extern const u8 gUnknown_08DD4620[];
-extern const u8 gUnknown_08DD46E0[];
-extern const u8 gUnknown_08DD47A0[];
+extern const u32 gNamingScreenTilemap_Background[];
+extern const u8 gNamingScreenTilemap_KeyboardLower[];
+extern const u8 gNamingScreenTilemap_KeyboardUpper[];
+extern const u8 gNamingScreenTilemap_KeyboardOther[];
 extern const u8 gNamingScreenRWindow_Gfx[];
 extern const u8 gNamingScreenKeyboardButton_Gfx[];
 extern const u8 gNamingScreenROptions_Gfx[];

@@ -866,7 +866,7 @@ static void InitBgsAndWindows(void)
     ChangeBgY(3, 0, 0);
     InitWindows(gUnknown_0856FAC4);
     DeactivateAllTextPrinters();
-    sub_81973A4();
+    LoadStdWindowFrame();
 }
 
 static void SetTrainerCardCb2(void)

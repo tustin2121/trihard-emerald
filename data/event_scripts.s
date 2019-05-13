@@ -797,7 +797,7 @@ Std_MsgboxNPC:: @ 8271315
 
 Std_MsgboxSign:: @ 8271320
 	lockall
-	message 0x0
+	message3 0x0
 	waitmessage
 	waitbuttonpress
 	releaseall

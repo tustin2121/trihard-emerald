@@ -4408,7 +4408,7 @@ u8 sub_8016FF0(struct UnkStruct_Main4 * a0, u32 a1)
 
 bool32 sub_8017020(const u8 *src)
 {
-    sub_81973A4();
+    LoadStdWindowFrame();
     DrawDialogueFrame(0, 1);
     StringExpandPlaceholders(gStringVar4, src);
     AddTextPrinterWithCustomSpeedForMessage(FALSE, 1);
@@ -4432,7 +4432,7 @@ bool8 PrintOnTextbox(u8 *textState, const u8 *str)
     switch (*textState)
     {
     case 0:
-        sub_81973A4();
+        LoadStdWindowFrame();
         DrawDialogueFrame(0, 1);
         StringExpandPlaceholders(gStringVar4, str);
         AddTextPrinterForMessage_2(TRUE);

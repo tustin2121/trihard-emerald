@@ -1382,17 +1382,17 @@ const u8 gBerryBlenderMarubatsuTiles[] = INCBIN_U8("graphics/berry_blender/marub
 
 const u8 gBerryBlenderParticlesTiles[] = INCBIN_U8("graphics/berry_blender/particles.4bpp");
 
-asm(".space 0x120");
+// asm(".space 0x120");
 
 const u8 gBerryBlenderCountdownNumbersTiles[] = INCBIN_U8("graphics/berry_blender/countdown_numbers.4bpp");
 
 const u8 gBerryBlenderStartTiles[] = INCBIN_U8("graphics/berry_blender/start.4bpp");
 
-asm(".space 0x200");
+// asm(".space 0x200");
 
 const u8 gBerryBlenderArrowTiles[] = INCBIN_U8("graphics/berry_blender/arrow.4bpp");
 
-asm(".space 0x2C0");
+// asm(".space 0x2C0");
 
 const u16 gEasyChatCursor_Pal[] = INCBIN_U16("graphics/easy_chat/cursor.gbapal");
 const u32 gEasyChatCursor_Gfx[] = INCBIN_U32("graphics/easy_chat/cursor.4bpp.lz");
@@ -1466,10 +1466,10 @@ const u8 gNamingScreenKeyboardButton_Gfx[] = INCBIN_U8("graphics/naming_screen/k
 const u8 gNamingScreenRightPointingTriangleTiles[] = INCBIN_U8("graphics/naming_screen/right_pointing_triangle.4bpp");
 const u8 gNamingScreenUnderscoreTiles[] = INCBIN_U8("graphics/naming_screen/underscore.4bpp");
 
-const u32 gUnknown_08DD4544[] = INCBIN_U32("graphics/unknown/unknown_DD4544.bin.lz");
-const u32 gUnknown_08DD4620[] = INCBIN_U32("graphics/unknown/unknown_DD4620.bin.lz");
-const u32 gUnknown_08DD46E0[] = INCBIN_U32("graphics/unknown/unknown_DD46E0.bin.lz");
-const u32 gUnknown_08DD47A0[] = INCBIN_U32("graphics/unknown/unknown_DD47A0.bin.lz");
+const u32 gNamingScreenTilemap_Background[] = INCBIN_U32("graphics/unknown/unknown_DD4544.bin.lz");
+const u32 gNamingScreenTilemap_KeyboardLower[] = INCBIN_U32("graphics/unknown/unknown_DD4620.bin.lz");
+const u32 gNamingScreenTilemap_KeyboardUpper[] = INCBIN_U32("graphics/unknown/unknown_DD46E0.bin.lz");
+const u32 gNamingScreenTilemap_KeyboardOther[] = INCBIN_U32("graphics/unknown/unknown_DD47A0.bin.lz");
 
 // link
 
@@ -1536,6 +1536,9 @@ const u16 gUnknown_08DDD704[] = INCBIN_U16("graphics/unknown/unknown_DDD704.bin"
 
 const u16 gMessageBox_Pal[] = INCBIN_U16("graphics/text_window/message_box.gbapal");
 const u8 gMessageBox_Gfx[] = INCBIN_U8("graphics/text_window/message_box.4bpp");
+
+const u16 gMessageBoxSign_Pal[] = INCBIN_U16("graphics/text_window/message_sign.gbapal");
+const u8 gMessageBoxSign_Gfx[] = INCBIN_U8("graphics/text_window/message_sign.4bpp");
 
 const u32 gWallpaperIcon_Cross[] = INCBIN_U32("graphics/pokemon_storage/cross_icon.4bpp.lz");
 const u32 gWallpaperIcon_Bolt[] = INCBIN_U32("graphics/pokemon_storage/bolt_icon.4bpp.lz");
@@ -1604,10 +1607,10 @@ const u32 gUnknown_08DE34B8[] = INCBIN_U32("graphics/berry_crusher/tiles.4bpp.lz
 const u32 gUnknown_08DE3FD4[] = INCBIN_U32("graphics/berry_crusher/tiles.bin.lz");
 
 // random garbage at the end.
-asm(".space 0x54BAC \n\
-     .byte 0x0D, 0x00, 0x58, 0x02 \n\
-     .space 0x1145 \n\
-     .byte 0x02 \n\
-     .space 0x3242 \n\
-     .byte 0x40 \n\
-     .space 0x13");
+// asm(".space 0x54BAC \n\
+//      .byte 0x0D, 0x00, 0x58, 0x02 \n\
+//      .space 0x1145 \n\
+//      .byte 0x02 \n\
+//      .space 0x3242 \n\
+//      .byte 0x40 \n\
+//      .space 0x13");

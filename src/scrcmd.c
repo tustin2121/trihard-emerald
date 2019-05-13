@@ -1296,15 +1296,16 @@ bool8 ScrCmd_messageautoscroll(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_cmdDB(struct ScriptContext *ctx)
+bool8 SrcCmd_messagesign(struct ScriptContext *ctx)
 {
     const u8 *msg = (const u8 *)ScriptReadWord(ctx);
 
     if (msg == NULL)
         msg = (const u8 *)ctx->data[0];
-    sub_81973A4();
-    DrawDialogueFrame(0, 1);
-    AddTextPrinterParameterized(0, 1, msg, 0, 1, 0, 0);
+    LoadStdWindowFrame();
+    DrawSignWindowFrame(1, 1);
+    PopupSignMessageBox();
+    AddTextPrinterParameterized(1, 1, msg, 0, 1, 0, 0);
     return FALSE;
 }
 
