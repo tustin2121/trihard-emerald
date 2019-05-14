@@ -466,6 +466,18 @@ const struct SpriteFrameImage gEventObjectPicTable_Woman5[] = {
     overworld_frame(gEventObjectPic_Woman5, 2, 4, 8),
 };
 
+const struct SpriteFrameImage gEventObjectPicTable_Policeman[] = {
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 0),
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 1),
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 2),
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 3),
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 4),
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 5),
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 6),
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 7),
+    overworld_frame(gEventObjectPic_Policeman, 2, 4, 8),
+};
+
 const struct SpriteFrameImage gEventObjectPicTable_Youngster[] = {
     overworld_frame(gEventObjectPic_Youngster, 2, 4, 0),
     overworld_frame(gEventObjectPic_Youngster, 2, 4, 1),

@@ -33,6 +33,7 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Camper;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Picnicker;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Man3;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Woman5;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Policeman;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Youngster;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BugCatcher;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_PsychicM;
@@ -282,6 +283,7 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     &gEventObjectGraphicsInfo_Picnicker,
     &gEventObjectGraphicsInfo_Man3,
     &gEventObjectGraphicsInfo_Woman5,
+    &gEventObjectGraphicsInfo_Policeman,
     &gEventObjectGraphicsInfo_Youngster,
     &gEventObjectGraphicsInfo_BugCatcher,
     &gEventObjectGraphicsInfo_PsychicM,

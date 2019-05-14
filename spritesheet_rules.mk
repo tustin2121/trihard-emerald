@@ -398,6 +398,9 @@ $(EVENTOBJGFXDIR)/people/link_receptionist.4bpp: %.4bpp: %.png
 
 $(EVENTOBJGFXDIR)/people/woman_5.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/police.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/youngster.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4

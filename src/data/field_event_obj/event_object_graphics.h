@@ -98,6 +98,7 @@ const u32 gEventObjectPic_Camper[] = INCBIN_U32("graphics/event_objects/pics/peo
 const u32 gEventObjectPic_Picnicker[] = INCBIN_U32("graphics/event_objects/pics/people/picnicker.4bpp");
 const u32 gEventObjectPic_Man3[] = INCBIN_U32("graphics/event_objects/pics/people/man_3.4bpp");
 const u32 gEventObjectPic_Woman5[] = INCBIN_U32("graphics/event_objects/pics/people/woman_5.4bpp");
+const u32 gEventObjectPic_Policeman[] = INCBIN_U32("graphics/event_objects/pics/people/police.4bpp");
 const u32 gEventObjectPic_Youngster[] = INCBIN_U32("graphics/event_objects/pics/people/youngster.4bpp");
 const u32 gEventObjectPic_BugCatcher[] = INCBIN_U32("graphics/event_objects/pics/people/bug_catcher.4bpp");
 const u32 gEventObjectPic_PsychicM[] = INCBIN_U32("graphics/event_objects/pics/people/psychic_m.4bpp");
