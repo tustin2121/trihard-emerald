@@ -542,7 +542,7 @@ class GdbSerialConnection extends EventEmitter {
 	}
 	
 	writeMemory(addr, data) {
-		return this._sendCommand(`M${addr},${data.length}:${data.toString('hex')}`);
+		return this._sendCommand(`M${addr},${data.length.toString(16)}:${data.toString('hex')}`);
 	}
 }
 
