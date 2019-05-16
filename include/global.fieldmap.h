@@ -264,18 +264,6 @@ enum
     ACRO_BIKE_STATE6,
 };
 
-enum
-{
-    DIR_NONE,
-    DIR_SOUTH,
-    DIR_NORTH,
-    DIR_WEST,
-    DIR_EAST,
-    DIR_SOUTHWEST,
-    DIR_SOUTHEAST,
-    DIR_NORTHWEST,
-    DIR_NORTHEAST,
-};
 
 enum
 {

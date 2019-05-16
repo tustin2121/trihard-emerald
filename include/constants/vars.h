@@ -297,4 +297,6 @@
 #define VAR_UNUSED_0x8014             0x8014
 #define VAR_TRAINER_BATTLE_OPPONENT_A 0x8015 // Alias of gTrainerBattleOpponent_A
 
+#define THIS_EVENT                    0x800F //alias to VAR_LAST_TALKED
+
 #endif // GUARD_CONSTANTS_VARS_H

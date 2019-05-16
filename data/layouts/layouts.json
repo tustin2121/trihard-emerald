@@ -323,7 +323,7 @@
         {
             "blockdata_filepath": "data/layouts/Route117/map.bin",
             "border_filepath": "data/layouts/Route117/border.bin",
-            "height": 20,
+            "height": 24,
             "id": "LAYOUT_ROUTE117",
             "name": "Route117_Layout",
             "primary_tileset": "gTileset_General",

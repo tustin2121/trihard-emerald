@@ -68,6 +68,7 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_RegisteredInMatchCall
 	.4byte Std_9
 	.4byte Std_10
+	.4byte Std_MsgboxDescribe
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/PetalburgCity/scripts.inc"
@@ -798,6 +799,14 @@ Std_MsgboxNPC:: @ 8271315
 Std_MsgboxSign:: @ 8271320
 	lockall
 	message3 0x0
+	waitmessage
+	waitbuttonpress
+	releaseall
+	return
+
+Std_MsgboxDescribe:: @ 8271320
+	lockall
+	message 0x0
 	waitmessage
 	waitbuttonpress
 	releaseall
@@ -2013,9 +2022,9 @@ Route119_EventScript_2723C1:: @ 82723C1
 	goto Route119_EventScript_27376D
 	end
 
-FortreeCity_Movement_2723C7: @ 82723C7
 Route119_Movement_2723C7: @ 82723C7
 Route120_Movement_2723C7: @ 82723C7
+Common_Movement_KecleonShowAnim: @ 82723C7
 	set_visible
 	delay_4
 	set_invisible
