@@ -1372,7 +1372,7 @@ static void CreatePCMenu(void)
 
 void ScriptMenu_DisplayPCStartupPrompt(void)
 {
-    sub_819786C(0, TRUE);
+    Menu_LoadAndDisplayDialogBoxCustomPalette(0, TRUE);
     AddTextPrinterParameterized2(0, 1, gText_WhichPCShouldBeAccessed, 0, NULL, 2, 1, 3);
 }
 

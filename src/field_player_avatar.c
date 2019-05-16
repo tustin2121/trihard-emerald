@@ -1758,7 +1758,7 @@ static bool8 Fishing4(struct Task *task)
 {
     u32 randVal;
 
-    sub_819786C(0, TRUE);
+    Menu_LoadAndDisplayDialogBoxCustomPalette(0, TRUE);
     task->tStep++;
     task->tFrameCounter = 0;
     task->tNumDots = 0;

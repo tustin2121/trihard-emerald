@@ -875,7 +875,7 @@ void ForceSaveGame(void) // Called from scripts
 static void ShowSaveMessage(const u8 *message, u8 (*saveCallback)(void))
 {
     StringExpandPlaceholders(gStringVar4, message);
-    sub_819786C(0, TRUE);
+    Menu_LoadAndDisplayDialogBoxCustomPalette(0, TRUE);
     AddTextPrinterForMessage_2(TRUE);
     sSavingComplete = TRUE;
     sSaveDialogCallback = saveCallback;
