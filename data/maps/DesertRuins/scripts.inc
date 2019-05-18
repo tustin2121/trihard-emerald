@@ -42,7 +42,7 @@ DesertRuins_EventScript_22D9DB:: @ 822D9DB
 	goto_if_set FLAG_SYS_REGIROCK_PUZZLE_COMPLETED, DesertRuins_EventScript_22D9EE
 	braillemessage DesertRuins_Braille_2A6CA0
 	waitbuttonpress
-	hidebox2
+	cleanupbraillemessage
 	releaseall
 	end
 
@@ -55,7 +55,7 @@ DesertRuins_EventScript_22D9F8:: @ 822D9F8
 	lockall
 	braillemessage DesertRuins_Braille_2A6CA0
 	waitbuttonpress
-	hidebox2
+	cleanupbraillemessage
 	releaseall
 	end
 

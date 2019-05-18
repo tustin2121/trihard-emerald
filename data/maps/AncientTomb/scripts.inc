@@ -42,7 +42,7 @@ AncientTomb_EventScript_239033:: @ 8239033
 	goto_if_set FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED, AncientTomb_EventScript_239046
 	braillemessage AncientTomb_Braille_2A6D06
 	waitbuttonpress
-	hidebox2
+	cleanupbraillemessage
 	releaseall
 	end
 
@@ -55,7 +55,7 @@ AncientTomb_EventScript_239050:: @ 8239050
 	lockall
 	braillemessage AncientTomb_Braille_2A6D06
 	waitbuttonpress
-	hidebox2
+	cleanupbraillemessage
 	releaseall
 	end
 

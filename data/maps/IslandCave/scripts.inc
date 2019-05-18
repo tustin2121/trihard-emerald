@@ -77,7 +77,7 @@ IslandCave_EventScript_238F1D:: @ 8238F1D
 
 IslandCave_EventScript_238F41:: @ 8238F41
 	waitbuttonpress
-	hidebox2
+	cleanupbraillemessage
 	releaseall
 	end
 

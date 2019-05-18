@@ -6,7 +6,7 @@ LavaridgeTown_PokemonCenter_1F_MapScripts:: @ 81FFAFA
 
 LavaridgeTown_PokemonCenter_1F_OnLoad:
 	@ Set the PC to "On"
-	setmetatile 3, 3, 0x5, 1
+	setmetatile 8, 3, 0x5, 1
 	return
 
 LavaridgeTown_PokemonCenter_1F_OnTransition: @ 81FFB05

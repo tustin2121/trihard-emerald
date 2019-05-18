@@ -178,7 +178,7 @@ Route117_Text_1F3D74: @ 81F3D74
 
 Route117_EventScript_DaycareSign:: @ 81F39C7
 	lockall
-	message3 Route117_Text_DaycareSign1
+	messagesign Route117_Text_DaycareSign1
 	waitmessage
 	waitbuttonpress
 	message Route117_Text_DaycareSign2
