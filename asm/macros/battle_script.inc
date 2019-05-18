@@ -1246,9 +1246,8 @@
 	.byte \param0
 	.endm
 
-	.macro killfaintedmon battler:req
+	.macro removedeadmonfromparty
 	.byte 0xf9
-	.byte \battler
 	.endm
 	
 @ various command changed to more readable macros

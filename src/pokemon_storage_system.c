@@ -1,5 +1,6 @@
 #include "global.h"
 #include "alloc.h"
+#include "battle.h"
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
@@ -6660,14 +6661,20 @@ s16 CompactPartySlots(void)
 {
     s16 retVal = -1;
     u16 i, last;
-
+    
+    // For every pokemon slot in the party
     for (i = 0, last = 0; i < PARTY_SIZE; i++)
     {
+        // check if there's a pokemon in this slot (i)
         u16 species = GetMonData(gPlayerParty + i, MON_DATA_SPECIES);
         if (species != SPECIES_NONE)
         {
+            // If there is, increment the count for the last slot index after moving the pokemon up
             if (i != last)
+            {
                 gPlayerParty[last] = gPlayerParty[i];
+                gPlayerDeathPreventions[last] = gPlayerDeathPreventions[i];
+            }
             last++;
         }
         else if (retVal == -1)
@@ -6676,7 +6683,10 @@ s16 CompactPartySlots(void)
         }
     }
     for (; last < PARTY_SIZE; last++)
+    {
         ZeroMonData(gPlayerParty + last);
+        gPlayerDeathPreventions[last] = 0;
+    }
 
     return retVal;
 }

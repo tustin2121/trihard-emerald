@@ -7,7 +7,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "LavaridgeTown_EventScript_1EA7B7",
+            "script": "LavaridgeTown_SignScript_HerbShop",
             "type": "sign",
             "x": 14,
             "y": 16
@@ -15,7 +15,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "LavaridgeTown_EventScript_1EA7AE",
+            "script": "LavaridgeTown_SignScript_Gym",
             "type": "sign",
             "x": 7,
             "y": 15
@@ -31,7 +31,7 @@
         {
             "elevation": 0,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "LavaridgeTown_EventScript_1EA7A5",
+            "script": "LavaridgeTown_SignScript_Town",
             "type": "sign",
             "x": 13,
             "y": 8
@@ -79,7 +79,7 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "LavaridgeTown_EventScript_1EA6FA",
+            "script": "LavaridgeTown_TriggerScript_EnterHotSpring",
             "type": "trigger",
             "var": "0",
             "var_value": "0",
@@ -100,7 +100,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "LavaridgeTown_EventScript_1EA73B",
+            "script": "LavaridgeTown_EventScript_CenterWoman",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 8,
@@ -113,7 +113,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "LavaridgeTown_EventScript_1EA70E",
+            "script": "LavaridgeTown_EventScript_SpringMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 5,
@@ -126,7 +126,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "LavaridgeTown_EventScript_1EA717",
+            "script": "LavaridgeTown_EventScript_SandMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 5,
@@ -139,7 +139,7 @@
             "movement_range_x": 0,
             "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
-            "script": "LavaridgeTown_EventScript_1EA720",
+            "script": "LavaridgeTown_EventScript_WanderingGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 10,
@@ -152,7 +152,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
-            "script": "LavaridgeTown_EventScript_1EA729",
+            "script": "LavaridgeTown_EventScript_HotSpringWoman1",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 4,
@@ -165,7 +165,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
-            "script": "LavaridgeTown_EventScript_1EA732",
+            "script": "LavaridgeTown_EventScript_HotSpringWoman2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 5,
@@ -204,7 +204,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "LavaridgeTown_EventScript_1EA744",
+            "script": "LavaridgeTown_EventScript_EggWoman",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 4,

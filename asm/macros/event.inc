@@ -1501,11 +1501,11 @@
 	.byte 0xd9
 	.endm
 
-	.macro hidebox2
+	.macro cleanupbraillemessage
 	.byte 0xda
 	.endm
 
-	.macro message3 pointer:req
+	.macro messagesign pointer:req
 	.byte 0xdb
 	.4byte \pointer
 	.endm

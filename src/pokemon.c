@@ -4360,6 +4360,21 @@ u8 SendMonToPC(struct Pokemon* mon)
     return MON_CANT_GIVE;
 }
 
+// Returns false if the pokemon at the slot has anything preventing it from dying.
+bool8 CanMonDie(int partySlot)
+{
+    // Check the global death prevention flag
+    if (FlagGet(FLAG_DEATH_PREVENT))
+    {
+        // If the flag is set, check if we need to revive the mon to 1HP
+        if (FlagGet(FLAG_DEATH_PREVENT_1HP))
+            gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_1HP;
+        else
+            gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_0HP;
+    }
+    return gPlayerDeathPreventions[partySlot] == DEATH_PREVENT_NONE;
+}
+
 // Sends a pokemon to the PC and removes it from the party.
 void KillMon(int partySlot)
 {
@@ -4370,15 +4385,9 @@ void KillMon(int partySlot)
     // sanity check, can't kill null pokemon or eggs
     if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_NONE) return;
     if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_EGG) return;
-
-    if (FlagGet(FLAG_DEATH_PREVENT))
-    {
-        if (FlagGet(FLAG_DEATH_PREVENT_1HP))
-            gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_1HP;
-        else
-            gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_0HP;
-    }
     
+    // If the global death prevention flag is on, don't kill it.
+    if (FlagGet(FLAG_DEATH_PREVENT)) return;
     // If this pokemon has a death prevention flag on it, don't kill it.
     if (gPlayerDeathPreventions[partySlot] != DEATH_PREVENT_NONE) return;
 
@@ -4426,6 +4435,18 @@ void Restore1HPDeathPreventedMons(void)
                 case DEATH_PREVENT_50HP: hp = maxhp / 2; break;
             }
             SetMonData(mon, MON_DATA_HP, &hp);
+        }
+    }
+}
+
+void RemoveDeadMonFromParty(void)
+{
+    s32 i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_STATUS, NULL) == STATUS1_DEAD)
+        {
+            KillMon(i);
         }
     }
 }

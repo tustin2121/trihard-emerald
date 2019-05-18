@@ -13,7 +13,8 @@ enum
     AILMENT_FRZ,
     AILMENT_BRN,
     AILMENT_PKRS,
-    AILMENT_FNT
+    AILMENT_FNT,
+    AILMENT_DEAD,
 };
 
 enum
@@ -91,7 +92,7 @@ void sub_81B892C(void);
 void sub_81B8958(void);
 void OpenPartyMenuInBattle(u8 arg);
 void sub_81B89F0(void);
-void sub_81B8C68(void);
+void RecalculateBattleReorderSlots(void);
 void sub_81B8D64(u8 battlerId, u8 multiplayerFlag);
 void sub_81B8E80(u8 battlerId, u8 unk, u8 arrayIndex);
 void swapSlots_BattleReorderSlotsArray(u8 slot, u8 slot2);

@@ -775,7 +775,7 @@ LilycoveCity_ContestLobby_EventScript_21AA15:: @ 821AA15
 	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AAEF
 	compare VAR_RESULT, 10
 	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AAE1
-	message3 LilycoveCity_ContestLobby_Text_27BEEC
+	messagesign LilycoveCity_ContestLobby_Text_27BEEC
 	contestlinktransfer
 	switch VAR_0x8004
 	case 0, LilycoveCity_ContestLobby_EventScript_21AB17
@@ -918,7 +918,7 @@ LilycoveCity_ContestLobby_EventScript_21AC38:: @ 821AC38
 	return
 
 LilycoveCity_ContestLobby_EventScript_21AC3D:: @ 821AC3D
-	message3 LilycoveCity_ContestLobby_Text_27BEEC
+	messagesign LilycoveCity_ContestLobby_Text_27BEEC
 	contestlinktransfer
 	goto LilycoveCity_ContestLobby_EventScript_21AB17
 	end

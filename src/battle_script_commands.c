@@ -325,7 +325,7 @@ static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
 static void atkF8_trainerslideout(void);
-static void atkF9_killfaintedmon(void);
+static void atkF9_removedeadmonfromparty(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -578,7 +578,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF6_finishaction,
     atkF7_finishturn,
     atkF8_trainerslideout,
-    atkF9_killfaintedmon,
+    atkF9_removedeadmonfromparty,
 };
 
 struct StatFractions
@@ -3122,6 +3122,15 @@ static void atk1B_cleareffectsonfaint(void)
         if (!(gBattleTypeFlags & BATTLE_TYPE_ARENA) || gBattleMons[gActiveBattler].hp == 0)
         {
             gBattleMons[gActiveBattler].status1 = 0;
+            // TriHard Emerald: Party mons are dead unless something is preventing them.
+            if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
+            {
+                u8 partySlot = gBattlerPartyIndexes[gActiveBattler];
+                if (CanMonDie(partySlot))
+                {
+                    gBattleMons[gActiveBattler].status1 = STATUS1_DEAD;
+                }
+            }
             BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 0x4, &gBattleMons[gActiveBattler].status1);
             MarkBattlerForControllerExec(gActiveBattler);
         }
@@ -10585,19 +10594,12 @@ static void atkF8_trainerslideout(void)
     gBattlescriptCurrInstr += 2;
 }
 
-static void atkF9_killfaintedmon(void)
+static void atkF9_removedeadmonfromparty(void)
 {
     if (gBattleControllerExecFlags == 0)
     {
-        gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
-        
-        if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER && (gHitMarker & HITMARKER_FAINTED(gActiveBattler)))
-        {
-            KillMon(gBattlerPartyIndexes[gActiveBattler]);
-            gBattlerPartyIndexes[gActiveBattler] = 0xFF; //invalid position
-        }
-        
-        MarkBattlerForControllerExec(gActiveBattler);
-        gBattlescriptCurrInstr += 2;
+        RemoveDeadMonFromParty();
+        RecalculateBattleReorderSlots();
+        gBattlescriptCurrInstr++;
     }
 }
