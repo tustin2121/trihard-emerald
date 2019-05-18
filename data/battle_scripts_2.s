@@ -72,9 +72,13 @@ BattleScript_PrintCaughtMonInfo::
 	setbyte gBattleCommunication, 0x0
 	displaydexinfo
 BattleScript_TryNicknameCaughtMon::
-	printstring STRINGID_GIVENICKNAMECAPTURED
-	waitstate
-	setbyte gBattleCommunication, 0x0
+	.if TPP_MODE 
+		setbyte gBattleCommunication, 0x5 @fade out immedeately
+	.else
+		printstring STRINGID_GIVENICKNAMECAPTURED
+		waitstate
+		setbyte gBattleCommunication, 0x0
+	.endif
 	trygivecaughtmonnick BattleScript_GiveCaughtMonEnd
 	givecaughtmon
 	printfromtable gCaughtMonStringIds

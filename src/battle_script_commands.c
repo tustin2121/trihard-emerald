@@ -10544,6 +10544,12 @@ static void atkF3_trygivecaughtmonnick(void)
         else
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         break;
+#if TPP_MODE
+    case 5:
+        BeginFastPaletteFade(3);
+        gBattleCommunication[MULTIUSE_STATE] = 2;
+        break;
+#endif
     }
 }
 
