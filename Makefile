@@ -8,6 +8,9 @@ DEBUG			?= 1
 TPP_MODE		?= 1
 EMULATOR_ONLY	?= 1
 
+# Version branch
+VERSION	:= alpha
+
 ifeq ($(OS),Windows_NT)
 EXE := .exe
 else
@@ -133,7 +136,7 @@ sound/direct_sound_samples/cry_%.bin: sound/direct_sound_samples/cry_%.aif ; $(A
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
 
 $(OBJ_DIR)/copystamp.bin: .git/index
-	tools/copystamp/copystamp $(OBJ_DIR)/copystamped.bin `git log -1 --format="-18:s %h -19:t %ct"`
+	tools/copystamp/copystamp $(OBJ_DIR)/copystamped.bin `git log -1 --format="-18:s $(VERSION)*%h -19:t %ct"`
 $(OBJ_DIR)/copystamped.bin.lz: $(OBJ_DIR)/copystamp.bin
 	$(GFX) $(OBJ_DIR)/copystamped.bin $@
 

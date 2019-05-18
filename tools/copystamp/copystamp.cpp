@@ -96,8 +96,15 @@ int main(int argc, char* argv[])
 		printf("Stamps in the format: -[lineno]:[type] <value>\n");
 		printf("   lineno: the vertical line of the copyright screen, 0-20\n");
 		printf("   type: one of the following\n");
-		printf("       \"s\" - output value as string, uppercased");
-		printf("       \"t\" - output unix timestamp value as YYYY-MM-DD hh:mm");
+		printf("       \"s\" - output value as string, uppercased\n");
+		printf("       \"t\" - output unix timestamp value as YYYY-MM-DD hh:mm\n");
+		printf("\n");
+		
+		for (int i = 0; i < argc; i++)
+		{
+			printf("%d = [%s]\n", i, argv[i]);
+		}
+		printf("\n");
 		return -1;
 	}
 	
