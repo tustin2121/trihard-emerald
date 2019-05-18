@@ -111,7 +111,8 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     {
         u16 species; // 0x0
         u16 species2; // 0x2
-        u8 isEgg; // 0x4
+        u8 isEgg:4; // 0x4
+        u8 isDead:4;
         u8 level; // 0x5
         u8 ribbonCount; // 0x6
         u8 ailment; // 0x7
@@ -248,6 +249,7 @@ static bool8 IsInGamePartnerMon(void);
 static void PrintEggOTName(void);
 static void PrintEggOTID(void);
 static void PrintEggState(void);
+static void PrintDeadState(void);
 static void PrintEggMemo(void);
 static void Task_PrintSkillsPage(u8 taskId);
 static void PrintHeldItemName(void);
@@ -1008,6 +1010,10 @@ static const union AnimCmd sSpriteAnim_StatusFaint[] = {
     ANIMCMD_FRAME(24, 0, FALSE, FALSE),
     ANIMCMD_END
 };
+static const union AnimCmd sSpriteAnim_StatusDead[] = {
+    ANIMCMD_FRAME(28, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
 static const union AnimCmd *const sSpriteAnimTable_StatusCondition[] = {
     sSpriteAnim_StatusPoison,
     sSpriteAnim_StatusParalyzed,
@@ -1016,11 +1022,12 @@ static const union AnimCmd *const sSpriteAnimTable_StatusCondition[] = {
     sSpriteAnim_StatusBurn,
     sSpriteAnim_StatusPokerus,
     sSpriteAnim_StatusFaint,
+    sSpriteAnim_StatusDead,
 };
 static const struct CompressedSpriteSheet sStatusIconsSpriteSheet =
 {
     .data = gStatusGfx_Icons,
-    .size = 0x380,
+    .size = 0x400,//0x380,
     .tag = 30001
 };
 static const struct CompressedSpritePalette sStatusIconsSpritePalette =
@@ -1357,6 +1364,7 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->item = GetMonData(mon, MON_DATA_HELD_ITEM);
         sum->pid = GetMonData(mon, MON_DATA_PERSONALITY);
         sum->sanity = GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG);
+        sum->isDead = GetMonData(mon, MON_DATA_STATUS) == STATUS1_DEAD;
 
         if (sum->sanity)
             sum->isEgg = TRUE;
@@ -1664,7 +1672,7 @@ static s8 sub_81C08F8(s8 a)
             index += a;
             if (index < 0 || index > sMonSummaryScreen->maxMonIndex)
                 return -1;
-        } while (GetMonData(&mon[index], MON_DATA_IS_EGG) != 0);
+        } while (GetMonData(&mon[index], MON_DATA_IS_EGG) != 0 || GetMonData(&mon[index], MON_DATA_STATUS) == STATUS1_DEAD);
         return index;
     }
 }
@@ -1713,7 +1721,7 @@ static void ChangePage(u8 taskId, s8 delta)
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     s16 *data = gTasks[taskId].data;
 
-    if (summary->isEgg)
+    if (summary->isEgg || summary->isDead)
         return;
     else if (delta == -1 && sMonSummaryScreen->currPageIndex == sMonSummaryScreen->minPageIndex)
         return;
@@ -2571,8 +2579,10 @@ static void DrawContestMoveHearts(u16 move)
 }
 
 static void LimitEggSummaryPageDisplay(void) // If the pokemon is an egg, limit the number of pages displayed to 1
-{
-    if (sMonSummaryScreen->summary.isEgg)
+{   
+    // This quite literally shifts the background of bg3 over to a version that has only 1 page shown in the top bar.
+    // This other version of the screen also has "STATE" instead of "ABILITY"
+    if (sMonSummaryScreen->summary.isEgg || sMonSummaryScreen->summary.isDead)
         ChangeBgX(3, 0x10000, 0);
     else
         ChangeBgX(3, 0, 0);
@@ -2889,7 +2899,15 @@ static void CreateTextPrinterTask(u8 pageIndex)
 
 static void PrintInfoPageText(void)
 {
-    if (sMonSummaryScreen->summary.isEgg)
+    if (sMonSummaryScreen->summary.isDead)
+    {
+        PrintMonOTName();
+        PrintMonOTID();
+        PrintDeadState();
+        BufferMonTrainerMemo();
+        PrintMonTrainerMemo();
+    }
+    else if (sMonSummaryScreen->summary.isEgg)
     {
         PrintEggOTName();
         PrintEggOTID();
@@ -3122,7 +3140,7 @@ static void PrintEggState(void)
 {
     const u8 *text;
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
-
+    
     if (sMonSummaryScreen->summary.sanity == TRUE)
         text = gText_EggWillTakeALongTime;
     else if (sum->friendship <= 5)
@@ -3133,6 +3151,25 @@ static void PrintEggState(void)
         text = gText_EggWillTakeSomeTime;
     else
         text = gText_EggWillTakeALongTime;
+
+    SummaryScreen_PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), text, 0, 1, 0, 0);
+}
+
+static void PrintDeadState(void)
+{
+    const u8 *text;
+    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+    
+    if (sMonSummaryScreen->summary.sanity == TRUE)
+        text = gText_DeadPokemonState;
+    else if (sum->friendship <= 5)
+        text = gText_DeadPokemonState;
+    else if (sum->friendship <= 10)
+        text = gText_DeadPokemonState;
+    else if (sum->friendship <= 40)
+        text = gText_DeadPokemonState;
+    else
+        text = gText_DeadPokemonState;
 
     SummaryScreen_PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), text, 0, 1, 0, 0);
 }
@@ -3807,6 +3844,12 @@ static u8 CreatePokemonSprite(struct Pokemon *mon, s16 *a1)
             pal = GetMonSpritePalStructFromOtIdPersonality(summary->species2, summary->OTID, summary->pid);
             LoadCompressedSpritePalette(pal);
             SetMultiuseSpriteTemplateToPokemon(pal->tag, 1);
+            if (summary->isDead) 
+            {
+                u8 index = IndexOfSpritePaletteTag(pal->tag);
+                TintPalette_GrayScale(gPlttBufferUnfaded + (index * 16) + 0x100, 16);
+                TintPalette_GrayScale(gPlttBufferFaded + (index * 16) + 0x100, 16);
+            }
             (*a1)++;
             return 0xFF;
     }
@@ -3815,7 +3858,7 @@ static u8 CreatePokemonSprite(struct Pokemon *mon, s16 *a1)
 static void PlayMonCry(void)
 {
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
-    if (!summary->isEgg)
+    if (!summary->isEgg && !summary->isDead)
     {
         if (ShouldPlayNormalMonCry(&sMonSummaryScreen->currentMon) == TRUE)
         {
@@ -3861,7 +3904,10 @@ static void SpriteCB_Pokemon(struct Sprite *sprite)
     {
         sprite->data[1] = IsMonSpriteNotFlipped(sprite->data[0]);
         PlayMonCry();
-        PokemonSummaryDoMonAnimation(sprite, sprite->data[0], summary->isEgg);
+        if (!summary->isDead)
+        {
+            PokemonSummaryDoMonAnimation(sprite, sprite->data[0], summary->isEgg);
+        }
     }
 }
 

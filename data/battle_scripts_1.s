@@ -2837,7 +2837,6 @@ BattleScript_FaintTarget::
 	dofaintanimation BS_TARGET
 	cleareffectsonfaint BS_TARGET
 	printstring STRINGID_TARGETFAINTED
-	killfaintedmon BS_TARGET
 	return
 
 BattleScript_GiveExp::
@@ -2905,6 +2904,7 @@ BattleScript_FaintedMonChooseAnother::
 	various7 BS_ATTACKER
 	switchineffects BS_FAINTED
 	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_FaintedMonEnd
+	removedeadmonfromparty
 	cancelallactions
 BattleScript_FaintedMonEnd::
 	end2

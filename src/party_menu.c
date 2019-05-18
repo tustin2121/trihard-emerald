@@ -1129,7 +1129,7 @@ static const u8 *const sMonSelectedMenuTypes[] =
     sMonSelectedMenu_Cancel, //14
 };
 
-static const u8 sMonSelectedMenuTypeSizes[] = {0, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3};
+static const u8 sMonSelectedMenuTypeSizes[] = {0, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 1};
 
 static const u16 sFieldMoves[] =
 {
@@ -2216,20 +2216,22 @@ static u8 GetPartyBoxPalBitfield(u8 slot, bool8 selected)
     u8 returnVar = 0;
 
     if (selected == TRUE)
-        returnVar |= 1;
+        returnVar |= 0x01;
     if (GetMonData(&gPlayerParty[slot], MON_DATA_HP) == 0)
-        returnVar |= 2;
+        returnVar |= 0x02;
+    if (GetMonData(&gPlayerParty[slot], MON_DATA_STATUS) == STATUS1_DEAD)
+        returnVar |= 0x80;
     if (PartyBoxPal_PartnerOrDisqualifiedInArena(slot) == TRUE)
-        returnVar |= 8;
+        returnVar |= 0x08;
     if (gUnknown_0203CEC8.unkB == 9)
-        returnVar |= 16; //entered? As in into a contest or battle?
+        returnVar |= 0x10; //entered? As in into a contest or battle?
     if (gUnknown_0203CEC8.unkB == 8)
     {
         if (slot == gUnknown_0203CEC8.unk9 || slot == gUnknown_0203CEC8.unkA)
-            returnVar |= 4; //entered? As in into a contest or battle?
+            returnVar |= 0x04; //entered? As in into a contest or battle?
     }
     if (gUnknown_0203CEC8.unkB == 10 && slot == gUnknown_0203CEC8.unk9 )
-        returnVar |= 32; //entered? As in into a contest or battle?
+        returnVar |= 0x20; //entered? As in into a contest or battle?
 
     return returnVar;
 }
@@ -2948,7 +2950,10 @@ u8 GetMonAilment(struct Pokemon *mon)
     u8 ailment;
 
     if (GetMonData(mon, MON_DATA_HP) == 0)
+    {
+        if (GetMonData(mon, MON_DATA_STATUS) == STATUS1_DEAD) return AILMENT_DEAD;
         return AILMENT_FNT;
+    }
     ailment = pokemon_ailments_get_primary(GetMonData(mon, MON_DATA_STATUS));
     if (ailment != AILMENT_NONE)
         return ailment;
@@ -4933,6 +4938,7 @@ static void SetAnimationBasedOnHP(u8 spriteId, u16 hp, u16 maxhp)
 static void SetAnimationBasedOnPokemonHP(u8 spriteId, struct Pokemon *mon)
 {
     SetAnimationBasedOnHP(spriteId, GetMonData(mon, MON_DATA_HP), GetMonData(mon, MON_DATA_MAX_HP));
+    gSprites[spriteId].invisible = GetMonData(mon, MON_DATA_STATUS) == STATUS1_DEAD;
 }
 
 static void AnimateSelectedPartyIcon(u8 spriteId, bool8 selected)
@@ -6712,6 +6718,7 @@ static u8 sub_81B8A2C(struct Pokemon *mon)
     // I don't know WHY it's checking if the second pokemon is a vaild pokemon before doing this, but it's causing
     // the game to softlock when we have only 1 pokemon remaining after the rest of the team is killed.
     // if (GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) != SPECIES_NONE && GetMonData(mon, MON_DATA_IS_EGG) == FALSE)
+    if (GetMonData(mon, MON_DATA_STATUS) == STATUS1_DEAD) return 7;
     if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE && GetMonData(mon, MON_DATA_IS_EGG) == FALSE)
     {
         if (gUnknown_0203CEC8.unkB == 1)
@@ -6781,7 +6788,7 @@ static bool8 sub_81B8A7C(void)
     return TRUE;
 }
 
-void sub_81B8C68(void)
+void RecalculateBattleReorderSlots(void)
 {
     sub_81B8C88(gBattleReorderSlots, sub_806D7EC());
 }

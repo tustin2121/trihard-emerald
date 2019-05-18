@@ -104,6 +104,7 @@
 #define STATUS1_TOXIC_COUNTER    0xF00
 #define STATUS1_PSN_ANY          (STATUS1_POISON | STATUS1_TOXIC_POISON)
 #define STATUS1_ANY              (STATUS1_SLEEP | STATUS1_POISON | STATUS1_BURN | STATUS1_FREEZE | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON)
+#define STATUS1_DEAD			 0x1000
 
 // Volatile status ailments
 // These are removed after exiting the battle or switching out
