@@ -210,9 +210,6 @@ PokemonCenter_1F_EventScript_FreePokeballCounter::
 	@ Deny if the player hasn't yet completed the tutorial
 	compare VAR_FREE_POKEBALL_STATE, 0
 	goto_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_DenyTutorial
-	@ Check for first time tutorial
-	compare VAR_FREE_POKEBALL_STATE, 1
-	call_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_Explain
 	@ Check for free ball cutoff
 	compare VAR_TEMP_A, 8
 	goto_if_ge PokemonCenter_1F_EventScript_FreePokeballCounter_DenyCutoff
@@ -220,6 +217,9 @@ PokemonCenter_1F_EventScript_FreePokeballCounter::
 	selectstring PokemonCenter_1F_TextArray_FreePokeballCounter_Intro, VAR_TEMP_A
 	message 0
 	waitmessage
+	@ Check for first time tutorial
+	compare VAR_FREE_POKEBALL_STATE, 1
+	call_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_Explain
 	yesnobox 20, 8
 	compare VAR_RESULT, 1
 	goto_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_GiveBalls
@@ -331,9 +331,8 @@ PokemonCenter_1F_Text_FreePokeballCounter_DenyTutorial:
 	.string "Sorry for the inconvenience.$"
 
 PokemonCenter_1F_EventScript_FreePokeballCounter_Explain:
-	message PokemonCenter_1F_Text_FreePokeballCounter_Intro0
-	waitmessage
 	waitbuttonpress
+	playse SE_SELECT
 	message PokemonCenter_1F_Text_FreePokeballCounter_Explain
 	waitmessage
 	waitbuttonpress
@@ -350,24 +349,26 @@ PokemonCenter_1F_Text_FreePokeballCounter_Explain:
 	.string "Oh, have you not heard of our program\n"
 	.string "before? You must be new to the region.\p"
 	.string "I'm sure you've noticed how Pokémon can\n"
-	.string "be very dangerous creatures in the wild.\p"
-	.string "The Hoenn General Council determined\n"
-	.string "the best manner in which to address\l"
-	.string "this problem was to ensure everyone has\n"
-	.string "some Pokémon to protect themselves.\p"
+	.string "be very dangerous in the wild.\p"
+	.string "The Hoenn General Council decided\n"
+	.string "the best way to address this problem\l"
+	.string "was to ensure everyone has some\l"
+	.string "Pokémon to protect themselves.\p"
 	.string "So they started the\n"
-	.string "{REF}Free Poké Ball Initiative{END}\l"
-	.string "to help keep you safe and reduce the\n"
-	.string "number of wild Pokémon incidences!$"
+	.string "{REF}Free Poké Ball Initiative{END},\l"
+	.string "to help keep you safe and reduce the\l"
+	.string "number of wild Pokémon incidences.$"
 PokemonCenter_1F_Text_FreePokeballCounter_Explain2:
-	.string "{COLOR LIGHT_GREY}(Just between you and me, I think it's\n"
+	.string "{COLOR LIGHT_GREY}{SHADOW WHITE}"
+	.string "(Just between you and me, I think it's\n"
 	.string "actually increased the number of wild\l"
-	.string "Pokémon attacks, since many people don't\n"
+	.string "Pokémon attacks… many people don't\l"
 	.string "know how to handle a Pokémon…)$"
 PokemonCenter_1F_Text_FreePokeballCounter_Explain3:
 	.string "Anyway, would like some {REF}Poké Balls{END}?$"
 PokemonCenter_1F_Text_FreePokeballCounter_Glance:
 	face_down
+	delay_16
 	delay_16
 	face_player
 	step_end
