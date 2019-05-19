@@ -749,7 +749,7 @@ SlateportCity_EventScript_1DD3CA:: @ 81DD3CA
 	message SlateportCity_Text_1DEE67
 	waitmessage
 	setvar VAR_0x8004, 7
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	switch VAR_RESULT
 	case 0, SlateportCity_EventScript_1DD46E

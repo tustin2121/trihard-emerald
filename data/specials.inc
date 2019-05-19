@@ -453,7 +453,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80F9134
 	def_special sub_80F9154
 	def_special sub_80B3028
-	def_special sub_813A128
+	def_special DisplaySpecialScriptChoiceList
 	def_special sub_813A630
 	def_special sub_813A080
 	def_special sub_81C6A94

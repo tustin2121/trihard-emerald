@@ -87,7 +87,7 @@ BattleFrontier_BattlePointExchangeServiceCorner_EventScript_25F173:: @ 825F173
 BattleFrontier_BattlePointExchangeServiceCorner_EventScript_25F185:: @ 825F185
 	setvar VAR_0x8004, 3
 	special sub_813AA18
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	special sub_813AA44
 	switch VAR_RESULT
@@ -206,7 +206,7 @@ BattleFrontier_BattlePointExchangeServiceCorner_EventScript_25F37C:: @ 825F37C
 BattleFrontier_BattlePointExchangeServiceCorner_EventScript_25F38E:: @ 825F38E
 	setvar VAR_0x8004, 4
 	special sub_813AA18
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	special sub_813AA44
 	switch VAR_RESULT
@@ -275,7 +275,7 @@ BattleFrontier_BattlePointExchangeServiceCorner_EventScript_25F49F:: @ 825F49F
 BattleFrontier_BattlePointExchangeServiceCorner_EventScript_25F4B1:: @ 825F4B1
 	setvar VAR_0x8004, 5
 	special sub_813AA18
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	special sub_813AA44
 	switch VAR_RESULT
@@ -354,7 +354,7 @@ BattleFrontier_BattlePointExchangeServiceCorner_EventScript_25F5F0:: @ 825F5F0
 BattleFrontier_BattlePointExchangeServiceCorner_EventScript_25F602:: @ 825F602
 	setvar VAR_0x8004, 6
 	special sub_813AA18
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	special sub_813AA44
 	switch VAR_RESULT

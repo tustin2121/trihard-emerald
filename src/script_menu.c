@@ -1494,7 +1494,7 @@ static void sub_80E2578(void)
     if (count == 7)
     {
         gSpecialVar_0x8004 = 11;
-        sub_813A128();
+        DisplaySpecialScriptChoiceList();
     }
     else
     {

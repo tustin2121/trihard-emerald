@@ -333,7 +333,7 @@ VerdanturfTown_BattleTentLobby_EventScript_201B11:: @ 8201B11
 	message VerdanturfTown_BattleTentLobby_Text_24EF88
 	waitmessage
 	setvar VAR_0x8004, 12
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	switch VAR_RESULT
 	case 0, VerdanturfTown_BattleTentLobby_EventScript_201B7E

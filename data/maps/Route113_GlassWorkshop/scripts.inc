@@ -53,7 +53,7 @@ Route113_GlassWorkshop_EventScript_26ED9D:: @ 826ED9D
 Route113_GlassWorkshop_EventScript_26EDA7:: @ 826EDA7
 	setvar VAR_0x8009, 0
 	setvar VAR_0x8004, 1
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	switch VAR_RESULT
 	case 0, Route113_GlassWorkshop_EventScript_26EE1E

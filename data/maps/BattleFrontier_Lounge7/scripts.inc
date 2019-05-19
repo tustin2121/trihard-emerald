@@ -23,7 +23,7 @@ BattleFrontier_Lounge7_EventScript_265284:: @ 8265284
 	setvar VAR_TEMP_E, 0
 	setvar VAR_0x8004, 9
 	setvar VAR_0x8006, 0
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
@@ -47,7 +47,7 @@ BattleFrontier_Lounge7_EventScript_26532F:: @ 826532F
 	setvar VAR_TEMP_E, 0
 	setvar VAR_0x8004, 9
 	setvar VAR_0x8006, 1
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
@@ -137,7 +137,7 @@ BattleFrontier_Lounge7_EventScript_265474:: @ 8265474
 	setvar VAR_TEMP_E, 1
 	setvar VAR_0x8004, 10
 	setvar VAR_0x8006, 0
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
@@ -161,7 +161,7 @@ BattleFrontier_Lounge7_EventScript_26551F:: @ 826551F
 	setvar VAR_TEMP_E, 1
 	setvar VAR_0x8004, 10
 	setvar VAR_0x8006, 1
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT

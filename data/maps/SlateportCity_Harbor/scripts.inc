@@ -174,7 +174,7 @@ SlateportCity_Harbor_EventScript_20CB06:: @ 820CB06
 	end
 
 SlateportCity_Harbor_EventScript_20CB1A:: @ 820CB1A
-	goto_if_set FLAG_MET_SCOTT_ON_SS_TIDAL, SlateportCity_Harbor_EventScript_20CB50
+	@goto_if_set FLAG_MET_SCOTT_ON_SS_TIDAL, SlateportCity_Harbor_EventScript_20CB50
 	multichoicedefault 18, 8, 56, 2, 0
 	switch VAR_RESULT
 	case 0, SlateportCity_Harbor_EventScript_20CB92

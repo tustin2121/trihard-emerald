@@ -559,7 +559,7 @@ LilycoveCity_PokemonTrainerFanClub_EventScript_21CE4D:: @ 821CE4D
 	message LilycoveCity_PokemonTrainerFanClub_Text_281C95
 	waitmessage
 	setvar VAR_0x8004, 2
-	special sub_813A128
+	special DisplaySpecialScriptChoiceList
 	waitstate
 	setvar VAR_0x8004, 8
 	switch VAR_RESULT

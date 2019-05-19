@@ -198,27 +198,29 @@ SSTidalCorridor_EventScript_23C218:: @ 823C218
 	return
 
 SSTidalCorridor_EventScript_23C219:: @ 823C219
-	lockall
-	applymovement 5, SSTidalCorridor_Movement_23C26D
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
-	waitmovement 0
-	msgbox SSTidalCorridor_Text_23C28F, MSGBOX_DEFAULT
-	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, SSTidalCorridor_Movement_23C27D
-	applymovement 1, SSTidalCorridor_Movement_23C284
-	applymovement 5, SSTidalCorridor_Movement_23C275
-	waitmovement 0
-	playse SE_KAIDAN
-	waitse
 	removeobject 5
-	applymovement 1, SSTidalCorridor_Movement_23C28B
-	waitmovement 0
-	delay 30
-	setflag FLAG_MET_SCOTT_ON_SS_TIDAL
-	setvar VAR_SS_TIDAL_SCOTT_STATE, 1
-	releaseall
 	end
+	@ lockall
+	@ applymovement 5, SSTidalCorridor_Movement_23C26D
+	@ waitmovement 0
+	@ applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	@ waitmovement 0
+	@ msgbox SSTidalCorridor_Text_23C28F, MSGBOX_DEFAULT
+	@ closemessage
+	@ applymovement EVENT_OBJ_ID_PLAYER, SSTidalCorridor_Movement_23C27D
+	@ applymovement 1, SSTidalCorridor_Movement_23C284
+	@ applymovement 5, SSTidalCorridor_Movement_23C275
+	@ waitmovement 0
+	@ playse SE_KAIDAN
+	@ waitse
+	@ removeobject 5
+	@ applymovement 1, SSTidalCorridor_Movement_23C28B
+	@ waitmovement 0
+	@ delay 30
+	@ setflag FLAG_MET_SCOTT_ON_SS_TIDAL
+	@ setvar VAR_SS_TIDAL_SCOTT_STATE, 1
+	@ releaseall
+	@ end
 
 SSTidalCorridor_Movement_23C26D: @ 823C26D
 	walk_left

@@ -101,7 +101,7 @@ static void sub_8139620(u8 taskId);
 static void sub_8139AF4(u8 taskId);
 static void sub_8139C2C(u16 a1, u8 a2);
 static void sub_8139C80(u8 taskId);
-static void sub_813A2DC(u8 taskId);
+static void Task_ShowSpecialScriptChoiceList(u8 taskId);
 static void sub_813AA60(u16 a0, u16 a1);
 static void sub_813ACE8(u8 a0, u16 a1);
 static void sub_813A42C(void);
@@ -2178,9 +2178,9 @@ void sub_813A080(void)
     gSpecialVar_0x8006 = 12;
 }
 
-void sub_813A128(void)
+void DisplaySpecialScriptChoiceList(void)
 {
-    u8 taskId = CreateTask(sub_813A2DC, 8);
+    u8 taskId = CreateTask(Task_ShowSpecialScriptChoiceList, 8);
     struct Task *task = &gTasks[taskId];
     task->data[11] = gSpecialVar_0x8004;
 
@@ -2314,7 +2314,7 @@ void sub_813A128(void)
     }
 }
 
-static const u8 *const gUnknown_085B2CF0[][16] = {
+static const u8 *const sSpecialScriptChoiceLists[][16] = {
     {
         gText_Exit,
         NULL,
@@ -2551,7 +2551,7 @@ static const u8 *const gUnknown_085B2CF0[][16] = {
     }
 };
 
-static void sub_813A2DC(u8 taskId)
+static void Task_ShowSpecialScriptChoiceList(u8 taskId)
 {
     u32 unk1;
     u8 i, windowId;
@@ -2569,7 +2569,7 @@ static void sub_813A2DC(u8 taskId)
 
     for (unk1 = 0, i = 0; i < task->data[1]; i++)
     {
-        const u8 *text = gUnknown_085B2CF0[gSpecialVar_0x8004][i];
+        const u8 *text = sSpecialScriptChoiceLists[gSpecialVar_0x8004][i];
         gUnknown_0203AB64[i].name = text;
         gUnknown_0203AB64[i].id = i;
         unk1 = display_text_and_get_width(text, unk1);
@@ -3216,7 +3216,7 @@ void sub_813ADD4(void)
 
         for (i = 0; i < 6; i++)
         {
-            AddTextPrinterParameterized5(task->data[13], 1, gUnknown_085B2CF0[gSpecialVar_0x8004][scrollOffset + i], 10, i * 16, TEXT_SPEED_FF, NULL, 0, 0);
+            AddTextPrinterParameterized5(task->data[13], 1, sSpecialScriptChoiceLists[gSpecialVar_0x8004][scrollOffset + i], 10, i * 16, TEXT_SPEED_FF, NULL, 0, 0);
         }
 
         AddTextPrinterParameterized(task->data[13], 1, gText_SelectorArrow, 0, selectedRow * 16, TEXT_SPEED_FF, NULL);
