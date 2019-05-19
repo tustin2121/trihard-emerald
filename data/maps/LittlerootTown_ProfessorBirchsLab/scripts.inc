@@ -573,7 +573,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1FA3AC:: @ 81FA3AC
 	setflag FLAG_SYS_POKEDEX_GET
 	special sub_81AFDA0
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
-	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+	setvar VAR_FREE_POKEBALL_STATE, 1
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA3C4:: @ 81FA3C4

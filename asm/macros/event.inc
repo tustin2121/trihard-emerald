@@ -1553,7 +1553,14 @@
 	.2byte \item
 	.2byte \quantity
 	.endm
-
+	
+	@ Selects a string from the given array and loads it into word 0 for use with message 0.
+	@ Note: the array MUST be word-aligned with .align 2
+	.macro selectstring array:req, index:req
+	.byte 0xe3
+	.4byte \array
+	.2byte \index
+	.endm
 
 @ Supplementary
 

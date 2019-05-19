@@ -1216,74 +1216,74 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 Std_ObtainItem:: @ 8271AD3
 	giveitem VAR_0x8000, VAR_0x8001
 	copyvar VAR_0x8007, VAR_RESULT
-	call EventScript_271AE3
+	call Std_ObtainItem_DisplayStandardText
 	return
 
-EventScript_271AE3:: @ 8271AE3
+Std_ObtainItem_DisplayStandardText:: @ 8271AE3
 	bufferitemnameplural 1, VAR_0x8000, VAR_0x8001
 	checkitemtype VAR_0x8000
-	call EventScript_271B08
+	call Std_ObtainItem_BufferItemTypeAndPlayJingle
 	compare VAR_0x8007, 1
-	call_if_eq EventScript_271B95
+	call_if_eq Std_ObtainItem_DisplayPutItemInPocket
 	compare VAR_0x8007, 0
-	call_if_eq EventScript_271BA9
+	call_if_eq Std_ObtainItem_FailBagFull
 	return
 
-EventScript_271B08:: @ 8271B08
+Std_ObtainItem_BufferItemTypeAndPlayJingle:: @ 8271B08
 	switch VAR_RESULT
-	case 1, EventScript_271B45
-	case 5, EventScript_271B55
-	case 2, EventScript_271B65
-	case 3, EventScript_271B75
-	case 4, EventScript_271B85
+	case 1, Std_ObtainItem_HandleItemType1
+	case 5, Std_ObtainItem_HandleItemType5
+	case 2, Std_ObtainItem_HandleItemType2
+	case 3, Std_ObtainItem_HandleItemType3
+	case 4, Std_ObtainItem_HandleItemType4
 	end
 
-EventScript_271B45:: @ 8271B45
+Std_ObtainItem_HandleItemType1:: @ 8271B45
 	bufferstdstring 2, 14
 	compare VAR_0x8007, 1
-	call_if_eq EventScript_271BAF
+	call_if_eq Std_ObtainItem_PlayItemJingle
 	return
 
-EventScript_271B55:: @ 8271B55
+Std_ObtainItem_HandleItemType5:: @ 8271B55
 	bufferstdstring 2, 15
 	compare VAR_0x8007, 1
-	call_if_eq EventScript_271BAF
+	call_if_eq Std_ObtainItem_PlayItemJingle
 	return
 
-EventScript_271B65:: @ 8271B65
+Std_ObtainItem_HandleItemType2:: @ 8271B65
 	bufferstdstring 2, 16
 	compare VAR_0x8007, 1
-	call_if_eq EventScript_271BAF
+	call_if_eq Std_ObtainItem_PlayItemJingle
 	return
 
-EventScript_271B75:: @ 8271B75
+Std_ObtainItem_HandleItemType3:: @ 8271B75
 	bufferstdstring 2, 17
 	compare VAR_0x8007, 1
-	call_if_eq EventScript_271BB3
+	call_if_eq Std_ObtainItem_PlayTMJingle
 	return
 
-EventScript_271B85:: @ 8271B85
+Std_ObtainItem_HandleItemType4:: @ 8271B85
 	bufferstdstring 2, 18
 	compare VAR_0x8007, 1
-	call_if_eq EventScript_271BAF
+	call_if_eq Std_ObtainItem_PlayItemJingle
 	return
 
-EventScript_271B95:: @ 8271B95
+Std_ObtainItem_DisplayPutItemInPocket:: @ 8271B95
 	message gUnknown_08272A78
 	waitfanfare
 	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 1
 	return
 
-EventScript_271BA9:: @ 8271BA9
+Std_ObtainItem_FailBagFull:: @ 8271BA9
 	setvar VAR_RESULT, 0
 	return
 
-EventScript_271BAF:: @ 8271BAF
+Std_ObtainItem_PlayItemJingle:: @ 8271BAF
 	playfanfare MUS_FANFA4
 	return
 
-EventScript_271BB3:: @ 8271BB3
+Std_ObtainItem_PlayTMJingle:: @ 8271BB3
 	playfanfare MUS_ME_WAZA
 	return
 
@@ -1323,7 +1323,7 @@ Std_FindItem:: @ 8271BFD
 	copyvar VAR_0x8007, VAR_RESULT
 	bufferitemnameplural 1, VAR_0x8000, VAR_0x8001
 	checkitemtype VAR_0x8000
-	call EventScript_271B08
+	call Std_ObtainItem_BufferItemTypeAndPlayJingle
 	compare VAR_0x8007, 1
 	call_if_eq EventScript_PickItemUp
 	compare VAR_0x8007, 0
@@ -1376,7 +1376,7 @@ EventScript_HiddenItemScript:: @ 8271CB7
 	copyvar VAR_0x8007, VAR_RESULT
 	bufferitemnameplural 1, VAR_0x8005, 1
 	checkitemtype VAR_0x8005
-	call EventScript_271B08
+	call Std_ObtainItem_BufferItemTypeAndPlayJingle
 	compare VAR_0x8007, 1
 	goto_if_eq EventScript_271CE8
 	compare VAR_0x8007, 0

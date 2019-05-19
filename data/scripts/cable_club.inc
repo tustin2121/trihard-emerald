@@ -165,7 +165,7 @@ RustboroCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 SlateportCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 SootopolisCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 VerdanturfTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-	map_script_2 VAR_CABLE_CLUB_TUTORIAL_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276DE0
+	@ map_script_2 VAR_FREE_POKEBALL_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276DE0
 	map_script_2 VAR_CABLE_CLUB_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276C85
 	map_script_2 VAR_CABLE_CLUB_STATE, 2, OldaleTown_PokemonCenter_2F_EventScript_276C85
 	map_script_2 VAR_CABLE_CLUB_STATE, 5, OldaleTown_PokemonCenter_2F_EventScript_276C85
@@ -304,7 +304,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276DE0:: @ 8276DE0
 	waitmovement 0
 	delay 30
 	msgbox OldaleTown_PokemonCenter_2F_Text_279718, MSGBOX_DEFAULT
-	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 2
+	setvar VAR_FREE_POKEBALL_STATE, 2
 	releaseall
 	end
 

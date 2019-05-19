@@ -24,6 +24,7 @@ const u8 gExpandedPlaceholder_Alex[] = _("Alex");
 const u8 gExpandedPlaceholder_Bailey[] = _("Bailey");
 const u8 gExpandedPlaceholder_Jessica[] = _("Jessica");
 
+const u8 gText_ScriptError[] = _("Script error!\nIf you see this, report it!");
 const u8 gText_EggNickname[] = _("Egg");
 const u8 gText_Pokemon[] = _("Pokémon");
 const u8 gProfBirchMatchCallName[] = _("Prof. Birch");

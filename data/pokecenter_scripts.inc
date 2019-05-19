@@ -204,9 +204,180 @@ gText_NurseExplainPokerus:: @ 8272F07
 
 @@@@ Pokecenter Free Pokeball Counter @@@@
 
-PokemonCenter_1F_FreePokeballCounterScript::
-	@ TODO
+PokemonCenter_1F_EventScript_FreePokeballCounter::
+	lock
+	faceplayer
+	@ Deny if the player hasn't yet completed the tutorial
+	compare VAR_FREE_POKEBALL_STATE, 0
+	goto_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_DenyTutorial
+	@ Check for first time tutorial
+	compare VAR_FREE_POKEBALL_STATE, 1
+	call_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_Explain
+	@ Check for free ball cutoff
+	compare VAR_TEMP_A, 8
+	goto_if_ge PokemonCenter_1F_EventScript_FreePokeballCounter_DenyCutoff
+	@ Welcome message
+	selectstring PokemonCenter_1F_TextArray_FreePokeballCounter_Intro, VAR_TEMP_A
+	message 0
+	waitmessage
+	yesnobox 20, 8
+	compare VAR_RESULT, 1
+	goto_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_GiveBalls
+	compare VAR_RESULT, 0
+	goto_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_Goodbye
+	release
 	end
+.align 2
+PokemonCenter_1F_TextArray_FreePokeballCounter_Intro:
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_Intro0
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_Intro1
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_Intro1
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_Intro2
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_Intro2
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_Intro2
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_Intro3
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_Intro3
+	.4byte 0
+PokemonCenter_1F_Text_FreePokeballCounter_Intro0:
+	.string "Hello {PLAYER_sir}, how are you today?\n"
+	.string "Would you like some free {REF}Poké Balls{END}?$"
+PokemonCenter_1F_Text_FreePokeballCounter_Intro1:
+	.string "Hello again, {PLAYER_sir}.\n"
+	.string "Would you like some more {REF}Poké Balls{END}?$"
+PokemonCenter_1F_Text_FreePokeballCounter_Intro2:
+	.string "Back again, {PLAYER_sir}?\n"
+	.string "Want some more {REF}Poké Balls{END}?$"
+PokemonCenter_1F_Text_FreePokeballCounter_Intro3:
+	.string "Ah, {PLAYER_sir}.\n"
+	.string "You still want more {REF}Poké Balls{END}?$"
+
+PokemonCenter_1F_EventScript_FreePokeballCounter_GiveBalls:
+	selectstring PokemonCenter_1F_TextArray_FreePokeballCounter_GiveComments, VAR_TEMP_A
+	message 0
+	waitmessage
+	waitbuttonpress
+	giveitem_std ITEM_POKE_BALL, 5
+	compare VAR_RESULT, 0
+	goto_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_NoRoom
+	addvar VAR_TEMP_A, 1
+	goto PokemonCenter_1F_EventScript_FreePokeballCounter_Goodbye
+	end
+.align 2
+PokemonCenter_1F_TextArray_FreePokeballCounter_GiveComments:
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls1
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls1
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls2
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls3
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls3
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls3
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls4
+	.4byte PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls5
+	.4byte 0
+PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls1:
+	.string "Okay, here's a pack of Poké Balls!$"
+PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls2:
+	.string "Planning to catch a lot of Pokémon,\n"
+	.string "are you? Here you go!$"
+PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls3:
+	.string "Alright. Here's a few more.$"
+PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls4:
+	.string "Ok, last set. I know they're free, but\n"
+	.string "we can't just have one person hogging\l"
+	.string "them all now, can we?$"
+PokemonCenter_1F_Text_FreePokeballCounter_GiveBalls5:
+	.string "I'm serious this time, {PLAYER_sir}.\n"
+	.string "No more than this.$"
+
+
+PokemonCenter_1F_EventScript_FreePokeballCounter_NoRoom:
+	message PokemonCenter_1F_Text_FreePokeballCounter_NoRoom
+	waitmessage
+	waitbuttonpress
+	release
+	end
+PokemonCenter_1F_Text_FreePokeballCounter_NoRoom:
+	.string "Oh, you don't have enough room.\n"
+	.string "Feel free to return when you do.$"
+
+PokemonCenter_1F_EventScript_FreePokeballCounter_Goodbye:
+	message PokemonCenter_1F_Text_FreePokeballCounter_Goodbye
+	waitmessage
+	waitbuttonpress
+	release
+	end
+PokemonCenter_1F_Text_FreePokeballCounter_Goodbye:
+	.string "Have a good day!$"
+
+PokemonCenter_1F_EventScript_FreePokeballCounter_DenyCutoff:
+	message PokemonCenter_1F_Text_FreePokeballCounter_DenyCutoff
+	waitmessage
+	waitbuttonpress
+	release
+	end
+PokemonCenter_1F_Text_FreePokeballCounter_DenyCutoff:
+	.string "No, I'm sorry, {PLAYER_sir}.\n"
+	.string "I'm cutting you off.\p"
+	.string "Please leave.$"
+
+PokemonCenter_1F_EventScript_FreePokeballCounter_DenyTutorial:
+	msgbox PokemonCenter_1F_Text_FreePokeballCounter_DenyTutorial, MSGBOX_NPC
+	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+PokemonCenter_1F_Text_FreePokeballCounter_DenyTutorial:
+	.string "Oh, I'm sorry, {PLAYER_sir}.\n"
+	.string "We're currently out of stock.\p"
+	.string "Sorry for the inconvenience.$"
+
+PokemonCenter_1F_EventScript_FreePokeballCounter_Explain:
+	message PokemonCenter_1F_Text_FreePokeballCounter_Intro0
+	waitmessage
+	waitbuttonpress
+	message PokemonCenter_1F_Text_FreePokeballCounter_Explain
+	waitmessage
+	waitbuttonpress
+	applymovement THIS_EVENT, PokemonCenter_1F_Text_FreePokeballCounter_Glance
+	waitmovement 0
+	message PokemonCenter_1F_Text_FreePokeballCounter_Explain2
+	waitmessage
+	waitbuttonpress
+	setvar VAR_FREE_POKEBALL_STATE, 2
+	message PokemonCenter_1F_Text_FreePokeballCounter_Explain3
+	waitmessage
+	return
+PokemonCenter_1F_Text_FreePokeballCounter_Explain:
+	.string "Oh, have you not heard of our program\n"
+	.string "before? You must be new to the region.\p"
+	.string "I'm sure you've noticed how Pokémon can\n"
+	.string "be very dangerous creatures in the wild.\p"
+	.string "The Hoenn General Council determined\n"
+	.string "the best manner in which to address\l"
+	.string "this problem was to ensure everyone has\n"
+	.string "some Pokémon to protect themselves.\p"
+	.string "So they started the\n"
+	.string "{REF}Free Poké Ball Initiative{END}\l"
+	.string "to help keep you safe and reduce the\n"
+	.string "number of wild Pokémon incidences!$"
+PokemonCenter_1F_Text_FreePokeballCounter_Explain2:
+	.string "{COLOR LIGHT_GREY}(Just between you and me, I think it's\n"
+	.string "actually increased the number of wild\l"
+	.string "Pokémon attacks, since many people don't\n"
+	.string "know how to handle a Pokémon…)$"
+PokemonCenter_1F_Text_FreePokeballCounter_Explain3:
+	.string "Anyway, would like some {REF}Poké Balls{END}?$"
+PokemonCenter_1F_Text_FreePokeballCounter_Glance:
+	face_down
+	delay_16
+	face_player
+	step_end
+
+
+@ TODO; stick this text on a random patron in a pokecenter instead
+	.string "Your parents' taxes go towards paying\n"
+	.string "for free Poké Balls for you, as well as\l"
+	.string "all the services offered here at the\n"
+	.string "Pokémon Center!$"
 
 
 @@@@ Pokecenter Mr Briney Location @@@@
