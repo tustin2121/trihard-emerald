@@ -127,7 +127,7 @@
     "show_map_name": false,
     "warp_events": [
         {
-            "dest_map": "MAP_DEWFORD_TOWN_POKEMON_CENTER_1F",
+            "dest_map": "MAP_EVER_GRANDE_CITY_POKEMON_CENTER_1F",
             "dest_warp_id": 2,
             "elevation": 4,
             "x": 1,
