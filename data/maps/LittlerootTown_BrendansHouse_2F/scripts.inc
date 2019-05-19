@@ -272,13 +272,24 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F864C:: @ 81F864C
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F8656:: @ 81F8656
 LittlerootTown_MaysHouse_2F_EventScript_1F8656:: @ 81F8656
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F877F, MSGBOX_SIGN
+	msgbox LittlerootTown_BrendansHouse_2F_Text_1F877F, MSGBOX_DESCRIBE
 	end
+LittlerootTown_BrendansHouse_2F_Text_1F877F: @ 81F877F
+	.string "{PLAYER} flipped open the notebook.\p"
+	.string "ADVENTURE RULE NO. 1\n"
+	.string "Open the MENU with START.\p"
+	.string "ADVENTURE RULE NO. 2\n"
+	.string "Record your progress with SAVE.\p"
+	.string "The remaining pages are blank…$"
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F865F:: @ 81F865F
 LittlerootTown_MaysHouse_2F_EventScript_1F865F:: @ 81F865F
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F884F, MSGBOX_SIGN
+	msgbox LittlerootTown_BrendansHouse_2F_Text_1F884F, MSGBOX_DESCRIBE
 	end
+LittlerootTown_BrendansHouse_2F_Text_1F884F: @ 81F884F
+	.string "It's a Nintendo GameCube.\p"
+	.string "A Game Boy Advance is connected to\n"
+	.string "serve as the Controller.$"
 
 LittlerootTown_BrendansHouse_2F_Text_1F8668: @ 81F8668
 	.string "The clock is stopped…\p"
@@ -294,19 +305,10 @@ LittlerootTown_BrendansHouse_2F_Text_1F869A: @ 81F869A
 	.string "Oh, you should make sure that\n"
 	.string "everything's all there on your desk.$"
 
-LittlerootTown_BrendansHouse_2F_Text_1F877F: @ 81F877F
-	.string "{PLAYER} flipped open the notebook.\p"
-	.string "ADVENTURE RULE NO. 1\n"
-	.string "Open the MENU with START.\p"
-	.string "ADVENTURE RULE NO. 2\n"
-	.string "Record your progress with SAVE.\p"
-	.string "The remaining pages are blank…$"
+
 
 Common_Text_LookCloserAtMap: @ 81F8820
 	.string "{PLAYER} took a closer look at the\n"
 	.string "Hoenn region map.$"
 
-LittlerootTown_BrendansHouse_2F_Text_1F884F: @ 81F884F
-	.string "It's a Nintendo GameCube.\p"
-	.string "A Game Boy Advance is connected to\n"
-	.string "serve as the Controller.$"
+
