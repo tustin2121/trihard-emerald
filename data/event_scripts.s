@@ -2305,7 +2305,7 @@ gText_Mart_Goodbye:: @ 8272A3F
 	.string "Please come again!$"
 
 gUnknown_08272A52:: @ 8272A52
-	.string "{PLAYER}{STRING 5}, welcome!\pWhat can I do for you?$"
+	.string "{PLAYER}, welcome!\pWhat can I do for you?$"
 
 gUnknown_08272A78:: @ 8272A78
 	.string "Obtained the {STR_VAR_2}!$"
