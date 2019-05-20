@@ -2310,8 +2310,8 @@ gUnknown_08272A52:: @ 8272A52
 gUnknown_08272A78:: @ 8272A78
 	.string "Obtained the {STR_VAR_2}!$"
 
-gUnknown_08272A89:: @ 8272A89
-	.string "The BAG is full…$"
+gText_BagIsFull3:: @ 8272A89
+	.string "The bag is full…$"
 
 gText_PutItemInPocket:: @ 8272A9A
 	.string "{PLAYER} put away the {STR_VAR_2}\nin the {STR_VAR_3} POCKET.$"
@@ -2320,10 +2320,10 @@ gText_PlayerFoundOneItem:: @ 8272ABF
 	.string "{PLAYER} found one {STR_VAR_2}!$"
 
 gText_TooBadBagIsFull:: @ 8272AD0
-	.string "Too bad!\nThe BAG is full…$"
+	.string "Too bad!\nThe bag is full…$"
 
 gText_PlayerPutItemInBag:: @ 8272AEA
-	.string "{PLAYER} put away the {STR_VAR_2}\nin the BAG.$"
+	.string "{PLAYER} put away the {STR_VAR_2}\nin the bag.$"
 
 gUnknown_08272B09:: @ 8272B09
 	.string "Obtained the {STR_VAR_2}!$"
@@ -2372,9 +2372,6 @@ gUnknown_08272DE3:: @ 8272DE3
 
 gText_RegisteredTrainerinPokeNav:: @ 8272E0F
 	.string "Registered {STR_VAR_1} {STR_VAR_2}\nin the PokéNav.$"
-
-gUnknown_08272E30:: @ 8272E30
-	.string "Do you know the TM SECRET POWER?\pOur group, we love the TM SECRET\nPOWER.\pOne of our members will give it to you.\nCome back and show me if you get it.\pWe'll accept you as a member and sell\nyou good stuff in secrecy.$"
 
 	.include "data/text/surf.inc"
 
