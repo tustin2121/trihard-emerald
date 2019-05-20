@@ -1,17 +1,19 @@
 InsideOfTruck_MapScripts:: @ 823BEDA
-	map_script MAP_SCRIPT_ON_LOAD, InsideOfTruck_MapScript1_23BEE5
-	map_script MAP_SCRIPT_ON_RESUME, InsideOfTruck_MapScript1_23BF01
+	map_script MAP_SCRIPT_ON_LOAD, InsideOfTruck_MapScript1_OnLoad
+	map_script MAP_SCRIPT_ON_RESUME, InsideOfTruck_MapScript1_OnResume
 	.byte 0
 
-InsideOfTruck_MapScript1_23BEE5: @ 823BEE5
+InsideOfTruck_MapScript1_OnLoad: @ 823BEE5
 	setmetatile 4, 1, 520, 0
 	setmetatile 4, 2, 528, 0
 	setmetatile 4, 3, 536, 0
 	end
 
-InsideOfTruck_MapScript1_23BF01: @ 823BF01
+InsideOfTruck_MapScript1_OnResume: @ 823BF01
 	setstepcallback 5
 	end
+
+@ -----------------------------------------------------
 
 InsideOfTruck_SetPrologueVarsScript:: @ 823BF04
 	lockall
@@ -52,9 +54,8 @@ InsideOfTruck_SetPrologueVarsScript_Girl: @ 823BF46
 	end
 
 InsideOfTruck_EventScript_MovingBoxText:: @ 823BF6C
-	msgbox InsideOfTruck_Text_MovingBoxText, MSGBOX_SIGN
+	msgbox InsideOfTruck_Text_MovingBoxText, MSGBOX_DESCRIBE
 	end
-
 InsideOfTruck_Text_MovingBoxText: @ 823BF75
 	.string "The box is printed with a Pokémon logo.\p"
 	.string "It's a Pokémon brand moving and\n"
