@@ -70,7 +70,7 @@ const u32 gBirchGrassTilemap[] = INCBIN_U32("graphics/misc/birch_grass_map.bin.l
 
 const u32 gBirchHelpGfx[] = INCBIN_U32("graphics/misc/birch_help.4bpp.lz");
 
-const u32 gUnknown_085B18AC[] = INCBIN_U32("graphics/misc/birch_ballarrow.4bpp.lz");
+const u32 gBirchBallarrow_Gfx[] = INCBIN_U32("graphics/misc/birch_ballarrow.4bpp.lz");
 
 const u32 gUnknown_085B1BCC[] = INCBIN_U32("graphics/misc/birch_circle.4bpp.lz");
 
@@ -295,10 +295,10 @@ static const union AffineAnimCmd gSpriteAffineAnim_85B1EB8[] =
 static const union AffineAnimCmd * const gUnknown_085B1ED0 = {gSpriteAffineAnim_85B1EA0};
 static const union AffineAnimCmd * const gSpriteAffineAnimTable_85B1ED4[] = {gSpriteAffineAnim_85B1EB8};
 
-static const struct CompressedSpriteSheet gUnknown_085B1ED8[] =
+static const struct CompressedSpriteSheet gBirchBallarrow_Sprite[] =
 {
     {
-        .data = gUnknown_085B18AC,
+        .data = gBirchBallarrow_Gfx,
         .size = 0x0800,
         .tag = 0x1000
     },
@@ -427,7 +427,7 @@ void CB2_ChooseStarter(void)
 
     LoadPalette(GetOverworldTextboxPalettePtr(), 0xE0, 0x20);
     LoadPalette(gBirchBagGrassPal, 0, 0x40);
-    LoadCompressedSpriteSheet(&gUnknown_085B1ED8[0]);
+    LoadCompressedSpriteSheet(&gBirchBallarrow_Sprite[0]);
     LoadCompressedSpriteSheet(&gUnknown_085B1EE8[0]);
     LoadSpritePalettes(gUnknown_085B1EF8);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
