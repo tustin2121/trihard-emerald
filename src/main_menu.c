@@ -1668,10 +1668,11 @@ static void Task_NewGameBirchSpeech_BoyOrGirl(u8 taskId)
 {
     NewGameBirchSpeech_ClearWindow(0);
     StringExpandPlaceholders(gStringVar4, gText_Birch_BoyOrGirl);
-    AddTextPrinterForMessage(TRUE);
 #if TPP_MODE
+    AddTextPrinterForMessage(FALSE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowGenderPicker;
-#else    
+#else
+    AddTextPrinterForMessage(TRUE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowGenderMenu;
 #endif
 }

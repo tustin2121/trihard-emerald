@@ -621,6 +621,36 @@ static const u8 *ExpandPlaceholder_SirMiss(void)
         return gExpandedPlaceholder_Miss;
 }
 
+extern const u8 gExpandedPlaceholder_Boy[];
+extern const u8 gExpandedPlaceholder_Girl[];
+static const u8 *ExpandPlaceholder_BoyGirl(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Boy;
+    else
+        return gExpandedPlaceholder_Girl;
+}
+
+extern const u8 gExpandedPlaceholder_Dude[];
+extern const u8 gExpandedPlaceholder_Gurl[];
+static const u8 *ExpandPlaceholder_DudeGurl(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Dude;
+    else
+        return gExpandedPlaceholder_Gurl;
+}
+
+extern const u8 gExpandedPlaceholder_Man[];
+extern const u8 gExpandedPlaceholder_Lady[];
+static const u8 *ExpandPlaceholder_ManLady(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Man;
+    else
+        return gExpandedPlaceholder_Lady;
+}
+
 
 extern const u8 gExpandedPlaceholder_Empty[];
 static const u8 *ExpandPlaceholder_Invalid(void)
@@ -660,9 +690,9 @@ const u8 *GetExpandedPlaceholder(u32 id)
         ExpandPlaceholder_PlayerTheirLower,
         ExpandPlaceholder_PlayerTheirsLower,
         ExpandPlaceholder_SirMiss, // 18
-        ExpandPlaceholder_Invalid, // 19
-        ExpandPlaceholder_Invalid, 
-        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_BoyGirl, // 19
+        ExpandPlaceholder_DudeGurl, 
+        ExpandPlaceholder_ManLady,
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid,

@@ -359,6 +359,13 @@ PLAYER_them    = FD 15  @ "him" or "her"
 PLAYER_their   = FD 16  @ "his" or "her"
 PLAYER_theirs  = FD 17  @ "his" or "hers"
 PLAYER_sir     = FD 18  @ "sir" or "miss" addressing the player
+PLAYER_miss    = FD 18  @ "sir" or "miss" addressing the player
+PLAYER_boy     = FD 19  @ "boy" or "girl" addressing the player
+PLAYER_girl    = FD 19  @ "boy" or "girl" addressing the player
+PLAYER_dude    = FD 1A  @ "dude" or "gurl" addressing the player
+PLAYER_gurl    = FD 1A  @ "dude" or "gurl" addressing the player
+PLAYER_man     = FD 1B  @ "man" or "lady" addressing the player
+PLAYER_lady    = FD 1B  @ "man" or "lady" addressing the player
 
 @ pronouns for the opposite-gender characters (rival, alola friend)
 RIVAL_They     = FD 20  @ "He" or "She"
