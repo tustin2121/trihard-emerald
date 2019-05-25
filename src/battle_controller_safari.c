@@ -170,6 +170,10 @@ static void SafariBufferRunCommand(void)
 
 static void HandleInputChooseAction(void)
 {
+    u16 virtualKeys = 0;
+    //TODO make a safari-only version?
+    CHECK_COMMANDER(HandleInputChooseAction, gActionSelectionCursor[gActiveBattler]);
+    
     if (gMain.newKeys & A_BUTTON)
     {
         PlaySE(SE_SELECT);

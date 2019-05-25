@@ -1650,13 +1650,13 @@ s8 sub_81993D8(void)
         sub_8199134(0, 1);
         return MENU_NOTHING_CHOSEN;
     }
-    else if ((gMain.newAndRepeatedKeys & DPAD_ANY) == DPAD_LEFT || sub_812210C() == 1)
+    else if ((gMain.newAndRepeatedKeys & DPAD_ANY) == DPAD_LEFT || GetLRRepeatedKeysState() == 1)
     {
         PlaySE(SE_SELECT);
         sub_8199134(-1, 0);
         return MENU_NOTHING_CHOSEN;
     }
-    else if ((gMain.newAndRepeatedKeys & DPAD_ANY) == DPAD_RIGHT || sub_812210C() == 2)
+    else if ((gMain.newAndRepeatedKeys & DPAD_ANY) == DPAD_RIGHT || GetLRRepeatedKeysState() == 2)
     {
         PlaySE(SE_SELECT);
         sub_8199134(1, 0);
@@ -1691,13 +1691,13 @@ s8 sub_8199484(void)
             PlaySE(SE_SELECT);
         return MENU_NOTHING_CHOSEN;
     }
-    else if ((gMain.newAndRepeatedKeys & DPAD_ANY) == DPAD_LEFT || sub_812210C() == 1)
+    else if ((gMain.newAndRepeatedKeys & DPAD_ANY) == DPAD_LEFT || GetLRRepeatedKeysState() == 1)
     {
         if (oldPos != sub_81991F8(-1, 0))
             PlaySE(SE_SELECT);
         return MENU_NOTHING_CHOSEN;
     }
-    else if ((gMain.newAndRepeatedKeys & DPAD_ANY) == DPAD_RIGHT || sub_812210C() == 2)
+    else if ((gMain.newAndRepeatedKeys & DPAD_ANY) == DPAD_RIGHT || GetLRRepeatedKeysState() == 2)
     {
         if (oldPos != sub_81991F8(1, 0))
             PlaySE(SE_SELECT);

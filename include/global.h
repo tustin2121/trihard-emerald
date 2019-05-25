@@ -989,5 +989,6 @@ struct TradeRoomPlayer
 };
 
 #include "te_debug.h"
+#include "te_command.h"
 
 #endif // GUARD_GLOBAL_H

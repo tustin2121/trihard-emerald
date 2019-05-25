@@ -264,7 +264,7 @@ u8 GetLRKeysState(void)
     return 0;
 }
 
-u8 sub_812210C(void)
+u8 GetLRRepeatedKeysState(void)
 {
     if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)
     {

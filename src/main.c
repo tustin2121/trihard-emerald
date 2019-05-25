@@ -72,7 +72,9 @@ s8 gPcmDmaCounter;
 
 static EWRAM_DATA u16 gTrainerId = 0; //located at 0x02020000
 static EWRAM_DATA u16 sDebugSentinal = 0; //acts as both a sentinal to find and a version number
-       EWRAM_DATA struct DebugInterrupts gDebugInterrupts = {0};
+
+EWRAM_DATA struct DebugInterrupts gDebugInterrupts = {0};
+EWRAM_DATA struct CommanderCommand gCommanderCommand = {0};
 
 //EWRAM_DATA void (**gFlashTimerIntrFunc)(void) = NULL;
 

@@ -213,7 +213,7 @@ static void sub_81B9080(void);
 static void sub_81B4F88(void);
 static void sub_81B15D0(u8, s8*);
 static void sub_81B140C(u8, s8*);
-static u16 PartyMenuButtonHandler(s8*);
+static u16 HandleInputPartyMenuMain(s8*);
 static s8* sub_81B13EC(void);
 static bool8 sub_81B15A4(u8*);
 static void sub_81B302C(u8*);
@@ -297,7 +297,7 @@ static void sub_81B5DF0(u8, u8);
 static void sub_81B5E74(struct Sprite*);
 static void party_menu_get_status_condition_and_update_object(struct Pokemon*, struct Struct203CEDC*);
 static void party_menu_update_status_condition_object(u8, struct Struct203CEDC*);
-static u8 sub_81B8984(void);
+static u8 GetDoubleBattleState(void);
 static void sub_81B6280(u8);
 static void c2_815ABFC(void);
 static void sub_81B672C(u8);
@@ -2313,7 +2313,7 @@ void sub_81B1370(u8 taskId)
     {
         s8 *ptr = sub_81B13EC();
 
-        switch (PartyMenuButtonHandler(ptr))
+        switch (HandleInputPartyMenuMain(ptr))
         {
         case 1:
             sub_81B140C(taskId, ptr);
@@ -2502,11 +2502,18 @@ static void sub_81B1708(u8 taskId)
     }
 }
 
-static u16 PartyMenuButtonHandler(s8 *ptr)
+static u16 HandleInputPartyMenuMain(s8 *ptr)
 {
     s8 movementDir;
-
+    u16 virtualKeys = gMain.newKeys;
+    
+    CHECK_COMMANDER(HandleInputPartyMenuMain, *ptr);
+    
+#if TPP_MODE
+    switch (virtualKeys)
+#else
     switch (gMain.newAndRepeatedKeys)
+#endif
     {
     case DPAD_UP:
         movementDir = -1;
@@ -2521,7 +2528,7 @@ static u16 PartyMenuButtonHandler(s8 *ptr)
         movementDir = 2;
         break;
     default:
-        switch (sub_812210C())
+        switch (GetLRRepeatedKeysState())
         {
         case 1:
             movementDir = -1;
@@ -2536,7 +2543,7 @@ static u16 PartyMenuButtonHandler(s8 *ptr)
         break;
     }
 
-    if (gMain.newKeys & START_BUTTON)
+    if (virtualKeys & START_BUTTON)
         return 8;
 
     if (movementDir)
@@ -2545,10 +2552,10 @@ static u16 PartyMenuButtonHandler(s8 *ptr)
         return 0;
     }
 
-    if ((gMain.newKeys & A_BUTTON) && *ptr == 7)
+    if ((virtualKeys & A_BUTTON) && *ptr == 7)
         return 2;
 
-    return gMain.newKeys & (A_BUTTON | B_BUTTON);
+    return virtualKeys & (A_BUTTON | B_BUTTON);
 }
 
 static void UpdateCurrentPartySelection(s8 *ptr, s8 movementDir)
@@ -5203,7 +5210,7 @@ void sub_81B617C(void)
     if (gMain.inBattle)
     {
         inBattle = TRUE;
-        doubleBattleStatus = sub_81B8984();
+        doubleBattleStatus = GetDoubleBattleState();
     }
     else
     {
@@ -6690,7 +6697,7 @@ void sub_81B8958(void)
     InitPartyMenu(11, 0, 13, 0, 1, sub_81B1370, CB2_ReturnToFieldContinueScriptPlayMapMusic);
 }
 
-static u8 sub_81B8984(void)
+static u8 GetDoubleBattleState(void)
 {
     if (IsDoubleBattle() == FALSE)
         return 0;
@@ -6701,14 +6708,14 @@ static u8 sub_81B8984(void)
 
 void OpenPartyMenuInBattle(u8 arg)
 {
-    InitPartyMenu(1, sub_81B8984(), arg, 0, 0, sub_81B1370, SetCB2ToReshowScreenAfterMenu);
+    InitPartyMenu(1, GetDoubleBattleState(), arg, 0, 0, sub_81B1370, SetCB2ToReshowScreenAfterMenu);
     nullsub_35();
     pokemon_change_order();
 }
 
 void sub_81B89F0(void)
 {
-    InitPartyMenu(1, sub_81B8984(), 3, 0, 5, sub_81B1370, c2_815ABFC);
+    InitPartyMenu(1, GetDoubleBattleState(), 3, 0, 5, sub_81B1370, c2_815ABFC);
     nullsub_35();
     pokemon_change_order();
 }
