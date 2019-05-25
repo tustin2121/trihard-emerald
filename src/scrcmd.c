@@ -2334,14 +2334,25 @@ bool8 ScrCmd_selectstring(struct ScriptContext *ctx)
     u16 index = VarGet(ScriptReadHalfword(ctx));
     u16 max;
     
-    for (max = 0; max < 64; max++)
+    if (msg == NULL)
     {
-        if (msg[max] == NULL) break;
+        msg = (const u8 **)&ctx->data[0];
+        max = 4;
+    }
+    else
+    {
+        for (max = 0; max < 64; max++)
+        {
+            if (msg[max] == NULL) break;
+        }
     }
     // Only load this pointer if it's within the array and pointing to someplace in ROM
     if (index < max && msg[index] > (const u8*)&Start) 
     {
         ctx->data[0] = (u32)msg[index];
+        ctx->data[1] = 0;
+        ctx->data[2] = 0;
+        ctx->data[3] = 0;
     }
     else
     {

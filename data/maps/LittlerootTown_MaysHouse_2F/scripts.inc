@@ -250,52 +250,26 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F94C1:: @ 81F94C1
 LittlerootTown_MaysHouse_2F_EventScript_1F94C1:: @ 81F94C1
 	lockall
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F94F7
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F94E3
-	compare VAR_RESULT, FEMALE
-	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F94ED
-	end
-
-LittlerootTown_BrendansHouse_2F_EventScript_1F94E3:: @ 81F94E3
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F978A, MSGBOX_DEFAULT
-	releaseall
-	end
-
-LittlerootTown_BrendansHouse_2F_EventScript_1F94ED:: @ 81F94ED
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9962, MSGBOX_DEFAULT
+	selectgenderedstring LittlerootTown_BrendansHouse_2F_Text_1F978A, LittlerootTown_BrendansHouse_2F_Text_1F9962
+	msgbox_selected MSGBOX_DEFAULT
 	releaseall
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F94F7:: @ 81F94F7
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F951D
-	compare VAR_RESULT, FEMALE
-	call_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F952F
+	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F9541
+	selectgenderedstring LittlerootTown_BrendansHouse_2F_Text_1F99C9, LittlerootTown_BrendansHouse_2F_Text_1F9B0D
+	msgbox_selected MSGBOX_DEFAULT
 	setflag FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE
 	releaseall
 	end
 
-LittlerootTown_BrendansHouse_2F_EventScript_1F951D:: @ 81F951D
-	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F9541
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F99C9, MSGBOX_DEFAULT
-	return
-
-LittlerootTown_BrendansHouse_2F_EventScript_1F952F:: @ 81F952F
-	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F954A
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9B0D, MSGBOX_DEFAULT
-	return
-
 LittlerootTown_BrendansHouse_2F_EventScript_1F9541:: @ 81F9541
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9A9E, MSGBOX_DEFAULT
-	return
-
-LittlerootTown_BrendansHouse_2F_EventScript_1F954A:: @ 81F954A
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9BE7, MSGBOX_DEFAULT
-	return
+	selectgenderedstring LittlerootTown_BrendansHouse_2F_Text_1F9A9E, LittlerootTown_BrendansHouse_2F_Text_1F9BE7
+	msgbox_selected MSGBOX_DEFAULT
+	releaseall
+	end
 
 EventScript_PlayerPCFemale:: @ 81F9553
 	lockall
@@ -330,7 +304,7 @@ LittlerootTown_MaysHouse_2F_Text_1F959C: @ 81F959C
 	.string "… … … … … … … …\p"
 	.string "Oh, you're {PLAYER}.\n"
 	.string "So your move was today.\p"
-	.string "Um… I'm MAY.\n"
+	.string "Um… I'm May.\n"
 	.string "Glad to meet you!\p"
 	.string "I…\n"
 	.string "I have this dream of becoming friends\l"
@@ -361,7 +335,7 @@ LittlerootTown_BrendansHouse_2F_Text_1F97B4: @ 81F97B4
 	.string "Dad, Prof. Birch, said that our new\n"
 	.string "next-door neighbor is a Gym Leader's\l"
 	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
+	.string "My name's Brendan.\n"
 	.string "So, hi, neighbor!\p"
 	.string "Huh? Hey, {PLAYER}, don't you have\n"
 	.string "a Pokémon?\p"
@@ -377,7 +351,7 @@ LittlerootTown_BrendansHouse_2F_Text_1F9962: @ 81F9962
 
 LittlerootTown_BrendansHouse_2F_Text_1F9991: @ 81F9991
 LittlerootTown_MaysHouse_2F_Text_1F9991: @ 81F9991
-	.string "It's {RIVAL}'s POKé BALL!\p"
+	.string "It's {RIVAL}'s Poké Ball!\p"
 	.string "Better leave it right where it is.$"
 
 LittlerootTown_BrendansHouse_2F_Text_1F99C9: @ 81F99C9

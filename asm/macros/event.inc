@@ -781,7 +781,7 @@
 	.byte 0x66
 	.endm
 
-	@ Starts displaying a standard message box containing the specified text. If text is a pointer, then the string at that offset will be loaded and used. If text is script bank 0, then the value of script bank 0 will be treated as a pointer to the text. (You can use loadpointer to place a string pointer in a script bank.)
+	@ Starts displaying a standard message box containing the specified text. If text is a pointer, then the string at that offset will be loaded and used. If text is script bank 0, then the value of script bank 0 will be treated as a pointer to the text. (You can use loadword to place a string pointer in a script bank.)
 	.macro message text:req
 	.byte 0x67
 	.4byte \text
@@ -1673,4 +1673,17 @@
 	special SetMatchCallRegisteredFlag
 	setorcopyvar VAR_0x8000, \trainer
 	callstd STD_REGISTER_MATCH_CALL
+	.endm
+	
+	@ Selects a string based on if the player is male or female.
+	.macro selectgenderedstring forMale:req, forFemale:req
+	loadword MALE, \forMale 
+	loadword FEMALE, \forFemale
+	checkplayergender
+	selectstring 0, VAR_RESULT
+	.endm
+	
+	@ Calls msgbox on a previously selected and loaded string.
+	.macro msgbox_selected type=MSGBOX_DEFAULT
+	callstd \type
 	.endm
