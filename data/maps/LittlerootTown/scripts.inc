@@ -131,7 +131,9 @@ LittlerootTown_EventScript_1E7F17:: @ 81E7F17
 	delay 10
 	applymovement LID_MOM, LittlerootTown_Movement_1E7F9A
 	waitmovement 0
-	msgbox LittlerootTown_Text_1E86BC, MSGBOX_DEFAULT
+	setyesnotext gYN_Yep_, gYN_Elipsis2
+	msgbox LittlerootTown_Text_Dad_Opening1, MSGBOX_YESNO
+	msgbox LittlerootTown_Text_Dad_Opening2, MSGBOX_DEFAULT
 	closemessage
 	applymovement LID_MOM, LittlerootTown_Movement_1E7F9D
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_1E7FA4
@@ -162,17 +164,21 @@ LittlerootTown_Movement_1E7F9A: @ 81E7F9A
 	walk_down
 	walk_in_place_fastest_left
 	step_end
-LittlerootTown_Text_1E86BC: @ 81E86BC
-	.string "MOM: {PLAYER}, we're here, honey!\p"
-	.string "It must be tiring riding with our things\n"
-	.string "in the moving truck.\p"
-	.string "Well, this is Littleroot Town.\p"
-	.string "How do you like it?\n"
-	.string "This is our new home!\p"
-	.string "It has a quaint feel, but it seems to be\n"
-	.string "an easy place to live, don't you think?\p"
-	.string "And, you get your own room, {PLAYER}!\n"
-	.string "Let's go inside.$"
+LittlerootTown_Text_Dad_Opening1: @ 81E86BC
+	.string "Dad: Hey, kiddo.\p"
+	.string "How was the ride back there? Rough?\n"
+	.string "Sorry, they didn't have room up front.\p"
+	.string "So… This is Littleroot Town.$"
+	@ Hm… / ………
+LittlerootTown_Text_Dad_Opening2:
+	.string "Don't give me that attitude.\n"
+	.string "Give it a chance first, please.\p"
+	.string "Here, check out our new home.\n"
+	.string "You'll have your own bedroom.\l"
+	.string "You can mope all you want in there.\p"
+	.string "Com'on, let's go inside.$"
+	@ Dad opens door and steps back. Player Moves slowly inside.
+	@ Cutscene continues inside.
 LittlerootTown_Movement_1E7F9D: @ 81E7F9D
 	delay_16
 	delay_8
@@ -194,22 +200,9 @@ LittlerootTown_Movement_1E7FA9: @ 81E7FA9
 	step_end
 
 
-LittlerootTown_Text_Dad_Opening1: @ 81E86BC
-	.string "Dad: Hey, kiddo.\p"
-	.string "How was the ride back there? Rough?\n"
-	.string "Sorry, they didn't have room up front.\p"
-	.string "So… This is Littleroot Town.$"
-	@ Hm… / ………
+
 	
-LittlerootTown_Text_Dad_Opening2:
-	.string "Don't give me that attitude.\n"
-	.string "Give it a chance first, please.p"
-	.string "Here, check out our new home.\n"
-	.string "You'll have your own bedroom.\l"
-	.string "You can mope all you want in there.\p"
-	.string "Com'on, let's go inside.$"
-	@ Dad opens door and steps back. Player Moves slowly inside.
-	@ Cutscene continues inside.
+
 
 
 
@@ -1008,8 +1001,6 @@ LittlerootTown_Text_1E8A03: @ 81E8A03
 	.string "…But please be careful.\n"
 	.string "If anything happens, you can come home.\p"
 	.string "Go on, go get them, honey!$"
-
-
 
 
 #undef LID_MOM

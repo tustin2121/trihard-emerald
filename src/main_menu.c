@@ -1947,10 +1947,14 @@ static void Task_NewGameBirchSpeech_SoItsPlayerName(u8 taskId)
     gTasks[taskId].func = Task_NewGameBirchSpeech_CreateNameYesNo;
 }
 
+extern const u8 gYN_Yeah[];
+extern const u8 gYN_Um[];
 static void Task_NewGameBirchSpeech_CreateNameYesNo(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
     {
+        gYesString = gYN_Yeah;
+        gNoString = gYN_Um;
         CreateYesNoMenuParameterized(2, 1, 0xF3, 0xDF, 2, 15);
         gTasks[taskId].func = Task_NewGameBirchSpeech_ProcessNameYesNoMenu;
     }

@@ -1774,14 +1774,18 @@ void sub_81995E4(u8 windowId, u8 itemCount, const struct MenuAction *strs, const
     CopyWindowToVram(windowId, 2);
 }
 
-void CreateYesNoMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos)
+void CreateYesNoMenu(const struct WindowTemplate *_window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos)
 {
     struct TextPrinterTemplate printer;
+    struct WindowTemplate template = *_window;
+    
+    CompileYesNoString();
+    template.width = max(GetStringWidth(1, gYesNoStringVar, 0) >> 3, _window->width);
 
-    sYesNoWindowId = AddWindow(window);
+    sYesNoWindowId = AddWindow(&template);
     DrawStdFrameWithCustomTileAndPalette(sYesNoWindowId, TRUE, baseTileNum, paletteNum);
-
-    printer.currentChar = gText_YesNo;
+    
+    printer.currentChar = gYesNoStringVar; //gText_YesNo;
     printer.windowId = sYesNoWindowId;
     printer.fontId = 1;
     printer.x = 8;

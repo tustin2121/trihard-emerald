@@ -1561,6 +1561,12 @@
 	.4byte \array
 	.2byte \index
 	.endm
+	
+	.macro setyesnotext yes:req, no:req
+	.byte 0xe4
+	.4byte \yes
+	.4byte \no
+	.endm
 
 @ Supplementary
 

@@ -2364,3 +2364,13 @@ bool8 ScrCmd_selectstring(struct ScriptContext *ctx)
     }
     return FALSE;
 }
+
+bool8 ScrCmd_setyesnotext(struct ScriptContext *ctx)
+{
+    const u8 *yes = (const u8 *)ScriptReadWord(ctx);
+    const u8 *no = (const u8 *)ScriptReadWord(ctx);
+    
+    gYesString = yes;
+    gNoString = no;
+    return TRUE;
+}

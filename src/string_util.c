@@ -2,11 +2,24 @@
 #include "string_util.h"
 #include "text.h"
 
+// Reference to an assembly defined constant, the start of the ROM
+// We don't actually use the value, just the address it's at.
+extern const int Start;
+
+extern const u8 gYN_Yeah[];
+extern const u8 gYN_Nah[];
+extern const u8 gYN_ERROR[];
+#define gYN_DefaultYes gYN_Yeah
+#define gYN_DefaultNo gYN_Nah
+
 EWRAM_DATA u8 gStringVar1[0x100] = {0};
 EWRAM_DATA u8 gStringVar2[0x100] = {0};
 EWRAM_DATA u8 gStringVar3[0x100] = {0};
 EWRAM_DATA u8 gStringVar4[0x3E8] = {0};
-EWRAM_DATA static u8 sUnknownStringVar[16] = {0};
+
+EWRAM_DATA u8 gYesNoStringVar[0x20] = {0};
+EWRAM_DATA const u8* gYesString = gYN_DefaultYes;
+EWRAM_DATA const u8* gNoString = gYN_DefaultNo;
 
 static const u8 sDigits[] = __("0123456789ABCDEF");
 
@@ -408,11 +421,58 @@ u8 *StringBraille(u8 *dest, const u8 *src)
     }
 }
 
+u8* CompileYesNoString()
+{
+    u8 errCode = 0xA1;
+    u8 *dest = gYesNoStringVar;
+    
+    // Sanity check: ensure the default strings are set
+    if (gYesString == NULL) gYesString = gYN_DefaultYes;
+    if (gNoString == NULL) gNoString = gYN_DefaultNo;
+    
+    // Sanity check: ensure the yes/no strings are pointing into the ROM
+    if (gYesString < (const u8*)&Start || gNoString < (const u8*)&Start) {
+        errCode += 1;
+        goto error;
+    }
+    
+    dest = StringExpandPlaceholders(dest, gYesString);
+    *dest++ = CHAR_NEWLINE; //replace EOS with new line
+    if (dest >= (u8*)&gYesString) 
+    {   // Ran past the end of the string!
+        errCode += 4;
+        goto error;
+    }
+    dest = StringExpandPlaceholders(dest, gNoString);
+    *dest++ = EOS; //ensure EOS
+    if (dest >= (u8*)&gYesString) 
+    {   // Ran past the end of the string!
+        errCode += 5;
+        goto error;
+    }
+    
+    // Reset yes/no strings
+    gYesString = gYN_DefaultYes;
+    gNoString = gYN_DefaultNo;
+    return gYesNoStringVar;
+
+error:
+    dest = StringExpandPlaceholders(gYesNoStringVar, gYN_ERROR);
+    *dest++ = errCode;
+    *dest++ = EOS;
+    gYesNoStringVar[0x1F] = EOS;
+#if !DEBUG //In debug mode, leave these as they are so we can debug
+    gYesString = gYN_DefaultYes;
+    gNoString = gYN_DefaultNo;
+#endif
+    return gYesNoStringVar;
+}
+
 // Placeholder Expansions woo!
 
-static const u8 *ExpandPlaceholder_UnknownStringVar(void)
+static const u8 *ExpandPlaceholder_YesNoStringVar(void)
 {
-    return sUnknownStringVar;
+    return gYesNoStringVar;
 }
 
 static const u8 *ExpandPlaceholder_PlayerName(void)
@@ -699,7 +759,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
 
     static const ExpandPlaceholderFunc funcs[] =
     {
-        ExpandPlaceholder_UnknownStringVar, // 00
+        ExpandPlaceholder_Invalid, // 00
         ExpandPlaceholder_PlayerName, // 01
         ExpandPlaceholder_StringVar1,
         ExpandPlaceholder_StringVar2,

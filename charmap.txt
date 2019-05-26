@@ -369,7 +369,6 @@ PLAYER_gurl    = FD 1B  @ "dude" or "gurl" addressing the player
 PLAYER_man     = FD 1C  @ "man" or "lady" addressing the player
 PLAYER_lady    = FD 1C  @ "man" or "lady" addressing the player
 PLAYER_guy     = FD 1D  @ "guy" or "girl" addressing the player
-PLAYER_girl    = FD 1D  @ "guy" or "lady" addressing the player
 
 @ pronouns for the opposite-gender characters (rival, alola friend)
 RIVAL_They     = FD 20  @ "He" or "She"
