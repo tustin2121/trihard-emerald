@@ -119,17 +119,17 @@ $(EVENTOBJGFXDIR)/people/may/underwater.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 
-$(EVENTOBJGFXDIR)/people/ruby_sapphire_brendan/walking.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/rs_brendan/walking.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/ruby_sapphire_brendan/running.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/rs_brendan/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
-$(EVENTOBJGFXDIR)/people/ruby_sapphire_may/walking.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/rs_may/walking.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
-$(EVENTOBJGFXDIR)/people/ruby_sapphire_may/running.4bpp: %.4bpp: %.png
+$(EVENTOBJGFXDIR)/people/rs_may/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
@@ -277,6 +277,9 @@ $(EVENTOBJGFXDIR)/people/mauville_old_man_2.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/mom.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(EVENTOBJGFXDIR)/people/dad.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/mystery_event_deliveryman.4bpp: %.4bpp: %.png

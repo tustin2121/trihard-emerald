@@ -215,6 +215,7 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Kecleon2;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_TuberMSwimming;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Azurill;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Mom;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Dad;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_LinkBrendan;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_LinkMay;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Juan;
@@ -465,6 +466,7 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     &gEventObjectGraphicsInfo_TuberMSwimming,
     &gEventObjectGraphicsInfo_Azurill,
     &gEventObjectGraphicsInfo_Mom,
+    &gEventObjectGraphicsInfo_Dad,
     &gEventObjectGraphicsInfo_LinkBrendan,
     &gEventObjectGraphicsInfo_LinkMay,
     &gEventObjectGraphicsInfo_Juan,
