@@ -159,8 +159,6 @@ gSpecials:: @ 81DBA64
 	def_special PetalburgGymSpecial1
 	def_special PetalburgGymSpecial2
 	def_special GetPlayerTrainerIdOnesDigit
-	def_special GetPlayerBigGuyGirlString
-	def_special GetRivalSonDaughterString
 	def_special SetFlagInVar
 	def_special CableCarWarp
 	def_special CableCar

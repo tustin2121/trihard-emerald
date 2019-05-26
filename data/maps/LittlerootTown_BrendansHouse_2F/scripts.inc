@@ -57,7 +57,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8481:: @ 81F8481
 	lockall
 	compare VAR_LITTLEROOT_RIVAL_STATE, 2
 	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F8497
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9991, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalsHouse_2F_Text_1F9962, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -95,7 +95,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8507:: @ 81F8507
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F97B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85CF
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85C6
@@ -107,7 +107,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8536:: @ 81F8536
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F97B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85E2
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85DB
@@ -119,7 +119,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8565:: @ 81F8565
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F97B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85F6
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85ED
@@ -131,7 +131,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8594:: @ 81F8594
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F97B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F8604
 	waitmovement 0
@@ -272,9 +272,9 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F864C:: @ 81F864C
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F8656:: @ 81F8656
 LittlerootTown_MaysHouse_2F_EventScript_1F8656:: @ 81F8656
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F877F, MSGBOX_DESCRIBE
+	msgbox LittlerootTown_PlayersHouse_2F_Text_1F877F, MSGBOX_DESCRIBE
 	end
-LittlerootTown_BrendansHouse_2F_Text_1F877F: @ 81F877F
+LittlerootTown_PlayersHouse_2F_Text_1F877F: @ 81F877F
 	.string "{PLAYER} flipped open the notebook.\p"
 	.string "ADVENTURE RULE NO. 1\n"
 	.string "Open the MENU with START.\p"
@@ -284,18 +284,18 @@ LittlerootTown_BrendansHouse_2F_Text_1F877F: @ 81F877F
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F865F:: @ 81F865F
 LittlerootTown_MaysHouse_2F_EventScript_1F865F:: @ 81F865F
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F884F, MSGBOX_DESCRIBE
+	msgbox LittlerootTown_PlayersHouse_2F_Text_1F884F, MSGBOX_DESCRIBE
 	end
-LittlerootTown_BrendansHouse_2F_Text_1F884F: @ 81F884F
+LittlerootTown_PlayersHouse_2F_Text_1F884F: @ 81F884F
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
 	.string "serve as the Controller.$"
 
-LittlerootTown_BrendansHouse_2F_Text_1F8668: @ 81F8668
+LittlerootTown_PlayersHouse_2F_Text_1F8668: @ 81F8668
 	.string "The clock is stopped…\p"
 	.string "Better set it and start it!$"
 
-LittlerootTown_BrendansHouse_2F_Text_1F869A: @ 81F869A
+LittlerootTown_PlayersHouse_2F_Text_1F869A: @ 81F869A
 	.string "MOM: {PLAYER}, how do you like your\n"
 	.string "new room?\p"
 	.string "Good! Everything's put away neatly!\p"

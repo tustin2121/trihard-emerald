@@ -358,14 +358,18 @@ PLAYER_they    = FD 14  @ "he" or "she"
 PLAYER_them    = FD 15  @ "him" or "her"
 PLAYER_their   = FD 16  @ "his" or "her"
 PLAYER_theirs  = FD 17  @ "his" or "hers"
-PLAYER_sir     = FD 18  @ "sir" or "miss" addressing the player
-PLAYER_miss    = FD 18  @ "sir" or "miss" addressing the player
-PLAYER_boy     = FD 19  @ "boy" or "girl" addressing the player
-PLAYER_girl    = FD 19  @ "boy" or "girl" addressing the player
-PLAYER_dude    = FD 1A  @ "dude" or "gurl" addressing the player
-PLAYER_gurl    = FD 1A  @ "dude" or "gurl" addressing the player
-PLAYER_man     = FD 1B  @ "man" or "lady" addressing the player
-PLAYER_lady    = FD 1B  @ "man" or "lady" addressing the player
+PLAYER_son     = FD 18  @ "son" or "daughter" addressing the player
+PLAYER_daughter= FD 18  @ "son" or "daughter" addressing the player
+PLAYER_sir     = FD 19  @ "sir" or "miss" addressing the player
+PLAYER_miss    = FD 19  @ "sir" or "miss" addressing the player
+PLAYER_boy     = FD 1A  @ "boy" or "girl" addressing the player
+PLAYER_girl    = FD 1A  @ "boy" or "girl" addressing the player
+PLAYER_dude    = FD 1B  @ "dude" or "gurl" addressing the player
+PLAYER_gurl    = FD 1B  @ "dude" or "gurl" addressing the player
+PLAYER_man     = FD 1C  @ "man" or "lady" addressing the player
+PLAYER_lady    = FD 1C  @ "man" or "lady" addressing the player
+PLAYER_guy     = FD 1D  @ "guy" or "girl" addressing the player
+PLAYER_girl    = FD 1D  @ "guy" or "lady" addressing the player
 
 @ pronouns for the opposite-gender characters (rival, alola friend)
 RIVAL_They     = FD 20  @ "He" or "She"
@@ -376,6 +380,11 @@ RIVAL_they     = FD 24  @ "he" or "she"
 RIVAL_them     = FD 25  @ "him" or "her"
 RIVAL_their    = FD 26  @ "his" or "her"
 RIVAL_theirs   = FD 27  @ "his" or "hers"
+RIVAL_son      = FD 28  @ "son" or "daughter" addressing the rival
+RIVAL_daughter = FD 28  @ "son" or "daughter" addressing the rival
+RIVAL_boy      = FD 2A  @ "boy" or "girl" addressing the rival
+RIVAL_girl     = FD 2A  @ "boy" or "girl" addressing the rival
+
 
 
 @ battle string placeholders

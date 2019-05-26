@@ -1683,6 +1683,15 @@
 	selectstring 0, VAR_RESULT
 	.endm
 	
+	@ Calls a given function 
+	.macro call_on_gender forMale:req, forFemale:req
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq \forMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq \forFemale
+	.endm
+	
 	@ Calls msgbox on a previously selected and loaded string.
 	.macro msgbox_selected type=MSGBOX_DEFAULT
 	callstd \type

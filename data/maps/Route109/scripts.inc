@@ -327,7 +327,7 @@ Route109_EventScript_1EE99E:: @ 81EE99E
 Route109_EventScript_1EE9B5:: @ 81EE9B5
 	lock
 	faceplayer
-	special GetPlayerBigGuyGirlString
+@	special GetPlayerBigGuyGirlString
 	goto_if_set FLAG_RECEIVED_SOFT_SAND, Route109_EventScript_1EE9F2
 	msgbox Route109_Text_1EEFDE, MSGBOX_DEFAULT
 	giveitem_std ITEM_SOFT_SAND

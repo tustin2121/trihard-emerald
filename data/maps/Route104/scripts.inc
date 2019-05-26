@@ -1001,14 +1001,14 @@ Route104_EventScript_1ED580:: @ 81ED580
 
 Route104_EventScript_1ED597:: @ 81ED597
 	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_2952BB, Route104_Text_2952E6, Route104_Text_295330
-	special GetPlayerBigGuyGirlString
+@	special GetPlayerBigGuyGirlString
 	msgbox Route104_Text_2952FE, MSGBOX_DEFAULT
 	release
 	end
 
 Route104_EventScript_1ED5B6:: @ 81ED5B6
 	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_2953AF, Route104_Text_2953E1, Route104_Text_295449
-	special GetPlayerBigGuyGirlString
+@	special GetPlayerBigGuyGirlString
 	msgbox Route104_Text_29540D, MSGBOX_DEFAULT
 	release
 	end

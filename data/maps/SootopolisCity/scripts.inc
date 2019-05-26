@@ -743,7 +743,7 @@ SootopolisCity_EventScript_1E5F10:: @ 81E5F10
 
 SootopolisCity_EventScript_1E5F1B:: @ 81E5F1B
 	dotimebasedevents
-	special GetPlayerBigGuyGirlString
+@	special GetPlayerBigGuyGirlString
 	goto_if_set FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY, SootopolisCity_EventScript_1E5FBB
 	msgbox SootopolisCity_Text_2A7BB0, MSGBOX_DEFAULT
 	random 10

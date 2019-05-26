@@ -582,10 +582,10 @@ extern const u8 gText_1MinutePlus[];
 extern const u8 gText_SpaceSeconds[];
 extern const u8 gText_SpaceTimes[];
 
-extern const u8 gText_BigGuy[];
-extern const u8 gText_BigGirl[];
-extern const u8 gText_Son[];
-extern const u8 gText_Daughter[];
+extern const u8 gExpandedPlaceholder_Guy[];
+extern const u8 gExpandedPlaceholder_Girl[];
+extern const u8 gExpandedPlaceholder_Son[];
+extern const u8 gExpandedPlaceholder_Daughter[];
 
 extern const u8 gText_1F[];
 extern const u8 gText_2F[];

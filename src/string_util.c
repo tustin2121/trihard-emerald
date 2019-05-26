@@ -631,6 +631,14 @@ static const u8 *ExpandPlaceholder_BoyGirl(void)
         return gExpandedPlaceholder_Girl;
 }
 
+static const u8 *ExpandPlaceholder_RivalBoyGirl(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Girl;
+    else
+        return gExpandedPlaceholder_Boy;
+}
+
 extern const u8 gExpandedPlaceholder_Dude[];
 extern const u8 gExpandedPlaceholder_Gurl[];
 static const u8 *ExpandPlaceholder_DudeGurl(void)
@@ -649,6 +657,33 @@ static const u8 *ExpandPlaceholder_ManLady(void)
         return gExpandedPlaceholder_Man;
     else
         return gExpandedPlaceholder_Lady;
+}
+
+extern const u8 gExpandedPlaceholder_Guy[];
+extern const u8 gExpandedPlaceholder_Girl[];
+static const u8 *ExpandPlaceholder_GuyGirl(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Guy;
+    else
+        return gExpandedPlaceholder_Girl;
+}
+
+extern const u8 gExpandedPlaceholder_Son[];
+extern const u8 gExpandedPlaceholder_Daughter[];
+static const u8 *ExpandPlaceholder_SonDaughter(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Son;
+    else
+        return gExpandedPlaceholder_Daughter;
+}
+static const u8 *ExpandPlaceholder_RivalSonDaughter(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Daughter;
+    else
+        return gExpandedPlaceholder_Son;
 }
 
 
@@ -689,12 +724,12 @@ const u8 *GetExpandedPlaceholder(u32 id)
         ExpandPlaceholder_PlayerThemLower,
         ExpandPlaceholder_PlayerTheirLower,
         ExpandPlaceholder_PlayerTheirsLower,
-        ExpandPlaceholder_SirMiss, // 18
-        ExpandPlaceholder_BoyGirl, // 19
+        ExpandPlaceholder_SonDaughter, // 18
+        ExpandPlaceholder_SirMiss, // 19
+        ExpandPlaceholder_BoyGirl, 
         ExpandPlaceholder_DudeGurl, 
         ExpandPlaceholder_ManLady,
-        ExpandPlaceholder_Invalid,
-        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_GuyGirl,
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid, // 1F
         
@@ -706,9 +741,9 @@ const u8 *GetExpandedPlaceholder(u32 id)
         ExpandPlaceholder_RivalThemLower,
         ExpandPlaceholder_RivalTheirLower,
         ExpandPlaceholder_RivalTheirsLower,
-        ExpandPlaceholder_Invalid, // 28
+        ExpandPlaceholder_RivalSonDaughter, // 28
         ExpandPlaceholder_Invalid,
-        ExpandPlaceholder_Invalid, 
+        ExpandPlaceholder_RivalBoyGirl, 
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid,

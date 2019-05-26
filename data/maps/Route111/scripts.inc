@@ -166,7 +166,7 @@ Route111_EventScript_1F0EB9:: @ 81F0EB9
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_DAILY_ROUTE_111_RECEIVED_BERRY
-	special GetPlayerBigGuyGirlString
+@	special GetPlayerBigGuyGirlString
 	msgbox Route111_Text_2A6F3D, MSGBOX_DEFAULT
 	release
 	end
