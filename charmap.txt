@@ -369,6 +369,8 @@ PLAYER_gurl    = FD 1B  @ "dude" or "gurl" addressing the player
 PLAYER_man     = FD 1C  @ "man" or "lady" addressing the player
 PLAYER_lady    = FD 1C  @ "man" or "lady" addressing the player
 PLAYER_guy     = FD 1D  @ "guy" or "girl" addressing the player
+PLAYER_buddy   = FD 1E  @ "buddy" or "honey" addressing the player
+PLAYER_honey   = FD 1E  @ "buddy" or "honey" addressing the player
 
 @ pronouns for the opposite-gender characters (rival, alola friend)
 RIVAL_They     = FD 20  @ "He" or "She"
@@ -384,7 +386,7 @@ RIVAL_daughter = FD 28  @ "son" or "daughter" addressing the rival
 RIVAL_boy      = FD 2A  @ "boy" or "girl" addressing the rival
 RIVAL_girl     = FD 2A  @ "boy" or "girl" addressing the rival
 
-
+TIME_OF_DAY	   = FD 30
 
 @ battle string placeholders
 

@@ -291,19 +291,9 @@ LittlerootTown_PlayersHouse_2F_Text_1F884F: @ 81F884F
 	.string "A Game Boy Advance is connected to\n"
 	.string "serve as the Controller.$"
 
-LittlerootTown_PlayersHouse_2F_Text_1F8668: @ 81F8668
-	.string "The clock is stopped…\p"
-	.string "Better set it and start it!$"
 
-LittlerootTown_PlayersHouse_2F_Text_1F869A: @ 81F869A
-	.string "MOM: {PLAYER}, how do you like your\n"
-	.string "new room?\p"
-	.string "Good! Everything's put away neatly!\p"
-	.string "They finished moving everything in\n"
-	.string "downstairs, too.\p"
-	.string "Pokémon movers are so convenient!\p"
-	.string "Oh, you should make sure that\n"
-	.string "everything's all there on your desk.$"
+
+
 
 
 

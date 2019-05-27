@@ -2182,11 +2182,11 @@ Common_Movement_WalkInPlaceDown: @ 82725AA
 	walk_in_place_fastest_down
 	step_end
 
-RustboroCity_Movement_2725AC: @ 82725AC
+Common_Movement_FaceRight: @ 82725AC
 	face_right
 	step_end
 
-RustboroCity_Movement_2725AE: @ 82725AE
+Common_Movement_FaceLeft: @ 82725AE
 	face_left
 	step_end
 
@@ -2233,8 +2233,20 @@ EverGrandeCity_SidneysRoom_Movement_2725C6: @ 82725C6
 	delay_16
 	step_end
 
-Route110_TrickHouseEntrance_Movement_2725C9: @ 82725C9
+Common_Movement_WalkUp1: @ 82725C9
 	walk_up
+	step_end
+
+Common_Movement_WalkDown1:
+	walk_down
+	step_end
+
+Common_Movement_WalkLeft1:
+	walk_left
+	step_end
+
+Common_Movement_WalkRight1:
+	walk_right
 	step_end
 
 Movement_2725CB:: @ 82725CB

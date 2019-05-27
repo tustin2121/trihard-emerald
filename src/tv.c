@@ -3544,11 +3544,11 @@ u8 CheckForBigMovieOrEmergencyNewsOnTV(void)
     {
         return 1;
     }
-    if (FlagGet(FLAG_SYS_TV_HOME) == TRUE)
+    if (FlagGet(FLAG_SYS_TV_HOME_OFF) == TRUE)
     {
-        return 2;
+        return 2; //turn off
     }
-    return 1;
+    return 1; //defaults to on
 }
 
 void GetMomOrDadStringForTVMessage(void)

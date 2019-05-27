@@ -1,6 +1,7 @@
 #include "global.h"
 #include "string_util.h"
 #include "text.h"
+#include "rtc.h"
 
 // Reference to an assembly defined constant, the start of the ROM
 // We don't actually use the value, just the address it's at.
@@ -729,6 +730,16 @@ static const u8 *ExpandPlaceholder_GuyGirl(void)
         return gExpandedPlaceholder_Girl;
 }
 
+extern const u8 gExpandedPlaceholder_Buddy[];
+extern const u8 gExpandedPlaceholder_Honey[];
+static const u8 *ExpandPlaceholder_BuddyHoney(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gExpandedPlaceholder_Buddy;
+    else
+        return gExpandedPlaceholder_Honey;
+}
+
 extern const u8 gExpandedPlaceholder_Son[];
 extern const u8 gExpandedPlaceholder_Daughter[];
 static const u8 *ExpandPlaceholder_SonDaughter(void)
@@ -744,6 +755,23 @@ static const u8 *ExpandPlaceholder_RivalSonDaughter(void)
         return gExpandedPlaceholder_Daughter;
     else
         return gExpandedPlaceholder_Son;
+}
+
+extern const u8 gExpandedPlaceholder_Morning[];
+extern const u8 gExpandedPlaceholder_Afternoon[];
+extern const u8 gExpandedPlaceholder_Evening[];
+extern const u8 gExpandedPlaceholder_Night[];
+static const u8 *ExpandPlaceholder_TimeOfDay(void)
+{
+    RtcCalcLocalTime();
+    if (gLocalTime.hours < 12) {
+        return gExpandedPlaceholder_Morning;
+    } else if (gLocalTime.hours < 19) {
+        return gExpandedPlaceholder_Afternoon;
+    } else {
+        return gExpandedPlaceholder_Evening;
+    }
+    return gExpandedPlaceholder_Night;
 }
 
 
@@ -790,7 +818,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
         ExpandPlaceholder_DudeGurl, 
         ExpandPlaceholder_ManLady,
         ExpandPlaceholder_GuyGirl,
-        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_BuddyHoney,
         ExpandPlaceholder_Invalid, // 1F
         
         ExpandPlaceholder_RivalTheyUpper, // 20
@@ -810,6 +838,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid, // 2F
         
+        ExpandPlaceholder_TimeOfDay, //30
     };
 
     if (id >= ARRAY_COUNT(funcs))

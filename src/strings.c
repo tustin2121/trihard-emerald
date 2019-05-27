@@ -26,6 +26,8 @@ const u8 gExpandedPlaceholder_Lady[] = _("lady");
 const u8 gExpandedPlaceholder_Guy[] = _("guy");
 const u8 gExpandedPlaceholder_Son[] = _("son");
 const u8 gExpandedPlaceholder_Daughter[] = _("daughter");
+const u8 gExpandedPlaceholder_Buddy[] = _("buddy");
+const u8 gExpandedPlaceholder_Honey[] = _("honey");
 
 const u8 gExpandedPlaceholder_Brendan[] = _("Brendan");
 const u8 gExpandedPlaceholder_May[] = _("May");
@@ -33,6 +35,11 @@ const u8 gExpandedPlaceholder_Logan[] = _("Logan");
 const u8 gExpandedPlaceholder_Alex[] = _("Alex");
 const u8 gExpandedPlaceholder_Bailey[] = _("Bailey");
 const u8 gExpandedPlaceholder_Jessica[] = _("Jessica");
+
+const u8 gExpandedPlaceholder_Morning[] = _("morning");
+const u8 gExpandedPlaceholder_Afternoon[] = _("afternoon");
+const u8 gExpandedPlaceholder_Evening[] = _("evening");
+const u8 gExpandedPlaceholder_Night[] = _("night");
 
 const u8 gYN_ERROR[] = _("ERROR");
 const u8 gYN_Yes[] = _("Yes");
@@ -43,6 +50,9 @@ const u8 gYN_Yep_[] = _("Yep…");
 const u8 gYN_Nah[] = _("Nah");
 const u8 gYN_Hm[] = _("Hm…");
 const u8 gYN_Um[] = _("Um…");
+const u8 gYN_OfCourse[] = _("Of Course");
+const u8 gYN_Duh[] = _("Duh");
+const u8 gYN_Sure[] = _("Sure");
 const u8 gYN_Elipsis1[] = _("…");
 const u8 gYN_Elipsis2[] = _("……");
 const u8 gYN_Elipsis3[] = _("………");

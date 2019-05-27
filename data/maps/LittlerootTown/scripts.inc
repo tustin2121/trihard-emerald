@@ -4,7 +4,7 @@ LittlerootTown_MapScripts:: @ 81E7DCB
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_MapScript2_WarpIntoMap
 	.byte 0
 
-#define LID_MOM 4
+#define LID_DAD 4
 
 LittlerootTown_MapScript1_OnTransition: @ 81E7DDB
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
@@ -41,7 +41,7 @@ LittlerootTown_MapScript2_WarpIntoMap: @ 81E7FE2
 @ -----------------------------------------------------
 
 LittlerootTown_EventScript_1E7E67:: @ 81E7E67
-	setobjectxyperm LID_MOM, 14, 8
+	setobjectxyperm LID_DAD, 14, 8
 	return
 
 LittlerootTown_EventScript_1E7E6F:: @ 81E7E6F
@@ -57,7 +57,7 @@ LittlerootTown_EventScript_1E7E86:: @ 81E7E86
 
 LittlerootTown_EventScript_1E7E92:: @ 81E7E92
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
-	setobjectmovementtype LID_MOM, MOVEMENT_TYPE_FACE_DOWN
+	setobjectmovementtype LID_DAD, MOVEMENT_TYPE_FACE_DOWN
 	checkplayergender
 	compare VAR_RESULT, MALE
 	call_if_eq LittlerootTown_EventScript_1E7EB1
@@ -65,10 +65,10 @@ LittlerootTown_EventScript_1E7E92:: @ 81E7E92
 	call_if_eq LittlerootTown_EventScript_1E7EB9
 	return
 LittlerootTown_EventScript_1E7EB1:: @ 81E7EB1
-	setobjectxyperm LID_MOM, 5, 9
+	setobjectxyperm LID_DAD, 5, 9
 	return
 LittlerootTown_EventScript_1E7EB9:: @ 81E7EB9
-	setobjectxyperm LID_MOM, 14, 9
+	setobjectxyperm LID_DAD, 14, 9
 	return
 
 LittlerootTown_EventScript_1E7E5C:: @ 81E7E5C
@@ -119,29 +119,30 @@ LittlerootTown_EventScript_1E7EF9:: @ 81E7EF9
 LittlerootTown_EventScript_1E7F17:: @ 81E7F17
 	delay 15
 	playse SE_DANSA
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_1E7FAC
+	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_Intro_ProtagJumpOutOfVan
 	waitmovement 0
 	opendoor VAR_0x8004, VAR_0x8005
 	waitdooranim
 	addobject 4
-	applymovement LID_MOM, LittlerootTown_Movement_1E7F98
+	applymovement LID_DAD, LittlerootTown_Movement_Intro_Dad1
 	waitmovement 0
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
 	delay 10
-	applymovement LID_MOM, LittlerootTown_Movement_1E7F9A
+	applymovement LID_DAD, LittlerootTown_Movement_Intro_Dad2
 	waitmovement 0
 	setyesnotext gYN_Yep_, gYN_Elipsis2
 	msgbox LittlerootTown_Text_Dad_Opening1, MSGBOX_YESNO
 	msgbox LittlerootTown_Text_Dad_Opening2, MSGBOX_DEFAULT
 	closemessage
-	applymovement LID_MOM, LittlerootTown_Movement_1E7F9D
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_1E7FA4
+	applymovement LID_DAD, LittlerootTown_Movement_Intro_Dad3
+	@ applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_Intro_Protag2
 	waitmovement 0
 	opendoor VAR_0x8004, VAR_0x8005
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E7FA1
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_1E7FA9
+	applymovement LID_DAD, LittlerootTown_Movement_Intro_Dad4
+	@ waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_Intro_Protag2
 	waitmovement 0
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
 	setvar VAR_LITTLEROOT_INTRO_STATE, 3
@@ -151,50 +152,82 @@ LittlerootTown_EventScript_1E7F17:: @ 81E7F17
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	return
-LittlerootTown_Movement_1E7FAC: @ 81E7FAC
+LittlerootTown_Movement_Intro_ProtagJumpOutOfVan: @ 81E7FAC
 	jump_right
 	delay_16
 	delay_16
 	delay_16
 	step_end
-LittlerootTown_Movement_1E7F98: @ 81E7F98
+LittlerootTown_Movement_Intro_Dad1: @ 81E7F98
 	walk_down
 	step_end
-LittlerootTown_Movement_1E7F9A: @ 81E7F9A
+LittlerootTown_Movement_Intro_Dad2: @ 81E7F9A
 	walk_down
 	walk_in_place_fastest_left
 	step_end
 LittlerootTown_Text_Dad_Opening1: @ 81E86BC
 	.string "Dad: Hey, kiddo.\p"
-	.string "How was the ride back there? Rough?\n"
-	.string "Sorry, they didn't have room up front.\p"
+	.string "How was the ride back there? I'm\n"
+	.string "sorry they didn't have room up front.\p"
 	.string "So… This is Littleroot Town.$"
 	@ Hm… / ………
 LittlerootTown_Text_Dad_Opening2:
-	.string "Don't give me that attitude.\n"
-	.string "Give it a chance first, please.\p"
-	.string "Here, check out our new home.\n"
+	.string "Don't start so soon with that attitude.\n"
+	.string "Give it a chance first, please?\p"
+	.string "Here, let's check out our new home.\n"
 	.string "You'll have your own bedroom.\l"
 	.string "You can mope all you want in there.\p"
 	.string "Com'on, let's go inside.$"
 	@ Dad opens door and steps back. Player Moves slowly inside.
 	@ Cutscene continues inside.
-LittlerootTown_Movement_1E7F9D: @ 81E7F9D
+LittlerootTown_Movement_Intro_Dad3: @ 81E7F9D
 	delay_16
 	delay_8
 	walk_up
 	step_end
-LittlerootTown_Movement_1E7FA4: @ 81E7FA4
+LittlerootTown_Movement_Intro_Dad4: @ 81E7FA1
+	walk_in_place_slow_up
 	delay_16
-	delay_8
+	walk_in_place_down
+	delay_16
+	delay_16
+	delay_16
+	face_left
+	lock_facing_direction
 	walk_right
-	walk_in_place_fastest_up
-	step_end
-LittlerootTown_Movement_1E7FA1: @ 81E7FA1
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	unlock_facing_direction
+	walk_left
 	walk_up
 	set_invisible
+	delay_16
 	step_end
-LittlerootTown_Movement_1E7FA9: @ 81E7FA9
+
+LittlerootTown_Movement_Intro_Protag2: @ 81E7FA4
+	delay_8
+	face_down
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_fast_right
+	delay_16
+	delay_16
+	delay_16
+	walk_right
+	walk_up
+	walk_up
+	set_invisible
+	delay_16
+	step_end
+LittlerootTown_Movement_Intro_Protag3: @ 81E7FA9
 	walk_up
 	walk_up
 	step_end
@@ -471,14 +504,14 @@ LittlerootTown_Movement_1E8118: @ 81E8118
 LittlerootTown_EventScript_1E81BB:: @ 81E81BB
 	lockall
 	setvar VAR_0x8008, 0
-	setobjectxy LID_MOM, 10, 9
+	setobjectxy LID_DAD, 10, 9
 	goto LittlerootTown_EventScript_1E8211
 	end
 
 LittlerootTown_EventScript_1E81CE:: @ 81E81CE
 	lockall
 	setvar VAR_0x8008, 1
-	setobjectxy LID_MOM, 11, 9
+	setobjectxy LID_DAD, 11, 9
 	goto LittlerootTown_EventScript_1E8211
 	end
 
@@ -530,12 +563,12 @@ LittlerootTown_EventScript_1E828C:: @ 81E828C
 	return
 
 LittlerootTown_EventScript_1E8297:: @ 81E8297
-	applymovement LID_MOM, Common_Movement_WalkInPlaceRight
+	applymovement LID_DAD, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E82A2:: @ 81E82A2
-	applymovement LID_MOM, Common_Movement_WalkInPlaceLeft
+	applymovement LID_DAD, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	return
 
@@ -572,70 +605,70 @@ LittlerootTown_EventScript_1E82F0:: @ 81E82F0
 LittlerootTown_EventScript_1E8333:: @ 81E8333
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85D1
+	applymovement LID_DAD, LittlerootTown_Movement_1E85D1
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E8348:: @ 81E8348
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85D8
+	applymovement LID_DAD, LittlerootTown_Movement_1E85D8
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E835D:: @ 81E835D
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85DF
+	applymovement LID_DAD, LittlerootTown_Movement_1E85DF
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E8372:: @ 81E8372
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85E4
+	applymovement LID_DAD, LittlerootTown_Movement_1E85E4
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E8387:: @ 81E8387
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85EA
+	applymovement LID_DAD, LittlerootTown_Movement_1E85EA
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E839C:: @ 81E839C
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85ED
+	applymovement LID_DAD, LittlerootTown_Movement_1E85ED
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E83B1:: @ 81E83B1
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85F1
+	applymovement LID_DAD, LittlerootTown_Movement_1E85F1
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E83C6:: @ 81E83C6
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85F5
+	applymovement LID_DAD, LittlerootTown_Movement_1E85F5
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E83DB:: @ 81E83DB
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85F8
+	applymovement LID_DAD, LittlerootTown_Movement_1E85F8
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E83F0:: @ 81E83F0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement LID_MOM, LittlerootTown_Movement_1E85FE
+	applymovement LID_DAD, LittlerootTown_Movement_1E85FE
 	waitmovement 0
 	return
 
@@ -670,107 +703,107 @@ LittlerootTown_EventScript_1E8448:: @ 81E8448
 	return
 
 LittlerootTown_EventScript_1E848B:: @ 81E848B
-	applymovement LID_MOM, LittlerootTown_Movement_1E8603
+	applymovement LID_DAD, LittlerootTown_Movement_1E8603
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E8496:: @ 81E8496
-	applymovement LID_MOM, LittlerootTown_Movement_1E8609
+	applymovement LID_DAD, LittlerootTown_Movement_1E8609
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_1E84A1:: @ 81E84A1
-	applymovement LID_MOM, LittlerootTown_Movement_1E860F
+	applymovement LID_DAD, LittlerootTown_Movement_1E860F
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
 
 LittlerootTown_EventScript_1E84C7:: @ 81E84C7
-	applymovement LID_MOM, LittlerootTown_Movement_1E8615
+	applymovement LID_DAD, LittlerootTown_Movement_1E8615
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
 
 LittlerootTown_EventScript_1E84ED:: @ 81E84ED
-	applymovement LID_MOM, LittlerootTown_Movement_1E861C
+	applymovement LID_DAD, LittlerootTown_Movement_1E861C
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
 
 LittlerootTown_EventScript_1E8513:: @ 81E8513
-	applymovement LID_MOM, LittlerootTown_Movement_1E8620
+	applymovement LID_DAD, LittlerootTown_Movement_1E8620
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
 
 LittlerootTown_EventScript_1E8539:: @ 81E8539
-	applymovement LID_MOM, LittlerootTown_Movement_1E8625
+	applymovement LID_DAD, LittlerootTown_Movement_1E8625
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
 
 LittlerootTown_EventScript_1E855F:: @ 81E855F
-	applymovement LID_MOM, LittlerootTown_Movement_1E862A
+	applymovement LID_DAD, LittlerootTown_Movement_1E862A
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
 
 LittlerootTown_EventScript_1E8585:: @ 81E8585
-	applymovement LID_MOM, LittlerootTown_Movement_1E862E
+	applymovement LID_DAD, LittlerootTown_Movement_1E862E
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
 
 LittlerootTown_EventScript_1E85AB:: @ 81E85AB
-	applymovement LID_MOM, LittlerootTown_Movement_1E8635
+	applymovement LID_DAD, LittlerootTown_Movement_1E8635
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	return
@@ -934,13 +967,13 @@ LittlerootTown_EventScript_1E863D:: @ 81E863D
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_EventScript_1E828C
 	call LittlerootTown_EventScript_1E8693
-	applymovement LID_MOM, Common_Movement_WalkInPlaceUp
+	applymovement LID_DAD, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	applymovement LID_MOM, LittlerootTown_Movement_1E863B
+	applymovement LID_DAD, LittlerootTown_Movement_1E863B
 	waitmovement 0
-	hideobjectat LID_MOM, MAP_LITTLEROOT_TOWN
+	hideobjectat LID_DAD, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
 	goto LittlerootTown_EventScript_1E8686
@@ -1003,4 +1036,4 @@ LittlerootTown_Text_1E8A03: @ 81E8A03
 	.string "Go on, go get them, honey!$"
 
 
-#undef LID_MOM
+#undef LID_DAD

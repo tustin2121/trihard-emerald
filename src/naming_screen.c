@@ -961,7 +961,7 @@ static void CursorInit(void)
 #if TPP_MODE
     {
         u16 rval = Random();
-        SetCursorPos(rval % 9, (rval >> 8) % 4);
+        SetCursorPos(rval % 7, (rval >> 8) % 4);
     }
 #else
     SetCursorPos(0, 0);

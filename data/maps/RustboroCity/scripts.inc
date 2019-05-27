@@ -519,7 +519,7 @@ RustboroCity_EventScript_1E0B9B:: @ 81E0B9B
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_2725AC
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceRight
 	waitmovement 0
 	return
 
@@ -627,7 +627,7 @@ RustboroCity_EventScript_1E0D08:: @ 81E0D08
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_2725AE
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceLeft
 	waitmovement 0
 	return
 

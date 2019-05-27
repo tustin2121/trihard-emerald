@@ -1689,6 +1689,14 @@
 	selectstring 0, VAR_RESULT
 	.endm
 	
+	.macro applymovement_gendered lid:req, forMale:req, forFemale:req
+	loadword MALE, \forMale 
+	loadword FEMALE, \forFemale
+	checkplayergender
+	selectstring 0, VAR_RESULT @it says "string", but this works for pointers just as well
+	applymovement \lid, 0
+	.endm
+	
 	@ Calls a given function 
 	.macro call_on_gender forMale:req, forFemale:req
 	checkplayergender
