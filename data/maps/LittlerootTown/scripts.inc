@@ -328,24 +328,36 @@ LittlerootTown_Text_1E8D8E: @ 81E8D8E
 @ -----------------------------------------------------
 @ People
 
-LittlerootTown_EventScript_1E8022:: @ 81E8022
+LittlerootTown_EventScript_ScienceGuy:: @ 81E8022
 	msgbox LittlerootTown_Text_1E8ACF, MSGBOX_NPC
 	end
 LittlerootTown_Text_1E8ACF: @ 81E8ACF
-	.string "If you use a PC, you can store items\n"
-	.string "and Pokémon.\p"
+	.string "Did you know you can use Poké Balls\n"
+	.string "to catch up to six Pokémon?!\p"
 	.string "The power of science is staggering!$"
 
 
-LittlerootTown_EventScript_1E802B:: @ 81E802B
+LittlerootTown_EventScript_RandomBoy:: @ 81E802B
+	goto_if_set FLAG_TEMP_5, LittlerootTown_EventScript_RandomBoy_2
 	msgbox LittlerootTown_Text_1E8B25, MSGBOX_NPC
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	setflag FLAG_TEMP_5
 	end
 LittlerootTown_Text_1E8B25: @ 81E8B25
-	.string "Prof. Birch spends days in his lab\n"
-	.string "studying, then he'll suddenly go out in\l"
-	.string "the wild to do more research…\p"
-	.string "When does Prof. Birch spend time\n"
-	.string "at home?$"
+	.string "Prof. Birch and his wife run the lab\n"
+	.string "in town. They're quite a power couple.\p"
+	.string "His {RIVAL_son} has also taken to\n"
+	.string "helping {RIVAL_their} parents with research.\p"
+	.string "It's amazing what a family can do\n"
+	.string "together!\p"
+	.string "… … … Woah! I-I'm sorry! I didn't mean\n"
+	.string "anything by it!$"
+LittlerootTown_EventScript_RandomBoy_2:
+	msgbox LittlerootTown_Text_1E8B252, MSGBOX_NPC
+	end
+LittlerootTown_Text_1E8B252:
+	.string "I-I'm sorry. Don't yell anymore, please.$"
+	
 
 
 @ -----------------------------------------------------

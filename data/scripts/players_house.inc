@@ -12,10 +12,6 @@ LittlerootTown_MaysHouse_1F_EventScript_292704:: @ 8292704
 	applymovement VAR_0x8004, Common_Movement_FacePlayer
 	waitmovement 0
 	applymovement_gendered EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight, Common_Movement_WalkInPlaceLeft
-	@ compare VAR_0x8005, MALE
-	@ call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_29274D
-	@ compare VAR_0x8005, FEMALE
-	@ call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_292758
 	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7A46, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_LITTLEROOT_INTRO_STATE, 4
@@ -41,7 +37,7 @@ LittlerootTown_PlayersHouse_1F_Text_1F7A46: @ 81F7A46
 	.string "Go do that. Please.$"
 
 @ -----------------------------------------------------
-@ Cutscene: Try to leave the house
+@ Cutscene: Trying to leave house
 
 LittlerootTown_BrendansHouse_1F_EventScript_292765:: @ 8292765
 LittlerootTown_MaysHouse_1F_EventScript_292765:: @ 8292765
@@ -56,6 +52,13 @@ LittlerootTown_PlayersHouse_1F_Text_1F7B24: @ 81F7B24
 	.string "Dad: {PLAYER}. Go to your room, please.\p"
 	.string "I don't want you getting in the movers'\n"
 	.string "way.$"
+
+@ -----------------------------------------------------
+@ Cutscene: Try to leave room
+
+LittlerootTown_PlayersHouse_1F_Text_DadStayInRoom: @ 81F7B67
+	.string "Dad: {PLAYER}!\p"
+	.string "Stay in your room!$"
 
 @ -----------------------------------------------------
 @ Cutscene: Set clock
@@ -95,7 +98,9 @@ LittlerootTown_MaysHouse_2F_EventScript_292799:: @ 8292799
 	message 0
 	waitmessage
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
-	msgbox LittlerootTown_PlayersHouse_2F_Text_AfterClock3, MSGBOX_DEFAULT
+	message LittlerootTown_PlayersHouse_2F_Text_AfterClock3
+	waitmessage
+	waitbuttonpress
 	closemessage
 	
 	applymovement VAR_0x8008, LittlerootTown_BrendansHouse_2F_Movement_292857
@@ -150,18 +155,8 @@ LittlerootTown_PlayerHouse_2F_EventScript_SetWallClock:: @ 8292849
 	waitstate
 	return
 
-
-LittlerootTown_BrendansHouse_1F_EventScript_292866:: @ 8292866
-LittlerootTown_MaysHouse_1F_EventScript_292866:: @ 8292866
-	setvar VAR_LITTLEROOT_INTRO_STATE, 7
-	releaseall
-	end
-
-LittlerootTown_PlayersHouse_1F_Text_DadStayInRoom: @ 81F7B67
-	.string "Dad: {PLAYER}!\p"
-	.string "Stay in your room!$"
-
 @ -----------------------------------------------------
+@ Cutscene: After clock set
 
 LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
 	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone1, MSGBOX_DEFAULT
@@ -177,6 +172,7 @@ LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
 	setyesnotext gYN_Elipsis2, gYN_Duh
 	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone3, MSGBOX_YESNO
 	applymovement_gendered VAR_0x8005, LittlerootTown_BrendansHouse_1F_Movement_292AE6, LittlerootTown_MaysHouse_1F_Movement_292AEE
+	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PauseLookAway
 	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone4, MSGBOX_DEFAULT
 	waitmovement 0
 	@ Given PokeNav
@@ -194,7 +190,9 @@ LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
 	closemessage
 	setvar VAR_TEMP_1, 1
 	waitmovement 0
-	goto LittlerootTown_BrendansHouse_1F_EventScript_292866
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	releaseall
+	end
 	end
 
 LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone1: @ 81F7B96
@@ -235,6 +233,10 @@ LittlerootTown_PlayersHouse1F_Text_ChangeContact:
 	.string "{PLAYER} surreptitiously changes the\n"
 	.string "name on Dad's contact info.$"
 
+LittlerootTown_BrendansHouse_1F_Movement_PauseLookAway:
+	delay_16
+	face_down
+	step_end
 
 @ Brendan's House Movement
 LittlerootTown_BrendansHouse_1F_Movement_292AE0: @ 8292AE0
@@ -283,18 +285,37 @@ LittlerootTown_MaysHouse_1F_Movement_2929C1: @ 82929C1
 	step_end
 
 
+@ -----------------------------------------------------
+
+LittlerootTown_PlayerHouse_1F_EventScript_Dad::
+	@ If dad has sent you outside now (end of intro sequence)
+	compare VAR_LITTLEROOT_INTRO_STATE, 7
+	goto_if_eq LittlerootTown_PlayerHouse_1F_EventScript_Dad_GoOutside
+	@ During intro sequence:
+	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroNotNow, MSGBOX_DEFAULT
+	@ applymovement THIS_EVENT, Common_Movement_FaceDown
+	release
+	end
+LittlerootTown_PlayersHouse_1F_Text_DadIntroNotNow: @ 81F7B24
+	.string "Dad: Not now, {PLAYER}.\p"
+	.string "I'm speaking with the mover. Please,\n"
+	.string "go to your room and hang out.$"
+
+LittlerootTown_PlayerHouse_1F_EventScript_Dad_GoOutside:
+	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroGoOutside, MSGBOX_NPC
+	release
+	end
+LittlerootTown_PlayersHouse_1F_Text_DadIntroGoOutside:
+	.string "Dad: Go say hi to the neighbors for us,\n"
+	.string "please.$"
 
 
-LittlerootTown_BrendansHouse_1F_EventScript_29296C:: @ 829296C
-LittlerootTown_MaysHouse_1F_EventScript_29296C:: @ 829296C
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
-	waitmovement 0
-	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7EC6, MSGBOX_DEFAULT
-	fadedefaultbgm
-	special TurnOffTVScreen
-	setflag FLAG_SYS_TV_HOME_OFF
-	delay 35
-	return
+
+
+
+
+
+
 
 LittlerootTown_BrendansHouse_1F_Movement_292989: @ 8292989
 	walk_up
@@ -369,15 +390,19 @@ LittlerootTown_MaysHouse_1F_Movement_2929BA: @ 82929BA
 	step_end
 
 
-LittlerootTown_BrendansHouse_1F_EventScript_2929C5:: @ 82929C5
-LittlerootTown_MaysHouse_1F_EventScript_2929C5:: @ 82929C5
+LittlerootTown_BrendansHouse_1F_EventScript_Dad:: @ 82929C5
+LittlerootTown_MaysHouse_1F_EventScript_Dad:: @ 82929C5
 	lock
 	faceplayer
+	@ "Don't push yourself too hard"
 	compare VAR_LITTLEROOT_HOUSES_STATE, 4
 	goto_if_eq LittlerootTown_BrendansHouse_1F_EventScript_292A0F
+	@ "Don't push yourself too hard"
 	compare VAR_LITTLEROOT_HOUSES_STATE_2, 4
 	goto_if_eq LittlerootTown_BrendansHouse_1F_EventScript_292A0F
+	@ Get match call
 	goto_if_set FLAG_HAS_MATCH_CALL, LittlerootTown_BrendansHouse_1F_EventScript_292A19
+	@ 
 	goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_BrendansHouse_1F_EventScript_292A86
 	compare VAR_TEMP_1, 1
 	goto_if_eq LittlerootTown_BrendansHouse_1F_EventScript_292A94
@@ -387,10 +412,7 @@ LittlerootTown_MaysHouse_1F_EventScript_2929C5:: @ 82929C5
 	applymovement THIS_EVENT, Common_Movement_FaceDown
 	release
 	end
-LittlerootTown_PlayersHouse_1F_Text_DadIntroNotNow: @ 81F7B24
-	.string "Dad: Not now, {PLAYER}.\p"
-	.string "I'm speaking with the mover. Please,\n"
-	.string "go to your room and hang out.$"
+
 
 LittlerootTown_BrendansHouse_1F_EventScript_292A0F:: @ 8292A0F
 	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7DBE, MSGBOX_DEFAULT

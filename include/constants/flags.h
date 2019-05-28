@@ -1316,7 +1316,7 @@
 #define FLAG_UNUSED_0x88E                           (SYSTEM_FLAGS + 0x2E) // Unused Flag
 #define FLAG_UNUSED_0x88F                           (SYSTEM_FLAGS + 0x2F) // Unused Flag
 
-#define FLAG_SYS_TV_HOME_OFF                            (SYSTEM_FLAGS + 0x30)
+#define FLAG_SYS_TV_HOME_OFF                        (SYSTEM_FLAGS + 0x30)
 #define FLAG_SYS_TV_WATCH                           (SYSTEM_FLAGS + 0x31)
 #define FLAG_SYS_TV_START                           (SYSTEM_FLAGS + 0x32)
 #define FLAG_SYS_POPWORD_INPUT                      (SYSTEM_FLAGS + 0x33)

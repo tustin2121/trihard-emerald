@@ -594,9 +594,7 @@ LittlerootTown_ProfessorBirchsLab_Movement_1FA3E0: @ 81FA3E0
 	walk_in_place_fastest_left
 	step_end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_1FA3E3:: @ 81FA3E3
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB0A2, MSGBOX_SIGN
-	end
+
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA3EC:: @ 81FA3EC
 	lock
@@ -674,17 +672,84 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1FA4B2:: @ 81FA4B2
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB58A, MSGBOX_DEFAULT
 	return
 
-LittlerootTown_ProfessorBirchsLab_EventScript_1FA4BB:: @ 81FA4BB
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB0E7, MSGBOX_SIGN
-	end
+@ -----------------------------------------------------
+@ Objects in the world
 
-LittlerootTown_ProfessorBirchsLab_EventScript_1FA4C4:: @ 81FA4C4
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB124, MSGBOX_SIGN
+LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC1:: @ 81FA4BB
+	goto_if_set FLAG_TEMP_5, LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC1_A
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC1, MSGBOX_DESCRIBE
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	setflag FLAG_TEMP_5
 	end
+LittlerootTown_ProfessorBirchsLab_Text_ResearchPC1: @ 81FB0E7
+	.string "It's a PC used for research.\p"
+	.string "You rearrange the desktop icons to\n"
+	.string "make a crude knob.$"
+LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC1_A:
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC1A, MSGBOX_DESCRIBE
+	end
+LittlerootTown_ProfessorBirchsLab_Text_ResearchPC1A:
+	.string "It's a PC used for anatomical research.$"
 
-LittlerootTown_ProfessorBirchsLab_EventScript_1FA4CD:: @ 81FA4CD
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB148, MSGBOX_SIGN
+
+LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC2:: @ 81FA4BB
+	goto_if_set FLAG_TEMP_6, LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC2_A
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2, MSGBOX_DESCRIBE
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	setflag FLAG_TEMP_6
 	end
+LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2: @ 81FB0E7
+	.string "It's a PC used for research.\p"
+	.string "You change the desktop background to\n"
+	.string "fill the screen an old gif.$"
+LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC2_A:
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2A, MSGBOX_DESCRIBE
+	end
+LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2A:
+	.string "It's a PC used for research of\n"
+	.string "babies' ability to dance.$"
+
+
+LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC3:: @ 81FA4BB
+	goto_if_set FLAG_TEMP_7, LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC3_A
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC3, MSGBOX_DESCRIBE
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	setflag FLAG_TEMP_7
+	end
+LittlerootTown_ProfessorBirchsLab_Text_ResearchPC3: @ 81FB0E7
+	.string "It's a PC used for research.\p"
+	.string "You press a set of keys on the\n"
+	.string "keyboard, and the screen flickers.$"
+LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC3_A:
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC3A, MSGBOX_DESCRIBE
+	end
+LittlerootTown_ProfessorBirchsLab_Text_ResearchPC3A:
+	.string "It's a PC used for upside-down research.$"
+
+
+LittlerootTown_ProfessorBirchsLab_EventScript_PokemonBooks:: @ 81FA4C4
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB124, MSGBOX_DESCRIBE
+	end
+LittlerootTown_ProfessorBirchsLab_Text_1FB124: @ 81FB124
+	.string "It's crammed with books on Pokémon.$"
+
+
+LittlerootTown_ProfessorBirchsLab_EventScript_HardBook:: @ 81FA4CD
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB148, MSGBOX_DESCRIBE
+	end
+LittlerootTown_ProfessorBirchsLab_Text_1FB148: @ 81FB148
+	.string "It's a book that's too hard to read.$"
+
+
+LittlerootTown_ProfessorBirchsLab_EventScript_HealMachine:: @ 81FA3E3
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB0A2, MSGBOX_SIGN
+	end
+LittlerootTown_ProfessorBirchsLab_Text_1FB0A2: @ 81FB0A2
+	.string "It's a serious-looking machine.\n"
+	.string "The prof must use this for research.$"
+
+
+@ -----------------------------------------------------
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA4D6:: @ 81FA4D6
 	lockall
@@ -839,19 +904,9 @@ LittlerootTown_ProfessorBirchsLab_Text_1FB073: @ 81FB073
 	.string "Brendan: Where should I look for\n"
 	.string "Pokémon next…$"
 
-LittlerootTown_ProfessorBirchsLab_Text_1FB0A2: @ 81FB0A2
-	.string "It's a serious-looking machine.\n"
-	.string "The PROF must use this for research.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_1FB0E7: @ 81FB0E7
-	.string "It's a PC used for research.\n"
-	.string "Better not mess around with it.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_1FB124: @ 81FB124
-	.string "It's crammed with books on Pokémon.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_1FB148: @ 81FB148
-	.string "It's a book that's too hard to read.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_1FB16D: @ 81FB16D
 	.string "Prof. Birch: Now…\p"
