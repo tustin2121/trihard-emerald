@@ -217,7 +217,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_LITTLE_ROOT_TOWN_PLAYERS_BEDROOM_MOM",
+            "flag": "FLAG_HIDE_LITTLE_ROOT_TOWN_PLAYERS_BEDROOM_DAD",
             "graphics_id": "EVENT_OBJ_GFX_DAD",
             "movement_range_x": 1,
             "movement_range_y": 0,

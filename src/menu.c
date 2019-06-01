@@ -1778,9 +1778,12 @@ void CreateYesNoMenu(const struct WindowTemplate *_window, u16 baseTileNum, u8 p
 {
     struct TextPrinterTemplate printer;
     struct WindowTemplate template = *_window;
+    u8 strWidth;
     
     CompileYesNoString();
-    template.width = max(GetStringWidth(1, gYesNoStringVar, 0) >> 3, _window->width);
+    strWidth = GetStringWidth(1, gYesNoStringVar, 1); //extra block for cursor
+    strWidth = ((strWidth % 8 != 0)? 2 : 1) + (strWidth >> 3);
+    template.width = max(strWidth, _window->width);
 
     sYesNoWindowId = AddWindow(&template);
     DrawStdFrameWithCustomTileAndPalette(sYesNoWindowId, TRUE, baseTileNum, paletteNum);

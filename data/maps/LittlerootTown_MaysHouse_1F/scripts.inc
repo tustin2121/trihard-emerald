@@ -7,7 +7,7 @@ LittlerootTown_MaysHouse_1F_MapScripts:: @ 81F88A5
 LittlerootTown_MaysHouse_1F_MapScript1_OnLoad: @ 81F88B5
 	compare VAR_LITTLEROOT_INTRO_STATE, 6
 	call_if_lt LittlerootTown_MaysHouse_1F_EventScript_1F88CA
-	call_if_set FLAG_RECEIVED_RUNNING_SHOES, LittlerootTown_MaysHouse_1F_EventScript_1F88DD
+	@ call_if_set FLAG_DAD_IS_AT_WORK, LittlerootTown_MaysHouse_1F_EventScript_1F88DD
 	end
 LittlerootTown_MaysHouse_1F_EventScript_1F88CA:: @ 81F88CA
 	setmetatile 5, 4, 0x270, 1
@@ -17,14 +17,14 @@ LittlerootTown_MaysHouse_1F_EventScript_1F88CA:: @ 81F88CA
 	setmetatile 0, 2, 0x26C, 1
 	setmetatile 0, 3, 0x274, 0
 	return
-LittlerootTown_MaysHouse_1F_EventScript_1F88DD:: @ 81F88DD
-	checkplayergender
-	compare VAR_RESULT, FEMALE
-	goto_if_eq LittlerootTown_MaysHouse_1F_EventScript_1F88EA
-	return
-LittlerootTown_MaysHouse_1F_EventScript_1F88EA:: @ 81F88EA
-	setmetatile 6, 7, 0x293, 1
-	return
+@ LittlerootTown_MaysHouse_1F_EventScript_1F88DD:: @ 81F88DD
+@ 	checkplayergender
+@ 	compare VAR_RESULT, FEMALE
+@ 	goto_if_eq LittlerootTown_MaysHouse_1F_EventScript_1F88EA
+@ 	return
+@ LittlerootTown_MaysHouse_1F_EventScript_1F88EA:: @ 81F88EA
+@ 	setmetatile 6, 7, 0x293, 1
+@ 	return
 
 LittlerootTown_MaysHouse_1F_MapScript1_OnTransition: @ 81F88F4
 	compare VAR_LITTLEROOT_INTRO_STATE, 3

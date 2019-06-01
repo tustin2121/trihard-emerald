@@ -56,20 +56,20 @@ LittlerootTown_EventScript_1E7E86:: @ 81E7E86
 	return
 
 LittlerootTown_EventScript_1E7E92:: @ 81E7E92
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
+	@ clearflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
 	setobjectmovementtype LID_DAD, MOVEMENT_TYPE_FACE_DOWN
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_EventScript_1E7EB1
-	compare VAR_RESULT, FEMALE
-	call_if_eq LittlerootTown_EventScript_1E7EB9
+	@ checkplayergender
+	@ compare VAR_RESULT, MALE
+	@ call_if_eq LittlerootTown_EventScript_1E7EB1
+	@ compare VAR_RESULT, FEMALE
+	@ call_if_eq LittlerootTown_EventScript_1E7EB9
 	return
-LittlerootTown_EventScript_1E7EB1:: @ 81E7EB1
-	setobjectxyperm LID_DAD, 5, 9
-	return
-LittlerootTown_EventScript_1E7EB9:: @ 81E7EB9
-	setobjectxyperm LID_DAD, 14, 9
-	return
+@ LittlerootTown_EventScript_1E7EB1:: @ 81E7EB1
+@ 	setobjectxyperm LID_DAD, 5, 9
+@ 	return
+@ LittlerootTown_EventScript_1E7EB9:: @ 81E7EB9
+@ 	setobjectxyperm LID_DAD, 14, 9
+@ 	return
 
 LittlerootTown_EventScript_1E7E5C:: @ 81E7E5C
 	setvar VAR_LITTLEROOT_HOUSES_STATE, 5
@@ -123,7 +123,7 @@ LittlerootTown_EventScript_1E7F17:: @ 81E7F17
 	waitmovement 0
 	opendoor VAR_0x8004, VAR_0x8005
 	waitdooranim
-	addobject 4
+	addobject LID_DAD
 	applymovement LID_DAD, LittlerootTown_Movement_Intro_Dad1
 	waitmovement 0
 	closedoor VAR_0x8004, VAR_0x8005
@@ -512,6 +512,245 @@ LittlerootTown_Movement_1E8118: @ 81E8118
 
 @ -----------------------------------------------------
 @ Parental Figure
+
+LittlerootTown_TriggerScript_FinalIntro_LeavingTown::
+	goto LittlerootTown_EventScript_FinalIntro_LeavingTown
+	end
+LittlerootTown_TriggerScript_FinalIntro_EnteringBrendans::
+	@ Check if player is male
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq LittlerootTown_EventScript_FinalIntro_House
+	release
+	end
+LittlerootTown_TriggerScript_FinalIntro_EnteringMays::
+	@ Check if player is female
+	checkplayergender
+	compare VAR_RESULT, FEMALE
+	goto_if_eq LittlerootTown_EventScript_FinalIntro_House
+	release
+	end
+
+LittlerootTown_EventScript_FinalIntro_SetupMaleHouse:
+	setvar VAR_0x8004, 5
+	setvar VAR_0x8005, 8
+	setobjectxyperm LID_DAD, 5, 8
+	return
+LittlerootTown_EventScript_FinalIntro_SetupFemaleHouse:
+	setvar VAR_0x8004, 14
+	setvar VAR_0x8005, 8
+	setobjectxyperm LID_DAD, 14, 8
+	return
+
+LittlerootTown_EventScript_FinalIntro_House:
+	lockall
+	call_on_gender LittlerootTown_EventScript_FinalIntro_SetupMaleHouse, LittlerootTown_EventScript_FinalIntro_SetupFemaleHouse
+	opendoor VAR_0x8004, VAR_0x8005
+	waitdooranim
+	addobject LID_DAD
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
+	msgbox LittlerootTown_Text_FinalIntro1b, MSGBOX_DEFAULT
+	applymovement LID_DAD, LittlerootTown_Movement_FinalIntroA_Dad1
+	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_FinalIntroA_Player1
+	waitmovement 0
+	closedoor VAR_0x8004, VAR_0x8005
+	waitdooranim
+	delay 10
+	call LittlerootTown_EventScript_FinalIntro_Main
+	applymovement_gendered LID_DAD, LittlerootTown_Movement_FinalIntroA_Dad2_Boy, LittlerootTown_Movement_FinalIntroA_Dad2_Girl
+	delay 30
+	fadeinbgm 2
+	waitmovement 0
+	removeobject LID_DAD
+	releaseall
+	end
+LittlerootTown_Movement_FinalIntroA_Dad1:
+	delay_8
+	walk_down
+	face_left
+	step_end
+LittlerootTown_Movement_FinalIntroA_Player1:
+	face_right
+	lock_facing_direction
+	walk_left
+	unlock_facing_direction
+	step_end
+LittlerootTown_Movement_FinalIntroA_Dad2_Boy:
+	walk_right
+	walk_right
+	walk_right
+	delay_16
+	delay_16
+	walk_in_place_left
+	delay_16
+	delay_16
+	delay_16
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+LittlerootTown_Movement_FinalIntroA_Dad2_Girl:
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	delay_16
+	delay_16
+	walk_in_place_right
+	delay_16
+	delay_16
+	delay_16
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+	
+
+LittlerootTown_EventScript_FinalIntro_LeavingTown:
+	lockall
+	getplayerxy VAR_0x8004, VAR_0x8005
+	addvar VAR_0x8005, 6
+	setobjectxyperm LID_DAD, VAR_0x8004, VAR_0x8005
+	addobject LID_DAD
+	message LittlerootTown_Text_FinalIntro1a
+	waitmessage
+	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_FinalIntroB_Player1
+	waitmovement 0
+	waitbuttonpress
+	closemessage
+	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_FinalIntroB_Player2
+	applymovement LID_DAD, LittlerootTown_Movement_FinalIntroB_Dad1
+	waitmovement 0
+	call LittlerootTown_EventScript_FinalIntro_Main
+	applymovement LID_DAD, LittlerootTown_Movement_FinalIntroB_Dad2
+	delay 30
+	fadeinbgm 2
+	waitmovement 0
+	removeobject LID_DAD
+	releaseall
+	end
+LittlerootTown_Movement_FinalIntroB_Player1:
+	face_down
+	emote_exclamation_mark
+	step_end
+LittlerootTown_Movement_FinalIntroB_Dad1:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+LittlerootTown_Movement_FinalIntroB_Player2:
+	delay_16
+	delay_16
+	delay_8
+	walk_left
+	face_right
+	step_end
+LittlerootTown_Movement_FinalIntroB_Dad2:
+	walk_up
+	walk_up
+	delay_16
+	delay_16
+	walk_in_place_down
+	delay_16
+	delay_16
+	delay_16
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+LittlerootTown_EventScript_FinalIntro_Main:
+	message LittlerootTown_Text_FinalIntro2
+	waitmessage
+	fadeoutbgm 0
+	message LittlerootTown_Text_FinalIntro3
+	waitmessage
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	setyesnotext gYN_YeahStutter, gYN_Elipsis1
+	yesnobox 20, 8
+	selectyesnoanswer LittlerootTown_Text_FinalIntro4_Yes, LittlerootTown_Text_FinalIntro4_No
+	message 0x0
+	waitmessage
+	message LittlerootTown_Text_FinalIntro4
+	waitmessage
+	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_FinalIntroC_Player
+	message LittlerootTown_Text_FinalIntro5
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setflag FLAG_DAD_IS_AT_WORK
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_DAD
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_DAD
+	setvar VAR_0x4050, 4
+	return
+LittlerootTown_Movement_FinalIntroC_Player:
+	delay_16
+	delay_16
+	delay_16
+	delay_8
+	face_right
+	step_end
+	
+
+LittlerootTown_Text_FinalIntro1a:
+	.string "Dad: There you are, {PLAYER}!$"
+LittlerootTown_Text_FinalIntro1b:
+	.string "Dad: Oh, {PLAYER}!$"
+LittlerootTown_Text_FinalIntro2:
+	.string "Dad: I wasn't sure I'd see you again\n"
+	.string "before I had to leave!\p"
+	.string "I'm heading to work now. I'm sure I'll\n"
+	.string "be back late. I made a batch of my\l"
+	.string "Dash of Figgy Soup. It's in the fridge\l"
+	.string "for you if you get hungry later.\p"
+	.string "You look like you're going out.\n"
+	.string "Where are you off to?\p"
+	.string "$"
+LittlerootTown_Text_FinalIntro3:
+	.string "Oh…{PAUSE 60}\l"
+	.string "You…{PAUSE 60} have Pokémon…{PAUSE 30}\n"
+	.string "again… … …{PAUSE 30}\p"
+	@ TODO: Different background music now, piano plunking?
+	.string "… … … … … … … … … … … … … … …\p"
+	.string "Um…\p"
+	.string "I…\p"
+	.string "I… hope you… {PAUSE 15}learned from the Alolan\n"
+	.string "Challenge incident…$"
+LittlerootTown_Text_FinalIntro4_Yes:
+	.string "Did you…? I hope so…\p"
+	.string "$"
+LittlerootTown_Text_FinalIntro4_No:
+	.string "$"
+LittlerootTown_Text_FinalIntro4:
+	.string "Listen… {PLAYER_buddy}…\n"
+	.string "I don't want to see you fail…\l"
+	.string "despite what you might think…\p"
+	.string "Please, be careful out there.\n"
+	.string "Treat your Pokémon with respect.\p"
+	.string "And, uh… {PAUSE 15}Feel free to come home\n"
+	.string "if you need to rest.\p"
+	.string "I'll keep your bed made and\n"
+	.string "the fridge stocked for you.\p$"
+LittlerootTown_Text_FinalIntro5:
+	.string "{PLAYER}…{PAUSE 60} Don't…{PAUSE 30}\n"
+	.string "get into trouble…{PAUSE 30} please…?\p"
+	.string "Good…{PAUSE 30} Good luck out there.$"
+			
+
 
 LittlerootTown_EventScript_1E81BB:: @ 81E81BB
 	lockall
@@ -992,7 +1231,7 @@ LittlerootTown_EventScript_1E863D:: @ 81E863D
 	end
 
 LittlerootTown_EventScript_1E8686:: @ 81E8686
-	removeobject 4
+	removeobject LID_DAD
 	setflag FLAG_SYS_B_DASH
 	setvar VAR_0x4050, 4
 	release
@@ -1003,7 +1242,7 @@ LittlerootTown_EventScript_1E8693:: @ 81E8693
 	playfanfare MUS_FANFA4
 	message LittlerootTown_Text_1E8925
 	waitfanfare
-	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_DAD_IS_AT_WORK
 	msgbox LittlerootTown_Text_1E894F, MSGBOX_DEFAULT
 	msgbox LittlerootTown_Text_1E8A03, MSGBOX_DEFAULT
 	closemessage

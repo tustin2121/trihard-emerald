@@ -1689,6 +1689,13 @@
 	selectstring 0, VAR_RESULT
 	.endm
 	
+	@ Selects a string based on if the player is male or female.
+	.macro selectyesnoanswer forYes:req, forNo:req
+	loadword YES, \forYes 
+	loadword NO, \forNo
+	selectstring 0, VAR_RESULT
+	.endm
+	
 	.macro applymovement_gendered lid:req, forMale:req, forFemale:req
 	loadword MALE, \forMale 
 	loadword FEMALE, \forFemale
