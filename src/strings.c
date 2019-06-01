@@ -98,46 +98,49 @@ ALIGNED(4) const u8 gText_PickCancel[] = _("{DPAD_UPDOWN}PICK {A_BUTTON}{B_BUTTO
 ALIGNED(4) const u8 gText_UnkCtrlF800Exit[] = _("{A_BUTTON}EXIT");
 const u8 gText_BirchBoy[] = _("Boy");
 const u8 gText_BirchGirl[] = _("Girl");
-const u8 gText_DefaultNameStu[] = _("Stu");
-const u8 gText_DefaultNameMilton[] = _("Milton");
-const u8 gText_DefaultNameTom[] = _("Tom");
-const u8 gText_DefaultNameKenny[] = _("Kenny");
-const u8 gText_DefaultNameReid[] = _("Reid");
-const u8 gText_DefaultNameJude[] = _("Jude");
-const u8 gText_DefaultNameJaxson[] = _("Jaxson");
-const u8 gText_DefaultNameEaston[] = _("Easton");
-const u8 gText_DefaultNameWalker[] = _("Walker");
-const u8 gText_DefaultNameTeru[] = _("Teru");
-const u8 gText_DefaultNameJohnny[] = _("Johnny");
-const u8 gText_DefaultNameBrett[] = _("Brett");
-const u8 gText_DefaultNameSeth[] = _("Seth");
-const u8 gText_DefaultNameTerry[] = _("Terry");
-const u8 gText_DefaultNameCasey[] = _("Casey");
-const u8 gText_DefaultNameDarren[] = _("Darren");
-const u8 gText_DefaultNameLandon[] = _("Landon");
-const u8 gText_DefaultNameCollin[] = _("Collin");
-const u8 gText_DefaultNameStanley[] = _("Stanley");
-const u8 gText_DefaultNameQuincy[] = _("Quincy");
-const u8 gText_DefaultNameKimmy[] = _("Kimmy");
-const u8 gText_DefaultNameTiara[] = _("Tiara");
-const u8 gText_DefaultNameBella[] = _("Bella");
-const u8 gText_DefaultNameJayla[] = _("Jayla");
-const u8 gText_DefaultNameAllie[] = _("Allie");
-const u8 gText_DefaultNameLianna[] = _("Lianna");
-const u8 gText_DefaultNameSara[] = _("Sara");
-const u8 gText_DefaultNameMonica[] = _("Monica");
-const u8 gText_DefaultNameCamila[] = _("Camila");
-const u8 gText_DefaultNameAubree[] = _("Aubree");
-const u8 gText_DefaultNameRuthie[] = _("Ruthie");
-const u8 gText_DefaultNameHazel[] = _("Hazel");
-const u8 gText_DefaultNameNadine[] = _("Nadine");
-const u8 gText_DefaultNameTanja[] = _("Tanja");
-const u8 gText_DefaultNameYasmin[] = _("Yasmin");
-const u8 gText_DefaultNameNicola[] = _("Nicola");
-const u8 gText_DefaultNameLillie[] = _("Lillie");
-const u8 gText_DefaultNameTerra[] = _("Terra");
-const u8 gText_DefaultNameLucy[] = _("Lucy");
-const u8 gText_DefaultNameHalie[] = _("Halie");
+
+const u8 gText_DefaultName_Boy01[] = _("Elliot");
+const u8 gText_DefaultName_Boy02[] = _("Arthur");
+const u8 gText_DefaultName_Boy03[] = _("Cody");
+const u8 gText_DefaultName_Boy04[] = _("Devin");
+const u8 gText_DefaultName_Boy05[] = _("Myles");
+const u8 gText_DefaultName_Boy06[] = _("Roger");
+const u8 gText_DefaultName_Boy07[] = _("Tanner");
+const u8 gText_DefaultName_Boy08[] = _("Easton");
+const u8 gText_DefaultName_Boy09[] = _("Justin");
+const u8 gText_DefaultName_Boy10[] = _("Finn");
+const u8 gText_DefaultName_Boy11[] = _("Tyler");
+const u8 gText_DefaultName_Boy12[] = _("Brett");
+const u8 gText_DefaultName_Boy13[] = _("Connor");
+const u8 gText_DefaultName_Boy14[] = _("Adam");
+const u8 gText_DefaultName_Boy15[] = _("Chris");
+const u8 gText_DefaultName_Boy16[] = _("Xavier");
+const u8 gText_DefaultName_Boy17[] = _("Landon");
+const u8 gText_DefaultName_Boy18[] = _("Colin");
+const u8 gText_DefaultName_Boy19[] = _("Hunter");
+const u8 gText_DefaultName_Boy20[] = _("Quincy");
+
+const u8 gText_DefaultName_Girl01[] = _("Lily");
+const u8 gText_DefaultName_Girl02[] = _("Tiara");
+const u8 gText_DefaultName_Girl03[] = _("Bella");
+const u8 gText_DefaultName_Girl04[] = _("Phoebe");
+const u8 gText_DefaultName_Girl05[] = _("Allie");
+const u8 gText_DefaultName_Girl06[] = _("Nina");
+const u8 gText_DefaultName_Girl07[] = _("Sara");
+const u8 gText_DefaultName_Girl08[] = _("Monica");
+const u8 gText_DefaultName_Girl09[] = _("Carmen");
+const u8 gText_DefaultName_Girl10[] = _("Aubree");
+const u8 gText_DefaultName_Girl11[] = _("Ruth");
+const u8 gText_DefaultName_Girl12[] = _("Hazel");
+const u8 gText_DefaultName_Girl13[] = _("Nadine");
+const u8 gText_DefaultName_Girl14[] = _("April");
+const u8 gText_DefaultName_Girl15[] = _("Jasmin");
+const u8 gText_DefaultName_Girl16[] = _("Nicole");
+const u8 gText_DefaultName_Girl17[] = _("Rebecca");
+const u8 gText_DefaultName_Girl18[] = _("Zelda");
+const u8 gText_DefaultName_Girl19[] = _("Lucy");
+const u8 gText_DefaultName_Girl20[] = _("Steph");
+
 const u8 gText_ThisIsAPokemon[] = _("This is what we call a “Pokémon.”{PAUSE 96}\p");
 const u8 gText_5MarksPokemon[] = _("????? Pokémon");
 const u8 gText_UnkHeight[] = _("{CLEAR_TO 0x0C}??'??”");
@@ -274,7 +277,10 @@ const u8 gText_TooImportantToToss[] = _("That's much too\nimportant to toss\nout
 const u8 gText_TossHowManyVar1s[] = _("Toss out how many\n{STR_VAR_1}(s)?");
 const u8 gText_ThrewAwayVar2Var1s[] = _("Threw away {STR_VAR_2}\n{STR_VAR_1}(s).");
 const u8 gText_ConfirmTossItems[] = _("Is it okay to\nthrow away {STR_VAR_2}\n{STR_VAR_1}(s)?");
-const u8 gText_DadsAdvice[] = _("DAD's advice…\n{PLAYER}, there's a time and place for\leverything!{PAUSE_UNTIL_PRESS}");
+
+const u8 gText_ChallengeAmuletUseDescription[] = _("You wouldn't be here now if that\nblowhard hadn't disqualified you…{PAUSE_UNTIL_PRESS}");
+const u8 gText_TeamSkullUseDescription[] = _("A reminder of the time when you felt\nlike you were actually part of a family…{PAUSE_UNTIL_PRESS}");
+
 const u8 gText_CantDismountBike[] = _("You can't dismount your BIKE here.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ItemFinderNearby[] = _("Huh?\nThe ITEMFINDER's responding!\pThere's an item buried around here!{PAUSE_UNTIL_PRESS}");
 const u8 gText_ItemFinderOnTop[] = _("Oh!\nThe ITEMFINDER's shaking wildly!{PAUSE_UNTIL_PRESS}");
@@ -296,6 +302,37 @@ const u8 gText_TheBattle[] = _("the battle");
 const u8 gText_ThePokemonList[] = _("the Pokémon LIST");
 const u8 gText_TheShop[] = _("the shop");
 const u8 gText_ThePC[] = _("the PC");
+
+          // _("Dad's advice…\n
+          //   {PLAYER}, there's a time and place for\l
+          //   everything!{PAUSE_UNTIL_PRESS}");
+//			 -------------------------------------------
+const u8 gText_Advice01[] = _("Dad's advice…\n{PLAYER}, there's a time and place for\leverything. And that place is not the\lfloor of your room. Clean it up, now.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice02[] = _("Mom's advice…\nThrow away junk you don't need.\lLike I did with your father.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice03[] = _("Dad's advice…\nDon't get married. Ever.\lIt's not worth the pain.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice04[] = _("Mom's advice…\nYou can never invest too much into\la good lawyer.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice05[] = _("Dad's advice…\n{PLAYER}, never get involved in a\lland war in Asia.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice06[] = _("Mom's advice…\nDon't listen to your father for advice,\lhe doesn't know what he's talking about.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice07[] = _("Dad's advice…\nIf at first you don't succeed, sue them.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice08[] = _("Mom's advice…\nViolence is never the answer.\lUnless it's a Pokémon battle.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice09[] = _("Dad's advice…\n{PLAYER}, go ask your mother.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice10[] = _("Mom's advice…\n{PLAYER}, go ask your father.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice11[] = _("Dad's advice…\nIf at first you don't succeed, sue them.{PAUSE_UNTIL_PRESS}");
+
+const u8 *const gText_DadsAdviceTable[] =
+{
+    gText_Advice01,
+    gText_Advice02,
+    gText_Advice03,
+    gText_Advice04,
+    gText_Advice05,
+    gText_Advice06,
+    gText_Advice07,
+    gText_Advice08,
+    gText_Advice09,
+    gText_Advice10,
+    gText_Advice11,
+};
 
 const u8 *const gReturnToXStringsTable[] =
 {

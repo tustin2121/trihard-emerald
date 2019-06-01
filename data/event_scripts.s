@@ -1103,6 +1103,13 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	call EventScript_ResetAllBerries
 	end
 
+EventScript_SetupTrihardEmeraldNewGame::
+	giveitem ITEM_SKULL_EMBLEM, 1
+	giveitem ITEM_CHALLENGE_AMULET, 1
+	giveitem ITEM_MALASADA, 3
+	giveitem ITEM_HOMEMADE_SOUP, 5
+	end
+
 EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
 	special sub_81AFDD0
 	setflag FLAG_IS_CHAMPION

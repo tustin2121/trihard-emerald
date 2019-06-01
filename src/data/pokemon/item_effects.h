@@ -78,6 +78,15 @@ const u8 gItemEffect_MoomooMilk[7] = {
     [6] = 100,
 };
 
+const u8 gItemEffect_HomemadeSoup[10] = {
+    [4] = ITEM4_HEAL_HP,
+    [5] = ITEM5_FRIENDSHIP_LOW | ITEM5_FRIENDSHIP_MID,
+    [6] = 60,
+    [7] = 8, //low friendship
+    [8] = 5, //mid friendship
+    [9] = 3, //high friendship
+};
+
 const u8 gItemEffect_EnergyPowder[10] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
@@ -420,6 +429,7 @@ const u8 *const gItemEffectTable[] =
     [ITEM_SODA_POP - ITEM_POTION] = gItemEffect_SodaPop,
     [ITEM_LEMONADE - ITEM_POTION] = gItemEffect_Lemonade,
     [ITEM_MOOMOO_MILK - ITEM_POTION] = gItemEffect_MoomooMilk,
+    [ITEM_HOMEMADE_SOUP - ITEM_POTION] = gItemEffect_HomemadeSoup, //homemade soup
     [ITEM_ENERGY_POWDER - ITEM_POTION] = gItemEffect_EnergyPowder,
     [ITEM_ENERGY_ROOT - ITEM_POTION] = gItemEffect_EnergyRoot,
     [ITEM_HEAL_POWDER - ITEM_POTION] = gItemEffect_HealPowder,
@@ -429,6 +439,7 @@ const u8 *const gItemEffectTable[] =
     [ITEM_ELIXIR - ITEM_POTION] = gItemEffect_Elixir,
     [ITEM_MAX_ELIXIR - ITEM_POTION] = gItemEffect_MaxElixir,
     [ITEM_LAVA_COOKIE - ITEM_POTION] = gItemEffect_LavaCookie,
+    [ITEM_MALASADA - ITEM_POTION] = gItemEffect_LavaCookie, //maladasa acts like a lava cookie
     [ITEM_BLUE_FLUTE - ITEM_POTION] = gItemEffect_BlueFlute,
     [ITEM_YELLOW_FLUTE - ITEM_POTION] = gItemEffect_YellowFlute,
     [ITEM_RED_FLUTE - ITEM_POTION] = gItemEffect_RedFlute,

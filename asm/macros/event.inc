@@ -505,6 +505,7 @@
 	.endm
 
 	@ Adds a quantity amount of item index to the player's PC. Both arguments can be variables.
+	@ NEVER USED
 	.macro givepcitem index:req, quantity:req
 	.byte 0x49
 	.2byte \index

@@ -719,27 +719,33 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_034] =
+    [ITEM_HOMEMADE_SOUP] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = gDummyItemDescription,
+        .name = _("Homemade Soup"),
+        .itemId = ITEM_HOMEMADE_SOUP,
+        .price = 500,
+        .holdEffect = HOLD_EFFECT_RESTORE_HP,
+        .holdEffectParam = 60,
+        .description = gHomemadeSoupItemDescription,
         .pocket = POCKET_ITEMS,
-        .type = 4,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = 1,
+        .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
     },
 
-    [ITEM_035] =
+    [ITEM_MALASADA] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = gDummyItemDescription,
+        .name = _("Malasada"),
+        .itemId = ITEM_MALASADA,
+        .price = 800,
+        .description = gMalasadaItemDescription,
         .pocket = POCKET_ITEMS,
-        .type = 4,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = 1,
+        .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
     },
 
@@ -2976,12 +2982,14 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E2] =
+    [ITEM_SKULL_EMBLEM] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("Skull Emblem"),
+        .itemId = ITEM_SKULL_EMBLEM,
         .price = 0,
-        .description = gDummyItemDescription,
+        .holdEffect = HOLD_EFFECT_SKULL_EMBLEM, //TODO: implement
+        .description = gSkullEmblemDescription,
+        .importance = 1, //TODO??
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -3483,15 +3491,16 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_10B] =
+    [ITEM_CHALLENGE_AMULET] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("Chall. Amulet"),
+        .itemId = ITEM_CHALLENGE_AMULET,
         .price = 0,
-        .description = gDummyItemDescription,
-        .pocket = POCKET_ITEMS,
+        .description = gChallengeAmuletItemDescription,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
         .type = 4,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_DisplayString,
         .secondaryId = 0,
     },
 

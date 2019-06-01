@@ -73,7 +73,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_checkitemspace
 	.4byte ScrCmd_checkitem
 	.4byte ScrCmd_checkitemtype
-	.4byte ScrCmd_givepcitem
+	.4byte ScrCmd_givepcitem @ NEVER USED
 	.4byte ScrCmd_checkpcitem
 	.4byte ScrCmd_givedecoration
 	.4byte ScrCmd_takedecoration
