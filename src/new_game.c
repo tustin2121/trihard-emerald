@@ -48,6 +48,7 @@
 extern void ResetPokeJumpResults(void);
 
 extern const u8 EventScript_ResetAllMapFlags[];
+extern const u8 EventScript_SetupTrihardEmeraldNewGame[];
 
 // this file's functions
 static void ClearFrontierRecord(void);
@@ -206,6 +207,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+    ScriptContext2_RunNewScript(EventScript_SetupTrihardEmeraldNewGame);
 }
 
 static void ResetMiniGamesResults(void)

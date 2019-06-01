@@ -736,3 +736,17 @@ const u32 gItemIconPalette_MagmaEmblem[] = INCBIN_U32("graphics/items/icon_palet
 
 const u32 gItemIcon_OldSeaMap[] = INCBIN_U32("graphics/items/icons/old_sea_map.4bpp.lz");
 const u32 gItemIconPalette_OldSeaMap[] = INCBIN_U32("graphics/items/icon_palettes/old_sea_map.gbapal.lz");
+
+// THE Added Items
+
+const u32 gItemIcon_SkullEmblem[] = INCBIN_U32("graphics/items/icons/skull_emblem.4bpp.lz");
+const u32 gItemIconPalette_SkullEmblem[] = INCBIN_U32("graphics/items/icon_palettes/skull_emblem.gbapal.lz");
+
+const u32 gItemIcon_ChallengeAmulet[] = INCBIN_U32("graphics/items/icons/challenge_amulet.4bpp.lz");
+const u32 gItemIconPalette_ChallengeAmulet[] = INCBIN_U32("graphics/items/icon_palettes/challenge_amulet.gbapal.lz");
+
+const u32 gItemIcon_HomemadeSoup[] = INCBIN_U32("graphics/items/icons/homemade_soup.4bpp.lz");
+const u32 gItemIconPalette_HomemadeSoup[] = INCBIN_U32("graphics/items/icon_palettes/homemade_soup.gbapal.lz");
+
+const u32 gItemIcon_Malasada[] = INCBIN_U32("graphics/items/icons/malasada.4bpp.lz");
+const u32 gItemIconPalette_Malasada[] = INCBIN_U32("graphics/items/icon_palettes/malasada.gbapal.lz");

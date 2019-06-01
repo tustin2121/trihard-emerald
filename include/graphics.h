@@ -3849,6 +3849,15 @@ extern const u32 gItemIcon_MagmaEmblem[];
 extern const u32 gItemIconPalette_MagmaEmblem[];
 extern const u32 gItemIcon_OldSeaMap[];
 extern const u32 gItemIconPalette_OldSeaMap[];
+// Added items
+extern const u32 gItemIcon_SkullEmblem[];
+extern const u32 gItemIconPalette_SkullEmblem[];
+extern const u32 gItemIcon_ChallengeAmulet[];
+extern const u32 gItemIconPalette_ChallengeAmulet[];
+extern const u32 gItemIcon_HomemadeSoup[];
+extern const u32 gItemIconPalette_HomemadeSoup[];
+extern const u32 gItemIcon_Malasada[];
+extern const u32 gItemIconPalette_Malasada[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];

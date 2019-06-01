@@ -28,6 +28,7 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "random.h"
 #include "script.h"
 #include "sound.h"
 #include "strings.h"
@@ -156,7 +157,10 @@ void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnFiel
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, 1, gStringVar4, bag_menu_inits_lists_menu);
         else
-            DisplayItemMessageInBattlePyramid(taskId, gText_DadsAdvice, sub_81C6714);
+        {
+            const u8* advice = gText_DadsAdviceTable[Random() % (sizeof(gText_DadsAdviceTable)>>2)];
+            DisplayItemMessageInBattlePyramid(taskId, advice, sub_81C6714);
+        }
     }
     else
         DisplayItemMessageOnField(taskId, gStringVar4, CleanUpAfterFailingToUseRegisteredKeyItemOnField);
@@ -164,7 +168,8 @@ void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnFiel
 
 void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
 {
-    DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_DadsAdvice);
+    const u8* advice = gText_DadsAdviceTable[Random() % (sizeof(gText_DadsAdviceTable)>>2)];
+    DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, advice);
 }
 
 void DisplayCannotDismountBikeMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
@@ -1100,4 +1105,17 @@ void ItemUseInBattle_EnigmaBerry(u8 taskId)
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].data[3]);
+}
+
+void ItemUseOutOfBattle_DisplayString(u8 taskId)
+{
+    switch (gSpecialVar_ItemId)
+    {
+    case ITEM_CHALLENGE_AMULET:
+        DisplayCannotUseItemMessage(taskId, gTasks[taskId].data[3], gText_ChallengeAmuletUseDescription);
+        break;
+    case ITEM_SKULL_EMBLEM:
+        DisplayCannotUseItemMessage(taskId, gTasks[taskId].data[3], gText_TeamSkullUseDescription);
+        break;
+    }
 }

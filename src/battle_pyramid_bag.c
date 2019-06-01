@@ -23,6 +23,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "random.h"
 #include "task.h"
 #include "text_window.h"
 #include "scanline_effect.h"
@@ -1042,8 +1043,9 @@ static void BagAction_UseOnField(u8 taskId)
         || pocketId == POCKET_TM_HM
         || ItemIsMail(gSpecialVar_ItemId) == TRUE)
     {
+        const u8* advice = gText_DadsAdviceTable[Random() % (sizeof(gText_DadsAdviceTable)>>2)];
         sub_81C61A8();
-        DisplayItemMessageInBattlePyramid(taskId, gText_DadsAdvice, sub_81C6714);
+        DisplayItemMessageInBattlePyramid(taskId, advice, sub_81C6714);
     }
     else if (ItemId_GetFieldFunc(gSpecialVar_ItemId) != NULL)
     {
