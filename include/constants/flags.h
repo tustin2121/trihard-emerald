@@ -35,7 +35,7 @@
 #define FLAG_TEMP_1C    0x1C
 #define FLAG_TEMP_1D    0x1D
 #define FLAG_TEMP_1E    0x1E
-#define FLAG_TEMP_1F    0x1F
+#define FLAG_TEMP_1F    0x1F //Used only in Victory Road
 
 #define FLAG_UNUSED_0x020    0x20 // Unused Flag
 #define FLAG_UNUSED_0x021    0x21 // Unused Flag
@@ -231,7 +231,7 @@
 #define FLAG_RECEIVED_PREMIER_BALL_RUSTBORO  0xD5
 #define FLAG_ENABLE_WALLY_MATCH_CALL         0xD6
 #define FLAG_ENABLE_SCOTT_MATCH_CALL         0xD7
-#define FLAG_ENABLE_MOM_MATCH_CALL           0xD8
+#define FLAG_ENABLE_MOM_MATCH_CALL           0xD8 //TE: Unused
 #define FLAG_MET_DIVING_TREASURE_HUNTER      0xD9
 #define FLAG_MET_WAILMER_TRAINER             0xDA
 #define FLAG_EVIL_LEADER_PLEASE_STOP         0xDB
@@ -323,7 +323,7 @@
 #define FLAG_RIVAL_LEFT_FOR_ROUTE103         0x12D
 #define FLAG_OMIT_DIVE_FROM_STEVEN_LETTER    0x12E
 #define FLAG_HAS_MATCH_CALL                  0x12F
-#define FLAG_ADDED_MATCH_CALL_TO_POKENAV     0x130
+#define FLAG_ADDED_CONDITION_TO_POKENAV     0x130
 #define FLAG_REGISTERED_STEVEN_POKENAV       0x131
 #define FLAG_ENABLE_NORMAN_MATCH_CALL        0x132
 #define FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN 0x133 // Set after you follow Steven to the entrance of the Cave of Origin.
@@ -1500,49 +1500,49 @@
 #define FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY        (SYSTEM_FLAGS + 0xD2)
 #define FLAG_DAILY_0x933                            (SYSTEM_FLAGS + 0xD3)
 #define FLAG_DAILY_APPRENTICE_LEAVES                (SYSTEM_FLAGS + 0xD4)
-#define FLAG_0x935                                  (SYSTEM_FLAGS + 0xD5)
-#define FLAG_0x936                                  (SYSTEM_FLAGS + 0xD6)
-#define FLAG_0x937                                  (SYSTEM_FLAGS + 0xD7)
-#define FLAG_0x938                                  (SYSTEM_FLAGS + 0xD8)
-#define FLAG_0x939                                  (SYSTEM_FLAGS + 0xD9)
-#define FLAG_0x93A                                  (SYSTEM_FLAGS + 0xDA)
-#define FLAG_0x93B                                  (SYSTEM_FLAGS + 0xDB)
-#define FLAG_0x93C                                  (SYSTEM_FLAGS + 0xDC)
-#define FLAG_0x93D                                  (SYSTEM_FLAGS + 0xDD)
-#define FLAG_0x93E                                  (SYSTEM_FLAGS + 0xDE)
-#define FLAG_0x93F                                  (SYSTEM_FLAGS + 0xDF)
-#define FLAG_0x940                                  (SYSTEM_FLAGS + 0xE0)
-#define FLAG_0x941                                  (SYSTEM_FLAGS + 0xE1)
-#define FLAG_0x942                                  (SYSTEM_FLAGS + 0xE2)
-#define FLAG_0x943                                  (SYSTEM_FLAGS + 0xE3)
-#define FLAG_0x944                                  (SYSTEM_FLAGS + 0xE4)
-#define FLAG_0x945                                  (SYSTEM_FLAGS + 0xE5)
-#define FLAG_0x946                                  (SYSTEM_FLAGS + 0xE6)
-#define FLAG_0x947                                  (SYSTEM_FLAGS + 0xE7)
-#define FLAG_0x948                                  (SYSTEM_FLAGS + 0xE8)
-#define FLAG_0x949                                  (SYSTEM_FLAGS + 0xE9)
-#define FLAG_0x94A                                  (SYSTEM_FLAGS + 0xEA)
-#define FLAG_0x94B                                  (SYSTEM_FLAGS + 0xEB)
-#define FLAG_0x94C                                  (SYSTEM_FLAGS + 0xEC)
-#define FLAG_0x94D                                  (SYSTEM_FLAGS + 0xED)
-#define FLAG_0x94E                                  (SYSTEM_FLAGS + 0xEE)
-#define FLAG_0x94F                                  (SYSTEM_FLAGS + 0xEF)
-#define FLAG_0x950                                  (SYSTEM_FLAGS + 0xF0)
-#define FLAG_0x951                                  (SYSTEM_FLAGS + 0xF1)
-#define FLAG_0x952                                  (SYSTEM_FLAGS + 0xF2)
-#define FLAG_0x953                                  (SYSTEM_FLAGS + 0xF3)
-#define FLAG_0x954                                  (SYSTEM_FLAGS + 0xF4)
-#define FLAG_0x955                                  (SYSTEM_FLAGS + 0xF5)
-#define FLAG_0x956                                  (SYSTEM_FLAGS + 0xF6)
-#define FLAG_0x957                                  (SYSTEM_FLAGS + 0xF7)
-#define FLAG_0x958                                  (SYSTEM_FLAGS + 0xF8)
-#define FLAG_0x959                                  (SYSTEM_FLAGS + 0xF9)
-#define FLAG_0x95A                                  (SYSTEM_FLAGS + 0xFA)
-#define FLAG_0x95B                                  (SYSTEM_FLAGS + 0xFB)
-#define FLAG_0x95C                                  (SYSTEM_FLAGS + 0xFC)
-#define FLAG_0x95D                                  (SYSTEM_FLAGS + 0xFD)
-#define FLAG_0x95E                                  (SYSTEM_FLAGS + 0xFE)
-#define FLAG_0x95F                                  (SYSTEM_FLAGS + 0xFF)
+#define FLAG_DAILY_DAD_CALL                         (SYSTEM_FLAGS + 0xD5)
+#define FLAG_DAILY_0x936                            (SYSTEM_FLAGS + 0xD6)
+#define FLAG_DAILY_0x937                            (SYSTEM_FLAGS + 0xD7)
+#define FLAG_DAILY_0x938                            (SYSTEM_FLAGS + 0xD8)
+#define FLAG_DAILY_0x939                            (SYSTEM_FLAGS + 0xD9)
+#define FLAG_DAILY_0x93A                            (SYSTEM_FLAGS + 0xDA)
+#define FLAG_DAILY_0x93B                            (SYSTEM_FLAGS + 0xDB)
+#define FLAG_DAILY_0x93C                            (SYSTEM_FLAGS + 0xDC)
+#define FLAG_DAILY_0x93D                            (SYSTEM_FLAGS + 0xDD)
+#define FLAG_DAILY_0x93E                            (SYSTEM_FLAGS + 0xDE)
+#define FLAG_DAILY_0x93F                            (SYSTEM_FLAGS + 0xDF)
+#define FLAG_DAILY_0x940                            (SYSTEM_FLAGS + 0xE0)
+#define FLAG_DAILY_0x941                            (SYSTEM_FLAGS + 0xE1)
+#define FLAG_DAILY_0x942                            (SYSTEM_FLAGS + 0xE2)
+#define FLAG_DAILY_0x943                            (SYSTEM_FLAGS + 0xE3)
+#define FLAG_DAILY_0x944                            (SYSTEM_FLAGS + 0xE4)
+#define FLAG_DAILY_0x945                            (SYSTEM_FLAGS + 0xE5)
+#define FLAG_DAILY_0x946                            (SYSTEM_FLAGS + 0xE6)
+#define FLAG_DAILY_0x947                            (SYSTEM_FLAGS + 0xE7)
+#define FLAG_DAILY_0x948                            (SYSTEM_FLAGS + 0xE8)
+#define FLAG_DAILY_0x949                            (SYSTEM_FLAGS + 0xE9)
+#define FLAG_DAILY_0x94A                            (SYSTEM_FLAGS + 0xEA)
+#define FLAG_DAILY_0x94B                            (SYSTEM_FLAGS + 0xEB)
+#define FLAG_DAILY_0x94C                            (SYSTEM_FLAGS + 0xEC)
+#define FLAG_DAILY_0x94D                            (SYSTEM_FLAGS + 0xED)
+#define FLAG_DAILY_0x94E                            (SYSTEM_FLAGS + 0xEE)
+#define FLAG_DAILY_0x94F                            (SYSTEM_FLAGS + 0xEF)
+#define FLAG_DAILY_0x950                            (SYSTEM_FLAGS + 0xF0)
+#define FLAG_DAILY_0x951                            (SYSTEM_FLAGS + 0xF1)
+#define FLAG_DAILY_0x952                            (SYSTEM_FLAGS + 0xF2)
+#define FLAG_DAILY_0x953                            (SYSTEM_FLAGS + 0xF3)
+#define FLAG_DAILY_0x954                            (SYSTEM_FLAGS + 0xF4)
+#define FLAG_DAILY_0x955                            (SYSTEM_FLAGS + 0xF5)
+#define FLAG_DAILY_0x956                            (SYSTEM_FLAGS + 0xF6)
+#define FLAG_DAILY_0x957                            (SYSTEM_FLAGS + 0xF7)
+#define FLAG_DAILY_0x958                            (SYSTEM_FLAGS + 0xF8)
+#define FLAG_DAILY_0x959                            (SYSTEM_FLAGS + 0xF9)
+#define FLAG_DAILY_0x95A                            (SYSTEM_FLAGS + 0xFA)
+#define FLAG_DAILY_0x95B                            (SYSTEM_FLAGS + 0xFB)
+#define FLAG_DAILY_0x95C                            (SYSTEM_FLAGS + 0xFC)
+#define FLAG_DAILY_0x95D                            (SYSTEM_FLAGS + 0xFD)
+#define FLAG_DAILY_0x95E                            (SYSTEM_FLAGS + 0xFE)
+#define FLAG_DAILY_0x95F                            (SYSTEM_FLAGS + 0xFF)
 
 // Special Flags (Unknown)
 #define SPECIAL_FLAGS_START                                        0x4000

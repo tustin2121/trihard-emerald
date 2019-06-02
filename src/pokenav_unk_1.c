@@ -35,9 +35,9 @@ static const u8 sLastCursorPositions[] = {2, 3, 4, 2, 5};
 
 static const u8 sDescriptionIds[][6] =
 {
-    { 0, 1,  4,  4,  4,  4 },
-    { 0, 1,  2,  4,  4,  4 },
-    { 0, 1,  2,  3,  4,  4 },
+    { 0, 2,  4,  4,  4,  4 },
+    { 0, 2,  1,  4,  4,  4 },
+    { 0, 2,  1,  3,  4,  4 },
     { 5, 6,  7,  4,  4,  4 },
     { 8, 9, 10, 11, 12, 13 },
 };
@@ -45,7 +45,7 @@ static const u8 sDescriptionIds[][6] =
 static u8 GetPokenavMainMenuType(void)
 {
     u8 retVal = 0;
-    if (FlagGet(FLAG_ADDED_MATCH_CALL_TO_POKENAV))
+    if (FlagGet(FLAG_SYS_POKEMON_GET))
     { 
         retVal = 1;
         if (FlagGet(FLAG_SYS_RIBBON_GET))
@@ -76,7 +76,7 @@ bool32 sub_81C92CC(void)
         return FALSE;
     
     state->menuType = GetPokenavMainMenuType();
-    state->cursorPos = 2;
+    state->cursorPos = 1; //location of cusor after returning from match call
     state->descriptionId = 2;
     state->helpBarIndex = 0;
     sub_81C939C(state);
@@ -403,7 +403,7 @@ static u32 sub_81C97BC(struct Pokenav1Struct *a0)
 static void sub_81C97C0(struct Pokenav1Struct *a0)
 {
     a0->menuType = GetPokenavMainMenuType();
-    a0->cursorPos = 1;
+    a0->cursorPos = 2; //cusor position when leaving Condition
     a0->descriptionId = sDescriptionIds[a0->menuType][a0->cursorPos];
     a0->callback = sub_81C943C;
 }

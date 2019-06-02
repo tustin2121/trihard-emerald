@@ -77,7 +77,7 @@ RustboroCity_EventScript_1E07AC:: @ 81E07AC
 	goto RustboroCity_EventScript_1E07BD
 
 RustboroCity_EventScript_1E07BD:: @ 81E07BD
-	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setflag FLAG_ADDED_CONDITION_TO_POKENAV
 	special sp106_CreateStartMenu
 	waitstate
 	switch VAR_RESULT
