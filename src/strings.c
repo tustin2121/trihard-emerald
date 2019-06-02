@@ -262,7 +262,7 @@ const u8 gMenuText_Give2[] = _("GIVE");
 const u8 gText_xVar1[] = _("×{STR_VAR_1}");
 const u8 gUnknown_085E8DA4[] = _(" BERRY");
 const u8 gText_Coins[] = _("{STR_VAR_1} COINS");
-const u8 gText_CloseBag[] = _("CLOSE BAG");
+const u8 gText_CloseBag[] = _("Close Bag");
 const u8 gText_Var1IsSelected[] = _("{STR_VAR_1} is\nselected.");
 const u8 gText_CantWriteMail[] = _("You can't write\nMAIL here.");
 const u8 gText_NoPokemon[] = _("There is no\nPokémon.");
@@ -279,8 +279,8 @@ const u8 gText_TossHowManyVar1s[] = _("Toss out how many\n{STR_VAR_1}(s)?");
 const u8 gText_ThrewAwayVar2Var1s[] = _("Threw away {STR_VAR_2}\n{STR_VAR_1}(s).");
 const u8 gText_ConfirmTossItems[] = _("Is it okay to\nthrow away {STR_VAR_2}\n{STR_VAR_1}(s)?");
 
-const u8 gText_ChallengeAmuletUseDescription[] = _("You wouldn't be here now if that\nblowhard hadn't disqualified you…{PAUSE_UNTIL_PRESS}");
-const u8 gText_TeamSkullUseDescription[] = _("A reminder of the time when you felt\nlike you were actually part of a family…{PAUSE_UNTIL_PRESS}");
+const u8 gText_ChallengeAmuletUseDescription[] = _("You glance down at the old broken\nChallenge Amulet…\pYou wouldn't be here now if that old\nblowhard hadn't disqualified you…{PAUSE_UNTIL_PRESS}");
+const u8 gText_TeamSkullUseDescription[] = _("You look at your old Team Skull chain.\p…A reminder of a time when you felt\nlike you were actually part of a family…\pMaybe it'll bring luck if you give it to\none of your Pokémon to hold…{PAUSE_UNTIL_PRESS}");
 const u8 gText_TeamSkullNoToss[] = _("You should… but you just can't bring\nyourself to do it.{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_CantDismountBike[] = _("You can't dismount your BIKE here.{PAUSE_UNTIL_PRESS}");
