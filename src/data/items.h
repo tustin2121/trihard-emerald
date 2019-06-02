@@ -2992,7 +2992,7 @@ const struct Item gItems[] =
         .importance = 1, //TODO??
         .pocket = POCKET_ITEMS,
         .type = 4,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_DisplayString,
         .secondaryId = 0,
     },
 

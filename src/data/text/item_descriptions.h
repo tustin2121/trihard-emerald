@@ -326,7 +326,7 @@ const u8 gMagmaEmblemItemDescription[] = _("A medal-like item in\nthe same shape
 const u8 gOldSeaMapItemDescription[] = _("A faded sea chart\nthat shows the way\nto a certain island.");
 
 // THE: Added items
-const u8 gSkullEmblemDescription[] = _("My old Team Skull\nchain. Maybe it'll\nbring luck.");
-const u8 gChallengeAmuletItemDescription[] = _("Your old Alolan\nchallenge amulet.");
+const u8 gSkullEmblemDescription[] = _("Your old Team Skull\nchain. Maybe it'll\nbring luck.");
+const u8 gChallengeAmuletItemDescription[] = _("Your old broken\nAlolan Island\nChallenge amulet.");
 const u8 gHomemadeSoupItemDescription[] = _("Dad's famous Dash\nof Figy Soup.\nRestores 60 HP.");
 const u8 gMalasadaItemDescription[] = _("An Alolan specialty\nthat heals all\nstatus problems.");

@@ -149,6 +149,8 @@ void BagMenuCancelToss(u8 taskId);
 void sub_81AD84C(u8 taskId);
 void sub_81AD6FC(u8 taskId);
 
+extern void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField, const u8 *str);
+
 // .rodata
 
 static const struct BgTemplate sBgTemplates_ItemMenu[3] =
@@ -250,7 +252,7 @@ const TaskFunc gUnknown_08614054[] = {
     item_menu_type_b
 };
 
-const struct YesNoFuncTable gUnknown_08614084 = {BagMenuActuallyToss, BagMenuCancelToss};
+const struct YesNoFuncTable sBagMenuYN_TossCallbacks = {BagMenuActuallyToss, BagMenuCancelToss};
 
 const struct YesNoFuncTable gUnknown_0861408C = {sub_81AD84C, sub_81AD6FC};
 
@@ -1652,6 +1654,19 @@ void ItemMenu_Toss(u8 taskId)
 
     bag_menu_remove_some_window();
     data[8] = 1;
+    
+    // THE: Don't allow tossing of certain items
+    switch (gSpecialVar_ItemId)
+    {
+    case ITEM_SKULL_EMBLEM:
+        DisplayCannotUseItemMessage(taskId, FALSE, gText_TeamSkullNoToss);
+        return;
+    case ITEM_EXP_SHARE:
+        DisplayCannotUseItemMessage(taskId, FALSE, gText_TooImportantToToss2);
+        return;
+    default: break; //Allow tossing of anything else
+    }
+    
     if (data[2] == 1)
     {
         BagMenuConfirmToss(taskId);
@@ -1676,7 +1691,7 @@ void BagMenuConfirmToss(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_ConfirmTossItems);
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     bag_menu_print(1, 1, gStringVar4, 3, 1, 0, 0, 0, 0);
-    bag_menu_yes_no(taskId, 5, &gUnknown_08614084);
+    bag_menu_yes_no(taskId, 5, &sBagMenuYN_TossCallbacks);
 }
 
 void BagMenuCancelToss(u8 taskId)
