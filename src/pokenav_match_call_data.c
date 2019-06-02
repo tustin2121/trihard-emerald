@@ -166,7 +166,7 @@ extern const u8 gMatchCallDesc_MrStone[];
 extern const u8 gMatchCallName_MrStone[];
 
 extern const u8 gMatchCallDesc_ProfBirch[];
-extern const u8 gProfBirchMatchCallName[];
+extern const u8 gMatchCallName_ProfBirch[];
 
 extern const u8 gText_Dad_Pokenav_NoAnswer[];
 extern const u8 gText_Dad_Pokenav_AreYouHurt[];
@@ -330,7 +330,7 @@ static const struct MatchCallStruct3 sProfBirchMatchCallHeader =
     .v1 = 0,
     .flag = FLAG_ENABLE_PROF_BIRCH_MATCH_CALL,
     .desc = gMatchCallDesc_ProfBirch,
-    .name = gProfBirchMatchCallName
+    .name = gMatchCallName_ProfBirch
 };
 
 static const match_call_text_data_t sDadTextScripts[] = {

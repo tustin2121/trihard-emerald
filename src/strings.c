@@ -61,7 +61,6 @@ const u8 gYN_Elipsis3[] = _("………");
 const u8 gText_ScriptError[] = _("Script error!\nIf you see this, report it!");
 const u8 gText_EggNickname[] = _("Egg");
 const u8 gText_Pokemon[] = _("Pokémon");
-const u8 gProfBirchMatchCallName[] = _("Prof. Birch");
 const u8 gText_MainMenuNewGame[] = _("New Game");
 const u8 gText_MainMenuContinue[] = _("Continue");
 const u8 gText_MainMenuOption[] = _("Option");
@@ -1871,6 +1870,7 @@ const u8 gMatchCallDesc_Juan[] = _("3Gay5Me");
 const u8 gMatchCallDesc_EliteFour[] = _("Elite Four");
 const u8 gMatchCallDesc_Champion[] = _("Champion");
 const u8 gMatchCallDesc_ProfBirch[] = _("{PKMN} Prof.");
+const u8 gMatchCallName_ProfBirch[] = _("Prof. Birch");
 
 const u8 gText_CommStandbyAwaitingOtherPlayer[] = _("Communication standby…\nAwaiting another player to choose.");
 const u8 gText_BattleWasRefused[] = _("The battle was refused.{PAUSE 60}");
