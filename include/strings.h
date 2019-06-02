@@ -561,6 +561,7 @@ extern const u8 gText_TossHowManyVar1s[];
 extern const u8 gText_ThrewAwayVar2Var1s[];
 extern const u8 gText_NoRoomInBag[];
 extern const u8 gText_TooImportantToToss[];
+extern const u8 gText_TooImportantToToss2[];
 extern const u8 gText_ConfirmTossItems[];
 extern const u8 gText_MoveVar1Where[];
 
@@ -906,6 +907,7 @@ extern const u8 gText_Anna[];
 extern const u8 *const gText_DadsAdviceTable[11];
 extern const u8 gText_ChallengeAmuletUseDescription[];
 extern const u8 gText_TeamSkullUseDescription[];
+extern const u8 gText_TeamSkullNoToss[];
 
 extern const u8 gText_CantDismountBike[];
 extern const u8 gText_ItemFinderNothing[];

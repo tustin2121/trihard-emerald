@@ -274,12 +274,14 @@ const u8 gText_DepositedVar2Var1s[] = _("Deposited {STR_VAR_2}\n{STR_VAR_1}(s)."
 const u8 gText_NoRoomForItems[] = _("There's no room to\nstore items.");
 const u8 gText_CantStoreImportantItems[] = _("Important items\ncan't be stored in\nthe PC!");
 const u8 gText_TooImportantToToss[] = _("That's much too\nimportant to toss\nout!");
+const u8 gText_TooImportantToToss2[] = _("That's much too important to toss!{PAUSE_UNTIL_PRESS}");
 const u8 gText_TossHowManyVar1s[] = _("Toss out how many\n{STR_VAR_1}(s)?");
 const u8 gText_ThrewAwayVar2Var1s[] = _("Threw away {STR_VAR_2}\n{STR_VAR_1}(s).");
 const u8 gText_ConfirmTossItems[] = _("Is it okay to\nthrow away {STR_VAR_2}\n{STR_VAR_1}(s)?");
 
 const u8 gText_ChallengeAmuletUseDescription[] = _("You wouldn't be here now if that\nblowhard hadn't disqualified you…{PAUSE_UNTIL_PRESS}");
 const u8 gText_TeamSkullUseDescription[] = _("A reminder of the time when you felt\nlike you were actually part of a family…{PAUSE_UNTIL_PRESS}");
+const u8 gText_TeamSkullNoToss[] = _("You should… but you just can't bring\nyourself to do it.{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_CantDismountBike[] = _("You can't dismount your BIKE here.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ItemFinderNearby[] = _("Huh?\nThe ITEMFINDER's responding!\pThere's an item buried around here!{PAUSE_UNTIL_PRESS}");
