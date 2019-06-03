@@ -127,7 +127,7 @@ void sub_81ABAE0(void);
 u8 sub_81AB1F0(u8);
 void sub_81AC23C(u8);
 void bag_menu_change_item_callback(s32 a, bool8 b, struct ListMenu*);
-void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a);
+void BagMenu_PrintItemQuantity(u8 rboxId, int item_index_in_pocket, u8 a);
 void ItemMenu_UseOutOfBattle(u8 taskId);
 void ItemMenu_Toss(u8 taskId);
 void ItemMenu_Register(u8 taskId);
@@ -188,7 +188,7 @@ static const struct ListMenuTemplate sItemListMenu =
 {
     .items = NULL,
     .moveCursorFunc = bag_menu_change_item_callback,
-    .itemPrintFunc = sub_81AB520,
+    .itemPrintFunc = BagMenu_PrintItemQuantity,
     .totalItems = 0,
     .maxShowed = 0,
     .windowId = 0,
@@ -451,7 +451,7 @@ static EWRAM_DATA struct TempWallyStruct *gUnknown_0203CE80 = 0;
 extern u8 *const gPocketNamesStringsTable[];
 extern u8* gReturnToXStringsTable[];
 extern const u8 EventScript_SelectWithoutRegisteredItem[];
-extern const u16 gUnknown_0860F074[];
+extern const u16 gTextBoxPalette[];
 
 void ResetBagScrollPositions(void)
 {
@@ -824,7 +824,7 @@ void bag_menu_change_item_callback(s32 a, bool8 b, struct ListMenu *unused)
     }
 }
 
-void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a)
+void BagMenu_PrintItemQuantity(u8 rboxId, int item_index_in_pocket, u8 a)
 {
     u16 itemId;
     u16 itemQuantity;
@@ -841,6 +841,15 @@ void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a)
         }
         itemId = BagGetItemIdByPocketPosition(gUnknown_0203CE58.pocket + 1, item_index_in_pocket);
         itemQuantity = BagGetQuantityByPocketPosition(gUnknown_0203CE58.pocket + 1, item_index_in_pocket);
+        
+        if (ItemId_GetHighlight(itemId))
+        {
+            ListMenuOverrideSetColors(
+                ItemId_GetHighlight(itemId), 
+                sItemListMenu.fillValue, 
+                sItemListMenu.cursorShadowPal);
+        }
+        
         if (gUnknown_0203CE58.pocket == BERRIES_POCKET)
         {
             ConvertIntToDecimalStringN(gStringVar1, itemQuantity, 1, 3);
@@ -848,12 +857,12 @@ void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a)
             offset = GetStringRightAlignXOffset(7, gStringVar4, 0x77);
             bag_menu_print(rboxId, 7, gStringVar4, offset, a, 0, 0, -1, 0);
         }
-        else if (gUnknown_0203CE58.pocket != KEYITEMS_POCKET && (unique = ItemId_GetImportance(itemId)) == FALSE)
+        else if (gUnknown_0203CE58.pocket != KEYITEMS_POCKET && ItemId_GetImportance(itemId) == FALSE && ItemId_GetShouldHideQuantity(itemId) == FALSE)
         {
             ConvertIntToDecimalStringN(gStringVar1, itemQuantity, 1, 2);
             StringExpandPlaceholders(gStringVar4, gText_xVar1);
             offset = GetStringRightAlignXOffset(7, gStringVar4, 0x77);
-            bag_menu_print(rboxId, 7, gStringVar4, offset, a, unique, unique, -1, unique);
+            bag_menu_print(rboxId, 7, gStringVar4, offset, a, 0, 0, -1, 0);
         }
         else
         {
@@ -2285,7 +2294,7 @@ void setup_bag_menu_textboxes(void)
     LoadUserWindowBorderGfx(0, 1, 0xE0);
     LoadMessageBoxGfx(0, 10, 0xD0);
     sub_819A2BC(0xC0, 1);
-    LoadPalette(&gUnknown_0860F074, 0xF0, 0x20);
+    LoadPalette(&gTextBoxPalette, 0xF0, 0x20);
     for (i = 0; i < 3; i++)
     {
         FillWindowPixelBuffer(i, PIXEL_FILL(0));

@@ -1482,8 +1482,8 @@ static void sub_80772A4(void)
     gPaletteFade.bufferTransferDisabled = TRUE;
 
     SetVBlankCallback(sub_807811C);
-    LoadPalette(gUnknown_0860F074, 0xF0, 20);
-    LoadPalette(gUnknown_0860F074, 0xD0, 20);
+    LoadPalette(gTextBoxPalette, 0xF0, 20);
+    LoadPalette(gTextBoxPalette, 0xD0, 20);
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, gUnknown_0832DEE4, ARRAY_COUNT(gUnknown_0832DEE4));
     SetBgTilemapBuffer(1, gUnknown_0203229C->tilemapBuffer);

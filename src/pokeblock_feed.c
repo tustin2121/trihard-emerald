@@ -53,7 +53,7 @@ struct PokeblockFeedStruct
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
-extern const u16 gUnknown_0860F074[];
+extern const u16 gTextBoxPalette[];
 
 // this file's functions
 static void HandleInitBackgrounds(void);
@@ -701,7 +701,7 @@ static void HandleInitWindows(void)
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 1, 0xE0);
-    LoadPalette(gUnknown_0860F074, 0xF0, 0x20);
+    LoadPalette(gTextBoxPalette, 0xF0, 0x20);
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
     PutWindowTilemap(0);
     schedule_bg_copy_tilemap_to_vram(0);

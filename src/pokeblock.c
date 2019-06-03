@@ -74,7 +74,7 @@ enum
 };
 
 
-extern const u16 gUnknown_0860F074[];
+extern const u16 gTextBoxPalette[];
 
 // this file's functions
 static void CB2_InitPokeblockMenu(void);
@@ -662,7 +662,7 @@ static void HandleInitWindows(void)
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 1, 0xE0);
     LoadMessageBoxGfx(0, 0xA, 0xD0);
-    LoadPalette(gUnknown_0860F074, 0xF0, 0x20);
+    LoadPalette(gTextBoxPalette, 0xF0, 0x20);
 
     for (i = 0; i < ARRAY_COUNT(sWindowTemplatesForPokeblockMenu) - 1; i++)
     {

@@ -1394,7 +1394,7 @@ static void sub_81C6BD8(void)
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 0x1, 0xE0);
     LoadMessageBoxGfx(0, 0xA, 0xD0);
-    LoadPalette(gUnknown_0860F074, 0xF0, 0x20);
+    LoadPalette(gTextBoxPalette, 0xF0, 0x20);
 
     for (i = 0; i < 5; i++)
         FillWindowPixelBuffer(i, PIXEL_FILL(0));

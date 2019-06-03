@@ -3124,7 +3124,7 @@ static void sub_81B239C(u8 a)
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
     LoadUserWindowBorderGfx(0, 0x4F, 0xD0);
     LoadPalette(GetOverworldTextboxPalettePtr(), 0xE0, 0x20);
-    LoadPalette(gUnknown_0860F074, 0xF0, 0x20);
+    LoadPalette(gTextBoxPalette, 0xF0, 0x20);
 }
 
 static void sub_81B2428(bool8 a)

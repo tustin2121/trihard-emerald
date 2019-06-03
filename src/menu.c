@@ -63,7 +63,7 @@ static EWRAM_DATA bool8 gUnknown_0203CDA4[4] = {FALSE};
 static EWRAM_DATA u16 gUnknown_0203CDA8 = 0;
 static EWRAM_DATA void *gUnknown_0203CDAC[0x20] = {NULL};
 
-const u16 gUnknown_0860F074[] = INCBIN_U16("graphics/interface/860F074.gbapal");
+const u16 gTextBoxPalette[] = INCBIN_U16("graphics/interface/860F074.gbapal");
 static const u8 gUnknown_0860F094[] = { 8, 4, 1 };
 
 static const struct WindowTemplate sStandardTextBox_WindowTemplates[] =
@@ -565,24 +565,24 @@ void Menu_LoadAndDisplayDialogBoxCustomPalette(u8 windowId, bool8 copyToVram)
 
 void sub_819789C(void)
 {
-    LoadPalette(gUnknown_0860F074, STD_WINDOW_PALETTE_NUM * 0x10, 0x14);
+    LoadPalette(gTextBoxPalette, STD_WINDOW_PALETTE_NUM * 0x10, 0x14);
 }
 
 void Menu_LoadStdPalAt(u16 offset)
 {
-    LoadPalette(gUnknown_0860F074, offset, 0x14);
+    LoadPalette(gTextBoxPalette, offset, 0x14);
 }
 
 const u16 *sub_81978C8(void)
 {
-    return gUnknown_0860F074;
+    return gTextBoxPalette;
 }
 
 u16 sub_81978D0(u8 colorNum)
 {
     if (colorNum > 15)
         colorNum = 0;
-    return gUnknown_0860F074[colorNum];
+    return gTextBoxPalette[colorNum];
 }
 
 void DisplayItemMessageOnField(u8 taskId, const u8 *string, TaskFunc callback)

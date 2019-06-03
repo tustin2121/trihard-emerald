@@ -1050,6 +1050,16 @@ u8 ItemId_GetImportance(u16 itemId)
     return gItems[SanitizeItemId(itemId)].importance;
 }
 
+u8 ItemId_GetHighlight(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].highlight;
+}
+
+u8 ItemId_GetShouldHideQuantity(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].hideQuantity;
+}
+
 // unused
 u8 ItemId_GetUnknownValue(u16 itemId)
 {

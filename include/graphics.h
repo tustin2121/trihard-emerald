@@ -4106,7 +4106,7 @@ extern const u32 gBagSwapLinePal[];
 extern const u32 gUnknown_08D9ADD0[];
 extern const u32 gUnknown_08D9AE04[];
 extern const u32 gUnknown_08D9AF44[];
-extern const u16 gUnknown_0860F074[];
+extern const u16 gTextBoxPalette[];
 extern const u32 gBattleFrontierGfx_PyramidBag[];
 
 extern const u32 gTitleScreenEmeraldVersionGfx[];

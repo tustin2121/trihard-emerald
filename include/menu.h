@@ -18,7 +18,7 @@ struct MenuAction
     } func;
 };
 
-extern const u16 gUnknown_0860F074[];
+extern const u16 gTextBoxPalette[];
 
 void FreeAllOverworldWindowBuffers(void);
 void InitStandardTextBoxWindows(void);
