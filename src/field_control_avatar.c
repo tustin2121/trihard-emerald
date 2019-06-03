@@ -30,6 +30,7 @@
 #include "wild_encounter.h"
 #include "constants/bg_event_constants.h"
 #include "constants/event_objects.h"
+#include "constants/items.h"
 #include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
@@ -619,6 +620,18 @@ static void UpdateHappinessStepCounter(void)
         for (i = 0; i < PARTY_SIZE; i++)
         {
             AdjustFriendship(mon, FRIENDSHIP_EVENT_WALKING);
+            mon++;
+        }
+    }
+    else if (*ptr == 64)
+    {
+        struct Pokemon *mon = gPlayerParty;
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetMonData(mon, MON_DATA_HELD_ITEM) == ITEM_SKULL_EMBLEM)
+            {
+                AdjustFriendship(mon, FRIENDSHIP_EVENT_WALKING);
+            }
             mon++;
         }
     }
