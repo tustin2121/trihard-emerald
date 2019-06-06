@@ -662,7 +662,7 @@ static const struct WindowTemplate gUnknown_08611C84 =
 };
 
 // Second field - whether the character is female.
-static const u8 sFacilityToBrainEventObjGfx[][2] =
+static const u16 sFacilityToBrainEventObjGfx[][2] =
 {
     [FRONTIER_FACILITY_TOWER]   = {EVENT_OBJ_GFX_ANABEL,  TRUE},
     [FRONTIER_FACILITY_DOME]    = {EVENT_OBJ_GFX_TUCKER,  FALSE},
