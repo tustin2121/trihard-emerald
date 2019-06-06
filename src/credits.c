@@ -2017,7 +2017,7 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
         gMain.state += 1;
         break;
     case 2:
-        if (gSaveBlock2Ptr->playerGender == MALE)
+        if (GetPlayerGender() == MALE)
         {
             LoadCompressedSpriteSheet(gUnknown_085F5334);
             LoadCompressedSpriteSheet(gUnknown_085F53BC);

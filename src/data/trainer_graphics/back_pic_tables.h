@@ -25,6 +25,7 @@ const struct CompressedSpriteSheet gTrainerBackPicTable[] =
     (const u32 *)gTrainerBackPic_Steven, 0x2000, TRAINER_BACK_PIC_STEVEN,
 };
 
+//TODO: MULTIFORM PLAYER
 const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
 {
     TRAINER_BACK_PAL(BRENDAN, gTrainerPalette_Brendan),

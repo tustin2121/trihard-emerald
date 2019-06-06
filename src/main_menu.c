@@ -925,7 +925,7 @@ static void Task_DisplayMainMenu(u8 taskId)
 
         // Note: If there is no save file, the save block is zeroed out,
         // so the default gender is MALE.
-        if (gSaveBlock2Ptr->playerGender == MALE)
+        if (GetPlayerGender() == MALE)
         {
             palette = RGB(4, 16, 31);
             LoadPalette(&palette, 241, 2);
@@ -1759,7 +1759,7 @@ static void Task_NewGameBirchSpeech_ChooseGender(u8 taskId)
         else
         {
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->playerGender = MALE;
+            gSaveBlock2Ptr->playerForm = MALE;
             girl->tDestX = 260;
             gTasks[taskId].func = Task_NewGameBirchSpeech_WhatsYourName;
             NewGameBirchSpeech_ClearGenderTextWindows();
@@ -1775,7 +1775,7 @@ static void Task_NewGameBirchSpeech_ChooseGender(u8 taskId)
         else
         {
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->playerGender = FEMALE;
+            gSaveBlock2Ptr->playerForm = FEMALE;
             boy->tDestX = -32;
             gTasks[taskId].func = Task_NewGameBirchSpeech_WhatsYourName;
             NewGameBirchSpeech_ClearGenderTextWindows();
@@ -1823,13 +1823,13 @@ static void Task_NewGameBirchSpeech_ChooseGender(u8 taskId)
     {
         case MALE:
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->playerGender = gender;
+            gSaveBlock2Ptr->playerForm = gender;
             NewGameBirchSpeech_ClearGenderWindow(1, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_WhatsYourName;
             break;
         case FEMALE:
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->playerGender = gender;
+            gSaveBlock2Ptr->playerForm = gender;
             NewGameBirchSpeech_ClearGenderWindow(1, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_WhatsYourName;
             break;
@@ -1935,7 +1935,7 @@ static void Task_NewGameBirchSpeech_StartNamingScreen(u8 taskId)
         FreeAndDestroyMonPicSprite(gTasks[taskId].tLotadSpriteId);
         NewGameBirchSpeech_SetDefaultPlayerName(Random() % 20);
         DestroyTask(taskId);
-        DoNamingScreen(0, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
+        DoNamingScreen(0, gSaveBlock2Ptr->playerName, GetPlayerGender(), 0, 0, CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
     }
 }
 
@@ -2049,7 +2049,7 @@ static void Task_NewGameBirchSpeech_AreYouReady(u8 taskId)
             gTasks[taskId].tTimer--;
             return;
         }
-        if (gSaveBlock2Ptr->playerGender != MALE)
+        if (gSaveBlock2Ptr->playerForm != MALE)
             spriteId = gTasks[taskId].tGirlSpriteId;
         else
             spriteId = gTasks[taskId].tBoySpriteId;
@@ -2160,7 +2160,7 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void)
     FreeAllSpritePalettes();
     ResetAllPicSprites();
     AddBirchSpeechObjects(taskId);
-    if (gSaveBlock2Ptr->playerGender != MALE)
+    if (gSaveBlock2Ptr->playerForm != MALE)
     {
         gTasks[taskId].tPlayerGender = FEMALE;
         chosenSpriteId = gTasks[taskId].tGirlSpriteId;
@@ -2452,7 +2452,7 @@ static void NewGameBirchSpeech_SetDefaultPlayerName(u8 nameId)
     const u8* name;
     u8 i;
 
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (gSaveBlock2Ptr->playerForm == MALE)
         name = gMalePresetNames[nameId];
     else
         name = gFemalePresetNames[nameId];

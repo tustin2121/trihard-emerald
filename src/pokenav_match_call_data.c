@@ -886,7 +886,7 @@ static bool32 MatchCallGetFlag_Type2(match_call_t matchCall)
 
 static bool32 MatchCallGetFlag_Type3(match_call_t matchCall)
 {
-    if (matchCall.type4->gender != gSaveBlock2Ptr->playerGender)
+    if (matchCall.type4->gender != GetPlayerGender())
         return FALSE;
     if (matchCall.type4->flag == 0xffff)
         return TRUE;

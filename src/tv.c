@@ -1992,7 +1992,7 @@ void sub_80EDC60(const u16 *words)
         show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
         show->trendWatcher.kind = TVSHOW_TREND_WATCHER;
         show->trendWatcher.active = FALSE;
-        show->trendWatcher.gender = gSaveBlock2Ptr->playerGender;
+        show->trendWatcher.gender = GetPlayerGender();
         show->trendWatcher.words[0] = words[0];
         show->trendWatcher.words[1] = words[1];
         StringCopy(show->trendWatcher.playerName, gSaveBlock2Ptr->playerName);
@@ -3526,7 +3526,7 @@ u8 CheckForBigMovieOrEmergencyNewsOnTV(void)
     {
         return 0;
     }
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
     {
         if (gSaveBlock1Ptr->location.mapNum != MAP_NUM(LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
         {
@@ -3555,7 +3555,7 @@ void GetMomOrDadStringForTVMessage(void)
 {
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
     {
-        if (gSaveBlock2Ptr->playerGender == MALE)
+        if (GetPlayerGender() == MALE)
         {
             if (gSaveBlock1Ptr->location.mapNum == MAP_NUM(LITTLEROOT_TOWN_BRENDANS_HOUSE_1F))
             {

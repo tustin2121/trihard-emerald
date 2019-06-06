@@ -428,7 +428,7 @@ struct RankingHall2P
 struct SaveBlock2
 {
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x08*/ u8 playerGender; // MALE, FEMALE
+    /*0x08*/ u8 playerForm; // lowest bit: MALE, FEMALE, upper bits: outfits for the player
     /*0x09*/ u8 specialSaveWarpFlags;
     /*0x0A*/ u8 playerTrainerId[4];
     /*0x0E*/ u16 playTimeHours;
@@ -460,6 +460,10 @@ struct SaveBlock2
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
+
+static inline u8 GetPlayerGender() {
+    return (gSaveBlock2Ptr->playerForm & 1);
+}
 
 struct SecretBaseParty
 {

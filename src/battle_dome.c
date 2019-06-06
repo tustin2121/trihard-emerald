@@ -4601,7 +4601,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTournamentId)
         y = -160;
 
     if (trainerId == TRAINER_PLAYER)
-        sBattleDomeStruct->arr[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 48, y + 64, palSlot + 12, 0xFFFF);
+        sBattleDomeStruct->arr[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerForm), TRUE, x + 48, y + 64, palSlot + 12, 0xFFFF);
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
         sBattleDomeStruct->arr[arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 48, y + 64, palSlot + 12, 0xFFFF);
     else
@@ -5039,7 +5039,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
 
     // Draw first trainer sprite.
     if (trainerIds[0] == TRAINER_PLAYER)
-        sBattleDomeStruct->arr[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 48, y + 88, palSlot + 12, 0xFFFF);
+        sBattleDomeStruct->arr[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerForm), TRUE, x + 48, y + 88, palSlot + 12, 0xFFFF);
     else if (trainerIds[0] == TRAINER_FRONTIER_BRAIN)
         sBattleDomeStruct->arr[arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 48, y + 88, palSlot + 12, 0xFFFF);
     else
@@ -5052,7 +5052,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
 
     // Draw second trainer sprite.
     if (trainerIds[1] == TRAINER_PLAYER)
-        sBattleDomeStruct->arr[1 + arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 192, y + 88, palSlot + 13, 0xFFFF);
+        sBattleDomeStruct->arr[1 + arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerForm), TRUE, x + 192, y + 88, palSlot + 13, 0xFFFF);
     else if (trainerIds[1] == TRAINER_FRONTIER_BRAIN)
         sBattleDomeStruct->arr[1 + arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 192, y + 88, palSlot + 13, 0xFFFF);
     else

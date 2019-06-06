@@ -1362,7 +1362,8 @@ void SetUpPlacingDecorationPlayerAvatar(u8 taskId, struct PlaceDecorationGraphic
     if (data->decoration->shape == DECORSHAPE_3x1 || data->decoration->shape == DECORSHAPE_3x3 || data->decoration->shape == DECORSHAPE_3x2)
         x -= 8;
 
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    //TODO: MULTIFORM PLAYER
+    if (GetPlayerGender() == MALE)
         sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_BRENDAN_DECORATING, SpriteCallbackDummy, x, 72, 0);
     else
         sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_MAY_DECORATING, SpriteCallbackDummy, x, 72, 0);
@@ -2247,7 +2248,8 @@ void SetUpPuttingAwayDecorationPlayerAvatar(void)
     sDecor_CameraSpriteObjectIdx1 = gSprites[gFieldCamera.spriteId].data[0];
     sub_812A39C();
     gFieldCamera.spriteId = CreateSprite(&gUnknown_085A7404, 120, 80, 0);
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    //TODO: MULTIFORM PLAYER GetPlayerGender()
+    if (GetPlayerGender() == MALE)
         sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_BRENDAN_DECORATING, SpriteCallbackDummy, 136, 72, 0);
     else
         sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_MAY_DECORATING, SpriteCallbackDummy, 136, 72, 0);
@@ -2640,7 +2642,8 @@ void sub_812A36C(struct Sprite *sprite)
 
 void sub_812A39C(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    //TODO: MULTIFORM PLAYER
+    if (GetPlayerGender() == MALE)
         LoadSpritePalette(&gUnknown_085A73D8);
     else
         LoadSpritePalette(&gUnknown_085A73E0);

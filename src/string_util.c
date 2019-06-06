@@ -500,7 +500,7 @@ extern const u8 gExpandedPlaceholder_Brendan[];
 extern const u8 gExpandedPlaceholder_May[];
 static const u8 *ExpandPlaceholder_RivalBirch(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_May;
     else
         return gExpandedPlaceholder_Brendan;
@@ -539,7 +539,7 @@ extern const u8 gExpandedPlaceholder_HersUppercase[];
 
 static const u8 *ExpandPlaceholder_PlayerTheyUpper(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HeUppercase;
     else
         return gExpandedPlaceholder_SheUppercase;
@@ -547,7 +547,7 @@ static const u8 *ExpandPlaceholder_PlayerTheyUpper(void)
 
 static const u8 *ExpandPlaceholder_PlayerThemUpper(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HimUppercase;
     else
         return gExpandedPlaceholder_HerUppercase;
@@ -555,7 +555,7 @@ static const u8 *ExpandPlaceholder_PlayerThemUpper(void)
 
 static const u8 *ExpandPlaceholder_PlayerTheirUpper(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HisUppercase;
     else
         return gExpandedPlaceholder_HerUppercase;
@@ -563,7 +563,7 @@ static const u8 *ExpandPlaceholder_PlayerTheirUpper(void)
 
 static const u8 *ExpandPlaceholder_PlayerTheirsUpper(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HisUppercase;
     else
         return gExpandedPlaceholder_HersUppercase;
@@ -571,7 +571,7 @@ static const u8 *ExpandPlaceholder_PlayerTheirsUpper(void)
 
 static const u8 *ExpandPlaceholder_RivalTheyUpper(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_SheUppercase;
     else
         return gExpandedPlaceholder_HeUppercase;
@@ -579,7 +579,7 @@ static const u8 *ExpandPlaceholder_RivalTheyUpper(void)
 
 static const u8 *ExpandPlaceholder_RivalThemUpper(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HerUppercase;
     else
         return gExpandedPlaceholder_HimUppercase;
@@ -587,7 +587,7 @@ static const u8 *ExpandPlaceholder_RivalThemUpper(void)
 
 static const u8 *ExpandPlaceholder_RivalTheirUpper(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HerUppercase;
     else
         return gExpandedPlaceholder_HisUppercase;
@@ -595,7 +595,7 @@ static const u8 *ExpandPlaceholder_RivalTheirUpper(void)
 
 static const u8 *ExpandPlaceholder_RivalTheirsUpper(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HersUppercase;
     else
         return gExpandedPlaceholder_HisUppercase;
@@ -610,7 +610,7 @@ extern const u8 gExpandedPlaceholder_HersLowercase[];
 
 static const u8 *ExpandPlaceholder_PlayerTheyLower(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HeLowercase;
     else
         return gExpandedPlaceholder_SheLowercase;
@@ -618,7 +618,7 @@ static const u8 *ExpandPlaceholder_PlayerTheyLower(void)
 
 static const u8 *ExpandPlaceholder_PlayerThemLower(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HimLowercase;
     else
         return gExpandedPlaceholder_HerLowercase;
@@ -626,7 +626,7 @@ static const u8 *ExpandPlaceholder_PlayerThemLower(void)
 
 static const u8 *ExpandPlaceholder_PlayerTheirLower(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HisLowercase;
     else
         return gExpandedPlaceholder_HerLowercase;
@@ -634,7 +634,7 @@ static const u8 *ExpandPlaceholder_PlayerTheirLower(void)
 
 static const u8 *ExpandPlaceholder_PlayerTheirsLower(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HisLowercase;
     else
         return gExpandedPlaceholder_HersLowercase;
@@ -642,7 +642,7 @@ static const u8 *ExpandPlaceholder_PlayerTheirsLower(void)
 
 static const u8 *ExpandPlaceholder_RivalTheyLower(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_SheLowercase;
     else
         return gExpandedPlaceholder_HeLowercase;
@@ -650,7 +650,7 @@ static const u8 *ExpandPlaceholder_RivalTheyLower(void)
 
 static const u8 *ExpandPlaceholder_RivalThemLower(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HerLowercase;
     else
         return gExpandedPlaceholder_HimLowercase;
@@ -658,7 +658,7 @@ static const u8 *ExpandPlaceholder_RivalThemLower(void)
 
 static const u8 *ExpandPlaceholder_RivalTheirLower(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HerLowercase;
     else
         return gExpandedPlaceholder_HisLowercase;
@@ -666,7 +666,7 @@ static const u8 *ExpandPlaceholder_RivalTheirLower(void)
 
 static const u8 *ExpandPlaceholder_RivalTheirsLower(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_HersLowercase;
     else
         return gExpandedPlaceholder_HisLowercase;
@@ -676,7 +676,7 @@ extern const u8 gExpandedPlaceholder_Sir[];
 extern const u8 gExpandedPlaceholder_Miss[];
 static const u8 *ExpandPlaceholder_SirMiss(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Sir;
     else
         return gExpandedPlaceholder_Miss;
@@ -686,7 +686,7 @@ extern const u8 gExpandedPlaceholder_Boy[];
 extern const u8 gExpandedPlaceholder_Girl[];
 static const u8 *ExpandPlaceholder_BoyGirl(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Boy;
     else
         return gExpandedPlaceholder_Girl;
@@ -694,7 +694,7 @@ static const u8 *ExpandPlaceholder_BoyGirl(void)
 
 static const u8 *ExpandPlaceholder_RivalBoyGirl(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Girl;
     else
         return gExpandedPlaceholder_Boy;
@@ -704,7 +704,7 @@ extern const u8 gExpandedPlaceholder_Dude[];
 extern const u8 gExpandedPlaceholder_Gurl[];
 static const u8 *ExpandPlaceholder_DudeGurl(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Dude;
     else
         return gExpandedPlaceholder_Gurl;
@@ -714,7 +714,7 @@ extern const u8 gExpandedPlaceholder_Man[];
 extern const u8 gExpandedPlaceholder_Lady[];
 static const u8 *ExpandPlaceholder_ManLady(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Man;
     else
         return gExpandedPlaceholder_Lady;
@@ -724,7 +724,7 @@ extern const u8 gExpandedPlaceholder_Guy[];
 extern const u8 gExpandedPlaceholder_Girl[];
 static const u8 *ExpandPlaceholder_GuyGirl(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Guy;
     else
         return gExpandedPlaceholder_Girl;
@@ -734,7 +734,7 @@ extern const u8 gExpandedPlaceholder_Buddy[];
 extern const u8 gExpandedPlaceholder_Honey[];
 static const u8 *ExpandPlaceholder_BuddyHoney(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Buddy;
     else
         return gExpandedPlaceholder_Honey;
@@ -744,14 +744,14 @@ extern const u8 gExpandedPlaceholder_Son[];
 extern const u8 gExpandedPlaceholder_Daughter[];
 static const u8 *ExpandPlaceholder_SonDaughter(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Son;
     else
         return gExpandedPlaceholder_Daughter;
 }
 static const u8 *ExpandPlaceholder_RivalSonDaughter(void)
 {
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (GetPlayerGender() == MALE)
         return gExpandedPlaceholder_Daughter;
     else
         return gExpandedPlaceholder_Son;

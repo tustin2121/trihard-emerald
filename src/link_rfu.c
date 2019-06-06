@@ -2155,7 +2155,7 @@ void sub_800DD94(struct UnkLinkRfuStruct_02022B14 *data, u8 r9, bool32 r2, s32 r
         data->unk_04[i] = r3;
         r3 >>= 8;
     }
-    data->playerGender = gSaveBlock2Ptr->playerGender;
+    data->playerGender = GetPlayerGender();
     data->unk_0a_0 = r9;
     data->unk_0a_7 = r2;
     data->unk_00.unk_00_0 = 2;

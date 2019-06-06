@@ -1630,7 +1630,8 @@ static void InitFrontierMapSprites(void)
 
         LoadCompressedSpriteSheet(sHeadsSpriteSheet);
         sprite = sSpriteTemplate_Head;
-        sprite.paletteTag = gSaveBlock2Ptr->playerGender + 4;
+        //TODO: MULTIFORM PLAYER 
+        sprite.paletteTag = GetPlayerGender() + 4;
         if (id != 0)
         {
             spriteId = CreateSprite(&sprite, x, y, 0);
@@ -1644,7 +1645,7 @@ static void InitFrontierMapSprites(void)
 
         sMapData->playerHeadSprite = &gSprites[spriteId];
         sMapData->playerHeadSprite->oam.priority = 0;
-        if (gSaveBlock2Ptr->playerGender != MALE)
+        if (GetPlayerGender() != MALE)
             StartSpriteAnim(sMapData->playerHeadSprite, 1);
     }
 }

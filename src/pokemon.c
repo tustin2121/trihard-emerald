@@ -2209,7 +2209,8 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     SetBoxMonData(boxMon, MON_DATA_MET_GAME, &gGameVersion);
     value = ITEM_POKE_BALL;
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
-    SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    value = GetPlayerGender();
+    SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &value);
 
     if (fixedIV < 32)
     {
@@ -4305,8 +4306,9 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
 {
     s32 i;
 
+    i = GetPlayerGender();
     SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
-    SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    SetMonData(mon, MON_DATA_OT_GENDER, &i);
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
 
     for (i = 0; i < PARTY_SIZE; i++)
@@ -6820,8 +6822,8 @@ u16 FacilityClassToPicIndex(u16 facilityClass)
 }
 
 u16 PlayerGenderToFrontTrainerPicId(u8 playerGender)
-{
-    if (playerGender != MALE)
+{   //TODO: MULTIFORM PLAYER
+    if ((playerGender & 1) != MALE)
         return FacilityClassToPicIndex(FACILITY_CLASS_MAY);
     else
         return FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN);

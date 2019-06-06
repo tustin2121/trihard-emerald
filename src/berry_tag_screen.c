@@ -333,7 +333,7 @@ static bool8 LoadBerryTagGfx(void)
         sBerryTag->gfxState++;
         break;
     case 3:
-        if (gSaveBlock2Ptr->playerGender == MALE)
+        if (GetPlayerGender() == MALE)
         {
             for (i = 0; i < ARRAY_COUNT(sBerryTag->tilemapBuffers[1]); i++)
                 sBerryTag->tilemapBuffers[1][i] = 0x4042;

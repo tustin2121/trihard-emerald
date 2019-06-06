@@ -2182,7 +2182,7 @@ static void mli4_mapscripts_and_other(void)
     ResetEventObjects();
     GetCameraFocusCoords(&x, &y);
     player = GetInitialPlayerAvatarState();
-    InitPlayerAvatar(x, y, player->direction, gSaveBlock2Ptr->playerGender);
+    InitPlayerAvatar(x, y, player->direction, gSaveBlock2Ptr->playerForm);
     SetPlayerAvatarTransitionFlags(player->transitionFlags);
     ResetInitialPlayerAvatarState();
     TrySpawnEventObjects(0, 0);
