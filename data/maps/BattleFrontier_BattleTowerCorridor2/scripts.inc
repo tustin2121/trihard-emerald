@@ -17,11 +17,11 @@ BattleFrontier_BattleTowerCorridor2_EventScript_248D71:: @ 8248D71
 	checkplayergender
 	compare VAR_RESULT, 1
 	goto_if_eq BattleFrontier_BattleTowerCorridor2_EventScript_248D8B
-	setvar VAR_OBJ_GFX_ID_F, EVENT_OBJ_GFX_BRENDAN_NORMAL
+	setvar VAR_OBJ_GFX_ID_F, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
 	return
 
 BattleFrontier_BattleTowerCorridor2_EventScript_248D8B:: @ 8248D8B
-	setvar VAR_OBJ_GFX_ID_F, EVENT_OBJ_GFX_MAY_NORMAL
+	setvar VAR_OBJ_GFX_ID_F, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
 	return
 
 BattleFrontier_BattleTowerCorridor2_EventScript_248D91:: @ 8248D91
