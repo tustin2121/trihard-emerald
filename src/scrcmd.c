@@ -2381,3 +2381,9 @@ bool8 ScrCmd_setyesnotext(struct ScriptContext *ctx)
     gNoString = no;
     return TRUE;
 }
+
+bool8 ScrCmd_checkplayeroutfit(struct ScriptContext *ctx)
+{
+    gSpecialVar_Result = gSaveBlock2Ptr->playerForm >> 1;
+    return FALSE;
+}

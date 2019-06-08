@@ -61,7 +61,7 @@ LittlerootTown_PlayersHouse_1F_Text_DadStayInRoom: @ 81F7B67
 	.string "Stay in your room!$"
 
 @ -----------------------------------------------------
-@ Cutscene: Set clock
+@ Cutscene: Setting the clock
 
 LittlerootTown_BrendansHouse_2F_EventScript_292781:: @ 8292781
 	lockall
@@ -156,7 +156,7 @@ LittlerootTown_PlayerHouse_2F_EventScript_SetWallClock:: @ 8292849
 	return
 
 @ -----------------------------------------------------
-@ Cutscene: After clock set
+@ Cutscene: Coming back down after setting the clock
 
 LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
 	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone1, MSGBOX_DEFAULT
@@ -284,6 +284,41 @@ LittlerootTown_MaysHouse_1F_Movement_2929C1: @ 82929C1
 	walk_in_place_fastest_up
 	step_end
 
+
+@ -----------------------------------------------------
+@ Cutscene: 
+
+LittlerootTown_RivalsHouse_1F_MeetingTheNeighbors:: @ 81F89AE
+	lockall
+	playse SE_PIN
+	applymovement 4, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 4, Common_Movement_Delay48
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	applymovement 4, LittlerootTown_MaysHouse_1F_Movement_1F89EC
+	waitmovement 0
+@	special GetRivalSonDaughterString
+	msgbox LittlerootTown_RivalsHouse_1F_Text_1F8BC5, MSGBOX_DEFAULT
+	setflag FLAG_MET_RIVAL_MOM
+	setvar VAR_LITTLEROOT_HOUSES_STATE_2, 2
+	releaseall
+	end
+
+LittlerootTown_RivalsHouse_1F_Text_1F8BC5: @ 81F8BC5
+	.string "Um, excuse me, who are you?\p"
+	.string "… … … … … … … … …\n"
+	.string "… … … … … … … … …\p"
+	.string "Oh, our new next-door neighbor!\n"
+	.string "Hello!\p"
+	.string "With that outfit on, at first I thought\n"
+	.string "you were about to… um…\p"
+	.string "Anyway, we have a {RIVAL_son} who's\n"
+	.string "about the same age as you.\p"
+	.string "{RIVAL_They} was excited about making\n"
+	.string "a new friend.\p"
+	.string "Um… … … Yes… I think\n"
+	.string "{RIVAL_they}'s upstairs.$"
 
 @ -----------------------------------------------------
 

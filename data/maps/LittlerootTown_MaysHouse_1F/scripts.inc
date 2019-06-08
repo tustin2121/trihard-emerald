@@ -53,7 +53,7 @@ LittlerootTown_MaysHouse_1F_MapScript2_FrameTable: @ 81F893A
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_1F898C
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_1F8964
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_1F899D
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_2, 1, LittlerootTown_MaysHouse_1F_EventScript_1F89AE
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_2, 1, LittlerootTown_RivalsHouse_1F_MeetingTheNeighbors
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_292AF2
 	.2byte 0
 
@@ -114,7 +114,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_1F89F3:: @ 81F89F3
 LittlerootTown_MaysHouse_1F_EventScript_1F89F3:: @ 81F89F3
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE103, LittlerootTown_BrendansHouse_1F_EventScript_1F8A33
+	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE103, LittlerootTown_BrendansHouse_1F_EventScript_RivalMomHeal
 	goto_if_set FLAG_SYS_POKEMON_GET, LittlerootTown_BrendansHouse_1F_EventScript_1F8A29
 	compare VAR_LITTLEROOT_RIVAL_STATE, 3
 	goto_if_eq LittlerootTown_BrendansHouse_1F_EventScript_1F8A1F
@@ -122,30 +122,98 @@ LittlerootTown_MaysHouse_1F_EventScript_1F89F3:: @ 81F89F3
 	msgbox LittlerootTown_RivalsHouse_1F_Text_1F8CA5, MSGBOX_DEFAULT
 	release
 	end
+LittlerootTown_RivalsHouse_1F_Text_1F8CA5: @ 81F8CA5
+	.string "Like father, like {RIVAL_son}.\p"
+	.string "My husband is as wild about Pokémon\n"
+	.string "as our little {RIVAL_boy}.\p"
+	.string "If he's not at the lab, he's likely\n"
+	.string "scrabbling about in grassy places.$"
+
 
 LittlerootTown_BrendansHouse_1F_EventScript_1F8A1F:: @ 81F8A1F
 	msgbox LittlerootTown_RivalsHouse_1F_Text_1F8D37, MSGBOX_DEFAULT
 	release
 	end
+LittlerootTown_RivalsHouse_1F_Text_1F8D37: @ 81F8D37
+	.string "That {RIVAL}!\p"
+	.string "I guess our {RIVAL_boy} is too busy with\n"
+	.string "Pokémon to notice that you came\l"
+	.string "to visit, {PLAYER}.$"
+
 
 LittlerootTown_BrendansHouse_1F_EventScript_1F8A29:: @ 81F8A29
 	msgbox LittlerootTown_RivalsHouse_1F_Text_1F8D93, MSGBOX_DEFAULT
 	release
 	end
+LittlerootTown_RivalsHouse_1F_Text_1F8D93: @ 81F8D93
+	.string "Oh, {RIVAL} went out to Route 103\n"
+	.string "just a little while ago.\p"
+	.string "I would be going along with {RIVAL_them}, but\n"
+	.string "little Charlie is a little ill today."
+	.string "Why don't you go meet {RIVAL_them}?\p"
+	.string "You don't seem like the kind of {PLAYER_boy}\n"
+	.string "who likes to stay cooped up at home.$"
 
-LittlerootTown_BrendansHouse_1F_EventScript_1F8A33:: @ 81F8A33
+
+LittlerootTown_BrendansHouse_1F_EventScript_RivalMomHeal:: @ 81F8A33
+	goto_if_set FLAG_TEMP_1F, LittlerootTown_BrendansHouse_1F_EventScript_RivalMomHealGoodbye
 	msgbox LittlerootTown_RivalsHouse_1F_Text_1F8E01, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_TEMP_1F
+	incrementgamestat GAME_STAT_RESTED_AT_HOME
+	call Common_EventScript_OutOfCenterPartyHeal
+	goto LittlerootTown_BrendansHouse_1F_EventScript_RivalMomHealGoodbye
+	end
+LittlerootTown_RivalsHouse_1F_Text_1F8E01: @ 81F8E01
+	.string "Oh, {PLAYER}!\n"
+	.string "How are you this {TIME_OF_DAY}?\p"
+	.string "Have you visited your father recently?\n"
+	.string "You know, I don't think I've met him\l"
+	.string "yet. Just haven't seen him around.\p"
+	.string "You're always free to visit anytime!\n"
+	.string "In fact, how about something to eat?$"
+LittlerootTown_PlayersHouse_1F_Text_1F7D5C:
+	.string "Feel free to drop by again any time!$"
+LittlerootTown_BrendansHouse_1F_EventScript_RivalMomHealGoodbye::
+	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7D5C, MSGBOX_DEFAULT
 	release
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_1F8A3D:: @ 81F8A3D
-LittlerootTown_MaysHouse_1F_EventScript_1F8A3D:: @ 81F8A3D
+
+LittlerootTown_RivalHouse_1F_EventScript_Charlie:: @ 81F8A3D
 	lock
 	faceplayer
-@	special GetPlayerBigGuyGirlString
-	msgbox LittlerootTown_RivalsHouse_1F_Text_1F9262, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalsHouse_1F_Text_Charlie1, MSGBOX_DEFAULT
+	checkplayeroutfit
+	selectstring LittlerootTown_RivalsHouse_1F_TextArray_CharlieResponse, VAR_RESULT
+	msgbox_selected MSGBOX_DEFAULT
 	release
 	end
+LittlerootTown_RivalsHouse_1F_Text_Charlie1: @ 81F9262
+	.string "Charlie: Hi, neighbor!\p"
+	.string "Are you part of a gang?\n"
+	.string "You look like you're part of a gang!$"
+LittlerootTown_RivalsHouse_1F_Text_Charlie2a:
+	.string "Team Skull? That sounds AWESOME!$"
+LittlerootTown_RivalsHouse_1F_Text_Charlie2b:
+	.string "What's that bandanna from?\n"
+	.string "I think I've seen that on the news!$"
+LittlerootTown_RivalsHouse_1F_Text_Charlie2c:
+	.string "Team Aqua? Are those the bad guys\n"
+	.string "that I see on the news? Wicked!$"
+LittlerootTown_RivalsHouse_1F_Text_Charlie2d:
+	.string "You're not anymore? Why not?\n"
+	.string "Did they do something bad?$"
+
+.align 2
+LittlerootTown_RivalsHouse_1F_TextArray_CharlieResponse:
+	.4byte LittlerootTown_RivalsHouse_1F_Text_Charlie2a
+	.4byte LittlerootTown_RivalsHouse_1F_Text_Charlie2b
+	.4byte LittlerootTown_RivalsHouse_1F_Text_Charlie2c
+	.4byte LittlerootTown_RivalsHouse_1F_Text_Charlie2d
+	.4byte 0
+
+	
 
 LittlerootTown_MaysHouse_1F_EventScript_1F8A4C:: @ 81F8A4C
 	lockall
@@ -327,44 +395,13 @@ LittlerootTown_MaysHouse_1F_Movement_1F8BBF: @ 81F8BBF
 	walk_up
 	step_end
 
-LittlerootTown_RivalsHouse_1F_Text_1F8BC5: @ 81F8BC5
-	.string "Oh, hello. And you are?\p"
-	.string "… … … … … … … … …\n"
-	.string "… … … … … … … … …\p"
-	.string "Oh, you're {PLAYER}, our new next-door\n"
-	.string "neighbor! Hi!\p"
-	.string "We have a {RIVAL_son} about the same\n"
-	.string "age as you.\p"
-	.string "{RIVAL_They} was excited about making\n"
-	.string "a new friend.\p"
-	.string "{RIVAL_They}'s upstairs, I think.$"
 
-LittlerootTown_RivalsHouse_1F_Text_1F8CA5: @ 81F8CA5
-	.string "Like {RIVAL_son}, like father.\p"
-	.string "My husband is as wild about Pokémon\n"
-	.string "as our little {RIVAL_boy}.\p"
-	.string "If he's not at his lab, he's likely\n"
-	.string "scrabbling about in grassy places.$"
 
-LittlerootTown_RivalsHouse_1F_Text_1F8D37: @ 81F8D37
-	.string "That {RIVAL}!\p"
-	.string "I guess our {RIVAL_boy} is too busy with\n"
-	.string "Pokémon to notice that you came\l"
-	.string "to visit, {PLAYER}.$"
 
-LittlerootTown_RivalsHouse_1F_Text_1F8D93: @ 81F8D93
-	.string "Oh, {RIVAL} went out to Route 103\n"
-	.string "just a little while ago.\p"
-	.string "Like father, like {RIVAL_son}.\n"
-	.string "{RIVAL_They} can't stay quietly at home.$"
 
-LittlerootTown_RivalsHouse_1F_Text_1F8E01: @ 81F8E01
-	.string "I think it's wonderful for people to\n"
-	.string "travel with Pokémon.\p"
-	.string "But you should go home every so often\n"
-	.string "to let your mother know you're okay.\p"
-	.string "She might not say it, but I'm sure she\n"
-	.string "worries about you, {PLAYER}.$"
+
+
+
 
 LittlerootTown_MaysHouse_1F_Text_1F8EC6: @ 81F8EC6
 	.string "Huh?\n"
@@ -410,7 +447,4 @@ LittlerootTown_BrendansHouse_1F_Text_1F90B4: @ 81F90B4
 	.string "some wild Pokémon.\p"
 	.string "Some other time, okay?$"
 
-LittlerootTown_RivalsHouse_1F_Text_1F9262: @ 81F9262
-	.string "Hi, neighbor!\p"
-	.string "Do you already have your\n"
-	.string "own Pokémon?$"
+

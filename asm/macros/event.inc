@@ -1568,6 +1568,10 @@
 	.4byte \yes
 	.4byte \no
 	.endm
+	
+	.macro checkplayeroutfit
+	.byte 0xe5
+	.endm
 
 @ Supplementary
 

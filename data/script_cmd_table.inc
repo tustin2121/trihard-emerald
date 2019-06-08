@@ -229,6 +229,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_bufferitemnameplural
 	.4byte ScrCmd_selectstring
 	.4byte ScrCmd_setyesnotext
+	.4byte ScrCmd_checkplayeroutfit
 
 gScriptCmdTableEnd:: @ 81DBA08
 	.4byte ScrCmd_nop

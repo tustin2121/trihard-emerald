@@ -122,7 +122,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-            "script": "LittlerootTown_BrendansHouse_1F_EventScript_1F8A3D",
+            "script": "LittlerootTown_RivalHouse_1F_EventScript_Charlie",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 1,
