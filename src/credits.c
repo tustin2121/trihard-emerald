@@ -1504,8 +1504,9 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
 
         if (gTasks[taskIdA].data[TDA_0] == 6840)
             m4aSongNumStart(MUS_END);
-
-        gTasks[taskIdA].data[TDA_0] -= 1;
+        
+        if (gTasks[taskIdA].data[TDA_0] > 10) //do not allow auto-reset
+            gTasks[taskIdA].data[TDA_0] -= 1;
     }
 }
 
