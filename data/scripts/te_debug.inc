@@ -18,6 +18,22 @@ DebugScript_ShowPCBox::
 	releaseall
 	end
 
+DebugScript_ShowSoundTest::
+	lockall
+	playse SE_SELECT
+	message DebugScript_Text_SoundTest_Title
+	waitstate @ script pauses here until manually reenabled
+	closemessage
+	releaseall
+	end
+
+DebugScript_ShowDebugScreen::
+	lockall
+	playse SE_SELECT
+	waitstate @ script pauses here until manually reenabled
+	releaseall
+	end
+
 DebugScript_GiveDebugPartyAndSetFlags::
 	lockall
 	@ Give debug party
@@ -60,6 +76,15 @@ DebugScript_GiveDebugPartyAndSetFlags::
 	releaseall
 	return
 
-ScriptText_DebugBoxText: @ 823BF75
+ScriptText_DebugBoxText:
 	.string "Oh! There's some Pokemon and badges in\n"
 	.string "this box! Yoink!$"
+
+DebugScript_Text_SoundTest_Title::
+	.string "Sound Test: {START_BUTTON} Exit$"
+DebugScript_Text_SoundTest_SFX::
+	.string "SFX: {STR_VAR_1}$"
+DebugScript_Text_SoundTest_BGM::
+	.string "BGM: {STR_VAR_1}$"
+DebugScript_Text_SoundTest_PH::
+	.string "PH?: {STR_VAR_1}$"

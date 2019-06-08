@@ -1,6 +1,8 @@
 #include "global.h"
 #include "te_debug.h"
 #include "main.h"
+#include "menu.h"
+#include "menu_helpers.h"
 #include "script.h"
 #include "start_menu.h"
 #include "pokemon_storage_system.h"
@@ -9,8 +11,20 @@
 #include "event_object_movement.h"
 #include "random.h"
 #include "credits.h"
+#include "scanline_effect.h"
+#include "task.h"
+#include "bg.h"
+#include "gpu_regs.h"
+#include "window.h"
+#include "palette.h"
+#include "text.h"
+#include "text_window.h"
+#include "string_util.h"
+#include "sound.h"
 #include "field_weather.h"
 #include "constants/maps.h"
+#include "constants/rgb.h"
+#include "constants/songs.h"
 
 // Reference to an assembly defined constant, the start of the ROM
 // We don't actually use the value, just the address it's at.
@@ -20,6 +34,8 @@ extern void nullsub_129(void);
 // References to scripts defined in data/scripts/te_debug.inc
 extern const u8 DebugScript_EmergencySave[];
 extern const u8 DebugScript_ShowPCBox[];
+extern const u8 DebugScript_ShowDebugScreen[];
+extern const u8 DebugScript_ShowSoundTest[];
 extern const u8 DebugScript_GiveDebugPartyAndSetFlags[];
 
 typedef void (*DebugFunc)(void);
@@ -35,6 +51,8 @@ static void DebugHandle_ShowCredits();
 static void DebugHandle_GetRandomSeeds();
 static void DebugHandle_SetRandomSeeds();
 static void DebugHandle_SetWeather();
+static void DebugHandle_ShowSoundTest();
+static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
 {
@@ -58,6 +76,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_GetRandomSeeds,
 	DebugHandle_SetRandomSeeds,
 	DebugHandle_SetWeather,
+	DebugHandle_ShowSoundTest,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -181,4 +200,120 @@ void DebugHandle_SetWeather()
 {
 	SetWeather(gDebugInterrupts.args[0]);
 	DebugSetCallbackSuccess();
+}
+
+// arguments: none
+// returns: none
+void DebugHandle_ShowSoundTest()
+{
+	CreateTask(Task_InitMusicSelect, 0);
+	ScriptContext1_SetupScript(DebugScript_ShowSoundTest);
+	DebugSetCallbackSuccess();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Sound Test Dialog
+
+extern const u8 DebugScript_Text_SoundTest_SFX[];
+extern const u8 DebugScript_Text_SoundTest_BGM[];
+extern const u8 DebugScript_Text_SoundTest_PH[];
+static const struct WindowTemplate sSoundTestWinTemplate =
+{
+	.bg = 0,
+	.tilemapLeft = 20,
+	.tilemapTop = 11,
+	.width = 8,
+	.height = 2,
+	.paletteNum = 15,
+	.baseBlock = 0x0176,
+};
+
+static void Task_MusicSelect(u8 taskId);
+
+static void RedrawSongSelectWindow(u8 windowId, u16 num)
+{
+	const u8* txt = DebugScript_Text_SoundTest_SFX;
+	num--;
+	if (num >= MUS_TETSUJI) txt = DebugScript_Text_SoundTest_BGM;
+	if (num >= PH_TRAP_BLEND) txt = DebugScript_Text_SoundTest_PH;
+	
+	ConvertIntToDecimalStringN(gStringVar1, num, 2, 3);
+    StringExpandPlaceholders(gStringVar4, txt);
+    AddTextPrinterParameterized(windowId, 1, gStringVar4, 0, 1, 0, NULL);
+}
+
+#define tWindow data[0]
+#define tSelected data[1]
+#define tMax data[2]
+#define tMapMusic data[3]
+
+
+static void Task_InitMusicSelect(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+	
+	tSelected = MUS_TETSUJI + 1;
+	tMax = PH_NURSE_SOLO + 1;
+	tWindow = AddWindow(&sSoundTestWinTemplate);
+	tMapMusic = GetCurrentMapMusic();
+	
+	StopMapMusic();
+    DrawStdWindowFrame(tWindow, FALSE);
+	FillWindowPixelBuffer(tWindow, PIXEL_FILL(1));
+	RedrawSongSelectWindow(tWindow, tSelected);
+    schedule_bg_copy_tilemap_to_vram(0);
+
+    gTasks[taskId].func = Task_MusicSelect;
+}
+
+static void Task_MusicSelect(u8 taskId)
+{
+    s16* data = gTasks[taskId].data;
+
+    if (AdjustQuantityAccordingToDPadInput(&tSelected, tMax) == TRUE)
+    {
+        RedrawSongSelectWindow(tWindow, tSelected);
+    }
+    else if (gMain.newKeys & A_BUTTON)
+    {
+        // PlaySE(SE_SELECT);
+		PlayBGM(tSelected-1);
+    }
+    else if (gMain.newKeys & B_BUTTON)
+	{
+		PlayBGM(MUS_NONE);
+	}
+    else if (gMain.newKeys & START_BUTTON)
+    {
+        PlaySE(SE_SELECT);
+        ClearStdWindowAndFrameToTransparent(tWindow, 0);
+		ClearWindowTilemap(tWindow);
+		RemoveWindow(tWindow);
+		EnableBothScriptContexts();
+		ResetMapMusic();
+		PlayNewMapMusic(tMapMusic);
+		DestroyTask(taskId);
+    }
+}
+
+#undef tWindow
+#undef tSelected
+#undef tMax
+
+///////////////////////////////////////////////////////////////////////////////
+// Debug Screen Common Callbacks
+
+static void MainCB2(void)
+{
+    RunTasks();
+    AnimateSprites();
+    BuildOamBuffer();
+    UpdatePaletteFade();
+}
+
+static void VBlankCB(void)
+{
+    LoadOam();
+    ProcessSpriteCopyRequests();
+    TransferPlttBuffer();
 }

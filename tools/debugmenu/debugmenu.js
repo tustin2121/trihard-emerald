@@ -13,6 +13,7 @@ const DebugHandle_ShowCredits = 5;
 const DebugHandle_GetRandomSeeds = 6;
 const DebugHandle_SetRandomSeeds = 7;
 const DebugHandle_SetWeather = 8;
+const DebugHandle_ShowSoundTest = 9;
 
 // Menu Functions
 function initMenuV1() {
@@ -29,6 +30,10 @@ function initMenuV1() {
 		$(`<li>Play Credits</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowCredits });
+			});
+		$(`<li>Open Sound Test</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_ShowSoundTest });
 			});
 		$(`<li>Set Weather to...</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('weather'); });
