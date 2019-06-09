@@ -95,7 +95,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8507:: @ 81F8507
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85CF
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85C6
@@ -107,7 +107,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8536:: @ 81F8536
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85E2
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85DB
@@ -119,7 +119,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8565:: @ 81F8565
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85F6
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85ED
@@ -131,7 +131,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8594:: @ 81F8594
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F8604
 	waitmovement 0
@@ -276,10 +276,13 @@ LittlerootTown_MaysHouse_2F_EventScript_1F8656:: @ 81F8656
 	end
 LittlerootTown_PlayersHouse_2F_Text_1F877F: @ 81F877F
 	.string "{PLAYER} flipped open the notebook.\p"
-	.string "ADVENTURE RULE NO. 1\n"
-	.string "Open the MENU with START.\p"
-	.string "ADVENTURE RULE NO. 2\n"
-	.string "Record your progress with SAVE.\p"
+	.string "{TIPS}TRIHARD ADVENTURE RULES{END}\p"
+	.string "{NO} 1: Rest at a Pokémon Center,\n"
+	.string "at home, or a heal house to SAVE!\p"
+	.string "{NO} 2: If you white out or forfiet,\n"
+	.string "the game will RESET without saving!\p"
+	.string "{NO} 3: Fainting means DEATH!\n"
+	.string "Don't let your Pokémon faint!\p"
 	.string "The remaining pages are blank…$"
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F865F:: @ 81F865F
@@ -290,11 +293,6 @@ LittlerootTown_PlayersHouse_2F_Text_1F884F: @ 81F884F
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
 	.string "serve as the Controller.$"
-
-
-
-
-
 
 
 Common_Text_LookCloserAtMap: @ 81F8820

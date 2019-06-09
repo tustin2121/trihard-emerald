@@ -45,7 +45,7 @@ OldaleTown_Mart_EventScript_1FC26C:: @ 81FC26C
 	end
 	.align 2
 OldaleTown_Mart_Pokemart_1FC27C: @ 81FC27C
-	.2byte ITEM_POKE_BALL
+	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
@@ -81,30 +81,23 @@ OldaleTown_PokemonCenter_1F_EventScript_1FC031:: @ 81FC031
 OldaleTown_PokemonCenter_1F_Text_1FC0CD: @ 81FC0CD
 	.string "Pokémon Centers are great!\p"
 	.string "You can use their services as much\n"
-	.string "as you like, and it's all for free.\l"
-	.string "You never have to worry!$"
+	.string "as you like, and it's all for free.\p"
+	.string "Well, technically the taxpayers are\n"
+	.string "paying for them, but…\l"
+	.string "YOU never have to pay for it!$"
 
 
 OldaleTown_PokemonCenter_1F_EventScript_1FC03A:: @ 81FC03A
 	lock
 	faceplayer
-	goto_if_set FLAG_SYS_POKEDEX_GET, OldaleTown_PokemonCenter_1F_EventScript_1FC04F
 	msgbox OldaleTown_PokemonCenter_1F_Text_1FC148, MSGBOX_DEFAULT
 	release
 	end
-OldaleTown_PokemonCenter_1F_EventScript_1FC04F:: @ 81FC04F
-	msgbox OldaleTown_PokemonCenter_1F_Text_1FC1B9, MSGBOX_DEFAULT
-	release
-	end
 OldaleTown_PokemonCenter_1F_Text_1FC148: @ 81FC148
-	.string "The Pokémon WIRELESS CLUB on\n"
-	.string "the second floor was built recently.\p"
-	.string "But they say they're still making\n"
-	.string "adjustments.$"
-OldaleTown_PokemonCenter_1F_Text_1FC1B9: @ 81FC1B9
-	.string "The Pokémon WIRELESS CLUB on\n"
-	.string "the second floor was built recently.\p"
-	.string "I traded Pokémon right away.$"
+	.string "The second floor of every Pokémon\n"
+	.string "Center is the Trainer's Lounge.\p"
+	.string "You can go upstairs to rest, relax,\n"
+	.string "and even get a room for the night.$"
 
 
 OldaleTown_Mart_EventScript_1FC28A:: @ 81FC28A
@@ -119,11 +112,11 @@ OldaleTown_Mart_EventScript_1FC29F:: @ 81FC29F
 	release
 	end
 OldaleTown_Mart_Text_1FC2B2: @ 81FC2B2
-	.string "The counter to the left of the shop clerk\n"
+	.string "The counter to the left of the shop\n"
 	.string "gives out Poké Balls for free!\l"
 	.string "But they seem to be out right now.$"
 OldaleTown_Mart_Text_1FC2F3: @ 81FC2F3
-	.string "The counter to the left of the shop clerk\n"
+	.string "The counter to the left of the shop\n"
 	.string "gives out Poké Balls for free!\p"
 	.string "I'm going to get a bunch of Poké Balls\n"
 	.string "and catch a bunch of Pokémon!$"
@@ -133,8 +126,9 @@ OldaleTown_Mart_EventScript_1FC2A9:: @ 81FC2A9
 	msgbox OldaleTown_Mart_Text_1FC338, MSGBOX_NPC
 	end
 OldaleTown_Mart_Text_1FC338: @ 81FC338
-	.string "If a Pokémon gets hurt and loses its HP\n"
-	.string "and faints, it won't be able to battle.\p"
-	.string "To prevent your Pokémon from fainting,\n"
-	.string "restore its HP with a Potion.$"
-
+	.string "If a Pokémon gets hurt in battle,\n"
+	.string "it loses HP, or Hit Points.\p"
+	.string "If it loses all of its HP, it will\n"
+	.string "faint, and probably die.\p"
+	.string "Make sure to take care of your Pokémon\n"
+	.string "with Potions and other healing.$"

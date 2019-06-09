@@ -87,6 +87,7 @@ LittlerootTown_MaysHouse_2F_EventScript_292799:: @ 8292799
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
 	setvar VAR_0x8008, 14
 	addobject VAR_0x8008
+	playse SE_KAIDAN
 	applymovement VAR_0x8008, LittlerootTown_BrendansHouse_2F_Movement_29285B
 	waitmovement 0
 	message LittlerootTown_PlayersHouse_2F_Text_AfterClock1
@@ -159,6 +160,7 @@ LittlerootTown_PlayerHouse_2F_EventScript_SetWallClock:: @ 8292849
 @ Cutscene: Coming back down after setting the clock
 
 LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
+	applymovement_gendered EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft, Common_Movement_WalkInPlaceRight
 	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone1, MSGBOX_DEFAULT
 	closemessage
 	@ Dad on phone
@@ -286,7 +288,7 @@ LittlerootTown_MaysHouse_1F_Movement_2929C1: @ 82929C1
 
 
 @ -----------------------------------------------------
-@ Cutscene: 
+@ Cutscene: Meeting the Neighbors
 
 LittlerootTown_RivalsHouse_1F_MeetingTheNeighbors:: @ 81F89AE
 	lockall
@@ -321,8 +323,28 @@ LittlerootTown_RivalsHouse_1F_Text_1F8BC5: @ 81F8BC5
 	.string "{RIVAL_they}'s upstairs.$"
 
 @ -----------------------------------------------------
+@ Meeting Rival
+
+LittlerootTown_RivalHouse_1F_Text_1F8EC6:
+	.string "Oh! Uh…\n"
+	.string "W-Who are you?\p"
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …\p"
+	.string "Ah, nice to meet you, {PLAYER}.\n"
+	.string "My name is {RIVAL}.\p"
+	.string "You're… not at all like I imagined\n"
+	.string "when I heard someone had bought the\l"
+	.string "house next door.\p"
+	.string "Uh, hey, I'd love to chat more but\n"
+	.string "I gotta help my dad catch some\l"
+	.string "wild Pokémon, so…\p"
+	.string "Some other time, okay?$"
+
+@ -----------------------------------------------------
+@ Event Object: Dad
 
 LittlerootTown_PlayerHouse_1F_EventScript_Dad::
+	goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_PlayerHouse_1F_EventScript_Dad_GoPlay
 	@ If dad has sent you outside now (end of intro sequence)
 	compare VAR_LITTLEROOT_INTRO_STATE, 7
 	goto_if_eq LittlerootTown_PlayerHouse_1F_EventScript_Dad_GoOutside
@@ -343,6 +365,16 @@ LittlerootTown_PlayerHouse_1F_EventScript_Dad_GoOutside:
 LittlerootTown_PlayersHouse_1F_Text_DadIntroGoOutside:
 	.string "Dad: Go say hi to the neighbors for us,\n"
 	.string "please.$"
+
+LittlerootTown_PlayerHouse_1F_EventScript_Dad_GoPlay:
+	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroGoPlay, MSGBOX_DEFAULT
+	release
+	end
+LittlerootTown_PlayersHouse_1F_Text_DadIntroGoPlay:
+	.string "Dad: I'm busy right now, {PLAYER_buddy}.\n"
+	.string "Go play outside.$"
+
+
 
 
 

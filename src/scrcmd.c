@@ -1308,17 +1308,25 @@ bool8 ScrCmd_messageautoscroll(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 WaitForSignPopup(void)
+{
+    return !IsSignPoppedUp();
+}
+
 bool8 SrcCmd_messagesign(struct ScriptContext *ctx)
 {
     const u8 *msg = (const u8 *)ScriptReadWord(ctx);
 
     if (msg == NULL)
         msg = (const u8 *)ctx->data[0];
+    
+    StringExpandPlaceholders(gStringVar4, msg);
     LoadStdWindowFrame();
     DrawSignWindowFrame(1, 1);
     PopupSignMessageBox();
-    AddTextPrinterParameterized(1, 1, msg, 0, 1, 0, 0);
-    return FALSE;
+    AddTextPrinterParameterized(1, 1, gStringVar4, 0, 1, 0, NULL);
+    SetupNativeScript(ctx, WaitForSignPopup);
+    return TRUE;
 }
 
 bool8 ScrCmd_waitmessage(struct ScriptContext *ctx)
@@ -2372,13 +2380,20 @@ bool8 ScrCmd_selectstring(struct ScriptContext *ctx)
     return FALSE;
 }
 
+const u8* ResolveYesNoString(struct ScriptContext *ctx, const u8* ptr, const u8* def)
+{
+    if (ptr > (const u8*)&Start) return ptr;
+    if (ptr < (const u8*)4) return (const u8*)ctx->data[(int)ptr];
+    return def;
+}
+
 bool8 ScrCmd_setyesnotext(struct ScriptContext *ctx)
 {
     const u8 *yes = (const u8 *)ScriptReadWord(ctx);
     const u8 *no = (const u8 *)ScriptReadWord(ctx);
     
-    gYesString = yes;
-    gNoString = no;
+    gYesString = ResolveYesNoString(ctx, yes, gYesString);
+    gNoString = ResolveYesNoString(ctx, no, gNoString);
     return TRUE;
 }
 

@@ -155,7 +155,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_1F78E2:: @ 81F78E2
 	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_1F7997
 	compare VAR_0x8008, 2
 	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_1F79A2
-	msgbox LittlerootTown_BrendansHouse_1F_Text_1F90B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 0
 	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_1F79C1
@@ -293,17 +293,17 @@ LittlerootTown_BrendansHouse_1F_Movement_1F7A16: @ 81F7A16
 
 
 
-LittlerootTown_PlayersHouse_1F_Text_1F7BF1: @ 81F7BF1
-	.string "MOM: Oh… It's over.\p"
-	.string "I think DAD was on, but we missed him.\n"
-	.string "Too bad.$"
+@ LittlerootTown_PlayersHouse_1F_Text_1F7BF1: @ 81F7BF1
+@ 	.string "MOM: Oh… It's over.\p"
+@ 	.string "I think DAD was on, but we missed him.\n"
+@ 	.string "Too bad.$"
 
-LittlerootTown_PlayersHouse_1F_Text_1F7C35: @ 81F7C35
-	.string "Oh, yes.\n"
-	.string "One of DAD's friends lives in town.\p"
-	.string "Prof. Birch is his name.\p"
-	.string "He lives right next door, so you should\n"
-	.string "go over and introduce yourself.$"
+@ LittlerootTown_PlayersHouse_1F_Text_1F7C35: @ 81F7C35
+@ 	.string "Oh, yes.\n"
+@ 	.string "One of DAD's friends lives in town.\p"
+@ 	.string "Prof. Birch is his name.\p"
+@ 	.string "He lives right next door, so you should\n"
+@ 	.string "go over and introduce yourself.$"
 
 LittlerootTown_PlayersHouse_1F_Text_1F7CC3: @ 81F7CC3
 	.string "MOM: See you, honey!$"
@@ -317,8 +317,8 @@ LittlerootTown_PlayersHouse_1F_Text_1F7D08: @ 81F7D08
 	.string "You look a little tired.\p"
 	.string "I think you should rest a bit.$"
 
-LittlerootTown_PlayersHouse_1F_Text_1F7D5C: @ 81F7D5C
-	.string "MOM: Take care, honey!$"
+@ LittlerootTown_PlayersHouse_1F_Text_1F7D5C: @ 81F7D5C
+@ 	.string "MOM: Take care, honey!$"
 
 LittlerootTown_PlayersHouse_1F_Text_1F7D73: @ 81F7D73
 	.string "MOM: Oh? Did DAD give you that BADGE?\p"
@@ -346,23 +346,15 @@ LittlerootTown_PlayersHouse_1F_Text_1F7EA8: @ 81F7EA8
 LittlerootTown_PlayersHouse_1F_Text_1F7EB3: @ 81F7EB3
 	.string "Huggoh, uggo uggo…$"
 
-LittlerootTown_PlayersHouse_1F_Text_1F7EC6: @ 81F7EC6
-	.string "INTERVIEWER: …We brought you this\n"
-	.string "report from in front of PETALBURG GYM.$"
+@ LittlerootTown_PlayersHouse_1F_Text_1F7EC6: @ 81F7EC6
+@ 	.string "INTERVIEWER: …We brought you this\n"
+@ 	.string "report from in front of PETALBURG GYM.$"
 
 LittlerootTown_PlayersHouse_1F_Text_1F7F0F: @ 81F7F0F
 	.string "There is a movie on TV.\p"
-	.string "Two men are dancing on a big piano\n"
-	.string "keyboard.\p"
+	.string "There's an Entei shooting a Hyper Beam\n"
+	.string "into a swirling mass of Unown…\p"
 	.string "Better get going!$"
-
-LittlerootTown_PlayersHouse_1F_Text_1F7F66: @ 81F7F66
-	.string "It's the instruction booklet for the\n"
-	.string "RUNNING SHOES.\p"
-	.string "“Press the B Button to run while\n"
-	.string "wearing your RUNNING SHOES.\p"
-	.string "“Lace up your RUNNING SHOES and hit\n"
-	.string "the road running!”$"
 
 LittlerootTown_PlayersHouse_1F_Text_1F800E: @ 81F800E
 	.string "Norman: Hm?\p"

@@ -56,12 +56,12 @@
             "graphics_id": "EVENT_OBJ_GFX_DAD",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "LittlerootTown_PlayerHouse_1F_EventScript_Dad",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 2,
-            "y": 6
+            "y": 3
         },
         {
             "elevation": 3,

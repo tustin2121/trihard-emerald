@@ -38,7 +38,7 @@ PetalburgCity_Mart_MartScript:: @ 8207D69
 
 	.align 2
 PetalburgCity_Mart_Pokemart_207D8C: @ 8207D8C
-	.2byte ITEM_POKE_BALL
+	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
@@ -61,7 +61,7 @@ PetalburgCity_Mart_EventScript_207DA6:: @ 8207DA6
 
 	.align 2
 PetalburgCity_Mart_Pokemart_207DB8: @ 8207DB8
-	.2byte ITEM_POKE_BALL
+	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION

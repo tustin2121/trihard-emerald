@@ -2360,7 +2360,9 @@ gText_PokemonCenterSign:: @ 8272B9E
 	.string "“Rejuvenate your tired partners!”\n{PLACE}Pokémon Center$"
 
 gUnknown_08272BCF:: @ 8272BCF
-	.string "{STR_VAR_1} might like this program.\n… … … … … … … … … … … … … … … …\pBetter get going!$"
+	.string "{RIVAL_ALOLA} would like this program.\n"
+	.string "… … … … … … … … … … … … … … … …\p"
+	.string "Ugh, better get going…$"
 
 gUnknown_08272C1D:: @ 8272C1D
 	.string "Welcome to {PLACE}Lilycove Department Store{END}.\pWhich floor would you like?$"
@@ -3808,8 +3810,16 @@ EventScript_2926F8:: @ 82926F8
 	.include "data/scripts/players_house.inc"
 
 EventScript_RunningShoesManual:: @ 8292DE5
-	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7F66, MSGBOX_SIGN
+	@ msgbox LittlerootTown_PlayersHouse_1F_Text_1F7F66, MSGBOX_SIGN
+	release
 	end
+@ LittlerootTown_PlayersHouse_1F_Text_1F7F66: @ 81F7F66
+@ 	.string "It's the instruction booklet for the\n"
+@ 	.string "RUNNING SHOES.\p"
+@ 	.string "“Press the B Button to run while\n"
+@ 	.string "wearing your RUNNING SHOES.\p"
+@ 	.string "“Lace up your RUNNING SHOES and hit\n"
+@ 	.string "the road running!”$"
 
 	.include "data/scripts/pokeblocks.inc"
 

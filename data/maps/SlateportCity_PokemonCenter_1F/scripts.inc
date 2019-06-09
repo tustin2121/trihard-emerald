@@ -36,7 +36,7 @@ SlateportCity_Mart_MartScript:: @ 820DC49
 	end
 
 SlateportCity_Mart_Pokemart_20DC60: @ 820DC60
-	.2byte ITEM_POKE_BALL
+	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION

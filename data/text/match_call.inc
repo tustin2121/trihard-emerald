@@ -2801,24 +2801,7 @@ gText_Steven_Pokenav_2B5ED9:: @ 82B5ED9
 	.string "I hope we can meet again\n"
 	.string "somewhere!$"
 
-Route101_Text_2B5F52: @ 82B5F52
-	.string "Prof. Birch: Oh, {PLAYER}!\n"
-	.string "I've already heard about you!\p"
-	.string "It seems your PokéNav's been\n"
-	.string "upgraded with MATCH CALL.\p"
-	.string "Well, I should register, too!\p"
-	.string "That way, I'd be able to examine\n"
-	.string "your Pokédex even while you're\l"
-	.string "out in the field.\p"
-	.string "… … … … … …$"
 
-Route101_Text_2B603A: @ 82B603A
-	.string "Registered Prof. Birch\n"
-	.string "in the PokéNav.$"
-
-	.string "Prof. Birch: When one has both\n"
-	.string "the Pokédex and PokéNav, studying\l"
-	.string "Pokémon becomes more fun, eh?$"
 
 gText_MrStone_Pokenav_2B60C0:: @ 82B60C0
 	.string "MR. STONE: Oh? {PLAYER}!\p"

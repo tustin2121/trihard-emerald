@@ -2580,6 +2580,11 @@ void PopupSignMessageBox(void)
     gTasks[sPopupTaskId].data[2] = -40;
 }
 
+bool8 IsSignPoppedUp(void)
+{
+    return sPopupTaskId != 0;
+}
+
 static void Task_SignLinePopup(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
@@ -2589,6 +2594,7 @@ static void Task_SignLinePopup(u8 taskId)
     {
         task->data[2] = 0;
         DestroyTask(sPopupTaskId);
+        sPopupTaskId = 0;
     }
     SetGpuReg(REG_OFFSET_BG0VOFS, task->data[2]);
 }

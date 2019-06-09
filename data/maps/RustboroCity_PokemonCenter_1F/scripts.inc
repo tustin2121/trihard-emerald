@@ -35,7 +35,7 @@ RustboroCity_Mart_EventScript_214F21:: @ 8214F21
 	end
 
 RustboroCity_Mart_Pokemart_214F30: @ 8214F30
-	.2byte ITEM_POKE_BALL
+	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION
 	.2byte ITEM_ANTIDOTE
@@ -57,7 +57,7 @@ RustboroCity_Mart_EventScript_214F48:: @ 8214F48
 
 	.align 2
 RustboroCity_Mart_Pokemart_214F58: @ 8214F58
-	.2byte ITEM_POKE_BALL
+	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_TIMER_BALL
 	.2byte ITEM_REPEAT_BALL
 	.2byte ITEM_POTION

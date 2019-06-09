@@ -135,8 +135,8 @@ LittlerootTown_BrendansHouse_1F_EventScript_1F8A1F:: @ 81F8A1F
 	release
 	end
 LittlerootTown_RivalsHouse_1F_Text_1F8D37: @ 81F8D37
-	.string "That {RIVAL}!\p"
-	.string "I guess our {RIVAL_boy} is too busy with\n"
+	.string "That's our {RIVAL_son}!\p"
+	.string "I guess {RIVAL_they}'s too busy with\n"
 	.string "Pokémon to notice that you came\l"
 	.string "to visit, {PLAYER}.$"
 
@@ -149,7 +149,7 @@ LittlerootTown_RivalsHouse_1F_Text_1F8D93: @ 81F8D93
 	.string "Oh, {RIVAL} went out to Route 103\n"
 	.string "just a little while ago.\p"
 	.string "I would be going along with {RIVAL_them}, but\n"
-	.string "little Charlie is a little ill today."
+	.string "little Charlie is a little ill today.\p"
 	.string "Why don't you go meet {RIVAL_them}?\p"
 	.string "You don't seem like the kind of {PLAYER_boy}\n"
 	.string "who likes to stay cooped up at home.$"
@@ -183,7 +183,8 @@ LittlerootTown_BrendansHouse_1F_EventScript_RivalMomHealGoodbye::
 LittlerootTown_RivalHouse_1F_EventScript_Charlie:: @ 81F8A3D
 	lock
 	faceplayer
-	msgbox LittlerootTown_RivalsHouse_1F_Text_Charlie1, MSGBOX_DEFAULT
+	message LittlerootTown_RivalsHouse_1F_Text_Charlie1
+	waitmessage
 	checkplayeroutfit
 	selectstring LittlerootTown_RivalsHouse_1F_TextArray_CharlieResponse, VAR_RESULT
 	msgbox_selected MSGBOX_DEFAULT
@@ -192,7 +193,8 @@ LittlerootTown_RivalHouse_1F_EventScript_Charlie:: @ 81F8A3D
 LittlerootTown_RivalsHouse_1F_Text_Charlie1: @ 81F9262
 	.string "Charlie: Hi, neighbor!\p"
 	.string "Are you part of a gang?\n"
-	.string "You look like you're part of a gang!$"
+	.string "You look like you're part of a gang!\p"
+	.string "$"
 LittlerootTown_RivalsHouse_1F_Text_Charlie2a:
 	.string "Team Skull? That sounds AWESOME!$"
 LittlerootTown_RivalsHouse_1F_Text_Charlie2b:
@@ -261,7 +263,7 @@ LittlerootTown_MaysHouse_1F_EventScript_1F8A8B:: @ 81F8A8B
 	call_if_eq LittlerootTown_MaysHouse_1F_EventScript_1F8B40
 	compare VAR_0x8008, 2
 	call_if_eq LittlerootTown_MaysHouse_1F_EventScript_1F8B4B
-	msgbox LittlerootTown_MaysHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 0
 	call_if_eq LittlerootTown_MaysHouse_1F_EventScript_1F8B6A
@@ -394,10 +396,6 @@ LittlerootTown_MaysHouse_1F_Movement_1F8BBF: @ 81F8BBF
 	walk_up
 	walk_up
 	step_end
-
-
-
-
 
 
 

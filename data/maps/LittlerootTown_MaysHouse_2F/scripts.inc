@@ -96,7 +96,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F93BA:: @ 81F93BA
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox LittlerootTown_MaysHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_1F9483
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F9479
@@ -108,7 +108,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F93E9:: @ 81F93E9
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox LittlerootTown_MaysHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_1F9497
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F948F
@@ -120,7 +120,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F9418:: @ 81F9418
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
-	msgbox LittlerootTown_MaysHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F94A4
 	waitmovement 0
@@ -131,7 +131,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F9440:: @ 81F9440
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox LittlerootTown_MaysHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_1F94BB
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F94B2
@@ -307,7 +307,8 @@ LittlerootTown_BrendansHouse_2F_Text_1F9962: @ 81F9962
 
 LittlerootTown_RivalsHouse_2F_Text_1F9962: @ 81F9991
 	.string "It's {RIVAL}'s Poké Ball!\p"
-	.string "Better leave it right where it is.$"
+	.string "If you try to take it,\n"
+	.string "{RIVAL_they} might see.$"
 
 LittlerootTown_MaysHouse_2F_Text_1F99C9: @ 81F99C9
 	.string "May: {PLAYER}!\p"
