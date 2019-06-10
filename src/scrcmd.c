@@ -2402,3 +2402,13 @@ bool8 ScrCmd_checkplayeroutfit(struct ScriptContext *ctx)
     gSpecialVar_Result = gSaveBlock2Ptr->playerForm >> 1;
     return FALSE;
 }
+
+bool8 ScrCmd_buffernumberstring2(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 v1 = VarGet(ScriptReadHalfword(ctx));
+    u8 v2 = CountDigits(v1);
+
+    ConvertIntToNameStringN(sScriptStringVars[stringVarIndex], v1, 0, v2);
+    return FALSE;
+}

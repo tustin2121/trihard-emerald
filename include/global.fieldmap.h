@@ -96,7 +96,8 @@ struct BgEvent
         // hidden item type
         struct {
             u16 item;
-            u16 hiddenItemId; // flag offset to determine flag lookup
+            u8 flagId; // flag offset to determine flag lookup
+            u8 count; // number of items to pick up
         } hiddenItem;
 
         // secret base type

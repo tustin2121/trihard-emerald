@@ -1572,6 +1572,13 @@
 	.macro checkplayeroutfit
 	.byte 0xe5
 	.endm
+	
+	@ Converts the value of input to a decimal string, and writes that string to the specified buffer.
+	.macro buffernumberstring2 out:req, input:req
+	.byte 0xe6
+	.byte \out
+	.2byte \input
+	.endm
 
 @ Supplementary
 

@@ -862,6 +862,7 @@ const struct Item gItems[] =
     [ITEM_HP_UP] =
     {
         .name = _("HP Up"),
+        .plural = _(""),
         .itemId = ITEM_HP_UP,
         .price = 9800,
         .description = gHPUpItemDescription,
@@ -874,6 +875,7 @@ const struct Item gItems[] =
     [ITEM_PROTEIN] =
     {
         .name = _("Protein"),
+        .plural = _(""),
         .itemId = ITEM_PROTEIN,
         .price = 9800,
         .description = gProteinItemDescription,
@@ -886,6 +888,7 @@ const struct Item gItems[] =
     [ITEM_IRON] =
     {
         .name = _("Iron"),
+        .plural = _(""),
         .itemId = ITEM_IRON,
         .price = 9800,
         .description = gIronItemDescription,
@@ -898,6 +901,7 @@ const struct Item gItems[] =
     [ITEM_CARBOS] =
     {
         .name = _("Carbos"),
+        .plural = _(""),
         .itemId = ITEM_CARBOS,
         .price = 9800,
         .description = gCarbosItemDescription,
@@ -910,6 +914,7 @@ const struct Item gItems[] =
     [ITEM_CALCIUM] =
     {
         .name = _("Calcium"),
+        .plural = _(""),
         .itemId = ITEM_CALCIUM,
         .price = 9800,
         .description = gCalciumItemDescription,
@@ -922,6 +927,7 @@ const struct Item gItems[] =
     [ITEM_RARE_CANDY] =
     {
         .name = _("Rare Candy"),
+        .plural = _("Rare Candies"),
         .itemId = ITEM_RARE_CANDY,
         .price = 4800,
         .description = gRareCandyItemDescription,
@@ -934,6 +940,7 @@ const struct Item gItems[] =
     [ITEM_PP_UP] =
     {
         .name = _("PP Up"),
+        .plural = _(""),
         .itemId = ITEM_PP_UP,
         .price = 9800,
         .description = gPPUpItemDescription,
@@ -946,6 +953,7 @@ const struct Item gItems[] =
     [ITEM_ZINC] =
     {
         .name = _("Zinc"),
+        .plural = _(""),
         .itemId = ITEM_ZINC,
         .price = 9800,
         .description = gZincItemDescription,
@@ -958,6 +966,7 @@ const struct Item gItems[] =
     [ITEM_PP_MAX] =
     {
         .name = _("PP Max"),
+        .plural = _(""),
         .itemId = ITEM_PP_MAX,
         .price = 9800,
         .description = gPPMaxItemDescription,
@@ -984,6 +993,7 @@ const struct Item gItems[] =
     [ITEM_GUARD_SPEC] =
     {
         .name = _("Guard Spec."),
+        .plural = _(""),
         .itemId = ITEM_GUARD_SPEC,
         .price = 700,
         .description = gGuardSpecItemDescription,
@@ -1054,6 +1064,7 @@ const struct Item gItems[] =
     [ITEM_X_ACCURACY] =
     {
         .name = _("X Accuracy"),
+        .plural = _("X Accuracies"),
         .itemId = ITEM_X_ACCURACY,
         .price = 950,
         .description = gXAccuracyItemDescription,
@@ -1588,6 +1599,7 @@ const struct Item gItems[] =
     [ITEM_ORANGE_MAIL] =
     {
         .name = _("Orange Mail"),
+        .plural = _(""),
         .itemId = ITEM_ORANGE_MAIL,
         .price = 50,
         .description = gOrangeMailItemDescription,
@@ -1600,6 +1612,7 @@ const struct Item gItems[] =
     [ITEM_HARBOR_MAIL] =
     {
         .name = _("Harbor Mail"),
+        .plural = _(""),
         .itemId = ITEM_HARBOR_MAIL,
         .price = 50,
         .description = gHarborMailItemDescription,
@@ -1612,6 +1625,7 @@ const struct Item gItems[] =
     [ITEM_GLITTER_MAIL] =
     {
         .name = _("Glitter Mail"),
+        .plural = _(""),
         .itemId = ITEM_GLITTER_MAIL,
         .price = 50,
         .description = gGlitterMailItemDescription,
@@ -1624,6 +1638,7 @@ const struct Item gItems[] =
     [ITEM_MECH_MAIL] =
     {
         .name = _("Mech Mail"),
+        .plural = _(""),
         .itemId = ITEM_MECH_MAIL,
         .price = 50,
         .description = gMechMailItemDescription,
@@ -1636,6 +1651,7 @@ const struct Item gItems[] =
     [ITEM_WOOD_MAIL] =
     {
         .name = _("Wood Mail"),
+        .plural = _(""),
         .itemId = ITEM_WOOD_MAIL,
         .price = 50,
         .description = gWoodMailItemDescription,
@@ -1648,6 +1664,7 @@ const struct Item gItems[] =
     [ITEM_WAVE_MAIL] =
     {
         .name = _("Wave Mail"),
+        .plural = _(""),
         .itemId = ITEM_WAVE_MAIL,
         .price = 50,
         .description = gWaveMailItemDescription,
@@ -1660,6 +1677,7 @@ const struct Item gItems[] =
     [ITEM_BEAD_MAIL] =
     {
         .name = _("Bead Mail"),
+        .plural = _(""),
         .itemId = ITEM_BEAD_MAIL,
         .price = 50,
         .description = gBeadMailItemDescription,
@@ -1672,6 +1690,7 @@ const struct Item gItems[] =
     [ITEM_SHADOW_MAIL] =
     {
         .name = _("Shadow Mail"),
+        .plural = _(""),
         .itemId = ITEM_SHADOW_MAIL,
         .price = 50,
         .description = gShadowMailItemDescription,
@@ -1684,6 +1703,7 @@ const struct Item gItems[] =
     [ITEM_TROPIC_MAIL] =
     {
         .name = _("Tropic Mail"),
+        .plural = _(""),
         .itemId = ITEM_TROPIC_MAIL,
         .price = 50,
         .description = gTropicMailItemDescription,
@@ -1696,6 +1716,7 @@ const struct Item gItems[] =
     [ITEM_DREAM_MAIL] =
     {
         .name = _("Dream Mail"),
+        .plural = _(""),
         .itemId = ITEM_DREAM_MAIL,
         .price = 50,
         .description = gDreamMailItemDescription,
@@ -1708,6 +1729,7 @@ const struct Item gItems[] =
     [ITEM_FAB_MAIL] =
     {
         .name = _("Fab Mail"),
+        .plural = _(""),
         .itemId = ITEM_FAB_MAIL,
         .price = 50,
         .description = gFabMailItemDescription,
@@ -1720,6 +1742,7 @@ const struct Item gItems[] =
     [ITEM_RETRO_MAIL] =
     {
         .name = _("Retro Mail"),
+        .plural = _(""),
         .itemId = ITEM_RETRO_MAIL,
         .price = 0,
         .description = gRetroMailItemDescription,
@@ -2600,6 +2623,7 @@ const struct Item gItems[] =
     [ITEM_SCOPE_LENS] =
     {
         .name = _("Scope Lens"),
+        .plural = _("Scope Lenses"),
         .itemId = ITEM_SCOPE_LENS,
         .price = 200,
         .holdEffect = HOLD_EFFECT_SCOPE_LENS,
@@ -2627,6 +2651,7 @@ const struct Item gItems[] =
     [ITEM_LEFTOVERS] =
     {
         .name = _("Leftovers"),
+        .plural = _(""),
         .itemId = ITEM_LEFTOVERS,
         .price = 200,
         .holdEffect = HOLD_EFFECT_LEFTOVERS,
@@ -2710,6 +2735,7 @@ const struct Item gItems[] =
     [ITEM_BLACK_GLASSES] =
     {
         .name = _("BlackGlasses"),
+        .plural = _(""),
         .itemId = ITEM_BLACK_GLASSES,
         .price = 100,
         .holdEffect = HOLD_EFFECT_DARK_POWER,
@@ -2933,6 +2959,7 @@ const struct Item gItems[] =
     [ITEM_LUCKY_PUNCH] =
     {
         .name = _("Lucky Punch"),
+        .plural = _("Lucky Punches"),
         .itemId = ITEM_LUCKY_PUNCH,
         .price = 10,
         .holdEffect = HOLD_EFFECT_LUCKY_PUNCH,
@@ -3323,6 +3350,7 @@ const struct Item gItems[] =
     [ITEM_RED_SCARF] =
     {
         .name = _("Red Scarf"),
+        .plural = _("Red Scarves"),
         .itemId = ITEM_RED_SCARF,
         .price = 100,
         .description = gRedScarfItemDescription,
@@ -3335,6 +3363,7 @@ const struct Item gItems[] =
     [ITEM_BLUE_SCARF] =
     {
         .name = _("Blue Scarf"),
+        .plural = _("Blue Scarves"),
         .itemId = ITEM_BLUE_SCARF,
         .price = 100,
         .description = gBlueScarfItemDescription,
@@ -3347,6 +3376,7 @@ const struct Item gItems[] =
     [ITEM_PINK_SCARF] =
     {
         .name = _("Pink Scarf"),
+        .plural = _("Pink Scarves"),
         .itemId = ITEM_PINK_SCARF,
         .price = 100,
         .description = gPinkScarfItemDescription,
@@ -3359,6 +3389,7 @@ const struct Item gItems[] =
     [ITEM_GREEN_SCARF] =
     {
         .name = _("Green Scarf"),
+        .plural = _("Green Scarves"),
         .itemId = ITEM_GREEN_SCARF,
         .price = 100,
         .description = gGreenScarfItemDescription,
@@ -3371,6 +3402,7 @@ const struct Item gItems[] =
     [ITEM_YELLOW_SCARF] =
     {
         .name = _("Yellow Scarf"),
+        .plural = _("Yellow Scarves"),
         .itemId = ITEM_YELLOW_SCARF,
         .price = 100,
         .description = gYellowScarfItemDescription,

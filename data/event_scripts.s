@@ -1341,7 +1341,7 @@ Std_FindItem:: @ 8271BFD
 EventScript_PickItemUp:: @ 8271C3A
 	removeobject VAR_LAST_TALKED
 	giveitem VAR_0x8004, VAR_0x8005
-	specialvar VAR_RESULT, sub_81398C0
+	specialvar VAR_RESULT, LoadTMMoveName
 	copyvar VAR_0x8008, VAR_RESULT
 	compare VAR_0x8008, 1
 	call_if_eq EventScript_271C8F
@@ -1363,10 +1363,11 @@ EventScript_271C86:: @ 8271C86
 
 EventScript_271C8F:: @ 8271C8F
 	bufferitemnameplural 0, VAR_0x8004, VAR_0x8005
-	message gText_PlayerFoundOneItemTwoLines
+	message gText_PlayerFoundOneTMItem
 	return
 
 EventScript_271C9B:: @ 8271C9B
+	buffernumberstring2 0, VAR_0x8005
 	message gText_PlayerFoundOneItem
 	return
 
@@ -1379,9 +1380,9 @@ EventScript_271CA1:: @ 8271CA1
 EventScript_HiddenItemScript:: @ 8271CB7
 	lockall
 	waitse
-	giveitem VAR_0x8005, 1
+	giveitem VAR_0x8005, VAR_0x8006
 	copyvar VAR_0x8007, VAR_RESULT
-	bufferitemnameplural 1, VAR_0x8005, 1
+	bufferitemnameplural 1, VAR_0x8005, VAR_0x8006
 	checkitemtype VAR_0x8005
 	call Std_ObtainItem_BufferItemTypeAndPlayJingle
 	compare VAR_0x8007, 1
@@ -1393,7 +1394,7 @@ EventScript_HiddenItemScript:: @ 8271CB7
 EventScript_271CE8:: @ 8271CE8
 	copyvar VAR_0x8008, VAR_0x8004
 	copyvar VAR_0x8004, VAR_0x8005
-	specialvar VAR_RESULT, sub_81398C0
+	specialvar VAR_RESULT, LoadTMMoveName
 	compare VAR_RESULT, 1
 	goto_if_eq EventScript_271D0E
 	compare VAR_RESULT, 0
@@ -1402,11 +1403,12 @@ EventScript_271CE8:: @ 8271CE8
 
 EventScript_271D0E:: @ 8271D0E
 	bufferitemnameplural 0, VAR_0x8004, 1
-	message gText_PlayerFoundOneItemTwoLines
+	message gText_PlayerFoundOneTMItem
 	goto EventScript_271D2A
 	end
 
 EventScript_271D1F:: @ 8271D1F
+	buffernumberstring2 0, VAR_0x8006
 	message gText_PlayerFoundOneItem
 	goto EventScript_271D2A
 	end
@@ -1423,6 +1425,7 @@ EventScript_271D2A:: @ 8271D2A
 	end
 
 EventScript_271D47:: @ 8271D47
+	buffernumberstring2 0, VAR_0x8006
 	msgbox gText_PlayerFoundOneItem, MSGBOX_DEFAULT
 	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
@@ -2336,7 +2339,7 @@ gText_PutItemInPocket:: @ 8272A9A
 	.string "{PLAYER} put away the {STR_VAR_2}\nin the {STR_VAR_3} POCKET.$"
 
 gText_PlayerFoundOneItem:: @ 8272ABF
-	.string "{PLAYER} found one {STR_VAR_2}!$"
+	.string "{PLAYER} found {STR_VAR_1} {STR_VAR_2}!$"
 
 gText_TooBadBagIsFull:: @ 8272AD0
 	.string "Too bad!\nThe bag is full…$"
@@ -2420,7 +2423,7 @@ gUnknown_08273161:: @ 8273161
 gUnknown_08273178:: @ 8273178
 	.string "Thank you for accessing the\nMYSTERY GIFT System.$"
 
-gText_PlayerFoundOneItemTwoLines:: @ 82731A9
+gText_PlayerFoundOneTMItem:: @ 82731A9
 	.string "{PLAYER} found one {STR_VAR_1}\n{STR_VAR_2}!$"
 
 gText_Sudowoodo_Attacked:: @ 82731BD

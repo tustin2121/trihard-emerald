@@ -231,7 +231,11 @@ string generate_map_events_text(Json map_data) {
                      << bg_event["y"].int_value() << ", "
                      << bg_event["elevation"].int_value() << ", "
                      << bg_event["item"].string_value() << ", "
-                     << bg_event["flag"].string_value() << "\n";
+                     << bg_event["flag"].string_value();
+                if (!bg_event["count"].is_null()) {
+                    text << ", " << bg_event["count"].string_value();
+                }
+                    text << "\n";
             }
             else if (bg_event["type"] == "secret_base") {
                 text << "\tbg_secret_base_event "

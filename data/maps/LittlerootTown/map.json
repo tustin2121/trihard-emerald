@@ -35,6 +35,15 @@
             "type": "sign",
             "x": 12,
             "y": 8
+        },
+        {
+            "count": "5",
+            "elevation": 3,
+            "flag": "FLAG_HIDDEN_ITEM_LITTLEROOT_BERRIES",
+            "item": "ITEM_ORAN_BERRY",
+            "type": "hidden_item",
+            "x": 1,
+            "y": 3
         }
     ],
     "connections": [
