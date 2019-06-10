@@ -671,7 +671,11 @@ u8 FldEff_ExclamationMarkIcon(void)
     u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_ExclamationQuestionMark, 0, 0, 0x53);
 
     if (spriteId != MAX_SPRITES)
-        SetIconSpriteData(&gSprites[spriteId], FLDEFF_EXCLAMATION_MARK_ICON, 0);
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+        SetIconSpriteData(sprite, FLDEFF_EXCLAMATION_MARK_ICON, 0);
+        // sprite->oam.paletteNum = 2;
+    }
 
     return 0;
 }
@@ -681,7 +685,11 @@ u8 FldEff_QuestionMarkIcon(void)
     u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_ExclamationQuestionMark, 0, 0, 0x52);
 
     if (spriteId != MAX_SPRITES)
-        SetIconSpriteData(&gSprites[spriteId], FLDEFF_QUESTION_MARK_ICON, 1);
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+        SetIconSpriteData(sprite, FLDEFF_QUESTION_MARK_ICON, 1);
+        // sprite->oam.paletteNum = 2;
+    }
 
     return 0;
 }
@@ -693,9 +701,8 @@ u8 FldEff_HeartIcon(void)
     if (spriteId != MAX_SPRITES)
     {
         struct Sprite *sprite = &gSprites[spriteId];
-
         SetIconSpriteData(sprite, FLDEFF_HEART_ICON, 0);
-        sprite->oam.paletteNum = 2;
+        // sprite->oam.paletteNum = 2;
     }
 
     return 0;
@@ -704,6 +711,7 @@ u8 FldEff_HeartIcon(void)
 static void SetIconSpriteData(struct Sprite *sprite, u16 fldEffId, u8 spriteAnimNum)
 {
     sprite->oam.priority = 1;
+    sprite->oam.paletteNum = 2;
     sprite->coordOffsetEnabled = 1;
 
     sprite->sLocalId = gFieldEffectArguments[0];
