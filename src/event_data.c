@@ -23,7 +23,7 @@ EWRAM_DATA u16 gSpecialVar_LastTalked = 0;
 EWRAM_DATA u16 gSpecialVar_Facing = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxId = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
-EWRAM_DATA u16 gSpecialVar_Unused_0x8014 = 0;
+EWRAM_DATA u16 gSpecialVar_TextboxType = 0;
 EWRAM_DATA static u8 gSpecialFlags[16] = {0};
 
 extern u16 *const gSpecialVars[];

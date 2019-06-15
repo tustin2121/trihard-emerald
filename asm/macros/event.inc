@@ -783,9 +783,10 @@
 	.endm
 
 	@ Starts displaying a standard message box containing the specified text. If text is a pointer, then the string at that offset will be loaded and used. If text is script bank 0, then the value of script bank 0 will be treated as a pointer to the text. (You can use loadword to place a string pointer in a script bank.)
-	.macro message text:req
+	.macro message text:req, type=0
 	.byte 0x67
 	.4byte \text
+	.byte \type
 	.endm
 
 	@ Closes the current message box.
@@ -1666,9 +1667,22 @@
 	MSGBOX_YESNO = 5
 	MSGBOX_AUTOCLOSE = 6
 	MSGBOX_DESCRIBE = 11
+	MSGBOX_DIALOG = 12
+	MSGBOX_DIALOGUE = 12
+	
+    MSGTYPE_STANDARD = 1
+    MSGTYPE_DIALOG = 2
+    MSGTYPE_DIALOGUE = 2
+    MSGTYPE_SIGN = 3
+	MSGTYPE_DESCRIBE = 4
 
 	YES = 1
 	NO  = 0
+	
+	@ Sets the next message as a dialogue text box
+	.macro flagasdialog
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DIALOG
+	.endm
 
 	.macro msgbox text:req, type=MSGBOX_DEFAULT
 	loadword 0, \text

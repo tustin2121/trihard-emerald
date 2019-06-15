@@ -51,7 +51,7 @@ gSpecialVars:: @ 81DBA0C
 	.4byte gSpecialVar_ContestCategory
 	.4byte gSpecialVar_MonBoxId
 	.4byte gSpecialVar_MonBoxPos
-	.4byte gSpecialVar_Unused_0x8014
+	.4byte gSpecialVar_TextboxType
 	.4byte gTrainerBattleOpponent_A
 
 	.include "data/specials.inc"
@@ -69,6 +69,7 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_9
 	.4byte Std_10
 	.4byte Std_MsgboxDescribe
+	.4byte Std_MsgboxDialogue
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/PetalburgCity/scripts.inc"
@@ -790,7 +791,15 @@ SecretBase_RedCave1_Text_23B759: @ 823B759
 Std_MsgboxNPC:: @ 8271315
 	lock
 	faceplayer
-	message 0x0
+	message 0x0, MSGTYPE_DIALOG
+	waitmessage
+	waitbuttonpress
+	release
+	return
+
+Std_MsgboxDialogue:: @ 8271315
+	lock
+	message 0x0, MSGTYPE_DIALOG
 	waitmessage
 	waitbuttonpress
 	release
@@ -806,7 +815,7 @@ Std_MsgboxSign:: @ 8271320
 
 Std_MsgboxDescribe:: @ 8271320
 	lockall
-	message 0x0
+	message 0x0, MSGTYPE_DESCRIBE
 	waitmessage
 	waitbuttonpress
 	releaseall
@@ -1276,9 +1285,12 @@ Std_ObtainItem_HandleItemType4:: @ 8271B85
 	return
 
 Std_ObtainItem_DisplayPutItemInPocket:: @ 8271B95
-	message gUnknown_08272A78
+	message gUnknown_08272A78, MSGTYPE_DESCRIBE
 	waitfanfare
-	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
+	@ msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
+	message gText_PutItemInPocket, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	setvar VAR_RESULT, 1
 	return
 
@@ -1310,9 +1322,12 @@ EventScript_271BC5:: @ 8271BC5
 
 EventScript_271BE0:: @ 8271BE0
 	playfanfare MUS_FANFA4
-	message gUnknown_08272B09
+	message gUnknown_08272B09, MSGTYPE_DESCRIBE
 	waitfanfare
-	msgbox gUnknown_08272B48, MSGBOX_DEFAULT
+	@ msgbox gUnknown_08272B48, MSGBOX_DEFAULT
+	message gUnknown_08272B48, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	setvar VAR_RESULT, 1
 	return
 
@@ -1363,12 +1378,18 @@ EventScript_271C86:: @ 8271C86
 
 EventScript_271C8F:: @ 8271C8F
 	bufferitemnameplural 0, VAR_0x8004, VAR_0x8005
-	message gText_PlayerFoundOneTMItem
+	@ message gText_PlayerFoundOneTMItem, MSGTYPE_DESCRIBE
+	message gText_PlayerFoundOneTMItem, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	return
 
 EventScript_271C9B:: @ 8271C9B
 	buffernumberstring2 0, VAR_0x8005
-	message gText_PlayerFoundOneItem
+	@ message gText_PlayerFoundOneItem, MSGTYPE_DESCRIBE
+	message gText_PlayerFoundOneItem, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	return
 
 EventScript_271CA1:: @ 8271CA1
@@ -1403,13 +1424,13 @@ EventScript_271CE8:: @ 8271CE8
 
 EventScript_271D0E:: @ 8271D0E
 	bufferitemnameplural 0, VAR_0x8004, 1
-	message gText_PlayerFoundOneTMItem
+	message gText_PlayerFoundOneTMItem, MSGTYPE_DESCRIBE
 	goto EventScript_271D2A
 	end
 
 EventScript_271D1F:: @ 8271D1F
 	buffernumberstring2 0, VAR_0x8006
-	message gText_PlayerFoundOneItem
+	message gText_PlayerFoundOneItem, MSGTYPE_DESCRIBE
 	goto EventScript_271D2A
 	end
 
@@ -1418,7 +1439,10 @@ EventScript_271D2A:: @ 8271D2A
 	waitfanfare
 	bufferitemnameplural 1, VAR_0x8004, 1
 	copyvar VAR_0x8004, VAR_0x8008
-	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
+	@ msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
+	message gText_PutItemInPocket, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	special sub_80EDCE8
 	special SetFlagInVar
 	releaseall
@@ -1426,8 +1450,14 @@ EventScript_271D2A:: @ 8271D2A
 
 EventScript_271D47:: @ 8271D47
 	buffernumberstring2 0, VAR_0x8006
-	msgbox gText_PlayerFoundOneItem, MSGBOX_DEFAULT
-	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	@ msgbox gText_PlayerFoundOneItem, MSGBOX_DEFAULT
+	message gText_PlayerFoundOneItem, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	@ msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	message gText_TooBadBagIsFull, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	setvar VAR_RESULT, 0
 	releaseall
 	end

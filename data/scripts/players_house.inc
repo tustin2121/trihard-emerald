@@ -8,6 +8,7 @@ LittlerootTown_MaysHouse_2F_EventScript_2926FE:: @ 82926FE
 
 LittlerootTown_BrendansHouse_1F_EventScript_292704:: @ 8292704
 LittlerootTown_MaysHouse_1F_EventScript_292704:: @ 8292704
+	flagasdialog
 	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7A1C, MSGBOX_DEFAULT
 	applymovement VAR_0x8004, Common_Movement_FacePlayer
 	waitmovement 0
@@ -41,7 +42,8 @@ LittlerootTown_PlayersHouse_1F_Text_1F7A46: @ 81F7A46
 
 LittlerootTown_BrendansHouse_1F_EventScript_292765:: @ 8292765
 LittlerootTown_MaysHouse_1F_EventScript_292765:: @ 8292765
-	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7B24, MSGBOX_DEFAULT
+	flagasdialog
+	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7B24
 	closemessage
 	applymovement VAR_0x8004, Common_Movement_WalkInPlaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_292AF0
@@ -88,6 +90,7 @@ LittlerootTown_MaysHouse_2F_EventScript_292799:: @ 8292799
 	setvar VAR_0x8008, 14
 	addobject VAR_0x8008
 	playse SE_KAIDAN
+	flagasdialog
 	applymovement VAR_0x8008, LittlerootTown_BrendansHouse_2F_Movement_29285B
 	waitmovement 0
 	message LittlerootTown_PlayersHouse_2F_Text_AfterClock1
@@ -160,6 +163,7 @@ LittlerootTown_PlayerHouse_2F_EventScript_SetWallClock:: @ 8292849
 @ Cutscene: Coming back down after setting the clock
 
 LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
+	flagasdialog
 	applymovement_gendered EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft, Common_Movement_WalkInPlaceRight
 	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone1, MSGBOX_DEFAULT
 	closemessage
@@ -179,7 +183,7 @@ LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
 	waitmovement 0
 	@ Given PokeNav
 	playfanfare MUS_FANFA4
-	message LittlerootTown_PlayersHouse1F_Text_GivenPokenav
+	message LittlerootTown_PlayersHouse1F_Text_GivenPokenav, MSGTYPE_DESCRIBE
 	waitfanfare
 	setflag FLAG_SYS_POKENAV_GET
 	
@@ -188,13 +192,14 @@ LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
 	closemessage
 	applymovement_gendered VAR_0x8005, LittlerootTown_BrendansHouse_1F_Movement_2929BD, LittlerootTown_MaysHouse_1F_Movement_2929C1
 	waitmovement 0
-	msgbox LittlerootTown_PlayersHouse1F_Text_ChangeContact, MSGBOX_DEFAULT
+	message LittlerootTown_PlayersHouse1F_Text_ChangeContact, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	closemessage
 	setvar VAR_TEMP_1, 1
 	waitmovement 0
 	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	releaseall
-	end
 	end
 
 LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone1: @ 81F7B96
@@ -290,23 +295,6 @@ LittlerootTown_MaysHouse_1F_Movement_2929C1: @ 82929C1
 @ -----------------------------------------------------
 @ Cutscene: Meeting the Neighbors
 
-LittlerootTown_RivalsHouse_1F_MeetingTheNeighbors:: @ 81F89AE
-	lockall
-	playse SE_PIN
-	applymovement 4, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 4, Common_Movement_Delay48
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
-	applymovement 4, LittlerootTown_MaysHouse_1F_Movement_1F89EC
-	waitmovement 0
-@	special GetRivalSonDaughterString
-	msgbox LittlerootTown_RivalsHouse_1F_Text_1F8BC5, MSGBOX_DEFAULT
-	setflag FLAG_MET_RIVAL_MOM
-	setvar VAR_LITTLEROOT_HOUSES_STATE_2, 2
-	releaseall
-	end
-
 LittlerootTown_RivalsHouse_1F_Text_1F8BC5: @ 81F8BC5
 	.string "Um, excuse me, who are you?\p"
 	.string "… … … … … … … … …\n"
@@ -344,6 +332,7 @@ LittlerootTown_RivalHouse_1F_Text_1F8EC6:
 @ Event Object: Dad
 
 LittlerootTown_PlayerHouse_1F_EventScript_Dad::
+	flagasdialog
 	goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_PlayerHouse_1F_EventScript_Dad_GoPlay
 	@ If dad has sent you outside now (end of intro sequence)
 	compare VAR_LITTLEROOT_INTRO_STATE, 7

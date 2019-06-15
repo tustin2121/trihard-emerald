@@ -1465,8 +1465,8 @@ void DisplayItemMessageInBattlePyramid(u8 taskId, const u8 *str, void (*callback
 
 static void sub_81C6E1C(void)
 {
-    ClearDialogWindowAndFrameToTransparent(2, FALSE);
-    // This ClearWindowTilemap call is redundant, since ClearDialogWindowAndFrameToTransparent already calls it.
+    ClearTextWindowAndFrameToTransparent(2, FALSE);
+    // This ClearWindowTilemap call is redundant, since ClearTextWindowAndFrameToTransparent already calls it.
     ClearWindowTilemap(2);
     schedule_bg_copy_tilemap_to_vram(1);
 }

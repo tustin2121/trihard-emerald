@@ -1220,7 +1220,7 @@ static void HandleErasePokeblock(u8 taskId)
 
 static void TossPokeblockChoice_No(u8 taskId)
 {
-    ClearDialogWindowAndFrameToTransparent(10, FALSE);
+    ClearTextWindowAndFrameToTransparent(10, FALSE);
     schedule_bg_copy_tilemap_to_vram(1);
     sub_81363BC();
     gTasks[taskId].func = Task_HandlePokeblockMenuInput;

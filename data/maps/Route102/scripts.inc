@@ -1,21 +1,42 @@
 Route102_MapScripts:: @ 81EC0E0
 	.byte 0
 
+@ -----------------------------------------------------
+
 Route102_EventScript_1EC0E1:: @ 81EC0E1
 	msgbox Route102_Text_1EC2C0, MSGBOX_NPC
 	end
+Route102_Text_1EC2C0: @ 81EC2C0
+	.string "I'm…not very tall, so I sink right\n"
+	.string "into tall grass.\p"
+	.string "The grass goes up my nose and…\n"
+	.string "Fwafwafwafwafwa…\p"
+	.string "Fwatchoo!$"
+
 
 Route102_EventScript_1EC0EA:: @ 81EC0EA
 	msgbox Route102_Text_1EC35B, MSGBOX_SIGN
 	end
+Route102_Text_1EC35B: @ 81EC35B
+	.string "Route 102\n"
+	.string "{RIGHT_ARROW} Oldale Town$"
+
 
 Route102_EventScript_1EC0F3:: @ 81EC0F3
 	msgbox Route102_Text_1EC373, MSGBOX_SIGN
 	end
+Route102_Text_1EC373: @ 81EC373
+	.string "Route 102\n"
+	.string "{LEFT_ARROW} Petalburg City$"
+
 
 Route102_EventScript_1EC0FC:: @ 81EC0FC
 	msgbox Route102_Text_1EC32E, MSGBOX_NPC
 	end
+Route102_Text_1EC32E: @ 81EC32E
+	.string "I'm going to catch a whole bunch of\n"
+	.string "Pokémon!$"
+
 
 Route102_EventScript_1EC105:: @ 81EC105
 	trainerbattle_single TRAINER_CALVIN_1, Route102_Text_294513, Route102_Text_29457C, Route102_EventScript_1EC146
@@ -91,21 +112,10 @@ PetalburgCity_Text_1EC297: @ 81EC297
 	.string "{PLAYER}, thank you!\n"
 	.string "Let's go back to the GYM!$"
 
-Route102_Text_1EC2C0: @ 81EC2C0
-	.string "I'm…not very tall, so I sink right\n"
-	.string "into tall grass.\p"
-	.string "The grass goes up my nose and…\n"
-	.string "Fwafwafwafwafwa…\p"
-	.string "Fwatchoo!$"
 
-Route102_Text_1EC32E: @ 81EC32E
-	.string "I'm going to catch a whole bunch of\n"
-	.string "Pokémon!$"
 
-Route102_Text_1EC35B: @ 81EC35B
-	.string "Route 102\n"
-	.string "{RIGHT_ARROW} Oldale Town$"
 
-Route102_Text_1EC373: @ 81EC373
-	.string "Route 102\n"
-	.string "{LEFT_ARROW} Petalburg City$"
+
+
+
+

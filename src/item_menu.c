@@ -2352,8 +2352,8 @@ void bag_menu_RemoveBagItem_message_window(u8 a)
     u8 *ptr = &gUnknown_0203CE54->windowPointers[a];
     if (*ptr != 0xFF)
     {
-        ClearDialogWindowAndFrameToTransparent(*ptr, FALSE);
-        // This ClearWindowTilemap call is redundant, since ClearDialogWindowAndFrameToTransparent already calls it.
+        ClearTextWindowAndFrameToTransparent(*ptr, FALSE);
+        // This ClearWindowTilemap call is redundant, since ClearTextWindowAndFrameToTransparent already calls it.
         ClearWindowTilemap(*ptr);
         RemoveWindow(*ptr);
         schedule_bg_copy_tilemap_to_vram(1);

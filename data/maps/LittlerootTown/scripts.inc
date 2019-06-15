@@ -131,6 +131,7 @@ LittlerootTown_EventScript_1E7F17:: @ 81E7F17
 	delay 10
 	applymovement LID_DAD, LittlerootTown_Movement_Intro_Dad2
 	waitmovement 0
+	flagasdialog
 	setyesnotext gYN_Yep_, gYN_Elipsis2
 	msgbox LittlerootTown_Text_Dad_Opening1, MSGBOX_YESNO
 	msgbox LittlerootTown_Text_Dad_Opening2, MSGBOX_DEFAULT
@@ -245,6 +246,7 @@ LittlerootTown_Movement_Intro_Protag3: @ 81E7FA9
 LittlerootTown_EventScript_1E7FB1:: @ 81E7FB1
 	lockall
 	playse SE_PIN
+	flagasdialog
 	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
 	delay 80
@@ -366,6 +368,7 @@ LittlerootTown_Text_1E8B252:
 LittlerootTown_EventScript_1E8034:: @ 81E8034
 	lock
 	faceplayer
+	flagasdialog
 	goto_if_set FLAG_ADVENTURE_STARTED, LittlerootTown_EventScript_1E8087
 	goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_1E807A
 	compare VAR_0x4050, 0
@@ -407,6 +410,7 @@ LittlerootTown_Text_1E8C3A: @ 81E8C3A
 
 LittlerootTown_EventScript_1E811F:: @ 81E811F
 	lockall
+	flagasdialog
 	applymovement 1, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
@@ -420,6 +424,7 @@ LittlerootTown_EventScript_1E811F:: @ 81E811F
 	end
 
 LittlerootTown_EventScript_1E80AD:: @ 81E80AD
+	flagasdialog
 	msgbox LittlerootTown_Text_1E8BB8, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, LittlerootTown_Movement_1E80DF
@@ -544,6 +549,7 @@ LittlerootTown_EventScript_FinalIntro_SetupFemaleHouse:
 
 LittlerootTown_EventScript_FinalIntro_House:
 	lockall
+	flagasdialog
 	call_on_gender LittlerootTown_EventScript_FinalIntro_SetupMaleHouse, LittlerootTown_EventScript_FinalIntro_SetupFemaleHouse
 	opendoor VAR_0x8004, VAR_0x8005
 	waitdooranim
@@ -617,6 +623,7 @@ LittlerootTown_Movement_FinalIntroA_Dad2_Girl:
 
 LittlerootTown_EventScript_FinalIntro_LeavingTown:
 	lockall
+	flagasdialog
 	getplayerxy VAR_0x8004, VAR_0x8005
 	addvar VAR_0x8005, 6
 	setobjectxyperm LID_DAD, VAR_0x8004, VAR_0x8005

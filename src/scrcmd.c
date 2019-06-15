@@ -1279,9 +1279,13 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
 bool8 ScrCmd_message(struct ScriptContext *ctx)
 {
     const u8 *msg = (const u8 *)ScriptReadWord(ctx);
+    u8 msgType = ScriptReadByte(ctx);
 
     if (msg == NULL)
         msg = (const u8 *)ctx->data[0];
+    if (msgType == 0)
+        msgType = gSpecialVar_TextboxType;
+    SetFieldMessageBoxType(msgType);
     ShowFieldMessage(msg);
     return FALSE;
 }
@@ -2066,7 +2070,8 @@ bool8 ScrCmd_playmoncry(struct ScriptContext *ctx)
 {
     u16 species = VarGet(ScriptReadHalfword(ctx));
     u16 mode = VarGet(ScriptReadHalfword(ctx));
-
+    
+    gSpecialVar_TextboxType = FIELD_MESSAGE_TYPE_DIALOG;
     PlayCry5(species, mode);
     return FALSE;
 }

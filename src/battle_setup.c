@@ -1080,6 +1080,8 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 {
     InitTrainerBattleVariables();
     sTrainerBattleMode = TrainerBattleLoadArg8(data);
+    // Hack: all textboxes are, by defalt, dialogs on trainers
+    gSpecialVar_TextboxType = FIELD_MESSAGE_TYPE_DIALOG;
 
     switch (sTrainerBattleMode)
     {
@@ -1371,6 +1373,7 @@ void ShowTrainerIntroSpeech(void)
     }
     else
     {
+        SetFieldMessageBoxType(FIELD_MESSAGE_TYPE_DIALOG);
         ShowFieldMessage(GetIntroSpeechOfApproachingTrainer());
     }
 }

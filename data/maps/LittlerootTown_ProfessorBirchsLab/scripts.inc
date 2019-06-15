@@ -103,8 +103,11 @@ LittlerootTown_ProfessorBirchsLab_MapScript2_FrameTable: @ 81F9DB9
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1F9DDB:: @ 81F9DDB
 	lockall
+	flagasdialog
 	bufferleadmonspeciesname 0
 	message LittlerootTown_ProfessorBirchsLab_Text_1FA74D
+	waitmessage
+	message LittlerootTown_ProfessorBirchsLab_Text_1FA74E, MSGTYPE_DESCRIBE
 	waitmessage
 	playfanfare MUS_FANFA4
 	waitfanfare
@@ -120,12 +123,15 @@ LittlerootTown_ProfessorBirchsLab_Text_1FA74D: @ 81FA74D
 	.string "of your own yet?\p"
 	.string "Well, as thanks for rescuing me, you\n"
 	.string "can keep the Pokémon you used earlier.\p"
+	.string "$"
+LittlerootTown_ProfessorBirchsLab_Text_1FA74E:
 	.string "{PLAYER} received the {STR_VAR_1}!$"
 LittlerootTown_ProfessorBirchsLab_Text_1FA8B1: @ 81FA8B1
 	.string "Prof. Birch: While you're at it, why not\n"
 	.string "give a nickname to that {STR_VAR_1}?$"
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1F9E17:: @ 81F9E17
+	flagasdialog
 	setyesnotext gYN_No, gYN_Yeah
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FA8F6, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -143,6 +149,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FA8F6: @ 81FA8F6
 	.string "a good idea to go see {RIVAL}?$"
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1F9E48:: @ 81F9E48
+	flagasdialog
 	addvar VAR_TEMP_A, 1
 	setyesnotext gYN_No, gYN_Fine3
 	compare VAR_TEMP_A, 3
@@ -169,7 +176,8 @@ LittlerootTown_ProfessorBirchsLab_TextArray_1FAA35:
 	.4byte 0
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1F9E36:: @ 81F9E36
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FA9D5, MSGBOX_DEFAULT
+	flagasdialog
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FA9D5
 	clearflag FLAG_HIDE_ROUTE_101_BOY
 	setvar VAR_BIRCH_LAB_STATE, 3
 	@ TriHard Emerald: Force Save
@@ -188,24 +196,25 @@ LittlerootTown_ProfessorBirchsLab_Text_1FA9D5: @ 81FA9D5
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1F9E67:: @ 81F9E67
 	lockall
+	flagasdialog
 	applymovement LID_RIVAL, Common_Movement_WalkInPlaceLeft
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_1F9E78
 	waitmovement 0
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAB22_1, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAB22_1
 	applymovement LID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalRunOut
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_PlayerWatch
 	waitmovement 0
 	removeobject LID_RIVAL
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAB22_2, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAB22_2
 	call LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAC4B, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAC4B
 	@ closemessage
 	giveitem_std ITEM_POKE_BALL, 5
 	compare VAR_RESULT, 0
 	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1FA3CE
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAE40, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAE40
 	setvar VAR_RESULT, 0
 	setvar VAR_BIRCH_LAB_STATE, 5
 	setflag FLAG_ADVENTURE_STARTED
@@ -261,7 +270,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FAC4B: @ 81FAC4B
 	.string "doing fieldwork, and shows me.\p"
 	.string "Oh, and you should take these too.$"
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA3CE:: @ 81FA3CE
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAEF3, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAEF3
 	return
 LittlerootTown_ProfessorBirchsLab_Text_1FAEF3: @ 81FAEF3
 	.string "Oh? Your bag is full somehow.$"
@@ -274,7 +283,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FAE40:
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex:: @ 81FA3AC
 	playfanfare MUS_FANFA4
-	message LittlerootTown_ProfessorBirchsLab_Text_1FAC32
+	message LittlerootTown_ProfessorBirchsLab_Text_1FAC32, MSGTYPE_DESCRIBE
 	waitfanfare
 	setflag FLAG_SYS_POKEDEX_GET
 	special sub_81AFDA0
@@ -290,6 +299,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FAC32: @ 81FAC32
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1F9E80:: @ 81F9E80
 	lockall
+	flagasdialog
 	delay 30
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB16D, MSGBOX_DEFAULT
 	closemessage
@@ -307,11 +317,9 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9E80:: @ 81F9E80
 	applymovement 3, Common_Movement_WalkInPlaceRight
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1F9F32
-	compare VAR_RESULT, FEMALE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1F9F3C
+	selectgenderedstring LittlerootTown_ProfessorBirchsLab_Text_1FB30F, LittlerootTown_ProfessorBirchsLab_Text_1FB38E
+	msgbox_selected
+	closemessage
 	playse SE_PC_ON
 	waitse
 	delay 20
@@ -320,15 +328,15 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9E80:: @ 81F9E80
 	applymovement 3, Common_Movement_WalkInPlaceUp
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB419, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB419
 	playfanfare MUS_FANFA4
-	message LittlerootTown_ProfessorBirchsLab_Text_1FB436
+	message LittlerootTown_ProfessorBirchsLab_Text_1FB436, MSGTYPE_DESCRIBE
 	waitmessage
 	waitfanfare
 	setflag FLAG_SYS_NATIONAL_DEX
 	special EnableNationalPokedex
 	@ "You've become champion..."
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB466, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB466
 	closemessage
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
@@ -389,21 +397,12 @@ LittlerootTown_ProfessorBirchsLab_Movement_1F9F58: @ 81F9F58
 	walk_in_place_fastest_down
 	step_end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_1F9F32:: @ 81F9F32
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB30F, MSGBOX_DEFAULT
-	closemessage
-	return
 LittlerootTown_ProfessorBirchsLab_Text_1FB30F: @ 81FB30F
 	.string "May: Eheheh!\p"
 	.string "It's so cool that even my Pokédex\n"
 	.string "is getting updated!\p"
 	.string "It's because you went out and caught\n"
 	.string "so many Pokémon, {PLAYER}!$"
-
-LittlerootTown_ProfessorBirchsLab_EventScript_1F9F3C:: @ 81F9F3C
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB38E, MSGBOX_DEFAULT
-	closemessage
-	return
 LittlerootTown_ProfessorBirchsLab_Text_1FB38E: @ 81FB38E
 	.string "Brendan: I went out all over Hoenn\n"
 	.string "and checked out Pokémon.\p"
@@ -416,9 +415,10 @@ LittlerootTown_ProfessorBirchsLab_Text_1FB38E: @ 81FB38E
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1F9F62:: @ 81F9F62
 	lockall
+	flagasdialog
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_1F9F7C
 	waitmovement 0
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB5F9, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB5F9
 	setvar VAR_0x40D3, 5
 	releaseall
 	end
@@ -451,7 +451,7 @@ LittlerootTown_ProfessorBirchsLab_Movement_1F9F7C: @ 81F9F7C
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA24F:: @ 81FA24F
 	playfanfare MUS_FANFA4
-	message LittlerootTown_ProfessorBirchsLab_Text_1FB9D7
+	message LittlerootTown_ProfessorBirchsLab_Text_1FB9D7, MSGBOX_DESCRIBE
 	waitmessage
 	waitfanfare
 	return
@@ -466,7 +466,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1FA0F2:: @ 81FA0F2
 	end
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA0FD:: @ 81FA0FD
 	erasemonpic
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FBA2C, MSGBOX_DEFAULT
+	flagasdialog
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FBA2C
 	setvar VAR_0x40D3, 6
 	releaseall
 	end
@@ -487,7 +488,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9FBB:: @ 81F9FBB
 	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	drawmonpic SPECIES_CYNDAQUIL, 10, 3
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB7F6, MSGBOX_YESNO
+	flagasdialog
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB7F6
 	compare VAR_RESULT, 0
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1FA061
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_1FA06C
@@ -536,7 +538,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9FEF:: @ 81F9FEF
 	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	drawmonpic SPECIES_TOTODILE, 10, 3
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB869, MSGBOX_YESNO
+	flagasdialog
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB869
 	compare VAR_RESULT, 0
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1FA061
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_1FA10D
@@ -585,7 +588,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1FA023:: @ 81FA023
 	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	drawmonpic SPECIES_CHIKORITA, 10, 3
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB8E0, MSGBOX_YESNO
+	flagasdialog
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB8E0
 	compare VAR_RESULT, 0
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1FA061
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_1FA1AE
@@ -629,7 +633,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1FA20E:: @ 81FA20E
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA061:: @ 81FA061
 	erasemonpic
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB959, MSGBOX_DEFAULT
+	flagasdialog
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB959
 	releaseall
 	end
 LittlerootTown_ProfessorBirchsLab_Text_1FB959: @ 81FB959
@@ -653,6 +658,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FBAF8: @ 81FBAF8
 LittlerootTown_ProfessorBirchsLab_EventScript_BirchAide:: @ 81F9F84
 	lock
 	faceplayer
+	flagasdialog
 	compare VAR_BIRCH_LAB_STATE, 3
 	goto_if_ge LittlerootTown_ProfessorBirchsLab_EventScript_1F9FB1
 	goto_if_set FLAG_BIRCH_AIDE_MET, LittlerootTown_ProfessorBirchsLab_EventScript_1F9FA7
@@ -694,6 +700,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FA641: @ 81FA641
 LittlerootTown_ProfessorBirchsLab_EventScript_ProfBirch:: @ 81FA25A
 	lock
 	faceplayer
+	flagasdialog
 	compare VAR_0x40D3, 5
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1FA28A
 	compare VAR_0x40D3, 2
@@ -761,7 +768,7 @@ Route101_EventScript_1FA2D2:: @ 81FA2D2
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox Route101_Text_2B603A, MSGBOX_DEFAULT
+	msgbox Route101_Text_2B603A, MSGBOX_DESCRIBE
 	waitfanfare
 	closemessage
 	delay 30
@@ -815,6 +822,7 @@ Route101_Text_2B603A: @ 82B603A
 LittlerootTown_ProfessorBirchsLab_EventScript_Rival:: @ 81FA3EC
 	lock
 	faceplayer
+	flagasdialog
 	compare VAR_0x40D3, 5
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1FA43A
 	compare VAR_0x40D3, 6

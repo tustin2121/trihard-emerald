@@ -6,7 +6,6 @@ OldaleTown_OnTransition: @ 81E8EA8
 	call Common_EventScript_SetupRivalGender
 	setflag FLAG_VISITED_OLDALE_TOWN
 	call_if_unset FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_PreAdventRoadblockSetup
-	call_if_unset FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_1E8EDE
 	call_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_1E8ECC
 	end
 
@@ -15,11 +14,6 @@ OldaleTown_EventScript_PreAdventRoadblockSetup:: @ 81E8ED2
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_LEFT
 	setobjectxyperm 3, 3, 10
 	setobjectmovementtype 3, MOVEMENT_TYPE_FACE_LEFT
-	return
-
-OldaleTown_EventScript_1E8EDE:: @ 81E8EDE
-	setobjectxyperm 2, 13, 14
-	setobjectmovementtype 2, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 OldaleTown_EventScript_1E8ECC:: @ 81E8ECC
@@ -41,24 +35,25 @@ OldaleTown_Text_1E94DA: @ 81E94DA
 
 OldaleTown_EventScript_RestingGirl:: @ 81E8EF3
 	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_RestingGirl_BlockEvent
+	msgbox OldaleTown_Text_1E918F, MSGBOX_DIALOG
+	end
+OldaleTown_Text_1E918F: @ 81E918E
+	.string "He's gonna be fine, mom…\n"
+	.string "D-Don't worry…$"
+OldaleTown_EventScript_RestingGirl_BlockEvent:
 	msgbox OldaleTown_Text_1E918E, MSGBOX_NPC
+	release
 	end
 OldaleTown_Text_1E918E: @ 81E918E
 	.string "I can't stand the atmosphere inside.\p"
 	.string "They say my brother is in stable\n"
 	.string "condition…$"
-OldaleTown_EventScript_RestingGirl_BlockEvent:
-	msgbox OldaleTown_Text_1E918F, MSGBOX_DEFAULT
-	release
-	end
-OldaleTown_Text_1E918F: @ 81E918E
-	.string "They's gonna be fine, mom…\n"
-	.string "D-Don't worry…$"
 
 
 OldaleTown_EventScript_BlockadeBoy1::
 	msgbox OldaleTown_Text_BlockadeBoy1, MSGBOX_NPC
-	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
+	applymovement THIS_EVENT, Common_Movement_FaceLeft
+	waitmovement 0
 	release
 	end
 OldaleTown_Text_BlockadeBoy1:
@@ -69,8 +64,9 @@ OldaleTown_Text_BlockadeBoy1:
 OldaleTown_EventScript_BlockadeBoy2::
 	lock
 	applymovement THIS_EVENT, Common_Movement_FaceDown
-	msgbox OldaleTown_Text_BlockadeBoy2, MSGBOX_DEFAULT
-	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
+	msgbox OldaleTown_Text_BlockadeBoy2, MSGBOX_DIALOG
+	applymovement THIS_EVENT, Common_Movement_FaceLeft
+	waitmovement 0
 	release
 	end
 OldaleTown_Text_BlockadeBoy2:
@@ -80,7 +76,7 @@ OldaleTown_Text_BlockadeBoy2:
 
 OldaleTown_TriggerScript_Policeman::
 	lock
-	msgbox OldaleTown_Text_1E91G4, MSGBOX_DEFAULT
+	msgbox OldaleTown_Text_1E91G4, MSGBOX_DIALOG
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
 	waitmovement 0
 	release
@@ -92,7 +88,7 @@ OldaleTown_Text_1E91G4:
 	.string "if you'd like to wait in the Center.$"
 
 
-OldaleTown_EventScript_BlockadeMother:
+OldaleTown_EventScript_BlockadeMother::
 	msgbox OldaleTown_Text_BlockadeMother, MSGBOX_DESCRIBE
 	release
 	end
@@ -105,6 +101,7 @@ OldaleTown_Text_BlockadeMother: @ 81E918E
 OldaleTown_EventScript_MartEmployee:: @ 81E8EFC
 	lock
 	faceplayer
+	flagasdialog
 	goto_if_set FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_1E8FB9
 	msgbox OldaleTown_Text_1E91C0, MSGBOX_DEFAULT
 	giveitem_std ITEM_POTION
@@ -139,15 +136,10 @@ OldaleTown_EventScript_1E8FC3:: @ 81E8FC3
 	end
 
 
-
-
-
-
-
-
-OldaleTown_EventScript_1E901F:: @ 81E901F
+OldaleTown_EventScript_BlockadeBoy3:: @ 81E901F
 	lock
 	faceplayer
+	flagasdialog
 	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_1E9066
 	msgbox OldaleTown_Text_1E939A, MSGBOX_DEFAULT
 	closemessage
@@ -156,10 +148,14 @@ OldaleTown_EventScript_1E901F:: @ 81E901F
 	release
 	end
 OldaleTown_Text_1E939A: @ 81E939A
-	.string "I just discovered the footprints of\n"
-	.string "a rare Pokémon!\p"
-	.string "Wait until I finish sketching\n"
-	.string "them, okay?$"
+	.string "I saw it myself! A boy's Pokémon\n"
+	.string "was struck down by a wild Pokémon!\p"
+	.string "And then the boy was attacked by\n"
+	.string "the wild Pokémon himself!\p"
+	.string "My Poochyena and I managed to fend\n"
+	.string "off the wild Pokémon, but the boy\l"
+	.string "was badly injured!\p"
+	.string "I-I hope he's gonna be okay…$"
 
 OldaleTown_EventScript_1E903F:: @ 81E903F
 	lockall

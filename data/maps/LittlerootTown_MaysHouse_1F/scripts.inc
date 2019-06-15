@@ -53,7 +53,7 @@ LittlerootTown_MaysHouse_1F_MapScript2_FrameTable: @ 81F893A
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_1F898C
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_1F8964
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_1F899D
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_2, 1, LittlerootTown_RivalsHouse_1F_MeetingTheNeighbors
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_2, 1, LittlerootTown_MaysHouse_1F_EventScript_MeetingTheNeighbors
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_292AF2
 	.2byte 0
 
@@ -66,7 +66,7 @@ LittlerootTown_MaysHouse_1F_EventScript_1F898C:: @ 81F898C
 
 LittlerootTown_MaysHouse_1F_EventScript_1F8964:: @ 81F8964
 	lockall
-	msgbox LittlerootTown_PlayersHouse_1F_Text_DadStayInRoom, MSGBOX_DEFAULT
+	msgbox LittlerootTown_PlayersHouse_1F_Text_DadStayInRoom, MSGBOX_DIALOG
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp1
 	applymovement 1, Common_Movement_WalkUp1
@@ -84,9 +84,10 @@ LittlerootTown_MaysHouse_1F_EventScript_1F899D:: @ 81F899D
 	goto LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene
 	end
 
-LittlerootTown_MaysHouse_1F_EventScript_1F89AE:: @ 81F89AE
+LittlerootTown_MaysHouse_1F_EventScript_MeetingTheNeighbors:: @ 81F89AE
 	lockall
 	playse SE_PIN
+	flagasdialog
 	applymovement 4, Common_Movement_ExclamationMark
 	waitmovement 0
 	applymovement 4, Common_Movement_Delay48
@@ -100,7 +101,6 @@ LittlerootTown_MaysHouse_1F_EventScript_1F89AE:: @ 81F89AE
 	setvar VAR_LITTLEROOT_HOUSES_STATE_2, 2
 	releaseall
 	end
-
 LittlerootTown_MaysHouse_1F_Movement_1F89EC: @ 81F89EC
 	walk_down
 	walk_left
@@ -114,6 +114,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_1F89F3:: @ 81F89F3
 LittlerootTown_MaysHouse_1F_EventScript_1F89F3:: @ 81F89F3
 	lock
 	faceplayer
+	flagasdialog
 	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE103, LittlerootTown_BrendansHouse_1F_EventScript_RivalMomHeal
 	goto_if_set FLAG_SYS_POKEMON_GET, LittlerootTown_BrendansHouse_1F_EventScript_1F8A29
 	compare VAR_LITTLEROOT_RIVAL_STATE, 3
@@ -183,6 +184,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_RivalMomHealGoodbye::
 LittlerootTown_RivalHouse_1F_EventScript_Charlie:: @ 81F8A3D
 	lock
 	faceplayer
+	flagasdialog
 	message LittlerootTown_RivalsHouse_1F_Text_Charlie1
 	waitmessage
 	checkplayeroutfit
@@ -245,6 +247,7 @@ LittlerootTown_MaysHouse_1F_EventScript_1F8A7F:: @ 81F8A7F
 	end
 
 LittlerootTown_MaysHouse_1F_EventScript_1F8A8B:: @ 81F8A8B
+	flagasdialog
 	playse SE_KAIDAN
 	delay 10
 	addobject 7

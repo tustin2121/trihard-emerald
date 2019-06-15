@@ -1244,7 +1244,7 @@ static void sub_8080018(void)
     case 10:
         if (++sBerryBlenderData->framesToWait > 20)
         {
-            ClearDialogWindowAndFrameToTransparent(4, TRUE);
+            ClearTextWindowAndFrameToTransparent(4, TRUE);
             if (GetBlockReceivedStatus() == sub_800A9D8())
             {
                 for (i = 0; i < GetLinkPlayerCount(); i++)
@@ -3651,7 +3651,7 @@ static bool32 Blender_PrintText(s16 *textState, const u8 *string, s32 textSpeed)
     switch (*textState)
     {
     case 0:
-        DrawDialogFrameWithCustomTileAndPalette(4, FALSE, 0x14, 0xF);
+        DrawTextFrameWithCustomTileAndPalette(4, FALSE, 0x14, 0xF);
         Blender_AddTextPrinter(4, string, 0, 1, textSpeed, 0);
         PutWindowTilemap(4);
         CopyWindowToVram(4, 3);

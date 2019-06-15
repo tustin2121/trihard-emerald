@@ -62,6 +62,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8481:: @ 81F8481
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F8497:: @ 81F8497
+	flagasdialog
 	delay 10
 	addobject 1
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85BC

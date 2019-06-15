@@ -21,7 +21,7 @@ Route101_EventScript_1EBCD5:: @ 81EBCD5
 Route101_EventScript_1EBCDE:: @ 81EBCDE
 	lockall
 	playbgm MUS_EVENT0, 1
-	msgbox Route101_Text_1EBE8F, MSGBOX_DEFAULT
+	msgbox Route101_Text_1EBE8F, MSGBOX_DIALOG
 	closemessage
 	setobjectxy 2, 0, 15
 	setobjectxy 4, 0, 16
@@ -37,7 +37,7 @@ Route101_EventScript_1EBCDE:: @ 81EBCDE
 	applymovement 4, Route101_Movement_StarterChoose_Ziggy3
 	applymovement 2, Route101_Movement_StarterChoose_Birch3
 	waitmovement 0
-	msgbox Route101_Text_1EBE9A, MSGBOX_DEFAULT
+	msgbox Route101_Text_1EBE9A, MSGBOX_DIALOG
 	closemessage
 	setvar VAR_ROUTE101_STATE, 2
 	releaseall
@@ -153,7 +153,7 @@ Route101_Movement_StarterChoose_Birch3: @ 81EBDEF
 
 Route101_EventScript_1EBD4E:: @ 81EBD4E
 	lockall
-	msgbox Route101_Text_1EBEDF, MSGBOX_DEFAULT
+	msgbox Route101_Text_1EBEDF, MSGBOX_DIALOG
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp1
 	waitmovement 0
@@ -161,7 +161,7 @@ Route101_EventScript_1EBD4E:: @ 81EBD4E
 	end
 Route101_EventScript_1EBD64:: @ 81EBD64
 	lockall
-	msgbox Route101_Text_1EBEDF, MSGBOX_DEFAULT
+	msgbox Route101_Text_1EBEDF, MSGBOX_DIALOG
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
 	waitmovement 0
@@ -169,7 +169,7 @@ Route101_EventScript_1EBD64:: @ 81EBD64
 	end
 Route101_EventScript_1EBD7A:: @ 81EBD7A
 	lockall
-	msgbox Route101_Text_1EBEDF, MSGBOX_DEFAULT
+	msgbox Route101_Text_1EBEDF, MSGBOX_DIALOG
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown1
 	waitmovement 0
@@ -212,6 +212,7 @@ Route101_Text_1EC0C8: @ 81EC0C8
 Route101_EventScript_1EBE16:: @ 81EBE16
 	lock
 	faceplayer
+	flagasdialog
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_RESCUED_BIRCH
 	fadescreen 1
