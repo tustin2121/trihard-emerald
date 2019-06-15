@@ -1722,15 +1722,25 @@ Common_EventScript_PlayGymBadgeFanfare:: @ 827207E
 	return
 
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
+	call Common_EventScript_PartyHealSave_Setup
+	call Common_EventScript_PartyHealSave_Save
+	call Common_EventScript_PartyHealSave_Complete
+	return
+
+Common_EventScript_PartyHealSave_Setup::
 	fadescreen 5 @ FADE_TO_BLACK_NO_WINDOW
 	playfanfare MUS_ME_ASA
 	waitfanfare
 	special HealPlayerParty
+	return
+Common_EventScript_PartyHealSave_Save::
 	@ TriHard Emerald: Force Save
 	special ForceSaveGame
 	waitstate
 	closemessage
 	delay 1 @ delay 1 frame to allow the save game window to actually close
+	return
+Common_EventScript_PartyHealSave_Complete::
 	fadescreen 4 @ FADE_FROM_BLACK_NO_WINDOW
 	return
 

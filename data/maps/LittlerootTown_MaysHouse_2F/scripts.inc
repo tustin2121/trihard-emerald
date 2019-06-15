@@ -3,6 +3,8 @@ LittlerootTown_MaysHouse_2F_MapScripts:: @ 81F9296
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_MaysHouse_2F_MapScript2_1F931D
 	.byte 0
 
+@ -----------------------------------------------------
+
 LittlerootTown_MaysHouse_2F_MapScript1_1F92A1: @ 81F92A1
 	compare VAR_LITTLEROOT_RIVAL_STATE, 2
 	call_if_lt LittlerootTown_MaysHouse_2F_EventScript_1F930A
@@ -11,7 +13,7 @@ LittlerootTown_MaysHouse_2F_MapScript1_1F92A1: @ 81F92A1
 	compare VAR_LITTLEROOT_INTRO_STATE, 4
 	call_if_eq LittlerootTown_MaysHouse_2F_EventScript_2926FE
 	call LittlerootTown_MaysHouse_2F_EventScript_275CE1
-	setvar VAR_SECRET_BASE_INITIALIZED, 0
+	@ setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
 LittlerootTown_MaysHouse_2F_EventScript_1F92CD:: @ 81F92CD
@@ -44,15 +46,19 @@ LittlerootTown_MaysHouse_2F_EventScript_1F9317:: @ 81F9317
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 2
 	return
 
+@ -----------------------------------------------------
+
 LittlerootTown_MaysHouse_2F_MapScript2_1F931D: @ 81F931D
-	map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, LittlerootTown_MaysHouse_2F_EventScript_1F9327
+	@ map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, LittlerootTown_MaysHouse_2F_EventScript_1F9327
 	.2byte 0
 
-LittlerootTown_MaysHouse_2F_EventScript_1F9327:: @ 81F9327
-	checkplayergender
-	compare VAR_RESULT, 1
-	goto_if_eq EventScript_275D0C
-	end
+@ LittlerootTown_MaysHouse_2F_EventScript_1F9327:: @ 81F9327
+@ 	checkplayergender
+@ 	compare VAR_RESULT, 1
+@ 	goto_if_eq EventScript_275D0C
+@ 	end
+
+@ -----------------------------------------------------
 
 LittlerootTown_MaysHouse_2F_EventScript_1F9334:: @ 81F9334
 	lockall
@@ -342,3 +348,14 @@ LittlerootTown_BrendansHouse_2F_Text_1F9BE7: @ 81F9BE7
 	.string "Hey, {PLAYER}, if I see you while I'm out\n"
 	.string "catching Pokémon, I can pitch you a\l"
 	.string "battle if you'd like.$"
+
+@ -----------------------------------------------------
+@ Trigger: Sleeping in bed
+
+LittlerootTown_MaysHouse_2F_TriggerScript_SleepInBed::
+	checkplayergender
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_PlayersHouse_2F_TriggerScript_SleepInBed
+	release
+	end
+

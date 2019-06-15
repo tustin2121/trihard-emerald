@@ -3,6 +3,8 @@ LittlerootTown_BrendansHouse_2F_MapScripts:: @ 81F83E3
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_BrendansHouse_2F_MapScript2_1F846A
 	.byte 0
 
+@ -----------------------------------------------------
+
 LittlerootTown_BrendansHouse_2F_MapScript1_1F83EE: @ 81F83EE
 	compare VAR_LITTLEROOT_RIVAL_STATE, 2
 	call_if_lt LittlerootTown_BrendansHouse_2F_EventScript_1F8457
@@ -11,7 +13,7 @@ LittlerootTown_BrendansHouse_2F_MapScript1_1F83EE: @ 81F83EE
 	compare VAR_LITTLEROOT_INTRO_STATE, 4
 	call_if_eq LittlerootTown_BrendansHouse_2F_EventScript_2926FE
 	call LittlerootTown_BrendansHouse_2F_EventScript_275CE1
-	setvar VAR_SECRET_BASE_INITIALIZED, 0
+	@ setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F841A:: @ 81F841A
@@ -43,15 +45,19 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8464:: @ 81F8464
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 2
 	return
 
+@ -----------------------------------------------------
+
 LittlerootTown_BrendansHouse_2F_MapScript2_1F846A: @ 81F846A
-	map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, LittlerootTown_BrendansHouse_2F_EventScript_1F8474
+	@ map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, LittlerootTown_BrendansHouse_2F_EventScript_1F8474
 	.2byte 0
 
-LittlerootTown_BrendansHouse_2F_EventScript_1F8474:: @ 81F8474
-	checkplayergender
-	compare VAR_RESULT, 0
-	goto_if_eq EventScript_275D0C
-	end
+@ LittlerootTown_BrendansHouse_2F_EventScript_1F8474:: @ 81F8474
+@ 	checkplayergender
+@ 	compare VAR_RESULT, 0
+@ 	goto_if_eq EventScript_275D0C
+@ 	end
+
+@ -----------------------------------------------------
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F8481:: @ 81F8481
 	lockall
@@ -270,6 +276,18 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F864C:: @ 81F864C
 	msgbox gUnknown_08272CD5, MSGBOX_DEFAULT
 	releaseall
 	end
+
+@ -----------------------------------------------------
+@ Trigger: Sleeping in bed
+
+LittlerootTown_BrendansHouse_2F_TriggerScript_SleepInBed::
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_PlayersHouse_2F_TriggerScript_SleepInBed
+	release
+	end
+
+@ -----------------------------------------------------
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F8656:: @ 81F8656
 LittlerootTown_MaysHouse_2F_EventScript_1F8656:: @ 81F8656

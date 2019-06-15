@@ -87,7 +87,7 @@ LittlerootTown_MaysHouse_2F_EventScript_292799:: @ 8292799
 	setflag FLAG_SET_WALL_CLOCK
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
-	setvar VAR_0x8008, 14
+	setvar VAR_0x8008, 2
 	addobject VAR_0x8008
 	playse SE_KAIDAN
 	flagasdialog
@@ -364,9 +364,39 @@ LittlerootTown_PlayersHouse_1F_Text_DadIntroGoPlay:
 	.string "Go play outside.$"
 
 
+@ -----------------------------------------------------
+@ Trigger: Sleeping in bed
 
-
-
+LittlerootTown_PlayersHouse_2F_TriggerScript_SleepInBed::
+	goto_if_set FLAG_TEMP_1F, LittlerootTown_PlayersHouse_2F_TriggerScript_SleepInBed2
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	message LittlerootTown_PlayersHouse_2F_Text_SleepInBed, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	setflag FLAG_TEMP_1F
+	incrementgamestat GAME_STAT_RESTED_AT_HOME
+	call Common_EventScript_PartyHealSave_Setup
+	@ TODO: Walk player out of bed?
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceLeft
+	waitmovement 0
+	call Common_EventScript_PartyHealSave_Complete
+	release
+	end
+LittlerootTown_PlayersHouse_2F_Text_SleepInBed:
+	.string "{PLAYER} pulls the covers up and\n"
+	.string "drifts off to sleep… … …$"
+LittlerootTown_PlayersHouse_2F_TriggerScript_SleepInBed2:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	message LittlerootTown_PlayersHouse_2F_Text_SleepInBed2, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	release
+	end
+LittlerootTown_PlayersHouse_2F_Text_SleepInBed2:
+	.string "{PLAYER} lies in bed, contemplating\n"
+	.string "the ceiling, not feeling tired…$"
 
 
 
