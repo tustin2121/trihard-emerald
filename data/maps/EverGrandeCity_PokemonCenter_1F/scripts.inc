@@ -15,10 +15,7 @@ EverGrandeCity_PokemonCenter_1F_EventScript_229A4C:: @ 8229A4C
 
 EverGrandeCity_PokemonCenter_1F_EventScript_229A59:: @ 8229A59
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 EverGrandeCity_PokemonCenter_1F_EventScript_229A67:: @ 8229A67

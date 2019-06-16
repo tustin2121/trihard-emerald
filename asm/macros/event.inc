@@ -1263,17 +1263,14 @@
 	.endm
 
 	@ In Emerald, this command consumes its parameters and does nothing. In FireRed, this command is a nop.
-	.macro addelevmenuitem a:req, b:req, c:req, d:req
+	.macro domourning
 	.byte 0xb1
-	.byte \a
-	.2byte \b
-	.2byte \c
-	.2byte \d
 	.endm
 
-	@ In FireRed and Emerald, this command is a nop.
-	.macro showelevmenu
+	@ TriHard Emerald: Do dream cutscene
+	.macro dodreams forceParam=0
 	.byte 0xb2
+	.byte \forceParam
 	.endm
 
 	.macro checkcoins out:req
