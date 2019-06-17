@@ -251,7 +251,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FAB22_2:
 	.string "research, but I think you should have\l"
 	.string "this Pokédex.$"
 LittlerootTown_ProfessorBirchsLab_Movement_RivalRunOut: @ 81FA3E0
-	emote_exclamation_mark
+	emote_angry
 	walk_fast_down
 	walk_fast_down
 	walk_fast_down
