@@ -52,7 +52,7 @@ gFieldEffectScriptPointers:: @ 82DB9D4
 	.4byte gFieldEffectScript_UseDive
 	.4byte gFieldEffectScript_Pokeball
 	.4byte gFieldEffectScript_HeartIcon
-	.4byte gFieldEffectScript_Unknown47
+	.4byte gFieldEffectScript_AngryMarkIcon
 	.4byte gFieldEffectScript_Unknown48
 	.4byte gFieldEffectScript_JumpOutOfAsh
 	.4byte gFieldEffectScript_LavaridgeGymWarp
@@ -342,4 +342,8 @@ gFieldEffectScript_Unknown65:: @ 82DBCF9
 
 gFieldEffectScript_MoveDeoxysRock:: @ 82DBCFF
 	field_eff_callnative Fldeff_MoveDeoxysRock
+	field_eff_end
+
+gFieldEffectScript_AngryMarkIcon:: @ 82DBAE0
+	field_eff_callnative FldEff_AngryIcon
 	field_eff_end

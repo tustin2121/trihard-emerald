@@ -22,6 +22,7 @@ void EndTrainerApproach(void);
 void TryPrepareSecondApproachingTrainer(void);
 u8 FldEff_ExclamationMarkIcon(void);
 u8 FldEff_QuestionMarkIcon(void);
+u8 FldEff_AngryIcon(void);
 u8 FldEff_HeartIcon(void);
 u8 GetCurrentApproachingTrainerEventObjectId(void);
 u8 GetChosenApproachingTrainerEventObjectId(u8 arrayId);

@@ -6710,6 +6710,14 @@ bool8 MovementAction_EmoteQuestionMark_Step0(struct EventObject *eventObject, st
     return TRUE;
 }
 
+bool8 MovementAction_EmoteAngry_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    EventObjectGetLocalIdAndMap(eventObject, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
+    FieldEffectStart(FLDEFF_ANGRY_ICON);
+    sprite->data[2] = 1;
+    return TRUE;
+}
+
 bool8 MovementAction_EmoteHeart_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
     EventObjectGetLocalIdAndMap(eventObject, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);

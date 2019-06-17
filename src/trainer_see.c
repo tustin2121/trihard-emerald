@@ -59,6 +59,8 @@ EWRAM_DATA u8 gApproachingTrainerId = 0;
 // const rom data
 static const u8 sEmotion_ExclamationMarkGfx[] = INCBIN_U8("graphics/misc/emotion_exclamation.4bpp");
 static const u8 sEmotion_QuestionMarkGfx[] = INCBIN_U8("graphics/misc/emotion_question.4bpp");
+static const u8 sEmotion_AngryGfx1[] = INCBIN_U8("graphics/misc/emotion_angry_1.4bpp");
+static const u8 sEmotion_AngryGfx2[] = INCBIN_U8("graphics/misc/emotion_angry_2.4bpp");
 static const u8 sEmotion_HeartGfx[] = INCBIN_U8("graphics/misc/emotion_heart.4bpp");
 
 static u8 (*const sDirectionalApproachDistanceFuncs[])(struct EventObject *trainerObj, s16 range, s16 x, s16 y) =
@@ -122,6 +124,18 @@ static const struct SpriteFrameImage sSpriteImageTable_ExclamationQuestionMark[]
     }
 };
 
+static const struct SpriteFrameImage sSpriteImageTable_AngryMark[] =
+{
+    {
+        .data = sEmotion_AngryGfx1,
+        .size = 0x80
+    },
+    {
+        .data = sEmotion_AngryGfx2,
+        .size = 0x80
+    }
+};
+
 static const struct SpriteFrameImage sSpriteImageTable_HeartIcon[] =
 {
     {
@@ -142,10 +156,24 @@ static const union AnimCmd sSpriteAnim_Icons2[] =
     ANIMCMD_END
 };
 
+static const union AnimCmd sSpriteAnim_Icons3[] =
+{
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_END
+};
+
 static const union AnimCmd *const sSpriteAnimTable_Icons[] =
 {
     sSpriteAnim_Icons1,
-    sSpriteAnim_Icons2
+    sSpriteAnim_Icons2,
+    sSpriteAnim_Icons3
 };
 
 static const struct SpriteTemplate sSpriteTemplate_ExclamationQuestionMark =
@@ -155,6 +183,17 @@ static const struct SpriteTemplate sSpriteTemplate_ExclamationQuestionMark =
     .oam = &sOamData_Icons,
     .anims = sSpriteAnimTable_Icons,
     .images = sSpriteImageTable_ExclamationQuestionMark,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_AngryMark =
+{
+    .tileTag = 0xffff,
+    .paletteTag = 0xffff,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_AngryMark,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_TrainerIcons
 };
@@ -689,6 +728,20 @@ u8 FldEff_QuestionMarkIcon(void)
         struct Sprite *sprite = &gSprites[spriteId];
         SetIconSpriteData(sprite, FLDEFF_QUESTION_MARK_ICON, 1);
         // sprite->oam.paletteNum = 2;
+    }
+
+    return 0;
+}
+
+u8 FldEff_AngryIcon(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_AngryMark, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+        SetIconSpriteData(sprite, FLDEFF_ANGRY_ICON, 2);
+        sprite->oam.paletteNum = 3;
     }
 
     return 0;

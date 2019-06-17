@@ -341,9 +341,19 @@ LittlerootTown_Text_1E8ACF: @ 81E8ACF
 
 LittlerootTown_EventScript_RandomBoy:: @ 81E802B
 	goto_if_set FLAG_TEMP_5, LittlerootTown_EventScript_RandomBoy_2
-	msgbox LittlerootTown_Text_1E8B25, MSGBOX_NPC
+	lock 
+	faceplayer
+	message LittlerootTown_Text_1E8B25, MSGTYPE_DIALOG
+	waitmessage
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_Angry
+	applymovement THIS_EVENT, Common_Movement_AngryReaction
+	message LittlerootTown_Text_1E8B26, MSGTYPE_DIALOG
+	waitmovement 0
+	waitmessage
+	waitbuttonpress
 	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
 	setflag FLAG_TEMP_5
+	release
 	end
 LittlerootTown_Text_1E8B25: @ 81E8B25
 	.string "Prof. Birch and his wife run the lab\n"
@@ -352,6 +362,8 @@ LittlerootTown_Text_1E8B25: @ 81E8B25
 	.string "helping {RIVAL_their} parents with research.\p"
 	.string "It's amazing what a family can do\n"
 	.string "together!\p"
+	.string "$"
+LittlerootTown_Text_1E8B26:
 	.string "… … … Woah! I-I'm sorry! I didn't mean\n"
 	.string "anything by it!$"
 LittlerootTown_EventScript_RandomBoy_2:
@@ -359,6 +371,10 @@ LittlerootTown_EventScript_RandomBoy_2:
 	end
 LittlerootTown_Text_1E8B252:
 	.string "I-I'm sorry. Don't yell anymore, please.$"
+LittlerootTown_Movement_RandomBoy:
+	@ emote_exclamation_mark
+	emote_angry
+	step_end
 	
 
 
