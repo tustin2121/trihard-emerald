@@ -14,10 +14,12 @@ OldaleTown_EventScript_PreAdventRoadblockSetup:: @ 81E8ED2
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_LEFT
 	setobjectxyperm 3, 3, 10
 	setobjectmovementtype 3, MOVEMENT_TYPE_FACE_LEFT
+	setflag FLAG_HIDE_OLDALE_ROADBLOCK_AFTERMATCH
 	return
 
 OldaleTown_EventScript_1E8ECC:: @ 81E8ECC
 	setvar VAR_ROUTE102_ACCESSIBLE, 1
+	clearflag FLAG_HIDE_OLDALE_ROADBLOCK_AFTERMATCH
 	return
 
 @ -----------------------------------------------------
@@ -157,35 +159,15 @@ OldaleTown_Text_1E939A: @ 81E939A
 	.string "was badly injured!\p"
 	.string "I-I hope he's gonna be okay…$"
 
-OldaleTown_EventScript_1E903F:: @ 81E903F
-	lockall
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_Movement_1E9182
-	applymovement 3, OldaleTown_Movement_1E9185
-	waitmovement 0
-	msgbox OldaleTown_Text_1E9313, MSGBOX_DEFAULT
-	closemessage
-	applymovement 3, OldaleTown_Movement_1E918B
-	waitmovement 0
-	releaseall
-	end
-OldaleTown_Text_1E9313: @ 81E9313
-	.string "Aaaaah! Wait!\n"
-	.string "Please don't come in here.\p"
-	.string "I just discovered the footprints of\n"
-	.string "a rare Pokémon!\p"
-	.string "Wait until I finish sketching\n"
-	.string "them, okay?$"
-
 OldaleTown_EventScript_1E9066:: @ 81E9066
 	msgbox OldaleTown_Text_1E93F8, MSGBOX_DEFAULT
 	release
 	end
 OldaleTown_Text_1E93F8: @ 81E93F8
-	.string "I finished sketching the footprints of\n"
-	.string "a rare Pokémon.\p"
-	.string "But it turns out they were only my\n"
-	.string "own footprints…$"
-
+	.string "Make sure your Pokémon are prepared to"
+	.string "go out into the wilds.\p"
+	.string "If they're not, you could end up like\n"
+	.string "that boy earlier… or worse…$"
 
 
 @ -----------------------------------------------------

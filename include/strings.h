@@ -2734,4 +2734,6 @@ extern const u8 gText_NumberOfBattles[];
 extern const u8 gText_Unknown[];
 extern const u8 gText_TrainerCloseBy[];
 
+extern const u8 gText_The[];
+
 #endif // GUARD_STRINGS_H

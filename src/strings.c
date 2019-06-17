@@ -41,6 +41,8 @@ const u8 gExpandedPlaceholder_Afternoon[] = _("afternoon");
 const u8 gExpandedPlaceholder_Evening[] = _("evening");
 const u8 gExpandedPlaceholder_Night[] = _("night");
 
+const u8 gText_The[] = _("the");
+
 const u8 gYN_ERROR[] = _("ERROR");
 const u8 gYN_Yes[] = _("Yes");
 const u8 gYN_No[] = _("No");

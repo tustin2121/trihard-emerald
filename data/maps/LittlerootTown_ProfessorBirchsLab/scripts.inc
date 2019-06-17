@@ -200,12 +200,13 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9E67:: @ 81F9E67
 	applymovement LID_RIVAL, Common_Movement_WalkInPlaceLeft
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_1F9E78
 	waitmovement 0
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAB22_1
+	message LittlerootTown_ProfessorBirchsLab_Text_1FAB22_1
+	waitmessage
 	applymovement LID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalRunOut
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_PlayerWatch
 	waitmovement 0
 	removeobject LID_RIVAL
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_PlayerWatch2
 	
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAB22_2
 	call LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex
@@ -218,6 +219,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9E67:: @ 81F9E67
 	setvar VAR_RESULT, 0
 	setvar VAR_BIRCH_LAB_STATE, 5
 	setflag FLAG_ADVENTURE_STARTED
+	clearflag FLAG_HIDE_OLDALE_ROADBLOCK_AFTERMATCH
 	setvar VAR_ROUTE102_ACCESSIBLE, 1
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
 	setvar VAR_0x4050, 3
@@ -238,25 +240,36 @@ LittlerootTown_ProfessorBirchsLab_Text_1FAB22_1: @ 81FAB22
 	.string "your first try. That's excellent!\p"
 	.string "$"
 LittlerootTown_ProfessorBirchsLab_Text_1FAB22_2:
-	.string "…Don't worry about {RIVAL_them}."
+	.string "…Don't worry about {RIVAL_them}.\p"
 	.string "{RIVAL}'s been helping with my research\n"
 	.string "for a long time.\p"
 	.string "{RIVAL} has an extensive history as\n"
-	.string "a TRAINER already.\p"
+	.string "a trainer already.\p"
 	.string "Here, {PLAYER}, I ordered this for my\n"
 	.string "research, but I think you should have\l"
 	.string "this Pokédex.$"
 LittlerootTown_ProfessorBirchsLab_Movement_RivalRunOut: @ 81FA3E0
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
+	emote_exclamation_mark
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
 	step_end
 LittlerootTown_ProfessorBirchsLab_Movement_PlayerWatch:
 	delay_16
 	face_down
+	delay_16
+	delay_16
+	delay_8
+	step_end
+LittlerootTown_ProfessorBirchsLab_Movement_PlayerWatch2:
+	delay_16
+	delay_16
+	delay_16
+	face_up
 	step_end
 LittlerootTown_ProfessorBirchsLab_Text_1FAC4B: @ 81FAC4B
 	.string "Prof. Birch: The Pokédex is a high-tech\n"
