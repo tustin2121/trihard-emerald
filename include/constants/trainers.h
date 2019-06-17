@@ -107,6 +107,14 @@
 #define TRAINER_PIC_LEAF                  90
 #define TRAINER_PIC_RS_BRENDAN            91
 #define TRAINER_PIC_RS_MAY                92
+#define TRAINER_PIC_PROTAG_MALE_1         93
+#define TRAINER_PIC_PROTAG_FEMALE_1       94
+#define TRAINER_PIC_PROTAG_MALE_2         95
+#define TRAINER_PIC_PROTAG_FEMALE_2       96
+#define TRAINER_PIC_PROTAG_MALE_3         97
+#define TRAINER_PIC_PROTAG_FEMALE_3       98
+#define TRAINER_PIC_PROTAG_MALE_4         99
+#define TRAINER_PIC_PROTAG_FEMALE_4      100
 
 //TODO: MULTIFORM PLAYER
 #define TRAINER_BACK_PIC_BRENDAN                0

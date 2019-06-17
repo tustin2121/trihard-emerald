@@ -393,16 +393,9 @@ u16 sub_818D938(u16 species, bool8 isFrontPic, u16 destX, u16 destY, u8 paletteS
 
 u16 PlayerGenderToFrontTrainerPicId_Debug(u8 gender, bool8 getClass)
 {
-    //TODO: MULTIFORM PLAYER
     if (getClass == TRUE)
     {
-        switch (gender)
-        {
-        default:
-            return gFacilityClassToPicIndex[FACILITY_CLASS_MAY];
-        case MALE:
-            return gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN];
-        }
+        return TRAINER_PIC_PROTAG_MALE_1 + gender;
     }
     return gender;
 }
