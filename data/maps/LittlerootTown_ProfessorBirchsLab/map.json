@@ -166,7 +166,7 @@
             "graphics_id": "EVENT_OBJ_GFX_VAR_0",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "LittlerootTown_ProfessorBirchsLab_EventScript_Rival",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",

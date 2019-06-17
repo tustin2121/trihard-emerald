@@ -18,10 +18,7 @@ LavaridgeTown_PokemonCenter_1F_OnTransition: @ 81FFB05
 
 LavaridgeTown_PokemonCenter_1F_NurseScript:: @ 81FFB0E
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 

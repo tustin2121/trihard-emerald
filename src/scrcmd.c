@@ -7,6 +7,7 @@
 #include "contest.h"
 #include "contest_link_80F57C4.h"
 #include "contest_painting.h"
+#include "cutscene_mourning.h"
 #include "data.h"
 #include "decoration.h"
 #include "decoration_inventory.h"
@@ -2157,23 +2158,30 @@ bool8 ScrCmd_setdoorclosed(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_addelevmenuitem(struct ScriptContext *ctx)
+bool8 ScrCmd_domourning(struct ScriptContext *ctx)
 {
-    u8 v3 = ScriptReadByte(ctx);
-    u16 v5 = VarGet(ScriptReadHalfword(ctx));
-    u16 v7 = VarGet(ScriptReadHalfword(ctx));
-    u16 v9 = VarGet(ScriptReadHalfword(ctx));
-
-    //ScriptAddElevatorMenuItem(v3, v5, v7, v9);
-    return FALSE;
+    if (DoMourningCutscene())
+    {
+        ScriptContext1_Stop();
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
 }
 
-bool8 ScrCmd_showelevmenu(struct ScriptContext *ctx)
+bool8 ScrCmd_dodreams(struct ScriptContext *ctx)
 {
-    /*ScriptShowElevatorMenu();
-    ScriptContext1_Stop();
-    return TRUE;*/
-    return FALSE;
+    if (DoDreamCutscenes())
+    {
+        ScriptContext1_Stop();
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
 }
 
 bool8 ScrCmd_checkcoins(struct ScriptContext *ctx)
@@ -2413,6 +2421,16 @@ bool8 ScrCmd_buffernumberstring2(struct ScriptContext *ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 v1 = VarGet(ScriptReadHalfword(ctx));
     u8 v2 = CountDigits(v1);
+    u8 article = ScriptReadByte(ctx);
+    
+    if (v1 == 1) {
+        if (article == 1) {
+            StringCopy(sScriptStringVars[stringVarIndex], gText_The);
+            return FALSE;
+        } else if (article == 2) {
+            //TODO "a/an"?
+        }
+    }
 
     ConvertIntToNameStringN(sScriptStringVars[stringVarIndex], v1, 0, v2);
     return FALSE;

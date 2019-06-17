@@ -1285,7 +1285,8 @@ Std_ObtainItem_HandleItemType4:: @ 8271B85
 	return
 
 Std_ObtainItem_DisplayPutItemInPocket:: @ 8271B95
-	message gUnknown_08272A78, MSGTYPE_DESCRIBE
+	buffernumberstring2 0, VAR_0x8001, 1
+	message gText_ObtainedTheItem, MSGTYPE_DESCRIBE
 	waitfanfare
 	@ msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	message gText_PutItemInPocket, MSGTYPE_DESCRIBE
@@ -1393,7 +1394,8 @@ EventScript_271C9B:: @ 8271C9B
 	return
 
 EventScript_271CA1:: @ 8271CA1
-	msgbox gUnknown_08272A78, MSGBOX_DEFAULT
+	buffernumberstring2 0, VAR_0x8001, 1
+	msgbox gText_ObtainedTheItem, MSGBOX_DEFAULT
 	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
 	return
@@ -2396,8 +2398,8 @@ gText_Mart_Goodbye:: @ 8272A3F
 gUnknown_08272A52:: @ 8272A52
 	.string "{PLAYER}, welcome!\pWhat can I do for you?$"
 
-gUnknown_08272A78:: @ 8272A78
-	.string "Obtained the {STR_VAR_2}!$"
+gText_ObtainedTheItem:: @ 8272A78
+	.string "Obtained {STR_VAR_1} {STR_VAR_2}!$"
 
 gText_BagIsFull3:: @ 8272A89
 	.string "The bag is full…$"

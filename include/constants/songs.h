@@ -95,7 +95,7 @@
 #define SE_EXPMAX 91            // Exp. Max
 #define SE_TAMAKORO 92          // Roulette Ball
 #define SE_TAMAKORO_E 93        // Roulette Ball 2
-#define SE_BASABASA 94
+#define SE_BASABASA 94			// Infinite Wing Flapping Sound?
 #define SE_REGI 95              // Cash Register
 #define SE_C_GAJI 96            // Contest Hearts
 #define SE_C_MAKU_U 97          // Contest Curtain rise

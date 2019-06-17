@@ -29,7 +29,7 @@ TrainerHill_Roof_EventScript_268FF2:: @ 8268FF2
 TrainerHill_Roof_EventScript_269020:: @ 8269020
 	msgbox TrainerHill_Roof_Text_268AC5, MSGBOX_DEFAULT
 	playfanfare MUS_FANFA1
-	message gUnknown_08272A78
+	message gText_ObtainedTheItem
 	waitfanfare
 	waitmessage
 	goto TrainerHill_Roof_EventScript_269054

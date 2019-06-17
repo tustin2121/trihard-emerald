@@ -33,10 +33,7 @@ MauvilleCity_PokemonCenter_1F_EventScript_210E74:: @ 8210E74
 
 MauvilleCity_PokemonCenter_1F_NurseScript:: @ 8210E78
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 
