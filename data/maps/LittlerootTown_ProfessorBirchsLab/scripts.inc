@@ -205,7 +205,9 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9E67:: @ 81F9E67
 	applymovement LID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalRunOut
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_PlayerWatch
 	waitmovement 0
+	playse SE_TOY_KABE
 	removeobject LID_RIVAL
+	delay 40
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_PlayerWatch2
 	
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAB22_2
