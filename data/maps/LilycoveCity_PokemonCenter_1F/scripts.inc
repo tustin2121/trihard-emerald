@@ -79,7 +79,7 @@ LilycoveCity_PokemonCenter_1F_PCMan::
 	faceplayer
 	msgbox LilycoveCity_PokemonCenter_1F_PCMan_Text1, MSGBOX_DEFAULT
 	closemessage
-	applymovement 8, Common_Movement_FaceUp
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	delay 10
 	special DoPCBangShakingEffect

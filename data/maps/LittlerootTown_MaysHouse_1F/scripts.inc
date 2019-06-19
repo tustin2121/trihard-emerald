@@ -188,7 +188,7 @@ LittlerootTown_RivalHouse_1F_EventScript_Charlie:: @ 81F8A3D
 	message LittlerootTown_RivalsHouse_1F_Text_Charlie1
 	waitmessage
 	checkplayeroutfit
-	selectstring LittlerootTown_RivalsHouse_1F_TextArray_CharlieResponse, VAR_RESULT
+	selectpointer LittlerootTown_RivalsHouse_1F_TextArray_CharlieResponse, VAR_RESULT
 	msgbox_selected MSGBOX_DEFAULT
 	release
 	end

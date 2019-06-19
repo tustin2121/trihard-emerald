@@ -81,12 +81,12 @@ PetalburgCity_PokemonCenter_1F_PCGirl::
 	lock
 	msgbox PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part1, MSGBOX_DEFAULT
 	playse SE_PIN
-	applymovement 9, Common_Movement_ExclamationMark
+	applymovement THIS_EVENT, Common_Movement_ExclamationMark
 	waitmovement 0
-	delay 30
 	faceplayer
+	delay 30
 	msgbox PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part2, MSGBOX_DEFAULT
-	applymovement 9, PetalburgCity_PokemonCenter_1F_Text_PCGirl_Movement
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	release
 	end
@@ -96,9 +96,6 @@ PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part1:
 	.string "Yes, Mom…$"
 PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part2:
 	.string "Excuse me. Some privacy, please?$"
-PetalburgCity_PokemonCenter_1F_Text_PCGirl_Movement:
-	face_up
-	step_end
 
 
 PetalburgCity_PokemonCenter_1F_EventScript_207A0A:: @ 8207A0A

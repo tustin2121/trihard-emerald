@@ -53,16 +53,13 @@ LavaridgeTown_PokemonCenter_1F_PC_Girl::
 	lock
 	faceplayer
 	msgbox LavaridgeTown_PokemonCenter_1F_PC_Girl_Text, MSGBOX_DEFAULT
-	applymovement 8, LavaridgeTown_PokemonCenter_1F_PC_Girl_Movement
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	release
 	end
 LavaridgeTown_PokemonCenter_1F_PC_Girl_Text:
 	.string "Stop it and leave.\p"
 	.string "Now. Get out!$"
-LavaridgeTown_PokemonCenter_1F_PC_Girl_Movement:
-	face_up
-	step_end
 
 
 LavaridgeTown_PokemonCenter_1F_EventScript_1FFB2E:: @ 81FFB2E

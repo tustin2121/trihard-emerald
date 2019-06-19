@@ -317,19 +317,19 @@ PetalburgCity_EventScript_1DC4CA:: @ 81DC4CA
 	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
 	@ Movement
-	selectstring PetalburgCity_MovementTable_1DC57F_Boy, VAR_0x8008
+	selectpointer PetalburgCity_MovementTable_1DC57F_Boy, VAR_0x8008
 	applymovement 8, 0
 	waitmovement 0
-	selectstring PetalburgCity_MovementTable_1DC57F_Player, VAR_0x8008
+	selectpointer PetalburgCity_MovementTable_1DC57F_Player, VAR_0x8008
 	applymovement EVENT_OBJ_ID_PLAYER, 0
 	waitmovement 0
 	
 	msgbox PetalburgCity_Text_1DC881, MSGBOX_DEFAULT
 	closemessage
 	
-	selectstring PetalburgCity_MovementTable_1DC5C9_Boy, VAR_0x8008
+	selectpointer PetalburgCity_MovementTable_1DC5C9_Boy, VAR_0x8008
 	applymovement 8, 0
-	selectstring PetalburgCity_MovementTable_1DC5C9_Player, VAR_0x8008
+	selectpointer PetalburgCity_MovementTable_1DC5C9_Player, VAR_0x8008
 	applymovement EVENT_OBJ_ID_PLAYER, 0
 	waitmovement 0
 	
@@ -598,9 +598,9 @@ PetalburgCity_EventScript_1DC6E9:: @ 81DC6E9
 	delay 30
 	msgbox PetalburgCity_Text_1DCC09, MSGBOX_DEFAULT
 	closemessage
-	selectstring PetalburgCity_MovementTable_1DC7EE_Player, VAR_0x8008
+	selectpointer PetalburgCity_MovementTable_1DC7EE_Player, VAR_0x8008
 	applymovement EVENT_OBJ_ID_PLAYER, 0
-	selectstring PetalburgCity_MovementTable_1DC7EE_Scott, VAR_0x8008
+	selectpointer PetalburgCity_MovementTable_1DC7EE_Scott, VAR_0x8008
 	applymovement 9, 0
 	waitmovement 0
 	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1

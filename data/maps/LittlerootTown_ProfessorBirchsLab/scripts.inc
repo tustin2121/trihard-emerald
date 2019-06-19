@@ -151,19 +151,14 @@ LittlerootTown_ProfessorBirchsLab_Text_1FA8F6: @ 81FA8F6
 LittlerootTown_ProfessorBirchsLab_EventScript_1F9E48:: @ 81F9E48
 	flagasdialog
 	addvar VAR_TEMP_A, 1
-	setyesnotext gYN_No, gYN_Fine3
-	compare VAR_TEMP_A, 3
-	call_if_lt LittlerootTown_ProfessorBirchsLab_EventScript_1F9E48Select
+	selectpointer_clamp LittlerootTown_ProfessorBirchsLab_TextArray_1FAA35, VAR_TEMP_A
+	setyesnotext gYN_No, 0
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FAA35, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1F9E36
 	compare VAR_RESULT, 1
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_1F9E48
 	end
-LittlerootTown_ProfessorBirchsLab_EventScript_1F9E48Select:
-	selectstring LittlerootTown_ProfessorBirchsLab_TextArray_1FAA35, VAR_TEMP_A
-	setyesnotext gYN_No, 0
-	return 
 LittlerootTown_ProfessorBirchsLab_Text_1FAA35: @ 81FAA35
 	.string "Prof. Birch: Oh, don't be that way.\n"
 	.string "You should go meet my kid.$"
