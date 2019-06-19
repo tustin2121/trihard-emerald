@@ -30,6 +30,7 @@
 #include "constants/flags.h"
 #include "constants/game_stat.h"
 #include "constants/battle_frontier.h"
+#include "constants/trainers.h"
 #include "constants/rgb.h"
 
 enum
@@ -117,7 +118,7 @@ static bool8 HasAllFrontierSymbols(void);
 static u8 GetRubyTrainerStars(struct TrainerCard*);
 static u16 GetCaughtMonsCount(void);
 static void SetPlayerCardData(struct TrainerCard*, u8);
-static void sub_80C3020(struct TrainerCard*);
+static void SetCardToPlayerData(struct TrainerCard*);
 static u8 VersionToCardType(u8);
 static void SetDataFromTrainerCard(void);
 static void HandleGpuRegs(void);
@@ -662,7 +663,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     u32 playTime;
     u8 i;
 
-    trainerCard->gender = GetPlayerGender();
+    trainerCard->gender = gSaveBlock2Ptr->playerForm; //GetPlayerGender();
     trainerCard->playTimeHours = gSaveBlock2Ptr->playTimeHours;
     trainerCard->playTimeMinutes = gSaveBlock2Ptr->playTimeMinutes;
 
@@ -722,7 +723,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     }
 }
 
-static void sub_80C3020(struct TrainerCard *trainerCard)
+static void SetCardToPlayerData(struct TrainerCard *trainerCard)
 {
     memset(trainerCard, 0, sizeof(struct TrainerCard));
     trainerCard->version = GAME_VERSION;
@@ -732,7 +733,7 @@ static void sub_80C3020(struct TrainerCard *trainerCard)
     if (trainerCard->hasAllSymbols)
         trainerCard->stars++;
 
-    if (trainerCard->gender == FEMALE)
+    if ((trainerCard->gender & 1) == FEMALE)
         trainerCard->var_4F = gUnknown_08329D54[(trainerCard->trainerId % 8) + 8];
     else
         trainerCard->var_4F = gUnknown_08329D54[trainerCard->trainerId % 8];
@@ -1393,14 +1394,14 @@ static u8 SetCardBgsAndPals(void)
         {
             LoadPalette(gEmeraldTrainerCardStarPals[sData->trainerCard.stars], 0, 96);
             LoadPalette(gUnknown_0856F4EC, 48, 32);
-            if (sData->trainerCard.gender)
+            if (sData->trainerCard.gender & 1)
                 LoadPalette(gUnknown_0856F4AC, 16, 32);
         }
         else
         {
             LoadPalette(gFireRedTrainerCardStarPals[sData->trainerCard.stars], 0, 96);
             LoadPalette(gUnknown_0856F50C, 48, 32);
-            if (sData->trainerCard.gender)
+            if (sData->trainerCard.gender & 1)
                 LoadPalette(gUnknown_0856F4CC, 16, 32);
         }
         LoadPalette(gUnknown_0856F52C, 64, 32);
@@ -1764,7 +1765,7 @@ void ShowPlayerTrainerCard(void (*callback)(void))
         sData->isLink = FALSE;
 
     sData->language = GAME_LANGUAGE;
-    sub_80C3020(&sData->trainerCard);
+    SetCardToPlayerData(&sData->trainerCard);
     SetMainCallback2(CB2_InitTrainerCard);
 }
 
@@ -1839,17 +1840,20 @@ static void sub_80C4FF0(void)
     {
         sub_818D938(FacilityClassToPicIndex(sData->trainerCard.var_4F),
                     TRUE,
-                    gUnknown_0856FB18[sData->isHoenn][sData->trainerCard.gender][0],
-                    gUnknown_0856FB18[sData->isHoenn][sData->trainerCard.gender][1],
+                    gUnknown_0856FB18[sData->isHoenn][sData->trainerCard.gender & 1][0],
+                    gUnknown_0856FB18[sData->isHoenn][sData->trainerCard.gender & 1][1],
                     8,
                     2);
     }
     else
     {
-        sub_818D938(FacilityClassToPicIndex(gUnknown_0856FB20[sData->cardType][sData->trainerCard.gender]),
+        // u16 picId = FacilityClassToPicIndex(gUnknown_0856FB20[sData->cardType][sData->trainerCard.gender]);
+        u16 picId = TRAINER_PIC_PROTAG_MALE_1 + sData->trainerCard.gender;
+        
+        sub_818D938(picId,
                     TRUE,
-                    gUnknown_0856FB18[sData->isHoenn][sData->trainerCard.gender][0],
-                    gUnknown_0856FB18[sData->isHoenn][sData->trainerCard.gender][1],
+                    gUnknown_0856FB18[sData->isHoenn][sData->trainerCard.gender & 1][0],
+                    gUnknown_0856FB18[sData->isHoenn][sData->trainerCard.gender & 1][1],
                     8,
                     2);
     }
