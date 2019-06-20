@@ -1428,7 +1428,7 @@ void sub_808C0A8(u8 a)
         gSprites[gEventObjects[gPlayerAvatar.eventObjectId].fieldEffectSpriteId].invisible = a;
 }
 
-void sub_808C114(void)
+void PlayPlayerFieldMoveAnimation(void)
 {
     EventObjectSetGraphicsId(&gEventObjects[gPlayerAvatar.eventObjectId], GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_FIELD_MOVE));
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], 0);

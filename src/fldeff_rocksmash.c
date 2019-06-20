@@ -69,7 +69,7 @@ static void task08_080C9820(u8 taskId)
         }
         else
         {
-            sub_808C114();
+            PlayPlayerFieldMoveAnimation();
             EventObjectSetHeldMovement(&gEventObjects[eventObjId], MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
             gTasks[taskId].func = sub_813552C;
         }

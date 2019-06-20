@@ -200,7 +200,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_waitmoncry
 	.4byte ScrCmd_bufferboxname
 	.4byte ScrCmd_nop1
-	.4byte ScrCmd_nop1
+	.4byte ScrCmd_dofieldmoveanim
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_nop1

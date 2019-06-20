@@ -51,7 +51,9 @@
 #include "trainer_see.h"
 #include "tv.h"
 #include "window.h"
+#include "constants/field_effects.h"
 #include "constants/event_objects.h"
+#include "constants/event_object_movement_constants.h"
 
 
 typedef u16 (*SpecialFunc)(void);
@@ -2050,6 +2052,25 @@ bool8 ScrCmd_waitfieldeffect(struct ScriptContext *ctx)
 {
     sFieldEffectScriptId = VarGet(ScriptReadHalfword(ctx));
     SetupNativeScript(ctx, WaitForFieldEffectFinish);
+    return TRUE;
+}
+
+
+static bool8 WaitForFieldMoveAnimFinish(void)
+{
+    if (gTasks[sFieldEffectScriptId].isActive == FALSE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 ScrCmd_dofieldmoveanim(struct ScriptContext *ctx)
+{
+    u8 partyIndex = VarGet(ScriptReadByte(ctx));
+    
+    gFieldEffectArguments[0] = partyIndex;
+    sFieldEffectScriptId = FldEff_DoFieldMoveAnimation(partyIndex);
+    SetupNativeScript(ctx, WaitForFieldMoveAnimFinish);
     return TRUE;
 }
 

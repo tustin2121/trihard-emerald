@@ -1393,38 +1393,39 @@
 	.endm
 
 	@ Sets the color of the text in standard message boxes. 0x00 produces blue (male) text, 0x01 produces red (female) text, 0xFF resets the color to the default for the current OW's gender, and all other values produce black text.
-	.macro textcolor color:req
-	.byte 0xc7
-	.byte \color
-	.endm
+	@ .macro textcolor color:req
+	@ .byte 0xc7
+	@ .byte \color
+	@ .endm
 
-	@ The exact purpose of this command is unknown, but it is related to the blue help-text box that appears on the bottom of the screen when the Main Menu is opened.
-	.macro loadhelp pointer:req
+	@ Performs the animation notmally associated with doing a field move, ie, calling out a pokemon, and that pokemon displaying breifly on screen
+	@ Optionally, index will select the mon to use, defaulting to the head of the party.
+	.macro dofieldmoveanim index=0
 	.byte 0xc8
-	.4byte \pointer
+	.byte \index
 	.endm
 
 	@ The exact purpose of this command is unknown, but it is related to the blue help-text box that appears on the bottom of the screen when the Main Menu is opened.
-	.macro unloadhelp
-	.byte 0xc9
-	.endm
+	@ .macro unloadhelp
+	@ .byte 0xc9
+	@ .endm
 
 	@ After using this command, all standard message boxes will use the signpost frame.
-	.macro signmsg
-	.byte 0xca
-	.endm
+	@ .macro signmsg
+	@ .byte 0xca
+	@ .endm
 
 	@ Ends the effects of signmsg, returning message box frames to normal.
-	.macro normalmsg
-	.byte 0xcb
-	.endm
+	@ .macro normalmsg
+	@ .byte 0xcb
+	@ .endm
 
 	@ Compares the value of a hidden variable to a dword.
-	.macro comparehiddenvar a:req, value:req
-	.byte 0xcc
-	.byte \a
-	.4byte \value
-	.endm
+	@ .macro comparehiddenvar a:req, value:req
+	@ .byte 0xcc
+	@ .byte \a
+	@ .4byte \value
+	@ .endm
 
 	@ Makes the Pokemon in the specified slot of the player's party obedient. It will not randomly disobey orders in battle.
 	.macro setmonobedient slot:req
