@@ -296,6 +296,8 @@
 #define VAR_MON_BOX_POS               0x8013
 #define VAR_TEXTBOX_TYPE              0x8014
 #define VAR_TRAINER_BATTLE_OPPONENT_A 0x8015 // Alias of gTrainerBattleOpponent_A
+#define VAR_INTERACT_X                0x8016
+#define VAR_INTERACT_Y                0x8017
 
 #define THIS_EVENT                    0x800F //alias to VAR_LAST_TALKED
 

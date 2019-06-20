@@ -2377,28 +2377,41 @@ bool8 ScrCmd_warpE0(struct ScriptContext *ctx)
     return TRUE;
 }
 
-bool8 ScrCmd_selectstring(struct ScriptContext *ctx)
+bool8 ScrCmd_selectpointer(struct ScriptContext *ctx)
 {
-    const u8 **msg = (const u8 **)ScriptReadWord(ctx);
+    const u8 **ptr = (const u8 **)ScriptReadWord(ctx);
     u16 index = VarGet(ScriptReadHalfword(ctx));
+    u8 overmethod = ScriptReadByte(ctx);
     u16 max;
     
-    if (msg == NULL)
+    if (ptr == NULL)
     {
-        msg = (const u8 **)&ctx->data[0];
+        ptr = (const u8 **)&ctx->data[0];
         max = 4;
     }
     else
     {
         for (max = 0; max < 64; max++)
         {
-            if (msg[max] == NULL) break;
+            if (ptr[max] == NULL) break;
         }
     }
-    // Only load this pointer if it's within the array and pointing to someplace in ROM
-    if (index < max && msg[index] > (const u8*)&Start) 
+    switch (overmethod)
     {
-        ctx->data[0] = (u32)msg[index];
+        default:
+        case 0: //Error if past max
+            break;
+        case 1: //wrap if past max
+            index = index % max;
+            break;
+        case 2: //clamp if past max
+            index = min(index, max-1);
+            break;
+    }
+    // Only load this pointer if it's within the array and pointing to someplace in ROM
+    if (index < max && ptr[index] > (const u8*)&Start) 
+    {
+        ctx->data[0] = (u32)ptr[index];
         ctx->data[1] = 0;
         ctx->data[2] = 0;
         ctx->data[3] = 0;
@@ -2409,7 +2422,7 @@ bool8 ScrCmd_selectstring(struct ScriptContext *ctx)
         // Debugging variables:
         ctx->data[1] = index;
         ctx->data[2] = max;
-        ctx->data[3] = (u32)msg;
+        ctx->data[3] = (u32)ptr;
     }
     return FALSE;
 }

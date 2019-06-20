@@ -175,7 +175,7 @@ OldaleTown_Text_1E93F8: @ 81E93F8
 
 OldaleTown_EventScript_RivalSpeak:: @ 81E90E6
 	@ Select movement
-	selectstring OldaleTown_EventScript_Rival_MovementTable, VAR_0x8009
+	selectpointer OldaleTown_EventScript_Rival_MovementTable, VAR_0x8009
 	applymovement 4, 0 @ Apply selected movement
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight

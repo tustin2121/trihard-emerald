@@ -319,7 +319,7 @@ PokemonCenter_1F_EventScript_FreePokeballCounter::
 	compare VAR_TEMP_A, 8
 	goto_if_ge PokemonCenter_1F_EventScript_FreePokeballCounter_DenyCutoff
 	@ Welcome message
-	selectstring PokemonCenter_1F_TextArray_FreePokeballCounter_Intro, VAR_TEMP_A
+	selectpointer PokemonCenter_1F_TextArray_FreePokeballCounter_Intro, VAR_TEMP_A
 	message 0
 	waitmessage
 	@ Check for first time tutorial
@@ -357,7 +357,7 @@ PokemonCenter_1F_Text_FreePokeballCounter_Intro3:
 	.string "You still want more {REF}Poké Balls{END}?$"
 
 PokemonCenter_1F_EventScript_FreePokeballCounter_GiveBalls:
-	selectstring PokemonCenter_1F_TextArray_FreePokeballCounter_GiveComments, VAR_TEMP_A
+	selectpointer PokemonCenter_1F_TextArray_FreePokeballCounter_GiveComments, VAR_TEMP_A
 	message 0
 	waitmessage
 	waitbuttonpress

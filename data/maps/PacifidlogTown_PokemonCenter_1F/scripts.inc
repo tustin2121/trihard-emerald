@@ -20,7 +20,7 @@ PacifidlogTown_PokemonCenter_1F_PC_Boy::
 	lockall
 	faceplayer
 	msgbox PacifidlogTown_PokemonCenter_1F_PC_Boy_Text, MSGBOX_DEFAULT
-	applymovement 8, Common_Movement_FaceUp
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	releaseall
 	end

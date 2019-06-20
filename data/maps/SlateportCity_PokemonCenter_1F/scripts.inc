@@ -52,7 +52,7 @@ SlateportCity_PokemonCenter_1F_PCMan::
 	lock
 	faceplayer
 	msgbox SlateportCity_PokemonCenter_1F_Text_PCMan, MSGBOX_DEFAULT
-	applymovement 7, SlateportCity_PokemonCenter_1F_PCMan_Movement
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	release
 	end
@@ -61,10 +61,6 @@ SlateportCity_PokemonCenter_1F_Text_PCMan:
 	.string "Just five more minutes!\p"
 	.string "Someone is wrong on the internet, and I\n"
 	.string "need to correct them.$"
-
-SlateportCity_PokemonCenter_1F_PCMan_Movement:
-	face_up
-	step_end
 
 
 SlateportCity_PokemonCenter_1F_EventScript_BattleTipSailor:: @ 820DAE1

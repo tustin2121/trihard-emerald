@@ -53,6 +53,8 @@ gSpecialVars:: @ 81DBA0C
 	.4byte gSpecialVar_MonBoxPos
 	.4byte gSpecialVar_TextboxType
 	.4byte gTrainerBattleOpponent_A
+	.4byte gSpecialVar_InteractX
+	.4byte gSpecialVar_InteractY
 
 	.include "data/specials.inc"
 
@@ -2337,32 +2339,88 @@ Movement_2725CB:: @ 82725CB
 	step_end
 
 EventScript_PictureBookShelf:: @ 82725CE
-	msgbox Text_PictureBookShelf, MSGBOX_SIGN
+	msgbox Text_PictureBookShelf, MSGBOX_DESCRIBE
 	end
+Text_PictureBookShelf: @ 82A81E5
+	.string "There's a set of Pokémon picture books.$"
+
 
 EventScript_BookShelf:: @ 82725D7
-	msgbox Text_BookShelf, MSGBOX_SIGN
+	msgbox Text_BookShelf, MSGBOX_DESCRIBE
 	end
+Text_BookShelf: @ 82A820D
+	.string "It's filled with all sorts of books.$"
+
 
 EventScript_PokemonCenterBookShelf:: @ 82725E0
-	msgbox Text_PokemonCenterBookShelf, MSGBOX_SIGN
+	msgbox Text_PokemonCenterBookShelf, MSGBOX_DESCRIBE
 	end
+Text_PokemonCenterBookShelf: @ 82A8232
+	.string "Pokémon magazines!\n"
+	.string "Pokémon Pal…\p"
+	.string "Pokémon Handbook…\n"
+	.string "Adorable Pokémon…$"
+
 
 EventScript_Vase:: @ 82725E9
-	msgbox Text_Vase, MSGBOX_SIGN
+	msgbox Text_Vase, MSGBOX_DESCRIBE
 	end
+Text_Vase: @ 82A8276
+	.string "This vase looks expensive…\n"
+	.string "Peered inside…\p"
+	.string "But, it was empty.$"
+
 
 EventScript_EmptyTrashCan:: @ 82725F2
-	msgbox Text_EmptyTrashCan, MSGBOX_SIGN
+	callnative HashInteractLocation
+	selectpointer_wrap TextArray_EmptyTrashCan, VAR_0x8000
+	msgbox_selected MSGBOX_DESCRIBE
 	end
+	
+.align 2
+TextArray_EmptyTrashCan:
+	.4byte Text_EmptyTrashCan1
+	.4byte Text_EmptyTrashCan2
+	.4byte Text_EmptyTrashCan3
+	.4byte Text_EmptyTrashCan4
+	.4byte Text_EmptyTrashCan5
+	.4byte Text_EmptyTrashCan6
+	.4byte Text_EmptyTrashCan7
+	.4byte 0
+Text_EmptyTrashCan1: @ 82A82B3
+	.string "It's empty.$"
+Text_EmptyTrashCan2:
+	.string "It's full of used napkins and tissues.$"
+Text_EmptyTrashCan3:
+	.string "There's a half-eaten burger in there.$"
+Text_EmptyTrashCan4:
+	.string "There's a figure of a man in there,\n"
+	.string "covered in trash. How very disgusting.$"
+Text_EmptyTrashCan5:
+	.string "Looks like there's a broken TM in here.$"
+Text_EmptyTrashCan6:
+	.string "Is that a used…? Oh, gross!$"
+Text_EmptyTrashCan7:
+	.string "Hopefully those papers weren't\nimportant.$"
+
 
 EventScript_ShopShelf:: @ 82725FB
-	msgbox Text_ShopShelf, MSGBOX_SIGN
+	msgbox Text_ShopShelf, MSGBOX_DESCRIBE
 	end
+Text_ShopShelf: @ 82A82BF
+	.string "The shelves brim with all sorts of\n"
+	.string "Pokémon merchandise.$"
+
 
 EventScript_Blueprint:: @ 8272604
-	msgbox Text_Blueprint, MSGBOX_SIGN
+	msgbox Text_Blueprint, MSGBOX_DESCRIBE
 	end
+Text_Blueprint: @ 82A82F7
+	.string "It's a blueprint. You scrutinize it,\n"
+	.string "examining the details and measurements\l"
+	.string "for a while, imagining what it would\l"
+	.string "look like when built…$"
+
 
 Text_WouldYouLikeToMixRecords: @ 827260D
 	.string "Would you like to mix records with\n"
@@ -4008,34 +4066,6 @@ MauvilleCity_GameCorner_EventScript_2A5B0D:: @ 82A5B0D
 	.include "data/text/braille.inc"
 	.include "data/text/berries.inc"
 	.include "data/text/shoal_cave.inc"
-
-Text_PictureBookShelf: @ 82A81E5
-	.string "There's a set of Pokémon picture books.$"
-
-Text_BookShelf: @ 82A820D
-	.string "It's filled with all sorts of books.$"
-
-Text_PokemonCenterBookShelf: @ 82A8232
-	.string "Pokémon magazines!\n"
-	.string "Pokémon Pal…\p"
-	.string "Pokémon Handbook…\n"
-	.string "Adorable Pokémon…$"
-
-Text_Vase: @ 82A8276
-	.string "This vase looks expensive…\n"
-	.string "Peered inside…\p"
-	.string "But, it was empty.$"
-
-Text_EmptyTrashCan: @ 82A82B3
-	.string "It's empty.$"
-
-Text_ShopShelf: @ 82A82BF
-	.string "The shelves brim with all sorts of\n"
-	.string "Pokémon merchandise.$"
-
-Text_Blueprint: @ 82A82F7
-	.string "A blueprint of some sort?\n"
-	.string "It's too complicated!$"
 
 GraniteCave_B1F_MapScript2_2A8327: @ 82A8327
 MirageTower_2F_MapScript2_2A8327: @ 82A8327

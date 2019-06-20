@@ -232,7 +232,9 @@ static bool8 TryStartInteractionScript(struct MapPosition *position, u16 metatil
      && script != SecretBase_EventScript_DollInteract
      && script != SecretBase_EventScript_CushionInteract)
         PlaySE(SE_SELECT);
-
+    
+    gSpecialVar_InteractX = position->x;
+    gSpecialVar_InteractY = position->y;
     ScriptContext1_SetupScript(script);
     return TRUE;
 }
@@ -1012,4 +1014,12 @@ int SetCableClubWarp(void)
     MapGridGetMetatileBehaviorAt(position.x, position.y);  //unnecessary
     SetupWarp(&gMapHeader, GetWarpEventAtMapPosition(&gMapHeader, &position), &position);
     return 0;
+}
+
+void HashInteractLocation(void)
+{
+    gSpecialVar_0x8000 = gSaveBlock1Ptr->location.mapGroup;
+    gSpecialVar_0x8000 += gSaveBlock1Ptr->location.mapNum;
+    gSpecialVar_0x8000 += gSpecialVar_InteractX;
+    gSpecialVar_0x8000 += gSpecialVar_InteractY;
 }

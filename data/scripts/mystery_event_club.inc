@@ -95,10 +95,10 @@ PetalburgCity_PokemonCenter_1F_EventScript_291686:: @ 8291686
 	return
 
 PetalburgCity_PokemonCenter_1F_Text_291687: @ 8291687
-	.string "Hello there, TRAINER!\n"
+	.string "Hello there, trainer!\n"
 	.string "You've got a wonderful smile, there.\p"
 	.string "I have a hobby--collecting the profiles\n"
-	.string "of Pokémon TRAINERS.$"
+	.string "of Pokémon trainers.$"
 
 PetalburgCity_PokemonCenter_1F_Text_2916FF: @ 82916FF
 	.string "So, how about it?\n"
@@ -137,7 +137,7 @@ PetalburgCity_PokemonCenter_1F_Text_2919DC: @ 82919DC
 	.string "Well, anytime is good by me!$"
 
 PetalburgCity_PokemonCenter_1F_Text_291A1B: @ 8291A1B
-	.string "Hello there, TRAINER!\n"
+	.string "Hello there, trainer!\n"
 	.string "You've got a wonderful smile.$"
 
 PetalburgCity_PokemonCenter_1F_Text_291A4F: @ 8291A4F

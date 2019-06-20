@@ -1554,12 +1554,34 @@
 	.2byte \quantity
 	.endm
 	
-	@ Selects a string from the given array and loads it into word 0 for use with message 0.
+	@ Selects a pointer from the given array and loads it into word 0 (for use with message 0 and other things).
+	@ This version errors if the index goes past the end of the array.
 	@ Note: the array MUST be word-aligned with .align 2
-	.macro selectstring array:req, index:req
+	.macro selectpointer array:req, index:req
 	.byte 0xe3
 	.4byte \array
 	.2byte \index
+	.byte 0
+	.endm
+	
+	@ Selects a pointer from the given array and loads it into word 0 (for use with message 0 and other things).
+	@ This version wraps the array (modulus) if the index would go past the end of the array.
+	@ Note: the array MUST be word-aligned with .align 2
+	.macro selectpointer_wrap array:req, index:req
+	.byte 0xe3
+	.4byte \array
+	.2byte \index
+	.byte 1
+	.endm
+	
+	@ Selects a pointer from the given array and loads it into word 0 (for use with message 0 and other things).
+	@ This version maxes out at the end of the array if the index would go past it.
+	@ Note: the array MUST be word-aligned with .align 2
+	.macro selectpointer_clamp array:req, index:req
+	.byte 0xe3
+	.4byte \array
+	.2byte \index
+	.byte 2
 	.endm
 	
 	.macro setyesnotext yes:req, no:req
@@ -1711,21 +1733,21 @@
 	loadword MALE, \forMale 
 	loadword FEMALE, \forFemale
 	checkplayergender
-	selectstring 0, VAR_RESULT
+	selectpointer 0, VAR_RESULT
 	.endm
 	
 	@ Selects a string based on if the player is male or female.
 	.macro selectyesnoanswer forYes:req, forNo:req
 	loadword YES, \forYes 
 	loadword NO, \forNo
-	selectstring 0, VAR_RESULT
+	selectpointer 0, VAR_RESULT
 	.endm
 	
 	.macro applymovement_gendered lid:req, forMale:req, forFemale:req
 	loadword MALE, \forMale 
 	loadword FEMALE, \forFemale
 	checkplayergender
-	selectstring 0, VAR_RESULT @it says "string", but this works for pointers just as well
+	selectpointer 0, VAR_RESULT @it says "string", but this works for pointers just as well
 	applymovement \lid, 0
 	.endm
 	
