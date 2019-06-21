@@ -2066,7 +2066,7 @@ static bool8 WaitForFieldMoveAnimFinish(void)
 
 bool8 ScrCmd_dofieldmoveanim(struct ScriptContext *ctx)
 {
-    u8 partyIndex = VarGet(ScriptReadByte(ctx));
+    u16 partyIndex = VarGet(ScriptReadHalfword(ctx));
     
     gFieldEffectArguments[0] = partyIndex;
     sFieldEffectScriptId = FldEff_DoFieldMoveAnimation(partyIndex);

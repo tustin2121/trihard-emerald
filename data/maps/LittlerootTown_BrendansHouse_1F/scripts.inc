@@ -7,7 +7,8 @@ LittlerootTown_BrendansHouse_1F_MapScripts:: @ 81F7755
 LittlerootTown_BrendansHouse_1F_MapScript1_OnLoad: @ 81F7765
 	compare VAR_LITTLEROOT_INTRO_STATE, 6
 	call_if_lt LittlerootTown_BrendansHouse_1F_EventScript_1F777A
-	@ call_if_set FLAG_DAD_IS_AT_WORK, LittlerootTown_BrendansHouse_1F_EventScript_1F778D
+	call_if_set FLAG_DAD_IS_AT_WORK, LittlerootTown_BrendansHouse_1F_EventScript_SetupLetter
+	call_if_unset FLAG_DAD_IS_AT_WORK, LittlerootTown_BrendansHouse_1F_EventScript_RemoveLetter
 	end
 LittlerootTown_BrendansHouse_1F_EventScript_1F777A:: @ 81F777A
 	setmetatile 5, 4, 0x270, 1
@@ -17,14 +18,17 @@ LittlerootTown_BrendansHouse_1F_EventScript_1F777A:: @ 81F777A
 	setmetatile 10, 2, 0x26C, 1
 	setmetatile 10, 3, 0x274, 0
 	return
-@ LittlerootTown_BrendansHouse_1F_EventScript_1F778D:: @ 81F778D
-@ 	checkplayergender
-@ 	compare VAR_RESULT, MALE
-@ 	goto_if_eq LittlerootTown_BrendansHouse_1F_EventScript_1F779A
-@ 	return
-@ LittlerootTown_BrendansHouse_1F_EventScript_1F779A:: @ 81F779A
-@ 	setmetatile 3, 7, 0x293, 1
-@ 	return
+LittlerootTown_BrendansHouse_1F_EventScript_SetupLetter:: @ 81F778D
+	call_if_set FLAG_DAILY_DADS_LETTER_REMOVED, LittlerootTown_BrendansHouse_1F_EventScript_RemoveLetter
+	checkplayergender
+	@ compare VAR_RESULT, MALE
+	@ goto_if_eq LittlerootTown_PlayerHouse_1F_OnLoad_Letter
+	compare VAR_RESULT, FEMALE
+	goto_if_eq LittlerootTown_BrendansHouse_1F_EventScript_RemoveLetter
+	return
+LittlerootTown_BrendansHouse_1F_EventScript_RemoveLetter:: @ 81F779A
+	removeobject 5
+	return
 
 LittlerootTown_BrendansHouse_1F_MapScript1_OnTransition: @ 81F77A4
 	compare VAR_LITTLEROOT_INTRO_STATE, 3
@@ -289,6 +293,16 @@ LittlerootTown_BrendansHouse_1F_Movement_1F7A16: @ 81F7A16
 	walk_up
 	walk_up
 	step_end
+
+@ -----------------------------------------------------
+
+LittlerootTown_BrendansHouse_1F_SignScript_Fridge::
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_PlayerHouse_1F_SignScript_Fridge
+	release
+	end
+
 
 
 

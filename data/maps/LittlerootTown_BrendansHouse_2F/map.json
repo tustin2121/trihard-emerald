@@ -39,6 +39,15 @@
     ],
     "connections": null,
     "coord_events": [
+        {
+            "elevation": 0,
+            "script": "LittlerootTown_BrendansHouse_2F_TriggerScript_SleepInBed",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 1,
+            "y": 4
+        }
     ],
     "id": "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F",
     "layout": "LAYOUT_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F",

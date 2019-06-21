@@ -305,6 +305,13 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Giddy;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_UnusedMauvilleOldMan1;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_UnusedMauvilleOldMan2;
 
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Letter;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ChairItems1;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ChairItems2;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ChairItems3;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ChairItems4;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ChairItems5;
+
 
 const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] = {
     [EVENT_OBJ_GFX_PROTAG_BOY1_NORMAL]      = &gEventObjectGraphicsInfo_ProtagBoy1_Normal,
@@ -615,6 +622,13 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     [EVENT_OBJ_GFX_DEOXYS_TRIANGLE]         = &gEventObjectGraphicsInfo_BirthIslandStone,
     [EVENT_OBJ_GFX_BRANDON]                 = &gEventObjectGraphicsInfo_Brandon,
     [EVENT_OBJ_GFX_HOOH]                    = &gEventObjectGraphicsInfo_HoOh,
+    
+    [EVENT_OBJ_GFX_LETTER]                  = &gEventObjectGraphicsInfo_Letter,
+    [EVENT_OBJ_GFX_CHAIR_ITEMS_1]           = &gEventObjectGraphicsInfo_ChairItems1,
+    [EVENT_OBJ_GFX_CHAIR_ITEMS_2]           = &gEventObjectGraphicsInfo_ChairItems2,
+    [EVENT_OBJ_GFX_CHAIR_ITEMS_3]           = &gEventObjectGraphicsInfo_ChairItems3,
+    [EVENT_OBJ_GFX_CHAIR_ITEMS_4]           = &gEventObjectGraphicsInfo_ChairItems4,
+    [EVENT_OBJ_GFX_CHAIR_ITEMS_5]           = &gEventObjectGraphicsInfo_ChairItems5,
 };
 
 const struct EventObjectGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

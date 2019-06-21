@@ -3809,7 +3809,7 @@ static void DoFieldMove_AnimateMonAnim(u8 taskId);
 static void DoFieldMove_WaitAnimation(u8 taskId);
 static void DoFieldMove_Ending(u8 taskId);
 
-u8 FldEff_DoFieldMoveAnimation(u8 partyIndex)
+u8 FldEff_DoFieldMoveAnimation(u16 partyIndex)
 {
     u8 taskId = CreateTask(DoFieldMove_AnimatePlayer, 8);
     gTasks[taskId].data[0] = partyIndex;
@@ -3836,6 +3836,7 @@ static void DoFieldMove_AnimateMonAnim(u8 taskId)
 {
     if (EventObjectCheckHeldMovementStatus(&gEventObjects[gPlayerAvatar.eventObjectId]) == TRUE)
     {
+        gFieldEffectArguments[0] = gTasks[taskId].data[0];
         FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON_INIT);
         gTasks[taskId].func = DoFieldMove_WaitAnimation;
     }

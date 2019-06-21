@@ -690,7 +690,7 @@
 #define FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT                          0x2DB
 #define FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1                    0x2DC
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE_2                   0x2DD
-#define FLAG_HIDE_PLAYERS_HOUSE_DAD                                 0x2DE
+#define FLAG_HIDE_PLAYERS_HOUSE_LETTER                              0x2DE //Unused
 #define FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING      0x2DF
 #define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING          0x2E0
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_INVISIBLE_NINJA_BOY    0x2E1
@@ -1482,10 +1482,10 @@
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
 
 // Daily Flags
-#define FLAG_DAILY_0x920                            (SYSTEM_FLAGS + 0xC0)
+#define FLAG_DAILY_HOMEMADE_SOUP                    (SYSTEM_FLAGS + 0xC0)
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (SYSTEM_FLAGS + 0xC1)
 #define FLAG_DAILY_SECRET_BASE                      (SYSTEM_FLAGS + 0xC2)
-#define FLAG_DAILY_0x923                            (SYSTEM_FLAGS + 0xC3)
+#define FLAG_DAILY_DADS_LETTER_REMOVED              (SYSTEM_FLAGS + 0xC3)
 #define FLAG_DAILY_0x924                            (SYSTEM_FLAGS + 0xC4)
 #define FLAG_DAILY_0x925                            (SYSTEM_FLAGS + 0xC5)
 #define FLAG_DAILY_0x926                            (SYSTEM_FLAGS + 0xC6)

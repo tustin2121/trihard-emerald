@@ -310,7 +310,14 @@
 #define EVENT_OBJ_GFX_BRANDON                    	0x12B
 #define EVENT_OBJ_GFX_LUGIA                      	0x12C
 #define EVENT_OBJ_GFX_HOOH                       	0x12D
-#define EVENT_OBJ_GFX_BARD_2                     	0x12E
+#define EVENT_OBJ_GFX_LETTER                       	0x12E
+#define EVENT_OBJ_GFX_CHAIR_ITEMS_1                	0x12F
+#define EVENT_OBJ_GFX_CHAIR_ITEMS_2                	0x130
+#define EVENT_OBJ_GFX_CHAIR_ITEMS_3                	0x131
+#define EVENT_OBJ_GFX_CHAIR_ITEMS_4                	0x132
+#define EVENT_OBJ_GFX_CHAIR_ITEMS_5                	0x133
+#define EVENT_OBJ_GFX_BARD_2                     	0x134
+#define NUM_OBJECT_GRAPHICS_INFO 	EVENT_OBJ_GFX_BARD_2
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.
@@ -331,6 +338,8 @@
 #define EVENT_OBJ_GFX_VAR_D 0x1FD
 #define EVENT_OBJ_GFX_VAR_E 0x1FE
 #define EVENT_OBJ_GFX_VAR_F 0x1FF
+
+#define SPRITE_VAR EVENT_OBJ_GFX_VAR_0
 
 #define SHADOW_SIZE_S   0
 #define SHADOW_SIZE_M   1

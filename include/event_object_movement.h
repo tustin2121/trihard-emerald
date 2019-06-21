@@ -1,9 +1,6 @@
 #ifndef GUARD_FIELD_EVENT_OBJ_H
 #define GUARD_FIELD_EVENT_OBJ_H
 
-#define NUM_OBJECT_GRAPHICS_INFO 0x12E
-#define SPRITE_VAR 0x1F0
-
 enum SpinnerRunnerFollowPatterns
 {
     RUNFOLLOW_ANY,

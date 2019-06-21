@@ -926,7 +926,7 @@
 	.2byte \move
 	.endm
 
-	@ Checks if at least one Pokemon in the player's party knows the specified (index) attack. If so, variable 0x800D (LASTRESULT) is set to the (zero-indexed) slot number of the first Pokemon that knows the move. If not, LASTRESULT is set to 0x0006. Variable 0x8004 is also set to this Pokemon's species.
+	@ Checks if at least one Pokemon in the player's party knows the specified (index) attack. If so, variable 0x800D (VAR_RESULT) is set to the (zero-indexed) slot number of the first Pokemon that knows the move. If not, VAR_RESULT is set to 0x0006. Variable 0x8004 is also set to this Pokemon's species.
 	.macro checkpartymove index:req
 	.byte 0x7c
 	.2byte \index
@@ -1402,7 +1402,7 @@
 	@ Optionally, index will select the mon to use, defaulting to the head of the party.
 	.macro dofieldmoveanim index=0
 	.byte 0xc8
-	.byte \index
+	.2byte \index
 	.endm
 
 	@ The exact purpose of this command is unknown, but it is related to the blue help-text box that appears on the bottom of the screen when the Main Menu is opened.

@@ -363,6 +363,46 @@ LittlerootTown_PlayersHouse_1F_Text_DadIntroGoPlay:
 	.string "Dad: I'm busy right now, {PLAYER_buddy}.\n"
 	.string "Go play outside.$"
 
+@ -----------------------------------------------------
+@ Event Object: Dad's Letter
+
+LittlerootTown_PlayerHouse_1F_EventScript_Letter::
+	
+	@ setflag FLAG_DAILY_DADS_LETTER_REMOVED
+	end
+
+LittlerootTown_PlayerHouse_1F_Text_LetterCommon:
+	.string "Hey, {PLAYER_buddy}, I have to work late again\n"
+	.string "tonight."
+	.string "Don't forget to get a good night's rest upstairs."
+	.string "Resting often is good for you and your Pokemon; it makes them stronger."
+	.string "There's some containers of my soup in the fridge."
+	.string "Feel free to take some with you when you go out again."
+
+@ -----------------------------------------------------
+@ Signpost: Fridge
+
+LittlerootTown_PlayerHouse_1F_SignScript_Fridge::
+	lock
+	goto_if_unset FLAG_DAD_IS_AT_WORK, LittlerootTown_PlayerHouse_1F_SignScript_FridgeNothing
+	goto_if_set FLAG_DAILY_HOMEMADE_SOUP, LittlerootTown_PlayerHouse_1F_SignScript_FridgeNothing
+	msgbox LittlerootTown_PlayerHouse_1F_Text_Fridge
+	giveitem_std ITEM_HOMEMADE_SOUP, 5
+	setflag FLAG_DAILY_HOMEMADE_SOUP
+	release
+	end
+LittlerootTown_PlayerHouse_1F_Text_Fridge:
+	.string "You open the fridge and look in…\n"
+	.string "Oh, that looks good!$"
+
+LittlerootTown_PlayerHouse_1F_SignScript_FridgeNothing:
+	msgbox LittlerootTown_PlayerHouse_1F_Text_FridgeNothing
+	release
+	end
+LittlerootTown_PlayerHouse_1F_Text_FridgeNothing:
+	.string "You open the fridge and look in…\n"
+	.string "You find nothing tasty.$"
+
 
 @ -----------------------------------------------------
 @ Trigger: Sleeping in bed
