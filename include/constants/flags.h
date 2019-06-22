@@ -91,10 +91,8 @@
 #define FLAG_SET_WALL_CLOCK                  0x51
 #define FLAG_RESCUED_BIRCH                   0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS       0x53
-
-#define FLAG_UNUSED_0x054                    0x54  // Unused Flag
+#define FLAG_PETALBURG_CENTER_INCIDENT       0x54  // TriHard
 #define FLAG_UNUSED_0x055                    0x55  // Unused Flag
-
 #define FLAG_LINK_CONTEST_POKE_BALL          0x56
 #define FLAG_MET_RIVAL_MOM                   0x57
 #define FLAG_BIRCH_AIDE_MET                  0x58
@@ -113,9 +111,7 @@
 #define FLAG_MOSSDEEP_GYM_SWITCH_2           0x65
 #define FLAG_MOSSDEEP_GYM_SWITCH_3           0x66
 #define FLAG_MOSSDEEP_GYM_SWITCH_4           0x67
-
 #define FLAG_UNUSED_0x068                    0x68  // Unused Flag
-
 #define FLAG_OCEANIC_MUSEUM_MET_REPORTER     0x69
 #define FLAG_RECEIVED_TM54                   0x6A
 #define FLAG_RECEIVED_TM56                   0x6B

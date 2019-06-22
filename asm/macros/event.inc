@@ -771,10 +771,10 @@
 	.2byte \index
 	.endm
 
-	.macro setobjectmovementtype word:req, byte:req
+	.macro setobjectmovementtype lid:req, type:req
 	.byte 0x65
-	.2byte \word
-	.byte \byte
+	.2byte \lid
+	.byte \type
 	.endm
 
 	@ If a standard message box (or its text) is being drawn on-screen, this command blocks script execution until the box and its text have been fully drawn.
@@ -1392,23 +1392,27 @@
 	.2byte \box
 	.endm
 
-	@ Sets the color of the text in standard message boxes. 0x00 produces blue (male) text, 0x01 produces red (female) text, 0xFF resets the color to the default for the current OW's gender, and all other values produce black text.
-	@ .macro textcolor color:req
-	@ .byte 0xc7
-	@ .byte \color
-	@ .endm
-
 	@ Performs the animation notmally associated with doing a field move, ie, calling out a pokemon, and that pokemon displaying breifly on screen
 	@ Optionally, index will select the mon to use, defaulting to the head of the party.
 	.macro dofieldmoveanim index=0
-	.byte 0xc8
+	.byte 0xc7
 	.2byte \index
 	.endm
 
+	@ Sets the color of the text in standard message boxes. 0x00 produces blue (male) text, 0x01 produces red (female) text, 0xFF resets the color to the default for the current OW's gender, and all other values produce black text.
+	.macro warptodynamic 
+	.byte 0xc8
+	.endm
+
 	@ The exact purpose of this command is unknown, but it is related to the blue help-text box that appears on the bottom of the screen when the Main Menu is opened.
-	@ .macro unloadhelp
-	@ .byte 0xc9
-	@ .endm
+	.macro setmetatileex x:req, y:req, tileid:req, elevation:req, collision:req
+	.byte 0xc9
+	.2byte \x
+	.2byte \y
+	.2byte \tileid
+	.2byte \elevation
+	.2byte \collision
+	.endm
 
 	@ After using this command, all standard message boxes will use the signpost frame.
 	@ .macro signmsg
@@ -1764,3 +1768,9 @@
 	.macro msgbox_selected type=MSGBOX_DEFAULT
 	callstd \type
 	.endm
+	
+	@ Only use this in pokecenter tilesets, on the 2nd floor
+	.macro pokecenter_sitonbed x:req, y:req
+	setmetatileex \x, \y, 0x30C, 4, FALSE  @ set tile to bed, elevation 4
+	.endm
+	

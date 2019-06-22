@@ -749,6 +749,14 @@ bool8 ScrCmd_setmaplayoutindex(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_warptodynamic(struct ScriptContext *ctx)
+{
+    SetWarpDestinationToDynamicWarp();
+    DoWarp();
+    ResetInitialPlayerAvatarState();
+    return TRUE;
+}
+
 bool8 ScrCmd_warp(struct ScriptContext *ctx)
 {
     u8 mapGroup = ScriptReadByte(ctx);
@@ -1153,7 +1161,7 @@ bool8 ScrCmd_setobjectpriority(struct ScriptContext *ctx)
     u8 mapNum = ScriptReadByte(ctx);
     u8 priority = ScriptReadByte(ctx);
 
-    sub_808E78C(localId, mapNum, mapGroup, priority + 83);
+    SetSubpriorityForObjectEvent(localId, mapNum, mapGroup, priority + 83);
     return FALSE;
 }
 
@@ -1163,7 +1171,7 @@ bool8 ScrCmd_resetobjectpriority(struct ScriptContext *ctx)
     u8 mapGroup = ScriptReadByte(ctx);
     u8 mapNum = ScriptReadByte(ctx);
 
-    sub_808E7E4(localId, mapNum, mapGroup);
+    ResetSubpriorityForObjectEvent(localId, mapNum, mapGroup);
     return FALSE;
 }
 
@@ -2117,6 +2125,25 @@ bool8 ScrCmd_setmetatile(struct ScriptContext *ctx)
         MapGridSetMetatileIdAt(x, y, tileId);
     else
         MapGridSetMetatileIdAt(x, y, tileId | METATILE_COLLISION_MASK);
+    return FALSE;
+}
+
+bool8 ScrCmd_setmetatileex(struct ScriptContext *ctx)
+{
+    u16 x = VarGet(ScriptReadHalfword(ctx));
+    u16 y = VarGet(ScriptReadHalfword(ctx));
+    u16 metatile = VarGet(ScriptReadHalfword(ctx));
+    u16 elevation = VarGet(ScriptReadHalfword(ctx));
+    u16 collision = VarGet(ScriptReadHalfword(ctx));
+    // u16 metatile  = MapGridGetMetatileIdAt(x, y);
+    // u16 collision = MapGridIsImpassableAt(x, y);
+    
+    collision = collision? METATILE_COLLISION_MASK : 0;
+    elevation = elevation << METATILE_ELEVATION_SHIFT;
+    
+    x += 7;
+    y += 7;
+    MapGridSetMetatileEntryAt(x, y, metatile | collision | elevation);
     return FALSE;
 }
 

@@ -675,7 +675,7 @@ static void Task_WarpOutOfSecretBase(u8 taskId)
             gTasks[taskId].data[0] = 2;
         break;
     case 2:
-        SetWarpDestinationToDynamicWarp(0x7e);
+        SetWarpDestinationToDynamicWarp();
         WarpIntoMap();
         gFieldCallback = mapldr_default;
         SetMainCallback2(CB2_LoadMap);

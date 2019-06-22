@@ -26,6 +26,7 @@ EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
 EWRAM_DATA u16 gSpecialVar_TextboxType = 0;
 EWRAM_DATA u16 gSpecialVar_InteractX = 0;
 EWRAM_DATA u16 gSpecialVar_InteractY = 0;
+EWRAM_DATA u16 gSpecialVar_LastWarpId = 0;
 EWRAM_DATA static u8 gSpecialFlags[16] = {0};
 
 extern u16 *const gSpecialVars[];

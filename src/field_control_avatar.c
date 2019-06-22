@@ -829,7 +829,7 @@ static void SetupWarp(struct MapHeader *unused, s8 warpEventId, struct MapPositi
 
     if (warpEvent->mapNum == MAP_NUM(NONE))
     {
-        SetWarpDestinationToDynamicWarp(warpEvent->warpId);
+        SetWarpDestinationToDynamicWarp();
     }
     else
     {

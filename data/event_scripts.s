@@ -55,6 +55,7 @@ gSpecialVars:: @ 81DBA0C
 	.4byte gTrainerBattleOpponent_A
 	.4byte gSpecialVar_InteractX
 	.4byte gSpecialVar_InteractY
+	.4byte gSpecialVar_LastWarpId
 
 	.include "data/specials.inc"
 

@@ -199,9 +199,9 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_setescapewarp
 	.4byte ScrCmd_waitmoncry
 	.4byte ScrCmd_bufferboxname
-	.4byte ScrCmd_nop1
 	.4byte ScrCmd_dofieldmoveanim
-	.4byte ScrCmd_nop1
+	.4byte ScrCmd_warptodynamic
+	.4byte ScrCmd_setmetatileex
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_nop1

@@ -128,6 +128,7 @@ static void ClearEventObjectMovement(struct EventObject *, struct Sprite *);
 static void EventObjectSetSingleMovement(struct EventObject *, struct Sprite *, u8);
 static void oamt_npc_ministep_reset(struct Sprite *, u8, u8);
 static void UpdateEventObjectSpriteSubpriorityAndVisibility(struct Sprite *);
+void UpdateEventObjectZCoordAndPriority(struct EventObject *, struct Sprite *);
 
 const u8 gReflectionEffectPaletteMap[] = {1, 1, 6, 7, 8, 9, 6, 7, 8, 9, 11, 11, 0, 0, 0, 0};
 
@@ -2075,7 +2076,7 @@ void sub_808E75C(s16 x, s16 y)
     }
 }
 
-void sub_808E78C(u8 localId, u8 mapNum, u8 mapGroup, u8 subpriority)
+void SetSubpriorityForObjectEvent(u8 localId, u8 mapNum, u8 mapGroup, u8 subpriority)
 {
     u8 eventObjectId;
     struct EventObject *eventObject;
@@ -2090,7 +2091,7 @@ void sub_808E78C(u8 localId, u8 mapNum, u8 mapGroup, u8 subpriority)
     }
 }
 
-void sub_808E7E4(u8 localId, u8 mapNum, u8 mapGroup)
+void ResetSubpriorityForObjectEvent(u8 localId, u8 mapNum, u8 mapGroup)
 {
     u8 eventObjectId;
     struct EventObject *eventObject;
