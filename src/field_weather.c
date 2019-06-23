@@ -57,6 +57,7 @@ static void ApplyFogBlend(u8 blendCoeff, u16 blendColor);
 static bool8 FadeInScreen_RainShowShade(void);
 static bool8 FadeInScreen_Drought(void);
 static bool8 FadeInScreen_Fog1(void);
+static bool8 FadeInScreen_PowerOut(void);
 static void FadeInScreenWithWeather(void);
 static void DoNothing(void);
 static void Task_WeatherInit(u8 taskId);
@@ -104,6 +105,7 @@ static const struct WeatherCallbacks sWeatherFuncs[] =
     {Drought_InitVars,   Drought_Main,   Drought_InitAll,   Drought_Finish},
     {HeavyRain_InitVars, Rain_Main,      HeavyRain_InitAll, Rain_Finish},
     {Bubbles_InitVars,   Bubbles_Main,   Bubbles_InitAll,   Bubbles_Finish},
+    {PowerOut_InitVars,  PowerOut_Main,  PowerOut_InitAll,  PowerOut_Finish},
 };
 
 void (*const gWeatherPalStateFuncs[])(void) =
@@ -177,6 +179,7 @@ void StartWeather(void)
         gWeatherPtr->sandstormSwirlSpritesCreated = 0;
         gWeatherPtr->bubblesSpritesCreated = 0;
         gWeatherPtr->lightenedFogSpritePalsCount = 0;
+        gWeatherPtr->powerOutageCoeff = 11;
         Weather_SetBlendCoeffs(16, 0);
         gWeatherPtr->currWeather = 0;
         gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
@@ -396,6 +399,13 @@ static void FadeInScreenWithWeather(void)
             gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
         }
         break;
+    case WEATHER_POWEROUT:
+        if (FadeInScreen_PowerOut() == FALSE)
+        {
+            gWeatherPtr->gammaIndex = 0;
+            gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
+        }
+        break;
     case WEATHER_ASH:
     case WEATHER_SANDSTORM:
     case WEATHER_FOG_2:
@@ -449,6 +459,20 @@ static bool8 FadeInScreen_Fog1(void)
 
     gWeatherPtr->fadeScreenCounter++;
     ApplyFogBlend(16 - gWeatherPtr->fadeScreenCounter, gWeatherPtr->fadeDestColor);
+    return TRUE;
+}
+
+static bool8 FadeInScreen_PowerOut(void)
+{
+    u8 coeff;
+    if (gWeatherPtr->fadeScreenCounter == 16)
+        return FALSE;
+
+    gWeatherPtr->fadeScreenCounter++;
+    coeff = max(16 - gWeatherPtr->fadeScreenCounter, gWeatherPtr->powerOutageCoeff);
+    BlendPalette(0    , 12*16, coeff, gWeatherPtr->fadeDestColor);
+    BlendPalette(12*16,  4*16, 16 - gWeatherPtr->fadeScreenCounter, gWeatherPtr->fadeDestColor);
+    BlendPalette(16*16, 16*16, coeff, gWeatherPtr->fadeDestColor);
     return TRUE;
 }
 
@@ -783,6 +807,7 @@ void FadeScreen(u8 mode, s8 delay)
     case WEATHER_FOG_1:
     case WEATHER_SHADE:
     case WEATHER_DROUGHT:
+    case WEATHER_POWEROUT:
         useWeatherPal = TRUE;
         break;
     default:

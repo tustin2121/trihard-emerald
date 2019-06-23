@@ -2461,7 +2461,7 @@ gUnknown_08272A52:: @ 8272A52
 	.string "{PLAYER}, welcome!\pWhat can I do for you?$"
 
 gText_ObtainedTheItem:: @ 8272A78
-	.string "Obtained {STR_VAR_1} {STR_VAR_2}!$"
+	.string "Scored {STR_VAR_1} {STR_VAR_2}!$"
 
 gText_BagIsFull3:: @ 8272A89
 	.string "The bag is full…$"

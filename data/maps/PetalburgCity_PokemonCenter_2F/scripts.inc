@@ -11,8 +11,13 @@ PetalburgCity_PokemonCenter_2F_FrameTable: @ 8255C41
 	.2byte 0
 
 PetalburgCity_PokemonCenter_2F_MapTable: @ 8255C41
+	map_script_2 VAR_LAST_WARP_ID, 3, Common_EventScript_SetPowerOffWeather
 	map_script_2 VAR_TEMP_1, 0, PetalburgCity_PokemonCenter_2F_OnLoad
 	.2byte 0
+
+Common_EventScript_SetPowerOffWeather: @TODO move to common
+	setweather_nodelay WEATHER_POWEROUT
+	end
 
 PetalburgCity_PokemonCenter_2F_OnLoad:
 	pokecenter_sitonbed 2, 17
@@ -36,6 +41,7 @@ PetalburgCity_PokemonCenter_2F_EventScript_WalkedInOn::
 	setvar VAR_LAST_WARP_ID, 0
 	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
 	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	playse SE_PIN
 	applymovement 5, PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn
 	applymovement 6, PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn
 	waitmovement 0
@@ -58,3 +64,26 @@ PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn:
 @ 	walk_fast_right
 @ 	walk_fast_down
 @ 	step_end
+
+
+PetalburgCity_PokemonCenter_2F_EventScript_SleepingGirl::
+	msgbox PetalburgCity_PokemonCenter_2F_Text_SleepingGirl
+	release
+	end
+PetalburgCity_PokemonCenter_2F_Text_SleepingGirl:
+	.string "She's sleeping…$"
+
+PetalburgCity_PokemonCenter_2F_EventScript_SleepingGirlsBag::
+	msgbox PetalburgCity_PokemonCenter_2F_Text_SleepingGirlsBag, MSGBOX_DEFAULT
+	goto_if_set FLAG_ITEM_STOLEN_PETALBURG_POTION, PetalburgCity_PokemonCenter_2F_EventScript_SleepingGirlsBag_EXIT
+	giveitem_std ITEM_POTION, 2
+	compare VAR_RESULT, 0
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_ITEM_STOLEN_PETALBURG_POTION
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN
+PetalburgCity_PokemonCenter_2F_EventScript_SleepingGirlsBag_EXIT:
+	release
+	end
+PetalburgCity_PokemonCenter_2F_Text_SleepingGirlsBag:
+	.string "…She's not gonna miss those…$"

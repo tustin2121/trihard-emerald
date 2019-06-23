@@ -81,7 +81,8 @@ function initMenuV1() {
 			$(`<li>Fog 3</li>`).attr('value', 10),
 			$(`<li>Shade</li>`).attr('value', 11),
 			$(`<li>Bubbles</li>`).attr('value', 14),
-			$(`<li>Alternating</li>`).attr('value', 15),
+			$(`<li>Power Out</li>`).attr('value', 15),
+			$(`<li>Alternating</li>`).attr('value', 16),
 			$(`<li>[Route 119]</li>`).attr('value', 20),
 			$(`<li>[Route 123]</li>`).attr('value', 20),
 		];

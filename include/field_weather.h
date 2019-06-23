@@ -80,7 +80,7 @@ struct Weather
     u8 isHeavyRain;
     u8 rainStrength;
     /*0x6DE*/ u8 cloudSpritesCreated;
-    u8 filler_6DF[1];
+    u8 powerOutageCoeff;
     u16 snowflakeVisibleCounter;
     u16 unknown_6E2;
     u8 snowflakeSpriteCount;
@@ -236,11 +236,16 @@ void Bubbles_InitVars(void);
 void Bubbles_Main(void);
 void Bubbles_InitAll(void);
 bool8 Bubbles_Finish(void);
+void PowerOut_InitVars(void);
+void PowerOut_InitAll(void);
+void PowerOut_Main(void);
+bool8 PowerOut_Finish(void);
 
 u8 GetSav1Weather(void);
 void SetSav1Weather(u32 weather);
 void SetSav1WeatherFromCurrMapHeader(void);
 void SetWeather(u32 weather);
+void SetWeather_NoDelay(u32 weather);
 void DoCurrentWeather(void);
 void UpdateWeatherPerDay(u16 increment);
 void ResumePausedWeather(void);

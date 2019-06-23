@@ -1415,9 +1415,10 @@
 	.endm
 
 	@ After using this command, all standard message boxes will use the signpost frame.
-	@ .macro signmsg
-	@ .byte 0xca
-	@ .endm
+	.macro setweather_nodelay weather:req 
+	.byte 0xca
+	.2byte \weather
+	.endm
 
 	@ Ends the effects of signmsg, returning message box frames to normal.
 	@ .macro normalmsg

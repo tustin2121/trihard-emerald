@@ -723,6 +723,14 @@ bool8 ScrCmd_setweather(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_setweather_nodelay(struct ScriptContext *ctx)
+{
+    u16 weather = VarGet(ScriptReadHalfword(ctx));
+
+    SetWeather_NoDelay(weather);
+    return FALSE;
+}
+
 bool8 ScrCmd_resetweather(struct ScriptContext *ctx)
 {
     SetSav1WeatherFromCurrMapHeader();
