@@ -145,14 +145,6 @@ LittlerootTown_BrendansHouse_2F_Movement_292857: @ 8292857
 	delay_8
 	step_end
 
-Common_EventScript_ViewWallClock:: @ 829283F
-	incrementgamestat GAME_STAT_CHECKED_CLOCK
-	fadescreen 1
-	special Special_ViewWallClock
-	waitstate
-	releaseall
-	end
-
 LittlerootTown_PlayerHouse_2F_EventScript_SetWallClock:: @ 8292849
 	fadescreen 1
 	special StartWallClock

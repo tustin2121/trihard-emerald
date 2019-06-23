@@ -1497,20 +1497,6 @@ EventScript_PC:: @ 8271D92
 	releaseall
 	end
 
-Common_EventScript_ShowPokemartSign:: @ 8271E6A
-	msgbox gText_PokemartSign, MSGBOX_SIGN
-	end
-
-Common_EventScript_ShowPokemonCenterSign:: @ 8271E73
-	msgbox gText_PokemonCenterSign, MSGBOX_SIGN
-	end
-
-Common_ShowEasyChatScreen:: @ 8271E7C
-	fadescreen 1
-	special ShowEasyChatScreen
-	fadescreen 0
-	return
-
 DewfordTown_Gym_EventScript_271E84:: @ 8271E84
 LavaridgeTown_Gym_1F_EventScript_271E84:: @ 8271E84
 MauvilleCity_Gym_EventScript_271E84:: @ 8271E84
@@ -1681,11 +1667,6 @@ Common_EventScript_SetWeather15:: @ 827207A
 	setweather WEATHER_ALTERNATING
 	return
 
-Common_EventScript_PlayGymBadgeFanfare:: @ 827207E
-	playfanfare MUS_ME_BACHI
-	waitfanfare
-	return
-
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 	call Common_EventScript_PartyHealSave_Setup
 	call Common_EventScript_PartyHealSave_Save
@@ -1709,14 +1690,7 @@ Common_EventScript_PartyHealSave_Complete::
 	fadescreen 4 @ FADE_FROM_BLACK_NO_WINDOW
 	return
 
-EventScript_RegionMap:: @ 827208F
-	lockall
-	msgbox Common_Text_LookCloserAtMap, MSGBOX_DEFAULT
-	fadescreen 1
-	special FieldShowRegionMap
-	waitstate
-	releaseall
-	end
+
 
 LittlerootTown_ProfessorBirchsLab_EventScript_2720AD:: @ 82720AD
 Route101_EventScript_2720AD:: @ 82720AD
@@ -1999,7 +1973,7 @@ Route119_EventScript_272365:: @ 8272365
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
-	applymovement VAR_LAST_TALKED, Route119_Movement_2723C7
+	applymovement VAR_LAST_TALKED, Common_Movement_KecleonShowAnim
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_KECLEON, 2
@@ -2022,38 +1996,6 @@ Route119_EventScript_272365:: @ 8272365
 Route119_EventScript_2723C1:: @ 82723C1
 	goto Route119_EventScript_27376D
 	end
-
-Route119_Movement_2723C7: @ 82723C7
-Route120_Movement_2723C7: @ 82723C7
-Common_Movement_KecleonShowAnim: @ 82723C7
-	set_visible
-	delay_4
-	set_invisible
-	delay_4
-	set_visible
-	delay_4
-	set_invisible
-	delay_4
-	set_visible
-	delay_8
-	set_invisible
-	delay_8
-	set_visible
-	delay_8
-	set_invisible
-	delay_8
-	set_visible
-	delay_16
-	set_invisible
-	delay_16
-	set_visible
-	step_end
-
-Common_EventScript_NameReceivedPokemon:: @ 82723DD
-	fadescreen 1
-	special ChangePokemonNickname
-	waitstate
-	return
 
 FallarborTown_House1_EventScript_2723E4:: @ 82723E4
 GraniteCave_StevensRoom_EventScript_2723E4:: @ 82723E4
@@ -2180,110 +2122,7 @@ Movement_2725CB:: @ 82725CB
 	walk_up
 	step_end
 
-EventScript_PictureBookShelf:: @ 82725CE
-	msgbox Text_PictureBookShelf, MSGBOX_DESCRIBE
-	end
-Text_PictureBookShelf: @ 82A81E5
-	.string "There's a set of Pokémon picture books.$"
-
-
-EventScript_BookShelf:: @ 82725D7
-	msgbox Text_BookShelf, MSGBOX_DESCRIBE
-	end
-Text_BookShelf: @ 82A820D
-	.string "It's filled with all sorts of books.$"
-
-
-EventScript_PokemonCenterBookShelf:: @ 82725E0
-	msgbox Text_PokemonCenterBookShelf, MSGBOX_DESCRIBE
-	end
-Text_PokemonCenterBookShelf: @ 82A8232
-	.string "Pokémon magazines!\n"
-	.string "Pokémon Pal…\p"
-	.string "Pokémon Handbook…\n"
-	.string "Adorable Pokémon…$"
-
-
-EventScript_PokemonCenterSleepSign:: @ 82725E0
-	msgbox Text_PokemonCenterSleepSign, MSGBOX_DESCRIBE
-	end
-Text_PokemonCenterSleepSign: @ 82A8232
-	.string "{PLACE}Courtesy Resting Rooms{END}\n"
-	.string "“A rested trainer is a safe trainer!”\p"
-	.string "“The Pokémon Center is not liable for\n"
-	.string "lost or stolen property while using\l"
-	.string "our facilities.\p"
-	.string "“Please remember to lock your door\n"
-	.string "before going to sleep. We ask that\l"
-	.string "you respect other's personal space.”$"
-
-
-EventScript_PokemonCenterClock::
-	lockall
-	setvar VAR_0x8004, 2
-	goto Common_EventScript_ViewWallClock
-	end
-
-
-EventScript_Vase:: @ 82725E9
-	msgbox Text_Vase, MSGBOX_DESCRIBE
-	end
-Text_Vase: @ 82A8276
-	.string "This vase looks expensive…\n"
-	.string "Peered inside…\p"
-	.string "But, it was empty.$"
-
-
-EventScript_EmptyTrashCan:: @ 82725F2
-	callnative HashInteractLocation
-	selectpointer_wrap TextArray_EmptyTrashCan, VAR_0x8000
-	msgbox_selected MSGBOX_DESCRIBE
-	end
-	
-.align 2
-TextArray_EmptyTrashCan:
-	.4byte Text_EmptyTrashCan1
-	.4byte Text_EmptyTrashCan2
-	.4byte Text_EmptyTrashCan3
-	.4byte Text_EmptyTrashCan4
-	.4byte Text_EmptyTrashCan5
-	.4byte Text_EmptyTrashCan6
-	.4byte Text_EmptyTrashCan7
-	.4byte 0
-Text_EmptyTrashCan1: @ 82A82B3
-	.string "It's empty.$"
-Text_EmptyTrashCan2:
-	.string "It's full of used napkins and tissues.$"
-Text_EmptyTrashCan3:
-	.string "There's a half-eaten burger in there.$"
-Text_EmptyTrashCan4:
-	.string "There's a figure of a man in there,\n"
-	.string "covered in trash. How very disgusting.$"
-Text_EmptyTrashCan5:
-	.string "Looks like there's a broken TM in here.$"
-Text_EmptyTrashCan6:
-	.string "Is that a used…? Oh, gross!$"
-Text_EmptyTrashCan7:
-	.string "Hopefully those papers weren't\nimportant.$"
-
-
-EventScript_ShopShelf:: @ 82725FB
-	msgbox Text_ShopShelf, MSGBOX_DESCRIBE
-	end
-Text_ShopShelf: @ 82A82BF
-	.string "The shelves brim with all sorts of\n"
-	.string "Pokémon merchandise.$"
-
-
-EventScript_Blueprint:: @ 8272604
-	msgbox Text_Blueprint, MSGBOX_DESCRIBE
-	end
-Text_Blueprint: @ 82A82F7
-	.string "It's a blueprint. You scrutinize it,\n"
-	.string "examining the details and measurements\l"
-	.string "for a while, imagining what it would\l"
-	.string "look like when built…$"
-
+	.include "data/scripts/metatile_scripts.inc"
 
 Text_WouldYouLikeToMixRecords: @ 827260D
 	.string "Would you like to mix records with\n"
@@ -2334,9 +2173,6 @@ gText_PutItemInPocket:: @ 8272A9A
 gText_PlayerFoundOneItem:: @ 8272ABF
 	.string "{PLAYER} found {STR_VAR_1} {STR_VAR_2}!$"
 
-gText_TooBadBagIsFull:: @ 8272AD0
-	.string "Too bad!\nThe bag is full…$"
-
 gText_PlayerPutItemInBag:: @ 8272AEA
 	.string "{PLAYER} put away the {STR_VAR_2}\nin the bag.$"
 
@@ -2348,12 +2184,6 @@ gText_NoRoomLeftForAnother:: @ 8272B1A
 
 gUnknown_08272B48:: @ 8272B48
 	.string "The {STR_VAR_2} was transferred\nto the PC.$"
-
-gText_PokemartSign:: @ 8272B6A
-	.string "“Selected items for your convenience!”\n{PLACE}Pokémon Mart$"
-
-gText_PokemonCenterSign:: @ 8272B9E
-	.string "“Rejuvenate your tired partners!”\n{PLACE}Pokémon Center$"
 
 gUnknown_08272BCF:: @ 8272BCF
 	.string "{RIVAL_ALOLA} would like this program.\n"
@@ -3801,19 +3631,6 @@ EventScript_2926F8:: @ 82926F8
 	end
 
 	.include "data/scripts/players_house.inc"
-
-EventScript_RunningShoesManual:: @ 8292DE5
-	@ msgbox LittlerootTown_PlayersHouse_1F_Text_1F7F66, MSGBOX_SIGN
-	release
-	end
-@ LittlerootTown_PlayersHouse_1F_Text_1F7F66: @ 81F7F66
-@ 	.string "It's the instruction booklet for the\n"
-@ 	.string "RUNNING SHOES.\p"
-@ 	.string "“Press the B Button to run while\n"
-@ 	.string "wearing your RUNNING SHOES.\p"
-@ 	.string "“Lace up your RUNNING SHOES and hit\n"
-@ 	.string "the road running!”$"
-
 	.include "data/scripts/pokeblocks.inc"
 
 gText_SoPretty:: @ 8294295

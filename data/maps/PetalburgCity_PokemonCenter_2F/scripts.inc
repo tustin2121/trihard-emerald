@@ -15,10 +15,6 @@ PetalburgCity_PokemonCenter_2F_MapTable: @ 8255C41
 	map_script_2 VAR_TEMP_1, 0, PetalburgCity_PokemonCenter_2F_OnLoad
 	.2byte 0
 
-Common_EventScript_SetPowerOffWeather: @TODO move to common
-	setweather_nodelay WEATHER_POWEROUT
-	end
-
 PetalburgCity_PokemonCenter_2F_OnLoad:
 	pokecenter_sitonbed 2, 17
 	call_if_set FLAG_PETALBURG_CENTER_INCIDENT, PetalburgCity_PokemonCenter_2F_EventScript_AfterKickout_LockRoom

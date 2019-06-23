@@ -314,8 +314,3 @@ LittlerootTown_PlayersHouse_2F_Text_1F884F: @ 81F884F
 	.string "serve as the Controller.$"
 
 
-Common_Text_LookCloserAtMap: @ 81F8820
-	.string "{PLAYER} took a closer look at the\n"
-	.string "Hoenn region map.$"
-
-

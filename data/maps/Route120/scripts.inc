@@ -203,7 +203,7 @@ Route120_EventScript_1F568B:: @ 81F568B
 	closemessage
 	applymovement 30, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement 30, Route120_Movement_2723C7
+	applymovement 30, Common_Movement_KecleonShowAnim
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_KECLEON, 2
