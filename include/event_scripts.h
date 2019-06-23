@@ -543,6 +543,8 @@ extern const u8 EventScript_RegionMap[];
 extern const u8 EventScript_RunningShoesManual[];
 extern const u8 EventScript_PictureBookShelf[];
 extern const u8 EventScript_BookShelf[];
+extern const u8 EventScript_PokemonCenterClock[];
+extern const u8 EventScript_PokemonCenterSleepSign[];
 extern const u8 EventScript_PokemonCenterBookShelf[];
 extern const u8 EventScript_Vase[];
 extern const u8 EventScript_EmptyTrashCan[];

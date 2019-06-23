@@ -2363,6 +2363,27 @@ Text_PokemonCenterBookShelf: @ 82A8232
 	.string "Adorable Pokémon…$"
 
 
+EventScript_PokemonCenterSleepSign:: @ 82725E0
+	msgbox Text_PokemonCenterSleepSign, MSGBOX_DESCRIBE
+	end
+Text_PokemonCenterSleepSign: @ 82A8232
+	.string "{PLACE}Courtesy Resting Rooms{END}\n"
+	.string "“A rested trainer is a safe trainer!”\p"
+	.string "“The Pokémon Center is not liable for\n"
+	.string "lost or stolen property while using\l"
+	.string "our facilities.\p"
+	.string "“Please remember to lock your door\n"
+	.string "before going to sleep. We ask that\l"
+	.string "you respect other's personal space.”$"
+
+
+EventScript_PokemonCenterClock::
+	lockall
+	setvar VAR_0x8004, 2
+	goto Common_EventScript_ViewWallClock
+	end
+
+
 EventScript_Vase:: @ 82725E9
 	msgbox Text_Vase, MSGBOX_DESCRIBE
 	end

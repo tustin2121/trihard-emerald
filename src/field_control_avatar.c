@@ -394,6 +394,10 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return EventScript_PictureBookShelf;
     if (MetatileBehavior_IsBookShelf(metatileBehavior) == TRUE)
         return EventScript_BookShelf;
+    if (MetatileBehavior_IsPokeCenterClock(metatileBehavior) == TRUE)
+        return EventScript_PokemonCenterClock;
+    if (MetatileBehavior_IsPokeCenterSleepSign(metatileBehavior) == TRUE)
+        return EventScript_PokemonCenterSleepSign;
     if (MetatileBehavior_IsPokeCenterBookShelf(metatileBehavior) == TRUE)
         return EventScript_PokemonCenterBookShelf;
     if (MetatileBehavior_IsVase(metatileBehavior) == TRUE)

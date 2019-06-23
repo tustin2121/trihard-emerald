@@ -79,7 +79,7 @@ LittlerootTown_MaysHouse_2F_EventScript_29278D:: @ 829278D
 
 LittlerootTown_BrendansHouse_2F_EventScript_292799:: @ 8292799
 LittlerootTown_MaysHouse_2F_EventScript_292799:: @ 8292799
-	goto_if_set FLAG_SET_WALL_CLOCK, LittlerootTown_PlayerHouse_2F_EventScript_ViewWallClock
+	goto_if_set FLAG_SET_WALL_CLOCK, Common_EventScript_ViewWallClock
 	msgbox LittlerootTown_PlayersHouse_2F_Text_ClockStopped, MSGBOX_DEFAULT
 	call LittlerootTown_PlayerHouse_2F_EventScript_SetWallClock
 	delay 30
@@ -145,7 +145,7 @@ LittlerootTown_BrendansHouse_2F_Movement_292857: @ 8292857
 	delay_8
 	step_end
 
-LittlerootTown_PlayerHouse_2F_EventScript_ViewWallClock:: @ 829283F
+Common_EventScript_ViewWallClock:: @ 829283F
 	incrementgamestat GAME_STAT_CHECKED_CLOCK
 	fadescreen 1
 	special Special_ViewWallClock
