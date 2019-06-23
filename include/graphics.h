@@ -3192,6 +3192,7 @@ extern const u32 gUnknown_08DBA12C[];
 extern const u32 gWallclock_Gfx[];
 extern const u16 gWallclockMale_Pal[];
 extern const u16 gWallclockFemale_Pal[];
+extern const u16 gWallclockPokecenter_Pal[];
 extern const u32 gUnknown_08DCC648[];
 extern const u32 gUnknown_08DCC908[];
 extern const u32 gBerryFixGameboy_Gfx[];

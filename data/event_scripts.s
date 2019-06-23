@@ -55,6 +55,7 @@ gSpecialVars:: @ 81DBA0C
 	.4byte gTrainerBattleOpponent_A
 	.4byte gSpecialVar_InteractX
 	.4byte gSpecialVar_InteractY
+	.4byte gSpecialVar_LastWarpId
 
 	.include "data/specials.inc"
 
@@ -990,7 +991,7 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_BRENDAN
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
-	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	setflag FLAG_HIDE_PLAYERS_HOUSE_LETTER
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL
 	setflag FLAG_HIDE_FANCLUB_OLD_LADY
@@ -1167,7 +1168,7 @@ EverGrandeCity_HallOfFame_EventScript_27183F:: @ 827183F
 EverGrandeCity_HallOfFame_EventScript_271843:: @ 8271843
 	setvar VAR_LITTLEROOT_HOUSES_STATE, 3
 	setvar VAR_LITTLEROOT_HOUSES_STATE_2, 3
-	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	clearflag FLAG_HIDE_PLAYERS_HOUSE_LETTER
 	return
 
 EverGrandeCity_HallOfFame_EventScript_271851:: @ 8271851
@@ -2203,6 +2204,27 @@ Text_PokemonCenterBookShelf: @ 82A8232
 	.string "Adorable Pokémon…$"
 
 
+EventScript_PokemonCenterSleepSign:: @ 82725E0
+	msgbox Text_PokemonCenterSleepSign, MSGBOX_DESCRIBE
+	end
+Text_PokemonCenterSleepSign: @ 82A8232
+	.string "{PLACE}Courtesy Resting Rooms{END}\n"
+	.string "“A rested trainer is a safe trainer!”\p"
+	.string "“The Pokémon Center is not liable for\n"
+	.string "lost or stolen property while using\l"
+	.string "our facilities.\p"
+	.string "“Please remember to lock your door\n"
+	.string "before going to sleep. We ask that\l"
+	.string "you respect other's personal space.”$"
+
+
+EventScript_PokemonCenterClock::
+	lockall
+	setvar VAR_0x8004, 2
+	goto Common_EventScript_ViewWallClock
+	end
+
+
 EventScript_Vase:: @ 82725E9
 	msgbox Text_Vase, MSGBOX_DESCRIBE
 	end
@@ -2301,7 +2323,7 @@ gUnknown_08272A52:: @ 8272A52
 	.string "{PLAYER}, welcome!\pWhat can I do for you?$"
 
 gText_ObtainedTheItem:: @ 8272A78
-	.string "Obtained {STR_VAR_1} {STR_VAR_2}!$"
+	.string "Scored {STR_VAR_1} {STR_VAR_2}!$"
 
 gText_BagIsFull3:: @ 8272A89
 	.string "The bag is full…$"

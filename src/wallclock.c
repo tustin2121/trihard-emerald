@@ -145,6 +145,10 @@ static const struct SpritePalette gUnknown_085B2218[] =
         .data = gWallclockFemale_Pal,
         .tag = 0x1001
     },
+    {
+        .data = gWallclockPokecenter_Pal,
+        .tag = 0x1001
+    },
     {}
 };
 
@@ -645,13 +649,18 @@ static void LoadWallClockGraphics(void)
     DmaClear32(3, (void *)OAM, OAM_SIZE);
     DmaClear16(3, (void *)PLTT, PLTT_SIZE);
     LZ77UnCompVram(gWallclock_Gfx, (void *)VRAM);
-    if (gSpecialVar_0x8004 == 0)
+    switch (gSpecialVar_0x8004)
     {
+    case 0:
         LoadPalette(gWallclockMale_Pal, 0x00, 0x20);
-    }
-    else
-    {
+        break;
+    case 1:
         LoadPalette(gWallclockFemale_Pal, 0x00, 0x20);
+        break;
+    case 2:
+    default:
+        LoadPalette(gWallclockPokecenter_Pal, 0x00, 0x20);
+        break;
     }
     LoadPalette(GetOverworldTextboxPalettePtr(), 0xe0, 0x20);
     LoadPalette(sUnknown_085B21D4, 0xc0, 0x08);
@@ -733,6 +742,7 @@ void CB2_ViewWallClock(void)
     u8 spriteId;
     u8 angle1;
     u8 angle2;
+    u8 color[3];
 
     LoadWallClockGraphics();
     LZ77UnCompVram(gUnknown_08DCC908, (u16 *)BG_SCREEN_ADDR(7));
@@ -769,8 +779,17 @@ void CB2_ViewWallClock(void)
     gSprites[spriteId].data[1] = angle2;
 
     WallClockInit();
-
-    AddTextPrinterParameterized(1, 1, gText_Cancel4, 0, 1, 0, NULL);
+    
+    color[0] = 0;
+    if (gSpecialVar_0x8004 == 2) {
+        color[1] = 3;
+        color[2] = 2;
+    } else {
+        color[1] = 2;
+        color[2] = 3;
+    }
+    // AddTextPrinterParameterized(1, 1, gText_Cancel4, 0, 1, 0, NULL);
+    AddTextPrinterParameterized3(1, 1, 0, 1, color, 0, gText_Cancel4);
     PutWindowTilemap(1);
     schedule_bg_copy_tilemap_to_vram(2);
 }

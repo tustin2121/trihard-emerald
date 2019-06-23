@@ -453,3 +453,10 @@ const u32 gEventObjectPic_Lucy[] = INCBIN_U32("graphics/event_objects/pics/peopl
 const u32 gEventObjectPic_Brandon[] = INCBIN_U32("graphics/event_objects/pics/people/frontier_brains/brandon.4bpp");
 const u32 gEventObjectPic_Lugia[] = INCBIN_U32("graphics/event_objects/pics/pokemon/lugia.4bpp");
 const u32 gEventObjectPic_HoOh[] = INCBIN_U32("graphics/event_objects/pics/pokemon/ho_oh.4bpp");
+
+const u32 gEventObjectPic_Letter[] = INCBIN_U32("graphics/event_objects/pics/misc/letter.4bpp");
+const u32 gEventObjectPic_ChairItems1[] = INCBIN_U32("graphics/event_objects/pics/misc/chair_item1.4bpp");
+const u32 gEventObjectPic_ChairItems2[] = INCBIN_U32("graphics/event_objects/pics/misc/chair_item2.4bpp");
+const u32 gEventObjectPic_ChairItems3[] = INCBIN_U32("graphics/event_objects/pics/misc/chair_item3.4bpp");
+const u32 gEventObjectPic_ChairItems4[] = INCBIN_U32("graphics/event_objects/pics/misc/chair_item4.4bpp");
+const u32 gEventObjectPic_ChairItems5[] = INCBIN_U32("graphics/event_objects/pics/misc/chair_item5.4bpp");

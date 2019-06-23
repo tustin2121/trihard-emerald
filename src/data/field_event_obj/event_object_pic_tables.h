@@ -3133,3 +3133,32 @@ const struct SpriteFrameImage gEventObjectPicTable_RubySapphireMay[] = {
     overworld_frame(gEventObjectPic_RubySapphireMayNormal, 2, 4, 7),
     overworld_frame(gEventObjectPic_RubySapphireMayNormal, 2, 4, 8),
 };
+
+
+const struct SpriteFrameImage gEventObjectPicTable_Letter[] = {
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 0),
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 1),
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 2),
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 0),
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 0),
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 1),
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 1),
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 2),
+    overworld_frame(gEventObjectPic_Letter, 2, 4, 2),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ChairItems1[] = {
+    obj_frame_tiles(gEventObjectPic_ChairItems1),
+};
+const struct SpriteFrameImage gEventObjectPicTable_ChairItems2[] = {
+    obj_frame_tiles(gEventObjectPic_ChairItems2),
+};
+const struct SpriteFrameImage gEventObjectPicTable_ChairItems3[] = {
+    obj_frame_tiles(gEventObjectPic_ChairItems3),
+};
+const struct SpriteFrameImage gEventObjectPicTable_ChairItems4[] = {
+    obj_frame_tiles(gEventObjectPic_ChairItems4),
+};
+const struct SpriteFrameImage gEventObjectPicTable_ChairItems5[] = {
+    obj_frame_tiles(gEventObjectPic_ChairItems5),
+};

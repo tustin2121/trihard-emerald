@@ -576,6 +576,7 @@ void ApplyCurrentWarp(void)
     gSaveBlock1Ptr->location = sWarpDestination;
     gFixedDiveWarp = sDummyWarpData;
     gFixedHoleWarp = sDummyWarpData;
+    gSpecialVar_LastWarpId = sWarpDestination.warpId;
 }
 
 static void ClearDiveAndHoleWarps(void)
@@ -679,7 +680,7 @@ void SetDynamicWarpWithCoords(s32 unused, s8 mapGroup, s8 mapNum, s8 warpId, s8 
     SetWarpData(&gSaveBlock1Ptr->dynamicWarp, mapGroup, mapNum, warpId, x, y);
 }
 
-void SetWarpDestinationToDynamicWarp(u8 unusedWarpId)
+void SetWarpDestinationToDynamicWarp()
 {
     sWarpDestination = gSaveBlock1Ptr->dynamicWarp;
 }

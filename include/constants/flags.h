@@ -91,10 +91,8 @@
 #define FLAG_SET_WALL_CLOCK                  0x51
 #define FLAG_RESCUED_BIRCH                   0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS       0x53
-
-#define FLAG_UNUSED_0x054                    0x54  // Unused Flag
+#define FLAG_PETALBURG_CENTER_INCIDENT       0x54  // TriHard
 #define FLAG_UNUSED_0x055                    0x55  // Unused Flag
-
 #define FLAG_LINK_CONTEST_POKE_BALL          0x56
 #define FLAG_MET_RIVAL_MOM                   0x57
 #define FLAG_BIRCH_AIDE_MET                  0x58
@@ -113,9 +111,7 @@
 #define FLAG_MOSSDEEP_GYM_SWITCH_2           0x65
 #define FLAG_MOSSDEEP_GYM_SWITCH_3           0x66
 #define FLAG_MOSSDEEP_GYM_SWITCH_4           0x67
-
 #define FLAG_UNUSED_0x068                    0x68  // Unused Flag
-
 #define FLAG_OCEANIC_MUSEUM_MET_REPORTER     0x69
 #define FLAG_RECEIVED_TM54                   0x6A
 #define FLAG_RECEIVED_TM56                   0x6B
@@ -130,9 +126,7 @@
 #define FLAG_ADVENTURE_STARTED               0x74 // RECEIVED Pokédex.
 #define FLAG_DEFEATED_MAGMA_SPACE_CENTER     0x75 // Set when Team Magma is defeated at Mossdeep's Space Center.
 #define FLAG_MET_HIDDEN_POWER_GIVER          0x76
-
 #define FLAG_CANCEL_BATTLE_ROOM_CHALLENGE    0x77
-
 #define FLAG_LANDMARK_MIRAGE_TOWER           0x78
 #define FLAG_RECEIVED_TM31                   0x79
 #define FLAG_RECEIVED_TM53                   0x7A
@@ -690,7 +684,7 @@
 #define FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT                          0x2DB
 #define FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1                    0x2DC
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE_2                   0x2DD
-#define FLAG_HIDE_PLAYERS_HOUSE_DAD                                 0x2DE
+#define FLAG_HIDE_PLAYERS_HOUSE_LETTER                              0x2DE //Unused
 #define FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING      0x2DF
 #define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING          0x2E0
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_INVISIBLE_NINJA_BOY    0x2E1
@@ -991,9 +985,7 @@
 #define FLAG_ITEM_ROUTE_120_NUGGET                                  0x406
 #define FLAG_ITEM_ROUTE_120_FULL_HEAL                               0x407
 #define FLAG_ITEM_ROUTE_123_CALCIUM                                 0x408
-
-#define FLAG_UNUSED_0x409                                           0x409 // Unused Flag
-
+#define FLAG_ITEM_STOLEN_PETALBURG_POTION                            0x409 // TriHard
 #define FLAG_ITEM_ROUTE_127_ZINC                                    0x40A
 #define FLAG_ITEM_ROUTE_127_CARBOS                                  0x40B
 #define FLAG_ITEM_ROUTE_132_RARE_CANDY                              0x40C
@@ -1482,10 +1474,10 @@
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
 
 // Daily Flags
-#define FLAG_DAILY_0x920                            (SYSTEM_FLAGS + 0xC0)
+#define FLAG_DAILY_HOMEMADE_SOUP                    (SYSTEM_FLAGS + 0xC0)
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (SYSTEM_FLAGS + 0xC1)
 #define FLAG_DAILY_SECRET_BASE                      (SYSTEM_FLAGS + 0xC2)
-#define FLAG_DAILY_0x923                            (SYSTEM_FLAGS + 0xC3)
+#define FLAG_DAILY_DADS_LETTER_REMOVED              (SYSTEM_FLAGS + 0xC3)
 #define FLAG_DAILY_0x924                            (SYSTEM_FLAGS + 0xC4)
 #define FLAG_DAILY_0x925                            (SYSTEM_FLAGS + 0xC5)
 #define FLAG_DAILY_0x926                            (SYSTEM_FLAGS + 0xC6)

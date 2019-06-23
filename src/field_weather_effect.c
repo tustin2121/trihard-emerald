@@ -12,6 +12,8 @@
 #include "task.h"
 #include "trig.h"
 #include "gpu_regs.h"
+#include "util.h"
+#include "palette.h"
 
 // EWRAM
 EWRAM_DATA static u8 gCurrentAlternatingWeather = 0;
@@ -2229,6 +2231,8 @@ bool8 Shade_Finish(void)
     return FALSE;
 }
 
+
+
 //------------------------------------------------------------------------------
 // Bubbles
 //------------------------------------------------------------------------------
@@ -2308,6 +2312,7 @@ bool8 Bubbles_Finish(void)
 
     return TRUE;
 }
+
 
 static const union AnimCmd sBubbleSpriteAnimCmd0[] =
 {
@@ -2395,6 +2400,40 @@ static void UpdateBubbleSprite(struct Sprite *sprite)
 #undef tScrollXCounter
 #undef tScrollXDir
 #undef tCounter
+
+
+//------------------------------------------------------------------------------
+// PowerOut
+//------------------------------------------------------------------------------
+
+void PowerOut_InitVars(void)
+{
+    gWeatherPtr->powerOutageCoeff = 11;
+}
+
+void PowerOut_InitAll(void)
+{
+    u8 coeff;
+    PowerOut_InitVars();
+    coeff = max(16 - gWeatherPtr->fadeScreenCounter, gWeatherPtr->powerOutageCoeff);
+    if (!gPaletteFade.active)
+    {
+        BlendPalette(0    , 12*16, coeff, gWeatherPtr->fadeDestColor);
+        BlendPalette(12*16,  4*16, 16 - gWeatherPtr->fadeScreenCounter, gWeatherPtr->fadeDestColor);
+        BlendPalette(16*16, 16*16, coeff, gWeatherPtr->fadeDestColor);
+    }
+}
+
+void PowerOut_Main(void)
+{
+    
+}
+
+bool8 PowerOut_Finish(void)
+{
+    return FALSE;
+}
+
 
 //------------------------------------------------------------------------------
 
@@ -2484,10 +2523,10 @@ void SetWeather(u32 weather)
     SetNextWeather(GetSav1Weather());
 }
 
-void SetWeather_Unused(u32 weather)
+void SetWeather_NoDelay(u32 weather)
 {
     SetSav1Weather(weather);
-    SetCurrentAndNextWeather(GetSav1Weather());
+    SetCurrentAndNextWeatherNoDelay(GetSav1Weather());
 }
 
 void DoCurrentWeather(void)
@@ -2562,6 +2601,7 @@ static u8 TranslateWeatherNum(u8 weather)
     case WEATHER_DROUGHT:        return WEATHER_DROUGHT;
     case WEATHER_RAIN_HEAVY:     return WEATHER_RAIN_HEAVY;
     case WEATHER_BUBBLES:        return WEATHER_BUBBLES;
+    case WEATHER_POWEROUT:       return WEATHER_POWEROUT;
     case WEATHER_ALTERNATING:    return WEATHER_ALTERNATING;
     case WEATHER_ROUTE119_CYCLE: return sWeatherCycleRoute119[gSaveBlock1Ptr->weatherCycleStage];
     case WEATHER_ROUTE123_CYCLE: return sWeatherCycleRoute123[gSaveBlock1Ptr->weatherCycleStage];
