@@ -273,224 +273,230 @@ Route104_Text_1ED7A2: @ 81ED7A2
 @ -----------------------------------------------------
 @ Trainers
 
-
-
-
-
-
-Route104_EventScript_1ED35F:: @ 81ED35F
+Route104_TrainerScript_Ivan:: @ 81ED35F
 	trainerbattle_single TRAINER_IVAN, Route104_Text_2954BD, Route104_Text_295509
 	msgbox Route104_Text_29554E, MSGBOX_AUTOCLOSE
 	end
+Route104_Text_2954BD: @ 82954BD
+	.string "Ah! An adoring fan!\n"
+	.string "I'm {BOLD}The{END} Water Pokémon expert!\p"
+	.string "Huh?\n"
+	.string "You don't know me?$"
+Route104_Text_295509: @ 8295509
+	.string "I thought I wasn't too bad, if I may\n"
+	.string "say so, but I guess not… Bleah…$"
+Route104_Text_29554E: @ 829554E
+	.string "I got too into fishing.\n"
+	.string "I forgot I had to raise my Pokémon…$"
 
-Route104_EventScript_1ED376:: @ 81ED376
+
+
+Route104_TrainerScript_Billy:: @ 81ED376
 	trainerbattle_single TRAINER_BILLY, Route104_Text_29558A, Route104_Text_2955B4
 	msgbox Route104_Text_2955E8, MSGBOX_AUTOCLOSE
 	end
+Route104_Text_29558A: @ 829558A
+	.string "Leaving footprints in the sand is\n"
+	.string "so fun!$"
+Route104_Text_2955B4: @ 82955B4
+	.string "Waah! I got sand in my shoes!\n"
+	.string "They're all gritty!$"
+Route104_Text_2955E8: @ 82955E8
+	.string "I want to leave my footprints in\n"
+	.string "the sand everywhere, but they\l"
+	.string "disappear quickly…$"
 
-Route104_EventScript_1ED38D:: @ 81ED38D
+
+
+Route104_TrainerScript_Haley:: @ 81ED38D
 	trainerbattle_single TRAINER_HALEY_1, Route104_Text_29563A, Route104_Text_29566F, Route104_EventScript_1ED3CE
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq Route104_EventScript_1ED424
-	setvar VAR_0x8004, 604
-	specialvar VAR_RESULT, sub_813B4E0
-	compare VAR_RESULT, 0
-	goto_if_eq Route104_EventScript_1ED3F8
 	msgbox Route104_Text_295689, MSGBOX_DEFAULT
 	release
 	end
-
+Route104_Text_29563A: @ 829563A
+	.string "Should I…\n"
+	.string "Or shouldn't I?\p"
+	.string "Okay, sure, I will battle!$"
+Route104_Text_29566F: @ 829566F
+	.string "I shouldn't have battled…$"
+Route104_Text_295689: @ 8295689
+	.string "If you're faced with a decision and\n"
+	.string "you let someone else choose for you,\l"
+	.string "you will regret it, however things\l"
+	.string "turn out.$"
 Route104_EventScript_1ED3CE:: @ 81ED3CE
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
-	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_1ED3DF
-	release
-	end
-
-Route104_EventScript_1ED3DF:: @ 81ED3DF
 	msgbox Route104_Text_29576B, MSGBOX_DEFAULT
 	register_matchcall TRAINER_HALEY_1
 	release
 	end
-
-Route104_EventScript_1ED3F8:: @ 81ED3F8
-	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_1ED40B
-	msgbox Route104_Text_295689, MSGBOX_DEFAULT
-	release
-	end
-
-Route104_EventScript_1ED40B:: @ 81ED40B
-	msgbox Route104_Text_2956FF, MSGBOX_DEFAULT
-	register_matchcall TRAINER_HALEY_1
-	release
-	end
-
+Route104_Text_29576B: @ 829576B
+	.string "You're strong, but should I register\n"
+	.string "you in my PokéNav?\l"
+	.string "Maybe I shouldn't…\p"
+	.string "Okay, sure, I will register you!$"
 Route104_EventScript_1ED424:: @ 81ED424
 	trainerbattle_rematch TRAINER_HALEY_1, Route104_Text_2957D7, Route104_Text_2957F0
 	msgbox Route104_Text_29580C, MSGBOX_AUTOCLOSE
 	end
+Route104_Text_2957D7: @ 82957D7
+	.string "Come on, battle with me!$"
+Route104_Text_2957F0: @ 82957F0
+	.string "Ohh…\n"
+	.string "I thought I could win…$"
+Route104_Text_29580C: @ 829580C
+	.string "I made the decision to battle, so\n"
+	.string "I can accept this loss with grace.\p"
+	.string "I am still upset about losing!$"
 
-Route104_EventScript_1ED43B:: @ 81ED43B
+
+
+Route104_TrainerScript_Winston:: @ 81ED43B
 	trainerbattle_single TRAINER_WINSTON_1, Route104_Text_295870, Route104_Text_2958AD, Route104_EventScript_1ED47C
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq Route104_EventScript_1ED4D2
-	setvar VAR_0x8004, 136
-	specialvar VAR_RESULT, sub_813B4E0
-	compare VAR_RESULT, 0
-	goto_if_eq Route104_EventScript_1ED4A6
 	msgbox Route104_Text_2958C1, MSGBOX_DEFAULT
 	release
 	end
-
+Route104_Text_295870: @ 8295870
+	.string "Oh, sure, I'll accept your challenge.\n"
+	.string "I have a lot of money.$"
+Route104_Text_2958AD: @ 82958AD
+	.string "Why couldn't I win?$"
+Route104_Text_2958C1: @ 82958C1
+	.string "There are some things money can't buy.\n"
+	.string "That's Pokémon…$"
 Route104_EventScript_1ED47C:: @ 81ED47C
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
-	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_1ED48D
-	release
-	end
-
-Route104_EventScript_1ED48D:: @ 81ED48D
 	msgbox Route104_Text_29595A, MSGBOX_DEFAULT
 	register_matchcall TRAINER_WINSTON_1
 	release
 	end
-
-Route104_EventScript_1ED4A6:: @ 81ED4A6
-	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_1ED4B9
-	msgbox Route104_Text_2958C1, MSGBOX_DEFAULT
-	release
-	end
-
-Route104_EventScript_1ED4B9:: @ 81ED4B9
-	msgbox Route104_Text_2958F8, MSGBOX_DEFAULT
-	register_matchcall TRAINER_WINSTON_1
-	release
-	end
-
+Route104_Text_29595A: @ 829595A
+	.string "Hm?\n"
+	.string "Ah, you've obtained a PokéNav.\p"
+	.string "I will gladly register you.\n"
+	.string "After all, I have plenty of money.$"
 Route104_EventScript_1ED4D2:: @ 81ED4D2
 	trainerbattle_rematch TRAINER_WINSTON_1, Route104_Text_2959BC, Route104_Text_2959FC
 	msgbox Route104_Text_295A1E, MSGBOX_AUTOCLOSE
 	end
+Route104_Text_2959BC: @ 82959BC
+	.string "After I lost to you, I learned a bunch\n"
+	.string "of things about Pokémon.$"
+Route104_Text_2959FC: @ 82959FC
+	.string "I lost again?\n"
+	.string "Why couldn't I win?$"
+Route104_Text_295A1E: @ 8295A1E
+	.string "I'm fabulously wealthy, but I can't\n"
+	.string "seem to win at Pokémon…\p"
+	.string "It's so deep, the world of Pokémon…$"
 
-Route104_EventScript_1ED4E9:: @ 81ED4E9
+
+
+Route104_TrainerScript_Cindy:: @ 81ED4E9
 	trainerbattle_single TRAINER_CINDY_1, Route104_Text_295A7E, Route104_Text_295ABB, Route104_EventScript_1ED52A
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq Route104_EventScript_1ED580
-	setvar VAR_0x8004, 114
-	specialvar VAR_RESULT, sub_813B4E0
-	compare VAR_RESULT, 0
-	goto_if_eq Route104_EventScript_1ED554
 	msgbox Route104_Text_295AC3, MSGBOX_DEFAULT
 	release
 	end
-
+Route104_Text_295A7E: @ 8295A7E
+	.string "We must have been fated to meet.\n"
+	.string "May I ask you for a battle?$"
+Route104_Text_295ABB: @ 8295ABB
+	.string "Oh, my!$"
+Route104_Text_295AC3: @ 8295AC3
+	.string "“Hello” is the beginning of “good-bye.”\n"
+	.string "I hope we meet again.$"
 Route104_EventScript_1ED52A:: @ 81ED52A
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
-	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_1ED53B
-	release
-	end
-
-Route104_EventScript_1ED53B:: @ 81ED53B
 	msgbox Route104_Text_295B60, MSGBOX_DEFAULT
 	register_matchcall TRAINER_CINDY_1
 	release
 	end
-
-Route104_EventScript_1ED554:: @ 81ED554
-	goto_if_set FLAG_HAS_MATCH_CALL, Route104_EventScript_1ED567
-	msgbox Route104_Text_295AC3, MSGBOX_DEFAULT
-	release
-	end
-
-Route104_EventScript_1ED567:: @ 81ED567
-	msgbox Route104_Text_295B01, MSGBOX_DEFAULT
-	register_matchcall TRAINER_CINDY_1
-	release
-	end
-
+Route104_Text_295B60: @ 8295B60
+	.string "We should commemorate how we seem\n"
+	.string "to be drawn to each other.\p"
+	.string "Let's register each other in our\n"
+	.string "PokéNavs.$"
 Route104_EventScript_1ED580:: @ 81ED580
 	trainerbattle_rematch TRAINER_CINDY_1, Route104_Text_295BC8, Route104_Text_295BFA
 	msgbox Route104_Text_295C1F, MSGBOX_AUTOCLOSE
 	end
+Route104_Text_295BC8: @ 8295BC8
+	.string "Hello, we meet again.\n"
+	.string "May I ask you for a battle?$"
+Route104_Text_295BFA: @ 8295BFA
+	.string "Oh, my…\n"
+	.string "I did the best that I could…$"
+Route104_Text_295C1F: @ 8295C1F
+	.string "“Hello” is the beginning of “good-bye.”\n"
+	.string "I hope we meet again.$"
 
-Route104_EventScript_1ED597:: @ 81ED597
+
+
+Route104_TrainerScript_Gina:: @ 81ED597
 	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_2952BB, Route104_Text_2952E6, Route104_Text_295330
-@	special GetPlayerBigGuyGirlString
 	msgbox Route104_Text_2952FE, MSGBOX_DEFAULT
 	release
 	end
-
-Route104_EventScript_1ED5B6:: @ 81ED5B6
+Route104_Text_2952BB: @ 82952BB
+	.string "Gina: Okay, let's battle with our\n"
+	.string "Pokémon!$"
+Route104_Text_2952E6: @ 82952E6
+	.string "Gina: Losing upsets me!$"
+Route104_Text_2952FE: @ 82952FE
+	.string "Gina: You are strong!\n"
+	.string "We have to train lots more!$"
+Route104_Text_295330: @ 8295330
+	.string "Gina: Oh? Only one Pokémon?\n"
+	.string "Then, we don't battle with you.\p"
+	.string "If there's only one Pokémon, it will\n"
+	.string "be lonesome. That's not nice.$"
+Route104_TrainerScript_Mia:: @ 81ED5B6
 	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_2953AF, Route104_Text_2953E1, Route104_Text_295449
-@	special GetPlayerBigGuyGirlString
 	msgbox Route104_Text_29540D, MSGBOX_DEFAULT
 	release
 	end
+Route104_Text_2953AF: @ 82953AF
+	.string "Mia: We are twins, so we battle\n"
+	.string "Pokémon together.$"
+Route104_Text_2953E1: @ 82953E1
+	.string "Mia: We battled together, but we\n"
+	.string "both lost…$"
+Route104_Text_29540D: @ 829540D
+	.string "Mia: We will train our Pokémon more\n"
+	.string "and be strong like you.$"
+Route104_Text_295449: @ 8295449
+	.string "Mia: You want to battle with us?\p"
+	.string "It's a big no-no if you don't have two\n"
+	.string "Pokémon with you.\l"
+	.string "We're too strong for you!$"
 
-Route104_EventScript_1ED5D5:: @ 81ED5D5
+
+
+Route104_TrainerScript_Darian:: @ 81ED5D5
 	trainerbattle_single TRAINER_DARIAN, Route104_Text_295C5D, Route104_Text_295CC9
 	msgbox Route104_Text_295CD3, MSGBOX_AUTOCLOSE
 	end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route104_Text_1EE0C7: @ 81EE0C7
-	.string "Brendan: I know you just became\n"
-	.string "a trainer, but I won't go easy!$"
-
-
-
-
-
-
-
-
+Route104_Text_295C5D: @ 8295C5D
+	.string "I fished up a tough-looking Pokémon!\p"
+	.string "It has this magical quality to it!\n"
+	.string "It surely looks tough, yes it does!$"
+Route104_Text_295CC9: @ 8295CC9
+	.string "What the…$"
+Route104_Text_295CD3: @ 8295CD3
+	.string "Hey, Magikarp, you sure don't live up\n"
+	.string "to your name, do you?$"
 
 
 @ -----------------------------------------------------
@@ -693,7 +699,7 @@ Route104_Text_1EDF04: @ 81EDF04
 	.string "Cool, you had DEVON install the MATCH\n"
 	.string "CALL system on your PokéNav!\p"
 	.string "Let's register each other in our\n"
-	.string "PokéNavS so we can keep in touch.$"
+	.string "PokéNavs so we can keep in touch.$"
 Route104_Text_1EDFA0: @ 81EDFA0
 	.string "{PLAYER} registered BRENDAN\n"
 	.string "in the PokéNav.$"
@@ -727,6 +733,9 @@ Route104_EventScript_1ECF09:: @ 81ECF09
 	case 1, Route104_EventScript_1ECF60
 	case 2, Route104_EventScript_1ECF73
 	end
+Route104_Text_1EE0C7: @ 81EE0C7
+	.string "Brendan: I know you just became\n"
+	.string "a trainer, but I won't go easy!$"
 
 Route104_EventScript_1ECF4D:: @ 81ECF4D
 	trainerbattle_no_intro TRAINER_BRENDAN_10, Route104_Text_1EE107
@@ -761,5 +770,5 @@ Route104_Text_1EE120: @ 81EE120
 	.string "Like Mr. Briney, it's important to\n"
 	.string "become friends with your Pokémon.$"
 
-
+#undef LID_BRINEY
 #undef LID_RIVAL

@@ -7,7 +7,7 @@ Route125_MapScripts:: @ 81F6748
 Route125_OnTransition: @ 81F6758
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
-	call_if_eq Route125_EventScript_273D13
+	call_if_eq Common_EventScript_HideMapNamePopup
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_125_WEST
 	call_if_eq UnusualWeather_StartKyogreWeather
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_125_EAST
@@ -55,7 +55,7 @@ Route125_EventScript_1F6800:: @ 81F6800
 	end
 
 Route125_EventScript_1F682C:: @ 81F682C
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route125_Text_2A17CF, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ERNEST_1

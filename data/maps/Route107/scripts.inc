@@ -16,7 +16,7 @@ Route107_EventScript_1EE5AC:: @ 81EE5AC
 	end
 
 Route107_EventScript_1EE5D8:: @ 81EE5D8
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route107_Text_29685A, MSGBOX_DEFAULT
 	register_matchcall TRAINER_TONY_1

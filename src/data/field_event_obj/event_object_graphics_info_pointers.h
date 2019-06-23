@@ -141,6 +141,7 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_CyclingTriathleteM
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_CyclingTriathleteF;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_Nurse;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ItemBall;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_TMBall;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BerryTree;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BerryTreeEarlyStages;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_BerryTreeLateStages;
@@ -472,6 +473,7 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     [EVENT_OBJ_GFX_CYCLING_TRIATHLETE_F]    = &gEventObjectGraphicsInfo_CyclingTriathleteF,
     [EVENT_OBJ_GFX_NURSE]                   = &gEventObjectGraphicsInfo_Nurse,
     [EVENT_OBJ_GFX_ITEM_BALL]               = &gEventObjectGraphicsInfo_ItemBall,
+    [EVENT_OBJ_GFX_TM_BALL]                 = &gEventObjectGraphicsInfo_TMBall,
     [EVENT_OBJ_GFX_BERRY_TREE]              = &gEventObjectGraphicsInfo_BerryTree,
     [EVENT_OBJ_GFX_BERRY_TREE_EARLY_STAGES] = &gEventObjectGraphicsInfo_BerryTreeEarlyStages,
     [EVENT_OBJ_GFX_BERRY_TREE_LATE_STAGES]  = &gEventObjectGraphicsInfo_BerryTreeLateStages,

@@ -3622,7 +3622,7 @@ bool32 sub_813B490(void)
     return TRUE;
 }
 
-bool32 sub_813B4E0(void)
+bool32 IsRematchTrainerRegistered(void)
 {
     int index = GetRematchIdxByTrainerIdx(gSpecialVar_0x8004);
     if (index >= 0)

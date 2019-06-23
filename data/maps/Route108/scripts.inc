@@ -36,7 +36,7 @@ Route108_EventScript_1EE6FD:: @ 81EE6FD
 	end
 
 Route108_EventScript_1EE729:: @ 81EE729
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route108_Text_296FD8, MSGBOX_DEFAULT
 	register_matchcall TRAINER_CORY_1

@@ -451,7 +451,7 @@ Route109_EventScript_1EEA99:: @ 81EEA99
 	end
 
 Route109_EventScript_1EEAC5:: @ 81EEAC5
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route109_Text_2973C1, MSGBOX_DEFAULT
 	register_matchcall TRAINER_RICKY_1
@@ -473,7 +473,7 @@ Route109_EventScript_1EEAFB:: @ 81EEAFB
 	end
 
 Route109_EventScript_1EEB27:: @ 81EEB27
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route109_Text_297520, MSGBOX_DEFAULT
 	register_matchcall TRAINER_LOLA_1

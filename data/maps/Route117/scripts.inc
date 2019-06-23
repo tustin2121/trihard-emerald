@@ -226,7 +226,7 @@ Route117_Text_29C498: @ 829C498
 	.string "character is another way of enjoying\l"
 	.string "Pokémon.$"
 Route117_EventScript_1F39FC:: @ 81F39FC
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route117_Text_29C508, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ISAAC_1
@@ -267,7 +267,7 @@ Route117_Text_29C679: @ 829C679
 	.string "Try raising Pokémon with more\n"
 	.string "attention to their character traits.$"
 Route117_EventScript_1F3A5E:: @ 81F3A5E
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route117_Text_29C6BC, MSGBOX_DEFAULT
 	register_matchcall TRAINER_LYDIA_1
@@ -308,7 +308,7 @@ Route117_Text_29C800: @ 829C800
 	.string "I might have dropped to last during\n"
 	.string "that battle…$"
 Route117_EventScript_1F3AC0:: @ 81F3AC0
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route117_Text_29C846, MSGBOX_DEFAULT
 	register_matchcall TRAINER_DYLAN_1
@@ -353,7 +353,7 @@ Route117_Text_29C9D0: @ 829C9D0
 	.string "Okay! I'll resume my training!\n"
 	.string "Tomorrow!$"
 Route117_EventScript_1F3B22:: @ 81F3B22
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route117_Text_29CA32, MSGBOX_DEFAULT
 	register_matchcall TRAINER_MARIA_1

@@ -108,7 +108,7 @@ GraniteCave_StevensRoom_Text_22DE6B: @ 822DE6B
 	.string "LEAGUE one day. That's what I think.\p"
 	.string "I know, since we've gotten to know each\n"
 	.string "other, let's register one another in\l"
-	.string "our PokéNavS.\p"
+	.string "our PokéNavs.\p"
 	.string "… … … … … …$"
 
 GraniteCave_StevensRoom_Text_22DF6A: @ 822DF6A

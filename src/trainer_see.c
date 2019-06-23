@@ -825,7 +825,7 @@ u8 GetChosenApproachingTrainerEventObjectId(u8 arrayId)
         return gApproachingTrainers[1].eventObjectId;
 }
 
-void sub_80B4808(void)
+void DoSpinningTrainerApproach(void)
 {
     struct EventObject *trainerObj;
 

@@ -282,7 +282,7 @@ PetalburgWoods_EventScript_22E284:: @ 822E284
 	compare VAR_RESULT, 1
 	goto_if_eq PetalburgWoods_EventScript_22E31B
 	setvar VAR_0x8004, 621
-	specialvar VAR_RESULT, sub_813B4E0
+	specialvar VAR_RESULT, IsRematchTrainerRegistered
 	compare VAR_RESULT, 0
 	goto_if_eq PetalburgWoods_EventScript_22E2EF
 	msgbox PetalburgWoods_Text_22E889, MSGBOX_DEFAULT
@@ -290,7 +290,7 @@ PetalburgWoods_EventScript_22E284:: @ 822E284
 	end
 
 PetalburgWoods_EventScript_22E2C5:: @ 822E2C5
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	goto_if_set FLAG_HAS_MATCH_CALL, PetalburgWoods_EventScript_22E2D6
 	release

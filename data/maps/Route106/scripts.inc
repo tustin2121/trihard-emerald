@@ -25,7 +25,7 @@ Route106_EventScript_1EE4C1:: @ 81EE4C1
 	end
 
 Route106_EventScript_1EE4ED:: @ 81EE4ED
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route106_Text_2963E3, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ELLIOT_1

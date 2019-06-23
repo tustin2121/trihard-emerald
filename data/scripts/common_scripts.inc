@@ -146,7 +146,8 @@ Common_EventScript_BagIsFull:: @ 827205E
 	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
 	return
 gText_TooBadBagIsFull:: @ 8272AD0
-	.string "Too bad!\nThe bag is full…$"
+	.string "Too bad!\n"
+	.string "The bag is full…$"
 
 Common_EventScript_ShowPokemartSign:: @ 8271E6A
 	msgbox gText_PokemartSign, MSGBOX_SIGN
@@ -199,6 +200,10 @@ Common_EventScript_FadeMusicToMapMusic::
 	return
 
 @ Scripts
+
+Common_EventScript_HideMapNamePopup:: @ 8273D13
+	setflag FLAG_HIDE_MAP_NAME_POPUP
+	return
 
 Common_EventScript_NameReceivedPokemon:: @ 82723DD
 	fadescreen 1

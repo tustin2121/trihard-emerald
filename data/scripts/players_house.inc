@@ -178,6 +178,7 @@ LittlerootTown_PlayersHouse_1F_EventScript_AfterClockCutscene::
 	message LittlerootTown_PlayersHouse1F_Text_GivenPokenav, MSGTYPE_DESCRIBE
 	waitfanfare
 	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_HAS_MATCH_CALL
 	
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
 	msgbox LittlerootTown_PlayersHouse_1F_Text_DadIntroPhone5, MSGBOX_DEFAULT

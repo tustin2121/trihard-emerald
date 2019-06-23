@@ -26,6 +26,6 @@ u8 FldEff_AngryIcon(void);
 u8 FldEff_HeartIcon(void);
 u8 GetCurrentApproachingTrainerEventObjectId(void);
 u8 GetChosenApproachingTrainerEventObjectId(u8 arrayId);
-void sub_80B4808(void);
+void DoSpinningTrainerApproach(void);
 
 #endif // GUARD_TRAINER_SEE_H

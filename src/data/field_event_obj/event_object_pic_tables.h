@@ -1856,6 +1856,10 @@ const struct SpriteFrameImage gEventObjectPicTable_ItemBall[] = {
     obj_frame_tiles(gEventObjectPic_ItemBall),
 };
 
+const struct SpriteFrameImage gEventObjectPicTable_TMBall[] = {
+    obj_frame_tiles(gEventObjectPic_TMBall),
+};
+
 const struct SpriteFrameImage gEventObjectPicTable_ProfBirch[] = {
     overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 0),
     overworld_frame(gEventObjectPic_ProfBirch, 2, 4, 1),

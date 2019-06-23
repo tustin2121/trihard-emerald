@@ -6,7 +6,7 @@ Route114_MapScripts:: @ 81F252F
 
 Route114_OnTransition: @ 81F253F
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
-	call_if_eq Route114_EventScript_273D13
+	call_if_eq Common_EventScript_HideMapNamePopup
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_114_NORTH
 	call_if_eq UnusualWeather_StartGroudonWeather
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_114_SOUTH
@@ -116,7 +116,7 @@ Route114_EventScript_1F269C:: @ 81F269C
 	end
 
 Route114_EventScript_1F26C8:: @ 81F26C8
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route114_Text_29A9F7, MSGBOX_DEFAULT
 	register_matchcall TRAINER_STEVE_1
@@ -138,7 +138,7 @@ Route114_EventScript_1F26FE:: @ 81F26FE
 	end
 
 Route114_EventScript_1F272A:: @ 81F272A
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route114_Text_29ABA6, MSGBOX_DEFAULT
 	register_matchcall TRAINER_BERNIE_1

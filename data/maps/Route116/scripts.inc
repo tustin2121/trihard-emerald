@@ -7,7 +7,7 @@ Route116_MapScripts:: @ 81F2C0C
 Route116_OnTransition: @ 81F2C1C
 	call_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_1F2C47
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
-	call_if_eq Route116_EventScript_273D13
+	call_if_eq Common_EventScript_HideMapNamePopup
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_116_NORTH
 	call_if_eq UnusualWeather_StartGroudonWeather
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_116_SOUTH
@@ -259,7 +259,7 @@ Route116_EventScript_1F2EB7:: @ 81F2EB7
 	compare VAR_RESULT, 1
 	goto_if_eq Route116_EventScript_1F2F4E
 	setvar VAR_0x8004, 273
-	specialvar VAR_RESULT, sub_813B4E0
+	specialvar VAR_RESULT, IsRematchTrainerRegistered
 	compare VAR_RESULT, 0
 	goto_if_eq Route116_EventScript_1F2F22
 	msgbox Route116_Text_29BD92, MSGBOX_DEFAULT
@@ -272,7 +272,7 @@ Route116_EventScript_1F2EF8:: @ 81F2EF8
 	end
 
 Route116_EventScript_1F2F03:: @ 81F2F03
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route116_Text_29BE71, MSGBOX_DEFAULT
 	register_matchcall TRAINER_JERRY_1
@@ -312,7 +312,7 @@ Route116_EventScript_1F2F93:: @ 81F2F93
 	compare VAR_RESULT, 1
 	goto_if_eq Route116_EventScript_1F302A
 	setvar VAR_0x8004, 280
-	specialvar VAR_RESULT, sub_813B4E0
+	specialvar VAR_RESULT, IsRematchTrainerRegistered
 	compare VAR_RESULT, 0
 	goto_if_eq Route116_EventScript_1F2FFE
 	msgbox Route116_Text_29C010, MSGBOX_DEFAULT
@@ -325,7 +325,7 @@ Route116_EventScript_1F2FD4:: @ 81F2FD4
 	end
 
 Route116_EventScript_1F2FDF:: @ 81F2FDF
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route116_Text_29C096, MSGBOX_DEFAULT
 	register_matchcall TRAINER_KAREN_1

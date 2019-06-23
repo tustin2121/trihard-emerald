@@ -83,7 +83,7 @@ Route103_Text_1EC989: @ 81EC989
 Route103_Text_1EC9CE: @ 81EC9CE
 	.string "Oh! {PLAYER}! Don't scare me like that!\n"
 	.string "I thought a Pokémon snuck up on me!\p"
-	.string "…Dad gave {SHADOW 2}you{END} a Pokémon?{PAUSE 16}\p"
+	.string "…Dad gave {BOLD}you{END} a Pokémon?{PAUSE 16}\p"
 	.string "S-Sorry, I didn't mean it like that!\p"
 	.string "Sure, alright, let's battle.\n"
 	.string "I'll teach you a thing or two\l"
@@ -398,7 +398,7 @@ Route103_Text_294F42: @ 8294F42
 	.string "My delightful Pokémon looks darling\n"
 	.string "even when it's fainted!$"
 Route103_EventScript_1EC714:: @ 81EC714
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route103_Text_294F7E, MSGBOX_DEFAULT
 	register_matchcall TRAINER_MIGUEL_1

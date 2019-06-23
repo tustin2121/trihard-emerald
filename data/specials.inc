@@ -502,7 +502,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80A08CC
 	def_special Unused_SetWeatherSunny
 	def_special sub_81AFDA0
-	def_special sub_813B4E0
+	def_special IsRematchTrainerRegistered
 	def_special ShouldDoBrailleRegicePuzzle
 	def_special EnableNationalPokedex
 	def_special sub_80E2548
@@ -524,7 +524,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_813B968
 	def_special sub_80F8B94
 	def_special ShowTrainerHillRecords
-	def_special sub_80B4808
+	def_special DoSpinningTrainerApproach
 	def_special sub_813B9A0
 	def_special sub_81B9918
 	def_special sub_80722E0

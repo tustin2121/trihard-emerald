@@ -2694,17 +2694,6 @@ UnusualWeather_EventScript_PlaceTilesRoute129East:: @ 8273CA6
 	setmetatile 43, 22, 334, 0
 	return
 
-Route105_EventScript_273D13:: @ 8273D13
-Route114_EventScript_273D13:: @ 8273D13
-Route115_EventScript_273D13:: @ 8273D13
-Route116_EventScript_273D13:: @ 8273D13
-Route118_EventScript_273D13:: @ 8273D13
-Route125_EventScript_273D13:: @ 8273D13
-Route127_EventScript_273D13:: @ 8273D13
-Route129_EventScript_273D13:: @ 8273D13
-	setflag FLAG_HIDE_MAP_NAME_POPUP
-	return
-
 UnusualWeather_StartKyogreWeather:: @ 8273D17
 	setweather WEATHER_RAIN_HEAVY
 	return

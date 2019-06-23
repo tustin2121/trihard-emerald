@@ -40,13 +40,13 @@ Route102_Text_1EC32E: @ 81EC32E
 @ -----------------------------------------------------
 @ Trainers
 
-Route102_EventScript_1EC105:: @ 81EC105
+Route102_TrainerScript_Calvin:: @ 81EC105
 	trainerbattle_single TRAINER_CALVIN_1, Route102_Text_294513, Route102_Text_29457C, Route102_EventScript_1EC146
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq Route102_EventScript_1EC19C
 	setvar VAR_0x8004, 318
-	specialvar VAR_RESULT, sub_813B4E0
+	specialvar VAR_RESULT, IsRematchTrainerRegistered
 	compare VAR_RESULT, 0
 	goto_if_eq Route102_EventScript_1EC170
 	msgbox Route102_Text_2945AC, MSGBOX_DEFAULT
@@ -63,7 +63,7 @@ Route102_Text_2945AC: @ 82945AC
 	.string "Listen, you. If you're strong,\n"
 	.string "you should have told me before!$"
 Route102_EventScript_1EC146:: @ 81EC146
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	goto_if_set FLAG_HAS_MATCH_CALL, Route102_EventScript_1EC157
 	release
@@ -91,7 +91,6 @@ Route102_Text_2945EB: @ 82945EB
 	.string "I saw you before.\p"
 	.string "I'd like to battle you again, so can\n"
 	.string "you register me in your PokéNav?$"
-
 Route102_EventScript_1EC19C:: @ 81EC19C
 	trainerbattle_rematch TRAINER_CALVIN_1, Route102_Text_2946AE, Route102_Text_29470C
 	msgbox Route102_Text_29473C, MSGBOX_AUTOCLOSE
@@ -109,7 +108,7 @@ Route102_Text_29473C: @ 829473C
 
 
 
-Route102_EventScript_1EC1B3:: @ 81EC1B3
+Route102_TrainerScript_Rick:: @ 81EC1B3
 	trainerbattle_single TRAINER_RICK, Route102_Text_29480C, Route102_Text_294847
 	msgbox Route102_Text_294859, MSGBOX_AUTOCLOSE
 	end
@@ -124,7 +123,7 @@ Route102_Text_294859: @ 8294859
 
 
 
-Route102_EventScript_1EC1CA:: @ 81EC1CA
+Route102_TrainerScript_Tiana:: @ 81EC1CA
 	trainerbattle_single TRAINER_TIANA, Route102_Text_29489E, Route102_Text_2948F3
 	msgbox Route102_Text_294916, MSGBOX_AUTOCLOSE
 	end
@@ -140,7 +139,7 @@ Route102_Text_294916: @ 8294916
 
 
 
-Route102_EventScript_1EC1E1:: @ 81EC1E1
+Route102_TrainerScript_Allen:: @ 81EC1E1
 	trainerbattle_single TRAINER_ALLEN, Route102_Text_294775, Route102_Text_2947AA
 	msgbox Route102_Text_2947DB, MSGBOX_AUTOCLOSE
 	end
@@ -153,14 +152,3 @@ Route102_Text_2947AA: @ 82947AA
 Route102_Text_2947DB: @ 82947DB
 	.string "I haven't won once yet…\n"
 	.string "I wish I would win soon…$"
-
-
-
-
-
-
-
-
-
-
-
