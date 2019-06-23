@@ -1,0 +1,184 @@
+Common_EventScript_NopReturn:: @ 827374E
+	return
+
+Common_EventScript_NopEnd::
+	end
+
+Common_Movement_NoOp:
+	step_end
+
+@ Emotes
+
+Common_Movement_QuestionMark:: @ 8272596
+	emote_question_mark
+	step_end
+
+Common_Movement_ExclamationMark: @ 8272598
+	emote_exclamation_mark
+	step_end
+
+Common_Movement_Angry: @ 8272598
+	emote_angry
+	step_end
+
+Common_Movement_AngryReaction: @ 8272598
+	delay_16
+	emote_exclamation_mark
+	step_end
+
+Common_Movement_Delay48: @ 827259A
+	delay_16
+	delay_16
+	delay_16
+	step_end
+
+@ Movement
+
+Common_Movement_FacePlayer: @ 827259E
+	face_player
+	step_end
+
+Common_Movement_FaceAwayPlayer: @ 82725A0
+	face_away_player
+	step_end
+
+Common_Movement_FaceOriginalDirection: @ 82725A2
+	face_original_direction
+	step_end
+
+Common_Movement_WalkInPlaceLeft: @ 82725A4
+	walk_in_place_fastest_left
+	step_end
+
+Common_Movement_WalkInPlaceUp: @ 82725A6
+	walk_in_place_fastest_up
+	step_end
+
+Common_Movement_WalkInPlaceRight: @ 82725A8
+	walk_in_place_fastest_right
+	step_end
+
+Common_Movement_WalkInPlaceDown: @ 82725AA
+	walk_in_place_fastest_down
+	step_end
+
+Common_Movement_FaceRight: @ 82725AC
+	face_right
+	step_end
+
+Common_Movement_FaceLeft: @ 82725AE
+	face_left
+	step_end
+
+Common_Movement_FaceDown: @ 82725B0
+	face_down
+	step_end
+
+Common_Movement_FaceUp: @ 82725B2
+	face_up
+	step_end
+
+Common_Movement_WalkUp1: @ 82725C9
+	walk_up
+	step_end
+
+Common_Movement_WalkDown1:
+	walk_down
+	step_end
+
+Common_Movement_WalkLeft1:
+	walk_left
+	step_end
+
+Common_Movement_WalkRight1:
+	walk_right
+	step_end
+
+Common_Movement_WalkUpOutOfFrame:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+	
+Common_Movement_WalkDownOutOfFrame:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+@ Scripts
+
+Common_EventScript_ShowBagIsFull:: @ 8272054
+	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	release
+	end
+
+Common_EventScript_BagIsFull:: @ 827205E
+	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	return
+
+Common_EventScript_StartBrineyBoatSequence:: @ 82720A0
+	setflag FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT
+	playbgm MUS_M_BOAT, 0
+	return
+
+Common_EventScript_EndBrineyBoatSequence:: @ 82720A8
+	clearflag FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT
+	fadedefaultbgm
+	return
+
+Common_EventScript_SetupRivalGender:: @ 8271ED7
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq RustboroCity_EventScript_271EEF
+	compare VAR_RESULT, FEMALE
+	goto_if_eq RustboroCity_EventScript_271EF5
+	end
+RustboroCity_EventScript_271EEF:: @ 8271EEF
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
+	return
+RustboroCity_EventScript_271EF5:: @ 8271EF5
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
+	return
+
+
+Common_EventScript_SetupRivalOnBikeGender:: @ 8271EFB
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq LavaridgeTown_EventScript_271F13
+	compare VAR_RESULT, FEMALE
+	goto_if_eq LavaridgeTown_EventScript_271F19
+	end
+LavaridgeTown_EventScript_271F13:: @ 8271F13
+	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_MAY_MACH_BIKE
+	return
+LavaridgeTown_EventScript_271F19:: @ 8271F19
+	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE
+	return
+
+
+Common_EventScript_PlayRivalMusic:: @ 81ECD11
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Common_EventScript_PlayRivalMusic_Girl
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Common_EventScript_PlayRivalMusic_Boy
+	return
+Common_EventScript_PlayRivalMusic_Girl: @ 81ECD29
+	playbgm MUS_GIRL_SUP, 1
+	return
+Common_EventScript_PlayRivalMusic_Boy: @ 81ECD2E
+	playbgm MUS_BOY_SUP, 1
+	return
+
+
+Common_EventScript_FadeMusicToMapMusic::
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	return

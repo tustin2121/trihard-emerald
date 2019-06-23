@@ -978,7 +978,7 @@ SlateportCity_EventScript_CaptainStern:: @ 81DD1F8
 	applymovement 6, Common_Movement_WalkInPlaceLeft
 	applymovement 1, Common_Movement_WalkInPlaceLeft
 	applymovement 7, SlateportCity_Movement_1DD309
-	applymovement 3, SlateportCity_Movement_272596
+	applymovement 3, Common_Movement_QuestionMark
 	applymovement 2, SlateportCity_Movement_1DD311
 	waitmovement 0
 	applymovement LID_CAPT_STERN, Common_Movement_WalkInPlaceDown

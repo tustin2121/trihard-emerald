@@ -1,16 +1,62 @@
+
+#define LID_BRINEY 8
+#define LID_RIVAL 34
+
 Route104_MapScripts:: @ 81ECC32
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route104_MapScript2_1ECC3D
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route104_MapScript2_FrameTable
 	map_script MAP_SCRIPT_ON_TRANSITION, Route104_OnTransition
 	.byte 0
 
-Route104_MapScript2_1ECC3D: @ 81ECC3D
-	map_script_2 VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 1, Route104_EventScript_1ECC47
+Route104_MapScript2_FrameTable: @ 81ECC3D
+	map_script_2 VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 1, Route104_EventScript_BrineyDepartForDewford
 	.2byte 0
 
-Route104_EventScript_1ECC47:: @ 81ECC47
+@ -----------------------------------------------------
+@ Briney Sailing
+
+Route104_EventScript_BrineyDepartForDewford:: @ 81ECC47
 	lockall
-	goto Route104_EventScript_1ED099
+	setobjectpriority LID_BRINEY, MAP_ROUTE104, 0
+	setobjectpriority EVENT_OBJ_ID_PLAYER, MAP_ROUTE104, 0
+	applymovement LID_BRINEY, Route104_Movement_1ED359
+	waitmovement 0
+	removeobject LID_BRINEY
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED34F
+	waitmovement 0
+	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	goto Briney_EventScript_Route104_Dewford
+	@ continue sequence in briney_boat.inc
 	end
+Route104_Movement_1ED359: @ 81ED359
+	walk_down
+	walk_down
+	step_end
+Route104_Movement_1ED34F: @ 81ED34F
+	walk_left
+	walk_down
+	walk_down
+	step_end
+
+
+Route104_EventScript_BrineyArriveFromDewford::
+	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_1E9914
+	waitmovement 0
+	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	hideobjectat 4, MAP_DEWFORD_TOWN
+	setvar VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 2
+	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 4
+	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	waitstate
+	release
+	end
+
+@ -----------------------------------------------------
 
 Route104_OnTransition: @ 81ECC4E
 	call Common_EventScript_SetupRivalGender
@@ -18,254 +64,77 @@ Route104_OnTransition: @ 81ECC4E
 	call Route104_EventScript_1ECC5E
 	end
 
+Route104_EventScript_1ECC78:: @ 81ECC78
+	compare VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 1
+	goto_if_ge Common_EventScript_NopReturn
+	goto_if_set FLAG_MET_RIVAL_RUSTBORO, Common_EventScript_NopReturn
+	goto_if_unset FLAG_REGISTER_RIVAL_POKENAV, Common_EventScript_NopReturn
+	setobjectxyperm LID_RIVAL, 17, 52
+	return
+
 Route104_EventScript_1ECC5E:: @ 81ECC5E
 	goto_if_unset FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_EventScript_1ECC74
 	goto_if_unset FLAG_BADGE03_GET, Route104_EventScript_1ECC74
 	clearflag FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST
 	return
-
 Route104_EventScript_1ECC74:: @ 81ECC74
 	setflag FLAG_HIDE_ROUTE_104_WHITE_HERB_FLORIST
 	return
 
-Route104_EventScript_1ECC78:: @ 81ECC78
-	compare VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 1
-	goto_if_ge Route104_EventScript_1ECC9D
-	goto_if_set FLAG_MET_RIVAL_RUSTBORO, Route104_EventScript_1ECC9D
-	goto_if_unset FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_1ECC9D
-	setobjectxyperm 34, 17, 52
-	return
+@ -----------------------------------------------------
+@ Signs
 
-Route104_EventScript_1ECC9D:: @ 81ECC9D
-	return
-
-Route104_EventScript_1ECC9E:: @ 81ECC9E
-	lockall
-	setvar VAR_0x8008, 1
-	applymovement 34, Common_Movement_FacePlayer
-	waitmovement 0
-	goto Route104_EventScript_1ECD33
-
-Route104_EventScript_1ECCB3:: @ 81ECCB3
-	lockall
-	setflag FLAG_HIDE_RUSBORO_CITY_RIVAL
-	setvar VAR_RUSTBORO_STATE, 8
-	setvar VAR_0x4063, 2
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
-	waitmovement 0
-	delay 10
-	addobject 34
-	clearflag FLAG_HIDE_ROUTE_104_RIVAL
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ECF86
-	waitmovement 0
-	applymovement 34, Route104_Movement_1ECF8A
-	waitmovement 0
-	delay 20
-	setvar VAR_0x8008, 0
-	call Route104_EventScript_1E0DD1
-	playse SE_PIN
-	applymovement 34, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 34, Common_Movement_Delay48
-	waitmovement 0
-	goto Route104_EventScript_1ECD33
-
-Route104_EventScript_1ECD11:: @ 81ECD11
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq Route104_EventScript_1ECD29
-	compare VAR_RESULT, FEMALE
-	goto_if_eq Route104_EventScript_1ECD2E
-	return
-
-Route104_EventScript_1ECD29:: @ 81ECD29
-	playbgm MUS_GIRL_SUP, 1
-	return
-
-Route104_EventScript_1ECD2E:: @ 81ECD2E
-	playbgm MUS_BOY_SUP, 1
-	return
-
-Route104_EventScript_1ECD33:: @ 81ECD33
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq Route104_EventScript_1ECD4B
-	compare VAR_RESULT, FEMALE
-	goto_if_eq Route104_EventScript_1ECE6F
+Route104_SignScript_BrineyCottage:: @ 81ED018
+	msgbox Route104_Text_1EDA8C, MSGBOX_SIGN
 	end
+Route104_Text_1EDA8C: @ 81EDA8C
+	.string "{PLACE}Mr. Briney's Cottage$"
 
-Route104_EventScript_1ECD4B:: @ 81ECD4B
-	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_1ECE1C
-	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_1ECDD0
-	setflag FLAG_REGISTER_RIVAL_POKENAV
-	msgbox Route104_Text_1EDBFF, MSGBOX_DEFAULT
-	closemessage
-	delay 30
-	playfanfare MUS_ME_TORE_EYE
-	msgbox Route104_Text_1EDC8F, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ECDCD
-	applymovement 34, Route104_Movement_1ECDC8
-	msgbox Route104_Text_1EDCB1, MSGBOX_DEFAULT
-	closemessage
-	waitmovement 0
-	applymovement 34, Route104_Movement_1ECDCA
-	waitmovement 0
-	moveobjectoffscreen 34
-	msgbox Route104_Text_1EDCED, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq Route104_EventScript_1ECDED
-	msgbox Route104_Text_1EDD2A, MSGBOX_DEFAULT
-	call Route104_EventScript_1ECE31
-	releaseall
+
+Route104_SignScript_FlowerShop:: @ 81ED033
+	msgbox Route104_Text_1EDAD6, MSGBOX_SIGN
 	end
+Route104_Text_1EDAD6: @ 81EDAD6
+	.string "{PLACE}Pretty Petal Flower Shop$"
 
-Route104_Movement_1ECDC8: @ 81ECDC8
-	walk_slow_left
-	step_end
 
-Route104_Movement_1ECDCA: @ 81ECDCA
-	walk_down
-	face_right
-	step_end
-
-Route104_Movement_1ECDCD: @ 81ECDCD
-	delay_4
-	walk_in_place_fastest_left
-	step_end
-
-Route104_EventScript_1ECDD0:: @ 81ECDD0
-	msgbox Route104_Text_1EDD9F, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq Route104_EventScript_1ECDED
-	msgbox Route104_Text_1EDD2A, MSGBOX_DEFAULT
-	releaseall
+Route104_SignScript_Signpost1:: @ 81ED021
+	msgbox Route104_Text_1EDAA1, MSGBOX_SIGN
 	end
+Route104_Text_1EDAA1: @ 81EDAA1
+	.string "Route 1O4\n"
+	.string "{RIGHT_ARROW} Petalburg City$"
 
-Route104_EventScript_1ECDED:: @ 81ECDED
-	msgbox Route104_Text_1EDDDB, MSGBOX_DEFAULT
-	switch VAR_STARTER_MON
-	case 0, Route104_EventScript_1ECE36
-	case 1, Route104_EventScript_1ECE49
-	case 2, Route104_EventScript_1ECE5C
+
+Route104_SignScript_Signpost2:: @ 81ED02A
+	msgbox Route104_Text_1EDABC, MSGBOX_SIGN
 	end
+Route104_Text_1EDABC: @ 81EDABC
+	.string "Route 1O4\n"
+	.string "{UP_ARROW} Rustboro City$"
 
-Route104_EventScript_1ECE1C:: @ 81ECE1C
-	msgbox Route104_Text_1EDE3E, MSGBOX_DEFAULT
-	compare VAR_0x8008, 0
-	call_if_eq Route104_EventScript_1ECE31
-	releaseall
+
+Route104_SignScript_TipsSign:: @ 81ED03C
+	msgbox Route104_Text_1EDAEF, MSGBOX_DESCRIBE
 	end
+Route104_Text_1EDAEF: @ 81EDAEF
+	.string "{TIPS} TRAINER TIPS {END}\p"
+	.string "In the Hoenn region there are pairs\n"
+	.string "of trainers who challenge others\l"
+	.string "for 2-on-2 Pokémon battles called\l"
+	.string "double battles.\p"
+	.string "In a double battle, the trainer must\n"
+	.string "send out two Pokémon, the one at the\l"
+	.string "left of the list and the top one.\l"
+	.string "Watch how Pokémon are lined up.$"
 
-Route104_EventScript_1ECE31:: @ 81ECE31
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	return
+@ -----------------------------------------------------
+@ People
 
-Route104_EventScript_1ECE36:: @ 81ECE36
-	trainerbattle_no_intro TRAINER_MAY_14, Route104_Text_1EDE18
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_1ECE1C
-	end
-
-Route104_EventScript_1ECE49:: @ 81ECE49
-	trainerbattle_no_intro TRAINER_MAY_15, Route104_Text_1EDE18
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_1ECE1C
-	end
-
-Route104_EventScript_1ECE5C:: @ 81ECE5C
-	trainerbattle_no_intro TRAINER_MAY_10, Route104_Text_1EDE18
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_1ECE1C
-	end
-
-Route104_EventScript_1ECE6F:: @ 81ECE6F
-	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_1ECF38
-	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_1ECEEC
-	setflag FLAG_REGISTER_RIVAL_POKENAV
-	msgbox Route104_Text_1EDF04, MSGBOX_DEFAULT
-	closemessage
-	delay 30
-	playfanfare MUS_ME_TORE_EYE
-	msgbox Route104_Text_1EDFA0, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ECDCD
-	applymovement 34, Route104_Movement_1ECDC8
-	msgbox Route104_Text_1EDFC6, MSGBOX_DEFAULT
-	closemessage
-	waitmovement 0
-	applymovement 34, Route104_Movement_1ECDCA
-	waitmovement 0
-	moveobjectoffscreen 34
-	msgbox Route104_Text_1EE009, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq Route104_EventScript_1ECF09
-	msgbox Route104_Text_1EE04D, MSGBOX_DEFAULT
-	call Route104_EventScript_1ECE31
-	releaseall
-	end
-
-Route104_EventScript_1ECEEC:: @ 81ECEEC
-	msgbox Route104_Text_1EE094, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq Route104_EventScript_1ECF09
-	msgbox Route104_Text_1EE04D, MSGBOX_DEFAULT
-	releaseall
-	end
-
-Route104_EventScript_1ECF09:: @ 81ECF09
-	msgbox Route104_Text_1EE0C7, MSGBOX_DEFAULT
-	switch VAR_STARTER_MON
-	case 0, Route104_EventScript_1ECF4D
-	case 1, Route104_EventScript_1ECF60
-	case 2, Route104_EventScript_1ECF73
-	end
-
-Route104_EventScript_1ECF38:: @ 81ECF38
-	msgbox Route104_Text_1EE120, MSGBOX_DEFAULT
-	compare VAR_0x8008, 0
-	call_if_eq Route104_EventScript_1ECE31
-	releaseall
-	end
-
-Route104_EventScript_1ECF4D:: @ 81ECF4D
-	trainerbattle_no_intro TRAINER_BRENDAN_10, Route104_Text_1EE107
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_1ECF38
-	end
-
-Route104_EventScript_1ECF60:: @ 81ECF60
-	trainerbattle_no_intro TRAINER_BRENDAN_12, Route104_Text_1EE107
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_1ECF38
-	end
-
-Route104_EventScript_1ECF73:: @ 81ECF73
-	trainerbattle_no_intro TRAINER_BRENDAN_11, Route104_Text_1EE107
-	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_1ECF38
-	end
-
-Route104_Movement_1ECF86: @ 81ECF86
-	lock_facing_direction
-	walk_down
-	unlock_facing_direction
-	step_end
-
-Route104_Movement_1ECF8A: @ 81ECF8A
-	walk_down
-	step_end
-
-Route104_EventScript_1ECF8C:: @ 81ECF8C
+Route104_EventScript_OldChestoLady:: @ 81ECF8C
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_CHESTO_BERRY_ROUTE_104, Route104_EventScript_1ECFC3
 	msgbox Route104_Text_2A6D86, MSGBOX_DEFAULT
 	giveitem_std ITEM_CHESTO_BERRY
@@ -275,13 +144,26 @@ Route104_EventScript_1ECF8C:: @ 81ECF8C
 	msgbox Route104_Text_2A6E32, MSGBOX_DEFAULT
 	release
 	end
-
 Route104_EventScript_1ECFC3:: @ 81ECFC3
 	msgbox Route104_Text_2A6E32, MSGBOX_DEFAULT
 	release
 	end
+Route104_Text_2A6D86: @ 82A6D86
+	.string "If you see berries growing in loamy\n"
+	.string "soil, feel free to take them.\p"
+	.string "But make sure you plant a berry in the\n"
+	.string "same spot. That's common courtesy.\p"
+	.string "Here, I'll share this with you.$"
+Route104_Text_2A6E32: @ 82A6E32
+	.string "The way you look, you must be a\n"
+	.string "trainer, no?\p"
+	.string "Trainers often make Pokémon hold\n"
+	.string "berries.\p"
+	.string "It's up to you whether to grow berries\n"
+	.string "or use them.$"
 
-Route104_EventScript_1ECFCD:: @ 81ECFCD
+
+Route104_EventScript_FlowerShopLady:: @ 81ECFCD
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_WHITE_HERB, Route104_EventScript_1ECFFC
@@ -292,49 +174,64 @@ Route104_EventScript_1ECFCD:: @ 81ECFCD
 	setflag FLAG_RECEIVED_WHITE_HERB
 	release
 	end
-
+Route104_Text_1ED96A: @ 81ED96A
+	.string "This flower shop started selling\n"
+	.string "saplings recently.\p"
+	.string "It made me so happy, I went overboard\n"
+	.string "shopping.\p"
+	.string "I don't need this {REF}white herb{END} anymore.\n"
+	.string "Would you take it, please?$"
 Route104_EventScript_1ECFFC:: @ 81ECFFC
 	msgbox Route104_Text_1EDA0F, MSGBOX_DEFAULT
 	release
 	end
+Route104_Text_1EDA0F: @ 81EDA0F
+	.string "This flower shop started selling\n"
+	.string "saplings recently.\p"
+	.string "It made me so happy, I went overboard\n"
+	.string "shopping. Where should I put them?$"
 
-Route104_EventScript_1ED006:: @ 81ED006
+
+Route104_EventScript_SeasideGirl:: @ 81ED006
 	msgbox Route104_Text_1ED5EC, MSGBOX_NPC
 	end
+Route104_Text_1ED5EC: @ 81ED5EC
+	.string "That seaside cottage is where\n"
+	.string "Mr. Briney lives.\p"
+	.string "He was once a mighty sailor who never\n"
+	.string "feared the sea, however stormy.$"
 
-Route104_EventScript_1ED00F:: @ 81ED00F
-	msgbox Route104_Text_1ED662, MSGBOX_SIGN
+
+Route104_EventScript_SeasideContemplator:: @ 81ED00F
+	msgbox Route104_Text_1ED662, MSGBOX_DIALOG
 	end
+Route104_Text_1ED662: @ 81ED662
+	.string "The sea, huh?\p"
+	.string "I wonder what it's like at the bottom\n"
+	.string "of the sea?$"
 
-Route104_EventScript_1ED018:: @ 81ED018
-	msgbox Route104_Text_1EDA8C, MSGBOX_SIGN
-	end
 
-Route104_EventScript_1ED021:: @ 81ED021
-	msgbox Route104_Text_1EDAA1, MSGBOX_SIGN
-	end
-
-Route104_EventScript_1ED02A:: @ 81ED02A
-	msgbox Route104_Text_1EDABC, MSGBOX_SIGN
-	end
-
-Route104_EventScript_1ED033:: @ 81ED033
-	msgbox Route104_Text_1EDAD6, MSGBOX_SIGN
-	end
-
-Route104_EventScript_1ED03C:: @ 81ED03C
-	msgbox Route104_Text_1EDAEF, MSGBOX_SIGN
-	end
-
-Route104_EventScript_1ED045:: @ 81ED045
+Route104_EventScript_GrassBoy:: @ 81ED045
 	msgbox Route104_Text_1ED6A2, MSGBOX_NPC
 	end
+Route104_Text_1ED6A2: @ 81ED6A2
+	.string "If you're going to throw a Poké Ball,\n"
+	.string "weaken the wild Pokémon first.\p"
+	.string "It will be easier to catch if it's been\n"
+	.string "poisoned, burned, or lulled to sleep.$"
 
-Route104_EventScript_1ED04E:: @ 81ED04E
+
+Route104_EventScript_TheifLady:: @ 81ED04E
 	msgbox Route104_Text_1ED735, MSGBOX_NPC
 	end
+Route104_Text_1ED735: @ 81ED735
+	.string "You're a thief if you try to steal\n"
+	.string "someone else's Pokémon.\p"
+	.string "You should throw Poké Balls only at\n"
+	.string "wild Pokémon.$"
 
-Route104_EventScript_1ED057:: @ 81ED057
+
+Route104_EventScript_TMKid:: @ 81ED057
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_TM09, Route104_EventScript_1ED086
@@ -345,520 +242,41 @@ Route104_EventScript_1ED057:: @ 81ED057
 	setflag FLAG_RECEIVED_TM09
 	release
 	end
-
+Route104_Text_1ED838: @ 81ED838
+	.string "I like filling my mouth with seeds,\n"
+	.string "then spitting them out fast!\p"
+	.string "You can have this, so you try it out!\p"
+	.string "Use it on a Pokémon, and it will learn\n"
+	.string "a move for firing seeds rapidly.$"
 Route104_EventScript_1ED086:: @ 81ED086
 	msgbox Route104_Text_1ED8E7, MSGBOX_DEFAULT
 	release
 	end
+Route104_Text_1ED8E7: @ 81ED8E7
+	.string "A word of advice!\p"
+	.string "A TM, or Technical Machine, can be used\n"
+	.string "as many times as you want.\p"
+	.string "So don't hesitate to fill out your\n"
+	.string "party's moveset with TMs you like!$"
+
 
 Route104_EventScript_1ED090:: @ 81ED090
 	msgbox Route104_Text_1ED7A2, MSGBOX_NPC
 	end
+Route104_Text_1ED7A2: @ 81ED7A2
+	.string "Oh, no, I'm not a trainer.\p"
+	.string "But that's right, if trainers lock eyes,\n"
+	.string "it's a challenge to battle.\p"
+	.string "If you don't want to battle, stay out\n"
+	.string "of their sight.$"
 
-Route104_EventScript_1ED099:: @ 81ED099
-	setobjectpriority 8, MAP_ROUTE104, 0
-	setobjectpriority EVENT_OBJ_ID_PLAYER, MAP_ROUTE104, 0
-	applymovement 8, Route104_Movement_1ED359
-	waitmovement 0
-	removeobject 8
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED34F
-	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
-	call Route104_EventScript_2720A0
-	goto_if_set FLAG_ENABLE_NORMAN_MATCH_CALL, Route104_EventScript_1ED0D9
-	goto_if_unset FLAG_ENABLE_NORMAN_MATCH_CALL, Route104_EventScript_1ED0EF
-	end
+@ -----------------------------------------------------
+@ Trainers
 
-Route104_EventScript_1ED0D9:: @ 81ED0D9
-	applymovement 7, Route104_Movement_NoMatchCallPart1
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_NoMatchCallPart1
-	waitmovement 0
-	call_if_unset FLAG_RECEIVED_OLD_ROD, GiveOldRod
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_AfterOldRod
-	applymovement 7, Route104_Movement_AfterOldRod, MAP_ROUTE104
-	waitmovement 7, MAP_ROUTE104
-	waitmovement 0
-	goto Route104_EventScript_1ED139
 
-Route104_EventScript_1ED0EF:: @ 81ED0EF
-	applymovement 7, Route104_Movement_MatchCallPart1
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_MatchCallPart1
-	waitmovement 0
-	pokenavcall Route104_Text_1EE336
-	waitmessage
-	delay 30
-	playfanfare MUS_ME_TORE_EYE
-	msgbox Route104_Text_1EE463, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_MatchCallPart2
-	applymovement 7, Route104_Movement_MatchCallPart2, MAP_ROUTE104
-	waitmovement 7, MAP_ROUTE104
-	waitmovement 0
-	call_if_unset FLAG_RECEIVED_OLD_ROD, GiveOldRod
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_AfterOldRod
-	applymovement 7, Route104_Movement_AfterOldRod, MAP_ROUTE104
-	waitmovement 7, MAP_ROUTE104
-	waitmovement 0
-	goto Route104_EventScript_1ED139
 
-GiveOldRod:
-	msgbox Route104_Text_BrineyOldRod, MSGBOX_DEFAULT
-	giveitem_std ITEM_OLD_ROD
-	setflag FLAG_RECEIVED_OLD_ROD
-	msgbox Route104_Text_BrineyOldRod2, MSGBOX_DEFAULT
-	closemessage
-	fadescreen 1
-	delay 120
-	fadescreen 0
-	msgbox Route104_Text_BrineyOldRod3, MSGBOX_DEFAULT
-	closemessage
-	return
 
-Route104_EventScript_1ED139:: @ 81ED139
-	delay 50
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED353
-	waitmovement 0
-	call Route104_EventScript_2720A8
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED355
-	waitmovement 0
-	setobjectxyperm 2, 12, 8
-	addobject 2
-	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
-	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
-	applymovement 2, Route104_Movement_1ED35C
-	waitmovement 0
-	addobject 4
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	call Route104_EventScript_2720A8
-	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
-	hideobjectat 7, MAP_ROUTE104
-	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
-	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
-	resetobjectpriority 2, MAP_DEWFORD_TOWN
-	moveobjectoffscreen 2
-	setvar VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 0
-	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_1ED1B4
-	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_1ED1BE
-	end
 
-Route104_EventScript_1ED1B4:: @ 81ED1B4
-	msgbox Route104_Text_1E9AAF, MSGBOX_DEFAULT
-	releaseall
-	end
-
-Route104_EventScript_1ED1BE:: @ 81ED1BE
-	msgbox Route104_Text_1E9C1D, MSGBOX_DEFAULT
-	releaseall
-	end
-
-Route104_Movement_MatchCallPart1: @ 81ED1C8
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_right
-	walk_fast_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	step_end
-
-Route104_Movement_MatchCallPart2: @ 81ED22A
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fast_right
-	walk_fast_right
-	walk_right
-	walk_right
-	step_end
-
-Route104_Movement_AfterOldRod:
-	walk_right
-	walk_right
-	walk_down
-	walk_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_down
-	walk_down
-	step_end
-
-Route104_Movement_NoMatchCallPart1: @ 81ED28C
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_right
-	walk_fast_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fastest_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fastest_right
-	walk_fast_right
-	walk_fast_right
-	walk_right
-	walk_right
-	step_end
-
-Route104_Movement_1ED34F: @ 81ED34F
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-Route104_Movement_1ED353: @ 81ED353
-	walk_down
-	step_end
-
-Route104_Movement_1ED355: @ 81ED355
-	walk_down
-	walk_left
-	walk_in_place_fastest_right
-	step_end
-
-Route104_Movement_1ED359: @ 81ED359
-	walk_down
-	walk_down
-	step_end
-
-Route104_Movement_1ED35C: @ 81ED35C
-	walk_down
-	walk_in_place_fastest_left
-	step_end
 
 Route104_EventScript_1ED35F:: @ 81ED35F
 	trainerbattle_single TRAINER_IVAN, Route104_Text_2954BD, Route104_Text_295509
@@ -1018,127 +436,221 @@ Route104_EventScript_1ED5D5:: @ 81ED5D5
 	msgbox Route104_Text_295CD3, MSGBOX_AUTOCLOSE
 	end
 
-Route104_Text_1ED5EC: @ 81ED5EC
-	.string "That seaside cottage is where\n"
-	.string "MR. BRINEY lives.\p"
-	.string "He was once a mighty sailor who never\n"
-	.string "feared the sea, however stormy.$"
 
-Route104_Text_1ED662: @ 81ED662
-	.string "The sea, huh?\p"
-	.string "I wonder what it's like at the bottom\n"
-	.string "of the sea?$"
 
-Route104_Text_1ED6A2: @ 81ED6A2
-	.string "If you're going to throw a POKé BALL,\n"
-	.string "weaken the wild Pokémon first.\p"
-	.string "It will be easier to catch if it's been\n"
-	.string "poisoned, burned, or lulled to sleep.$"
 
-Route104_Text_1ED735: @ 81ED735
-	.string "You're a thief if you try to steal\n"
-	.string "someone else's Pokémon.\p"
-	.string "You should throw POKé BALLS only at\n"
-	.string "wild Pokémon.$"
 
-Route104_Text_1ED7A2: @ 81ED7A2
-	.string "Oh, no, I'm not a TRAINER.\p"
-	.string "But that's right, if TRAINERS lock eyes,\n"
-	.string "it's a challenge to battle.\p"
-	.string "If you don't want to battle, stay out\n"
-	.string "of their sight.$"
 
-Route104_Text_1ED838: @ 81ED838
-	.string "I like filling my mouth with seeds,\n"
-	.string "then spitting them out fast!\p"
-	.string "You can have this, so you try it out!\p"
-	.string "Use it on a Pokémon, and it will learn\n"
-	.string "a move for firing seeds rapidly.$"
 
-Route104_Text_1ED8E7: @ 81ED8E7
-	.string "A word of advice!\p"
-	.string "A TM, TECHNICAL MACHINE, is good only\n"
-	.string "for one-time use.\p"
-	.string "Once you use it, it's gone.\n"
-	.string "Think twice before using it!$"
 
-Route104_Text_1ED96A: @ 81ED96A
-	.string "This FLOWER SHOP started selling\n"
-	.string "saplings recently.\p"
-	.string "It made me so happy, I went overboard\n"
-	.string "shopping.\p"
-	.string "I don't need this WHITE HERB anymore.\n"
-	.string "Would you take it, please?$"
 
-Route104_Text_1EDA0F: @ 81EDA0F
-	.string "This FLOWER SHOP started selling\n"
-	.string "saplings recently.\p"
-	.string "It made me so happy, I went overboard\n"
-	.string "shopping. Where should I put them?$"
 
-Route104_Text_1EDA8C: @ 81EDA8C
-	.string "MR. BRINEY'S COTTAGE$"
 
-Route104_Text_1EDAA1: @ 81EDAA1
-	.string "Route 1O4\n"
-	.string "{RIGHT_ARROW} Petalburg City$"
 
-Route104_Text_1EDABC: @ 81EDABC
-	.string "Route 1O4\n"
-	.string "{UP_ARROW} Rustboro City$"
 
-Route104_Text_1EDAD6: @ 81EDAD6
-	.string "PRETTY PETAL FLOWER SHOP$"
 
-Route104_Text_1EDAEF: @ 81EDAEF
-	.string "{TIPS} TRAINER TIPS {END}\p"
-	.string "In the Hoenn region there are pairs\n"
-	.string "of TRAINERS who challenge others\l"
-	.string "for 2-on-2 Pokémon battles called\l"
-	.string "DOUBLE BATTLES.\p"
-	.string "In a DOUBLE BATTLE, the TRAINER must\n"
-	.string "send out two Pokémon, the one at the\l"
-	.string "left of the list and the top one.\l"
-	.string "Watch how Pokémon are lined up.$"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route104_Text_1EE0C7: @ 81EE0C7
+	.string "Brendan: I know you just became\n"
+	.string "a trainer, but I won't go easy!$"
+
+
+
+
+
+
+
+
+
+
+@ -----------------------------------------------------
+@ Rival
+
+Route104_EventScript_Rival:: @ 81ECC9E
+	lockall
+	setvar VAR_0x8008, 1
+	applymovement LID_RIVAL, Common_Movement_FacePlayer
+	waitmovement 0
+	goto Route104_EventScript_1ECD33
+
+Route104_TriggerScript_MrBrineyRival:: @ 81ECCB3
+	lockall
+	setflag FLAG_HIDE_RUSBORO_CITY_RIVAL
+	setvar VAR_RUSTBORO_STATE, 8
+	setvar VAR_0x4063, 2
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	delay 10
+	addobject LID_RIVAL
+	clearflag FLAG_HIDE_ROUTE_104_RIVAL
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ECF86
+	waitmovement 0
+	applymovement LID_RIVAL, Common_Movement_WalkDown1
+	waitmovement 0
+	delay 20
+	setvar VAR_0x8008, 0
+	call Common_EventScript_PlayRivalMusic
+	playse SE_PIN
+	applymovement LID_RIVAL, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LID_RIVAL, Common_Movement_Delay48
+	waitmovement 0
+	goto Route104_EventScript_1ECD33
+Route104_Movement_1ECF86: @ 81ECF86
+	lock_facing_direction
+	walk_down
+	unlock_facing_direction
+	step_end
+
+Route104_EventScript_1ECD33:: @ 81ECD33
+	markasdialog
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Route104_EventScript_1ECD4B
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Route104_EventScript_1ECE6F
+	end
+
+Route104_EventScript_1ECD4B:: @ 81ECD4B
+	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_1ECE1C
+	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_1ECDD0
+	setflag FLAG_REGISTER_RIVAL_POKENAV
+	msgbox Route104_Text_1EDBFF, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	playfanfare MUS_ME_TORE_EYE
+	message Route104_Text_1EDC8F, MSGTYPE_DESCRIBE
+	waitfanfare
+	waitmessage
+	waitbuttonpress
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ECDCD
+	applymovement LID_RIVAL, Route104_Movement_1ECDC8
+	msgbox Route104_Text_1EDCB1, MSGBOX_DEFAULT
+	closemessage
+	waitmovement 0
+	applymovement LID_RIVAL, Route104_Movement_1ECDCA
+	waitmovement 0
+	moveobjectoffscreen 34
+	msgbox Route104_Text_1EDCED, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route104_EventScript_1ECDED
+	msgbox Route104_Text_1EDD2A, MSGBOX_DEFAULT
+	call Common_EventScript_FadeMusicToMapMusic
+	releaseall
+	end
 Route104_Text_1EDBFF: @ 81EDBFF
 	.string "May: Oh, hi, {PLAYER}!\p"
 	.string "DEVON upgraded your PokéNav with\n"
 	.string "the MATCH CALL system, huh?\p"
 	.string "We should register each other so we\n"
 	.string "can get in contact anytime.$"
-
 Route104_Text_1EDC8F: @ 81EDC8F
-	.string "{PLAYER} registered MAY\n"
+	.string "{PLAYER} registered May\n"
 	.string "in the PokéNav.$"
-
+Route104_Movement_1ECDCD: @ 81ECDCD
+	delay_4
+	walk_in_place_fastest_left
+	step_end
+Route104_Movement_1ECDC8: @ 81ECDC8
+	walk_slow_left
+	step_end
 Route104_Text_1EDCB1: @ 81EDCB1
 	.string "May: Oh, by the way, {PLAYER},\n"
 	.string "how's your Pokédex coming along?$"
-
+Route104_Movement_1ECDCA: @ 81ECDCA
+	walk_down
+	face_right
+	step_end
 Route104_Text_1EDCED: @ 81EDCED
 	.string "Mine's looking pretty decent.\n"
 	.string "So…\l"
 	.string "How about a little battle?$"
 
+Route104_EventScript_1ECDD0:: @ 81ECDD0
+	msgbox Route104_Text_1EDD9F, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route104_EventScript_1ECDED
+	msgbox Route104_Text_1EDD2A, MSGBOX_DEFAULT
+	releaseall
+	end
+Route104_Text_1EDD9F: @ 81EDD9F
+	.string "May: So, what do you think?\n"
+	.string "How about a little battle here?$"
 Route104_Text_1EDD2A: @ 81EDD2A
 	.string "May: Oh, what's the matter?\p"
 	.string "Haven't you caught or raised your\n"
 	.string "Pokémon very much?\p"
-	.string "That's not very good for a TRAINER!$"
+	.string "That's not very good for a trainer!$"
 
-Route104_Text_1EDD9F: @ 81EDD9F
-	.string "May: So, what do you think?\n"
-	.string "How about a little battle here?$"
-
+Route104_EventScript_1ECDED:: @ 81ECDED
+	msgbox Route104_Text_1EDDDB, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route104_EventScript_1ECE36
+	case 1, Route104_EventScript_1ECE49
+	case 2, Route104_EventScript_1ECE5C
+	end
 Route104_Text_1EDDDB: @ 81EDDDB
-	.string "May: You just became a TRAINER,\n"
+	.string "May: You just became a trainer,\n"
 	.string "{PLAYER}. I'm not going to lose!$"
 
+Route104_EventScript_1ECE36:: @ 81ECE36
+	trainerbattle_no_intro TRAINER_MAY_14, Route104_Text_1EDE18
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_1ECE1C
+	end
+Route104_EventScript_1ECE49:: @ 81ECE49
+	trainerbattle_no_intro TRAINER_MAY_15, Route104_Text_1EDE18
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_1ECE1C
+	end
+Route104_EventScript_1ECE5C:: @ 81ECE5C
+	trainerbattle_no_intro TRAINER_MAY_10, Route104_Text_1EDE18
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_1ECE1C
+	end
 Route104_Text_1EDE18: @ 81EDE18
 	.string "Yikes!\n"
 	.string "You're better than I expected!$"
 
+Route104_EventScript_1ECE1C:: @ 81ECE1C
+	msgbox Route104_Text_1EDE3E, MSGBOX_DEFAULT
+	compare VAR_0x8008, 0
+	call_if_eq Common_EventScript_FadeMusicToMapMusic
+	releaseall
+	end
 Route104_Text_1EDE3E: @ 81EDE3E
 	.string "May: I can tell you've gotten pretty\n"
 	.string "good with the way you handle Pokémon.\p"
@@ -1147,59 +659,107 @@ Route104_Text_1EDE3E: @ 81EDE3E
 	.string "It's important to become friends with\n"
 	.string "Pokémon, too.$"
 
+
+Route104_EventScript_1ECE6F:: @ 81ECE6F
+	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_1ECF38
+	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_1ECEEC
+	setflag FLAG_REGISTER_RIVAL_POKENAV
+	msgbox Route104_Text_1EDF04, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	playfanfare MUS_ME_TORE_EYE
+	msgbox Route104_Text_1EDFA0, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ECDCD
+	applymovement LID_RIVAL, Route104_Movement_1ECDC8
+	msgbox Route104_Text_1EDFC6, MSGBOX_DEFAULT
+	closemessage
+	waitmovement 0
+	applymovement LID_RIVAL, Route104_Movement_1ECDCA
+	waitmovement 0
+	moveobjectoffscreen 34
+	msgbox Route104_Text_1EE009, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route104_EventScript_1ECF09
+	msgbox Route104_Text_1EE04D, MSGBOX_DEFAULT
+	call Common_EventScript_FadeMusicToMapMusic
+	releaseall
+	end
 Route104_Text_1EDF04: @ 81EDF04
 	.string "Brendan: Oh, hey, {PLAYER}!\p"
 	.string "Cool, you had DEVON install the MATCH\n"
 	.string "CALL system on your PokéNav!\p"
 	.string "Let's register each other in our\n"
 	.string "PokéNavS so we can keep in touch.$"
-
 Route104_Text_1EDFA0: @ 81EDFA0
 	.string "{PLAYER} registered BRENDAN\n"
 	.string "in the PokéNav.$"
-
 Route104_Text_1EDFC6: @ 81EDFC6
 	.string "Brendan: {PLAYER}, how's your Pokédex?\n"
 	.string "Have you filled in any pages yet?$"
-
 Route104_Text_1EE009: @ 81EE009
 	.string "Me, I'm doing great!\p"
 	.string "Want to check out how good I am with\n"
 	.string "a battle?$"
 
+
+Route104_EventScript_1ECEEC:: @ 81ECEEC
+	msgbox Route104_Text_1EE094, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route104_EventScript_1ECF09
+	msgbox Route104_Text_1EE04D, MSGBOX_DEFAULT
+	releaseall
+	end
+Route104_Text_1EE094: @ 81EE094
+	.string "Brendan: What's up?\n"
+	.string "Want to have a battle with me?$"
 Route104_Text_1EE04D: @ 81EE04D
 	.string "Brendan: What's the matter? Don't have\n"
 	.string "any confidence in your Pokémon?$"
 
-Route104_Text_1EE094: @ 81EE094
-	.string "Brendan: What's up?\n"
-	.string "Want to have a battle with me?$"
+Route104_EventScript_1ECF09:: @ 81ECF09
+	msgbox Route104_Text_1EE0C7, MSGBOX_DEFAULT
+	switch VAR_STARTER_MON
+	case 0, Route104_EventScript_1ECF4D
+	case 1, Route104_EventScript_1ECF60
+	case 2, Route104_EventScript_1ECF73
+	end
 
-Route104_Text_1EE0C7: @ 81EE0C7
-	.string "Brendan: I know you just became\n"
-	.string "a TRAINER, but I won't go easy!$"
-
+Route104_EventScript_1ECF4D:: @ 81ECF4D
+	trainerbattle_no_intro TRAINER_BRENDAN_10, Route104_Text_1EE107
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_1ECF38
+	end
+Route104_EventScript_1ECF60:: @ 81ECF60
+	trainerbattle_no_intro TRAINER_BRENDAN_12, Route104_Text_1EE107
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_1ECF38
+	end
+Route104_EventScript_1ECF73:: @ 81ECF73
+	trainerbattle_no_intro TRAINER_BRENDAN_11, Route104_Text_1EE107
+	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
+	goto Route104_EventScript_1ECF38
+	end
 Route104_Text_1EE107: @ 81EE107
 	.string "Hmm…\n"
 	.string "You're pretty good.$"
 
+Route104_EventScript_1ECF38:: @ 81ECF38
+	msgbox Route104_Text_1EE120, MSGBOX_DEFAULT
+	compare VAR_0x8008, 0
+	call_if_eq Common_EventScript_FadeMusicToMapMusic
+	releaseall
+	end
 Route104_Text_1EE120: @ 81EE120
 	.string "Brendan: You've gotten pretty decent\n"
 	.string "at handling Pokémon.\p"
 	.string "But, you know, you shouldn't just be\n"
 	.string "making Pokémon battle.\p"
-	.string "Like MR. BRINEY, it's important to\n"
+	.string "Like Mr. Briney, it's important to\n"
 	.string "become friends with your Pokémon.$"
 
-Route104_Text_BrineyOldRod:
-	.string "BRINEY: Time to go fishing for awhile!\p"
-	.string "What? You don't know how to fish?!\p"
-	.string "I'll teach you!$"
 
-Route104_Text_BrineyOldRod2:
-	.string "Now, let's see if the fish are biting.$"
-
-Route104_Text_BrineyOldRod3:
-	.string "That was a great haul!\p"
-	.string "We're almost to DEWFORD TOWN,\n"
-	.string "so let's be on our way.$"
+#undef LID_RIVAL

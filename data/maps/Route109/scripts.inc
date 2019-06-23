@@ -1,6 +1,54 @@
 Route109_MapScripts:: @ 81EE75F
 	.byte 0
 
+@ -----------------------------------------------------
+@ Briney scripts
+
+Route109_EventScript_BrineyArriveFromDewford::
+	@ continued sequence from briney_boat.inc
+	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE109
+	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_1E9918
+	waitmovement 0
+	setobjectxyperm 2, 21, 26
+	addobject 2
+	setobjectpriority 2, MAP_ROUTE109, 0
+	applymovement 2, DewfordTown_Movement_1E991F
+	waitmovement 0
+	clearflag FLAG_HIDE_ROUTE_108_MR_BRINEY
+	addobject 1
+	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	hideobjectat 4, MAP_DEWFORD_TOWN
+	call_if_unset FLAG_DELIVERED_DEVON_GOODS, DewfordTown_EventScript_1E9790
+	call_if_set FLAG_DELIVERED_DEVON_GOODS, DewfordTown_EventScript_1E9799
+	closemessage
+	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	resetobjectpriority 2, MAP_ROUTE109
+	moveobjectoffscreen 2
+	release
+	end
+
+DewfordTown_EventScript_1E9790:: @ 81E9790
+	msgbox DewfordTown_Text_1EEC1D, MSGBOX_DEFAULT
+	return
+DewfordTown_Text_1EEC1D: @ 81EEC1D
+	.string "Mr. Briney: Ahoy!\n"
+	.string "We've made land in Slateport!\p"
+	.string "I suppose you're going to visit Capt.\n"
+	.string "Stern and deliver the DEVON GOODS?$"
+
+DewfordTown_EventScript_1E9799:: @ 81E9799
+	msgbox DewfordTown_Text_1EEDA7, MSGBOX_DEFAULT
+	return
+DewfordTown_Text_1EEDA7: @ 81EEDA7
+	.string "Mr. Briney: Ahoy! We've made land in\n"
+	.string "Slateport!\p"
+	.string "You just go on and tell me whenever\n"
+	.string "you want to set sail again!$"
+	
+@ -----------------------------------------------------
+
 Route109_EventScript_1EE760:: @ 81EE760
 	call Route109_EventScript_271E95
 	setobjectpriority 2, MAP_ROUTE109, 0
@@ -34,12 +82,12 @@ Route109_EventScript_1EE7C5:: @ 81EE7C5
 
 Route109_EventScript_1EE7D5:: @ 81EE7D5
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE109
-	call Route109_EventScript_2720A0
+	call Common_EventScript_StartBrineyBoatSequence
 	applymovement 1, Route109_Movement_1EE84F
 	applymovement EVENT_OBJ_ID_PLAYER, Route109_Movement_1EE84F
 	waitmovement 0
 	delay 50
-	call Route109_EventScript_2720A8
+	call Common_EventScript_EndBrineyBoatSequence
 	showobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
 	applymovement EVENT_OBJ_ID_PLAYER, Route109_Movement_1EE900
 	waitmovement 0
@@ -477,11 +525,6 @@ Route109_EventScript_1EEC06:: @ 81EEC06
 	msgbox Route109_Text_297AE5, MSGBOX_AUTOCLOSE
 	end
 
-DewfordTown_Text_1EEC1D: @ 81EEC1D
-	.string "Mr. Briney: Ahoy!\n"
-	.string "We've made land in Slateport!\p"
-	.string "I suppose you're going to visit Capt.\n"
-	.string "Stern and deliver the DEVON GOODS?$"
 
 Route109_Text_1EEC96: @ 81EEC96
 	.string "Mr. Briney: I thought you're supposed\n"
@@ -498,11 +541,6 @@ Route109_Text_1EED5E: @ 81EED5E
 	.string "Mr. Briney: Then you go on and deliver\n"
 	.string "the DEVON GOODS. I'll be waiting.$"
 
-DewfordTown_Text_1EEDA7: @ 81EEDA7
-	.string "Mr. Briney: Ahoy! We've made land in\n"
-	.string "Slateport!\p"
-	.string "You just go on and tell me whenever\n"
-	.string "you want to set sail again!$"
 
 Route109_Text_1EEE17: @ 81EEE17
 	.string "Mr. Briney: Ahoy!\n"

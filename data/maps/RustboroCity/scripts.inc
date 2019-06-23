@@ -669,31 +669,14 @@ RustboroCity_EventScript_1E0D96:: @ 81E0D96
 
 RustboroCity_EventScript_1E0DB8:: @ 81E0DB8
 	lockall
-	call_if_unset FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_1E0DD1
+	call_if_unset FLAG_MET_RIVAL_RUSTBORO, Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_FacePlayer
 	waitmovement 0
 	goto RustboroCity_EventScript_1E0FF3
 
-Route104_EventScript_1E0DD1:: @ 81E0DD1
-RustboroCity_EventScript_1E0DD1:: @ 81E0DD1
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq RustboroCity_EventScript_1E0DE9
-	compare VAR_RESULT, FEMALE
-	goto_if_eq RustboroCity_EventScript_1E0DEE
-	return
-
-RustboroCity_EventScript_1E0DE9:: @ 81E0DE9
-	playbgm MUS_GIRL_SUP, 1
-	return
-
-RustboroCity_EventScript_1E0DEE:: @ 81E0DEE
-	playbgm MUS_BOY_SUP, 1
-	return
-
 RustboroCity_EventScript_1E0DF3:: @ 81E0DF3
 	lockall
-	call RustboroCity_EventScript_1E0DD1
+	call Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	playse SE_PIN
@@ -709,7 +692,7 @@ RustboroCity_EventScript_1E0DF3:: @ 81E0DF3
 
 RustboroCity_EventScript_1E0E33:: @ 81E0E33
 	lockall
-	call RustboroCity_EventScript_1E0DD1
+	call Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	playse SE_PIN
@@ -725,7 +708,7 @@ RustboroCity_EventScript_1E0E33:: @ 81E0E33
 
 RustboroCity_EventScript_1E0E73:: @ 81E0E73
 	lockall
-	call RustboroCity_EventScript_1E0DD1
+	call Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	playse SE_PIN
@@ -741,7 +724,7 @@ RustboroCity_EventScript_1E0E73:: @ 81E0E73
 
 RustboroCity_EventScript_1E0EB3:: @ 81E0EB3
 	lockall
-	call RustboroCity_EventScript_1E0DD1
+	call Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	playse SE_PIN
@@ -757,7 +740,7 @@ RustboroCity_EventScript_1E0EB3:: @ 81E0EB3
 
 RustboroCity_EventScript_1E0EF3:: @ 81E0EF3
 	lockall
-	call RustboroCity_EventScript_1E0DD1
+	call Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	playse SE_PIN
@@ -773,7 +756,7 @@ RustboroCity_EventScript_1E0EF3:: @ 81E0EF3
 
 RustboroCity_EventScript_1E0F33:: @ 81E0F33
 	lockall
-	call RustboroCity_EventScript_1E0DD1
+	call Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	playse SE_PIN
@@ -789,7 +772,7 @@ RustboroCity_EventScript_1E0F33:: @ 81E0F33
 
 RustboroCity_EventScript_1E0F73:: @ 81E0F73
 	lockall
-	call RustboroCity_EventScript_1E0DD1
+	call Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	playse SE_PIN
@@ -805,7 +788,7 @@ RustboroCity_EventScript_1E0F73:: @ 81E0F73
 
 RustboroCity_EventScript_1E0FB3:: @ 81E0FB3
 	lockall
-	call RustboroCity_EventScript_1E0DD1
+	call Common_EventScript_PlayRivalMusic
 	applymovement 14, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	playse SE_PIN

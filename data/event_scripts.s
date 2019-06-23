@@ -1118,7 +1118,6 @@ EventScript_SetupTrihardEmeraldNewGame::
 	giveitem ITEM_SKULL_EMBLEM, 1
 	giveitem ITEM_CHALLENGE_AMULET, 1
 	giveitem ITEM_MALASADA, 3
-	giveitem ITEM_HOMEMADE_SOUP, 5
 	end
 
 EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
@@ -1229,7 +1228,9 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 	setvar VAR_ELITE_4_STATE, 0
 	return
 
-	.include "data/pokecenter_scripts.inc"
+	.include "data/scripts/pokecenter_scripts.inc"
+	.include "data/scripts/briney_boat.inc"
+	.include "data/scripts/common_scripts.inc"
 
 Std_ObtainItem:: @ 8271AD3
 	giveitem VAR_0x8000, VAR_0x8001
@@ -1550,38 +1551,6 @@ EventScript_CancelSurf:: @ 8271ED5
 EventScript_CantSurf:: @ 8271ED6
 	end
 
-Common_EventScript_SetupRivalGender:: @ 8271ED7
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq RustboroCity_EventScript_271EEF
-	compare VAR_RESULT, FEMALE
-	goto_if_eq RustboroCity_EventScript_271EF5
-	end
-
-RustboroCity_EventScript_271EEF:: @ 8271EEF
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
-	return
-
-RustboroCity_EventScript_271EF5:: @ 8271EF5
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
-	return
-
-Common_EventScript_SetupRivalOnBikeGender:: @ 8271EFB
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LavaridgeTown_EventScript_271F13
-	compare VAR_RESULT, FEMALE
-	goto_if_eq LavaridgeTown_EventScript_271F19
-	end
-
-LavaridgeTown_EventScript_271F13:: @ 8271F13
-	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_MAY_MACH_BIKE
-	return
-
-LavaridgeTown_EventScript_271F19:: @ 8271F19
-	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE
-	return
-
 EventScript_271F1F:: @ 8271F1F
 	checkplayergender
 	compare VAR_RESULT, MALE
@@ -1698,15 +1667,6 @@ DewfordTown_Gym_EventScript_272035:: @ 8272035
 	settrainerflag TRAINER_DAPHNE
 	return
 
-Common_EventScript_ShowBagIsFull:: @ 8272054
-	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
-	release
-	end
-
-Common_EventScript_BagIsFull:: @ 827205E
-	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
-	return
-
 Route114_LanettesHouse_EventScript_272067:: @ 8272067
 	msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT
 	release
@@ -1756,20 +1716,6 @@ EventScript_RegionMap:: @ 827208F
 	waitstate
 	releaseall
 	end
-
-DewfordTown_EventScript_2720A0:: @ 82720A0
-Route104_EventScript_2720A0:: @ 82720A0
-Route109_EventScript_2720A0:: @ 82720A0
-	setflag FLAG_SPECIAL_FLAG_0x4001
-	playbgm MUS_M_BOAT, 0
-	return
-
-DewfordTown_EventScript_2720A8:: @ 82720A8
-Route104_EventScript_2720A8:: @ 82720A8
-Route109_EventScript_2720A8:: @ 82720A8
-	clearflag FLAG_SPECIAL_FLAG_0x4001
-	fadedefaultbgm
-	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_2720AD:: @ 82720AD
 Route101_EventScript_2720AD:: @ 82720AD
@@ -2193,77 +2139,6 @@ EverGrandeCity_SidneysRoom_EventScript_27255F:: @ 827255F
 	setmetatile 7, 13, 526, 1
 	return
 
-SlateportCity_Movement_272596: @ 8272596
-Movement_Emote_QuestionMark:: @ 8272596
-	emote_question_mark
-	step_end
-
-Common_Movement_NoOp:
-	step_end
-
-Common_Movement_ExclamationMark: @ 8272598
-	emote_exclamation_mark
-	step_end
-
-Common_Movement_Angry: @ 8272598
-	emote_angry
-	step_end
-
-Common_Movement_AngryReaction: @ 8272598
-	delay_16
-	emote_exclamation_mark
-	step_end
-
-Common_Movement_Delay48: @ 827259A
-	delay_16
-	delay_16
-	delay_16
-	step_end
-
-Common_Movement_FacePlayer: @ 827259E
-	face_player
-	step_end
-
-Common_Movement_FaceAwayPlayer: @ 82725A0
-	face_away_player
-	step_end
-
-Common_Movement_FaceOriginalDirection: @ 82725A2
-	face_original_direction
-	step_end
-
-Common_Movement_WalkInPlaceLeft: @ 82725A4
-	walk_in_place_fastest_left
-	step_end
-
-Common_Movement_WalkInPlaceUp: @ 82725A6
-	walk_in_place_fastest_up
-	step_end
-
-Common_Movement_WalkInPlaceRight: @ 82725A8
-	walk_in_place_fastest_right
-	step_end
-
-Common_Movement_WalkInPlaceDown: @ 82725AA
-	walk_in_place_fastest_down
-	step_end
-
-Common_Movement_FaceRight: @ 82725AC
-	face_right
-	step_end
-
-Common_Movement_FaceLeft: @ 82725AE
-	face_left
-	step_end
-
-Common_Movement_FaceDown: @ 82725B0
-	face_down
-	step_end
-
-Common_Movement_FaceUp: @ 82725B2
-	face_up
-	step_end
-
 BattleFrontier_BattleDomeBattleRoom_Movement_2725B4: @ 82725B4
 MeteorFalls_1F_1R_Movement_2725B4: @ 82725B4
 	walk_in_place_down
@@ -2297,40 +2172,6 @@ EverGrandeCity_ChampionsRoom_Movement_2725C1: @ 82725C1
 EverGrandeCity_SidneysRoom_Movement_2725C6: @ 82725C6
 	delay_16
 	delay_16
-	step_end
-
-Common_Movement_WalkUp1: @ 82725C9
-	walk_up
-	step_end
-
-Common_Movement_WalkDown1:
-	walk_down
-	step_end
-
-Common_Movement_WalkLeft1:
-	walk_left
-	step_end
-
-Common_Movement_WalkRight1:
-	walk_right
-	step_end
-
-Common_Movement_WalkUpOutOfFrame:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-	
-Common_Movement_WalkDownOutOfFrame:
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
 	step_end
 
 Movement_2725CB:: @ 82725CB
@@ -2613,9 +2454,6 @@ gText_UnusualWeatherEnded_Sun:: @ 8273684
 EventScript_SelectWithoutRegisteredItem:: @ 82736B3
 	msgbox gText_SelectWithoutRegisteredItem, MSGBOX_SIGN
 	end
-
-Common_EventScript_NopReturn:: @ 827374E
-	return
 
 EventScript_UnusedSetVarResult1:: @ 827374F
 	setvar VAR_RESULT, 1

@@ -204,7 +204,7 @@ PetalburgCity_Gym_EventScript_204AAC:: @ 8204AAC
 	call_if_eq PetalburgCity_Gym_EventScript_204D34
 	msgbox PetalburgCity_Gym_Text_205B0F, MSGBOX_DEFAULT
 	closemessage
-	setflag FLAG_SPECIAL_FLAG_0x4001
+	setflag FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT
 	playbgm MUS_TSURETEK, 0
 	compare VAR_0x8008, 0
 	call_if_eq PetalburgCity_Gym_EventScript_204C78
@@ -487,7 +487,7 @@ PetalburgCity_Gym_EventScript_204F13:: @ 8204F13
 	call_if_eq PetalburgCity_Gym_EventScript_204FE2
 	msgbox PetalburgCity_Gym_Text_2063CA, MSGBOX_DEFAULT
 	closemessage
-	setflag FLAG_SPECIAL_FLAG_0x4001
+	setflag FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT
 	playbgm MUS_TSURETEK, 0
 	compare VAR_0x8008, 1
 	call_if_eq PetalburgCity_Gym_EventScript_205041
