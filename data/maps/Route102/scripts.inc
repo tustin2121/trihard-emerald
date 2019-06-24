@@ -2,8 +2,34 @@ Route102_MapScripts:: @ 81EC0E0
 	.byte 0
 
 @ -----------------------------------------------------
+@ Signs
 
-Route102_EventScript_1EC0E1:: @ 81EC0E1
+Route102_SignScript_Signpost1:: @ 81EC0EA
+	msgbox Route102_Text_1EC35B, MSGBOX_SIGN
+	end
+Route102_Text_1EC35B: @ 81EC35B
+	.string "Route 102\n"
+	.string "{RIGHT_ARROW} Oldale Town$"
+
+
+Route102_SignScript_Signpost2:: @ 81EC0F3
+	msgbox Route102_Text_1EC373, MSGBOX_SIGN
+	end
+Route102_Text_1EC373: @ 81EC373
+	.string "Route 102\n"
+	.string "{LEFT_ARROW} Petalburg City$"
+
+@ -----------------------------------------------------
+@ Items
+
+Route102_EventScript_ItemPotion:: @ 8290CD8
+	giveitem_std ITEM_POTION, 1, 1
+	end
+
+@ -----------------------------------------------------
+@ People
+
+Route102_EventScript_GrassKid:: @ 81EC0E1
 	msgbox Route102_Text_1EC2C0, MSGBOX_NPC
 	end
 Route102_Text_1EC2C0: @ 81EC2C0
@@ -14,23 +40,7 @@ Route102_Text_1EC2C0: @ 81EC2C0
 	.string "Fwatchoo!$"
 
 
-Route102_EventScript_1EC0EA:: @ 81EC0EA
-	msgbox Route102_Text_1EC35B, MSGBOX_SIGN
-	end
-Route102_Text_1EC35B: @ 81EC35B
-	.string "Route 102\n"
-	.string "{RIGHT_ARROW} Oldale Town$"
-
-
-Route102_EventScript_1EC0F3:: @ 81EC0F3
-	msgbox Route102_Text_1EC373, MSGBOX_SIGN
-	end
-Route102_Text_1EC373: @ 81EC373
-	.string "Route 102\n"
-	.string "{LEFT_ARROW} Petalburg City$"
-
-
-Route102_EventScript_1EC0FC:: @ 81EC0FC
+Route102_EventScript_CatchBoy:: @ 81EC0FC
 	msgbox Route102_Text_1EC32E, MSGBOX_NPC
 	end
 Route102_Text_1EC32E: @ 81EC32E

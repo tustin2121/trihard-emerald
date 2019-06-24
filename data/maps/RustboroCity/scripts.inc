@@ -1051,9 +1051,9 @@ RustboroCity_Text_1E1589: @ 81E1589
 	.string "The old sailor MR. BRINEY lives in\n"
 	.string "a cottage by the sea.\p"
 	.string "He said he was going shopping in\n"
-	.string "SLATEPORT for his pet, PEEKO.\p"
+	.string "SLATEPORT for his pet, Peeko.\p"
 	.string "That old sea dog, he must really love\n"
-	.string "that PEEKO.$"
+	.string "that Peeko.$"
 
 RustboroCity_Text_1E1633: @ 81E1633
 	.string "Wow, you have Pokémon with you, too.\p"

@@ -257,7 +257,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F94C1:: @ 81F94C1
 LittlerootTown_MaysHouse_2F_EventScript_1F94C1:: @ 81F94C1
 	lockall
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F94F7
-	selectgenderedstring LittlerootTown_MaysHouse_2F_Text_1F978A, LittlerootTown_BrendansHouse_2F_Text_1F9962
+	selectpointer_ongender LittlerootTown_MaysHouse_2F_Text_1F978A, LittlerootTown_BrendansHouse_2F_Text_1F9962
 	msgbox_selected MSGBOX_DIALOG
 	releaseall
 	end
@@ -266,14 +266,14 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F94F7:: @ 81F94F7
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
 	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F9541
-	selectgenderedstring LittlerootTown_MaysHouse_2F_Text_1F99C9, LittlerootTown_BrendansHouse_2F_Text_1F9B0D
+	selectpointer_ongender LittlerootTown_MaysHouse_2F_Text_1F99C9, LittlerootTown_BrendansHouse_2F_Text_1F9B0D
 	msgbox_selected MSGBOX_DIALOG
 	setflag FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE
 	releaseall
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F9541:: @ 81F9541
-	selectgenderedstring LittlerootTown_MaysHouse_2F_Text_1F9A9E, LittlerootTown_BrendansHouse_2F_Text_1F9BE7
+	selectpointer_ongender LittlerootTown_MaysHouse_2F_Text_1F9A9E, LittlerootTown_BrendansHouse_2F_Text_1F9BE7
 	msgbox_selected MSGBOX_DIALOG
 	releaseall
 	end

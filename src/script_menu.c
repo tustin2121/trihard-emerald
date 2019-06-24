@@ -19,15 +19,15 @@
 // multichoice lists
 const struct MenuAction MultichoiceList_000[] =
 {
-    {gUnknown_085EAD37, NULL},
-    {gUnknown_085EAD41, NULL},
+    {gTextSailTo_Petalburg, NULL},
+    {gTextSailTo_Slateport, NULL},
     {gText_Exit, NULL},
 };
 
 const struct MenuAction MultichoiceList_002[] =
 {
-    {gUnknown_085EAD67, NULL},
-    {gUnknown_085EAD6D, NULL},
+    {gText_Enter, NULL},
+    {gText_Info, NULL},
     {gText_Exit, NULL},
 };
 
@@ -90,7 +90,7 @@ const struct MenuAction MultichoiceList_013[] =
 
 const struct MenuAction MultichoiceList_014[] =
 {
-    {gUnknown_085EAD5F, NULL},
+    {gTextSailTo_Dewford, NULL},
     {gText_Exit, NULL},
 };
 
@@ -104,13 +104,13 @@ const struct MenuAction MultichoiceList_020[] =
 {
     {gText_Yes, NULL},
     {gText_No, NULL},
-    {gUnknown_085EAD6D, NULL},
+    {gText_Info, NULL},
 };
 
 const struct MenuAction MultichoiceList_023[] =
 {
     {gUnknown_085EAEA2, NULL},
-    {gUnknown_085EAEAC, NULL},
+    {gText_Info, NULL},
     {gText_Exit, NULL},
 };
 
@@ -486,7 +486,7 @@ const struct MenuAction MultichoiceList_017[] =
 {
     {gText_Yes, NULL},
     {gText_No, NULL},
-    {gUnknown_085EAD6D, NULL},
+    {gText_Info, NULL},
 };
 
 const struct MenuAction MultichoiceList_018[] =
@@ -494,7 +494,7 @@ const struct MenuAction MultichoiceList_018[] =
     {gUnknown_085EAE6E, NULL},
     {gUnknown_085EAE7C, NULL},
     {gUnknown_085EAE8A, NULL},
-    {gUnknown_085EAD6D, NULL},
+    {gText_Info, NULL},
     {gText_Exit, NULL},
 };
 

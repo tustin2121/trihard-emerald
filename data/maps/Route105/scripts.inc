@@ -32,6 +32,13 @@ Route105_MapScript2_1EE240: @ 81EE240
 	.2byte 0
 
 @ -----------------------------------------------------
+@ Items
+
+Route105_EventScript_ItemIron:: @ 8290D33
+	giveitem_std ITEM_IRON, 1, 1
+	end
+
+@ -----------------------------------------------------
 @ Trainers
 
 Route105_TrainerScript_Foster:: @ 81EE24A

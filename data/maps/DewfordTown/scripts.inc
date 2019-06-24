@@ -9,6 +9,41 @@ DewfordTown_OnTransition: @ 81E950D
 @ -----------------------------------------------------
 @ Briney Sailing
 
+DewfordTown_EventScript_BrineyArriveFromSlateport:: @ 81ED139
+	@ continued sequence from briney_boat.inc
+	showobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	applymovement EVENT_OBJ_ID_PLAYER, Route109_Movement_1EE900
+	waitmovement 0
+	addobject 4
+	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	setobjectxyperm 2, 12, 8
+	addobject 2
+	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
+	applymovement 2, Route109_Movement_1EE90D
+	waitmovement 0
+	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+	hideobjectat 1, MAP_ROUTE109
+	msgbox Route109_Text_1E9C1D, MSGBOX_DEFAULT
+	closemessage
+	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_ROUTE109
+	resetobjectpriority 2, MAP_DEWFORD_TOWN
+	moveobjectoffscreen 2
+	release
+	end
+Route109_Movement_1EE900: @ 81EE900
+	walk_down
+	walk_down
+	walk_left
+	walk_in_place_fastest_right
+	step_end
+Route109_Movement_1EE90D: @ 81EE90D
+	walk_down
+	walk_in_place_fastest_left
+	step_end
+
+
 DewfordTown_EventScript_BrineyArriveFromRoute104:: @ 81ED139
 	@ continued sequence from briney_boat.inc
 	delay 50
@@ -69,6 +104,12 @@ Route109_Text_1E9C1D: @ 81E9C1D
 	.string "We've hit land in Dewford!\p"
 	.string "You just go on and tell me whenever\n"
 	.string "you want to set sail again!$"
+
+
+
+
+
+
 
 
 
@@ -145,7 +186,7 @@ DewfordTown_EventScript_1E95A2:: @ 81E95A2
 DewfordTown_Text_1E9B7F: @ 81E9B7F
 	.string "Mr. Briney: Petalburg it is, then!\p"
 	.string "Anchors aweigh!\n"
-	.string "PEEKO, we're setting sail, my darling!$"
+	.string "Peeko, we're setting sail, my darling!$"
 
 DewfordTown_EventScript_BrineyDepartForRoute104:: @ 81E9660
 	call DewfordTown_EventScript_271E95

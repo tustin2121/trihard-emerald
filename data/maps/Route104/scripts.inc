@@ -12,51 +12,6 @@ Route104_MapScript2_FrameTable: @ 81ECC3D
 	.2byte 0
 
 @ -----------------------------------------------------
-@ Briney Sailing
-
-Route104_EventScript_BrineyDepartForDewford:: @ 81ECC47
-	lockall
-	setobjectpriority LID_BRINEY, MAP_ROUTE104, 0
-	setobjectpriority EVENT_OBJ_ID_PLAYER, MAP_ROUTE104, 0
-	applymovement LID_BRINEY, Route104_Movement_1ED359
-	waitmovement 0
-	removeobject LID_BRINEY
-	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED34F
-	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
-	goto Briney_EventScript_Route104_Dewford
-	@ continue sequence in briney_boat.inc
-	end
-Route104_Movement_1ED359: @ 81ED359
-	walk_down
-	walk_down
-	step_end
-Route104_Movement_1ED34F: @ 81ED34F
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-
-Route104_EventScript_BrineyArriveFromDewford::
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_1E9914
-	waitmovement 0
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
-	hideobjectat 4, MAP_DEWFORD_TOWN
-	setvar VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 2
-	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
-	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 4
-	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
-	waitstate
-	release
-	end
-
-@ -----------------------------------------------------
 
 Route104_OnTransition: @ 81ECC4E
 	call Common_EventScript_SetupRivalGender
@@ -127,6 +82,25 @@ Route104_Text_1EDAEF: @ 81EDAEF
 	.string "send out two Pokémon, the one at the\l"
 	.string "left of the list and the top one.\l"
 	.string "Watch how Pokémon are lined up.$"
+
+@ -----------------------------------------------------
+@ Items
+
+Route104_EventScript_ItemPPUp:: @ 8290CFF
+	giveitem_std ITEM_PP_UP, 1, 1
+	end
+
+Route104_EventScript_ItemPokeBall:: @ 8290D0C
+	giveitem_std ITEM_POKE_BALL, 1, 1
+	end
+
+Route104_EventScript_ItemXAccuracy:: @ 8290D19
+	giveitem_std ITEM_X_ACCURACY, 1, 1
+	end
+
+Route104_EventScript_ItemPotion:: @ 8290D26
+	giveitem_std ITEM_POTION, 1, 1
+	end
 
 @ -----------------------------------------------------
 @ People
@@ -260,7 +234,7 @@ Route104_Text_1ED8E7: @ 81ED8E7
 	.string "party's moveset with TMs you like!$"
 
 
-Route104_EventScript_1ED090:: @ 81ED090
+Route104_EventScript_NotTrainer:: @ 81ED090
 	msgbox Route104_Text_1ED7A2, MSGBOX_NPC
 	end
 Route104_Text_1ED7A2: @ 81ED7A2
@@ -370,7 +344,7 @@ Route104_Text_2958AD: @ 82958AD
 	.string "Why couldn't I win?$"
 Route104_Text_2958C1: @ 82958C1
 	.string "There are some things money can't buy.\n"
-	.string "That's Pokémon…$"
+	.string "For everything else there's Master Ball.$"
 Route104_EventScript_1ED47C:: @ 81ED47C
 	special DoSpinningTrainerApproach
 	waitmovement 0
@@ -379,10 +353,10 @@ Route104_EventScript_1ED47C:: @ 81ED47C
 	release
 	end
 Route104_Text_29595A: @ 829595A
-	.string "Hm?\n"
-	.string "Ah, you've obtained a PokéNav.\p"
+	.string "You had enough money to buy a PokéNav?\n"
+	.string "I didn't think you had it in you.\p"
 	.string "I will gladly register you.\n"
-	.string "After all, I have plenty of money.$"
+	.string "After all, I have plenty of money too.$"
 Route104_EventScript_1ED4D2:: @ 81ED4D2
 	trainerbattle_rematch TRAINER_WINSTON_1, Route104_Text_2959BC, Route104_Text_2959FC
 	msgbox Route104_Text_295A1E, MSGBOX_AUTOCLOSE
@@ -396,7 +370,7 @@ Route104_Text_2959FC: @ 82959FC
 Route104_Text_295A1E: @ 8295A1E
 	.string "I'm fabulously wealthy, but I can't\n"
 	.string "seem to win at Pokémon…\p"
-	.string "It's so deep, the world of Pokémon…$"
+	.string "It's so befuddling…$"
 
 
 
@@ -498,6 +472,51 @@ Route104_Text_295CD3: @ 8295CD3
 	.string "Hey, Magikarp, you sure don't live up\n"
 	.string "to your name, do you?$"
 
+
+@ -----------------------------------------------------
+@ Briney Sailing
+
+Route104_EventScript_BrineyDepartForDewford:: @ 81ECC47
+	lockall
+	setobjectpriority LID_BRINEY, MAP_ROUTE104, 0
+	setobjectpriority EVENT_OBJ_ID_PLAYER, MAP_ROUTE104, 0
+	applymovement LID_BRINEY, Route104_Movement_1ED359
+	waitmovement 0
+	removeobject LID_BRINEY
+	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ED34F
+	waitmovement 0
+	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	goto Briney_EventScript_Route104_Dewford
+	@ continue sequence in briney_boat.inc
+	end
+Route104_Movement_1ED359: @ 81ED359
+	walk_down
+	walk_down
+	step_end
+Route104_Movement_1ED34F: @ 81ED34F
+	walk_left
+	walk_down
+	walk_down
+	step_end
+
+
+Route104_EventScript_BrineyArriveFromDewford::
+	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_1E9914
+	waitmovement 0
+	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	hideobjectat 4, MAP_DEWFORD_TOWN
+	setvar VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 2
+	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 4
+	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	waitstate
+	release
+	end
 
 @ -----------------------------------------------------
 @ Rival

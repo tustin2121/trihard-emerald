@@ -180,7 +180,7 @@ OldaleTown_EventScript_RivalSpeak:: @ 81E90E6
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	selectgenderedstring OldaleTown_Text_1E9462, OldaleTown_Text_1E948A
+	selectpointer_ongender OldaleTown_Text_1E9462, OldaleTown_Text_1E948A
 	msgbox_selected
 	closemessage
 	compare VAR_0x8009, 0

@@ -1739,7 +1739,7 @@
 	.endm
 	
 	@ Selects a string based on if the player is male or female.
-	.macro selectgenderedstring forMale:req, forFemale:req
+	.macro selectpointer_ongender forMale:req, forFemale:req
 	loadword MALE, \forMale 
 	loadword FEMALE, \forFemale
 	checkplayergender

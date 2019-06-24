@@ -309,7 +309,7 @@ LittlerootTown_Text_1E8D69: @ 81E8D69
 
 LittlerootTown_EventScript_1E8163:: @ 81E8163
 	lockall
-	selectgenderedstring LittlerootTown_Text_1E8D83, LittlerootTown_Text_1E8D8E
+	selectpointer_ongender LittlerootTown_Text_1E8D83, LittlerootTown_Text_1E8D8E
 	msgbox_selected MSGBOX_SIGN
 	releaseall
 	end
@@ -319,7 +319,7 @@ LittlerootTown_Text_1E8D83: @ 81E8D83
 
 LittlerootTown_EventScript_1E818F:: @ 81E818F
 	lockall
-	selectgenderedstring LittlerootTown_Text_1E8D8E, LittlerootTown_Text_1E8D83
+	selectpointer_ongender LittlerootTown_Text_1E8D8E, LittlerootTown_Text_1E8D83
 	msgbox_selected MSGBOX_SIGN
 	releaseall
 	end

@@ -2158,9 +2158,6 @@ gText_Mart_Welcome:: @ 8272A21
 gText_Mart_Goodbye:: @ 8272A3F
 	.string "Please come again!$"
 
-gUnknown_08272A52:: @ 8272A52
-	.string "{PLAYER}, welcome!\pWhat can I do for you?$"
-
 gText_ObtainedTheItem:: @ 8272A78
 	.string "Scored {STR_VAR_1} {STR_VAR_2}!$"
 

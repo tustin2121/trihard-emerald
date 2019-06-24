@@ -121,70 +121,7 @@ Route123_BerryMastersHouse_Text_2A761B: @ 82A761B
 Route123_BerryMastersHouse_Text_2A7682: @ 82A7682
 	.string "Ah…$"
 
-Route104_PrettyPetalFlowerShop_Text_2A7686: @ 82A7686
-	.string "Hello!\p"
-	.string "This is the PRETTY PETAL flower shop.\n"
-	.string "Spreading flowers all over the world!$"
 
-Route104_PrettyPetalFlowerShop_Text_2A76D9: @ 82A76D9
-	.string "{PLAYER}, would you like to learn about\n"
-	.string "BERRIES?$"
-
-Route104_PrettyPetalFlowerShop_Text_2A7706: @ 82A7706
-	.string "Your name is?\p"
-	.string "{PLAYER}.\n"
-	.string "That's a nice name.\p"
-	.string "{PLAYER}, would you like to learn about\n"
-	.string "BERRIES?$"
-
-Route104_PrettyPetalFlowerShop_Text_2A775B: @ 82A775B
-	.string "BERRIES grow on trees that thrive\n"
-	.string "only in soft, loamy soil.\p"
-	.string "If you take some BERRIES, be sure to\n"
-	.string "plant one in the loamy soil again.\p"
-	.string "A planted BERRY will soon sprout,\n"
-	.string "grow into a plant, flower beautifully,\l"
-	.string "then grow BERRIES again.\p"
-	.string "I want to see the whole wide world\n"
-	.string "filled with beautiful flowers.\l"
-	.string "That's my dream.\p"
-	.string "Please help me, {PLAYER}. Plant BERRIES\n"
-	.string "and bring more flowers into the world.$"
-
-Route104_PrettyPetalFlowerShop_Text_2A78DF: @ 82A78DF
-	.string "Flowers bring so much happiness to\n"
-	.string "people, don't they?$"
-
-Route104_PrettyPetalFlowerShop_Text_2A7916: @ 82A7916
-	.string "Hello!\p"
-	.string "The more attention you give to flowers,\n"
-	.string "the more beautifully they bloom.\p"
-	.string "You'll like tending flowers. I'm sure\n"
-	.string "of it. You can have this.$"
-
-Route104_PrettyPetalFlowerShop_Text_2A79A6: @ 82A79A6
-	.string "While BERRY plants are growing,\n"
-	.string "water them with the WAILMER PAIL.\p"
-	.string "Oh, another thing.\p"
-	.string "If you don't pick BERRIES for a while,\n"
-	.string "they'll drop off onto the ground.\l"
-	.string "But they'll sprout again.\p"
-	.string "Isn't that awesome?\n"
-	.string "It's like they have the will to live.$"
-
-Route104_PrettyPetalFlowerShop_Text_2A7A98: @ 82A7A98
-	.string "I'm trying to be like my big sisters.\n"
-	.string "I'm growing flowers, too!\p"
-	.string "Here you go!\n"
-	.string "It's for you!$"
-
-Route104_PrettyPetalFlowerShop_Text_2A7AF3: @ 82A7AF3
-	.string "You can plant a BERRY and grow it big,\n"
-	.string "or you can make a Pokémon hold it.\p"
-	.string "But now they have a machine that mixes\n"
-	.string "up different BERRIES and makes candies\l"
-	.string "for Pokémon.\p"
-	.string "I want some candy, too.$"
 
 SootopolisCity_Text_2A7BB0: @ 82A7BB0
 	.string "Hi, what's your name?\p"

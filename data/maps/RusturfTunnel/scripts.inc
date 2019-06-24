@@ -434,7 +434,7 @@ RusturfTunnel_Text_22D1C8: @ 822D1C8
 	.string "Come and get some, then!$"
 
 RusturfTunnel_Text_22D1F7: @ 822D1F7
-	.string "PEEKO: Pii pihyoh!$"
+	.string "Peeko: Pii pihyoh!$"
 
 RusturfTunnel_Text_22D20A: @ 822D20A
 	.string "Grah, keelhaul it all!\p"
@@ -459,11 +459,11 @@ RusturfTunnel_Text_22D2E1: @ 822D2E1
 	.string "You want it back that badly, take it!$"
 
 RusturfTunnel_Text_22D395: @ 822D395
-	.string "PEEKO!\n"
+	.string "Peeko!\n"
 	.string "Am I glad to see you're safe!$"
 
 RusturfTunnel_Text_22D3BA: @ 822D3BA
-	.string "PEEKO owes her life to you!\p"
+	.string "Peeko owes her life to you!\p"
 	.string "They call me MR. BRINEY.\n"
 	.string "And, you are?\p"
 	.string "… … … … … … … …\n"
@@ -474,9 +474,9 @@ RusturfTunnel_Text_22D3BA: @ 822D3BA
 	.string "you, don't hesitate to tell me!\p"
 	.string "You can usually find me in my cottage\n"
 	.string "by the sea near Petalburg Woods.\p"
-	.string "Come, PEEKO, we should make our way\n"
+	.string "Come, Peeko, we should make our way\n"
 	.string "home.\p"
-	.string "PEEKO: Pihyoh!$"
+	.string "Peeko: Pihyoh!$"
 
 RusturfTunnel_Text_22D510: @ 822D510
 	.string "… …\p"

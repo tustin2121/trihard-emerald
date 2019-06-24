@@ -4,9 +4,6 @@ Common_EventScript_NopReturn:: @ 827374E
 Common_EventScript_NopEnd::
 	end
 
-Common_Movement_NoOp:
-	step_end
-
 @ Emotes
 
 Common_Movement_QuestionMark:: @ 8272596
@@ -33,6 +30,9 @@ Common_Movement_Delay48: @ 827259A
 	step_end
 
 @ Movement
+
+Common_Movement_NoOp:
+	step_end
 
 Common_Movement_FacePlayer: @ 827259E
 	face_player

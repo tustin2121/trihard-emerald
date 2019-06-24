@@ -327,7 +327,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9E80:: @ 81F9E80
 	applymovement 3, Common_Movement_WalkInPlaceRight
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	selectgenderedstring LittlerootTown_ProfessorBirchsLab_Text_1FB30F, LittlerootTown_ProfessorBirchsLab_Text_1FB38E
+	selectpointer_ongender LittlerootTown_ProfessorBirchsLab_Text_1FB30F, LittlerootTown_ProfessorBirchsLab_Text_1FB38E
 	msgbox_selected
 	closemessage
 	playse SE_PC_ON
@@ -839,7 +839,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Rival:: @ 81FA3EC
 	goto_if_ge LittlerootTown_ProfessorBirchsLab_EventScript_1FA465
 	compare VAR_0x40D3, 2
 	goto_if_ge LittlerootTown_ProfessorBirchsLab_EventScript_1FA490
-	selectgenderedstring LittlerootTown_ProfessorBirchsLab_Text_1FAF08, LittlerootTown_ProfessorBirchsLab_Text_1FB073
+	selectpointer_ongender LittlerootTown_ProfessorBirchsLab_Text_1FAF08, LittlerootTown_ProfessorBirchsLab_Text_1FB073
 	msgbox_selected
 	release
 	end
@@ -851,7 +851,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FB073: @ 81FB073
 	.string "Pokémon next…$"
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA43A:: @ 81FA43A
-	selectgenderedstring LittlerootTown_ProfessorBirchsLab_Text_1FBB68, LittlerootTown_ProfessorBirchsLab_Text_1FBC2D
+	selectpointer_ongender LittlerootTown_ProfessorBirchsLab_Text_1FBB68, LittlerootTown_ProfessorBirchsLab_Text_1FBC2D
 	msgbox_selected
 	release
 	end
@@ -869,7 +869,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FBC2D: @ 81FBC2D
 	.string "steadily raising the one I chose.$"
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA465:: @ 81FA465
-	selectgenderedstring LittlerootTown_ProfessorBirchsLab_Text_1FBC8D, LittlerootTown_ProfessorBirchsLab_Text_1FBCD2
+	selectpointer_ongender LittlerootTown_ProfessorBirchsLab_Text_1FBC8D, LittlerootTown_ProfessorBirchsLab_Text_1FBCD2
 	msgbox_selected
 	release
 	end
@@ -883,7 +883,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FBCD2: @ 81FBCD2
 	.string "the Battle Frontier?$"
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA490:: @ 81FA490
-	selectgenderedstring LittlerootTown_ProfessorBirchsLab_Text_1FB528, LittlerootTown_ProfessorBirchsLab_Text_1FB58A
+	selectpointer_ongender LittlerootTown_ProfessorBirchsLab_Text_1FB528, LittlerootTown_ProfessorBirchsLab_Text_1FB58A
 	msgbox_selected
 	release
 	end

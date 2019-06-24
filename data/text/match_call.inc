@@ -2373,7 +2373,7 @@ gText_May_Pokenav_2B3AB3:: @ 2B3AB3
 	.string "May: Hi, {PLAYER}!\p"
 	.string "MR. BRINEY retired as a SAILOR,\n"
 	.string "but I still see him out on the sea\l"
-	.string "with his pet PEEKO sometimes.\p"
+	.string "with his pet Peeko sometimes.\p"
 	.string "He must love the sea still.$"
 
 gText_May_Pokenav_2B3B3F:: @ 2B3B3F
@@ -2498,7 +2498,7 @@ gText_Brendan_Pokenav_2B43EF:: @ 2B43EF
 	.string "Brendan: Hey, {PLAYER}!\p"
 	.string "MR. BRINEY retired as a SAILOR,\n"
 	.string "but I still see him out on the sea\l"
-	.string "with his pet PEEKO sometimes.\p"
+	.string "with his pet Peeko sometimes.\p"
 	.string "I guess he must love\n"
 	.string "the sea still.$"
 

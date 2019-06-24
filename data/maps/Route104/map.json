@@ -191,7 +191,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "Route104_EventScript_1ED090",
+            "script": "Route104_EventScript_NotTrainer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 28,
