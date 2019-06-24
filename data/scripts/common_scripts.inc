@@ -3,6 +3,14 @@ Common_EventScript_NopReturn:: @ 827374E
 
 Common_EventScript_NopEnd::
 	end
+	
+Common_EventScript_ReleaseEnd::
+	release
+	end
+	
+Common_EventScript_ReleaseAllEnd::
+	releaseall
+	end
 
 @ Emotes
 
@@ -257,3 +265,11 @@ LavaridgeTown_EventScript_271F19:: @ 8271F19
 	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE
 	return
 
+
+Common_EventScript_FailTheftNoRoom::
+	msgbox Common_Text_FailTheftNoRoom, MSGBOX_DEFAULT
+	release
+	end
+Common_Text_FailTheftNoRoom:
+	.string "But then, you don't have the space\n"
+	.string "available anyway…$"

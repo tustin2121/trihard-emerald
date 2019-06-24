@@ -35,8 +35,7 @@ PetalburgCity_PokemonCenter_2F_EventScript_AfterKickout_LockRoom:
 
 PetalburgCity_PokemonCenter_2F_EventScript_WalkedInOn::
 	setvar VAR_LAST_WARP_ID, 0
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED, 2
 	playse SE_PIN
 	applymovement 5, PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn
 	applymovement 6, PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn
@@ -62,6 +61,7 @@ PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn:
 @ 	step_end
 
 
+
 PetalburgCity_PokemonCenter_2F_EventScript_SleepingGirl::
 	msgbox PetalburgCity_PokemonCenter_2F_Text_SleepingGirl
 	release
@@ -70,16 +70,10 @@ PetalburgCity_PokemonCenter_2F_Text_SleepingGirl:
 	.string "She's sleeping…$"
 
 PetalburgCity_PokemonCenter_2F_EventScript_SleepingGirlsBag::
+	lock
 	msgbox PetalburgCity_PokemonCenter_2F_Text_SleepingGirlsBag, MSGBOX_DEFAULT
-	goto_if_set FLAG_ITEM_STOLEN_PETALBURG_POTION, PetalburgCity_PokemonCenter_2F_EventScript_SleepingGirlsBag_EXIT
-	giveitem_std ITEM_POTION, 2
-	compare VAR_RESULT, 0
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_ITEM_STOLEN_PETALBURG_POTION
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
-	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN
-PetalburgCity_PokemonCenter_2F_EventScript_SleepingGirlsBag_EXIT:
+	trysteal ITEM_POTION, 2, FLAG_ITEM_STOLEN_PETALBURG_POTION
 	release
 	end
 PetalburgCity_PokemonCenter_2F_Text_SleepingGirlsBag:
-	.string "…She's not gonna miss those…$"
+	.string "She's not gonna miss those…$"

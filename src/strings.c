@@ -47,6 +47,7 @@ const u8 gYN_ERROR[] =          _("ERROR");
 const u8 gYN_Yes[] =            _("Yes");
 const u8 gYN_No[] =             _("No");
 const u8 gYN_Yeah[] =           _("Yeah");
+const u8 gYN_YeahBang[] =       _("Yeah!");
 const u8 gYN_YeahStutter[] =    _("Y-Yeah…");
 const u8 gYN_Yep[] =            _("Yep");
 const u8 gYN_Yep_[] =           _("Yep…");
@@ -303,7 +304,6 @@ const u8 gText_RepelEffectsLingered[] = _("But the effects of a REPEL\nlingered 
 const u8 gText_UsedVar2WildLured[] = _("{PLAYER} used the\n{STR_VAR_2}.\pWild Pokémon will be lured.{PAUSE_UNTIL_PRESS}");
 const u8 gText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}.\pWild Pokémon will be repelled.{PAUSE_UNTIL_PRESS}");
 const u8 gText_BoxFull[] = _("The BOX is full.{PAUSE_UNTIL_PRESS}");
-const u8 gText_DontBeAThief[] = _("Don't be a thief!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PartyIsFull[] = _("Your party is full!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PowderQty[] = _("POWDER QTY: {STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 const u8 gText_TheField[] = _("the field");
@@ -312,6 +312,7 @@ const u8 gText_ThePokemonList[] = _("the Pokémon LIST");
 const u8 gText_TheShop[] = _("the shop");
 const u8 gText_ThePC[] = _("the PC");
 
+const u8 gText_DontBeAThief[] =_("Guzma's advice…\nAre ya stupid? The trainer's watching!{PAUSE_UNTIL_PRESS}");
           // _("Dad's advice…\n
           //   {PLAYER}, there's a time and place for\l
           //   everything!{PAUSE_UNTIL_PRESS}");
@@ -456,7 +457,6 @@ const u8 gText_SendOut[] = _("SEND OUT");
 const u8 gText_Switch2[] = _("SWITCH");
 const u8 gText_Summary5[] = _("SUMMARY");
 const u8 gUnknown_085E96BE[] = _("MOVES");
-const u8 gText_Enter[] = _("ENTER");
 const u8 gText_NoEntry[] = _("NO ENTRY");
 const u8 gText_Take2[] = _("TAKE");
 const u8 gText_Read2[] = _("READ");

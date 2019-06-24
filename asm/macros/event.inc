@@ -1366,9 +1366,10 @@
 	.endm
 
 	@ Increases the value of the specified game stat by 1. The stat's value will not be allowed to exceed 0x00FFFFFF.
-	.macro incrementgamestat stat:req
+	.macro incrementgamestat stat:req, num=1
 	.byte 0xc3
 	.byte \stat
+	.byte \num
 	.endm
 
 	@ Sets the destination that using an Escape Rope or Dig will take the player to.
@@ -1705,16 +1706,6 @@
 	YES = 1
 	NO  = 0
 	
-	@ Sets the next message as a dialogue text box
-	.macro flagasdialog
-	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DIALOG
-	.endm
-	
-	@ Sets the next message as a dialogue text box
-	.macro markasdialog
-	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DIALOG
-	.endm
-
 	.macro msgbox text:req, type=MSGBOX_DEFAULT
 	loadword 0, \text
 	callstd \type
@@ -1737,46 +1728,3 @@
 	setorcopyvar VAR_0x8000, \trainer
 	callstd STD_REGISTER_MATCH_CALL
 	.endm
-	
-	@ Selects a string based on if the player is male or female.
-	.macro selectpointer_ongender forMale:req, forFemale:req
-	loadword MALE, \forMale 
-	loadword FEMALE, \forFemale
-	checkplayergender
-	selectpointer 0, VAR_RESULT
-	.endm
-	
-	@ Selects a string based on if the player is male or female.
-	.macro selectyesnoanswer forYes:req, forNo:req
-	loadword YES, \forYes 
-	loadword NO, \forNo
-	selectpointer 0, VAR_RESULT
-	.endm
-	
-	.macro applymovement_gendered lid:req, forMale:req, forFemale:req
-	loadword MALE, \forMale 
-	loadword FEMALE, \forFemale
-	checkplayergender
-	selectpointer 0, VAR_RESULT @it says "string", but this works for pointers just as well
-	applymovement \lid, 0
-	.endm
-	
-	@ Calls a given function 
-	.macro call_on_gender forMale:req, forFemale:req
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq \forMale
-	compare VAR_RESULT, FEMALE
-	call_if_eq \forFemale
-	.endm
-	
-	@ Calls msgbox on a previously selected and loaded string.
-	.macro msgbox_selected type=MSGBOX_DEFAULT
-	callstd \type
-	.endm
-	
-	@ Only use this in pokecenter tilesets, on the 2nd floor
-	.macro pokecenter_sitonbed x:req, y:req
-	setmetatileex \x, \y, 0x30C, 4, FALSE  @ set tile to bed, elevation 4
-	.endm
-	

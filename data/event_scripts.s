@@ -24,6 +24,7 @@
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.include "constants/constants.inc"
+	.include "asm/macros/te_macros.inc"
 
 	.section script_data, "aw", %progbits
 
