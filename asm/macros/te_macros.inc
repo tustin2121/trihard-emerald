@@ -16,7 +16,20 @@
 	.endm
 
 @ Select Pointer Functions
-
+	
+	@ Selects a pointer from the given selection
+	.macro selectpointer_from var:req, entry1:req, entry2:req, entry3=0, entry4=0
+	loadword 0, \entry1 
+	loadword 1, \entry2
+	.if \entry3
+		loadword 2, \entry3
+	.endif
+	.if \entry4
+		loadword 3, \entry4
+	.endif
+	selectpointer 0, \var
+	.endm
+	
 	@ Selects a string based on if the player is male or female.
 	.macro selectpointer_ongender forMale:req, forFemale:req
 	loadword MALE, \forMale 
