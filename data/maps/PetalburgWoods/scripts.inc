@@ -197,6 +197,7 @@ PetalburgWoods_EventScript_DevonAttack:: @ 822E079
 	msgbox PetalburgWoods_Text_22E457, MSGBOX_DEFAULT
 	closemessage
 	@ player tries to dodge out of the way
+	special SpawnCameraObject
 	applymovement LID_PLAYER, PetalburgWoods_Movement_PlayerDance
 	applymovement LID_DEVON, PetalburgWoods_Movement_DevonDance
 	waitmovement 0
@@ -204,6 +205,7 @@ PetalburgWoods_EventScript_DevonAttack:: @ 822E079
 	waitmovement 0
 	applymovement LID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
+	special RemoveCameraObject
 	@ "You going to protect him?"
 	msgbox PetalburgWoods_Text_22E4A5, MSGBOX_DEFAULT
 	@ Trainer Battle!

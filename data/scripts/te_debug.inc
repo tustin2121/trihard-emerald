@@ -37,11 +37,11 @@ DebugScript_ShowDebugScreen::
 DebugScript_GiveDebugPartyAndSetFlags::
 	lockall
 	@ Give debug party
-	givemon SPECIES_RATTATA, 2, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_WAILMER, 30, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_BRELOOM, 27, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_SWELLOW, 30, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_QUILAVA, 50, ITEM_EVERSTONE, 0, 0, 0
+	givemon SPECIES_RATTATA, 2, ITEM_NONE
+	givemon SPECIES_WAILMER, 30, ITEM_NONE
+	givemon SPECIES_BRELOOM, 27, ITEM_NONE
+	givemon SPECIES_SWELLOW, 30, ITEM_NONE
+	givemon SPECIES_QUILAVA, 50, ITEM_EVERSTONE
 	setmonmove 1, 3, MOVE_FLY
 	@ Set starting scripts past the end of the prologue
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F

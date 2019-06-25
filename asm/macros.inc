@@ -15,9 +15,9 @@
 	.4byte gMapName_\name
 	.endm
 
-	.macro obj_tiles address, uncompressed_size, tag = 0
+	.macro obj_tiles address, size_uncompressed, tag=0
 	.4byte \address
-	.2byte \uncompressed_size
+	.2byte \size_uncompressed
 	.2byte \tag
 	.endm
 
@@ -42,9 +42,9 @@
 	.endm
 
 @ For object animation frames.
-	.macro obj_frame_tiles address, uncompressed_size
+	.macro obj_frame_tiles address, size_uncompressed
 	.4byte \address
-	.2byte \uncompressed_size
+	.2byte \size_uncompressed
 	.2byte 0 @ padding
 	.endm
 
@@ -114,22 +114,22 @@
 	.4byte 0 @ padding
 	.endm
 
-	.macro obj_rot_scal_anim_end unknown=0
+	.macro obj_rot_scal_anim_end arg=0
 	.2byte 0x7fff
-	.2byte \unknown
+	.2byte \arg
 	.fill 4 @ padding
 	.endm
 
-	.macro door_anim_frame unknown, offset
-	.byte \unknown
+	.macro door_anim_frame arg, offset
+	.byte \arg
 	.byte 0 @ padding
 	.2byte \offset
 	.endm
 
-	.macro door_anim_gfx metatile_num, unknown, unknown2, tile_addr, palette_addr
+	.macro door_anim_gfx metatile_num, arg, arg2, tile_addr, palette_addr
 	.2byte \metatile_num
-	.byte \unknown
-	.byte \unknown2
+	.byte \arg
+	.byte \arg2
 	.4byte \tile_addr
 	.4byte \palette_addr
 	.endm
