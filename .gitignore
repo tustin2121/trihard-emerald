@@ -32,3 +32,4 @@ build/
 porymap.*
 porymap.project.cfg
 .vscode/
+tools/binutils
