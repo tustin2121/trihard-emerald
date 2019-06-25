@@ -477,6 +477,20 @@ void IncrementGameStat(u8 index)
     }
 }
 
+void IncrementGameStatBy(u8 index, u8 value)
+{
+    if (index < NUM_USED_GAME_STATS)
+    {
+        u32 statVal = GetGameStat(index);
+        if (statVal < 0xFFFFFF && statVal + value < 0xFFFFFF)
+            statVal += value;
+        else
+            statVal = 0xFFFFFF;
+
+        SetGameStat(index, statVal);
+    }
+}
+
 u32 GetGameStat(u8 index)
 {
     if (index >= NUM_USED_GAME_STATS)

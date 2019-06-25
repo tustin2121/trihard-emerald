@@ -608,7 +608,7 @@ bool8 ScrCmd_checkflag(struct ScriptContext *ctx)
 
 bool8 ScrCmd_incrementgamestat(struct ScriptContext *ctx)
 {
-    IncrementGameStat(ScriptReadByte(ctx));
+    IncrementGameStatBy(ScriptReadByte(ctx), ScriptReadByte(ctx));
     return FALSE;
 }
 

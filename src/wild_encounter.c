@@ -916,9 +916,9 @@ static bool8 TryHeldItemInfluencedWildMonIndex(u8 maxIndex, u8 *monIndex)
     if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         return FALSE;
     // If the front of the party is holding the Skull Emblem, influence the mon index up by one.
-    else if (GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM) == ITEM_SKULL_EMBLEM)
+    else if (GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM) != ITEM_SKULL_EMBLEM)
         return FALSE;
-    else if (Random() % 10 <= 7)
+    else if (Random() % 10 <= 6) //30% chance
         return FALSE;
     
     (*monIndex)++;
