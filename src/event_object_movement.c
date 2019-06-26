@@ -226,6 +226,7 @@ static void (*const sMovementTypeCallbacks[])(struct Sprite *) =
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = MovementType_WalkSlowlyInPlace,
+    [MOVEMENT_TYPE_LYING_DOWN] = MovementType_LyingDown,
 };
 
 const u8 gRangedMovementTypes[] = {
@@ -310,6 +311,7 @@ const u8 gRangedMovementTypes[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = 0,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = 0,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = 0,
+    [MOVEMENT_TYPE_LYING_DOWN] = 0,
 };
 
 const u8 gInitialMovementTypeFacingDirections[] = {
@@ -394,6 +396,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = DIR_NORTH,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = DIR_WEST,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = DIR_EAST,
+    [MOVEMENT_TYPE_LYING_DOWN] = DIR_SOUTH,
 };
 
 #define EVENT_OBJ_PAL_TAG_0  0x1103
@@ -4679,6 +4682,34 @@ bool8 MovementType_Invisible_Step1(struct EventObject *eventObject, struct Sprit
 }
 
 bool8 MovementType_Invisible_Step2(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    eventObject->singleMovementActive = 0;
+    return FALSE;
+}
+
+
+movement_type_def(MovementType_LyingDown, gMovementTypeFuncs_LyingDown)
+
+bool8 MovementType_LyingDown_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    // StartSpriteAnimInDirection(eventObject, sprite, DIR_SOUTH, 0x14);
+    ClearEventObjectMovement(eventObject, sprite);
+    EventObjectSetSingleMovement(eventObject, sprite, MOVEMENT_ACTION_NURSE_JOY_BOW_DOWN);
+    sprite->data[1] = 1;
+    return TRUE;
+}
+
+bool8 MovementType_LyingDown_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (EventObjectExecSingleMovementAction(eventObject, sprite))
+    {
+        sprite->data[1] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementType_LyingDown_Step2(struct EventObject *eventObject, struct Sprite *sprite)
 {
     eventObject->singleMovementActive = 0;
     return FALSE;

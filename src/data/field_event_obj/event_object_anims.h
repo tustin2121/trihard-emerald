@@ -439,6 +439,18 @@ const union AnimCmd gEventObjectImageAnim_NurseBow[] =
     ANIMCMD_END,
 };
 
+const union AnimCmd gEventObjectImageAnim_LyingOnGround[] =
+{
+    ANIMCMD_FRAME(5,   60, .vFlip = TRUE),
+    ANIMCMD_FRAME(5,   60, .vFlip = TRUE),
+    ANIMCMD_FRAME(5,   60, .vFlip = TRUE),
+    ANIMCMD_FRAME(5,   60, .vFlip = TRUE),
+    ANIMCMD_FRAME(5,   60, .vFlip = TRUE),
+    ANIMCMD_FRAME(1,   60, .vFlip = TRUE),
+    ANIMCMD_FRAME(1,   30, .vFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
 const union AnimCmd gEventObjectImageAnim_RockBreak[] =
 {
     ANIMCMD_FRAME(0, 8),
@@ -652,6 +664,7 @@ const union AnimCmd *const gEventObjectImageAnimTable_Standard[] = {
     gEventObjectImageAnim_GoFastestNorth,
     gEventObjectImageAnim_GoFastestWest,
     gEventObjectImageAnim_GoFastestEast,
+    gEventObjectImageAnim_LyingOnGround,
 };
 
 const union AnimCmd *const gEventObjectImageAnimTable_HoOh[] = {
@@ -777,7 +790,7 @@ const union AnimCmd *const gEventObjectImageAnimTable_Rayquaza2[] = {
     gEventObjectImageAnim_8509210,
 };
 
-const union AnimCmd *const gEventObjectImageAnimTable_BrendanMayNormal[] = {
+const union AnimCmd *const gEventObjectImageAnimTable_ProtagNormal[] = {
     gEventObjectImageAnim_FaceSouth,
     gEventObjectImageAnim_FaceNorth,
     gEventObjectImageAnim_FaceWest,
@@ -954,7 +967,7 @@ const struct UnkStruct_085094AC gUnknown_085094AC[] = {
         .animPos = {1, 3, 0, 2},
     },
     {
-        .anims = gEventObjectImageAnimTable_BrendanMayNormal,
+        .anims = gEventObjectImageAnimTable_ProtagNormal,
         .animPos = {1, 3, 0, 2},
     },
     {

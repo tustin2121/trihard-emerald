@@ -436,3 +436,9 @@ u8 (*const gMovementTypeFuncs_Invisible[])(struct EventObject *, struct Sprite *
     MovementType_Invisible_Step1,
     MovementType_Invisible_Step2,
 };
+
+u8 (*const gMovementTypeFuncs_LyingDown[])(struct EventObject *, struct Sprite *) = {
+    MovementType_LyingDown_Step0,
+    MovementType_LyingDown_Step1,
+    MovementType_LyingDown_Step2,
+};
