@@ -34,6 +34,11 @@ DebugScript_ShowDebugScreen::
 	releaseall
 	end
 
+DebugScript_MessageEnd::
+	waitmessage
+	closemessage
+	end
+
 DebugScript_GiveDebugPartyAndSetFlags::
 	lockall
 	@ Give debug party

@@ -14,6 +14,8 @@ const DebugHandle_GetRandomSeeds = 6;
 const DebugHandle_SetRandomSeeds = 7;
 const DebugHandle_SetWeather = 8;
 const DebugHandle_ShowSoundTest = 9;
+const DebugHandle_SetFlag = 10;
+const DebugHandle_SetVar = 11;
 
 // Menu Functions
 function initMenuV1() {
@@ -39,6 +41,10 @@ function initMenuV1() {
 			.on('click', function(){ switchMenu('weather'); });
 		$(`<li>Debug Options...</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('debugopts'); });
+		$(`<li>Set Flag...</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('setflag'); });
+		$(`<li>Set Var...</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('setvar'); });
 	}{
 		let $m = $subMenus['debugopts'] = $('<ul>').appendTo('body');
 		$(`<li>Skip Battles</li>`).appendTo($m)
@@ -115,6 +121,57 @@ function initMenuV1() {
 			.attr('name', 'sound')
 			.on('click', function(){
 				
+			});
+	}{
+		let $m = $subMenus['setflag'] = $('<ul>').appendTo('body');
+		let $n = $(`<input type='number' value="0" />`);
+		$(`<p>Flag ID: </p>`).appendTo($m)
+			.append($n);
+		$(`<li>Set Flag</li>`).appendTo($m)
+			.on('click', function(){
+				let id = $n.val();
+				writeInterrupts({ 
+					funcId: DebugHandle_SetFlag,
+					args: [1, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Clear Flag</li>`).appendTo($m)
+			.on('click', function(){
+				let id = $n.val();
+				writeInterrupts({ 
+					funcId: DebugHandle_SetFlag,
+					args: [0, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
+	}{
+		let $m = $subMenus['setvar'] = $('<ul>').appendTo('body');
+		let $n = $(`<input type='number' value="0" />`);
+		let $v = $(`<input type='number' value="0" />`);
+		$(`<p>Var ID: </p>`).appendTo($m)
+			.append($n)
+			.append($v);
+		$(`<li>Set Variable</li>`).appendTo($m)
+			.on('click', function(){
+				let id = $n.val();
+				let val = $v.val();
+				writeInterrupts({ 
+					funcId: DebugHandle_SetVar,
+					args: [
+						(val >> 0) & 0xFF, (val >> 8) & 0xFF,
+						( id >> 0) & 0xFF, ( id >> 8) & 0xFF,
+					],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
 			});
 	}
 	switchMenu();
