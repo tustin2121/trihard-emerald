@@ -22,6 +22,7 @@
 #include "text_window.h"
 #include "string_util.h"
 #include "sound.h"
+#include "field_screen_effect.h"
 #include "field_weather.h"
 #include "constants/maps.h"
 #include "constants/rgb.h"
@@ -156,7 +157,8 @@ void DebugHandle_WarpRequest()
 	//TODO check x/y
 	
 	SetWarpDestination(args[0], args[1], args[2], args[3], args[4]);
-	WarpIntoMap();
+    DoWarp();
+    ResetInitialPlayerAvatarState();
 	
 	DebugSetCallbackSuccess();
 	return;
@@ -168,10 +170,13 @@ error:
 // arguments: none
 void DebugHandle_ReloadMap()
 {
+	struct Coords16 pos = gSaveBlock1Ptr->pos;
 	struct WarpData data = gSaveBlock1Ptr->location;
 	
-	SetWarpDestination(data.mapGroup, data.mapNum, -1, data.x, data.y);
-	WarpIntoMap();
+	SetWarpDestination(data.mapGroup, data.mapNum, -1, pos.x, pos.y);
+	DoWarp();
+	ResetInitialPlayerAvatarState();
+	
 	DebugSetCallbackSuccess();
 }
 
