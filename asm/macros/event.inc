@@ -1510,6 +1510,9 @@
 	.macro cleanupbraillemessage
 	.byte 0xda
 	.endm
+	.macro cleanupsignmessage
+	.byte 0xda
+	.endm
 
 	.macro messagesign pointer:req
 	.byte 0xdb

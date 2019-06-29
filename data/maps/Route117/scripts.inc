@@ -181,6 +181,7 @@ Route117_EventScript_DaycareSign:: @ 81F39C7
 	messagesign Route117_Text_DaycareSign1
 	waitmessage
 	waitbuttonpress
+	cleanupsignmessage
 	message Route117_Text_DaycareSign2
 	waitmessage
 	waitbuttonpress
