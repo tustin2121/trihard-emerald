@@ -3082,7 +3082,11 @@ BattleScript_WildMonFled::
 	end2
 
 BattleScript_PrintCantRunFromTrainer::
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 1, BattleScript_PrintCantRunFromTrainer_AfterLogan
 	printstring STRINGID_NORUNNINGFROMTRAINERS
+	end2
+BattleScript_PrintCantRunFromTrainer_AfterLogan:
+	printstring STRINGID_NOFORFIETING
 	end2
 
 BattleScript_PrintFailedToRunString::

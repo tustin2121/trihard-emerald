@@ -1344,16 +1344,47 @@ bool8 WaitForSignPopup(void)
 
 bool8 SrcCmd_messagesign(struct ScriptContext *ctx)
 {
+    struct WindowTemplate win;
+    s32 i;
     const u8 *msg = (const u8 *)ScriptReadWord(ctx);
-
-    if (msg == NULL)
-        msg = (const u8 *)ctx->data[0];
+    
+    if (gBrailleWindowId != 0) {
+        ClearStdWindowAndFrame(gBrailleWindowId, 1);
+        RemoveWindow(gBrailleWindowId);
+        gBrailleWindowId = 0;
+    }
+    
+    if (msg == NULL) msg = (const u8 *)ctx->data[0];
+    
+    win.bg = 0;
+    win.tilemapLeft = 2;
+    win.tilemapTop = 17;
+    win.width = 26;
+    win.height = 2;
+    win.paletteNum = 15;
+    win.baseBlock = 0x1;
     
     StringExpandPlaceholders(gStringVar4, msg);
+    
+    for (i = 0; gStringVar4[i] != 0xFF;)
+    {
+        i++;
+        if (gStringVar4[i] == 0xFA) gStringVar4[i] = 0xFE;
+        if (gStringVar4[i] == 0xFB) gStringVar4[i] = 0xFE;
+        if (gStringVar4[i] == 0xFE)
+        {
+            win.height += 2;
+            win.tilemapTop -= 2;
+        }
+    }
+    win.height = max(win.height, 4);
+    win.tilemapTop = min(win.tilemapTop, 15);
+    
+    gBrailleWindowId = AddWindow(&win);
     LoadStdWindowFrame();
-    DrawSignWindowFrame(1, 1);
-    PopupSignMessageBox();
-    AddTextPrinterParameterized(1, 1, gStringVar4, 0, 1, 0, NULL);
+    DrawSignWindowFrame(gBrailleWindowId, TRUE);
+    PopupSignMessageBox(win.height+1);
+    AddTextPrinterParameterized(gBrailleWindowId, 1, gStringVar4, 0, 1, 0, NULL);
     SetupNativeScript(ctx, WaitForSignPopup);
     return TRUE;
 }
@@ -1609,8 +1640,10 @@ bool8 ScrCmd_braillemessage(struct ScriptContext *ctx)
 
 bool8 ScrCmd_cleanupbraillemessage(struct ScriptContext *ctx)
 {
-    ClearStdWindowAndFrame(gBrailleWindowId, 1);
+    // ClearStdWindowAndFrame(gBrailleWindowId, 1);
+    ClearDialogWindowAndFrame(gBrailleWindowId, 1);
     RemoveWindow(gBrailleWindowId);
+    gBrailleWindowId = 0;
     return FALSE;
 }
 

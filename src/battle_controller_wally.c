@@ -1198,7 +1198,7 @@ static void WallyHandleChooseAction(void)
     s32 i;
 
     gBattlerControllerFuncs[gActiveBattler] = HandleChooseActionAfterDma3;
-    BattlePutTextOnWindow(gText_BattleMenu, 2);
+    BattlePutTextOnWindow(gText_BattleMenuWild, 2);
 
     for (i = 0; i < 4; i++)
         ActionSelectionDestroyCursorAt(i);

@@ -815,6 +815,7 @@ Std_MsgboxSign:: @ 8271320
 	waitmessage
 	waitbuttonpress
 	releaseall
+	cleanupsignmessage
 	return
 
 Std_MsgboxDescribe:: @ 8271320

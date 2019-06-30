@@ -4372,6 +4372,7 @@ static void HandleTurnActionSelectionState(void)
                          && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
                          && gBattleBufferB[gActiveBattler][1] == B_ACTION_RUN)
                 {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = (FlagGet(FLAG_CAN_CONCEDE))? 1 : 0;
                     BattleScriptExecute(BattleScript_PrintCantRunFromTrainer);
                     gBattleCommunication[gActiveBattler] = STATE_BEFORE_ACTION_CHOSEN;
                 }

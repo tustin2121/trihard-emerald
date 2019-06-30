@@ -14,6 +14,8 @@ const DebugHandle_GetRandomSeeds = 6;
 const DebugHandle_SetRandomSeeds = 7;
 const DebugHandle_SetWeather = 8;
 const DebugHandle_ShowSoundTest = 9;
+const DebugHandle_SetFlag = 10;
+const DebugHandle_SetVar = 11;
 
 // Menu Functions
 function initMenuV1() {
@@ -27,18 +29,37 @@ function initMenuV1() {
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowPCBox });
 			});
+		$(`<li>Reload Map</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_ReloadMap });
+			});
+		$m.append('<hr/>');
+		$(`<li>Debug Options…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('debugopts'); });
+		$(`<li>Set Flag…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('setflag'); });
+		$(`<li>Set Var…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('setvar'); });
+		$(`<li>Set Weather to…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('weather'); });
+		$(`<li>Warp to Map…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('gowarp'); });
+		$(`<li>Other Actions…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('submenu1'); });
+	}{
+		let $m = $subMenus['submenu1'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
 		$(`<li>Play Credits</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowCredits });
+				switchMenu();
 			});
 		$(`<li>Open Sound Test</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowSoundTest });
+				switchMenu();
 			});
-		$(`<li>Set Weather to...</li>`).appendTo($m)
-			.on('click', function(){ switchMenu('weather'); });
-		$(`<li>Debug Options...</li>`).appendTo($m)
-			.on('click', function(){ switchMenu('debugopts'); });
 	}{
 		let $m = $subMenus['debugopts'] = $('<ul>').appendTo('body');
 		$(`<li>Skip Battles</li>`).appendTo($m)
@@ -65,6 +86,8 @@ function initMenuV1() {
 			});
 	}{
 		let $m = $subMenus['weather'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
 		let $opts = [
 			$(`<li>No Weather</li>`).attr('value', 0),
 			$(`<li>Cloudy</li>`).attr('value', 1),
@@ -115,6 +138,83 @@ function initMenuV1() {
 			.attr('name', 'sound')
 			.on('click', function(){
 				
+			});
+	}{
+		let $m = $subMenus['setflag'] = $('<ul>').appendTo('body');
+		let $n = $(`<input type='number' value="0" />`);
+		$(`<p>Flag ID: </p>`).appendTo($m)
+			.append($n);
+		$(`<li>Set Flag</li>`).appendTo($m)
+			.on('click', function(){
+				let id = $n.val();
+				writeInterrupts({ 
+					funcId: DebugHandle_SetFlag,
+					args: [1, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Clear Flag</li>`).appendTo($m)
+			.on('click', function(){
+				let id = $n.val();
+				writeInterrupts({ 
+					funcId: DebugHandle_SetFlag,
+					args: [0, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
+	}{
+		let $m = $subMenus['setvar'] = $('<ul>').appendTo('body');
+		let $n = $(`<input type='number' value="0" />`);
+		let $v = $(`<input type='number' value="0" />`);
+		$(`<p>`).appendTo($m)
+			.append(`Var ID: `).append($n).append('<br/>')
+			.append(`Value: `).append($v);
+		$(`<li>Set Variable</li>`).appendTo($m)
+			.on('click', function(){
+				let id = $n.val();
+				let val = $v.val();
+				writeInterrupts({ 
+					funcId: DebugHandle_SetVar,
+					args: [
+						(val >> 0) & 0xFF, (val >> 8) & 0xFF,
+						( id >> 0) & 0xFF, ( id >> 8) & 0xFF,
+					],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
+	}{
+		let $m = $subMenus['gowarp'] = $('<ul>').appendTo('body');
+		let $group = $(`<input type='number' value="0" max="128" />`);
+		let $id    = $(`<input type='number' value="0" max="128" />`);
+		let $warp  = $(`<input type='number' value="0" max="128" />`);
+		$(`<p>`).appendTo($m)
+			.append(`Group: `).append($group).append('<br/>')
+			.append(`MapId: `).append($id).append('<br/>')
+			.append(`Warp: `).append($warp);
+		$(`<li>Warp</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ 
+					funcId: DebugHandle_WarpRequest,
+					args: [
+						$group.val(),
+						$id.val(),
+						$warp.val(),
+						0xFF, 0xFF,
+					],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
 			});
 	}
 	switchMenu();

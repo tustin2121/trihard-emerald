@@ -7,6 +7,7 @@
 #include "start_menu.h"
 #include "pokemon_storage_system.h"
 #include "overworld.h"
+#include "event_data.h"
 #include "event_obj_lock.h"
 #include "event_object_movement.h"
 #include "random.h"
@@ -21,6 +22,7 @@
 #include "text_window.h"
 #include "string_util.h"
 #include "sound.h"
+#include "field_screen_effect.h"
 #include "field_weather.h"
 #include "constants/maps.h"
 #include "constants/rgb.h"
@@ -36,6 +38,7 @@ extern const u8 DebugScript_EmergencySave[];
 extern const u8 DebugScript_ShowPCBox[];
 extern const u8 DebugScript_ShowDebugScreen[];
 extern const u8 DebugScript_ShowSoundTest[];
+extern const u8 DebugScript_MessageEnd[];
 extern const u8 DebugScript_GiveDebugPartyAndSetFlags[];
 
 typedef void (*DebugFunc)(void);
@@ -52,6 +55,8 @@ static void DebugHandle_GetRandomSeeds();
 static void DebugHandle_SetRandomSeeds();
 static void DebugHandle_SetWeather();
 static void DebugHandle_ShowSoundTest();
+static void DebugHandle_SetFlag();
+static void DebugHandle_SetVar();
 static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
@@ -77,6 +82,8 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_SetRandomSeeds,
 	DebugHandle_SetWeather,
 	DebugHandle_ShowSoundTest,
+	DebugHandle_SetFlag,
+	DebugHandle_SetVar,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -150,7 +157,8 @@ void DebugHandle_WarpRequest()
 	//TODO check x/y
 	
 	SetWarpDestination(args[0], args[1], args[2], args[3], args[4]);
-	WarpIntoMap();
+    DoWarp();
+    ResetInitialPlayerAvatarState();
 	
 	DebugSetCallbackSuccess();
 	return;
@@ -162,10 +170,13 @@ error:
 // arguments: none
 void DebugHandle_ReloadMap()
 {
+	struct Coords16 pos = gSaveBlock1Ptr->pos;
 	struct WarpData data = gSaveBlock1Ptr->location;
 	
-	SetWarpDestination(data.mapGroup, data.mapNum, -1, data.x, data.y);
-	WarpIntoMap();
+	SetWarpDestination(data.mapGroup, data.mapNum, -1, pos.x, pos.y);
+	DoWarp();
+	ResetInitialPlayerAvatarState();
+	
 	DebugSetCallbackSuccess();
 }
 
@@ -208,6 +219,74 @@ void DebugHandle_ShowSoundTest()
 {
 	CreateTask(Task_InitMusicSelect, 0);
 	ScriptContext1_SetupScript(DebugScript_ShowSoundTest);
+	DebugSetCallbackSuccess();
+}
+
+extern const u8 gYN_Yes[];
+extern const u8 gYN_No[];
+static const u8 sText_TestStringFlag[] = _("Flag: {STR_VAR_1} -> {STR_VAR_2}{PAUSE 40}");
+bool8 ShowFieldAutoScrollMessage(const u8 *str);
+// arguments:
+//   args[0] = 1=set, 0=clear
+//   args[2]+2 = flagid
+// returns: none
+void DebugHandle_SetFlag()
+{
+	bool8 set = gDebugInterrupts.args[0];
+	u16 id = T2_READ_16(gDebugInterrupts.args + 2);
+	if (id > FLAG_DAILY_0x95F) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	if (GetFlagPointer(id) == NULL) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	
+	if (set) {
+		FlagSet(id);
+	} else {
+		FlagClear(id);
+	}
+	
+	ConvertIntToHexStringN(gStringVar1, id, 2, 3);
+	StringCopy(gStringVar2, (FlagGet(id))? gYN_Yes : gYN_No);
+    StringExpandPlaceholders(gStringVar4, sText_TestStringFlag);
+    ShowFieldAutoScrollMessage(gStringVar4);
+	ScriptContext1_SetupScript(DebugScript_MessageEnd);
+	
+	DebugSetCallbackSuccess();
+}
+
+static const u8 sText_TestStringVar[] = _("Var: {STR_VAR_1} = {STR_VAR_2} -> {STR_VAR_3}{PAUSE 40}");
+// arguments:
+//   args[0]+2 = value
+//   args[2]+2 = flagid
+// returns: none
+void DebugHandle_SetVar()
+{
+	u16 val = T2_READ_16(gDebugInterrupts.args+0);
+	u16 id  = T2_READ_16(gDebugInterrupts.args+2);
+	u16 oldval;
+	if (id > 0xFF) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	if (GetVarPointer(id+VARS_START) == NULL) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	
+	oldval = VarGet(id+VARS_START);
+	VarSet(id+VARS_START, val);
+	
+	ConvertIntToHexStringN(gStringVar1, id, 2, 3);
+	ConvertIntToDecimalStringN(gStringVar2, oldval, 2, 3);
+	ConvertIntToDecimalStringN(gStringVar3, VarGet(id+VARS_START), 2, 3);
+    StringExpandPlaceholders(gStringVar4, sText_TestStringVar);
+    ShowFieldAutoScrollMessage(gStringVar4);
+	ScriptContext1_SetupScript(DebugScript_MessageEnd);
+	
 	DebugSetCallbackSuccess();
 }
 

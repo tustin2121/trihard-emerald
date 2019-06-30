@@ -291,11 +291,11 @@ void WindowFunc_DrawSignFrame(u8 bg, u8 l, u8 t, u8 w, u8 h, u8 paletteNum)
     FillBgTilemapBufferRect(bg, BG_TILE_H__FLIP(SIGN_WINDOW_BASE_TILE_NUM + 1), l+w  , t-1, 1, 1, SIGN_WINDOW_PALETTE_NUM);
     FillBgTilemapBufferRect(bg, BG_TILE_H__FLIP(SIGN_WINDOW_BASE_TILE_NUM + 0), l+w+1, t-1, 1, 1, SIGN_WINDOW_PALETTE_NUM);
     // Middle
-    FillBgTilemapBufferRect(bg, BG_TILE____FLIP(SIGN_WINDOW_BASE_TILE_NUM + 3), l-2  , t  , 1, 5, SIGN_WINDOW_PALETTE_NUM);
-    FillBgTilemapBufferRect(bg, BG_TILE____FLIP(SIGN_WINDOW_BASE_TILE_NUM + 4), l-1  , t  , 1, 5, SIGN_WINDOW_PALETTE_NUM);
-    FillBgTilemapBufferRect(bg, BG_TILE____FLIP(SIGN_WINDOW_BASE_TILE_NUM + 5), l    , t  , w, 5, SIGN_WINDOW_PALETTE_NUM);
-    FillBgTilemapBufferRect(bg, BG_TILE_H__FLIP(SIGN_WINDOW_BASE_TILE_NUM + 4), l+w  , t  , 1, 5, SIGN_WINDOW_PALETTE_NUM);
-    FillBgTilemapBufferRect(bg, BG_TILE_H__FLIP(SIGN_WINDOW_BASE_TILE_NUM + 3), l+w+1, t  , 1, 5, SIGN_WINDOW_PALETTE_NUM);
+    FillBgTilemapBufferRect(bg, BG_TILE____FLIP(SIGN_WINDOW_BASE_TILE_NUM + 3), l-2  , t  , 1, h, SIGN_WINDOW_PALETTE_NUM);
+    FillBgTilemapBufferRect(bg, BG_TILE____FLIP(SIGN_WINDOW_BASE_TILE_NUM + 4), l-1  , t  , 1, h, SIGN_WINDOW_PALETTE_NUM);
+    FillBgTilemapBufferRect(bg, BG_TILE____FLIP(SIGN_WINDOW_BASE_TILE_NUM + 5), l    , t  , w, h, SIGN_WINDOW_PALETTE_NUM);
+    FillBgTilemapBufferRect(bg, BG_TILE_H__FLIP(SIGN_WINDOW_BASE_TILE_NUM + 4), l+w  , t  , 1, h, SIGN_WINDOW_PALETTE_NUM);
+    FillBgTilemapBufferRect(bg, BG_TILE_H__FLIP(SIGN_WINDOW_BASE_TILE_NUM + 3), l+w+1, t  , 1, h, SIGN_WINDOW_PALETTE_NUM);
     // Bottom
     FillBgTilemapBufferRect(bg, BG_TILE__V_FLIP(SIGN_WINDOW_BASE_TILE_NUM + 0), l-2  , t+h, 1, 1, SIGN_WINDOW_PALETTE_NUM);
     FillBgTilemapBufferRect(bg, BG_TILE__V_FLIP(SIGN_WINDOW_BASE_TILE_NUM + 1), l-1  , t+h, 1, 1, SIGN_WINDOW_PALETTE_NUM);
@@ -2286,11 +2286,11 @@ void sub_819A344(u8 a0, u8 *dest, u8 color)
 }
 
 
-void PopupSignMessageBox(void)
+void PopupSignMessageBox(u8 nTiles)
 {
     sPopupTaskId = CreateTask(Task_SignLinePopup, 90);
-    SetGpuReg(REG_OFFSET_BG0VOFS, -40);
-    gTasks[sPopupTaskId].data[2] = -40;
+    SetGpuReg(REG_OFFSET_BG0VOFS, -8 * nTiles); //-40 => 5*8
+    gTasks[sPopupTaskId].data[2] = -8 * nTiles;
 }
 
 bool8 IsSignPoppedUp(void)
