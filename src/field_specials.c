@@ -3861,7 +3861,7 @@ void sub_813B968(void)
     gSpecialVar_Result -= (gSpecialVar_Result / 20) * 20;
 }
 
-void sub_813B9A0(void)
+void PreventDewfordHealSoftlock(void)
 {
     if (gSaveBlock1Ptr->lastHealLocation.mapGroup == MAP_GROUP(DEWFORD_TOWN) && gSaveBlock1Ptr->lastHealLocation.mapNum == MAP_NUM(DEWFORD_TOWN))
     {

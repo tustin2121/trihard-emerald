@@ -525,7 +525,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80F8B94
 	def_special ShowTrainerHillRecords
 	def_special DoSpinningTrainerApproach
-	def_special sub_813B9A0
+	def_special PreventDewfordHealSoftlock
 	def_special sub_81B9918
 	def_special sub_80722E0
 	def_special TryPrepareSecondApproachingTrainer

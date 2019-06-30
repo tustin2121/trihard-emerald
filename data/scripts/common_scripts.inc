@@ -18,8 +18,15 @@ Common_Movement_QuestionMark:: @ 8272596
 	emote_question_mark
 	step_end
 
-Common_Movement_ExclamationMark: @ 8272598
+Common_Movement_ExclamationMark:: @ 8272598
 	emote_exclamation_mark
+	step_end
+	
+Common_Movement_ExclamationMarkAndWait:: @ 8272598
+	emote_exclamation_mark
+	delay_16
+	delay_16
+	delay_16
 	step_end
 
 Common_Movement_Angry: @ 8272598

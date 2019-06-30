@@ -158,7 +158,10 @@ bool8 ScrCmd_waitstate(struct ScriptContext *ctx)
 bool8 ScrCmd_goto(struct ScriptContext *ctx)
 {
     const u8 *ptr = (const u8 *)ScriptReadWord(ctx);
-
+    
+    if (ptr == NULL)
+        ptr = (const u8 *)ctx->data[0];
+    
     ScriptJump(ctx, ptr);
     return FALSE;
 }
@@ -172,7 +175,10 @@ bool8 ScrCmd_return(struct ScriptContext *ctx)
 bool8 ScrCmd_call(struct ScriptContext *ctx)
 {
     const u8 *ptr = (const u8 *)ScriptReadWord(ctx);
-
+    
+    if (ptr == NULL)
+        ptr = (const u8 *)ctx->data[0];
+    
     ScriptCall(ctx, ptr);
     return FALSE;
 }

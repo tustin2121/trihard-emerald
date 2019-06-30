@@ -18,7 +18,7 @@ PetalburgCity_OnTransition: @ 81DC2D7
 	end
 
 PetalburgCity_EventScript_1DC307:: @ 81DC307
-	setobjectxyperm 8, 5, 11
+	@ setobjectxyperm 8, 5, 11
 	return
 
 PetalburgCity_EventScript_1DC30F:: @ 81DC30F
@@ -31,10 +31,132 @@ PetalburgCity_EventScript_1DC316:: @ 81DC316
 	return
 
 @ -----------------------------------------------------
+@ Signs
+
+PetalburgCity_EventScript_1DC47F:: @ 81DC47F
+	msgbox PetalburgCity_Text_1DCAF1, MSGBOX_SIGN
+	end
+PetalburgCity_Text_1DCAF1: @ 81DCAF1
+	.string "{PLACE}Petalburg City{END}\n"
+	.string "“Where people mingle with nature.”$"
+
+
+PetalburgCity_EventScript_1DC491:: @ 81DC491
+	msgbox PetalburgCity_Text_1DCB23, MSGBOX_SIGN
+	end
+PetalburgCity_Text_1DCB23: @ 81DCB23
+	.string "{PLACE}Wally's House{END}$"
+
+
+PetalburgCity_EventScript_GymSign:: @ 81DC476
+	compare VAR_PETALBURG_GYM_STATE, 2
+	goto_if_lt PetalburgCity_EventScript_GymSign2
+	msgbox PetalburgCity_Text_GymSign, MSGBOX_SIGN
+	end
+PetalburgCity_Text_GymSign: @ 81DCAAA
+	.string "{GYM}Petalburg City Pokémon Gym{END}\n"
+	.string "{GYM}Leader:{END} Norman\l"
+	.string "“A man in pursuit of power!”$"
+PetalburgCity_EventScript_GymSign2:: @ 81DC491
+	msgbox PetalburgCity_Text_GymSign2, MSGBOX_SIGN
+	end
+PetalburgCity_Text_GymSign2:
+	.string "{GYM}Petalburg City Pokémon Gym{END}\n"
+	.string "{GYM}Leader:{END} Malaqui\l"
+	.string "“The dark cloak of mystery!”$"
+
+
+PetalburgCity_EventScript_GymNotice:: @ 81DC491
+	msgbox PetalburgCity_Text_Notice, MSGBOX_DESCRIBE
+	end
+PetalburgCity_Text_Notice:
+	.string "{PLACE}Notice{END}\n"
+	.string "This facility is under police\l"
+	.string "investigation following allegations\l"
+	.string "of misconduct and endangering the\l"
+	.string "life of a trainer.\p"
+	.string "This facility is closed until\n"
+	.string "further notice. --HPD$"
+	
+
+
+@ -----------------------------------------------------
+@ People
+
+PetalburgCity_EventScript_1DC3E6:: @ 81DC3E6
+	lock
+	faceplayer
+	msgbox PetalburgCity_Text_1DC985, MSGBOX_DEFAULT
+	closemessage
+	applymovement 3, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+PetalburgCity_Text_1DC985: @ 81DC985
+	.string "My face is reflected in the water.\p"
+	.string "It's a shining grin full of hope…\p"
+	.string "Or it could be a look of somber silence\n"
+	.string "struggling with fear…\p"
+	.string "What do you see reflected in your face?$"
+
+
+PetalburgCity_EventScript_Gentleman:: @ 81DC488
+	msgbox PetalburgCity_Text_1DCA30, MSGBOX_NPC
+	end
+PetalburgCity_Text_1DCA30: @ 81DCA30
+	.string "You should be careful which Pokémon\n"
+	.string "you choose to catch.\p"
+	.string "You can only carry six Pokémon.\p"
+	.string "If only there was a way to store\n"
+	.string "excess Pokémon, but there's not.$"
+
+
+PetalburgCity_EventScript_LoganAunt:: @ 81DC3FD
+	msgbox PetalburgCity_Text_1DC837, MSGBOX_NPC
+	end
+PetalburgCity_Text_1DC837: @ 81DC837
+	.string "Where has our precious {RIVAL_HERO} gone?\p"
+	.string "We have to leave for Verdanturf Town\n"
+	.string "very soon, and he's gonna be all by\l"
+	.string "himself if we don't find him!$"
+
+
+PetalburgCity_TriggerScript_LoganAunt::
+	lock
+	markasdialog
+	applymovement 1, Common_Movement_FacePlayer
+	waitmovement 0
+	applymovement 1, Common_Movement_ExclamationMarkAndWait
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	msgbox PetalburgCity_Text_1DC838
+	closemessage
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
+	applymovement 1, Common_Movement_FaceRight
+	waitmovement 0
+	release
+	end
+PetalburgCity_Text_1DC838:
+	.string "Have you seen our nephew?!\n"
+	.string "We need to leave soon!\p"
+	.string "Please help us find him!$"
+
+
+PetalburgCity_EventScript_LoganUncle:: @ 81DC3FD
+	msgbox PetalburgCity_Text_1DC839, MSGBOX_NPC
+	end
+PetalburgCity_Text_1DC839: @ 81DC837
+	.string "Have you found him yet, Gretchen?!\p"
+	.string "Oh, hello. We're searching for our\n"
+	.string "nephew, {RIVAL_HERO}. If you see him\l"
+	.string "come see us, please?$"
+
+@ -----------------------------------------------------
 
 PetalburgCity_MapScript2_1DC31C: @ 81DC31C
-	map_script_2 VAR_PETALBURG_STATE, 2, PetalburgCity_EventScript_1DC32E
-	map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_EventScript_1DC390
+	@ map_script_2 VAR_PETALBURG_STATE, 2, PetalburgCity_EventScript_1DC32E
+	@ map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_EventScript_1DC390
 	.2byte 0
 
 PetalburgCity_EventScript_1DC32E:: @ 81DC32E
@@ -162,7 +284,7 @@ PetalburgCity_EventScript_1DC390:: @ 81DC390
 	applymovement 5, PetalburgCity_Movement_1DC42D
 	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_1DC418
 	waitmovement 0
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_UNCLE
+	setflag FLAG_HIDE_PETALBURG_CITY_GYM_LOCK
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
@@ -223,89 +345,29 @@ PetalburgCity_Movement_1DC418: @ 81DC418
 
 @ -----------------------------------------------------
 
-PetalburgCity_EventScript_1DC3E6:: @ 81DC3E6
-	lock
-	faceplayer
-	msgbox PetalburgCity_Text_1DC985, MSGBOX_DEFAULT
-	closemessage
-	applymovement 3, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-PetalburgCity_Text_1DC985: @ 81DC985
-	.string "My face is reflected in the water.\p"
-	.string "It's a shining grin full of hope…\p"
-	.string "Or it could be a look of somber silence\n"
-	.string "struggling with fear…\p"
-	.string "What do you see reflected in your face?$"
+@ PetalburgCity_EventScript_1DC49A:: @ 81DC49A
+@ 	lockall
+@ 	setvar VAR_0x8008, 0
+@ 	goto PetalburgCity_EventScript_1DC4CA
+@ 	end
 
+@ PetalburgCity_EventScript_1DC4A6:: @ 81DC4A6
+@ 	lockall
+@ 	setvar VAR_0x8008, 1
+@ 	goto PetalburgCity_EventScript_1DC4CA
+@ 	end
 
-PetalburgCity_EventScript_1DC3FD:: @ 81DC3FD
-	msgbox PetalburgCity_Text_1DC837, MSGBOX_NPC
-	end
-PetalburgCity_Text_1DC837: @ 81DC837
-	.string "Where has our WALLY gone?\p"
-	.string "We have to leave for Verdanturf Town\n"
-	.string "very soon…$"
+@ PetalburgCity_EventScript_1DC4B2:: @ 81DC4B2
+@ 	lockall
+@ 	setvar VAR_0x8008, 2
+@ 	goto PetalburgCity_EventScript_1DC4CA
+@ 	end
 
-
-PetalburgCity_EventScript_1DC476:: @ 81DC476
-	msgbox PetalburgCity_Text_1DCAAA, MSGBOX_SIGN
-	end
-PetalburgCity_Text_1DCAAA: @ 81DCAAA
-	.string "{GYM}Petalburg City Pokémon Gym{END}\n"
-	.string "{GYM}Leader:{END} Norman\l"
-	.string "“A man in pursuit of power!”$"
-
-
-PetalburgCity_EventScript_1DC47F:: @ 81DC47F
-	msgbox PetalburgCity_Text_1DCAF1, MSGBOX_SIGN
-	end
-PetalburgCity_Text_1DCAF1: @ 81DCAF1
-	.string "{PLACE}Petalburg City{END}\n"
-	.string "“Where people mingle with nature.”$"
-
-
-PetalburgCity_EventScript_1DC488:: @ 81DC488
-	msgbox PetalburgCity_Text_1DCA30, MSGBOX_NPC
-	end
-PetalburgCity_Text_1DCA30: @ 81DCA30
-	.string "Let's say you have six Pokémon.\n"
-	.string "If you catch another one…\p"
-	.string "It is automatically sent to a {REF}storage\n"
-	.string "box{END} over a PC connection.$"
-
-
-PetalburgCity_EventScript_1DC491:: @ 81DC491
-	msgbox PetalburgCity_Text_1DCB23, MSGBOX_SIGN
-	end
-PetalburgCity_Text_1DCB23: @ 81DCB23
-	.string "{PLACE}Wally's House{END}$"
-
-
-PetalburgCity_EventScript_1DC49A:: @ 81DC49A
-	lockall
-	setvar VAR_0x8008, 0
-	goto PetalburgCity_EventScript_1DC4CA
-	end
-
-PetalburgCity_EventScript_1DC4A6:: @ 81DC4A6
-	lockall
-	setvar VAR_0x8008, 1
-	goto PetalburgCity_EventScript_1DC4CA
-	end
-
-PetalburgCity_EventScript_1DC4B2:: @ 81DC4B2
-	lockall
-	setvar VAR_0x8008, 2
-	goto PetalburgCity_EventScript_1DC4CA
-	end
-
-PetalburgCity_EventScript_1DC4BE:: @ 81DC4BE
-	lockall
-	setvar VAR_0x8008, 3
-	goto PetalburgCity_EventScript_1DC4CA
-	end
+@ PetalburgCity_EventScript_1DC4BE:: @ 81DC4BE
+@ 	lockall
+@ 	setvar VAR_0x8008, 3
+@ 	goto PetalburgCity_EventScript_1DC4CA
+@ 	end
 
 PetalburgCity_EventScript_1DC4CA:: @ 81DC4CA
 	applymovement 8, Common_Movement_FacePlayer

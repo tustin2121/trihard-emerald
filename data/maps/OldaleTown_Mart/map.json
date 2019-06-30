@@ -11,7 +11,7 @@
     "id": "MAP_OLDALE_TOWN_MART",
     "layout": "LAYOUT_HOUSE2",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_FRIENDLY",
+    "music": "MUS_MACHI_S4",
     "name": "OldaleTown_Mart",
     "object_events": [
         {
