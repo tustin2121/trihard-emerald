@@ -141,12 +141,17 @@ function initMenuV1() {
 			});
 	}{
 		let $m = $subMenus['setflag'] = $('<ul>').appendTo('body');
-		let $n = $(`<input type='number' value="0" />`);
-		$(`<p>Flag ID: </p>`).appendTo($m)
+		let $n = $(`<input type='text' value="0" />`)
+			.on('change', function(){
+				let n = Number.parseInt($n.val(), 16);
+				$n.toggleClass('invalid', Number.isNaN(n));
+			});
+		$(`<p>Flag ID: 0x</p>`).appendTo($m)
 			.append($n);
 		$(`<li>Set Flag</li>`).appendTo($m)
 			.on('click', function(){
-				let id = $n.val();
+				let id = Number.parseInt($n.val(), 16);
+				if (Number.isNaN(id)) return;
 				writeInterrupts({ 
 					funcId: DebugHandle_SetFlag,
 					args: [1, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
@@ -155,7 +160,8 @@ function initMenuV1() {
 			});
 		$(`<li>Clear Flag</li>`).appendTo($m)
 			.on('click', function(){
-				let id = $n.val();
+				let id = Number.parseInt($n.val(), 16);
+				if (Number.isNaN(id)) return;
 				writeInterrupts({ 
 					funcId: DebugHandle_SetFlag,
 					args: [0, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
@@ -168,14 +174,19 @@ function initMenuV1() {
 			});
 	}{
 		let $m = $subMenus['setvar'] = $('<ul>').appendTo('body');
-		let $n = $(`<input type='number' value="0" />`);
+		let $n = $(`<input type='text' value="0" />`)
+			.on('change', function(){
+				let n = Number.parseInt($n.val(), 16);
+				$n.toggleClass('invalid', Number.isNaN(n));
+			});
 		let $v = $(`<input type='number' value="0" />`);
 		$(`<p>`).appendTo($m)
-			.append(`Var ID: `).append($n).append('<br/>')
+			.append(`Var ID: 0x`).append($n).append('<br/>')
 			.append(`Value: `).append($v);
 		$(`<li>Set Variable</li>`).appendTo($m)
 			.on('click', function(){
-				let id = $n.val();
+				let id = Number.parseInt($n.val(), 16);
+				if (Number.isNaN(id)) return;
 				let val = $v.val();
 				writeInterrupts({ 
 					funcId: DebugHandle_SetVar,
