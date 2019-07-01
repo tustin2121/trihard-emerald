@@ -33,3 +33,6 @@ To build **trihard-emerald.gba**:
 
 	make
 
+It's common for a first-time build to take 30-60 minutes, so go grab a snack. Subsequent builds only have to build what's been changed.
+
+To force a rebuild when make says there's nothing to do, use `make tidy` before using `make` again. To rebuild all of the map scripts (sometimes needed when something fundamental about the overworld engine changes), use `make cleanmaps` before running `make` (you will have to reload the map you're on after loading your save to see the proper changes).
