@@ -57,6 +57,7 @@ gSpecialVars:: @ 81DBA0C
 	.4byte gSpecialVar_InteractX
 	.4byte gSpecialVar_InteractY
 	.4byte gSpecialVar_LastWarpId
+	.4byte gSpecialVar_DialogTailOffset
 
 	.include "data/specials.inc"
 
@@ -964,7 +965,7 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQUIL
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN
 	setflag FLAG_UNKNOWN_0x363
 	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
 	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
@@ -1680,6 +1681,7 @@ Common_EventScript_PartyHealSave_Setup::
 	playfanfare MUS_ME_ASA
 	waitfanfare
 	special HealPlayerParty
+	advancetime 7, 30, 30
 	return
 Common_EventScript_PartyHealSave_Save::
 	@ TriHard Emerald: Force Save
@@ -1697,7 +1699,7 @@ Common_EventScript_PartyHealSave_Complete::
 LittlerootTown_ProfessorBirchsLab_EventScript_2720AD:: @ 82720AD
 Route101_EventScript_2720AD:: @ 82720AD
 Route103_EventScript_2720AD:: @ 82720AD
-	compare VAR_PETALBURG_GYM_STATE, 0
+	compare VAR_NUM_BADGES, 0
 	goto_if_eq Common_EventScript_NopReturn
 	goto_if_set FLAG_SYS_GAME_CLEAR, Route101_EventScript_27211A
 	compare VAR_BIRCH_STATE, 0

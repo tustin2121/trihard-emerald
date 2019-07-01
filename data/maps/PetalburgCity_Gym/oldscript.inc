@@ -9,12 +9,12 @@ PetalburgCity_Gym_EventScript_2049A4:: @ 82049A4
 	waitmovement 0
 	playse SE_KAIDAN
 	removeobject LID_WALLY
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN
 	delay 30
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	msgbox PetalburgCity_Gym_Text_205C40, MSGBOX_DEFAULT
-	setvar VAR_PETALBURG_GYM_STATE, 2
+	setvar VAR_NUM_BADGES, 2
 	releaseall
 	end
 PetalburgCity_Gym_Text_205B32: @ 8205B32
@@ -60,7 +60,7 @@ PetalburgCity_Gym_Text_205C40: @ 8205C40
 PetalburgCity_Gym_EventScript_Norman:: @ 82049F1
 	lock
 	faceplayer
-	switch VAR_PETALBURG_GYM_STATE
+	switch VAR_NUM_BADGES
 	case 2, PetalburgCity_Gym_EventScript_204D4A
 	case 3, PetalburgCity_Gym_EventScript_204D54
 	case 4, PetalburgCity_Gym_EventScript_204D5E
@@ -173,10 +173,10 @@ PetalburgCity_Gym_EventScript_204AAC:: @ 8204AAC
 	compare VAR_0x8008, 3
 	call_if_eq PetalburgCity_Gym_EventScript_204CB5
 	removeobject 10
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_AUNT
-	setvar VAR_PETALBURG_GYM_STATE, 1
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN_RELATIVES
+	setvar VAR_NUM_BADGES, 1
 	setvar VAR_PETALBURG_STATE, 2
-	clearflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	clearflag FLAG_HIDE_PETALBURG_CITY_LOGAN
 	clearflag FLAG_HIDE_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL
 	special InitBirchState
@@ -389,7 +389,7 @@ PetalburgCity_Gym_EventScript_204E3B:: @ 8204E3B
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PetalburgCity_Gym_Text_20618A, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_PETALBURG_GYM
-	setvar VAR_PETALBURG_GYM_STATE, 7
+	setvar VAR_NUM_BADGES, 7
 	setflag FLAG_BADGE05_GET
 	special PreventDewfordHealSoftlock
 	call PetalburgCity_Gym_DisableMrBriney
@@ -756,7 +756,7 @@ PetalburgCity_Gym_EventScript_20512D:: @ 820512D
 
 PetalburgCity_Gym_EventScript_205137:: @ 8205137
 	lockall
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_NUM_BADGES, 6
 	goto_if_lt PetalburgCity_Gym_EventScript_20517D
 	setvar VAR_0x8008, 7
 	setvar VAR_0x8009, 85
@@ -786,7 +786,7 @@ PetalburgCity_Gym_EventScript_20517D:: @ 820517D
 
 PetalburgCity_Gym_EventScript_205187:: @ 8205187
 	lockall
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_NUM_BADGES, 6
 	goto_if_lt PetalburgCity_Gym_EventScript_20517D
 	setvar VAR_0x8008, 1
 	setvar VAR_0x8009, 98

@@ -147,7 +147,7 @@
 #define VAR_LITTLEROOT_HOUSES_STATE          0x4082
 #define VAR_UNUSED_0x4083                    0x4083 // Unused Var
 #define VAR_BIRCH_LAB_STATE                  0x4084
-#define VAR_PETALBURG_GYM_STATE              0x4085
+#define VAR_NUM_BADGES                       0x4085
 #define VAR_LINK_CONTEST_ROOM_STATE          0x4086
 #define VAR_CABLE_CLUB_STATE                 0x4087
 #define VAR_CONTEST_LOCATION                 0x4088
@@ -299,6 +299,7 @@
 #define VAR_INTERACT_X                0x8016
 #define VAR_INTERACT_Y                0x8017
 #define VAR_LAST_WARP_ID              0x8018
+#define VAR_DIALOG_TAIL_OFFSET        0x8019
 
 #define THIS_EVENT                    0x800F //alias to VAR_LAST_TALKED
 

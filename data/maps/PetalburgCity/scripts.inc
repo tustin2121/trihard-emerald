@@ -1,6 +1,6 @@
 PetalburgCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_MapScript2_1DC31C
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_MapScript2_FrameTable
 	.byte 0
 
 @ -----------------------------------------------------
@@ -9,11 +9,9 @@ PetalburgCity_OnTransition: @ 81DC2D7
 	setflag FLAG_VISITED_PETALBURG_CITY
 	compare VAR_PETALBURG_STATE, 0
 	call_if_eq PetalburgCity_EventScript_1DC307
-	compare VAR_PETALBURG_STATE, 2
-	call_if_eq PetalburgCity_EventScript_1DC30F
-	compare VAR_PETALBURG_STATE, 4
-	call_if_eq PetalburgCity_EventScript_1DC30F
-	compare VAR_PETALBURG_GYM_STATE, 8
+	@ compare VAR_PETALBURG_STATE, 2
+	@ call_if_eq PetalburgCity_EventScript_1DC30F
+	compare VAR_PETALBURG_STATE, 12
 	call_if_eq PetalburgCity_EventScript_1DC316
 	end
 
@@ -21,14 +19,21 @@ PetalburgCity_EventScript_1DC307:: @ 81DC307
 	@ setobjectxyperm 8, 5, 11
 	return
 
-PetalburgCity_EventScript_1DC30F:: @ 81DC30F
-	setflag FLAG_HIDE_MAP_NAME_POPUP
-	savebgm MUS_TSURETEK
-	return
+@ PetalburgCity_EventScript_1DC30F:: @ 81DC30F
+@ 	setflag FLAG_HIDE_MAP_NAME_POPUP
+@ 	savebgm MUS_TSURETEK
+@ 	return
 
 PetalburgCity_EventScript_1DC316:: @ 81DC316
-	setvar VAR_PETALBURG_GYM_STATE, 7
+	setvar VAR_PETALBURG_STATE, 11
 	return
+
+@ -----------------------------------------------------
+
+PetalburgCity_MapScript2_FrameTable: @ 81DC31C
+	@ map_script_2 VAR_PETALBURG_STATE, 2, PetalburgCity_EventScript_1DC32E
+	@ map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_EventScript_1DC390
+	.2byte 0
 
 @ -----------------------------------------------------
 @ Signs
@@ -49,7 +54,7 @@ PetalburgCity_Text_1DCB23: @ 81DCB23
 
 
 PetalburgCity_EventScript_GymSign:: @ 81DC476
-	compare VAR_PETALBURG_GYM_STATE, 2
+	compare VAR_NUM_BADGES, 2
 	goto_if_lt PetalburgCity_EventScript_GymSign2
 	msgbox PetalburgCity_Text_GymSign, MSGBOX_SIGN
 	end
@@ -67,17 +72,15 @@ PetalburgCity_Text_GymSign2:
 
 
 PetalburgCity_EventScript_GymNotice:: @ 81DC491
-	msgbox PetalburgCity_Text_Notice, MSGBOX_DESCRIBE
+	msgbox PetalburgCity_Text_Notice, MSGBOX_SIGN
 	end
 PetalburgCity_Text_Notice:
-	.string "{PLACE}Notice{END}\n"
-	.string "This facility is under police\l"
-	.string "investigation following allegations\l"
-	.string "of misconduct and endangering the\l"
-	.string "life of a trainer.\p"
+	.string "{GYM}Notice{END}\n"
 	.string "This facility is closed until\n"
-	.string "further notice. --HPD$"
-	
+	.string "further notice due to police\n"
+	.string "investigation. Please contact HPD\n"
+	.string "with any information about potential\n"
+	.string "misconduct or endangerment charges.$"
 
 
 @ -----------------------------------------------------
@@ -130,16 +133,23 @@ PetalburgCity_TriggerScript_LoganAunt::
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
-	msgbox PetalburgCity_Text_1DC838
+	selectpointer_from VAR_PETALBURG_STATE, PetalburgCity_Text_1DC838A, PetalburgCity_Text_1DC838B
+	msgbox_selected
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
 	applymovement 1, Common_Movement_FaceRight
 	waitmovement 0
 	release
 	end
-PetalburgCity_Text_1DC838:
+PetalburgCity_Text_1DC838A:
 	.string "Have you seen our nephew?!\n"
 	.string "We need to leave soon!\p"
+	.string "Please help us find him!$"
+PetalburgCity_Text_1DC838B:
+	.string "Have you seen our nephew?!\p"
+	.string "You have?! Where is he?!\p"
+	.string "You don't know?! Well, he has to be\n"
+	.string "around here somewhere!\p"
 	.string "Please help us find him!$"
 
 
@@ -154,194 +164,125 @@ PetalburgCity_Text_1DC839: @ 81DC837
 
 @ -----------------------------------------------------
 
-PetalburgCity_MapScript2_1DC31C: @ 81DC31C
-	@ map_script_2 VAR_PETALBURG_STATE, 2, PetalburgCity_EventScript_1DC32E
-	@ map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_EventScript_1DC390
-	.2byte 0
-
-PetalburgCity_EventScript_1DC32E:: @ 81DC32E
+PetalburgCity_TriggerScript_FindLogan::
 	lockall
-	special SavePlayerParty
-	special PutZigzagoonInPlayerParty
-	applymovement 2, PetalburgCity_Movement_1DC451
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_1DC430
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	special SpawnCameraObject
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceRight
 	waitmovement 0
-	msgbox PetalburgCity_Text_1EC1F8, MSGBOX_DEFAULT
-	special StartWallyTutorialBattle
-	waitstate
-	msgbox PetalburgCity_Text_1EC271, MSGBOX_DEFAULT
-	applymovement 2, Common_Movement_WalkInPlaceLeft, MAP_PETALBURG_CITY
-	waitmovement 2, MAP_PETALBURG_CITY
-	msgbox PetalburgCity_Text_1EC297, MSGBOX_DEFAULT
+	fadenewbgm MUS_DUMMY
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_ExclamationMarkAndWait
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_CAMERA, PetalburgCity_Movement_FindLogan1
+	waitmovement 0
+	markasdialog 16
+	msgbox PetalburgCity_Text_FindLogan2
 	closemessage
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	setvar VAR_PETALBURG_STATE, 3
-	fadedefaultbgm
-	clearflag FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT
-	special LoadPlayerParty
-	setvar VAR_PETALBURG_GYM_STATE, 1
-	warp MAP_PETALBURG_CITY_GYM, 255, 4, 108
+	delay 40
+	subvar VAR_INTERACT_Y, 16
+	selectpointer_clamp PetalburgCity_MovementTable_FindLogan3, VAR_INTERACT_Y
+	applymovement EVENT_OBJ_ID_PLAYER, 0
+	waitmovement 0
+	delay 30
+	setobjectxy EVENT_OBJ_ID_PLAYER, 20, 17
+	setobjectxyperm 1, 20, 18
+	setobjectxyperm 5, 20, 18
+	addobject 1
+	addobject 5
+	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_FindLogan4a
+	applymovement 1, PetalburgCity_Movement_FindLogan4b
+	applymovement 5, PetalburgCity_Movement_FindLogan4c
+	fadescreenspeed 1, 10
+	waitmovement 0
+	special RemoveCameraObject
+	setvar VAR_PETALBURG_STATE, 2
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN_RELATIVES
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN
+	clearflag FLAG_HIDE_PETALBURG_CITY_GYM_LOCK
+	clearflag FLAG_HIDE_PETALBURG_CENTER_LOGAN
+	@ fadeinbgm 0
+	warpcustom MAP_PETALBURG_CITY_POKEMON_CENTER_2F, 255, 14, 17
 	waitstate
 	releaseall
 	end
-PetalburgCity_Movement_1DC451: @ 81DC451
-	delay_8
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
+PetalburgCity_Movement_FindLogan1:
 	walk_right
 	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	walk_right
-	delay_16
-	walk_in_place_fastest_up
+	step_end
+PetalburgCity_Text_FindLogan2:
+	.string "I… … did it… … …\p"
+	.string "I… caught a R-Ralts… … …\n"
+	.string "all… by my… … myself… … …$"
+.align 2
+PetalburgCity_MovementTable_FindLogan3:
+	.4byte PetalburgCity_Movement_FindLogan3b
+	.4byte PetalburgCity_Movement_FindLogan3a
+	.4byte 0
+PetalburgCity_Movement_FindLogan3a:
+	lock_facing_direction
+	walk_left
+	walk_left
 	delay_16
 	delay_16
-	walk_in_place_fastest_right
+	unlock_facing_direction
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
 	step_end
-PetalburgCity_Movement_1DC430: @ 81DC430
+PetalburgCity_Movement_FindLogan3b:
+	lock_facing_direction
+	walk_left
+	walk_left
+	delay_16
+	delay_16
+	unlock_facing_direction
+	walk_fast_down
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+PetalburgCity_Movement_FindLogan4a:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_right
+	step_end
+PetalburgCity_Movement_FindLogan4b:
 	delay_8
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	walk_in_place_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
 	step_end
-PetalburgCity_Text_1EC1F8: @ 81EC1F8
-	.string "{RIVAL_HERO}: {PLAYER}…\n"
-	.string "Pokémon hide in tall grass like this,\l"
-	.string "don't they?\p"
-	.string "Please watch me and see if I can\n"
-	.string "catch one properly.\p"
-	.string "…Whoa!$"
-PetalburgCity_Text_1EC271: @ 81EC271
-	.string "{RIVAL_HERO}: I did it… It's my…\n"
-	.string "My Pokémon!$"
-PetalburgCity_Text_1EC297: @ 81EC297
-	.string "{PLAYER}, thank you!\n"
-	.string "Let's go back to the GYM!$"
-
-
-PetalburgCity_EventScript_1DC390:: @ 81DC390
-	lockall
-	setflag FLAG_HIDE_MAP_NAME_POPUP
-	applymovement 5, PetalburgCity_Movement_1DC41B
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_1DC406
-	waitmovement 0
-	setvar VAR_0x8004, 7
-	setvar VAR_0x8005, 5
-	opendoor VAR_0x8004, VAR_0x8005
-	waitdooranim
-	applymovement 5, PetalburgCity_Movement_1DC42D
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_1DC418
-	waitmovement 0
-	setflag FLAG_HIDE_PETALBURG_CITY_GYM_LOCK
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
-	closedoor VAR_0x8004, VAR_0x8005
-	waitdooranim
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	fadedefaultbgm
-	clearflag FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT
-	warp MAP_PETALBURG_CITY_WALLYS_HOUSE, 255, 2, 4
-	waitstate
-	releaseall
-	end
-PetalburgCity_Movement_1DC41B: @ 81DC41B
+PetalburgCity_Movement_FindLogan4c:
+	delay_16
 	delay_8
-	walk_down
-	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
 	step_end
-PetalburgCity_Movement_1DC406: @ 81DC406
-	delay_8
-	walk_down
-	walk_down
-	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-PetalburgCity_Movement_1DC42D: @ 81DC42D
-	walk_up
-	set_invisible
-	step_end
-PetalburgCity_Movement_1DC418: @ 81DC418
-	walk_up
-	walk_up
-	step_end
-
 
 @ -----------------------------------------------------
 

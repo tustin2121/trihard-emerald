@@ -76,8 +76,8 @@ LavaridgeTown_Gym_1F_EventScript_1FE7C1:: @ 81FE7C1
 	setflag FLAG_FLANNERY_GIVES_BADGE_INFO
 	setflag FLAG_DEFEATED_LAVARIDGE_GYM
 	setflag FLAG_BADGE04_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
-	compare VAR_PETALBURG_GYM_STATE, 6
+	addvar VAR_NUM_BADGES, 1
+	compare VAR_NUM_BADGES, 6
 	call_if_eq LavaridgeTown_Gym_1F_EventScript_271E84
 	setvar VAR_0x8008, 4
 	call LavaridgeTown_Gym_1F_EventScript_271F43

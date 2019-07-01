@@ -1,6 +1,7 @@
 
 #define LID_NORMAN 1
-#define LID_WALLY 10
+#define LID_LOGAN 10
+#define LID_OLDLEADER 11
 
 
 PetalburgCity_Gym_MapScripts:: @ 8204889
@@ -13,9 +14,9 @@ PetalburgCity_Gym_MapScripts:: @ 8204889
 @ -----------------------------------------------------
 
 PetalburgCity_Gym_OnLoad: @ 820489E
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_NUM_BADGES, 6
 	goto_if_eq PetalburgCity_Gym_EventScript_2048B5
-	compare VAR_PETALBURG_GYM_STATE, 7
+	compare VAR_NUM_BADGES, 7
 	call_if_ge PetalburgCity_Gym_RunAllGymSpecials
 	end
 
@@ -53,16 +54,16 @@ PetalburgCity_Gym_RunAllGymSpecials:: @ 82048FF
 @ -----------------------------------------------------
 
 PetalburgCity_Gym_OnTransition: @ 820492D
-	compare VAR_PETALBURG_GYM_STATE, 1
-	call_if_eq PetalburgCity_Gym_EventScript_20494D
-	@ compare VAR_PETALBURG_GYM_STATE, 6
+	@ compare VAR_NUM_BADGES, 1
+	@ call_if_eq PetalburgCity_Gym_EventScript_20494D
+	@ compare VAR_NUM_BADGES, 6
 	@ call_if_lt PetalburgCity_Gym_EventScript_204955
 	call_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_20495D
 	end
 
-PetalburgCity_Gym_EventScript_20494D:: @ 820494D
-	setobjectxyperm LID_WALLY, 5, 108
-	return
+@ PetalburgCity_Gym_EventScript_20494D:: @ 820494D
+@ 	setobjectxyperm LID_LOGAN, 5, 108
+@ 	return
 
 @ PetalburgCity_Gym_EventScript_204955:: @ 8204955
 @ 	setobjectxyperm LID_NORMAN, 4, 107
@@ -73,23 +74,86 @@ PetalburgCity_Gym_EventScript_20495D:: @ 820495D
 	specialvar VAR_RESULT, IsTrainerReadyForRematch
 	compare VAR_RESULT, 1
 	goto_if_eq PetalburgCity_Gym_EventScript_204985
-	compare VAR_PETALBURG_GYM_STATE, 8
+	compare VAR_NUM_BADGES, 8
 	goto_if_eq PetalburgCity_Gym_EventScript_204985
 	setobjectxyperm LID_NORMAN, 4, 107
 	return
 
 PetalburgCity_Gym_EventScript_204985:: @ 8204985
-	setvar VAR_PETALBURG_GYM_STATE, 8
+	setvar VAR_NUM_BADGES, 8
 	end
 
 @ -----------------------------------------------------
 
+PetalburgCity_Gym_MapScript2_FrameTable: @ 820499A
+	map_script_2 VAR_PETALBURG_STATE, 0, PetalburgCity_Gym_EventScript_LoganScene
+	.2byte 0
+
+PetalburgCity_Gym_EventScript_LoganScene::
+	lockall
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp1
+	waitmovement 0
+	applymovement LID_LOGAN, Common_Movement_Angry
+	markasdialog -6
+	msgbox PetalburgCity_Gym_Text_LoganScene1
+	waitmovement 0
+	closemessage
+	markasdialog 6
+	applymovement LID_OLDLEADER, PetalburgCity_Gym_Movement_LoganScene2b
+	applymovement LID_LOGAN, PetalburgCity_Gym_Movement_LoganScene2a
+	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_LoganScene2c
+	waitmovement 0
+	playse SE_KAIDAN
+	removeobject LID_LOGAN
+	msgbox PetalburgCity_Gym_Text_LoganScene3
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	msgbox PetalburgCity_Gym_Text_LoganScene4
+	setvar VAR_PETALBURG_STATE, 1
+	setflag FLAG_HIDE_PETALBURG_GYM_WALLY
+	clearflag FLAG_HIDE_PETALBURG_CITY_LOGAN
+	releaseall
+	end
+PetalburgCity_Gym_Text_LoganScene1:
+	.string "If you won't help me, then I'll\n"
+	.string "just go do it myself!$"
+PetalburgCity_Gym_Movement_LoganScene2a:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	set_invisible
+	step_end
+PetalburgCity_Gym_Movement_LoganScene2b:
+	delay_8
+	walk_in_place_fastest_down
+	step_end
+PetalburgCity_Gym_Movement_LoganScene2c:
+	delay_16
+	face_right
+	delay_8
+	face_down
+	step_end
+PetalburgCity_Gym_Text_LoganScene3:
+	.string "Good! It's not my job to just give\n"
+	.string "away Pokémon like they're candy!\p"
+	.string "Go find a man in a lab coat if you\n"
+	.string "want a handout!$"
+PetalburgCity_Gym_Text_LoganScene4:
+	.string "And what do you want?\p"
+	.string "If you're here to challenge me,\n"
+	.string "bug off. I don't accept challenges\l"
+	.string "from anyone under four badges.$"
+	
+
+@ -----------------------------------------------------
+
 PetalburgCity_Gym_MapScript2_WarpTable: @ 820498B
-	map_script_2 VAR_PETALBURG_GYM_STATE, 1, PetalburgCity_Gym_EventScript_204995
+	map_script_2 VAR_PETALBURG_STATE, 0, PetalburgCity_Gym_EventScript_204995
 	.2byte 0
 
 PetalburgCity_Gym_EventScript_204995:: @ 8204995
-	turnobject EVENT_OBJ_ID_PLAYER, 2
+	@ turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
+	turnobject LID_OLDLEADER, DIR_EAST
 	end
 
 @ -----------------------------------------------------
@@ -124,7 +188,7 @@ PetalburgCity_Gym_Text_GymSignageNameList3:
 
 PetalburgCity_Gym_GymSignage_OldLeader:
 	msgbox PetalburgCity_Gym_Text_GymSignageTitle_Old, MSGBOX_SIGN
-	msgbox PetalburgCity_Gym_Text_GymSignageNameList_Old, MSGBOX_DESCRIBE
+	msgbox PetalburgCity_Gym_Text_GymSignageNameList_Old, MSGBOX_SIGN
 	releaseall
 	end
 PetalburgCity_Gym_Text_GymSignageTitle_Old: @ 820744C
@@ -132,11 +196,11 @@ PetalburgCity_Gym_Text_GymSignageTitle_Old: @ 820744C
 	.string "Malaqui's Certified Trainers:$"
 PetalburgCity_Gym_Text_GymSignageNameList_Old:
 	.string "Virginia, Johnny, Margaret, Gregg,\n"
-	.string "Curtis, Drake, Eileen, Charlie,\n{SHIFT_TEXT}"
-	.string "Glacia, Daniel, Sidney, Darlene,\n{SHIFT_TEXT}"
-	.string "Kelly, Wallace, Clifton, Leslie,\n{SHIFT_TEXT}"
-	.string "Steven, Roxanne, Katie, Phoebe,\n{SHIFT_TEXT}"
-	.string "Connor, Holly, Alexis, Flannery,\n{SHIFT_TEXT}"
+	.string "Curtis, Drake, Eileen, Charlie,\n"
+	.string "Glacia, Daniel, Sidney, Darlene,\n"
+	.string "Kelly, Wallace, Clifton, Leslie,\n"
+	.string "Steven, Roxanne, Katie, Phoebe,\n"
+	.string "Connor, Holly, Alexis, Flannery,\n"
 	.string "Ethan, {RIVAL_BIRCH}$"
 
 
@@ -175,6 +239,15 @@ PetalburgCity_Gym_Text_2066F3: @ 82066F3
 	.string "What a stunning battle!$"
 
 
+PetalburgCity_Gym_EventScript_OldLeader::
+	msgbox PetalburgCity_Gym_Text_OldLeader, MSGBOX_NPC
+	end
+PetalburgCity_Gym_Text_OldLeader:
+	.string "I don't accept challenges from\n"
+	.string "anyone with less than four badges.\p"
+	.string "So kindly go away.$"
+
+
 @ -----------------------------------------------------
 @ Gym Puzzle
 
@@ -197,7 +270,7 @@ PetalburgCity_Gym_EventScript_EnterDoor:: @ 820516C
 
 PetalburgCity_Gym_EventScript_205187:: @ 8205187
 	lockall
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_NUM_BADGES, 6
 	goto_if_lt PetalburgCity_Gym_EventScript_LockedDoor
 	setvar VAR_0x8008, 1
 	setvar VAR_0x8009, 98
@@ -214,7 +287,7 @@ PetalburgCity_Gym_Text_207280: @ 8207280
 
 PetalburgCity_Gym_EventScript_205137:: @ 8205137
 	lockall
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_NUM_BADGES, 6
 	goto_if_lt PetalburgCity_Gym_EventScript_LockedDoor
 	setvar VAR_0x8008, 7
 	setvar VAR_0x8009, 85
@@ -759,10 +832,6 @@ PetalburgCity_Gym_EventScript_205733:: @ 8205733
 @ -----------------------------------------------------
 @ Norman:
 
-PetalburgCity_Gym_MapScript2_FrameTable: @ 820499A
-	@ map_script_2 VAR_PETALBURG_GYM_STATE, 1, PetalburgCity_Gym_EventScript_2049A4
-	.2byte 0
-
 .align 2
 PetalburgCity_Gym_PointerTable_Norman:
 	.4byte PetalburgCity_Gym_EventScript_NormanDummied @ 0
@@ -780,7 +849,7 @@ PetalburgCity_Gym_EventScript_Norman:: @ 82049F1
 	lock
 	markasdialog
 	faceplayer
-	selectpointer_clamp PetalburgCity_Gym_PointerTable_Norman, VAR_PETALBURG_GYM_STATE
+	selectpointer_clamp PetalburgCity_Gym_PointerTable_Norman, VAR_NUM_BADGES
 	goto 0 @ Goto the select script
 	end
 
@@ -800,7 +869,7 @@ PetalburgCity_Gym_EventScript_NormanFight:: @ 8204E3B
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PetalburgCity_Gym_Text_20618A, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_PETALBURG_GYM
-	setvar VAR_PETALBURG_GYM_STATE, 7
+	setvar VAR_NUM_BADGES, 7
 	setflag FLAG_BADGE05_GET
 	special PreventDewfordHealSoftlock
 	call PetalburgCity_Gym_DisableMrBriney
@@ -872,3 +941,6 @@ PetalburgCity_Gym_Text_206254: @ 8206254
 
 @ -----------------------------------------------------
 
+#undef LID_NORMAN
+#undef LID_LOGAN
+#undef LID_OLDLEADER

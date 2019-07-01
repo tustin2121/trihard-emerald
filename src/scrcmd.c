@@ -799,6 +799,20 @@ bool8 ScrCmd_warpsilent(struct ScriptContext *ctx)
     return TRUE;
 }
 
+bool8 ScrCmd_warpcustom(struct ScriptContext *ctx)
+{
+    u8 mapGroup = ScriptReadByte(ctx);
+    u8 mapNum = ScriptReadByte(ctx);
+    u8 warpId = ScriptReadByte(ctx);
+    u16 x = VarGet(ScriptReadHalfword(ctx));
+    u16 y = VarGet(ScriptReadHalfword(ctx));
+
+    SetWarpDestination(mapGroup, mapNum, warpId, x, y);
+    DoCustomWarp();
+    ResetInitialPlayerAvatarState();
+    return TRUE;
+}
+
 bool8 ScrCmd_warpdoor(struct ScriptContext *ctx)
 {
     u8 mapGroup = ScriptReadByte(ctx);
@@ -1003,13 +1017,18 @@ bool8 ScrCmd_fadenewbgm(struct ScriptContext *ctx)
 bool8 ScrCmd_fadeoutbgm(struct ScriptContext *ctx)
 {
     u8 speed = ScriptReadByte(ctx);
+    u8 wait = ScriptReadByte(ctx);
 
     if (speed != 0)
         FadeOutBGMTemporarily(4 * speed);
     else
         FadeOutBGMTemporarily(4);
-    SetupNativeScript(ctx, IsBGMPausedOrStopped);
-    return TRUE;
+    if (wait) {
+        SetupNativeScript(ctx, IsBGMPausedOrStopped);
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 bool8 ScrCmd_fadeinbgm(struct ScriptContext *ctx)
@@ -1284,6 +1303,7 @@ bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
     EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
     sub_80D338C();
     UnfreezeEventObjects();
+    gSpecialVar_DialogTailOffset = 38;
     return FALSE;
 }
 
@@ -1298,6 +1318,7 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
     EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
     sub_80D338C();
     UnfreezeEventObjects();
+    gSpecialVar_DialogTailOffset = 38;
     return FALSE;
 }
 
@@ -1383,7 +1404,7 @@ bool8 SrcCmd_messagesign(struct ScriptContext *ctx)
     gBrailleWindowId = AddWindow(&win);
     LoadStdWindowFrame();
     DrawSignWindowFrame(gBrailleWindowId, TRUE);
-    PopupSignMessageBox(win.height+1);
+    PopupSignMessageBox(min(win.height+1, 9));
     AddTextPrinterParameterized(gBrailleWindowId, 1, gStringVar4, 0, 1, 0, NULL);
     SetupNativeScript(ctx, WaitForSignPopup);
     return TRUE;
@@ -1530,14 +1551,24 @@ bool8 ScrCmd_multichoicegrid(struct ScriptContext *ctx)
     }
 }
 
-bool8 ScrCmd_erasebox(struct ScriptContext *ctx)
+bool8 ScrCmd_advancetime(struct ScriptContext *ctx)
 {
-    u8 left = ScriptReadByte(ctx);
-    u8 top = ScriptReadByte(ctx);
-    u8 right = ScriptReadByte(ctx);
-    u8 bottom = ScriptReadByte(ctx);
-
-    // MenuZeroFillWindowRect(left, top, right, bottom);
+    u8 hour = ScriptReadByte(ctx);
+    u8 min = ScriptReadByte(ctx);
+    u16 deviation = ScriptReadHalfword(ctx);
+    
+    if (deviation > 0) 
+    {
+        s16 totalMins = hour * 60 + min;
+        u16 rand = Random();
+        
+        totalMins += (rand % (deviation*2)) - deviation;
+        
+        hour = totalMins / 60;
+        min = totalMins % 60;
+    }
+    
+    AdvanceRealtimeClock(hour, min);
     return FALSE;
 }
 

@@ -6,8 +6,11 @@
 	.endm
 	
 	@ Sets the next messages as a dialogue text box
-	.macro markasdialog
+	.macro markasdialog tailOff=0
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DIALOG
+	.if \tailOff != 0
+	setvar VAR_DIALOG_TAIL_OFFSET, (\tailOff + 32)
+	.endif
 	.endm
 	
 	@ Calls msgbox on a previously selected and loaded string.
@@ -21,10 +24,10 @@
 	.macro selectpointer_from var:req, entry1:req, entry2:req, entry3=0, entry4=0
 	loadword 0, \entry1 
 	loadword 1, \entry2
-	.if \entry3
+	.if \entry3 != 0
 		loadword 2, \entry3
 	.endif
-	.if \entry4
+	.if \entry4 != 0
 		loadword 3, \entry4
 	.endif
 	selectpointer 0, \var

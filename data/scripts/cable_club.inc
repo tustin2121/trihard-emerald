@@ -182,7 +182,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276C85:: @ 8276C85
 	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -193,7 +193,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276C9D:: @ 8276C9D
 	call OldaleTown_PokemonCenter_2F_EventScript_277C1D
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -216,7 +216,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276CE7:: @ 8276CE7
 	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -238,7 +238,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276D2C:: @ 8276D2C
 	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -261,7 +261,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276D6C:: @ 8276D6C
 	call OldaleTown_PokemonCenter_2F_EventScript_277BD1
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -941,7 +941,7 @@ EventScript_ConfirmLeaveTradeRoom:: @ 82774EF
 	msgbox Text_TerminateLinkConfirmation, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq EventScript_TerminateLink
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 

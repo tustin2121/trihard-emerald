@@ -1,0 +1,13 @@
+VAR_PETALBURG_STATE :=
+	0 = Looking for Logan
+		FLAG_HIDE_PETALBURG_CITY_LOGAN_RELATIVES => FALSE
+	1 = Logan is in the tall grass
+		FLAG_HIDE_PETALBURG_CITY_LOGAN_RELATIVES => FALSE
+	2 = Logan aftermath cutscene
+	3 = Gym is shut down, Logan in Center
+		FLAG_HIDE_PETALBURG_CITY_LOGAN_RELATIVES => TRUE
+		FLAG_HIDE_PETALBURG_CITY_GYM_LOCK => FALSE
+	4 = Gym is still shutdown
+	10 = Gym is open, undefeated
+	11 = Gym is open, defeated
+	12 = Go to 11

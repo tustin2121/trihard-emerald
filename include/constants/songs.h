@@ -10,7 +10,7 @@
 #define SE_WIN_OPEN 6           // Start Menu
 #define SE_WALL_HIT 7           // Wall Bump
 #define SE_DOOR 8               // Opening Door
-#define SE_KAIDAN 9             // Stairs
+#define SE_KAIDAN 9             // Stairs, exiting house
 #define SE_DANSA 10             // Ledge
 #define SE_JITENSYA 11          // Bicycle Bell
 #define SE_KOUKA_L 12           // Not Very Effective

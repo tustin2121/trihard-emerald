@@ -317,7 +317,7 @@
 #define FLAG_RIVAL_LEFT_FOR_ROUTE103         0x12D
 #define FLAG_OMIT_DIVE_FROM_STEVEN_LETTER    0x12E
 #define FLAG_HAS_MATCH_CALL                  0x12F
-#define FLAG_ADDED_CONDITION_TO_POKENAV     0x130
+#define FLAG_ADDED_CONDITION_TO_POKENAV      0x130
 #define FLAG_REGISTERED_STEVEN_POKENAV       0x131
 #define FLAG_ENABLE_NORMAN_MATCH_CALL        0x132
 #define FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN 0x133 // Set after you follow Steven to the entrance of the Cave of Origin.
@@ -676,9 +676,9 @@
 #define FLAG_HIDE_ROUTE_103_RIVAL                                   0x2D3
 #define FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE                    0x2D4
 #define FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT                        0x2D5
-#define FLAG_HIDE_PETALBURG_CITY_WALLY                              0x2D6
+#define FLAG_HIDE_PETALBURG_CITY_LOGAN                              0x2D6
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
-#define FLAG_HIDE_PETALBURG_CITY_WALLYS_AUNT                        0x2D8
+#define FLAG_HIDE_PETALBURG_CITY_LOGAN_RELATIVES                    0x2D8
 #define FLAG_HIDE_ROUTE_117_POLICEMAN                               0x2D9
 #define FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER                     0x2DA
 #define FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT                          0x2DB
@@ -985,7 +985,7 @@
 #define FLAG_ITEM_ROUTE_120_NUGGET                                  0x406
 #define FLAG_ITEM_ROUTE_120_FULL_HEAL                               0x407
 #define FLAG_ITEM_ROUTE_123_CALCIUM                                 0x408
-#define FLAG_ITEM_STOLEN_PETALBURG_POTION                            0x409 // TriHard
+#define FLAG_ITEM_STOLEN_PETALBURG_POTION                           0x409 // TriHard
 #define FLAG_ITEM_ROUTE_127_ZINC                                    0x40A
 #define FLAG_ITEM_ROUTE_127_CARBOS                                  0x40B
 #define FLAG_ITEM_ROUTE_132_RARE_CANDY                              0x40C
@@ -1134,7 +1134,7 @@
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET                     0x491
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
-#define FLAG_UNUSED_0x493                                           0x493 // Unused Flag
+#define FLAG_HIDE_PETALBURG_CENTER_LOGAN                            0x493 // Trihard
 #define FLAG_UNUSED_0x494                                           0x494 // Unused Flag
 #define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
 #define FLAG_UNUSED_0x496                                           0x496 // Unused Flag

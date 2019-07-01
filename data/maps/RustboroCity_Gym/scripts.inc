@@ -19,10 +19,10 @@ RustboroCity_Gym_EventScript_212F66:: @ 8212F66
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
 	setflag FLAG_BADGE01_GET
 	setvar VAR_RUSTBORO_STATE, 1
-	addvar VAR_PETALBURG_GYM_STATE, 1
+	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 1
 	call RustboroCity_Gym_EventScript_271F43
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_NUM_BADGES, 6
 	call_if_eq RustboroCity_Gym_EventScript_271E84
 	goto RustboroCity_Gym_EventScript_212FA4
 	end

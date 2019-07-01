@@ -369,9 +369,10 @@
 	.endm
 
 	@ Fades out the currently-playing song.
-	.macro fadeoutbgm speed:req
+	.macro fadeoutbgm speed:req, wait=1
 	.byte 0x37
 	.byte \speed
+	.byte \wait
 	.endm
 
 	@ Fades the previously-playing song back in.
@@ -854,29 +855,32 @@
 	.byte \per_row
 	.byte \B
 	.endm
-
-	@ Nopped in Emerald.
-	.macro drawbox
+	
+	@ Clone of warp that does not play a sound effect nor fade the screen.
+	.macro warpcustom map:req, warp:req, X:req, Y:req
 	.byte 0x72
+	map \map
+	.byte \warp
+	.2byte \X
+	.2byte \Y
 	.endm
 
-	@ Nopped in Emerald, but still consumes parameters.
-	.macro erasebox byte1:req, byte2:req, byte3:req, byte4:req
+	@ Advances the time of day by the given time
+	.macro advancetime hour:req, min:req, deviation=0
 	.byte 0x73
-	.byte \byte1
-	.byte \byte2
-	.byte \byte3
-	.byte \byte4
+	.byte \hour
+	.byte \min
+	.2byte \deviation
 	.endm
 
 	@ Nopped in Emerald, but still consumes parameters.
-	.macro drawboxtext byte1:req, byte2:req, byte3:req, byte4:req
-	.byte 0x74
-	.byte \byte1
-	.byte \byte2
-	.byte \byte3
-	.byte \byte4
-	.endm
+	@ .macro drawboxtext byte1:req, byte2:req, byte3:req, byte4:req
+	@ .byte 0x74
+	@ .byte \byte1
+	@ .byte \byte2
+	@ .byte \byte3
+	@ .byte \byte4
+	@ .endm
 
 	@ Displays a box containing the front sprite for the specified (species) Pokemon species.
 	.macro drawmonpic species:req, x:req, y:req
