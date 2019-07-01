@@ -31,10 +31,5 @@ To set up the repository:
 
 To build **trihard-emerald.gba**:
 
-	make -j$(nproc)
+	make
 
-If only `.c` or `.s` files were changed, turn off the dependency scanning temporarily. Changes to any other files will be ignored and the build will either fail or not reflect those changes.
-
-	make -j$(nproc) NODEP=1
-
-**Note:** If the build command is not recognized on Linux, including the Linux environment used within Windows, run `nproc` and replace `$(nproc)` with the returned value (e.g.: `make -j4`). Because `nproc` is not available on macOS, the alternative is `sysctl -n hw.ncpu`.
