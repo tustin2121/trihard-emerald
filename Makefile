@@ -129,7 +129,6 @@ clean: tidy cleanmaps
 	rm -f $(SONG_OBJS) $(MID_OBJS) $(MID_SUBDIR)/*.s
 	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
 	rm -f $(DATA_ASM_SUBDIR)/layouts/layouts.inc $(DATA_ASM_SUBDIR)/layouts/layouts_table.inc
-	@$(MAKE) clean -C berry_fix
 	@$(MAKE) clean -C tools/gbagfx
 	@$(MAKE) clean -C tools/scaninc
 	@$(MAKE) clean -C tools/preproc
