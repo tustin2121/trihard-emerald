@@ -1073,6 +1073,8 @@ static bool16 ShouldLegendaryMusicPlayAtLocation(struct WarpData *warp)
             }
         }
     }
+    if (warp->mapGroup == MAP_GROUP(SOOTOPOLIS_CITY_POKEMON_CENTER_1F))
+        return TRUE;
     return FALSE;
 }
 

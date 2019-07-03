@@ -27,6 +27,8 @@
 #include "constants/maps.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/species.h"
+#include "constants/items.h"
 
 // Reference to an assembly defined constant, the start of the ROM
 // We don't actually use the value, just the address it's at.
@@ -39,7 +41,12 @@ extern const u8 DebugScript_ShowPCBox[];
 extern const u8 DebugScript_ShowDebugScreen[];
 extern const u8 DebugScript_ShowSoundTest[];
 extern const u8 DebugScript_MessageEnd[];
+extern const u8 DebugScript_SetLegendaryWeatherBefore[];
+extern const u8 DebugScript_SetLegendaryWeatherDuring[];
+extern const u8 DebugScript_SetLegendaryWeatherAfter[];
+extern const u8 DebugScript_SetLegendaryWeatherAfterGym[];
 extern const u8 DebugScript_GiveDebugPartyAndSetFlags[];
+extern const u8 DebugScript_GiveDebugPartyMessage[];
 
 typedef void (*DebugFunc)(void);
 
@@ -57,6 +64,8 @@ static void DebugHandle_SetWeather();
 static void DebugHandle_ShowSoundTest();
 static void DebugHandle_SetFlag();
 static void DebugHandle_SetVar();
+static void DebugHandle_SetLegendaryFight();
+static void DebugHandle_GiveDebugParty();
 static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
@@ -84,6 +93,8 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_ShowSoundTest,
 	DebugHandle_SetFlag,
 	DebugHandle_SetVar,
+	DebugHandle_SetLegendaryFight,
+	DebugHandle_GiveDebugParty,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -286,6 +297,50 @@ void DebugHandle_SetVar()
     StringExpandPlaceholders(gStringVar4, sText_TestStringVar);
     ShowFieldAutoScrollMessage(gStringVar4);
 	ScriptContext1_SetupScript(DebugScript_MessageEnd);
+	
+	DebugSetCallbackSuccess();
+}
+
+// arguments: 
+// 	 args[0] = on/off
+// returns: none
+void DebugHandle_SetLegendaryFight()
+{
+	switch (gDebugInterrupts.args[0]) {
+		case 0:
+		default:
+			ScriptContext1_SetupScript(DebugScript_SetLegendaryWeatherBefore);
+			break;
+		case 1:
+			ScriptContext1_SetupScript(DebugScript_SetLegendaryWeatherDuring);
+			break;
+		case 2:
+			ScriptContext1_SetupScript(DebugScript_SetLegendaryWeatherAfter);
+			break;
+		case 3:
+			ScriptContext1_SetupScript(DebugScript_SetLegendaryWeatherAfterGym);
+			break;
+	}
+	
+	DebugHandle_ReloadMap();
+}
+
+// arguments: none
+// returns: none
+void DebugHandle_GiveDebugParty()
+{
+	u16 val;
+	
+	ZeroPlayerPartyMons();
+	CreateMon(&gPlayerParty[0], SPECIES_QUILAVA, 60, 31, 0, 0, 0, 0);
+	CreateMon(&gPlayerParty[1], SPECIES_WAILMER, 30, 32, 0, 0, 0, 0);
+	CreateMon(&gPlayerParty[2], SPECIES_SWELLOW, 30, 32, 0, 0, 0, 0);
+	CreateMon(&gPlayerParty[3], SPECIES_BRELOOM, 27, 32, 0, 0, 0, 0);
+	CreateMon(&gPlayerParty[4], SPECIES_RATTATA, 2, 32, 0, 0, 0, 0);
+	
+	val = ITEM_EVERSTONE;
+	SetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM, &val);
+	ScriptContext1_SetupScript(DebugScript_GiveDebugPartyMessage);
 	
 	DebugSetCallbackSuccess();
 }

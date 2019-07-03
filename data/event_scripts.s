@@ -5660,3 +5660,5 @@ gText_082C877B:: @ 82C877B
 	.include "data/scripts/te_debug.inc"
 
 	.include "data/maps/SootopolisLegendsEdit/scripts.inc"
+
+	.include "data/maps/SootopolisCity_PokemonCenter_Alt/scripts.inc"

@@ -16,6 +16,8 @@ const DebugHandle_SetWeather = 8;
 const DebugHandle_ShowSoundTest = 9;
 const DebugHandle_SetFlag = 10;
 const DebugHandle_SetVar = 11;
+const DebugHandle_SetLegendaryFight = 12;
+const DebugHandle_GiveDebugParty = 13;
 
 // Menu Functions
 function initMenuV1() {
@@ -50,7 +52,12 @@ function initMenuV1() {
 		let $m = $subMenus['submenu1'] = $('<ul>').appendTo('body');
 		$(`<li>&lt; Back</li>`).appendTo($m)
 			.on('click', function(){ switchMenu(); });
-		$(`<li>Play Credits</li>`).appendTo($m)
+		$(`<li>Replace Party with Debug Team</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_GiveDebugParty });
+				switchMenu();
+			});
+			$(`<li>Play Credits</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowCredits });
 				switchMenu();
@@ -60,6 +67,8 @@ function initMenuV1() {
 				writeInterrupts({ funcId: DebugHandle_ShowSoundTest });
 				switchMenu();
 			});
+		$(`<li>Set Legendary Fight…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('legendary'); });
 	}{
 		let $m = $subMenus['debugopts'] = $('<ul>').appendTo('body');
 		$(`<li>Skip Battles</li>`).appendTo($m)
@@ -117,6 +126,30 @@ function initMenuV1() {
 			] });
 			switchMenu();
 		}));
+	}{
+		let $m = $subMenus['legendary'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Cancel</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
+		$(`<li>Before</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetLegendaryFight, args:[0] });
+				switchMenu();
+			});
+		$(`<li>During</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetLegendaryFight, args:[1] });
+				switchMenu();
+			});
+		$(`<li>After</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetLegendaryFight, args:[2] });
+				switchMenu();
+			});
+		$(`<li>After Gym</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetLegendaryFight, args:[3] });
+				switchMenu();
+			});
 	}{
 		let $m = $subMenus['forceopts'] = $('<ul>').appendTo('body');
 		$(`<li>Text Speed: </li>`).appendTo($m)

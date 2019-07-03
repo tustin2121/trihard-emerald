@@ -4409,6 +4409,16 @@
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_MysteryEventsHouse",
             "width": 11
+        },
+        {
+            "blockdata_filepath": "data/layouts/SootopolisCity_PokemonCenter_Alt/map.bin",
+            "border_filepath": "data/layouts/SootopolisCity_PokemonCenter_Alt/border.bin",
+            "height": 14,
+            "id": "LAYOUT_SOOTOPOLIS_CITY_POKEMON_CENTER_ALT",
+            "name": "SootopolisCity_PokemonCenter_Alt_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_PokemonCenter",
+            "width": 20
         }
     ],
     "layouts_table_label": "gMapLayouts"
