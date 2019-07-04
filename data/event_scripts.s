@@ -631,19 +631,6 @@ EventScript_23B6D7:: @ 823B6D7
 	msgbox Text_2769FF, MSGBOX_SIGN
 	end
 
-gText_23B6E0:: @ 823B6E0
-	.string "There's a small indent in the wall.$"
-
-gText_23B704:: @ 823B704
-	.string "There's a small indent in the wall.\p"
-	.string "Use the SECRET POWER?$"
-
-gText_23B73E:: @ 823B73E
-	.string "Discovered a small cavern!$"
-
-SecretBase_RedCave1_Text_23B759: @ 823B759
-	.string "Want to make your SECRET BASE here?$"
-
 	.include "data/maps/SingleBattleColosseum/scripts.inc"
 	.include "data/maps/TradeCenter/scripts.inc"
 	.include "data/maps/RecordCorner/scripts.inc"
@@ -1521,25 +1508,6 @@ Route109_EventScript_271E95:: @ 8271E95
 	copyvar VAR_0x8008, VAR_BRINEY_LOCATION
 	setvar VAR_BRINEY_LOCATION, 0
 	return
-
-EventScript_UseSurf:: @ 8271EA0
-	checkpartymove MOVE_SURF
-	compare VAR_RESULT, 6
-	goto_if_eq EventScript_CantSurf
-	bufferpartymonnick 0, VAR_RESULT
-	setfieldeffectargument 0, VAR_RESULT
-	lockall
-	msgbox gText_WantToUseSurf, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq EventScript_CancelSurf
-	msgbox gText_PlayerUsedSurf, MSGBOX_DEFAULT
-	dofieldeffect FLDEFF_USE_SURF
-
-EventScript_CancelSurf:: @ 8271ED5
-	releaseall
-
-EventScript_CantSurf:: @ 8271ED6
-	end
 
 EventScript_271F1F:: @ 8271F1F
 	checkplayergender

@@ -137,6 +137,34 @@ DebugScript_GiveDebugPartyAndSetFlags::
 	releaseall
 	return
 
+DebugScript_TestScript1::
+	lockall
+	msgbox ScriptText_TS1
+	checkpartycapability CAPABILITY_SURF
+	bufferpartymonnick 0, VAR_RESULT
+	msgbox ScriptText_TS2
+	checkpartycapability CAPABILITY_CUT
+	bufferpartymonnick 0, VAR_RESULT
+	msgbox ScriptText_TS3
+	checkpartycapability CAPABILITY_FLY
+	bufferpartymonnick 0, VAR_RESULT
+	msgbox ScriptText_TS4
+	checkpartycapability CAPABILITY_SECRET_POWER
+	bufferpartymonnick 0, VAR_RESULT
+	msgbox ScriptText_TS5
+	releaseall
+	end
+ScriptText_TS1:
+	.string "Running Capability Test$"
+ScriptText_TS2:
+	.string "Surf mon: {STR_VAR_1}$"
+ScriptText_TS3:
+	.string "Cut mon: {STR_VAR_1}$"
+ScriptText_TS4:
+	.string "Fly mon: {STR_VAR_1}$"
+ScriptText_TS5:
+	.string "Secret Power mon: {STR_VAR_1}$"
+
 ScriptText_DebugBoxText:
 	.string "Oh! There's some Pokemon and badges in\n"
 	.string "this box! Yoink!$"

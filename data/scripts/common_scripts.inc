@@ -11,6 +11,11 @@ Common_EventScript_ReleaseEnd::
 Common_EventScript_ReleaseAllEnd::
 	releaseall
 	end
+	
+Common_EventScript_CloseReleaseAllEnd::
+	closemessage
+	releaseall
+	end
 
 @ Emotes
 

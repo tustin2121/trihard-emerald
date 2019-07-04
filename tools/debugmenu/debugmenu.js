@@ -18,6 +18,7 @@ const DebugHandle_SetFlag = 10;
 const DebugHandle_SetVar = 11;
 const DebugHandle_SetLegendaryFight = 12;
 const DebugHandle_GiveDebugParty = 13;
+const DebugHandle_TestScript1 = 14;
 
 // Menu Functions
 function initMenuV1() {
@@ -69,6 +70,11 @@ function initMenuV1() {
 			});
 		$(`<li>Set Legendary Fight…</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('legendary'); });
+		$(`<li>Run Test Script 1</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_TestScript1 });
+				switchMenu();
+			});
 	}{
 		let $m = $subMenus['debugopts'] = $('<ul>').appendTo('body');
 		$(`<li>Skip Battles</li>`).appendTo($m)

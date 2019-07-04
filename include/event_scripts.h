@@ -532,7 +532,7 @@ extern const u8 EventScript_RecordMixingSecretBasePC[];
 extern const u8 EventScript_PC[];
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_HiddenItemScript[];
-extern const u8 EventScript_2759F1[];
+extern const u8 EventScript_UseSecretPower[];
 extern const u8 EventScript_TV[];
 extern const u8 EventScript_ClosedSootopolisDoor[];
 extern const u8 SkyPillar_Outside_EventScript_2393F9[];

@@ -47,6 +47,7 @@ extern const u8 DebugScript_SetLegendaryWeatherAfter[];
 extern const u8 DebugScript_SetLegendaryWeatherAfterGym[];
 extern const u8 DebugScript_GiveDebugPartyAndSetFlags[];
 extern const u8 DebugScript_GiveDebugPartyMessage[];
+extern const u8 DebugScript_TestScript1[];
 
 typedef void (*DebugFunc)(void);
 
@@ -66,6 +67,7 @@ static void DebugHandle_SetFlag();
 static void DebugHandle_SetVar();
 static void DebugHandle_SetLegendaryFight();
 static void DebugHandle_GiveDebugParty();
+static void DebugHandle_TestScript1();
 static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
@@ -95,6 +97,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_SetVar,
 	DebugHandle_SetLegendaryFight,
 	DebugHandle_GiveDebugParty,
+	DebugHandle_TestScript1,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -342,6 +345,12 @@ void DebugHandle_GiveDebugParty()
 	SetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM, &val);
 	ScriptContext1_SetupScript(DebugScript_GiveDebugPartyMessage);
 	
+	DebugSetCallbackSuccess();
+}
+
+void DebugHandle_TestScript1()
+{
+	ScriptContext1_SetupScript(DebugScript_TestScript1);
 	DebugSetCallbackSuccess();
 }
 

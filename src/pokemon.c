@@ -1371,6 +1371,7 @@ const s8 gNatureStatTable[][5] =
 #include "data/pokemon/level_up_learnsets.h"
 #include "data/pokemon/evolution.h"
 #include "data/pokemon/level_up_learnset_pointers.h"
+#include "data/pokemon/capabilities.h"
 
 // SPECIES_NONE are ignored in the following two tables, so decrement before accessing these arrays to get the right result
 
@@ -6205,6 +6206,12 @@ u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
         u32 mask = 1 << (tm - 32);
         return gTMHMLearnsets[species][1] & mask;
     }
+}
+
+bool8 IsMonCapable(struct Pokemon *mon, u16 cap)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
+    return (gMonCapabilities[species] & cap) != 0;
 }
 
 u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)

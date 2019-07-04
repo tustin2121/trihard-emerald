@@ -360,7 +360,7 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
         {
             gSpecialVar_0x8004 = bgEvent->bgUnion.secretBaseId;
             if (TrySetCurSecretBase())
-                return EventScript_2759F1;
+                return EventScript_UseSecretPower;
         }
         return NULL;
     }

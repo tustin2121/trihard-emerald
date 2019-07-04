@@ -1426,9 +1426,10 @@
 	.endm
 
 	@ Ends the effects of signmsg, returning message box frames to normal.
-	@ .macro normalmsg
-	@ .byte 0xcb
-	@ .endm
+	.macro checkpartycapability cap:req
+	.byte 0xcb
+	.2byte \cap
+	.endm
 
 	@ Compares the value of a hidden variable to a dword.
 	@ .macro comparehiddenvar a:req, value:req

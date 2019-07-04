@@ -1706,10 +1706,18 @@ bool8 ScrCmd_bufferleadmonspeciesname(struct ScriptContext *ctx)
     return FALSE;
 }
 
+extern const u8 gYN_ERROR[];
 bool8 ScrCmd_bufferpartymonnick(struct ScriptContext *ctx)
 {
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 partyIndex = VarGet(ScriptReadHalfword(ctx));
+    
+    if (partyIndex >= PARTY_SIZE)
+    {
+        StringCopy(sScriptStringVars[stringVarIndex], gYN_ERROR);
+        StringGetEnd10(sScriptStringVars[stringVarIndex]);
+        return FALSE;
+    }
 
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, sScriptStringVars[stringVarIndex]);
     StringGetEnd10(sScriptStringVars[stringVarIndex]);
@@ -1861,6 +1869,26 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
         if (!species)
             break;
         if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && MonKnowsMove(&gPlayerParty[i], moveId) == TRUE)
+        {
+            gSpecialVar_Result = i;
+            gSpecialVar_0x8004 = species;
+            break;
+        }
+    }
+    return FALSE;
+}
+
+bool8 ScrCmd_checkpartycapability(struct ScriptContext *ctx)
+{
+    u8 i;
+    u16 capId = ScriptReadHalfword(ctx);
+    gSpecialVar_Result = PARTY_SIZE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+        if (!species)
+            break;
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && IsMonCapable(&gPlayerParty[i], capId) == TRUE)
         {
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;
