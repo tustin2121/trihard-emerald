@@ -181,6 +181,7 @@ extern const u8 gMenuText_CheckTag[];
 extern const u8 gMenuText_Confirm[];
 extern const u8 gMenuText_Show[];
 extern const u8 gMenuText_Give2[];
+extern const u8 gMenuText_FieldMoves[];
 
 extern const u8 gText_WithdrawPokemon[];
 extern const u8 gText_WithdrawMonDescription[];
@@ -2128,6 +2129,7 @@ extern const u8 gText_PartyMenu_BoostPPPrompt[];
 extern const u8 gText_PartyMenu_DoWhatItemPrompt[];
 extern const u8 gText_PartyMenu_DoWhatMailPrompt[];
 extern const u8 gText_PartyMenu_AlreadyHoldingItem[];
+extern const u8 gText_PartyMenu_ChooseFieldMove[];
 extern const u8 gText_PartyMenu_NoUse[];
 extern const u8 gText_PartyMenu_Qualified[];
 extern const u8 gText_PartyMenu_Entered1[];

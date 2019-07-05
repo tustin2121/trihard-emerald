@@ -99,7 +99,7 @@ struct Unk_Rodata1
 #define RODATA_WINDOW_Y 22
 #define RODATA_WINDOW_WIDTH 23
 
-struct Struct203CEC4
+struct SelectedMonStruct
 {
     TaskFunc unk0;
     MainCallback exitCallback;
@@ -109,7 +109,7 @@ struct Struct203CEC4
     u32 unk9_0:7;
     u32 unkA_0:14;
     u8 unkC[3];
-    u8 menuItems[8];
+    u8 menuItems[16];
     u8 numMenuItems;
     u16 palBuffer[0xB0];
     u8 filler[0xA0];
@@ -128,7 +128,7 @@ struct Struct203CEDC
 };
 
 // EWRAM vars
-static EWRAM_DATA struct Struct203CEC4 *gUnknown_0203CEC4 = NULL;
+static EWRAM_DATA struct SelectedMonStruct *sSelectedMonMenuPtr = NULL;
 EWRAM_DATA struct Struct203CEC8 gUnknown_0203CEC8 = {0};
 static EWRAM_DATA struct Struct203CEDC *gUnknown_0203CEDC = NULL;
 static EWRAM_DATA u8 *gUnknown_0203CEE0 = NULL;
@@ -249,6 +249,7 @@ static bool8 CanLearnTutorMove(u16, u8);
 static u16 GetTutorMove(u8);
 static bool8 sub_81B314C(void);
 static void DetermineMenuItemsForFieldMons(struct Pokemon*, u8);
+static void DetermineFieldMovesForFieldMons(struct Pokemon*, u8);
 static u8 sub_81B8A2C(struct Pokemon*);
 static u8 sub_81B856C(s8);
 static void sub_81B469C(u8);
@@ -388,6 +389,7 @@ static void CursorCb_Trade1(u8 taskId);
 static void CursorCb_Trade2(u8 taskId);
 static void CursorCb_Toss(u8 taskId);
 static void CursorCb_FieldMove(u8 taskId);
+static void CursorCb_FieldMoveSelect(u8 taskId);
 static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
@@ -954,7 +956,7 @@ static const u8 sPaletteBufferIds_EmptyPartySlotBG[] = {17, 27, 28};
 
 static const u8 *const sPartyMenuDialogStrings[] =
 {
-    gText_PartyMenu_ChoosePkmn,
+    gText_PartyMenu_ChoosePkmn, //0
     gText_PartyMenu_ChoosePkmnOrCancel,
     gText_PartyMenu_ChoosePkmnConfirm,
     gText_PartyMenu_MovePkmnPrompt,
@@ -964,7 +966,7 @@ static const u8 *const sPartyMenuDialogStrings[] =
     gText_PartyMenu_CantCut,
     gText_PartyMenu_CantSurf,
     gText_PartyMenu_AlreadySurfing,
-    gText_PartyMenu_SurfDisallowed,
+    gText_PartyMenu_SurfDisallowed, //10
     gText_PartyMenu_CantBecauseCycling,
     gText_PartyMenu_AlreadyUsing,
     gText_PartyMenu_CantUse,
@@ -974,13 +976,14 @@ static const u8 *const sPartyMenuDialogStrings[] =
     gText_PartyMenu_NumPkmnNeeded,
     gText_PartyMenu_SpeciesClauseError,
     gText_PartyMenu_ItemClauseError,
-    gText_EmptyString2,
+    gText_EmptyString2, //20
     gText_PartyMenu_DoWhatPrompt,
     gText_PartyMenu_RestorePPPrompt,
     gText_PartyMenu_BoostPPPrompt,
     gText_PartyMenu_DoWhatItemPrompt,
     gText_PartyMenu_DoWhatMailPrompt,
     gText_PartyMenu_AlreadyHoldingItem,
+    gText_PartyMenu_ChooseFieldMove,
 };
 
 static const u8 *const sPartySlotText[] =
@@ -1030,25 +1033,33 @@ enum
     MENU_TRADE1,
     MENU_TRADE2,
     MENU_TOSS,
+    MENU_FIELD_MOVE_MENU,
     MENU_FIELD_MOVES,
 };
 
 enum
 {
-    FIELD_MOVE_CUT,
+#if !TPP_MODE
+    FIELD_MOVE_FLY,
+    FIELD_MOVE_TELEPORT,
+    FIELD_MOVE_DIG,
+#endif
+    FIELD_MOVE_SWEET_SCENT,
     FIELD_MOVE_FLASH,
+    FIELD_MOVE_MILK_DRINK,
+    FIELD_MOVE_SOFT_BOILED,
     FIELD_MOVE_ROCK_SMASH,
     FIELD_MOVE_STRENGTH,
     FIELD_MOVE_SURF,
-    FIELD_MOVE_FLY,
     FIELD_MOVE_DIVE,
+    FIELD_MOVE_CUT,
     FIELD_MOVE_WATERFALL,
+    FIELD_MOVE_SECRET_POWER,
+#if TPP_MODE
+    FIELD_MOVE_FLY,
     FIELD_MOVE_TELEPORT,
     FIELD_MOVE_DIG,
-    FIELD_MOVE_SECRET_POWER,
-    FIELD_MOVE_MILK_DRINK,
-    FIELD_MOVE_SOFT_BOILED,
-    FIELD_MOVE_SWEET_SCENT,
+#endif
 };
 
 // What a weird choice of table termination;
@@ -1079,6 +1090,7 @@ struct
     [MENU_TRADE1] = {gText_Trade4, CursorCb_Trade1},
     [MENU_TRADE2] = {gText_Trade4, CursorCb_Trade2},
     [MENU_TOSS] = {gMenuText_Toss, CursorCb_Toss},
+    [MENU_FIELD_MOVE_MENU] = {gMenuText_FieldMoves, CursorCb_FieldMoveSelect},
     [MENU_FIELD_MOVES + FIELD_MOVE_CUT] = {gMoveNames[MOVE_CUT], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_FLASH] = {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_SMASH] = {gMoveNames[MOVE_ROCK_SMASH], CursorCb_FieldMove},
@@ -1131,10 +1143,35 @@ static const u8 *const sMonSelectedMenuTypes[] =
 
 static const u8 sMonSelectedMenuTypeSizes[] = {0, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 1};
 
+// static const u16 sFieldMoves[] =
+// {
+//     MOVE_CUT, MOVE_FLASH, MOVE_ROCK_SMASH, MOVE_STRENGTH, MOVE_SURF, MOVE_FLY, MOVE_DIVE, MOVE_WATERFALL, MOVE_TELEPORT,
+//     MOVE_DIG, MOVE_SECRET_POWER, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, FIELD_MOVE_TERMINATOR
+// };
 static const u16 sFieldMoves[] =
 {
-    MOVE_CUT, MOVE_FLASH, MOVE_ROCK_SMASH, MOVE_STRENGTH, MOVE_SURF, MOVE_FLY, MOVE_DIVE, MOVE_WATERFALL, MOVE_TELEPORT,
-    MOVE_DIG, MOVE_SECRET_POWER, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, FIELD_MOVE_TERMINATOR
+#if !TPP_MODE 
+    CAPABILITY_FLY, 
+    CAPABILITY_TELEPORT,
+    CAPABILITY_DIG, 
+#endif
+    CAPABILITY_SWEET_SCENT, 
+    CAPABILITY_FLASH, 
+    CAPABILITY_MILK_DRINK, 
+    CAPABILITY_SOFT_BOILED, 
+    CAPABILITY_ROCK_SMASH, 
+    CAPABILITY_STRENGTH, 
+    CAPABILITY_SURF,
+    CAPABILITY_DIVE, 
+    CAPABILITY_CUT, 
+    CAPABILITY_WATERFALL, 
+    CAPABILITY_SECRET_POWER, 
+#if TPP_MODE 
+    CAPABILITY_FLY, 
+    CAPABILITY_TELEPORT,
+    CAPABILITY_DIG, 
+#endif
+    FIELD_MOVE_TERMINATOR,
 };
 
 struct
@@ -1545,8 +1582,8 @@ static void InitPartyMenu(u8 a, u8 b, u8 c, u8 d, u8 e, TaskFunc task, MainCallb
     u16 i;
 
     reset_brm();
-    gUnknown_0203CEC4 = Alloc(sizeof(struct Struct203CEC4));
-    if (gUnknown_0203CEC4 == NULL)
+    sSelectedMonMenuPtr = Alloc(sizeof(struct SelectedMonStruct));
+    if (sSelectedMonMenuPtr == NULL)
     {
         SetMainCallback2(callback);
     }
@@ -1555,25 +1592,25 @@ static void InitPartyMenu(u8 a, u8 b, u8 c, u8 d, u8 e, TaskFunc task, MainCallb
         gUnknown_0203CEC8.unk8_0 = a;
         gUnknown_0203CEC8.exitCallback = callback;
         gUnknown_0203CEC8.unkB = c;
-        gUnknown_0203CEC4->unkA_0 = e;
-        gUnknown_0203CEC4->unk0 = task;
-        gUnknown_0203CEC4->exitCallback = NULL;
-        gUnknown_0203CEC4->unk8_1 = 0;
-        gUnknown_0203CEC4->unk8_2 = 0xFF;
-        gUnknown_0203CEC4->unk9_0 = 0xFF;
+        sSelectedMonMenuPtr->unkA_0 = e;
+        sSelectedMonMenuPtr->unk0 = task;
+        sSelectedMonMenuPtr->exitCallback = NULL;
+        sSelectedMonMenuPtr->unk8_1 = 0;
+        sSelectedMonMenuPtr->unk8_2 = 0xFF;
+        sSelectedMonMenuPtr->unk9_0 = 0xFF;
 
         if (a == 4)
-            gUnknown_0203CEC4->unk8_0 = TRUE;
+            sSelectedMonMenuPtr->unk8_0 = TRUE;
         else
-            gUnknown_0203CEC4->unk8_0 = FALSE;
+            sSelectedMonMenuPtr->unk8_0 = FALSE;
 
         if (b != 0xFF)
             gUnknown_0203CEC8.mode = b;
 
         for (i = 0; i <= 15; i++)
-            gUnknown_0203CEC4->data[i] = 0;
+            sSelectedMonMenuPtr->data[i] = 0;
         for (i = 0; i < 3; i++)
-            gUnknown_0203CEC4->unkC[i] = 0xFF;
+            sSelectedMonMenuPtr->unkC[i] = 0xFF;
 
         if (d == 0)
             gUnknown_0203CEC8.unk9 = 0;
@@ -1655,7 +1692,7 @@ static bool8 PartyMenuSetup(void)
         }
         else
         {
-            gUnknown_0203CEC4->data[0] = 0;
+            sSelectedMonMenuPtr->data[0] = 0;
             gMain.state++;
         }
         break;
@@ -1669,7 +1706,7 @@ static bool8 PartyMenuSetup(void)
         break;
     case 10:
         PartyMenuInitHelperStructs(gUnknown_0203CEC8.mode);
-        gUnknown_0203CEC4->data[0] = 0;
+        sSelectedMonMenuPtr->data[0] = 0;
         gMain.state++;
         break;
     case 11:
@@ -1691,14 +1728,14 @@ static bool8 PartyMenuSetup(void)
     case 15:
         if (party_menu_add_per_mon_objects())
         {
-            gUnknown_0203CEC4->data[0] = 0;
+            sSelectedMonMenuPtr->data[0] = 0;
             gMain.state++;
         }
         break;
     case 16:
         if (RenderPartyMenuBoxes())
         {
-            gUnknown_0203CEC4->data[0] = 0;
+            sSelectedMonMenuPtr->data[0] = 0;
             gMain.state++;
         }
         break;
@@ -1707,15 +1744,15 @@ static bool8 PartyMenuSetup(void)
         gMain.state++;
         break;
     case 18:
-        sub_81B2428(gUnknown_0203CEC4->unk8_0);
+        sub_81B2428(sSelectedMonMenuPtr->unk8_0);
         gMain.state++;
         break;
     case 19:
         gMain.state++;
         break;
     case 20:
-        CreateTask(gUnknown_0203CEC4->unk0, 0);
-        display_pokemon_menu_message(gUnknown_0203CEC4->unkA_0);
+        CreateTask(sSelectedMonMenuPtr->unk0, 0);
+        display_pokemon_menu_message(sSelectedMonMenuPtr->unkA_0);
         gMain.state++;
         break;
     case 21:
@@ -1755,7 +1792,7 @@ static void PartyMenuExitTask(u8 taskId)
 
 static void reset_brm(void)
 {
-    gUnknown_0203CEC4 = NULL;
+    sSelectedMonMenuPtr = NULL;
     gUnknown_0203CEE4 = NULL;
     gUnknown_0203CEDC = NULL;
     gUnknown_0203CEE0 = NULL;
@@ -1785,44 +1822,44 @@ static bool8 AllocPartyMiscGfx(void)
 {
     int sizeout;
 
-    switch (gUnknown_0203CEC4->data[0])
+    switch (sSelectedMonMenuPtr->data[0])
     {
     case 0:
         gUnknown_0203CEE0 = malloc_and_decompress(gPartyMenuMisc_Gfx, &sizeout);
         LoadBgTiles(1, gUnknown_0203CEE0, sizeout, 0);
-        gUnknown_0203CEC4->data[0]++;
+        sSelectedMonMenuPtr->data[0]++;
         break;
     case 1:
         if (!IsDma3ManagerBusyWithBgCopy())
         {
             LZDecompressWram(gPartyMenuMisc_Tilemap, gUnknown_0203CEE4);
-            gUnknown_0203CEC4->data[0]++;
+            sSelectedMonMenuPtr->data[0]++;
         }
         break;
     case 2:
         LoadCompressedPalette(gPartyMenuMisc_Pal, 0, 0x160);
-        CpuCopy16(gPlttBufferUnfaded, gUnknown_0203CEC4->palBuffer, 0x160);
-        gUnknown_0203CEC4->data[0]++;
+        CpuCopy16(gPlttBufferUnfaded, sSelectedMonMenuPtr->palBuffer, 0x160);
+        sSelectedMonMenuPtr->data[0]++;
         break;
     case 3:
         PartyPaletteBufferCopy(4);
-        gUnknown_0203CEC4->data[0]++;
+        sSelectedMonMenuPtr->data[0]++;
         break;
     case 4:
         PartyPaletteBufferCopy(5);
-        gUnknown_0203CEC4->data[0]++;
+        sSelectedMonMenuPtr->data[0]++;
         break;
     case 5:
         PartyPaletteBufferCopy(6);
-        gUnknown_0203CEC4->data[0]++;
+        sSelectedMonMenuPtr->data[0]++;
         break;
     case 6:
         PartyPaletteBufferCopy(7);
-        gUnknown_0203CEC4->data[0]++;
+        sSelectedMonMenuPtr->data[0]++;
         break;
     case 7:
         PartyPaletteBufferCopy(8);
-        gUnknown_0203CEC4->data[0]++;
+        sSelectedMonMenuPtr->data[0]++;
         break;
     default:
         return TRUE;
@@ -1839,8 +1876,8 @@ static void PartyPaletteBufferCopy(u8 offset)
 
 static void FreePartyPointers(void)
 {
-    if (gUnknown_0203CEC4)
-        Free(gUnknown_0203CEC4);
+    if (sSelectedMonMenuPtr)
+        Free(sSelectedMonMenuPtr);
     if (gUnknown_0203CEE4)
         Free(gUnknown_0203CEE4);
     if (gUnknown_0203CEE0)
@@ -2094,8 +2131,8 @@ static void sub_81B0CEC(u8 slot)
 
 static bool8 RenderPartyMenuBoxes(void)
 {
-    RenderPartyMenuBox(gUnknown_0203CEC4->data[0]);
-    if (++gUnknown_0203CEC4->data[0] == 6)
+    RenderPartyMenuBox(sSelectedMonMenuPtr->data[0]);
+    if (++sSelectedMonMenuPtr->data[0] == 6)
         return TRUE;
     else
         return FALSE;
@@ -2138,8 +2175,8 @@ static void party_menu_add_per_mon_objects_internal(u8 slot)
 
 static bool8 party_menu_add_per_mon_objects(void)
 {
-    party_menu_add_per_mon_objects_internal(gUnknown_0203CEC4->data[0]);
-    if (++gUnknown_0203CEC4->data[0] == 6)
+    party_menu_add_per_mon_objects_internal(sSelectedMonMenuPtr->data[0]);
+    if (++sSelectedMonMenuPtr->data[0] == 6)
         return TRUE;
     else
         return FALSE;
@@ -2153,15 +2190,15 @@ static void sub_81B0F28(void)
     }
     else
     {
-        if (gUnknown_0203CEC4->unk8_0)
+        if (sSelectedMonMenuPtr->unk8_0)
         {
-            gUnknown_0203CEC4->unk8_2 = sub_81B5F74(0xBF, 0x88);
+            sSelectedMonMenuPtr->unk8_2 = sub_81B5F74(0xBF, 0x88);
             sub_81B120C();
-            gUnknown_0203CEC4->unk9_0 = sub_81B5F74(0xBF, 0x98);
+            sSelectedMonMenuPtr->unk9_0 = sub_81B5F74(0xBF, 0x98);
         }
         else
         {
-            gUnknown_0203CEC4->unk9_0 = sub_81B5F34(0xC6, 0x94);
+            sSelectedMonMenuPtr->unk9_0 = sub_81B5F34(0xC6, 0x94);
         }
         UpdatePartyMenuSlotSelected(gUnknown_0203CEC8.unk9, 1);
     }
@@ -2186,10 +2223,10 @@ void UpdatePartyMenuSlotSelected(u8 slot, bool8 selected)
             sub_8199C30(1, 23, 16, 7, 2, 1);
         else
             sub_8199C30(1, 23, 16, 7, 2, 2);
-        spriteId = gUnknown_0203CEC4->unk8_2;
+        spriteId = sSelectedMonMenuPtr->unk8_2;
         break;
     case 7:
-        if (!gUnknown_0203CEC4->unk8_0)
+        if (!sSelectedMonMenuPtr->unk8_0)
         {
             if (selected == FALSE)
                 sub_8199C30(1, 23, 17, 7, 2, 1);
@@ -2204,7 +2241,7 @@ void UpdatePartyMenuSlotSelected(u8 slot, bool8 selected)
         {
             sub_8199C30(1, 23, 18, 7, 2, 2);
         }
-        spriteId = gUnknown_0203CEC4->unk9_0;
+        spriteId = sSelectedMonMenuPtr->unk9_0;
         break;
     }
     StartSpriteAnimById(spriteId, selected);
@@ -2286,8 +2323,8 @@ static void c3_0811FAB4(u8 taskId)
         if (gUnknown_0203CEC8.unk8_0 == 1)
             sub_81B9080();
 
-        if  (gUnknown_0203CEC4->exitCallback != NULL)
-            SetMainCallback2(gUnknown_0203CEC4->exitCallback);
+        if  (sSelectedMonMenuPtr->exitCallback != NULL)
+            SetMainCallback2(sSelectedMonMenuPtr->exitCallback);
         else
             SetMainCallback2(gUnknown_0203CEC8.exitCallback);
 
@@ -2322,7 +2359,7 @@ void sub_81B1370(u8 taskId)
             sub_81B15D0(taskId, ptr);
             break;
         case 8:
-            if (gUnknown_0203CEC4->unk8_0)
+            if (sSelectedMonMenuPtr->unk8_0)
             {
                 PlaySE(SE_SELECT);
                 sub_81B4F88();
@@ -2353,7 +2390,7 @@ static void sub_81B140C(u8 taskId, s8 *ptr)
         case 7:
             if (sub_81B15A4((u8*)ptr))
             {
-                sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+                sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
                 sub_81615A8(taskId);
             }
             break;
@@ -2361,9 +2398,9 @@ static void sub_81B140C(u8 taskId, s8 *ptr)
             if (sub_81B15A4((u8*)ptr))
             {
                 if (gUnknown_0203CEC8.unk8_0 == 1)
-                    gUnknown_0203CEC4->exitCallback = sub_81B9140;
+                    sSelectedMonMenuPtr->exitCallback = sub_81B9140;
 
-                sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+                sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
                 gUnknown_03006328(taskId, sub_81B6794);
             }
             break;
@@ -2371,7 +2408,7 @@ static void sub_81B140C(u8 taskId, s8 *ptr)
             if (sub_81B15A4((u8*)ptr))
             {
                 PlaySE(SE_SELECT);
-                sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+                sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
                 sub_81B7E4C(taskId);
             }
             break;
@@ -2379,7 +2416,7 @@ static void sub_81B140C(u8 taskId, s8 *ptr)
             if (sub_81B15A4((u8*)ptr))
             {
                 PlaySE(SE_SELECT);
-                sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+                sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
                 sub_81B8474(taskId);
             }
             break;
@@ -2388,7 +2425,7 @@ static void sub_81B140C(u8 taskId, s8 *ptr)
             if (sub_81B15A4((u8*)ptr))
             {
                 PlaySE(SE_SELECT);
-                sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+                sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
                 sub_81B7FAC(taskId);
             }
             break;
@@ -2468,7 +2505,7 @@ static bool8 sub_81B1660(u8 taskId)
     if (stringPtr == NULL)
         return FALSE;
 
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     StringExpandPlaceholders(gStringVar4, stringPtr);
     sub_81B1B5C(gStringVar4, 1);
     gTasks[taskId].func = sub_81B16D4;
@@ -2584,7 +2621,7 @@ static void SetNewPartySelectTarget1(s8 *ptr, s8 b)
         }
         else if (*ptr == 7)
         {
-            if (gUnknown_0203CEC4->unk8_0)
+            if (sSelectedMonMenuPtr->unk8_0)
                 *ptr = 6;
             else
                 *ptr = gPlayerPartyCount - 1;
@@ -2603,7 +2640,7 @@ static void SetNewPartySelectTarget1(s8 *ptr, s8 b)
         {
             if (*ptr == gPlayerPartyCount - 1)
             {
-                if (gUnknown_0203CEC4->unk8_0)
+                if (sSelectedMonMenuPtr->unk8_0)
                     *ptr = 6;
                 else
                     *ptr = 7;
@@ -2617,16 +2654,16 @@ static void SetNewPartySelectTarget1(s8 *ptr, s8 b)
     case 2:
         if (gPlayerPartyCount != 1 && *ptr == 0)
         {
-            if (gUnknown_0203CEC4->unk8_1 == 0)
+            if (sSelectedMonMenuPtr->unk8_1 == 0)
                 *ptr = 1;
             else
-                *ptr = gUnknown_0203CEC4->unk8_1;
+                *ptr = sSelectedMonMenuPtr->unk8_1;
         }
         break;
     case -2:
         if (*ptr != 0 && *ptr != 6 && *ptr != 7)
         {
-            gUnknown_0203CEC4->unk8_1 = *ptr;
+            sSelectedMonMenuPtr->unk8_1 = *ptr;
             *ptr = 0;
         }
         break;
@@ -2652,7 +2689,7 @@ static void SetNewPartySelectTarget2(s8 *ptr, s8 b)
         }
         else if (*ptr == 7)
         {
-            if (gUnknown_0203CEC4->unk8_0)
+            if (sSelectedMonMenuPtr->unk8_0)
             {
                 *ptr = 6;
                 break;
@@ -2677,7 +2714,7 @@ static void SetNewPartySelectTarget2(s8 *ptr, s8 b)
             unk2 = sub_81B1B00(*ptr, 1);
             if (unk2 == -1)
             {
-                if (gUnknown_0203CEC4->unk8_0)
+                if (sSelectedMonMenuPtr->unk8_0)
                     *ptr = 6;
                 else
                     *ptr = 7;
@@ -2691,7 +2728,7 @@ static void SetNewPartySelectTarget2(s8 *ptr, s8 b)
     case 2:
         if (*ptr == 0)
         {
-            if (gUnknown_0203CEC4->unk8_1 == 3)
+            if (sSelectedMonMenuPtr->unk8_1 == 3)
             {
                 if (GetMonData(&gPlayerParty[3], MON_DATA_SPECIES) != SPECIES_NONE)
                     *ptr = 3;
@@ -2703,7 +2740,7 @@ static void SetNewPartySelectTarget2(s8 *ptr, s8 b)
         }
         else if (*ptr == 1)
         {
-            if (gUnknown_0203CEC4->unk8_1 == 5)
+            if (sSelectedMonMenuPtr->unk8_1 == 5)
             {
                 if (GetMonData(&gPlayerParty[5], MON_DATA_SPECIES) != SPECIES_NONE)
                     *ptr = 5;
@@ -2717,12 +2754,12 @@ static void SetNewPartySelectTarget2(s8 *ptr, s8 b)
     case -2:
         if (*ptr == 2 || *ptr == 3)
         {
-            gUnknown_0203CEC4->unk8_1 = *ptr;
+            sSelectedMonMenuPtr->unk8_1 = *ptr;
             *ptr = 0;
         }
         else if (*ptr == 4 || *ptr == 5)
         {
-            gUnknown_0203CEC4->unk8_1 = *ptr;
+            sSelectedMonMenuPtr->unk8_1 = *ptr;
             *ptr = 1;
         }
         break;
@@ -3171,7 +3208,7 @@ static void sub_81B2428(bool8 a)
 
 static u16* GetPartyMenuPaletteFromBuffer(u8 paletteId)
 {
-    return &gUnknown_0203CEC4->palBuffer[paletteId];
+    return &sSelectedMonMenuPtr->palBuffer[paletteId];
 }
 
 static void BlitBitmapToPartyWindow(u8 windowId, const u8 *b, u8 c, u8 x, u8 y, u8 width, u8 height)
@@ -3524,7 +3561,7 @@ static void sub_81B302C(u8 *ptr)
 
 void display_pokemon_menu_message(u32 stringID)
 {
-    u8 *windowPtr = &gUnknown_0203CEC4->unkC[1];
+    u8 *windowPtr = &sSelectedMonMenuPtr->unkC[1];
 
     if (*windowPtr != 0xFF)
         sub_81B302C(windowPtr);
@@ -3534,6 +3571,7 @@ void display_pokemon_menu_message(u32 stringID)
         switch (stringID)
         {
         case 21:
+        case 27:
             *windowPtr = AddWindow(&gUnknown_08615928);
             break;
         case 24:
@@ -3555,7 +3593,7 @@ void display_pokemon_menu_message(u32 stringID)
         }
         if (stringID == 0)
         {
-            if (gUnknown_0203CEC4->unk8_0)
+            if (sSelectedMonMenuPtr->unk8_0)
                 stringID = 2;
             else if (sub_81B314C() == FALSE)
                 stringID = 1;
@@ -3596,7 +3634,7 @@ static u8 DisplaySelectedMonMenu(u8 a)
     switch (a)
     {
     case 0:
-        SetWindowTemplateFields(&window, 2, 19, 19 - (gUnknown_0203CEC4->numMenuItems * 2), 10, gUnknown_0203CEC4->numMenuItems * 2, 14, 0x2E9);
+        SetWindowTemplateFields(&window, 2, 19, 19 - (sSelectedMonMenuPtr->numMenuItems * 2), 10, sSelectedMonMenuPtr->numMenuItems * 2, 14, 0x2E9);
         break;
     case 1:
         window = gUnknown_08615950;
@@ -3609,23 +3647,23 @@ static u8 DisplaySelectedMonMenu(u8 a)
         break;
     }
 
-    gUnknown_0203CEC4->unkC[0] = AddWindow(&window);
-    DrawStdFrameWithCustomTileAndPalette(gUnknown_0203CEC4->unkC[0], FALSE, 0x4F, 13);
+    sSelectedMonMenuPtr->unkC[0] = AddWindow(&window);
+    DrawStdFrameWithCustomTileAndPalette(sSelectedMonMenuPtr->unkC[0], FALSE, 0x4F, 13);
     if (a == 3)
-        return gUnknown_0203CEC4->unkC[0];
+        return sSelectedMonMenuPtr->unkC[0];
     cursorDimension = GetMenuCursorDimensionByFont(1, 0);
     fontAttribute = GetFontAttribute(1, 2);
 
-    for (i = 0; i < gUnknown_0203CEC4->numMenuItems; i++)
+    for (i = 0; i < sSelectedMonMenuPtr->numMenuItems; i++)
     {
-        u8 unk = (gUnknown_0203CEC4->menuItems[i] > 18) ? 4 : 3;
-        AddTextPrinterParameterized4(gUnknown_0203CEC4->unkC[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, gUnknown_086157FC[unk], 0, sCursorOptions[gUnknown_0203CEC4->menuItems[i]].text);
+        u8 unk = (sSelectedMonMenuPtr->menuItems[i] > 18) ? 4 : 3;
+        AddTextPrinterParameterized4(sSelectedMonMenuPtr->unkC[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, gUnknown_086157FC[unk], 0, sCursorOptions[sSelectedMonMenuPtr->menuItems[i]].text);
     }
 
-    InitMenuInUpperLeftCorner(gUnknown_0203CEC4->unkC[0], gUnknown_0203CEC4->numMenuItems, 0, 1);
+    InitMenuInUpperLeftCorner(sSelectedMonMenuPtr->unkC[0], sSelectedMonMenuPtr->numMenuItems, 0, 1);
     schedule_bg_copy_tilemap_to_vram(2);
 
-    return gUnknown_0203CEC4->unkC[0];
+    return sSelectedMonMenuPtr->unkC[0];
 }
 
 static void sub_81B3300(const u8 *text)
@@ -3642,15 +3680,15 @@ static void sub_81B334C(void)
 
 static u8 sub_81B3364(void)
 {
-    gUnknown_0203CEC4->unkC[0] = AddWindow(&gUnknown_08615970);
-    DrawStdFrameWithCustomTileAndPalette(gUnknown_0203CEC4->unkC[0], FALSE, 0x4F, 13);
-    return gUnknown_0203CEC4->unkC[0];
+    sSelectedMonMenuPtr->unkC[0] = AddWindow(&gUnknown_08615970);
+    DrawStdFrameWithCustomTileAndPalette(sSelectedMonMenuPtr->unkC[0], FALSE, 0x4F, 13);
+    return sSelectedMonMenuPtr->unkC[0];
 }
 
 static void sub_81B3394(void)
 {
-    ClearWindowTilemap(gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
+    ClearWindowTilemap(sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
 }
 
 static void sub_81B33B4(struct Pokemon *mons, u8 a, u8 b)
@@ -3663,9 +3701,9 @@ static void sub_81B33B4(struct Pokemon *mons, u8 a, u8 b)
     }
     else
     {
-        gUnknown_0203CEC4->numMenuItems = sMonSelectedMenuTypeSizes[b];
-        for (i = 0; i < gUnknown_0203CEC4->numMenuItems; i++)
-            gUnknown_0203CEC4->menuItems[i] = sMonSelectedMenuTypes[b][i];
+        sSelectedMonMenuPtr->numMenuItems = sMonSelectedMenuTypeSizes[b];
+        for (i = 0; i < sSelectedMonMenuPtr->numMenuItems; i++)
+            sSelectedMonMenuPtr->menuItems[i] = sMonSelectedMenuTypes[b][i];
     }
 }
 
@@ -3673,30 +3711,39 @@ static void DetermineMenuItemsForFieldMons(struct Pokemon *mons, u8 a)
 {
     u8 i, j;
 
-    gUnknown_0203CEC4->numMenuItems = 0;
-    AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_SUMMARY);
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    sSelectedMonMenuPtr->numMenuItems = 0;
+    AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, MENU_SUMMARY);
+    if (IsMonCapable(&mons[a], CAPABILITY_ANY))
     {
-        for (j = 0; sFieldMoves[j] != FIELD_MOVE_TERMINATOR; j++)
-        {
-            if (GetMonData(&mons[a], i + MON_DATA_MOVE1) == sFieldMoves[j])
-            {
-                AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, j + 19);
-                break;
-            }
-        }
+        AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, MENU_FIELD_MOVE_MENU);
     }
 
     if (!InBattlePike())
     {
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
-            AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_SWITCH);
+            AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, MENU_SWITCH);
         if (ItemIsMail(GetMonData(&mons[a], MON_DATA_HELD_ITEM)))
-            AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_MAIL);
+            AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, MENU_MAIL);
         else
-            AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_ITEM);
+            AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, MENU_ITEM);
     }
-    AppendToList(gUnknown_0203CEC4->menuItems, &gUnknown_0203CEC4->numMenuItems, MENU_CANCEL1);
+    AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, MENU_CANCEL1);
+}
+
+static void DetermineFieldMovesForFieldMons(struct Pokemon *mons, u8 a)
+{
+    u8 i;
+    
+    sSelectedMonMenuPtr->numMenuItems = 0;
+    for (i = 0; sFieldMoves[i] != FIELD_MOVE_TERMINATOR; i++) 
+    {
+        if (IsMonCapable(&mons[a], sFieldMoves[i]))
+        {
+            AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, i + MENU_FIELD_MOVES);
+        }
+    }
+    
+    AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, MENU_CANCEL2);
 }
 
 static u8 DetermineMonSelectedMenuType(struct Pokemon *mon)
@@ -3756,7 +3803,7 @@ static bool8 sub_81B3608(u8 taskId)
     u16 item;
 
     GetMonNickname(mon, gStringVar1);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     if (gUnknown_0203CEC8.unk8_0 != 12)
     {
         sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, DetermineMonSelectedMenuType(mon));
@@ -3801,7 +3848,7 @@ static void HandleMenuInput(u8 taskId)
         s8 input;
         s16 *data = gTasks[taskId].data;
 
-        if (gUnknown_0203CEC4->numMenuItems <= 3)
+        if (sSelectedMonMenuPtr->numMenuItems <= 3)
             input = Menu_ProcessInputNoWrapAround_other();
         else
             input = ProcessMenuInput_other();
@@ -3813,12 +3860,12 @@ static void HandleMenuInput(u8 taskId)
             break;
         case MENU_B_PRESSED:
             PlaySE(SE_SELECT);
-            sub_81B302C(&gUnknown_0203CEC4->unkC[2]);
-            sCursorOptions[gUnknown_0203CEC4->menuItems[gUnknown_0203CEC4->numMenuItems - 1]].func(taskId);
+            sub_81B302C(&sSelectedMonMenuPtr->unkC[2]);
+            sCursorOptions[sSelectedMonMenuPtr->menuItems[sSelectedMonMenuPtr->numMenuItems - 1]].func(taskId);
             break;
         default:
-            sub_81B302C(&gUnknown_0203CEC4->unkC[2]);
-            sCursorOptions[gUnknown_0203CEC4->menuItems[input]].func(taskId);
+            sub_81B302C(&sSelectedMonMenuPtr->unkC[2]);
+            sCursorOptions[sSelectedMonMenuPtr->menuItems[input]].func(taskId);
             break;
         }
     }
@@ -3827,7 +3874,7 @@ static void HandleMenuInput(u8 taskId)
 static void CursorCb_Summary(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    gUnknown_0203CEC4->exitCallback = sub_81B3828;
+    sSelectedMonMenuPtr->exitCallback = sub_81B3828;
     sub_81B12C0(taskId);
 }
 
@@ -3855,8 +3902,8 @@ static void CursorCb_Switch(u8 taskId)
 {
     PlaySE(SE_SELECT);
     gUnknown_0203CEC8.unkB = 8;
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
     display_pokemon_menu_message(3);
     UpdatePartyMenuSlotSelected(gUnknown_0203CEC8.unk9, TRUE);
     gUnknown_0203CEC8.unkA = gUnknown_0203CEC8.unk9;
@@ -4073,7 +4120,7 @@ static void swap_pokemon_and_oams(void)
 
 static void sub_81B407C(u8 taskId)
 {
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     gUnknown_0203CEC8.unkB = 0;
     UpdatePartyMenuSlotSelected(gUnknown_0203CEC8.unk9, FALSE); //deselect old slot
     gUnknown_0203CEC8.unk9 = gUnknown_0203CEC8.unkA;
@@ -4085,8 +4132,8 @@ static void sub_81B407C(u8 taskId)
 static void CursorCb_Cancel1(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     if (gUnknown_0203CEC8.unk8_0 == 6)
         display_pokemon_menu_message(15);
     else
@@ -4097,8 +4144,8 @@ static void CursorCb_Cancel1(u8 taskId)
 static void CursorCb_Item(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, 8);
     DisplaySelectedMonMenu(1);
     display_pokemon_menu_message(24);
@@ -4109,7 +4156,7 @@ static void CursorCb_Item(u8 taskId)
 static void CursorCb_Give(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    gUnknown_0203CEC4->exitCallback = sub_81B41C4;
+    sSelectedMonMenuPtr->exitCallback = sub_81B41C4;
     sub_81B12C0(taskId);
 }
 
@@ -4216,7 +4263,7 @@ static void sub_81B44FC(u8 taskId)
 {
     if (sub_81B1BD4() != TRUE)
     {
-        gUnknown_0203CEC4->exitCallback = sub_81B452C;
+        sSelectedMonMenuPtr->exitCallback = sub_81B452C;
         sub_81B12C0(taskId);
     }
 }
@@ -4287,8 +4334,8 @@ static void CursorCb_TakeItem(u8 taskId)
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM);
 
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     switch (TryTakeMonItem(mon))
     {
     case 0:
@@ -4314,8 +4361,8 @@ static void CursorCb_Toss(u8 taskId)
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM);
 
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     if (item == ITEM_NONE)
     {
         GetMonNickname(mon, gStringVar1);
@@ -4379,8 +4426,8 @@ static void sub_81B4988(u8 taskId)
 static void CursorCb_Mail(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, 9);
     DisplaySelectedMonMenu(2);
     display_pokemon_menu_message(25);
@@ -4391,7 +4438,7 @@ static void CursorCb_Mail(u8 taskId)
 static void CursorCb_Read(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    gUnknown_0203CEC4->exitCallback = sub_81B4A98;
+    sSelectedMonMenuPtr->exitCallback = sub_81B4A98;
     sub_81B12C0(taskId);
 }
 
@@ -4409,8 +4456,8 @@ static void sub_81B4AE0(void)
 static void CursorCb_TakeMail(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
     sub_81B1B5C(gText_SendMailToPC, 1);
     sub_81B1B5C(gText_MailMessageWillBeLost, 1);
     gTasks[taskId].func = sub_81B4C60;
@@ -4459,8 +4506,8 @@ static void CursorCb_Cancel2(u8 taskId)
     struct Pokemon *mon = &gPlayerParty[gUnknown_0203CEC8.unk9];
 
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     sub_81B33B4(gPlayerParty, gUnknown_0203CEC8.unk9, DetermineMonSelectedMenuType(mon));
     if (gUnknown_0203CEC8.unk8_0 != 12)
     {
@@ -4480,14 +4527,14 @@ static void CursorCb_Cancel2(u8 taskId)
 static void CursorCb_SendMon(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
     if (sub_81B8A7C() == TRUE)
     {
         sub_81B12C0(taskId);
     }
     else
     {
-        sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+        sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
         sub_81B1B5C(gStringVar4, 1);
         gTasks[taskId].func = sub_81B1C1C;
     }
@@ -4498,8 +4545,8 @@ static void CursorCb_Enter(u8 taskId)
     u8 unk;
     u8 i;
 
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     unk = sub_81B8830();
     for (i = 0; i < unk; i++)
     {
@@ -4535,8 +4582,8 @@ static void CursorCb_NoEntry(u8 taskId)
     u8 i, j;
 
     PlaySE(SE_SELECT);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     unk = sub_81B8830();
     for (i = 0; i < unk; i++)
     {
@@ -4584,8 +4631,8 @@ static void CursorCb_Register(u8 taskId)
         return;
     }
     PlaySE(SE_HAZURE);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     StringAppend(gStringVar4, gText_PauseUntilPress);
     sub_81B1B5C(gStringVar4, 1);
     gTasks[taskId].func = sub_81B1C1C;
@@ -4602,8 +4649,8 @@ static void CursorCb_Trade1(u8 taskId)
     {
         StringExpandPlaceholders(gStringVar4, gUnknown_08615E0C[stringId - 1]);
         PlaySE(SE_HAZURE);
-        sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-        sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+        sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+        sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
         StringAppend(gStringVar4, gText_PauseUntilPress);
         sub_81B1B5C(gStringVar4, 1);
         gTasks[taskId].func = sub_81B1C1C;
@@ -4617,8 +4664,8 @@ static void CursorCb_Trade1(u8 taskId)
 
 static void CursorCb_Trade2(u8 taskId)
 {
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     switch (sub_807A918(gPlayerParty, gUnknown_0203CEC8.unk9))
     {
     case 1:
@@ -4668,17 +4715,30 @@ static void sub_81B5430(u8 taskId)
     }
 }
 
+static void CursorCb_FieldMoveSelect(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    gUnknown_0203CEC8.unkB = 27;
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
+    DetermineFieldMovesForFieldMons(gPlayerParty, gUnknown_0203CEC8.unk9);
+    DisplaySelectedMonMenu(0);
+    display_pokemon_menu_message(27);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = HandleMenuInput;
+}
+
 static void CursorCb_FieldMove(u8 taskId)
 {
-    u8 fieldMove = gUnknown_0203CEC4->menuItems[Menu_GetCursorPos()] - MENU_FIELD_MOVES;
+    u8 fieldMove = sSelectedMonMenuPtr->menuItems[Menu_GetCursorPos()] - MENU_FIELD_MOVES;
     const struct MapHeader *mapHeader;
 
     PlaySE(SE_SELECT);
     if (sFieldMoveCursorCallbacks[fieldMove].fieldMoveFunc == NULL)
         return;
 
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
-    sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
     if (sub_81221AC() == TRUE || InUnionRoom() == TRUE)
     {
         if (fieldMove == FIELD_MOVE_MILK_DRINK || fieldMove == FIELD_MOVE_SOFT_BOILED)
@@ -4709,14 +4769,14 @@ static void CursorCb_FieldMove(u8 taskId)
                 sub_81245DC(gStringVar1, mapHeader->regionMapSectionId);
                 StringExpandPlaceholders(gStringVar4, gText_ReturnToHealingSpot);
                 sub_81B5674(taskId);
-                gUnknown_0203CEC4->data[0] = fieldMove;
+                sSelectedMonMenuPtr->data[0] = fieldMove;
                 break;
             case FIELD_MOVE_DIG:
                 mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
                 sub_81245DC(gStringVar1, mapHeader->regionMapSectionId);
                 StringExpandPlaceholders(gStringVar4, gText_EscapeFromHere);
                 sub_81B5674(taskId);
-                gUnknown_0203CEC4->data[0] = fieldMove;
+                sSelectedMonMenuPtr->data[0] = fieldMove;
                 break;
             case FIELD_MOVE_FLY:
                 gUnknown_0203CEC8.exitCallback = MCB2_FlyMap;
@@ -5251,7 +5311,7 @@ static void sub_81B6280(u8 taskId)
     if (!gPaletteFade.active)
     {
         if (gUnknown_0203CEC8.unk8_0 == 1)
-            gUnknown_0203CEC4->exitCallback = sub_81B9140;
+            sSelectedMonMenuPtr->exitCallback = sub_81B9140;
         gUnknown_03006328(taskId, sub_81B6794);
     }
 }
@@ -5436,7 +5496,7 @@ static void sub_81B6794(u8 taskId)
     if (sub_81B1BD4() != TRUE)
     {
         if (gUnknown_0203CEE8 == 0)
-            gUnknown_0203CEC4->exitCallback = NULL;
+            sSelectedMonMenuPtr->exitCallback = NULL;
         sub_81B12C0(taskId);
     }
 }
@@ -5563,7 +5623,7 @@ static void ether_effect_related_3(u8 taskId)
         }
         else
         {
-            sub_81B302C(&gUnknown_0203CEC4->unkC[1]);
+            sub_81B302C(&sSelectedMonMenuPtr->unkC[1]);
             ether_effect_related_2(taskId);
         }
     }
@@ -5595,7 +5655,7 @@ void dp05_ether(u8 taskId, TaskFunc task)
 
 static void ether_effect_related_2(u8 taskId)
 {
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
     gUnknown_0203CEC8.unkE = Menu_GetCursorPos();
     ether_effect_related(taskId);
 }
@@ -5603,8 +5663,8 @@ static void ether_effect_related_2(u8 taskId)
 static void sub_81B6BB4(u8 taskId)
 {
     gTasks[taskId].func = sub_81B1370;
-    gUnknown_0203CEC4->exitCallback = NULL;
-    sub_81B302C(&gUnknown_0203CEC4->unkC[0]);
+    sSelectedMonMenuPtr->exitCallback = NULL;
+    sub_81B302C(&sSelectedMonMenuPtr->unkC[0]);
     display_pokemon_menu_message(5);
 }
 
@@ -5786,7 +5846,7 @@ static void sub_81B7088(u8 taskId)
 {
     if (sub_81B1BD4() != TRUE)
     {
-        gUnknown_0203CEC4->exitCallback = sub_81B70B8;
+        sSelectedMonMenuPtr->exitCallback = sub_81B70B8;
         sub_81B12C0(taskId);
     }
 }
@@ -5898,7 +5958,7 @@ static void sub_81B73E4(u8 taskId)
 void dp05_rare_candy(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gUnknown_0203CEC8.unk9];
-    struct Struct203CEC4 *ptr = gUnknown_0203CEC4;
+    struct SelectedMonStruct *ptr = sSelectedMonMenuPtr;
     s16 *arrayPtr = ptr->data;
     u16 *itemPtr = &gSpecialVar_ItemId;
     bool8 cannotUseEffect;
@@ -5971,7 +6031,7 @@ static void sub_81B7634(u8 taskId)
 
 static void sub_81B767C(u8 taskId)
 {
-    s16 *arrayPtr = gUnknown_0203CEC4->data;
+    s16 *arrayPtr = sSelectedMonMenuPtr->data;
 
     arrayPtr[12] = sub_81B3364();
     DrawLevelUpWindowPg1(arrayPtr[12], arrayPtr, &arrayPtr[6], 1, 2, 3);
@@ -5981,7 +6041,7 @@ static void sub_81B767C(u8 taskId)
 
 static void sub_81B76C8(u8 taskId)
 {
-    s16 *arrayPtr = gUnknown_0203CEC4->data;
+    s16 *arrayPtr = sSelectedMonMenuPtr->data;
 
     DrawLevelUpWindowPg2(arrayPtr[12], &arrayPtr[6], 1, 2, 3);
     CopyWindowToVram(arrayPtr[12], 2);
@@ -6087,9 +6147,9 @@ static void sub_81B79A0(struct Pokemon *mon, s16 *data)
 
 void sub_81B79E8(u8 taskId, TaskFunc task)
 {
-    gUnknown_0203CEC4->data[0] = 0;
-    gUnknown_0203CEC4->data[1] = 0;
-    gUnknown_0203CEC4->data[2] = gUnknown_0203CEC8.unk9;
+    sSelectedMonMenuPtr->data[0] = 0;
+    sSelectedMonMenuPtr->data[1] = 0;
+    sSelectedMonMenuPtr->data[2] = gUnknown_0203CEC8.unk9;
     sub_81B7A28(taskId);
 }
 
@@ -6115,26 +6175,26 @@ static void sub_81B7A28(u8 taskId)
     party_menu_get_status_condition_and_update_object(mon, &gUnknown_0203CEDC[gUnknown_0203CEC8.unk9]);
     if (gSprites[gUnknown_0203CEDC[gUnknown_0203CEC8.unk9].unkC].invisible)
         DisplayPartyPokemonLevelCheck(mon, &gUnknown_0203CEDC[gUnknown_0203CEC8.unk9], 1);
-    UpdatePartyMenuSlotSelected(gUnknown_0203CEC4->data[2], FALSE);
+    UpdatePartyMenuSlotSelected(sSelectedMonMenuPtr->data[2], FALSE);
     UpdatePartyMenuSlotSelected(gUnknown_0203CEC8.unk9, TRUE);
     sub_81B1F18(taskId, gUnknown_0203CEC8.unk9, 1, GetMonData(mon, MON_DATA_HP) - hp, sub_81B7C10);
     sub_81B1FA8(taskId, 0, hp);
-    gUnknown_0203CEC4->data[0] = 1;
-    gUnknown_0203CEC4->data[1] = 1;
+    sSelectedMonMenuPtr->data[0] = 1;
+    sSelectedMonMenuPtr->data[1] = 1;
 }
 
 static void task_sacred_ash_party_loop(u8 taskId)
 {
     if (sub_81B1BD4() != TRUE)
     {
-        if (gUnknown_0203CEC4->data[0] == 1)
+        if (sSelectedMonMenuPtr->data[0] == 1)
         {
-            gUnknown_0203CEC4->data[0] = 0;
-            gUnknown_0203CEC4->data[2] = gUnknown_0203CEC8.unk9;
+            sSelectedMonMenuPtr->data[0] = 0;
+            sSelectedMonMenuPtr->data[2] = gUnknown_0203CEC8.unk9;
         }
         if (++(gUnknown_0203CEC8.unk9) == PARTY_SIZE)
         {
-            if (gUnknown_0203CEC4->data[1] == 0)
+            if (sSelectedMonMenuPtr->data[1] == 0)
             {
                 gUnknown_0203CEE8 = 0;
                 sub_81B1B5C(gText_WontHaveEffect, 1);
@@ -6319,7 +6379,7 @@ static void sub_81B8044(u8 taskId)
     if (ItemIsMail(gUnknown_0203CEC8.unkC))
     {
         sub_81B83F0(gUnknown_0203CEC8.unkC);
-        gUnknown_0203CEC4->exitCallback = sub_81B814C;
+        sSelectedMonMenuPtr->exitCallback = sub_81B814C;
         sub_81B12C0(taskId);
     }
     else
@@ -6424,7 +6484,7 @@ static void sub_81B82D4(u8 taskId)
         }
         else if (ItemIsMail(item))
         {
-            gUnknown_0203CEC4->exitCallback = sub_81B814C;
+            sSelectedMonMenuPtr->exitCallback = sub_81B814C;
             sub_81B12C0(taskId);
         }
         else

@@ -2189,8 +2189,6 @@ gUnknown_08272DE3:: @ 8272DE3
 gText_RegisteredTrainerinPokeNav:: @ 8272E0F
 	.string "Registered {STR_VAR_1} {STR_VAR_2}\nin the PokéNav.$"
 
-	.include "data/text/surf.inc"
-
 gUnknown_0827301B:: @ 827301B
 	.string "It sounded as if a door opened\nsomewhere far away.$"
 
