@@ -29,6 +29,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/items.h"
+#include "constants/region_map_sections.h"
 
 // Reference to an assembly defined constant, the start of the ROM
 // We don't actually use the value, just the address it's at.
@@ -343,6 +344,8 @@ void DebugHandle_GiveDebugParty()
 	
 	val = ITEM_EVERSTONE;
 	SetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM, &val);
+	val = MAPSEC_STARTER_MARKER;
+	SetMonData(&gPlayerParty[0], MON_DATA_MET_LOCATION, &val);
 	ScriptContext1_SetupScript(DebugScript_GiveDebugPartyMessage);
 	
 	DebugSetCallbackSuccess();

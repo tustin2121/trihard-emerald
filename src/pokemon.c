@@ -46,6 +46,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
+#include "constants/region_map_sections.h"
 
 struct SpeciesItem
 {
@@ -7084,4 +7085,34 @@ bool8 CanAnyPartyMonsBeHealed(void)
 void ScrSpecial_CanAnyPartyMonsBeHealed(void)
 {
     gSpecialVar_Result = CanAnyPartyMonsBeHealed();
+}
+
+
+void CheckIfStarterAlive(void)
+{
+    u8 i;
+    u16 starter = VarGet(VAR_STARTER_MON);
+    switch (starter) {
+        case 0: gSpecialVar_0x8000 = SPECIES_TREECKO; break;
+        case 1: gSpecialVar_0x8000 = SPECIES_TORCHIC; break;
+        case 2: gSpecialVar_0x8000 = SPECIES_MUDKIP; break;
+    }
+    
+    gSpecialVar_Result = FALSE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        struct Pokemon *mon = &gPlayerParty[i];
+        if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE) break;
+        if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_EGG) continue;
+        
+        if (GetMonData(mon, MON_DATA_MET_LOCATION, NULL) == MAPSEC_STARTER_MARKER)
+        {
+            gSpecialVar_Result = TRUE;
+        }
+        // u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, 0);
+        // if (species == starter)
+        // {
+        //     gSpecialVar_Result = TRUE;
+        // }
+    }
 }

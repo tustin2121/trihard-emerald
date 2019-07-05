@@ -43,6 +43,7 @@
 #include "field_control_avatar.h"
 #include "mirage_tower.h"
 #include "constants/map_types.h"
+#include "constants/region_map_sections.h"
 #include "constants/battle_frontier.h"
 #include "field_screen_effect.h"
 #include "data.h"
@@ -893,11 +894,13 @@ void ChooseStarter(void)
 
 static void CB2_GiveStarter(void)
 {
+    u16 loc = MAPSEC_STARTER_MARKER;
     u16 starterMon;
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
     ScriptGiveMon(starterMon, 5, 0, 0, 0, 0);
+    SetMonData(gPlayerParty, MON_DATA_MET_LOCATION, &loc);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);

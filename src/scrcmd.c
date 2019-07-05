@@ -1403,7 +1403,7 @@ bool8 SrcCmd_messagesign(struct ScriptContext *ctx)
     
     gBrailleWindowId = AddWindow(&win);
     LoadStdWindowFrame();
-    DrawSignWindowFrame(gBrailleWindowId, TRUE);
+    DrawSignWindowFrame2(gBrailleWindowId, TRUE);
     PopupSignMessageBox(min(win.height+1, 9));
     AddTextPrinterParameterized(gBrailleWindowId, 1, gStringVar4, 0, 1, 0, NULL);
     SetupNativeScript(ctx, WaitForSignPopup);

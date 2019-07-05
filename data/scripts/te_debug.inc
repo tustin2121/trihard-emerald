@@ -140,30 +140,17 @@ DebugScript_GiveDebugPartyAndSetFlags::
 DebugScript_TestScript1::
 	lockall
 	msgbox ScriptText_TS1
-	checkpartycapability CAPABILITY_SURF
-	bufferpartymonnick 0, VAR_RESULT
-	msgbox ScriptText_TS2
-	checkpartycapability CAPABILITY_CUT
-	bufferpartymonnick 0, VAR_RESULT
-	msgbox ScriptText_TS3
-	checkpartycapability CAPABILITY_FLY
-	bufferpartymonnick 0, VAR_RESULT
-	msgbox ScriptText_TS4
-	checkpartycapability CAPABILITY_SECRET_POWER
-	bufferpartymonnick 0, VAR_RESULT
-	msgbox ScriptText_TS5
+	callnative CheckIfStarterAlive
+	selectpointer_from VAR_RESULT, ScriptText_TS2, ScriptText_TS3
+	msgbox_selected
 	releaseall
 	end
 ScriptText_TS1:
-	.string "Running Capability Test$"
+	.string "Running Starter Check Test$"
 ScriptText_TS2:
-	.string "Surf mon: {STR_VAR_1}$"
+	.string "Starter is DEAD$"
 ScriptText_TS3:
-	.string "Cut mon: {STR_VAR_1}$"
-ScriptText_TS4:
-	.string "Fly mon: {STR_VAR_1}$"
-ScriptText_TS5:
-	.string "Secret Power mon: {STR_VAR_1}$"
+	.string "Starter is Alive$"
 
 ScriptText_DebugBoxText:
 	.string "Oh! There's some Pokemon and badges in\n"

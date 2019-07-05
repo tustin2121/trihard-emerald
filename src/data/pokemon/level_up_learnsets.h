@@ -1415,6 +1415,7 @@ static const u16 sExeggutorLevelUpLearnset[] = {
 
 static const u16 sCuboneLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
+    LEVEL_UP_MOVE( 1, MOVE_BONE_CLUB),
     LEVEL_UP_MOVE( 5, MOVE_TAIL_WHIP),
     LEVEL_UP_MOVE( 9, MOVE_BONE_CLUB),
     LEVEL_UP_MOVE(13, MOVE_HEADBUTT),

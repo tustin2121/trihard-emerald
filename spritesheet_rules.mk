@@ -807,6 +807,8 @@ $(EVENTOBJGFXDIR)/misc/cuttable_tree.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/misc/mr_brineys_boat.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(EVENTOBJGFXDIR)/misc/letter.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
 $(EVENTOBJGFXDIR)/effects/arrow.4bpp: %.4bpp: %.png

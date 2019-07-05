@@ -1184,6 +1184,7 @@ const u8 gText_SaveCompletePressA[] = _("Save completed.\n{COLOR RED}“Please p
 const u8 gText_Ferry[] = _("Ferry");
 const u8 gText_SecretBase[] = _("Secret Base");
 const u8 gText_Hideout[] = _("Hideout");
+const u8 gText_StarterLocation[] = _("Birch's Bag");
 const u8 gText_ResetRTCConfirmCancel[] = _("Reset RTC?\nA: Confirm, B: Cancel");
 const u8 gText_PresentTime[] = _("Present time in game");
 const u8 gText_PreviousTime[] = _("Previous time in game");

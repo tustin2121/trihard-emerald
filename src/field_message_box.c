@@ -33,16 +33,16 @@ static void DrawFieldDialogFrame(u8 windowId, bool8 copyToVram)
     {
         default:
         case FIELD_MESSAGE_TYPE_DESCRIBE:
-            DrawDescribeFrame(0, 1);
+            DrawDescribeFrame(windowId, copyToVram);
             break;
         case FIELD_MESSAGE_TYPE_STANDARD:
-            DrawStdWindowFrame(0, 1);
+            DrawStdWindowFrame(windowId, copyToVram);
             break;
         case FIELD_MESSAGE_TYPE_DIALOG:
-            DrawDialogueFrame(0, 1);
+            DrawDialogueFrame(windowId, copyToVram);
             break;
         case FIELD_MESSAGE_TYPE_SIGN:
-            DrawSignWindowFrame(0, 1);
+            DrawSignWindowFrame(windowId, copyToVram);
             break;
     }
 }
