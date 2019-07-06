@@ -3637,7 +3637,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     struct PokemonSubstruct2 *substruct2 = NULL;
     struct PokemonSubstruct3 *substruct3 = NULL;
 
-    if (field > MON_DATA_10)
+    if (field > MON_DATA_SHOULD_MOURN)
     {
         substruct0 = &(GetSubstruct(boxMon, boxMon->personality, 0)->type0);
         substruct1 = &(GetSubstruct(boxMon, boxMon->personality, 1)->type1);
@@ -3731,8 +3731,8 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_CHECKSUM:
         retVal = boxMon->checksum;
         break;
-    case MON_DATA_10:
-        retVal = boxMon->unknown;
+    case MON_DATA_SHOULD_MOURN:
+        retVal = boxMon->shouldMourn;
         break;
     case MON_DATA_SPECIES:
         retVal = boxMon->isBadEgg ? SPECIES_EGG : substruct0->species;
@@ -3972,7 +3972,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     }
 
-    if (field > MON_DATA_10)
+    if (field > MON_DATA_SHOULD_MOURN)
         EncryptBoxMon(boxMon);
 
     return retVal;
@@ -4035,7 +4035,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     struct PokemonSubstruct2 *substruct2 = NULL;
     struct PokemonSubstruct3 *substruct3 = NULL;
 
-    if (field > MON_DATA_10)
+    if (field > MON_DATA_SHOULD_MOURN)
     {
         substruct0 = &(GetSubstruct(boxMon, boxMon->personality, 0)->type0);
         substruct1 = &(GetSubstruct(boxMon, boxMon->personality, 1)->type1);
@@ -4094,8 +4094,8 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_CHECKSUM:
         SET16(boxMon->checksum);
         break;
-    case MON_DATA_10:
-        SET16(boxMon->unknown);
+    case MON_DATA_SHOULD_MOURN:
+        SET8(boxMon->shouldMourn);
         break;
     case MON_DATA_SPECIES:
     {
@@ -4290,7 +4290,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     }
 
-    if (field > MON_DATA_10)
+    if (field > MON_DATA_SHOULD_MOURN)
     {
         boxMon->checksum = CalculateBoxMonChecksum(boxMon);
         EncryptBoxMon(boxMon);
@@ -4380,6 +4380,7 @@ bool8 CanMonDie(int partySlot)
 // Sends a pokemon to the PC and removes it from the party.
 void KillMon(int partySlot)
 {
+    u8 shouldMourn;
     struct Pokemon* mon = &gPlayerParty[partySlot];
     
     // sanity check, don't kill "pokemon" beyond our party count
@@ -4410,6 +4411,8 @@ void KillMon(int partySlot)
     //     TakeMailFromMon(mon);
     // }
     
+    shouldMourn = 1;
+    SetMonData(mon, MON_DATA_SHOULD_MOURN, &shouldMourn);
     SendMonToPC(mon);
     ZeroMonData(mon);
     CompactPartySlots();
@@ -4535,9 +4538,9 @@ u8 GetMonAbility(struct Pokemon *mon)
     return GetAbilityBySpecies(species, altAbility);
 }
 
-u8 GetMonAffectionLevel(struct Pokemon *mon)
+u8 GetBoxMonAffectionLevel(struct BoxPokemon *mon)
 {
-    u8 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
+    u8 friendship = GetBoxMonData(mon, MON_DATA_FRIENDSHIP, NULL);
     if (friendship >= AFFECTION_LEVEL_5)
         return 5;
     if (friendship >= AFFECTION_LEVEL_4)
@@ -4550,6 +4553,11 @@ u8 GetMonAffectionLevel(struct Pokemon *mon)
         return 1;
 
     return 0;
+}
+
+u8 GetMonAffectionLevel(struct Pokemon *mon)
+{
+    return GetBoxMonAffectionLevel(&mon->box);
 }
 
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord)

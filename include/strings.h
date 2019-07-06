@@ -459,6 +459,7 @@ extern const u8 gText_PkmnAlreadyKnows[];
 extern const u8 gText_PkmnCantLearnMove[];
 extern const u8 gText_PkmnNeedsToReplaceMove[];
 extern const u8 gText_PkmnLearnedMove3[];
+extern const u8 gText_PkmnLearnedMovePause[];
 extern const u8 gText_WhichMoveToForget[];
 extern const u8 gText_12PoofForgotMove[];
 extern const u8 gText_StopLearningMove2[];
@@ -2100,6 +2101,9 @@ extern const u8 gDaycareText_GetAlongVeryWell[];
 extern const u8 gDaycareText_GetAlong[];
 extern const u8 gDaycareText_DontLikeOther[];
 extern const u8 gDaycareText_PlayOther[];
+
+// mourning cutscene
+extern const u8 gText_PkmnMournGrewLevel[];
 
 // party menu
 extern const u8 gText_PartyMenu_ChoosePkmn[];
