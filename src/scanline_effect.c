@@ -122,6 +122,8 @@ static void CopyValue32Bit(void)
 #define tDelayInterval        data[5]
 #define tRegOffset            data[6]
 #define tApplyBattleBgOffsets data[7]
+#define tScrollOffsetHi       data[8]
+#define tScrollOffsetLo       data[9]
 
 static void TaskFunc_UpdateWavePerFrame(u8 taskId)
 {
@@ -136,6 +138,8 @@ static void TaskFunc_UpdateWavePerFrame(u8 taskId)
     }
     else
     {
+        u16 *scrollOffsetPtr = (u16 *)(((u16)gTasks[taskId].tScrollOffsetHi << 16) | ((u16)gTasks[taskId].tScrollOffsetLo));
+        s16 scrollOffset = scrollOffsetPtr != NULL ? *scrollOffsetPtr : 0;
         if (gTasks[taskId].tApplyBattleBgOffsets)
         {
             switch (gTasks[taskId].tRegOffset)
@@ -169,7 +173,7 @@ static void TaskFunc_UpdateWavePerFrame(u8 taskId)
         if (gTasks[taskId].tFramesUntilMove != 0)
         {
             gTasks[taskId].tFramesUntilMove--;
-            offset = gTasks[taskId].tSrcBufferOffset + 320;
+            offset = (gTasks[taskId].tSrcBufferOffset + scrollOffset) % 256 + 320;
             for (i = gTasks[taskId].tStartLine; i < gTasks[taskId].tEndLine; i++)
             {
                 gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gScanlineEffectRegBuffers[0][offset] + value;
@@ -179,7 +183,7 @@ static void TaskFunc_UpdateWavePerFrame(u8 taskId)
         else
         {
             gTasks[taskId].tFramesUntilMove = gTasks[taskId].tDelayInterval;
-            offset = gTasks[taskId].tSrcBufferOffset + 320;
+            offset = (gTasks[taskId].tSrcBufferOffset + scrollOffset) % 256 + 320;
             for (i = gTasks[taskId].tStartLine; i < gTasks[taskId].tEndLine; i++)
             {
                 gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gScanlineEffectRegBuffers[0][offset] + value;
@@ -211,7 +215,7 @@ static void GenerateWave(u16 *buffer, u8 frequency, u8 amplitude, u8 unused)
 // 'frequency' and 'amplitude' control the frequency and amplitude of the wave.
 // 'delayInterval' controls how fast the wave travels up the screen. The wave will shift upwards one scanline every 'delayInterval'+1 frames.
 // 'regOffset' is the offset of the video register to modify.
-u8 ScanlineEffect_InitWave(u8 startLine, u8 endLine, u8 frequency, u8 amplitude, u8 delayInterval, u8 regOffset, bool8 applyBattleBgOffsets)
+u8 ScanlineEffect_InitWave(u8 startLine, u8 endLine, u8 frequency, u8 amplitude, u8 delayInterval, u8 regOffset, bool8 applyBattleBgOffsets, u16 *scrollOffset)
 {
     int i;
     int offset;
@@ -236,6 +240,8 @@ u8 ScanlineEffect_InitWave(u8 startLine, u8 endLine, u8 frequency, u8 amplitude,
     gTasks[taskId].tDelayInterval        = delayInterval;
     gTasks[taskId].tRegOffset            = regOffset;
     gTasks[taskId].tApplyBattleBgOffsets = applyBattleBgOffsets;
+    gTasks[taskId].tScrollOffsetHi = (((u32)scrollOffset) >> 16);
+    gTasks[taskId].tScrollOffsetLo = (((u32)scrollOffset) & 0xFFFF);
 
     gScanlineEffect.waveTaskId = taskId;
     sShouldStopWaveTask = FALSE;

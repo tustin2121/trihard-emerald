@@ -52,9 +52,16 @@ PokemonCenter_1F_NurseHealScript_Heal:
 	waitfanfare
 	waitmovement 0
 	special HealPlayerParty
-	@ Do any healing cutscenes
-	call PokemonCenter_1F_DoHealingCutscenes
+	@ Do the mourning cutscene, if needed
+	special DoMourningCutscene
+	@ TriHard Emerald: Force Save
+	@ Check for dream cutscenes
+	dodreams
 	fadescreenspeed 4, 2 @ FADE_FROM_BLACK_NO_WINDOW
+	special ForceSaveGame
+	waitstate
+	closemessage
+	delay 1 @ delay 1 frame to allow the save game window to actually close
 	release
 	end
 PokemonCenter_1F_NurseText_NurseNowHealing:
@@ -81,18 +88,6 @@ PokemonCenter_1F_NurseHealScript_NurseResetPosition:
 	walk_fastest_right
 	face_down
 	step_end
-
-PokemonCenter_1F_DoHealingCutscenes:
-	@ Do the mourning cutscene, if needed
-	domourning
-	@ TriHard Emerald: Force Save
-	special ForceSaveGame
-	waitstate
-	closemessage
-	delay 1 @ delay 1 frame to allow the save game window to actually close
-	@ Check for dream cutscenes
-	dodreams
-	return
 
 PokemonCenter_1F_NurseHealScript_Talk:
 	message PokemonCenter_1F_NurseText_Goodluck

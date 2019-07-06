@@ -1673,7 +1673,7 @@ static void Task_IntroLoadPart3Graphics4(u8 taskId)
 {
     gTasks[taskId].data[0] = 0;
     gTasks[taskId].func = Task_IntroGroudonScene;
-    ScanlineEffect_InitWave(0, 0xA0, 0x4, 4, 1, 4, 0);
+    ScanlineEffect_InitWave(0, 0xA0, 0x4, 4, 1, 4, 0, NULL);
 }
 
 static void Task_IntroGroudonScene(u8 taskId)
@@ -1843,7 +1843,7 @@ static void Task_IntroLoadKyogreScene(u8 taskId)
     gTasks[taskId].data[6] = 0x10;
     gTasks[taskId].data[3] = 0x100;
     PanFadeAndZoomScreen(0x150, 0x50, 0x100, 0);
-    ScanlineEffect_InitWave(0, 0xA0, 4, 4, 1, 6, 0);
+    ScanlineEffect_InitWave(0, 0xA0, 4, 4, 1, 6, 0, NULL);
 }
 
 static void Task_IntroKyogreScene(u8 taskId)

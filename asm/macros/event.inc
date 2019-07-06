@@ -1268,11 +1268,6 @@
 	.2byte \y
 	.endm
 
-	@ In Emerald, this command consumes its parameters and does nothing. In FireRed, this command is a nop.
-	.macro domourning
-	.byte 0xb1
-	.endm
-
 	@ TriHard Emerald: Do dream cutscene
 	.macro dodreams forceParam=0
 	.byte 0xb2

@@ -653,9 +653,9 @@ static void sub_8111E78(u8 taskId)
             startLine = 0;
 
         if (position == 1)
-            task->data[10] = ScanlineEffect_InitWave(startLine, startLine + 64, 2, 6, 0, 4, 1);
+            task->data[10] = ScanlineEffect_InitWave(startLine, startLine + 64, 2, 6, 0, 4, 1, NULL);
         else
-            task->data[10] = ScanlineEffect_InitWave(startLine, startLine + 64, 2, 6, 0, 8, 1);
+            task->data[10] = ScanlineEffect_InitWave(startLine, startLine + 64, 2, 6, 0, 8, 1, NULL);
 
         task->data[15]++;
         break;

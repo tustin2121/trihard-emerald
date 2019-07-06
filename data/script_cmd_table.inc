@@ -177,7 +177,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_waitdooranim
 	.4byte ScrCmd_setdooropen
 	.4byte ScrCmd_setdoorclosed
-	.4byte ScrCmd_domourning
+	.4byte ScrCmd_nop1
 	.4byte ScrCmd_dodreams
 	.4byte ScrCmd_checkcoins
 	.4byte ScrCmd_givecoins

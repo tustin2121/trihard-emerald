@@ -2323,19 +2323,6 @@ bool8 ScrCmd_setdoorclosed(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_domourning(struct ScriptContext *ctx)
-{
-    if (DoMourningCutscene())
-    {
-        ScriptContext1_Stop();
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
-}
-
 bool8 ScrCmd_dodreams(struct ScriptContext *ctx)
 {
     if (DoDreamCutscenes())

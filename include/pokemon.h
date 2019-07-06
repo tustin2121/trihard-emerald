@@ -14,7 +14,7 @@
 #define MON_DATA_OT_NAME            7
 #define MON_DATA_MARKINGS           8
 #define MON_DATA_CHECKSUM           9
-#define MON_DATA_10                10
+#define MON_DATA_SHOULD_MOURN      10
 #define MON_DATA_SPECIES           11
 #define MON_DATA_HELD_ITEM         12
 #define MON_DATA_MOVE1             13
@@ -141,10 +141,11 @@
 #define AFFECTION_LEVEL_4 200
 #define AFFECTION_LEVEL_5 255
 
-#define AFFECTION_LEVEL_SURVIVE     2
-#define AFFECTION_LEVEL_STATUS_CURE 3
-#define AFFECTION_LEVEL_EVADE       4
-#define AFFECTION_LEVEL_CRIT        5
+#define AFFECTION_LEVEL_GRANT_MOURN_EXP 1
+#define AFFECTION_LEVEL_SURVIVE         2
+#define AFFECTION_LEVEL_STATUS_CURE     3
+#define AFFECTION_LEVEL_EVADE           4
+#define AFFECTION_LEVEL_CRIT            5
 
 // Chances are divided by 10.  A chance value of 125 would be a 12.5% chance.
 #define AFFECTION_CHANCE_SURVIVE      50
@@ -244,7 +245,8 @@ struct BoxPokemon
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
-    u16 unknown;
+    u8 shouldMourn:1;
+    // 15 free bits here
 
     union
     {
@@ -530,6 +532,7 @@ u8 GetMonsStateToDoubles(void);
 u8 GetMonsStateToDoubles_2(void);
 u8 GetAbilityBySpecies(u16 species, bool8 altAbility);
 u8 GetMonAbility(struct Pokemon *mon);
+u8 GetBoxMonAffectionLevel(struct BoxPokemon *mon);
 u8 GetMonAffectionLevel(struct Pokemon *mon);
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord);
 u8 GetSecretBaseTrainerPicIndex(void);
