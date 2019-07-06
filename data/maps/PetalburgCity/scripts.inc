@@ -86,12 +86,12 @@ PetalburgCity_EventScript_GymNotice:: @ 81DC491
 	msgbox PetalburgCity_Text_Notice, MSGBOX_SIGN
 	end
 PetalburgCity_Text_Notice:
-	.string "{GYM}Notice{END}\n"
-	.string "This facility is closed until\n"
-	.string "further notice due to police\n"
-	.string "investigation. Please contact HPD\n"
-	.string "with any information about potential\n"
-	.string "misconduct or endangerment charges.$"
+	.string "{CENTER}{GYM}Notice{END}\n"
+	.string "{CENTER}This facility is closed until\n"
+	.string "{CENTER}further notice due to police\n"
+	.string "{CENTER}investigation. Please contact HPD\n"
+	.string "{CENTER}with any information about potential\n"
+	.string "{CENTER}misconduct or endangerment charges.$"
 
 
 @ -----------------------------------------------------
