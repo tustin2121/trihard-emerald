@@ -4609,6 +4609,8 @@ bool8 IsPlayerPartyFull(void)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
             return FALSE;
+        if (GetMonData(&gPlayerParty[i], MON_DATA_STATUS, NULL) == STATUS1_DEAD)
+            return FALSE;
     }
 
     return TRUE;
