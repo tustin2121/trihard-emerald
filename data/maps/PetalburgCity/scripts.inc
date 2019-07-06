@@ -1,5 +1,6 @@
 PetalburgCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, PetalburgCity_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_MapScript2_FrameTable
 	.byte 0
 
@@ -26,6 +27,16 @@ PetalburgCity_EventScript_1DC307:: @ 81DC307
 
 PetalburgCity_EventScript_1DC316:: @ 81DC316
 	setvar VAR_PETALBURG_STATE, 11
+	return
+
+@ -----------------------------------------------------
+
+PetalburgCity_OnLoad:
+	call_if_unset FLAG_HIDE_PETALBURG_CITY_GYM_LOCK, PetalburgCity_OnLoad_BlockGym
+	end
+
+PetalburgCity_OnLoad_BlockGym:
+	setmetatile 15, 8, 0x200, TRUE
 	return
 
 @ -----------------------------------------------------
