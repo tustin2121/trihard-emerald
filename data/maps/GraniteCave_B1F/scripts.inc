@@ -9,3 +9,9 @@ GraniteCave_B1F_MapScript1_22DC6E: @ 822DC6E
 	setholewarp MAP_GRANITE_CAVE_B2F, 255, 0, 0
 	end
 
+@ -----------------------------------------------------
+
+GraniteCave_B1F_EventScript_ItemPokeBall:: @ 829115D
+	giveitem_std ITEM_POKE_BALL, 1, 1
+	end
+

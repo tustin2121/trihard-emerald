@@ -781,7 +781,7 @@
 #define FLAG_HIDE_PETALBURG_CITY_GYM_LOCK                           0x33E
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS               0x33F
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_ONLOOKERS      0x340
-#define FLAG_HIDE_GRANITE_CAVE_STEVEN                               0x341
+#define FLAG_ITEM_GRANITE_CAVE_TM47                                 0x341
 #define FLAG_HIDE_ROUTE_128_STEVEN                                  0x342
 #define FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY                       0x343
 #define FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT              0x344
