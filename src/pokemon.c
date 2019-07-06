@@ -4443,9 +4443,10 @@ void Restore1HPDeathPreventedMons(void)
     }
 }
 
-void RemoveDeadMonFromParty(void)
+void RemoveDeadMonFromParty(bool8 endOfBattle)
 {
     s32 i;
+    if (!endOfBattle) return; //TODO: Hack to fix problems with battle!
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_STATUS, NULL) == STATUS1_DEAD)

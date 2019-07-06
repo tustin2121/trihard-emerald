@@ -10598,7 +10598,7 @@ static void atkF9_removedeadmonfromparty(void)
 {
     if (gBattleControllerExecFlags == 0)
     {
-        RemoveDeadMonFromParty();
+        RemoveDeadMonFromParty(FALSE);
         RecalculateBattleReorderSlots();
         gBattlescriptCurrInstr++;
     }

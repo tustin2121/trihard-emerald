@@ -522,7 +522,7 @@ u8 SendMonToPC(struct Pokemon* mon);
 bool8 CanMonDie(int partySlot);
 void KillMon(int partySlot);
 void Restore1HPDeathPreventedMons(void);
-void RemoveDeadMonFromParty(void);
+void RemoveDeadMonFromParty(bool8 endOfBattle);
 u8 CalculatePlayerPartyCount(void);
 u8 CalculateEnemyPartyCount(void);
 u8 GetMonsStateToDoubles(void);

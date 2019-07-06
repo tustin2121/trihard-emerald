@@ -5189,7 +5189,7 @@ static void HandleEndTurn_FinishBattle(void)
 
         sub_8186444();
         Restore1HPDeathPreventedMons();
-        RemoveDeadMonFromParty();
+        RemoveDeadMonFromParty(TRUE);
         BeginFastPaletteFade(3);
         FadeOutMapMusic(5);
         gBattleMainFunc = FreeResetData_ReturnToOvOrDoEvolutions;
