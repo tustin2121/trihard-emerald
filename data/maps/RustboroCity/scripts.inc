@@ -10,6 +10,8 @@ RustboroCity_OnTransition: @ 81E06C8
 	call Common_EventScript_SetupRivalGender
 	compare VAR_RUSTBORO_STATE, 2
 	call_if_eq RustboroCity_EventScript_SetupAqua2
+	compare VAR_RUSTBORO_STATE, 3
+	call_if_eq RustboroCity_EventScript_SetupAqua3
 	@ compare VAR_RUSTBORO_STATE, 6
 	@ call_if_eq Common_EventScript_HideMapNamePopup
 	@ getplayerxy VAR_TEMP_0, VAR_TEMP_1
@@ -297,13 +299,7 @@ RustboroCity_Text_1E249D: @ 81E249D
 #define LID_AQUA_BOY 17
 #define LID_AQUA_3 18
 
-RustboroCity_EventScript_SetupAqua2:
-	setobjectxyperm LID_AQUA_BOY, 30, 11
-	setobjectxyperm LID_AQUA_GIRL, 29, 10
-	setobjectxyperm LID_AQUA_3, 38, 9
-	return
-
-RustboroCity_TriggerScript_HeistCutscene1:
+RustboroCity_TriggerScript_HeistCutscene1::
 	lockall
 	setobjectxyperm LID_MAGMA, 14, 21
 	setobjectxyperm LID_AQUA_BOY, 13, 21
@@ -314,9 +310,10 @@ RustboroCity_TriggerScript_HeistCutscene1:
 	addobject LID_AQUA_GIRL
 	addobject LID_AQUA_3
 	@ Yelling ensues
-	markasdialog -1
+	markasdialog -26
 	msgbox RustboroCity_Text_Heist1, MSGBOX_DIALOG
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_MGM0, 0
+	markasdialog -26
 	msgbox RustboroCity_Text_Heist2, MSGBOX_DIALOG
 	closemessage
 	@ They rush past
@@ -328,17 +325,19 @@ RustboroCity_TriggerScript_HeistCutscene1:
 	delay 40
 	setfieldeffectargument 0, 22
 	setfieldeffectargument 1, 22
-	setfieldeffectargument 2, 3
-	setfieldeffectargument 3, 0
+	setfieldeffectargument 2, 4
+	setfieldeffectargument 3, 2
 	dofieldeffect FLDEFF_DUST
 	waitfieldeffect 0
 	waitmovement 0
 	@ Scene end, clean up:
 	fadedefaultbgm
 	removeobject LID_MAGMA
-	setobjectxyperm LID_AQUA_BOY, 30, 11
-	setobjectxyperm LID_AQUA_GIRL, 29, 10
-	setobjectxyperm LID_AQUA_3, 38, 9
+	removeobject LID_AQUA_BOY
+	removeobject LID_AQUA_GIRL
+	removeobject LID_AQUA_3
+	call RustboroCity_EventScript_SetupAqua2
+	clearflag FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS
 	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
 	setflag FLAG_DEVON_GOODS_STOLEN
 	setvar VAR_RUSTBORO_STATE, 2
@@ -359,10 +358,13 @@ RustboroCity_Text_Heist2:
 	.string "After him!! He's getting away!$"
 RustboroCity_Movement_Heist3_Magma: @ 81E0A8E
 	walk_fastest_right
+	walk_fastest_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
+	walk_fast_up
+	walk_fast_up
 	walk_fast_up
 	walk_fast_up
 	walk_fast_up
@@ -374,10 +376,13 @@ RustboroCity_Movement_Heist3_Magma: @ 81E0A8E
 RustboroCity_Movement_Heist3_AquaA:
 	walk_fastest_right
 	walk_fastest_right
+	walk_fastest_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
+	walk_fast_up
+	walk_fast_up
 	walk_fast_up
 	walk_fast_up
 	walk_fast_up
@@ -387,12 +392,17 @@ RustboroCity_Movement_Heist3_AquaA:
 	walk_fast_up
 	step_end
 RustboroCity_Movement_Heist3_AquaB:
+	delay_8
+	walk_fastest_right
+	walk_fastest_right
 	walk_fastest_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
+	walk_fast_up
+	walk_fast_up
 	walk_fast_up
 	walk_fast_up
 	walk_fast_up
@@ -402,18 +412,24 @@ RustboroCity_Movement_Heist3_AquaB:
 	walk_fast_up
 	step_end
 RustboroCity_Movement_Heist3_AquaC:
-	delay_8
+	delay_16
+	walk_fastest_right
 	walk_fastest_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
-	walk_in_place_fast_up
+	face_up
 	lock_facing_direction
-	walk_fast_right
-	walk_fast_left
+	walk_right
+	walk_slow_right
 	unlock_facing_direction
+	face_left
+	delay_8
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
 	walk_fast_up
 	walk_fast_up
 	walk_fast_up
@@ -423,114 +439,533 @@ RustboroCity_Movement_Heist3_AquaC:
 	walk_fast_up
 	step_end
 
+@ -----------------------------------------------------
+@ Cutscene: Aqua's Task
 
+RustboroCity_EventScript_SetupAqua2:
+	setobjectxyperm LID_AQUA_BOY, 30, 11
+	setobjectxyperm LID_AQUA_GIRL, 29, 10
+	setobjectxyperm LID_AQUA_3, 34, 8
+	return
 
-
-
+RustboroCity_TriggerScript_AquasTask1::
 	lockall
-	setobjectxyperm 9, 14, 21
-	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-	msgbox RustboroCity_Text_1E17FE, MSGBOX_DEFAULT
+	getplayerxy VAR_TEMP_E, VAR_TEMP_F
+	subvar VAR_TEMP_F, 8
+	delay 8
+	special SpawnCameraObject
+	addobject LID_AQUA_3
+	delay 2
+	selectpointer RustboroCity_MovementTable_AquasTask1_CamMovement1, VAR_TEMP_F
+	applymovement EVENT_OBJ_ID_CAMERA, 0
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquasTask1_AquaGuy
+	waitmovement 0
+	delay 2
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceUp
+	applymovement LID_AQUA_3, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	@ "He went into the tunnel."
+	markasdialog -6
+	msgbox RustboroCity_Text_AquasTask2
+	playse SE_SELECT
+	@ "Ugh, really?"
+	markasdialog -12
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquasTask_BoyGlanceRight
+	msgbox RustboroCity_Text_AquasTask3
+	playse SE_SELECT
+	waitmovement 0
+	@ "my team's beat"
+	selectpointer RustboroCity_MovementTable_AquasTask4_PlayerCreep1, VAR_TEMP_F
+	applymovement EVENT_OBJ_ID_PLAYER, 0
+	markasdialog 8
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquasTask_GirlGlanceDown
+	msgbox RustboroCity_Text_AquasTask4
+	playse SE_SELECT
+	waitmovement 0
+	@ "mine too"
+	markasdialog -6
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquasTask_3GlanceRight
+	msgbox RustboroCity_Text_AquasTask5
+	playse SE_SELECT
+	waitmovement 0
+	@ "Any suggestions"
+	selectpointer RustboroCity_MovementTable_AquasTask4_PlayerCreep2, VAR_TEMP_F
+	applymovement EVENT_OBJ_ID_PLAYER, 0
+	markasdialog -12
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquasTask_BoyGlanceRight
+	msgbox RustboroCity_Text_AquasTask6
+	playse SE_SELECT
+	waitmovement 0
 	closemessage
+	@ Player sneaks up
+	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask_PlayerCreepForward
+	waitmovement 0
+	delay 40
+	@ 
+	applymovement LID_AQUA_GIRL, Common_Movement_FacePlayer
+	waitmovement 0
+	playse SE_PIN
+	applymovement LID_AQUA_GIRL, Common_Movement_ExclamationMarkAndWait
+	waitmovement 0
 	playbgm MUS_AQA_0, 0
-	addobject 10
-	addobject 9
-	applymovement 10, RustboroCity_Movement_1E0AA0
+	@ "Oh, hello"
+	markasdialog -6
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquasTask7_Aqua3
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquasTask7_AquaGuy
+	applymovement EVENT_OBJ_ID_CAMERA, RustboroCity_Movement_AquasTask7_Camera
+	msgbox RustboroCity_Text_AquasTask7
+	playse SE_SELECT
 	waitmovement 0
-	removeobject 10
-	applymovement 9, RustboroCity_Movement_1E0AB1
-	waitmovement 0
-	msgbox RustboroCity_Text_1E1817, MSGBOX_DEFAULT
 	closemessage
-	applymovement 9, RustboroCity_Movement_1E0AB9
+	@ 
+	special RemoveCameraObject
+	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask8_PlayerTalk
 	waitmovement 0
+	@ "You wanna join?"
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquasTask8_AquaGirlBackup
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceRight
+	applymovement LID_AQUA_3, Common_Movement_WalkInPlaceRight
+	msgbox RustboroCity_Text_AquasTask9
+	playse SE_SELECT
+	waitmovement 0
+	closemessage
+	delay 40
+	@ Conference
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquasTask9_AquaGirl
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquasTask9_Aqua3
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquasTask9_AquaBoy
+	waitmovement LID_AQUA_BOY
+	delay 8
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquasTask10_AquaGirl
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquasTask10_Aqua3
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquasTask10_AquaBoy
+	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask10_Player
+	waitmovement LID_AQUA_BOY
+	delay 16
+	@ "Alright"
+	markasdialog 14
+	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask11_Player
+	msgbox RustboroCity_Text_AquasTask11
+	closemessage
+	waitmovement 0
+	@ Brush past
 	fadedefaultbgm
-	removeobject 9
-	setobjectxyperm 9, 30, 10
-	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
-	setflag FLAG_DEVON_GOODS_STOLEN
-	setvar VAR_RUSTBORO_STATE, 2
-	setvar VAR_RUSTURF_TUNNEL_STATE, 2
-	setvar VAR_ROUTE116_STATE, 1
-	clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask12_Player
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquasTask12_AquaGirl
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquasTask12_AquaBoy
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquasTask12_Aqua3
+	waitmovement 0
+	waitmovement EVENT_OBJ_ID_PLAYER
+	@ Clean up
+	setvar VAR_RUSTBORO_STATE, 3
+	setobjectmovementtype LID_AQUA_BOY, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectmovementtype LID_AQUA_GIRL, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectmovementtype LID_AQUA_3, MOVEMENT_TYPE_LOOK_AROUND
 	releaseall
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-RustboroCity_EventScript_1E095A:: @ 81E095A
-	lockall
-	setobjectxyperm 9, 14, 21
-	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-	setvar VAR_0x8004, 0
-	goto RustboroCity_EventScript_1E09CD
 	end
 
-RustboroCity_EventScript_1E0971:: @ 81E0971
-	lockall
-	setobjectxyperm 9, 14, 21
-	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-	setvar VAR_0x8004, 1
-	goto RustboroCity_EventScript_1E09CD
-	end
+RustboroCity_Text_AquasTask2:
+	.string "He went into the tunnel.$"
+RustboroCity_Text_AquasTask3:
+	.string "Ugh, really? Anyone want to follow him?$"
+RustboroCity_Text_AquasTask4:
+	.string "I dunno about you, but my Pokémon\n"
+	.string "are beat.$"
+RustboroCity_Text_AquasTask5:
+	.string "Yeah, that heist was rough on\n"
+	.string "my Pokémon too.$"
+RustboroCity_Text_AquasTask6:
+	.string "Welp… Any suggestions?$"
+RustboroCity_Text_AquasTask7:
+	.string "Oh, hello, little {PLAYER_boy}…\n"
+	.string "Can we help you?$"
+RustboroCity_Text_AquasTask9:
+	.string "You…{PAUSE 10} You want to…{PAUSE 20} join us…?$"
+RustboroCity_Text_AquasTask11:
+	.string "{PAUSE 16}Alright.{PAUSE 16}{PLAY_SE SE_DANSA}{PAUSE 10} On one condition.\p"
+	.string "We need you to retrieve those\n"
+	.string "{ITEM}Devon Goods{END} from that Team Magma\l"
+	.string "bloke who just ran off.\p"
+	.string "If you can do that, then…{PAUSE 10}\n"
+	.string "We'll consider it.$"
 
-RustboroCity_EventScript_1E0988:: @ 81E0988
-	lockall
-	setobjectxyperm 9, 14, 21
-	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-	setvar VAR_0x8004, 2
-	goto RustboroCity_EventScript_1E09CD
-	end
+RustboroCity_Movement_AquasTask_BoyGlanceRight:
+	face_right
+	delay_8
+	delay_4
+	walk_in_place_fastest_up
+	step_end
+RustboroCity_Movement_AquasTask_GirlGlanceDown:
+	face_down
+	delay_8
+	delay_4
+	walk_in_place_fastest_right
+	step_end
+RustboroCity_Movement_AquasTask_3GlanceRight:
+	face_right
+	delay_8
+	delay_4
+	walk_in_place_fastest_down
+	step_end
 
-RustboroCity_EventScript_1E099F:: @ 81E099F
-	lockall
-	setobjectxyperm 9, 14, 21
-	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-	setvar VAR_0x8004, 3
-	goto RustboroCity_EventScript_1E09CD
-	end
+.align 2
+RustboroCity_MovementTable_AquasTask4_PlayerCreep1:
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepDiagDown
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepDiagDown
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepForward
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepDiagUp
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepDiagUp
+	.4byte 0
+.align 2
+RustboroCity_MovementTable_AquasTask4_PlayerCreep2:
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepDiagDown
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepForward
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepForward
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepForward
+	.4byte RustboroCity_Movement_AquasTask_PlayerCreepDiagUp
+	.4byte 0
+RustboroCity_Movement_AquasTask_PlayerCreepDiagUp:
+	walk_up
+	walk_slow_right
+	step_end
+RustboroCity_Movement_AquasTask_PlayerCreepDiagDown:
+	walk_down
+	walk_slow_right
+	step_end
+RustboroCity_Movement_AquasTask_PlayerCreepForward:
+	walk_slow_right
+	step_end
+RustboroCity_Movement_AquasTask8_PlayerTalk:
+	walk_in_place_fastest_up
+	delay_16
+	delay_16
+	walk_in_place_fast_right
+	delay_16
+	delay_16
+	walk_in_place_fastest_down
+	delay_16
+	delay_16
+	walk_in_place_fast_right
+	delay_16
+	delay_16
+	walk_in_place_right
+	delay_16
+	step_end
 
-RustboroCity_EventScript_1E09B6:: @ 81E09B6
-	lockall
-	setobjectxyperm 9, 14, 21
-	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-	setvar VAR_0x8004, 4
-	goto RustboroCity_EventScript_1E09CD
-	end
+.align 2
+RustboroCity_MovementTable_AquasTask1_CamMovement1:
+	.4byte RustboroCity_Movement_AquasTask1_CamMovement1
+	.4byte RustboroCity_Movement_AquasTask1_CamMovement2
+	.4byte RustboroCity_Movement_AquasTask1_CamMovement3
+	.4byte RustboroCity_Movement_AquasTask1_CamMovement4
+	.4byte RustboroCity_Movement_AquasTask1_CamMovement5
+	.4byte 0
 
-RustboroCity_EventScript_1E09CD:: @ 81E09CD
+RustboroCity_Movement_AquasTask1_CamMovement1:
+	walk_diag_southeast
+	walk_diag_southeast
+	walk_right
+	walk_right
+	walk_right
+	step_end
+RustboroCity_Movement_AquasTask1_CamMovement2:
+	walk_diag_southeast
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+RustboroCity_Movement_AquasTask1_CamMovement3:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+RustboroCity_Movement_AquasTask1_CamMovement4:
+	walk_diag_northeast
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+RustboroCity_Movement_AquasTask1_CamMovement5:
+	walk_diag_northeast
+	walk_diag_northeast
+	walk_right
+	walk_right
+	walk_right
+	step_end
+RustboroCity_Movement_AquasTask1_AquaGuy:
+	walk_fastest_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+RustboroCity_Movement_AquasTask7_AquaGuy:
+	walk_left
+	walk_left
+	walk_in_place_fastest_up
+	step_end
+RustboroCity_Movement_AquasTask7_Aqua3:
+	walk_left
+	walk_left
+	walk_in_place_fastest_down
+	step_end
+RustboroCity_Movement_AquasTask7_Camera:
+	walk_slow_left
+	walk_slow_left
+	step_end
+RustboroCity_Movement_AquasTask8_AquaGirlBackup:
+	lock_facing_direction
+	walk_right
+	unlock_facing_direction
+	step_end
+RustboroCity_Movement_AquasTask9_AquaGirl:
+	walk_right
+	walk_right
+	walk_in_place_fastest_right
+	step_end
+RustboroCity_Movement_AquasTask9_Aqua3:
+	delay_4
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_down
+	step_end
+RustboroCity_Movement_AquasTask9_AquaBoy:
+	delay_8
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_in_place_fastest_left
+	step_end
+RustboroCity_Movement_AquasTask10_AquaGirl:
+	walk_in_place_fast_up
+	delay_16
+	delay_8
+	walk_in_place_fast_right
+	delay_16
+	delay_16
+	walk_in_place_fast_up
+	delay_16
+	walk_in_place_fast_right
+	delay_16
+	delay_16
+	walk_down
+	walk_in_place_fast_left
+	step_end
+RustboroCity_Movement_AquasTask10_Aqua3:
+	walk_in_place_fast_right
+	delay_16
+	delay_16
+	walk_in_place_fast_down
+	delay_16
+	delay_16
+	delay_8
+	walk_in_place_fast_right
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_fast_left
+	step_end
+RustboroCity_Movement_AquasTask10_AquaBoy:
+	delay_4
+	delay_8
+	walk_in_place_fast_up
+	delay_16
+	walk_in_place_fast_left
+	delay_16
+	delay_16
+	walk_in_place_fast_up
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_left
+	walk_left
+	step_end
+RustboroCity_Movement_AquasTask10_Player:
+	delay_16
+	delay_16
+	delay_16
+	walk_slow_right
+	step_end
+RustboroCity_Movement_AquasTask11_Player:
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	jump_in_place_right
+	step_end
+
+RustboroCity_Movement_AquasTask12_AquaGirl:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_in_place_fastest_up
+	step_end
+RustboroCity_Movement_AquasTask12_AquaBoy:
+	walk_left
+	delay_16
+	delay_8
+	walk_down
+	walk_left
+	walk_down
+	walk_in_place_fastest_up
+	step_end
+RustboroCity_Movement_AquasTask12_Aqua3:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_in_place_fastest_up
+	step_end
+RustboroCity_Movement_AquasTask12_Player:
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_fast_down
+	delay_16
+	delay_16
+	delay_8
+	walk_in_place_fast_right
+	step_end
+
+@ -----------------------------------------------------
+
+RustboroCity_EventScript_SetupAqua3:
+	setobjectxyperm LID_AQUA_BOY, 29, 12
+	setobjectxyperm LID_AQUA_GIRL, 27, 12
+	setobjectxyperm LID_AQUA_3, 28, 12
+	setobjectmovementtype LID_AQUA_BOY, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectmovementtype LID_AQUA_GIRL, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectmovementtype LID_AQUA_3, MOVEMENT_TYPE_LOOK_AROUND
+	return
+
+#undef LID_MAGMA
+#undef LID_AQUA_GIRL
+#undef LID_AQUA_BOY
+#undef LID_AQUA_3
+
+
+	@ lockall
+	@ setobjectxyperm 9, 14, 21
+	@ setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
+	@ msgbox RustboroCity_Text_1E17FE, MSGBOX_DEFAULT
+	@ closemessage
+	@ playbgm MUS_AQA_0, 0
+	@ addobject 10
+	@ addobject 9
+	@ applymovement 10, RustboroCity_Movement_1E0AA0
+	@ waitmovement 0
+	@ removeobject 10
+	@ applymovement 9, RustboroCity_Movement_1E0AB1
+	@ waitmovement 0
+	@ msgbox RustboroCity_Text_1E1817, MSGBOX_DEFAULT
+	@ closemessage
+	@ applymovement 9, RustboroCity_Movement_1E0AB9
+	@ waitmovement 0
+	@ fadedefaultbgm
+	@ removeobject 9
+	@ setobjectxyperm 9, 30, 10
+	@ clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
+	@ setflag FLAG_DEVON_GOODS_STOLEN
+	@ setvar VAR_RUSTBORO_STATE, 2
+	@ setvar VAR_RUSTURF_TUNNEL_STATE, 2
+	@ setvar VAR_ROUTE116_STATE, 1
+	@ clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+	@ clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
+	@ clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
+	@ setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	@ setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	@ releaseall
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@ RustboroCity_EventScript_1E095A:: @ 81E095A
+@ 	lockall
+@ 	setobjectxyperm 9, 14, 21
+@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
+@ 	setvar VAR_0x8004, 0
+@ 	goto RustboroCity_EventScript_1E09CD
+@ 	end
+
+@ RustboroCity_EventScript_1E0971:: @ 81E0971
+@ 	lockall
+@ 	setobjectxyperm 9, 14, 21
+@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
+@ 	setvar VAR_0x8004, 1
+@ 	goto RustboroCity_EventScript_1E09CD
+@ 	end
+
+@ RustboroCity_EventScript_1E0988:: @ 81E0988
+@ 	lockall
+@ 	setobjectxyperm 9, 14, 21
+@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
+@ 	setvar VAR_0x8004, 2
+@ 	goto RustboroCity_EventScript_1E09CD
+@ 	end
+
+@ RustboroCity_EventScript_1E099F:: @ 81E099F
+@ 	lockall
+@ 	setobjectxyperm 9, 14, 21
+@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
+@ 	setvar VAR_0x8004, 3
+@ 	goto RustboroCity_EventScript_1E09CD
+@ 	end
+
+@ RustboroCity_EventScript_1E09B6:: @ 81E09B6
+@ 	lockall
+@ 	setobjectxyperm 9, 14, 21
+@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
+@ 	setvar VAR_0x8004, 4
+@ 	goto RustboroCity_EventScript_1E09CD
+@ 	end
+
+@ RustboroCity_EventScript_1E09CD:: @ 81E09CD
 	
-	end
-RustboroCity_Text_1E17FE: @ 81E17FE
-	.string "Get out!\n"
-	.string "Out of the way!$"
-RustboroCity_Text_1E1817: @ 81E1817
-	.string "Wait! Pleeeaaase!\p"
-	.string "Don't take my GOODS!$"
+@ 	end
+@ RustboroCity_Text_1E17FE: @ 81E17FE
+@ 	.string "Get out!\n"
+@ 	.string "Out of the way!$"
+@ RustboroCity_Text_1E1817: @ 81E1817
+@ 	.string "Wait! Pleeeaaase!\p"
+@ 	.string "Don't take my GOODS!$"
 
 @ -----------------------------------------------------
 
@@ -719,7 +1154,7 @@ RustboroCity_EventScript_1E0B2E:: @ 81E0B2E
 	call_if_eq RustboroCity_EventScript_1E0BC7
 	compare VAR_TEMP_1, 3
 	call_if_eq RustboroCity_EventScript_1E0BF3
-	setflag FLAG_INTERACTED_WITH_DEVON_EMPLOYEE_GOODS_STOLEN
+	@ setflag FLAG_INTERACTED_WITH_DEVON_EMPLOYEE_GOODS_STOLEN
 	setvar VAR_RUSTBORO_STATE, 3
 	moveobjectoffscreen 9
 	msgbox RustboroCity_Text_1E183E, MSGBOX_DEFAULT

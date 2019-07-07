@@ -16,8 +16,10 @@ VAR_PETALBURG_STATE :=
 VAR_RUSTBORO_STATE :=
 	0 = Initial Visit
 	1 = Heist will Trigger
-	2 = Post-Heist
-	3 = 
+	2 = Post-Heist, Aquas to give task on trigger
+	3 = Post Task Assignment
+	4 = Post Task Completion, Aquas will recieve player on trigger
+	5 = 
 
 
 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE :=

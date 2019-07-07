@@ -164,7 +164,6 @@ RustboroCity_Gym_EventScript_212F66:: @ 8212F66
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
 	setflag FLAG_BADGE01_GET
 	setvar VAR_RUSTBORO_STATE, 1
-	addvar VAR_NUM_BADGES, 1
 	call RustboroCity_Gym_ClearGymTrainers
 	call Common_EventScript_IncrementBadgeCount
 	goto RustboroCity_Gym_EventScript_GiveTM

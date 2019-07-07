@@ -105,7 +105,7 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E095A",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -114,7 +114,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0971",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -123,7 +123,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0988",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -132,7 +132,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E099F",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -141,7 +141,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E09B6",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -159,7 +159,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0B0A",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "2",
@@ -186,7 +186,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0C2B",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "2",
@@ -204,7 +204,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0C43",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "2",
@@ -213,7 +213,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0C4F",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "2",
@@ -303,7 +303,7 @@
         },
         {
             "elevation": 0,
-            "script": "NULL",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "2",
@@ -427,7 +427,7 @@
             "graphics_id": "EVENT_OBJ_GFX_MAN_2",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LYING_DOWN",
             "script": "RustboroCity_EventScript_1E0ADD",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
@@ -444,7 +444,7 @@
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 13,
+            "x": 14,
             "y": 21
         },
         {
@@ -527,7 +527,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS",
             "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -540,7 +540,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS",
             "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
             "movement_range_x": 0,
             "movement_range_y": 0,
