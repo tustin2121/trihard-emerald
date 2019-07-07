@@ -1239,13 +1239,13 @@ bool8 ScrCmd_setobjectmovementtype(struct ScriptContext *ctx)
 bool8 ScrCmd_createvobject(struct ScriptContext *ctx)
 {
     u16 graphicsId = ScriptReadByte(ctx);
-    u8 v2 = ScriptReadByte(ctx);
+    u8 localId = ScriptReadByte(ctx);
     u16 x = VarGet(ScriptReadHalfword(ctx));
     u32 y = VarGet(ScriptReadHalfword(ctx));
     u8 elevation = ScriptReadByte(ctx);
     u8 direction = ScriptReadByte(ctx);
 
-    sprite_new(graphicsId, v2, x, y, elevation, direction);
+    sprite_new(graphicsId, localId, x, y, elevation, direction);
     return FALSE;
 }
 

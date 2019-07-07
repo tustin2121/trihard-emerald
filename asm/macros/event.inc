@@ -1216,20 +1216,22 @@
 	.2byte \index
 	map \map
 	.endm
-
-	.macro createvobject sprite:req, byte2:req, x:req, y:req, elevation, direction
+	
+	@ Creates a virtual object, which is a sprite which has no presense on the map itself, and can only turn with the below command
+	.macro createvobject sprite:req, virtualID:req, x:req, y:req, elevation, direction
 	.byte 0xaa
 	.byte \sprite
-	.byte \byte2
+	.byte \virtualID
 	.2byte \x
 	.2byte \y
 	.byte \elevation
 	.byte \direction
 	.endm
-
-	.macro turnvobject index:req, direction:req
+	
+	@ Turns a virtual object
+	.macro turnvobject virtualID:req, direction:req
 	.byte 0xab
-	.byte \index
+	.byte \virtualID
 	.byte \direction
 	.endm
 

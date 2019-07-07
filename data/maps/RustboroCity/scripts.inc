@@ -1,13 +1,15 @@
 RustboroCity_MapScripts:: @ 81E06BD
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_MapScript2_1E070B
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_MapScript2_FrameTable
 	.byte 0
+
+@ -----------------------------------------------------
 
 RustboroCity_OnTransition: @ 81E06C8
 	setflag FLAG_VISITED_RUSTBORO_CITY
 	call Common_EventScript_SetupRivalGender
 	compare VAR_RUSTBORO_STATE, 6
-	call_if_eq RustboroCity_EventScript_1E0707
+	call_if_eq Common_EventScript_HideMapNamePopup
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
 	compare VAR_RUSTBORO_STATE, 6
 	goto_if_eq RustboroCity_EventScript_1E06EC
@@ -23,201 +25,215 @@ RustboroCity_EventScript_1E06FF:: @ 81E06FF
 	setobjectxyperm 15, 11, 15
 	end
 
-RustboroCity_EventScript_1E0707:: @ 81E0707
-	setflag FLAG_HIDE_MAP_NAME_POPUP
-	return
+@ -----------------------------------------------------
 
-RustboroCity_MapScript2_1E070B: @ 81E070B
-	map_script_2 VAR_RUSTBORO_STATE, 6, RustboroCity_EventScript_1E0715
+RustboroCity_MapScript2_FrameTable: @ 81E070B
+	@ map_script_2 VAR_RUSTBORO_STATE, 6, RustboroCity_EventScript_1E0715
 	.2byte 0
 
-RustboroCity_EventScript_1E0715:: @ 81E0715
-	lockall
-	setvar VAR_0x4063, 1
-	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_1E0850
-	waitmovement 0
-	playse SE_KAIDAN
-	delay 10
-	addobject 15
-	applymovement 15, RustboroCity_Movement_1E0852
-	waitmovement 0
-	playse SE_PIN
-	applymovement 15, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 15, Common_Movement_Delay48
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
-	waitmovement 0
-	applymovement 15, RustboroCity_Movement_1E084E
-	waitmovement 0
-	msgbox RustboroCity_Text_1E22A5, MSGBOX_DEFAULT
-	closemessage
-	setflag FLAG_HAS_MATCH_CALL
-	applymovement 15, Common_Movement_WalkInPlaceLeft
-	waitmovement 0
-	playse SE_TK_KASYA
-	delay 10
-	playse SE_TK_KASYA
-	delay 10
-	playse SE_TK_KASYA
-	delay 10
-	playse SE_TK_KASYA
-	delay 20
-	applymovement 15, Common_Movement_WalkInPlaceDown
-	waitmovement 0
-	msgbox RustboroCity_Text_1E2331, MSGBOX_DEFAULT
-	closemessage
-	delay 20
-	goto RustboroCity_EventScript_1E07BD
-
-RustboroCity_EventScript_1E07AC:: @ 81E07AC
-	msgbox RustboroCity_Text_1E2449, MSGBOX_DEFAULT
-	closemessage
-	delay 10
-	goto RustboroCity_EventScript_1E07BD
-
-RustboroCity_EventScript_1E07BD:: @ 81E07BD
-	setflag FLAG_ADDED_CONDITION_TO_POKENAV
-	special sp106_CreateStartMenu
-	waitstate
-	switch VAR_RESULT
-	case 0, RustboroCity_EventScript_1E07AC
-	case 1, RustboroCity_EventScript_1E07AC
-	case 2, RustboroCity_EventScript_1E07AC
-	case 4, RustboroCity_EventScript_1E07AC
-	case 5, RustboroCity_EventScript_1E07AC
-	case 6, RustboroCity_EventScript_1E07AC
-	case 7, RustboroCity_EventScript_1E07AC
-	case 127, RustboroCity_EventScript_1E07AC
-	special sub_81C72A4
-	waitstate
-	delay 20
-	msgbox RustboroCity_Text_1E2464, MSGBOX_DEFAULT
-	closemessage
-	applymovement 15, RustboroCity_Movement_1E085D
-	waitmovement 0
-	playse SE_KAIDAN
-	removeobject 15
-	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
-	setvar VAR_RUSTBORO_STATE, 7
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	releaseall
-	end
-
-RustboroCity_Movement_1E084E: @ 81E084E
-	walk_in_place_down
-	step_end
-
-RustboroCity_Movement_1E0850: @ 81E0850
-	walk_down
-	step_end
-
-RustboroCity_Movement_1E0852: @ 81E0852
-	walk_down
-	delay_16
-	step_end
-
-RustboroCity_Movement_1E0855: @ 81E0855
-	delay_16
-	walk_left
-	walk_down
-	walk_down
-	walk_right
-	walk_in_place_fastest_up
-	delay_16
-	step_end
-
-RustboroCity_Movement_1E085D: @ 81E085D
-	walk_up
-	step_end
-
-RustboroCity_EventScript_1E085F:: @ 81E085F
-	lock
-	faceplayer
-	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_EventScript_1E0874
-	msgbox RustboroCity_Text_1E123F, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_EventScript_1E0874:: @ 81E0874
-	msgbox RustboroCity_Text_1E12AC, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_EventScript_1E087E:: @ 81E087E
-	lock
-	faceplayer
-	msgbox RustboroCity_Text_1E1407, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_EventScript_1E088A:: @ 81E088A
-	msgbox RustboroCity_Text_1E1480, MSGBOX_NPC
-	end
-
-RustboroCity_EventScript_1E0893:: @ 81E0893
-	lock
-	faceplayer
-	goto_if_set FLAG_BADGE01_GET, RustboroCity_EventScript_1E08A8
-	msgbox RustboroCity_Text_1E130D, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_EventScript_1E08A8:: @ 81E08A8
-	msgbox RustboroCity_Text_1E139E, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_EventScript_1E08B2:: @ 81E08B2
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_POKENAV, RustboroCity_EventScript_1E08C7
-	msgbox RustboroCity_Text_1E1520, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_EventScript_1E08C7:: @ 81E08C7
-	msgbox RustboroCity_Text_1E1589, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_EventScript_1E08D1:: @ 81E08D1
-	msgbox RustboroCity_Text_1E1633, MSGBOX_NPC
-	end
-
-RustboroCity_EventScript_1E08DA:: @ 81E08DA
-	msgbox RustboroCity_Text_1E1695, MSGBOX_SIGN
-	end
+@ -----------------------------------------------------
+@ Sign
 
 RustboroCity_EventScript_1E08E3:: @ 81E08E3
-	msgbox RustboroCity_Text_1E20A6, MSGBOX_SIGN
+	lock
+	message RustboroCity_Text_1E20A6, MSGTYPE_SIGN
+	waitmessage
+	waitbuttonpress
+	message RustboroCity_Text_1E20A7, MSGBOX_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	release
 	end
+RustboroCity_Text_1E20A6: @ 81E20A6
+	.string "“Timesaving tunnel nearing\n"
+	.string "completion!”$"
+RustboroCity_Text_1E20A7:
+	.string "…Is what it says on the sign, but\n"
+	.string "there's also a big “X” splashed\l"
+	.string "across it in red paint…$"
+
 
 RustboroCity_EventScript_1E08EC:: @ 81E08EC
 	msgbox RustboroCity_Text_1E2128, MSGBOX_SIGN
 	end
+RustboroCity_Text_1E2128: @ 81E2128
+	.string "{PLACE}DEVON CORPORATION{END}\p"
+	.string "“For all your living needs, we make\n"
+	.string "it all.”$"
+
 
 RustboroCity_EventScript_1E08F5:: @ 81E08F5
 	msgbox RustboroCity_Text_1E2167, MSGBOX_SIGN
 	end
+RustboroCity_Text_1E2167: @ 81E2167
+	.string "{GYM}Rustboro City Pokémon Gym{END}\n"
+	.string "{GYM}Leader:{END} Roxanne\p"
+	.string "“The Rock-loving honors student!”$"
+
 
 RustboroCity_EventScript_1E08FE:: @ 81E08FE
 	msgbox RustboroCity_Text_1E21B3, MSGBOX_SIGN
 	end
+RustboroCity_Text_1E21B3: @ 81E21B3
+	.string "{PLACE}Devon Corp. Branch Office{END}\p"
+	.string "“Access limited to Devon employees\n"
+	.string "and authorized personnel.”$"
+
 
 RustboroCity_EventScript_1E0907:: @ 81E0907
 	msgbox RustboroCity_Text_1E220B, MSGBOX_SIGN
 	end
+RustboroCity_Text_1E220B: @ 81E220B
+	.string "{PLACE}Rustboro City{END}\p"
+	.string "“The city probing the integration of\n"
+	.string "nature and science.”$"
+
 
 RustboroCity_EventScript_1E0910:: @ 81E0910
 	msgbox RustboroCity_Text_1E2253, MSGBOX_SIGN
 	end
+RustboroCity_Text_1E2253: @ 81E2253
+	.string "{PLACE}Pokémon Trainer's School{END}\p"
+	.string "“We'll teach you anything about\n"
+	.string "Pokémon!”$"
+
 
 RustboroCity_EventScript_1E0919:: @ 81E0919
 	msgbox RustboroCity_Text_1E2296, MSGBOX_SIGN
 	end
+RustboroCity_Text_1E2296: @ 81E2296
+	.string "{PLACE}Lumberjack's House{END}$"
 
-RustboroCity_EventScript_1E0922:: @ 81E0922
+
+@ -----------------------------------------------------
+@ People
+
+RustboroCity_EventScript_1E085F:: @ 81E085F
+	lock
+	faceplayer
+	markasdialog
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_EventScript_1E0874
+	msgbox RustboroCity_Text_1E123F, MSGBOX_DEFAULT
+	release
+	end
+RustboroCity_Text_1E123F: @ 81E123F
+	.string "The Devon Corporation…\n"
+	.string "We all just shorten it to Devon.\p"
+	.string "That company makes all sorts of\n"
+	.string "convenient products.\p"
+	.string "… … … No, it's not evil,\n"
+	.string "what are you on about?$"
+RustboroCity_EventScript_1E0874:: @ 81E0874
+	msgbox RustboroCity_Text_1E12AC, MSGBOX_DEFAULT
+	release
+	end
+RustboroCity_Text_1E12AC: @ 81E12AC
+	.string "Hm? A sneaky-looking man?\p"
+	.string "Come to think of it, yes, a shady-\n"
+	.string "looking guy went around the corner.$"
+
+
+
+RustboroCity_EventScript_DevonEmployee:: @ 81E087E
+	lock
+	faceplayer
+	markasdialog
+	checkplayeroutfit
+	selectpointer RustboroCity_TextArray_DevonEmployee, VAR_RESULT
+	msgbox_selected MSGBOX_DEFAULT
+	release
+	end
+.align 2
+RustboroCity_TextArray_DevonEmployee:
+	.4byte RustboroCity_Text_1E1407
+	.4byte RustboroCity_Text_1E1408
+	.4byte RustboroCity_Text_1E1408
+	.4byte RustboroCity_Text_1E1409
+	.4byte 0
+RustboroCity_Text_1E1407: @ 81E1407
+	.string "Oh, no. Who are you now?\p"
+	.string "We already have two gangs in town,\n"
+	.string "we don't need another.$"
+RustboroCity_Text_1E1408:
+	.string "Augh! Team Aqua! Don't hurt me!\n"
+	.string "I don't know anything!\l"
+	.string "Please go away!$"
+RustboroCity_Text_1E1409:
+	.string "Oh? Who might you be?\p"
+	.string "Are you a new student at the\n"
+	.string "Pokémon… Trainer's School?$"
+
+
+
+RustboroCity_EventScript_FireGirl:: @ 81E088A
+	msgbox RustboroCity_Text_1E1480, MSGBOX_NPC
+	end
+RustboroCity_Text_1E1480: @ 81E1480
+	.string "I challenged the Gym Leader, but…\p"
+	.string "It's not going to be easy winning with\n"
+	.string "my Fire-type Pokémon…\p"
+	.string "Fire-type Pokémon don't match up\n"
+	.string "well against Rock-type Pokémon…$"
+
+
+
+RustboroCity_EventScript_1E0893:: @ 81E0893
+	lock
+	faceplayer
+	markasdialog
+	goto_if_set FLAG_BADGE01_GET, RustboroCity_EventScript_1E08A8
+	msgbox RustboroCity_Text_1E130D, MSGBOX_DEFAULT
+	release
+	end
+RustboroCity_Text_1E130D: @ 81E130D
+	.string "Have you taken the Pokémon Gym\n"
+	.string "challenge?\p"
+	.string "When you get that shiny Gym Badge\n"
+	.string "in hand, I guess trainers begin to\l"
+	.string "realize what is required of them.$"
+RustboroCity_EventScript_1E08A8:: @ 81E08A8
+	msgbox RustboroCity_Text_1E139E, MSGBOX_DEFAULT
+	release
+	end
+RustboroCity_Text_1E139E: @ 81E139E
+	.string "Hey, that's Rustboro's Gym Badge!\p"
+	.string "Out of all the Pokémon Gym Badges,\n"
+	.string "Rustboro's is the coolest, I'd say.$"
+
+
+
+RustboroCity_EventScript_BrineyBoy:: @ 81E08B2
+	msgbox RustboroCity_Text_1E1520, MSGBOX_NPC
+	end
+RustboroCity_Text_1E1520: @ 81E1520
+	.string "The old sailor Mr. Briney lives in\n"
+	.string "a cottage by the sea.\p"
+	.string "He likes to sail around with his pet,\n"
+	.string "Peeko, and go fishing all around Hoenn.$"
+
+
+
+RustboroCity_EventScript_AspiringTrainerGirl:: @ 81E08D1
+	msgbox RustboroCity_Text_1E1633, MSGBOX_NPC
+	end
+RustboroCity_Text_1E1633: @ 81E1633
+	.string "Wow, you have Pokémon with you, too.\p"
+	.string "When I get bigger, I'm going to go\n"
+	.string "places with Pokémon, too.$"
+
+
+
+RustboroCity_EventScript_AspiringSchoolBoy:: @ 81E08DA
+	msgbox RustboroCity_Text_1E1695, MSGBOX_DIALOG
+	end
+RustboroCity_Text_1E1695: @ 81E1695
+	.string "Pokémon TRAINER'S SCHOOL!\p"
+	.string "If I go to this school, will I be able\n"
+	.string "to catch rare Pokémon easily?$"
+
+
+
+RustboroCity_EventScript_LittleBoy:: @ 81E0922
 	lock
 	faceplayer
 	msgbox RustboroCity_Text_1E16F4, MSGBOX_DEFAULT
@@ -225,8 +241,14 @@ RustboroCity_EventScript_1E0922:: @ 81E0922
 	waitmovement 0
 	release
 	end
+RustboroCity_Text_1E16F4: @ 81E16F4
+	.string "If a Pokémon gains experience in\n"
+	.string "battles, it can sometimes change in\l"
+	.string "the way it looks.$"
 
-RustboroCity_EventScript_1E0938:: @ 81E0938
+
+
+RustboroCity_EventScript_LittleGirl:: @ 81E0938
 	lock
 	faceplayer
 	msgbox RustboroCity_Text_1E174B, MSGBOX_DEFAULT
@@ -234,13 +256,99 @@ RustboroCity_EventScript_1E0938:: @ 81E0938
 	waitmovement 0
 	release
 	end
+RustboroCity_Text_1E174B: @ 81E174B
+	.string "A Pokémon changes shape?\n"
+	.string "If one did that, I would be shocked!$"
 
-RustboroCity_EventScript_1E094E:: @ 81E094E
-	lock
-	faceplayer
-	msgbox RustboroCity_Text_1E1789, MSGBOX_DEFAULT
-	release
+
+
+RustboroCity_EventScript_TradeGuy:: @ 81E094E
+	msgbox RustboroCity_Text_1E1789, MSGBOX_NPC
 	end
+RustboroCity_Text_1E1789: @ 81E1789
+	.string "A Pokémon you get in a trade from\n"
+	.string "someone grows fast.\p"
+	.string "But if you don't have certain Gym\n"
+	.string "Badges, it may not obey you…$"
+
+
+
+RustboroCity_EventScript_TriviaBoy:: @ 81E1236
+	msgbox RustboroCity_Text_1E249D, MSGBOX_NPC
+	end
+RustboroCity_Text_1E249D: @ 81E249D
+	.string "Did you know this?\p"
+	.string "You can have a 2-on-2 battle even\n"
+	.string "if you're not with another Trainer.\p"
+	.string "If you catch the eyes of two Trainers\n"
+	.string "when you have two or more Pokémon,\l"
+	.string "they'll both challenge you.\p"
+	.string "Don't you think it'd be cool if you\n"
+	.string "could beat two Trainers by yourself?$"
+
+@ -----------------------------------------------------
+@ Cutscene: The Heist
+
+#define LID_MAGMA 10
+#define LID_AQUA1 15
+#define LID_AQUA2 17
+#define LID_AQUA3 18
+
+RustboroCity_TriggerScript_HeistCutscene:
+	lockall
+	setobjectxyperm 9, 14, 21
+	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
+	msgbox RustboroCity_Text_1E17FE, MSGBOX_DEFAULT
+	closemessage
+	playbgm MUS_AQA_0, 0
+	addobject 10
+	addobject 9
+	applymovement 10, RustboroCity_Movement_1E0AA0
+	waitmovement 0
+	removeobject 10
+	applymovement 9, RustboroCity_Movement_1E0AB1
+	waitmovement 0
+	msgbox RustboroCity_Text_1E1817, MSGBOX_DEFAULT
+	closemessage
+	applymovement 9, RustboroCity_Movement_1E0AB9
+	waitmovement 0
+	fadedefaultbgm
+	removeobject 9
+	setobjectxyperm 9, 30, 10
+	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
+	setflag FLAG_DEVON_GOODS_STOLEN
+	setvar VAR_RUSTBORO_STATE, 2
+	setvar VAR_RUSTURF_TUNNEL_STATE, 2
+	setvar VAR_ROUTE116_STATE, 1
+	clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
+	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	releaseall
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 RustboroCity_EventScript_1E095A:: @ 81E095A
 	lockall
@@ -283,35 +391,37 @@ RustboroCity_EventScript_1E09B6:: @ 81E09B6
 	end
 
 RustboroCity_EventScript_1E09CD:: @ 81E09CD
-	msgbox RustboroCity_Text_1E17FE, MSGBOX_DEFAULT
-	closemessage
-	playbgm MUS_AQA_0, 0
-	addobject 10
-	addobject 9
-	applymovement 10, RustboroCity_Movement_1E0AA0
-	waitmovement 0
-	removeobject 10
-	applymovement 9, RustboroCity_Movement_1E0AB1
-	waitmovement 0
-	msgbox RustboroCity_Text_1E1817, MSGBOX_DEFAULT
-	closemessage
-	applymovement 9, RustboroCity_Movement_1E0AB9
-	waitmovement 0
-	fadedefaultbgm
-	removeobject 9
-	setobjectxyperm 9, 30, 10
-	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
-	setflag FLAG_DEVON_GOODS_STOLEN
-	setvar VAR_RUSTBORO_STATE, 2
-	setvar VAR_RUSTURF_TUNNEL_STATE, 2
-	setvar VAR_ROUTE116_STATE, 1
-	clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	releaseall
+	
 	end
+RustboroCity_Text_1E17FE: @ 81E17FE
+	.string "Get out!\n"
+	.string "Out of the way!$"
+RustboroCity_Text_1E1817: @ 81E1817
+	.string "Wait! Pleeeaaase!\p"
+	.string "Don't take my GOODS!$"
+
+@ -----------------------------------------------------
+
+
+RustboroCity_Text_1E183E: @ 81E183E
+	.string "Oh, it's you!\p"
+	.string "You're that fantastic TRAINER who\n"
+	.string "helped me in Petalburg Woods!\p"
+	.string "Help me! I was robbed by Team Aqua!\n"
+	.string "I have to get the DEVON GOODS back!\p"
+	.string "If I don't…\n"
+	.string "I'm going to be in serious trouble.$"
+
+
+
+RustboroCity_Text_1E194D: @ 81E194D
+	.string "Oh! How did it go?\n"
+	.string "The DEVON GOODS?\p"
+	.string "You did!\n"
+	.string "You got them back!\p"
+	.string "You really are a great TRAINER!\p"
+	.string "I know! As my thanks, I'll give you\n"
+	.string "another GREAT BALL!$"
 
 RustboroCity_EventScript_1E0A3B:: @ 81E0A3B
 	msgbox RustboroCity_Text_1E1904, MSGBOX_DEFAULT
@@ -452,6 +562,9 @@ RustboroCity_EventScript_1E0ADD:: @ 81E0ADD
 	msgbox RustboroCity_Text_1E1904, MSGBOX_DEFAULT
 	release
 	end
+RustboroCity_Text_1E1904: @ 81E1904
+	.string "That shady character, I think he took\n"
+	.string "off towards the tunnel over there.$"
 
 RustboroCity_EventScript_1E0AF2:: @ 81E0AF2
 	waitse
@@ -595,7 +708,7 @@ RustboroCity_EventScript_1E0C5B:: @ 81E0C5B
 	msgbox RustboroCity_Text_1E1A21, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_RETURNED_DEVON_GOODS
-	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+	@ setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
 	setvar VAR_RUSTBORO_STATE, 5
 	delay 30
 	warp MAP_RUSTBORO_CITY_DEVON_CORP_3F, 255, 2, 2
@@ -1001,114 +1114,13 @@ RustboroCity_Movement_1E1230: @ 81E1230
 	walk_down
 	step_end
 
-RustboroCity_EventScript_1E1236:: @ 81E1236
-	msgbox RustboroCity_Text_1E249D, MSGBOX_NPC
-	end
 
-RustboroCity_Text_1E123F: @ 81E123F
-	.string "The DEVON CORPORATION…\n"
-	.string "We all just shorten it to DEVON.\p"
-	.string "That company makes all sorts of\n"
-	.string "convenient products.$"
 
-RustboroCity_Text_1E12AC: @ 81E12AC
-	.string "Hm? A sneaky-looking man?\p"
-	.string "Come to think of it, yes, a shady-\n"
-	.string "looking guy went around the corner.$"
 
-RustboroCity_Text_1E130D: @ 81E130D
-	.string "Have you taken the Pokémon Gym\n"
-	.string "challenge?\p"
-	.string "When you get that shiny Gym Badge\n"
-	.string "in hand, I guess TRAINERS begin to\l"
-	.string "realize what is required of them.$"
 
-RustboroCity_Text_1E139E: @ 81E139E
-	.string "Hey, that's RUSTBORO's Gym Badge!\p"
-	.string "Out of all the Pokémon Gym BADGES,\n"
-	.string "RUSTBORO's is the coolest, I'd say.$"
 
-RustboroCity_Text_1E1407: @ 81E1407
-	.string "Oh? Who might you be?\n"
-	.string "You're a new face around these parts.\p"
-	.string "Have you just transferred into the\n"
-	.string "Pokémon TRAINER'S SCHOOL?$"
 
-RustboroCity_Text_1E1480: @ 81E1480
-	.string "I challenged the Gym Leader, but…\p"
-	.string "It's not going to be easy winning with\n"
-	.string "my FIRE-type Pokémon…\p"
-	.string "FIRE-type Pokémon don't match up\n"
-	.string "well against ROCK-type Pokémon…$"
 
-RustboroCity_Text_1E1520: @ 81E1520
-	.string "The old sailor MR. BRINEY lives in\n"
-	.string "a cottage by the sea.\p"
-	.string "He goes for walks in the tunnel every\n"
-	.string "so often.$"
-
-RustboroCity_Text_1E1589: @ 81E1589
-	.string "The old sailor MR. BRINEY lives in\n"
-	.string "a cottage by the sea.\p"
-	.string "He said he was going shopping in\n"
-	.string "SLATEPORT for his pet, Peeko.\p"
-	.string "That old sea dog, he must really love\n"
-	.string "that Peeko.$"
-
-RustboroCity_Text_1E1633: @ 81E1633
-	.string "Wow, you have Pokémon with you, too.\p"
-	.string "When I get bigger, I'm going to go\n"
-	.string "places with Pokémon, too.$"
-
-RustboroCity_Text_1E1695: @ 81E1695
-	.string "Pokémon TRAINER'S SCHOOL!\p"
-	.string "If I go to this school, will I be able\n"
-	.string "to catch rare Pokémon easily?$"
-
-RustboroCity_Text_1E16F4: @ 81E16F4
-	.string "If a Pokémon gains experience in\n"
-	.string "battles, it can sometimes change in\l"
-	.string "the way it looks.$"
-
-RustboroCity_Text_1E174B: @ 81E174B
-	.string "A Pokémon changes shape?\n"
-	.string "If one did that, I would be shocked!$"
-
-RustboroCity_Text_1E1789: @ 81E1789
-	.string "A Pokémon you get in a trade from\n"
-	.string "someone grows fast.\p"
-	.string "But if you don't have certain GYM\n"
-	.string "BADGES, it may not obey you…$"
-
-RustboroCity_Text_1E17FE: @ 81E17FE
-	.string "Get out!\n"
-	.string "Out of the way!$"
-
-RustboroCity_Text_1E1817: @ 81E1817
-	.string "Wait! Pleeeaaase!\p"
-	.string "Don't take my GOODS!$"
-
-RustboroCity_Text_1E183E: @ 81E183E
-	.string "Oh, it's you!\p"
-	.string "You're that fantastic TRAINER who\n"
-	.string "helped me in Petalburg Woods!\p"
-	.string "Help me! I was robbed by Team Aqua!\n"
-	.string "I have to get the DEVON GOODS back!\p"
-	.string "If I don't…\n"
-	.string "I'm going to be in serious trouble.$"
-
-RustboroCity_Text_1E1904: @ 81E1904
-	.string "That shady character, I think he took\n"
-	.string "off towards the tunnel over there.$"
-
-RustboroCity_Text_1E194D: @ 81E194D
-	.string "Oh! How did it go?\n"
-	.string "The DEVON GOODS?\p"
-	.string "You did!\n"
-	.string "You got them back!\p"
-	.string "You really are a great TRAINER!\p"
-	.string "I know! As my thanks, I'll give you\n"
-	.string "another GREAT BALL!$"
 
 RustboroCity_Text_1E19E5: @ 81E19E5
 	.string "You're loaded with items.\n"
@@ -1211,73 +1223,26 @@ RustboroCity_Text_1E2002: @ 81E2002
 	.string "just moved here, {PLAYER}, but\l"
 	.string "MR. BRINEY was once a great sailor.$"
 
-RustboroCity_Text_1E20A6: @ 81E20A6
-	.string "“Timesaving tunnel nearing\n"
-	.string "completion!”\p"
-	.string "…Is what it says on the sign, but\n"
-	.string "there's also a big “X” splashed\l"
-	.string "across it in red paint…$"
 
-RustboroCity_Text_1E2128: @ 81E2128
-	.string "{PLACE}DEVON CORPORATION{END}\p"
-	.string "“For all your living needs, we make\n"
-	.string "it all.”$"
 
-RustboroCity_Text_1E2167: @ 81E2167
-	.string "{GYM}Rustboro City Pokémon Gym{END}\n"
-	.string "{GYM}Leader:{END} Roxanne\p"
-	.string "“The ROCK-loving honors student!”$"
 
-RustboroCity_Text_1E21B3: @ 81E21B3
-	.string "{PLACE}Devon Corp. Branch Office{END}\p"
-	.string "“Access limited to DEVON employees\n"
-	.string "and authorized personnel.”$"
 
-RustboroCity_Text_1E220B: @ 81E220B
-	.string "{PLACE}Rustboro City{END}\p"
-	.string "“The city probing the integration of\n"
-	.string "nature and science.”$"
 
-RustboroCity_Text_1E2253: @ 81E2253
-	.string "{PLACE}Pokémon Trainer's School{END}\p"
-	.string "“We'll teach you anything about\n"
-	.string "Pokémon!”$"
 
-RustboroCity_Text_1E2296: @ 81E2296
-	.string "{PLACE}Lumberjack's House{END}$"
 
-RustboroCity_Text_1E22A5: @ 81E22A5
-	.string "I've been developing an added feature\n"
-	.string "for the PokéNav…\p"
-	.string "And it turned out great!\p"
-	.string "{PLAYER}, may I see that PokéNav?\n"
-	.string "The one our PRESIDENT gave you?$"
 
-RustboroCity_Text_1E2331: @ 81E2331
-	.string "There you go, {PLAYER}!\p"
-	.string "I added a new feature named\n"
-	.string "MATCH CALL to your PokéNav.\p"
-	.string "Using the MATCH CALL feature,\n"
-	.string "you can chat with people who have\l"
-	.string "been registered in your PokéNav.\p"
-	.string "{PLAYER}, our PRESIDENT STONE should\n"
-	.string "be registered in your PokéNav.\p"
-	.string "Test it out.\n"
-	.string "Please give our PRESIDENT a call.$"
 
-RustboroCity_Text_1E2449: @ 81E2449
-	.string "Please select the PokéNav.$"
 
-RustboroCity_Text_1E2464: @ 81E2464
-	.string "Okay, I'd better get back to work.\n"
-	.string "Please take care, {PLAYER}!$"
 
-RustboroCity_Text_1E249D: @ 81E249D
-	.string "Did you know this?\p"
-	.string "You can have a 2-on-2 battle even\n"
-	.string "if you're not with another TRAINER.\p"
-	.string "If you catch the eyes of two TRAINERS\n"
-	.string "when you have two or more Pokémon,\l"
-	.string "they'll both challenge you.\p"
-	.string "Don't you think it'd be cool if you\n"
-	.string "could beat two TRAINERS by yourself?$"
+
+
+
+
+
+
+
+
+
+
+
+

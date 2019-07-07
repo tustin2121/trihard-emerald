@@ -1685,7 +1685,7 @@ u8 AddPseudoEventObject(u16 graphicsId, void (*callback)(struct Sprite *), s16 x
     return spriteId;
 }
 
-u8 sprite_new(u16 graphicsId, u8 a1, s16 x, s16 y, u8 z, u8 direction)
+u8 sprite_new(u16 graphicsId, u8 localId, s16 x, s16 y, u8 z, u8 direction)
 {
     u8 spriteId;
     struct Sprite *sprite;
@@ -1712,7 +1712,7 @@ u8 sprite_new(u16 graphicsId, u8 a1, s16 x, s16 y, u8 z, u8 direction)
             sprite->oam.paletteNum -= 16;
         }
         sprite->coordOffsetEnabled = TRUE;
-        sprite->data[0] = a1;
+        sprite->data[0] = localId;
         sprite->data[1] = z;
         if (graphicsInfo->paletteSlot == 10)
         {

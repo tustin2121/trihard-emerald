@@ -11,3 +11,9 @@ VAR_PETALBURG_STATE :=
 	10 = Gym is open, undefeated
 	11 = Gym is open, defeated
 	12 = Go to 11
+
+
+VAR_RUSTBORO_STATE :=
+	0 = Initial Visit
+	1 = Heist will Trigger
+	2 = Post-Heist

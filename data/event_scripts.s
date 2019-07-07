@@ -954,10 +954,10 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA
 	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN
 	setflag FLAG_UNKNOWN_0x363
-	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
-	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT @ Remove?
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
 	setflag FLAG_HIDE_RUSBORO_CITY_RIVAL
-	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
+	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
@@ -5628,3 +5628,5 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/SootopolisLegendsEdit/scripts.inc"
 
 	.include "data/maps/SootopolisCity_PokemonCenter_Alt/scripts.inc"
+
+	.include "data/maps/ScriptTestMap/scripts.inc"
