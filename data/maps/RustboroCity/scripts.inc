@@ -8,22 +8,25 @@ RustboroCity_MapScripts:: @ 81E06BD
 RustboroCity_OnTransition: @ 81E06C8
 	setflag FLAG_VISITED_RUSTBORO_CITY
 	call Common_EventScript_SetupRivalGender
-	compare VAR_RUSTBORO_STATE, 6
-	call_if_eq Common_EventScript_HideMapNamePopup
-	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	compare VAR_RUSTBORO_STATE, 6
-	goto_if_eq RustboroCity_EventScript_1E06EC
+	compare VAR_RUSTBORO_STATE, 2
+	call_if_eq RustboroCity_EventScript_SetupAqua2
+	@ compare VAR_RUSTBORO_STATE, 6
+	@ call_if_eq Common_EventScript_HideMapNamePopup
+	@ getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	@ compare VAR_RUSTBORO_STATE, 6
+	@ goto_if_eq RustboroCity_EventScript_1E06EC
 	end
+	
 
-RustboroCity_EventScript_1E06EC:: @ 81E06EC
-	compare VAR_TEMP_0, 11
-	goto_if_eq RustboroCity_EventScript_1E06FF
-	setobjectxyperm 15, 12, 15
-	end
+@ RustboroCity_EventScript_1E06EC:: @ 81E06EC
+@ 	compare VAR_TEMP_0, 11
+@ 	goto_if_eq RustboroCity_EventScript_1E06FF
+@ 	setobjectxyperm 15, 12, 15
+@ 	end
 
-RustboroCity_EventScript_1E06FF:: @ 81E06FF
-	setobjectxyperm 15, 11, 15
-	end
+@ RustboroCity_EventScript_1E06FF:: @ 81E06FF
+@ 	setobjectxyperm 15, 11, 15
+@ 	end
 
 @ -----------------------------------------------------
 
@@ -290,11 +293,140 @@ RustboroCity_Text_1E249D: @ 81E249D
 @ Cutscene: The Heist
 
 #define LID_MAGMA 10
-#define LID_AQUA1 15
-#define LID_AQUA2 17
-#define LID_AQUA3 18
+#define LID_AQUA_GIRL 15
+#define LID_AQUA_BOY 17
+#define LID_AQUA_3 18
 
-RustboroCity_TriggerScript_HeistCutscene:
+RustboroCity_EventScript_SetupAqua2:
+	setobjectxyperm LID_AQUA_BOY, 30, 11
+	setobjectxyperm LID_AQUA_GIRL, 29, 10
+	setobjectxyperm LID_AQUA_3, 38, 9
+	return
+
+RustboroCity_TriggerScript_HeistCutscene1:
+	lockall
+	setobjectxyperm LID_MAGMA, 14, 21
+	setobjectxyperm LID_AQUA_BOY, 13, 21
+	setobjectxyperm LID_AQUA_GIRL, 12, 21
+	setobjectxyperm LID_AQUA_3, 13, 22
+	addobject LID_MAGMA
+	addobject LID_AQUA_BOY
+	addobject LID_AQUA_GIRL
+	addobject LID_AQUA_3
+	@ Yelling ensues
+	markasdialog -1
+	msgbox RustboroCity_Text_Heist1, MSGBOX_DIALOG
+	playbgm MUS_AQA_0, 0
+	msgbox RustboroCity_Text_Heist2, MSGBOX_DIALOG
+	closemessage
+	@ They rush past
+	applymovement LID_MAGMA, RustboroCity_Movement_Heist3_Magma
+	waitmovement 0
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_Heist3_AquaA
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_Heist3_AquaB
+	applymovement LID_AQUA_3, RustboroCity_Movement_Heist3_AquaC
+	delay 40
+	setfieldeffectargument 0, 22
+	setfieldeffectargument 1, 22
+	setfieldeffectargument 2, 3
+	setfieldeffectargument 3, 0
+	dofieldeffect FLDEFF_DUST
+	waitfieldeffect 0
+	waitmovement 0
+	@ Scene end, clean up:
+	fadedefaultbgm
+	removeobject LID_MAGMA
+	setobjectxyperm LID_AQUA_BOY, 30, 11
+	setobjectxyperm LID_AQUA_GIRL, 29, 10
+	setobjectxyperm LID_AQUA_3, 38, 9
+	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
+	setflag FLAG_DEVON_GOODS_STOLEN
+	setvar VAR_RUSTBORO_STATE, 2
+	setvar VAR_RUSTURF_TUNNEL_STATE, 2
+	setvar VAR_ROUTE116_STATE, 1
+	clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
+	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	releaseall
+	end
+
+
+RustboroCity_Text_Heist1: @ 81E17FE
+	.string "Out of the way! Move it!!$"
+RustboroCity_Text_Heist2:
+	.string "After him!! He's getting away!$"
+RustboroCity_Movement_Heist3_Magma: @ 81E0A8E
+	walk_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+RustboroCity_Movement_Heist3_AquaA:
+	walk_fastest_right
+	walk_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+RustboroCity_Movement_Heist3_AquaB:
+	walk_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+RustboroCity_Movement_Heist3_AquaC:
+	delay_8
+	walk_fastest_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_in_place_fast_up
+	lock_facing_direction
+	walk_fast_right
+	walk_fast_left
+	unlock_facing_direction
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+
+
+
+
 	lockall
 	setobjectxyperm 9, 14, 21
 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
@@ -458,25 +590,7 @@ RustboroCity_EventScript_1E0A79:: @ 81E0A79
 	waitmovement 0
 	return
 
-RustboroCity_Movement_1E0A8E: @ 81E0A8E
-	walk_fastest_right
-	walk_fastest_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	step_end
+
 
 RustboroCity_Movement_1E0AA0: @ 81E0AA0
 	walk_fastest_right

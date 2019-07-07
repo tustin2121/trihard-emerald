@@ -3,13 +3,18 @@
 #define LID_LOGAN 10
 #define LID_OLDLEADER 11
 
-
 PetalburgCity_Gym_MapScripts:: @ 8204889
 	map_script MAP_SCRIPT_ON_LOAD, PetalburgCity_Gym_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_Gym_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PetalburgCity_Gym_MapScript2_WarpTable
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_Gym_MapScript2_FrameTable
 	.byte 0
+
+PetalburgCity_Gym_EventScript_OpenGym::
+	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
+	setvar VAR_PETALBURG_STATE, 10
+	setflag FLAG_PETALBURG_MART_EXPANDED_ITEMS
+	return
 
 @ -----------------------------------------------------
 
@@ -174,13 +179,13 @@ PetalburgCity_Gym_Text_GymSignageTitle: @ 820744C
 PetalburgCity_Gym_Text_GymSignageNameList1:
 	.string "(There are no names under that.)$"
 PetalburgCity_Gym_GymSignage_AfterBadge5:
-	msgbox PetalburgCity_Gym_Text_GymSignageNameList2, MSGBOX_DESCRIBE
+	msgbox PetalburgCity_Gym_Text_GymSignageNameList2, MSGBOX_SIGN
 	releaseall
 	end
 PetalburgCity_Gym_Text_GymSignageNameList2:
 	.string "{PLAYER}$"
 PetalburgCity_Gym_GymSignage_AfterBadge6:
-	msgbox PetalburgCity_Gym_Text_GymSignageNameList3, MSGBOX_DESCRIBE
+	msgbox PetalburgCity_Gym_Text_GymSignageNameList3, MSGBOX_SIGN
 	releaseall
 	end
 PetalburgCity_Gym_Text_GymSignageNameList3:

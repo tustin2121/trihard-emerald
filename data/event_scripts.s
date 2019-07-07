@@ -954,7 +954,7 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA
 	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN
 	setflag FLAG_UNKNOWN_0x363
-	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT @ Remove?
+	setflag FLAG_HIDE_RUSTBORO_CITY_MAGMA_GRUNT @ Remove?
 	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
 	setflag FLAG_HIDE_RUSBORO_CITY_RIVAL
 	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS
@@ -1487,14 +1487,6 @@ EventScript_PC:: @ 8271D92
 	releaseall
 	end
 
-DewfordTown_Gym_EventScript_271E84:: @ 8271E84
-LavaridgeTown_Gym_1F_EventScript_271E84:: @ 8271E84
-MauvilleCity_Gym_EventScript_271E84:: @ 8271E84
-RustboroCity_Gym_EventScript_271E84:: @ 8271E84
-	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
-	setflag FLAG_PETALBURG_MART_EXPANDED_ITEMS
-	return
-
 DewfordTown_EventScript_271E8B:: @ 8271E8B
 DewfordTown_Hall_EventScript_271E8B:: @ 8271E8B
 	dotimebasedevents
@@ -1545,9 +1537,9 @@ SootopolisCity_Gym_1F_EventScript_271F43:: @ 8271F43
 	end
 
 DewfordTown_Gym_EventScript_271FA1:: @ 8271FA1
-	settrainerflag TRAINER_JOSH
-	settrainerflag TRAINER_TOMMY
-	settrainerflag TRAINER_MARC
+	@ settrainerflag TRAINER_JOSH
+	@ settrainerflag TRAINER_TOMMY
+	@ settrainerflag TRAINER_MARC
 	return
 
 DewfordTown_Gym_EventScript_271FAB:: @ 8271FAB

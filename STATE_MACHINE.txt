@@ -17,6 +17,7 @@ VAR_RUSTBORO_STATE :=
 	0 = Initial Visit
 	1 = Heist will Trigger
 	2 = Post-Heist
+	3 = 
 
 
 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE :=

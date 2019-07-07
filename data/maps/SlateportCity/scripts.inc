@@ -52,7 +52,7 @@ SlateportCity_EventScript_1DCD06:: @ 81DCD06
 	return
 
 SlateportCity_MapScript2_FrameTable: @ 81DCD12
-	map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 2, SlateportCity_EventScript_ScottAfterMuseum
+	map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 2, SlateportCity_EventScript_LoganAfterMuseum
 	.2byte 0
 
 @ -----------------------------------------------------
@@ -61,7 +61,7 @@ SlateportCity_MapScript2_FrameTable: @ 81DCD12
 SlateportCity_EventScript_LoganAfterMuseum:
 	lockall
 	@ Logan limps out and scolds the player
-	set VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
+	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
 	releaseall
 	end
 
@@ -1028,7 +1028,7 @@ SlateportCity_EventScript_AquaMember4a:
 	faceoriginaldir
 	release
 	end
-SlateportCity_Text_1DDF33:
+SlateportCity_Text_1DDF32:
 	.string "{AQUA_BOY}: Feel free to cut in line\n"
 	.string "behind me. We should be going in soon.$"
 

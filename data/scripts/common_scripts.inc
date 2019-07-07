@@ -277,6 +277,12 @@ LavaridgeTown_EventScript_271F19:: @ 8271F19
 	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE
 	return
 
+Common_EventScript_IncrementBadgeCount::
+	addvar VAR_NUM_BADGES, 1
+	compare VAR_NUM_BADGES, 4
+	call_if_eq PetalburgCity_Gym_EventScript_OpenGym
+	return
+
 Common_EventScript_ClearSceneFlags::
 	clearflag FLAG_SCENE_0
 	clearflag FLAG_SCENE_1
