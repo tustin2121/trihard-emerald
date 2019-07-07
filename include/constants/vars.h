@@ -99,8 +99,8 @@
 #define VAR_UNUSED_0x4052                    0x4052 // Unused Var
 #define VAR_LAVARIDGE_RIVAL_STATE            0x4053
 #define VAR_CURRENT_SECRET_BASE              0x4054
-#define VAR_UNUSED_0x4055                    0x4055 // Unused Var
-#define VAR_UNUSED_0x4056                    0x4056 // Unused Var
+#define VAR_AQUA_GIRL_FRIENDSHIP             0x4055 // Trihard Emerald
+#define VAR_AQUA_BOY_FRIENDSHIP              0x4056 // Trihard Emerald
 #define VAR_PETALBURG_STATE                  0x4057
 #define VAR_SLATEPORT_STATE                  0x4058
 #define VAR_UNUSED_0x4059                    0x4059 // Unused Var

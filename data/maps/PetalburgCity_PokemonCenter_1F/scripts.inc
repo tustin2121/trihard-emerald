@@ -98,14 +98,25 @@ PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part2:
 	.string "Excuse me. Some privacy, please?$"
 
 
+
 PetalburgCity_PokemonCenter_1F_EventScript_207A0A:: @ 8207A0A
+	compare VAR_PETALBURG_STATE, 10
+	goto_if_lt PetalburgCity_PokemonCenter_1F_EventScript_207A0B
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207A76, MSGBOX_NPC
 	end
 PetalburgCity_PokemonCenter_1F_Text_207A76: @ 8207A76
-	.string "That PC-based Pokémon Storage\n"
-	.string "System…\p"
-	.string "Whoever made it must be some kind\n"
-	.string "of a scientific wizard!$"
+	.string "Roumor has it Malaqui was forcefully\n"
+	.string "retired to a prison cell for his conduct\l"
+	.string "in that tall grass incident.\p"
+	.string "Good riddance, if you ask me.$"
+PetalburgCity_PokemonCenter_1F_EventScript_207A0B:
+	msgbox PetalburgCity_PokemonCenter_1F_Text_207A77, MSGBOX_NPC
+	end
+PetalburgCity_PokemonCenter_1F_Text_207A77:
+	.string "That Malaqui is off his rocker!\n"
+	.string "He should be disciplined for some of\n"
+	.string "the stuff he puts trainers through!$"
+	
 
 
 PetalburgCity_PokemonCenter_1F_EventScript_OranBoy:: @ 8207A13
@@ -114,6 +125,7 @@ PetalburgCity_PokemonCenter_1F_EventScript_OranBoy:: @ 8207A13
 PetalburgCity_PokemonCenter_1F_Text_207AD6: @ 8207AD6
 	.string "When my Pokémon ate an\n"
 	.string "Oran Berry, it regained HP!$"
+
 
 
 PetalburgCity_Mart_EventScript_207DD6:: @ 8207DD6
@@ -126,6 +138,7 @@ PetalburgCity_Mart_Text_207DF1: @ 8207DF1
 	.string "Love for your Pokémon!$"
 
 
+
 PetalburgCity_Mart_EventScript_RepelBoy:: @ 8207DDF
 	msgbox PetalburgCity_Mart_Text_207E60, MSGBOX_NPC
 	end
@@ -133,6 +146,7 @@ PetalburgCity_Mart_Text_207E60: @ 8207E60
 	.string "Do you use Repel?\n"
 	.string "It keeps Pokémon away, so it's\l"
 	.string "useful when you're in a hurry.$"
+
 
 
 PetalburgCity_Mart_EventScript_AntidoteMan:: @ 8207DE8

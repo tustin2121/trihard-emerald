@@ -11,3 +11,9 @@ VAR_PETALBURG_STATE :=
 	10 = Gym is open, undefeated
 	11 = Gym is open, defeated
 	12 = Go to 11
+
+VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE :=
+	0 = Aqua lining up outside museum
+	1 = Aqua inside museum
+	2 = Aqua has left, Logan meets on way out
+	3 = Post-Logan
