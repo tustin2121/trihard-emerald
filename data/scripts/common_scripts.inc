@@ -277,6 +277,24 @@ LavaridgeTown_EventScript_271F19:: @ 8271F19
 	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE
 	return
 
+Common_EventScript_ClearSceneFlags::
+	clearflag FLAG_SCENE_0
+	clearflag FLAG_SCENE_1
+	clearflag FLAG_SCENE_2
+	clearflag FLAG_SCENE_3
+	clearflag FLAG_SCENE_4
+	clearflag FLAG_SCENE_5
+	clearflag FLAG_SCENE_6
+	clearflag FLAG_SCENE_7
+	clearflag FLAG_SCENE_8
+	clearflag FLAG_SCENE_9
+	clearflag FLAG_SCENE_A
+	clearflag FLAG_SCENE_B
+	clearflag FLAG_SCENE_C
+	clearflag FLAG_SCENE_D
+	clearflag FLAG_SCENE_E
+	clearflag FLAG_SCENE_F
+	return
 
 Common_EventScript_FailTheftNoRoom::
 	msgbox Common_Text_FailTheftNoRoom, MSGBOX_DEFAULT

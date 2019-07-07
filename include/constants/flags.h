@@ -37,22 +37,26 @@
 #define FLAG_TEMP_1E    0x1E
 #define FLAG_TEMP_1F    0x1F //Used only in Victory Road
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
+// Scene Temporary Flags (TriHard Emerald)
+// These flags are cleared at certain points during story progression.
+#define FLAG_SCENE_0    0x20 // TE: Scene Flag
+#define FLAG_SCENE_1    0x21 // TE: Scene Flag
+#define FLAG_SCENE_2    0x22 // TE: Scene Flag
+#define FLAG_SCENE_3    0x23 // TE: Scene Flag
+#define FLAG_SCENE_4    0x24 // TE: Scene Flag
+#define FLAG_SCENE_5    0x25 // TE: Scene Flag
+#define FLAG_SCENE_6    0x26 // TE: Scene Flag
+#define FLAG_SCENE_7    0x27 // TE: Scene Flag
+#define FLAG_SCENE_8    0x28 // TE: Scene Flag
+#define FLAG_SCENE_9    0x29 // TE: Scene Flag
+#define FLAG_SCENE_A    0x2A // TE: Scene Flag
+#define FLAG_SCENE_B    0x2B // TE: Scene Flag
+#define FLAG_SCENE_C    0x2C // TE: Scene Flag
+#define FLAG_SCENE_D    0x2D // TE: Scene Flag
+#define FLAG_SCENE_E    0x2E // TE: Scene Flag
+#define FLAG_SCENE_F    0x2F // TE: Scene Flag
+
+
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag
@@ -222,11 +226,11 @@
 #define FLAG_RECEIVED_RED_OR_BLUE_ORB        0xD4
 #define FLAG_RECEIVED_PREMIER_BALL_RUSTBORO  0xD5
 #define FLAG_ENABLE_WALLY_MATCH_CALL         0xD6
-#define FLAG_ENABLE_SCOTT_MATCH_CALL         0xD7
+#define FLAG_ENABLE_SCOTT_MATCH_CALL         0xD7 //TE: Unused
 #define FLAG_ENABLE_MOM_MATCH_CALL           0xD8 //TE: Unused
 #define FLAG_MET_DIVING_TREASURE_HUNTER      0xD9
 #define FLAG_MET_WAILMER_TRAINER             0xDA
-#define FLAG_EVIL_LEADER_PLEASE_STOP         0xDB
+#define FLAG_UNUSED_0x0DB                    0xDB //TE: Unused
 
 #define FLAG_NEVER_SET_0x0DC                 0xDC // This flag is read, but never written to
 
@@ -781,7 +785,7 @@
 #define FLAG_HIDE_PETALBURG_CITY_GYM_LOCK                           0x33E
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS               0x33F
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_ONLOOKERS      0x340
-#define FLAG_HIDE_GRANITE_CAVE_STEVEN                               0x341
+#define FLAG_ITEM_GRANITE_CAVE_TM47                                 0x341
 #define FLAG_HIDE_ROUTE_128_STEVEN                                  0x342
 #define FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY                       0x343
 #define FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT              0x344

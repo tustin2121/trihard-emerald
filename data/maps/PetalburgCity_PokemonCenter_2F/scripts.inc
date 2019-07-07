@@ -2,7 +2,7 @@ PetalburgCity_PokemonCenter_2F_MapScripts:: @ 8207D41
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_PokemonCenter_2F_FrameTable
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PetalburgCity_PokemonCenter_2F_MapTable
 	map_script MAP_SCRIPT_ON_LOAD, PetalburgCity_PokemonCenter_2F_OnLoad
-	@ map_script MAP_SCRIPT_ON_TRANSITION, PokemonCenter_2F_OnTransition
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonCenter_2F_OnTransition
 	.byte 0
 
 PetalburgCity_PokemonCenter_2F_FrameTable: @ 8255C41

@@ -85,3 +85,8 @@
 	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
 	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, \num
 	.endm
+	
+	.macro faceoriginaldir
+	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	.endm

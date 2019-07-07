@@ -52,98 +52,106 @@ SlateportCity_EventScript_1DCD06:: @ 81DCD06
 	return
 
 SlateportCity_MapScript2_FrameTable: @ 81DCD12
-	@ map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_ScottAfterMuseum
+	map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 2, SlateportCity_EventScript_ScottAfterMuseum
 	.2byte 0
 
 @ -----------------------------------------------------
 @ Scott (TODO: REMOVE)
 
-SlateportCity_EventScript_ScottAfterMuseum:: @ 81DCD1C
+SlateportCity_EventScript_LoganAfterMuseum:
 	lockall
-	addobject LID_SCOTT
-	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DCDA8
-	applymovement LID_SCOTT, SlateportCity_Movement_1DCDAC
-	waitmovement 0
-	msgbox SlateportCity_Text_1DF032, MSGBOX_DEFAULT
-	closemessage
-	applymovement LID_SCOTT, Common_Movement_WalkInPlaceLeft
-	waitmovement 0
-	delay 60
-	msgbox SlateportCity_Text_1DF0FE, MSGBOX_DEFAULT
-	applymovement LID_SCOTT, Common_Movement_WalkInPlaceRight
-	waitmovement 0
-	msgbox SlateportCity_Text_1DF12B, MSGBOX_DEFAULT
-	closemessage
-	delay 30
-	playfanfare MUS_ME_TORE_EYE
-	msgbox SlateportCity_Text_1DF1A6, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_SCOTT_MATCH_CALL
-	msgbox SlateportCity_Text_1DF1D3, MSGBOX_DEFAULT
-	closemessage
-	applymovement LID_SCOTT, SlateportCity_Movement_1DCDB4
-	waitmovement 0
-	removeobject LID_SCOTT
-	setobjectxyperm LID_SCOTT, 18, 12
-	setobjectmovementtype LID_SCOTT, MOVEMENT_TYPE_FACE_DOWN
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 2
-	addvar VAR_SCOTT_STATE, 1
+	@ Logan limps out and scolds the player
+	set VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
 	releaseall
 	end
-SlateportCity_Movement_1DCDA8: @ 81DCDA8
-	delay_16
-	delay_8
-	walk_in_place_fastest_left
-	step_end
-SlateportCity_Movement_1DCDAC: @ 81DCDAC
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-SlateportCity_Text_1DF032: @ 81DF032
-	.string "SCOTT: Huh?\n"
-	.string "I'm sure I met you somewhere before.\p"
-	.string "Have I introduced myself to you?\n"
-	.string "If not, my name's SCOTT.\p"
-	.string "I just saw Team Aqua run away from\n"
-	.string "here like they were stung.\p"
-	.string "Let me guess--you drove them away?$"
-SlateportCity_Text_1DF0FE: @ 81DF0FE
-	.string "SCOTT: Hmm…\n"
-	.string "Maybe, just maybe, this TRAINER…$"
-SlateportCity_Text_1DF12B: @ 81DF12B
-	.string "SCOTT: All right! I think you're going\n"
-	.string "to become a good friend.\p"
-	.string "So, let's register each other in our\n"
-	.string "PokéNavs.\p"
-	.string "… … … … … …$"
-SlateportCity_Text_1DF1A6: @ 81DF1A6
-	.string "Registered this SCOTT person\n"
-	.string "in the PokéNav.$"
-SlateportCity_Text_1DF1D3: @ 81DF1D3
-	.string "SCOTT: What I'd like to do is tag along\n"
-	.string "with you, but I do want to keep an eye\l"
-	.string "on the talents of other people, too.\p"
-	.string "So, I'll be off to roam other towns\n"
-	.string "a bit more.\p"
-	.string "Be seeing you, {PLAYER}!$"
-SlateportCity_Movement_1DCDB4: @ 81DCDB4
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	step_end
+
+
+@ SlateportCity_EventScript_ScottAfterMuseum:: @ 81DCD1C
+@ 	lockall
+@ 	addobject LID_SCOTT
+@ 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DCDA8
+@ 	applymovement LID_SCOTT, SlateportCity_Movement_1DCDAC
+@ 	waitmovement 0
+@ 	msgbox SlateportCity_Text_1DF032, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement LID_SCOTT, Common_Movement_WalkInPlaceLeft
+@ 	waitmovement 0
+@ 	delay 60
+@ 	msgbox SlateportCity_Text_1DF0FE, MSGBOX_DEFAULT
+@ 	applymovement LID_SCOTT, Common_Movement_WalkInPlaceRight
+@ 	waitmovement 0
+@ 	msgbox SlateportCity_Text_1DF12B, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	delay 30
+@ 	playfanfare MUS_ME_TORE_EYE
+@ 	msgbox SlateportCity_Text_1DF1A6, MSGBOX_DEFAULT
+@ 	waitfanfare
+@ 	closemessage
+@ 	delay 30
+@ 	setflag FLAG_ENABLE_SCOTT_MATCH_CALL
+@ 	msgbox SlateportCity_Text_1DF1D3, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement LID_SCOTT, SlateportCity_Movement_1DCDB4
+@ 	waitmovement 0
+@ 	removeobject LID_SCOTT
+@ 	setobjectxyperm LID_SCOTT, 18, 12
+@ 	setobjectmovementtype LID_SCOTT, MOVEMENT_TYPE_FACE_DOWN
+@ 	clearflag FLAG_HIDE_MAP_NAME_POPUP
+@ 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 2
+@ 	addvar VAR_SCOTT_STATE, 1
+@ 	releaseall
+@ 	end
+@ SlateportCity_Movement_1DCDA8: @ 81DCDA8
+@ 	delay_16
+@ 	delay_8
+@ 	walk_in_place_fastest_left
+@ 	step_end
+@ SlateportCity_Movement_1DCDAC: @ 81DCDAC
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	step_end
+@ SlateportCity_Text_1DF032: @ 81DF032
+@ 	.string "SCOTT: Huh?\n"
+@ 	.string "I'm sure I met you somewhere before.\p"
+@ 	.string "Have I introduced myself to you?\n"
+@ 	.string "If not, my name's SCOTT.\p"
+@ 	.string "I just saw Team Aqua run away from\n"
+@ 	.string "here like they were stung.\p"
+@ 	.string "Let me guess--you drove them away?$"
+@ SlateportCity_Text_1DF0FE: @ 81DF0FE
+@ 	.string "SCOTT: Hmm…\n"
+@ 	.string "Maybe, just maybe, this TRAINER…$"
+@ SlateportCity_Text_1DF12B: @ 81DF12B
+@ 	.string "SCOTT: All right! I think you're going\n"
+@ 	.string "to become a good friend.\p"
+@ 	.string "So, let's register each other in our\n"
+@ 	.string "PokéNavs.\p"
+@ 	.string "… … … … … …$"
+@ SlateportCity_Text_1DF1A6: @ 81DF1A6
+@ 	.string "Registered this SCOTT person\n"
+@ 	.string "in the PokéNav.$"
+@ SlateportCity_Text_1DF1D3: @ 81DF1D3
+@ 	.string "SCOTT: What I'd like to do is tag along\n"
+@ 	.string "with you, but I do want to keep an eye\l"
+@ 	.string "on the talents of other people, too.\p"
+@ 	.string "So, I'll be off to roam other towns\n"
+@ 	.string "a bit more.\p"
+@ 	.string "Be seeing you, {PLAYER}!$"
+@ SlateportCity_Movement_1DCDB4: @ 81DCDB4
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	step_end
 
 
 SlateportCity_EventScript_1DD5DC:: @ 81DD5DC
@@ -172,11 +180,11 @@ SlateportCity_Text_1DF28C: @ 81DF28C
 	.string "SCOTT: Oh, hey!\n"
 	.string "If it isn't {PLAYER}!\p"
 	.string "{PLAYER}, let me guess--you're going\n"
-	.string "to take the BATTLE TENT challenge?\p"
+	.string "to take the Battle Tent challenge?\p"
 	.string "Yeah! That's a good idea!\n"
 	.string "That's a really great idea!\p"
 	.string "After all, a tough TRAINER is\n"
-	.string "the perfect fit for the BATTLE TENT!\p"
+	.string "the perfect fit for the Battle Tent!\p"
 	.string "Give it your best effort!$"
 SlateportCity_Movement_1DD630: @ 81DD630
 	lock_facing_direction
@@ -214,7 +222,6 @@ SlateportCity_Text_1DE8BC: @ 81DE8BC
 	.string "“Find it! The ultimate Pokémon!”$"
 
 
-
 SlateportCity_SignScript_SternsShipyard:: @ 81DCF3F
 	lockall
 	msgbox SlateportCity_Text_SternsShipyard, MSGBOX_SIGN
@@ -243,7 +250,7 @@ SlateportCity_EventScript_1DCF66:: @ 81DCF66
 SlateportCity_Text_1DE9AA: @ 81DE9AA
 	.string "“Boarding of the Slateport-Lilycove\n"
 	.string "ferry {REF}S.S. Tidal{END} is handled at the\l"
-	.string "HARBOR.”$"
+	.string "Harbor.”$"
 
 
 SlateportCity_SignScript_FanClub:: @ 81DCF70
@@ -283,7 +290,7 @@ SlateportCity_Text_1DEAAF: @ 81DEAAF
 SlateportCity_SignScript_Habor:: @ 81DCF94
 	lockall
 	goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_EventScript_1DCFA8
-	msgbox SlateportCity_Text_1DEAE3, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DEAE3, MSGBOX_SIGN
 	releaseall
 	end
 SlateportCity_Text_1DEAE3: @ 81DEAE3
@@ -293,7 +300,7 @@ SlateportCity_Text_1DEAE3: @ 81DEAE3
 	.string "“Service is scheduled to begin\n"
 	.string "shortly.”$"
 SlateportCity_EventScript_1DCFA8:: @ 81DCFA8
-	msgbox SlateportCity_Text_1DEB5A, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DEB5A, MSGBOX_SIGN
 	releaseall
 	end
 SlateportCity_Text_1DEB5A: @ 81DEB5A
@@ -320,6 +327,7 @@ SlateportCity_Text_NameRater2: @ 81DEBA0
 SlateportCity_EventScript_EnergyGuru:: @ 81DCDBD
 	lock
 	faceplayer
+	markasdialog
 	message SlateportCity_Text_1DD64A
 	waitmessage
 	pokemart SlateportCity_Pokemart_1DCDD4
@@ -327,7 +335,7 @@ SlateportCity_EventScript_EnergyGuru:: @ 81DCDBD
 	release
 	end
 SlateportCity_Text_1DD64A: @ 81DD64A
-	.string "I'm the ENERGY GURU! I'll go for it and\n"
+	.string "I'm the Energy Guru! I'll go for it and\n"
 	.string "sell you what you need!$"
 SlateportCity_Pokemart_1DCDD4: @ 81DCDD4
 	.2byte ITEM_PROTEIN
@@ -344,6 +352,7 @@ SlateportCity_Pokemart_1DCDD4: @ 81DCDD4
 SlateportCity_EventScript_EffortRibbonWoman:: @ 81DCDE4
 	lock
 	faceplayer
+	markasdialog
 	bufferleadmonspeciesname 0
 	msgbox SlateportCity_Text_1DD68A, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, LeadMonHasEffortRibbon
@@ -392,6 +401,7 @@ SlateportCity_Text_1DD722: @ 81DD722
 SlateportCity_EventScript_Chef:: @ 81DCE42
 	lock
 	faceplayer
+	markasdialog
 	compare VAR_SLATEPORT_STATE, 1
 	call_if_eq SlateportCity_EventScript_1DCE59
 	msgbox SlateportCity_Text_1DD81A, MSGBOX_DEFAULT
@@ -416,6 +426,7 @@ SlateportCity_Text_1DE3E2: @ 81DE3E2
 SlateportCity_EventScript_OldWoman:: @ 81DCE63
 	lock
 	faceplayer
+	markasdialog
 	compare VAR_SLATEPORT_STATE, 1
 	call_if_eq SlateportCity_EventScript_1DCE7A
 	msgbox SlateportCity_Text_1DD8A6, MSGBOX_DEFAULT
@@ -441,6 +452,7 @@ SlateportCity_Text_1DE28E: @ 81DE28E
 SlateportCity_EventScript_MarketGirl:: @ 81DCE84
 	lock
 	faceplayer
+	markasdialog
 	compare VAR_SLATEPORT_STATE, 1
 	call_if_eq SlateportCity_EventScript_1DCEA4
 	goto_if_set FLAG_RECEIVED_SECRET_POWER, SlateportCity_EventScript_1DCEAE
@@ -465,16 +477,17 @@ SlateportCity_EventScript_1DCEAE:: @ 81DCEAE
 	release
 	end
 SlateportCity_Text_1DD999: @ 81DD999
-	.string "If you put DOLLS or CUSHIONS on\n"
+	.string "If you put dolls or cushions on\n"
 	.string "the floor, they'll get dirty.\p"
 	.string "I'm going to buy some BRICKS so my\n"
-	.string "DOLLS and CUSHIONS won't get dirty\l"
+	.string "dolls and cushions won't get dirty\l"
 	.string "when I leave them out.$"
 
 
 SlateportCity_EventScript_TentGuy:: @ 81DCEB8
 	lock
 	faceplayer
+	markasdialog
 	compare VAR_SLATEPORT_STATE, 1
 	call_if_eq SlateportCity_EventScript_1DCECF
 	msgbox SlateportCity_Text_1DDA34, MSGBOX_DEFAULT
@@ -482,7 +495,7 @@ SlateportCity_EventScript_TentGuy:: @ 81DCEB8
 	end
 SlateportCity_Text_1DDA34: @ 81DDA34
 	.string "Wroooar! I'm going to compete in\n"
-	.string "the BATTLE TENT, too!\p"
+	.string "the Battle Tent, too!\p"
 	.string "But before that, I need to catch\n"
 	.string "some Pokémon!$"
 SlateportCity_EventScript_1DCECF:: @ 81DCECF
@@ -508,7 +521,7 @@ SlateportCity_Text_1DDA9A: @ 81DDA9A
 	.string "If I'd known this, I would've ridden\n"
 	.string "my bike here.$"
 SlateportCity_EventScript_1DCEED:: @ 81DCEED
-	msgbox SlateportCity_Text_1DE43D, MSGBOX_SIGN
+	msgbox SlateportCity_Text_1DE43D, MSGBOX_DIALOG
 	end
 SlateportCity_Text_1DE43D: @ 81DE43D
 	.string "Hey! Are you watching?\n"
@@ -518,6 +531,7 @@ SlateportCity_Text_1DE43D: @ 81DE43D
 SlateportCity_EventScript_MuseumMan:: @ 81DCEF6
 	lock
 	faceplayer
+	markasdialog
 	compare VAR_SLATEPORT_STATE, 1
 	call_if_eq SlateportCity_EventScript_1DCF0D
 	msgbox SlateportCity_Text_1DDB21, MSGBOX_DEFAULT
@@ -540,6 +554,7 @@ SlateportCity_Text_1DE460: @ 81DE460
 SlateportCity_EventScript_MuseumWoman:: @ 81DCF17
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS, SlateportCity_EventScript_1DCF2C
 	msgbox SlateportCity_Text_1DDBAC, MSGBOX_DEFAULT
 	release
@@ -562,6 +577,7 @@ SlateportCity_Text_1DDBD5: @ 81DDBD5
 SlateportCity_EventScript_NameRaterGuy:: @ 81DCFBB
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_TEMP_5, SlateportCity_EventScript_NameRaterGuy2
 	msgbox SlateportCity_Text_NameRaterGuy, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_5
@@ -626,12 +642,12 @@ SlateportCity_EventScript_1DD000:: @ 81DD000
 	msgbox SlateportCity_Text_1DE1EC, MSGBOX_NPC
 	end
 SlateportCity_Text_1DE1EC: @ 81DE1EC
-	.string "Recently, a BATTLE TENT was built\n"
-	.string "in SLATEPORT.\p"
-	.string "GYMS are fun, but the BATTLE TENT's\n"
+	.string "Recently, a Battle Tent was built\n"
+	.string "in Slateport.\p"
+	.string "Gyms are fun, but the Battle Tent's\n"
 	.string "awesome in its own way.\p"
 	.string "You should go find tough Pokémon\n"
-	.string "for the BATTLE TENT!$"
+	.string "for the Battle Tent!$"
 
 
 SlateportCity_EventScript_LighthouseMan:: @ 81DD365
@@ -647,6 +663,7 @@ SlateportCity_Text_1DD7AD: @ 81DD7AD
 SlateportCity_EventScript_DollShop:: @ 81DD16A
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration SlateportCity_PokemartDecor_Dolls
@@ -663,23 +680,10 @@ SlateportCity_PokemartDecor_Dolls: @ 81DD184
 	end
 
 
-SlateportCity_EventScript_1DD18E:: @ 81DD18E
-	msgbox SlateportCity_Text_SecretPower, MSGBOX_DEFAULT
-	release
-	end
-SlateportCity_Text_SecretPower:
-	.string "Do you know the TM SECRET POWER?\p"
-	.string "Our group, we love the TM SECRET\n"
-	.string "POWER.\p"
-	.string "One of our members will give it to you.\n"
-	.string "Come back and show me if you get it.\p"
-	.string "We'll accept you as a member and sell\n"
-	.string "you good stuff in secrecy.$"
-
-
 SlateportCity_EventScript_DecorShop1:: @ 81DD198
 	lock
 	faceplayer
+	markasdialog
 	goto_if_unset FLAG_RECEIVED_SECRET_POWER, SlateportCity_EventScript_1DD18E
 	message gText_Mart_Welcome
 	waitmessage
@@ -687,6 +691,18 @@ SlateportCity_EventScript_DecorShop1:: @ 81DD198
 	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
 	release
 	end
+SlateportCity_EventScript_1DD18E:: @ 81DD18E
+	msgbox SlateportCity_Text_SecretPower, MSGBOX_DEFAULT
+	release
+	end
+SlateportCity_Text_SecretPower:
+	.string "Do you know the TM Secret Power?\p"
+	.string "Our group, we love the TM Secret\n"
+	.string "Power.\p"
+	.string "One of our members will give it to you.\n"
+	.string "Come back and show me if you get it.\p"
+	.string "We'll accept you as a member and sell\n"
+	.string "you good stuff in secrecy.$"
 .align 2
 SlateportCity_PokemartDecor_1DD1B8: @ 81DD1B8
 	.2byte DECOR_RED_BRICK
@@ -710,6 +726,7 @@ SlateportCity_PokemartDecor_1DD1B8: @ 81DD1B8
 SlateportCity_EventScript_TMShop:: @ 81DD1D8
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart SlateportCity_Pokemart_1DD1F0
@@ -740,13 +757,12 @@ SlateportCity_Text_DenyEntryResidential:
 @ -----------------------------------------------------
 @ Team Aqua Members
 
-SlateportCity_EventScript_1DD009:: @ 81DD009
+SlateportCity_EventScript_AquaMember1:: @ 81DD009
 	lock
 	faceplayer
-	msgbox SlateportCity_Text_1DDC4F, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DDC4F, MSGBOX_DIALOG
 	closemessage
-	applymovement 5, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	faceoriginaldir
 	release
 	end
 SlateportCity_Text_1DDC4F: @ 81DDC4F
@@ -754,13 +770,12 @@ SlateportCity_Text_1DDC4F: @ 81DDC4F
 	.string "This is the line, can't you see?$"
 
 
-SlateportCity_EventScript_1DD020:: @ 81DD020
+SlateportCity_EventScript_AquaMember2:: @ 81DD020
 	lock
 	faceplayer
-	msgbox SlateportCity_Text_1DDC8A, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DDC8A, MSGBOX_DIALOG
 	closemessage
-	applymovement 18, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	faceoriginaldir
 	release
 	end
 SlateportCity_Text_1DDC8A: @ 81DDC8A
@@ -769,71 +784,54 @@ SlateportCity_Text_1DDC8A: @ 81DDC8A
 	.string "the operation site.$"
 
 
-SlateportCity_EventScript_1DD037:: @ 81DD037
+SlateportCity_EventScript_AquaMember3:: @ 81DD037
 	lock
-	faceplayer
-	msgbox SlateportCity_Text_1DDCD5, MSGBOX_DEFAULT
-	closemessage
-	applymovement 19, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	msgbox SlateportCity_Text_1DDCD5, MSGBOX_DIALOG
 	release
 	end
 SlateportCity_Text_1DDCD5: @ 81DDCD5
-	.string "Our BOSS is brilliant.\p"
-	.string "What would he want to do with\n"
-	.string "a MUSEUM now?$"
+	.string "Grumble…\p"
+	.string "I should've brought my Game Boy\n"
+	.string "Advance so I wouldn't get bored in line…\p"
+	.string "Grumble…$"
+	@ .string "Our boss is brilliant.\p"
+	@ .string "What would he want to do with\n"
+	@ .string "a museum now?$"
 
 
-SlateportCity_EventScript_1DD04E:: @ 81DD04E
+SlateportCity_EventScript_AquaMember9:: @ 81DD04E
 	lock
 	faceplayer
-	msgbox SlateportCity_Text_1DDD18, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DDD18, MSGBOX_DIALOG
 	closemessage
-	applymovement 26, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	faceoriginaldir
 	release
 	end
 SlateportCity_Text_1DDD18: @ 81DDD18
 	.string "What's the new scheme, I wonder?\p"
-	.string "Our BOSS is scary when he's mad, so\n"
+	.string "Our boss is scary when he's mad, so\n"
 	.string "I'd better not screw things up…$"
 
 
-SlateportCity_EventScript_1DD065:: @ 81DD065
+SlateportCity_EventScript_AquaMember7:: @ 81DD07C
 	lock
 	faceplayer
-	msgbox SlateportCity_Text_1DDD7D, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DDDC0, MSGBOX_DIALOG
 	closemessage
-	applymovement 27, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-SlateportCity_Text_1DDD7D: @ 81DDD7D
-	.string "If there's something we need in\n"
-	.string "the Museum, we should take it all!$"
-
-
-SlateportCity_EventScript_1DD07C:: @ 81DD07C
-	lock
-	faceplayer
-	msgbox SlateportCity_Text_1DDDC0, MSGBOX_DEFAULT
-	closemessage
-	applymovement 28, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	faceoriginaldir
 	release
 	end
 SlateportCity_Text_1DDDC0: @ 81DDDC0
 	.string "Hey, you there!\n"
-	.string "Don't butt in!$"
+	.string "Wanna help us again?$"
 
 
-SlateportCity_EventScript_1DD093:: @ 81DD093
+SlateportCity_EventScript_AquaMember10:: @ 81DD093
 	lock
 	faceplayer
-	msgbox SlateportCity_Text_1DDDDF, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DDDDF, MSGBOX_DIALOG
 	closemessage
-	applymovement 29, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	faceoriginaldir
 	release
 	end
 SlateportCity_Text_1DDDDF: @ 81DDDDF
@@ -842,13 +840,12 @@ SlateportCity_Text_1DDDDF: @ 81DDDDF
 	.string "buy smash-hit games…$"
 
 
-SlateportCity_EventScript_1DD0AA:: @ 81DD0AA
+SlateportCity_EventScript_AquaMember11:: @ 81DD0AA
 	lock
 	faceplayer
-	msgbox SlateportCity_Text_1DDE2F, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DDE2F, MSGBOX_DIALOG
 	closemessage
-	applymovement 30, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	faceoriginaldir
 	release
 	end
 SlateportCity_Text_1DDE2F: @ 81DDE2F
@@ -856,36 +853,30 @@ SlateportCity_Text_1DDE2F: @ 81DDE2F
 	.string "We should just march in!$"
 
 
-SlateportCity_EventScript_1DD0C1:: @ 81DD0C1
+SlateportCity_EventScript_AquaMember5:: @ 81DD0C1
 	lock
 	faceplayer
+	markasdialog
 	playse SE_PIN
 	applymovement THIS_EVENT, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement THIS_EVENT, Common_Movement_Delay48
-	waitmovement 0
+	delay 48
 	msgbox SlateportCity_Text_1DDE6E, MSGBOX_DEFAULT
 	closemessage
-	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	applymovement THIS_EVENT, SlateportCity_Movement_1DD147
-	waitmovement 0
+	faceoriginaldir
+	delay 32
 	applymovement THIS_EVENT, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SlateportCity_Text_1DDE86, MSGBOX_DEFAULT
 	closemessage
-	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	applymovement THIS_EVENT, SlateportCity_Movement_1DD147
-	waitmovement 0
+	faceoriginaldir
+	delay 32
 	msgbox SlateportCity_Text_1DDEB8, MSGBOX_DEFAULT
 	closemessage
 	applymovement THIS_EVENT, Common_Movement_FacePlayer
 	waitmovement 0
-	applymovement THIS_EVENT, SlateportCity_Movement_1DD147
-	waitmovement 0
-	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	delay 32
+	faceoriginaldir
 	release
 	end
 SlateportCity_Text_1DDE6E: @ 81DDE6E
@@ -900,36 +891,148 @@ SlateportCity_Text_1DDEB8: @ 81DDEB8
 	.string "“the life in the sea is endless.”\p"
 	.string "Yup, I'm pretty sure that's what\n"
 	.string "it says.$"
-SlateportCity_Movement_1DD147: @ 81DD147
-	delay_16
-	delay_16
-	step_end
 
 
-SlateportCity_EventScript_1DD14A:: @ 81DD14A
-	msgbox SlateportCity_Text_1DDF32, MSGBOX_SIGN
-	end
-SlateportCity_Text_1DDF32: @ 81DDF32
-	.string "Grumble…\p"
-	.string "I should've brought my Game Boy\n"
-	.string "Advance so I wouldn't get bored in line…\p"
-	.string "Grumble…$"
-
-
-SlateportCity_EventScript_1DD153:: @ 81DD153
+SlateportCity_EventScript_AquaMember6:: @ 81DD153
 	lock
+	goto_if_set FLAG_TEMP_6, SlateportCity_EventScript_AquaMember6_Post
 	faceplayer
-	msgbox SlateportCity_Text_1DDF8D, MSGBOX_DEFAULT
+	markasdialog
+	message SlateportCity_Text_1DDF8D
+	waitmessage
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_Angry
+	applymovement THIS_EVENT, Common_Movement_AngryReaction
+	selectpointer_ongender SlateportCity_Text_1DDF8D_Male, SlateportCity_Text_1DDF8D_Female
+	msgbox_selected
 	closemessage
-	applymovement 33, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	setflag FLAG_TEMP_6
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	faceoriginaldir
 	release
 	end
 SlateportCity_Text_1DDF8D: @ 81DDF8D
 	.string "When this operation's over, I'll take\n"
 	.string "you to a hot spring spa!\p"
-	.string "That's what our leader said.\n"
-	.string "I can't wait!$"
+	.string "What? N-No! I didn't mean you!\n"
+	.string "That's what the boss said to us!\p"
+	.string "Though…{PAUSE 20} Ya know…{PAUSE 20}\n"
+	.string "If you wanted to…\p"
+	.string "$"
+SlateportCity_Text_1DDF8D_Male:
+	.string "Hahaa! What?! No!! I'm not gay either!\n"
+	.string "Hahahaha…! Hahaha…! Ha! Haha! … … …$"
+SlateportCity_Text_1DDF8D_Female:
+	.string "Ack! I'm sorry! I'm sorry!\n"
+	.string "Don't hit me! I'm sorry!$"
+SlateportCity_EventScript_AquaMember6_Post:
+	msgbox SlateportCity_Text_1DDF8E, MSGBOX_DESCRIBE
+	release
+	end
+SlateportCity_Text_1DDF8E:
+	.string "He's red in the face, desperately\n"
+	.string "trying not to look at you.$"
+
+@ -----------------------------------------------------
+@ Aqua Friends
+
+SlateportCity_EventScript_AquaMember8:: @ 81DD065
+	lock
+	faceplayer
+	goto_if_set FLAG_SCENE_1, SlateportCity_EventScript_AquaMember8a
+	selectpointer_clamp SlateportCity_TextArray_AquaGirl, VAR_AQUA_GIRL_FRIENDSHIP
+	msgbox_selected 
+	closemessage
+	setflag FLAG_SCENE_1
+	addvar VAR_AQUA_GIRL_FRIENDSHIP, 1
+	faceoriginaldir
+	release
+	end
+.align 2
+SlateportCity_TextArray_AquaGirl:
+	.4byte SlateportCity_Text_AquaGirl1
+	.4byte SlateportCity_Text_AquaGirl2
+	.4byte 0
+SlateportCity_Text_AquaGirl1:
+	.string "Hey, aren't you that {PLAYER_girl} who helped\n"
+	.string "us get the Devon Goods?\p"
+	.string "I thought I recognized you. Didn't get\n"
+	.string "the chance to say hi last time.\p"
+	.string "My name's {AQUA_GIRL}. What's yours?\p"
+	.string "{PLAYER}? Nice name.\p"
+	.string "Any chance you wanna help us again?\n"
+	.string "Not like we'll need it with all these\l"
+	.string "people here. Like seriously.\p"
+	.string "Hop in line when you're ready.$"
+SlateportCity_Text_AquaGirl2:
+	.string "{AQUA_GIRL}: Hey! It's {PLAYER}!\n"
+	.string "How's it hanging, {PLAYER_gurl}?\l"
+	.string "Do anything fun since Rustboro?\p"
+	.string "Hey, you wanna help us again, actually?\n"
+	.string "Not like we'll need it with all these\l"
+	.string "people here. Like seriously.\p"
+	.string "The boss wants something inside the\n"
+	.string "museum. No one knows what, but if the\l"
+	.string "boss wants our help, we help!\p"
+	.string "Hop in line when you're ready.$"
+SlateportCity_EventScript_AquaMember8a:
+	msgbox SlateportCity_Text_1DDD7D, MSGBOX_NPC
+	faceoriginaldir
+	release
+	end
+SlateportCity_Text_1DDD7D: @ 81DDD7D
+	.string "Hop in line, if you want.\n"
+	.string "We should be going in shortly.$"
+
+
+
+SlateportCity_EventScript_AquaMember4:: @ 81DD14A
+	lock
+	faceplayer
+	goto_if_set FLAG_SCENE_0, SlateportCity_EventScript_AquaMember4a
+	selectpointer_clamp SlateportCity_TextArray_AquaBoy, VAR_AQUA_BOY_FRIENDSHIP
+	msgbox_selected 
+	closemessage
+	setflag FLAG_SCENE_0
+	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
+	faceoriginaldir
+	release
+	end
+.align 2
+SlateportCity_TextArray_AquaBoy:
+	.4byte SlateportCity_Text_AquaBoy1
+	.4byte SlateportCity_Text_AquaBoy2
+	.4byte 0
+SlateportCity_Text_AquaBoy1:
+	.string "Oh, you're that {PLAYER_boy} who helped us\n"
+	.string "back in Rustboro. Didn't get a chance\l"
+	.string "to introduce myself before.\p"
+	.string "My name's {AQUA_BOY}. Yours?\p"
+	.string "{PLAYER}? Sweet.\p"
+	.string "Hey, wanna help again? There's something\n"
+	.string "the boss wants in the museum. No idea\l"
+	.string "what it is, of course.\p"
+	.string "If you wanna help, you can cut in\n"
+	.string "behind me. When you're ready.$"
+SlateportCity_Text_AquaBoy2: @ 81DDF32
+	.string "{AQUA_BOY}: Hey! {PLAYER}!\n"
+	.string "How's it going, {PLAYER_dude}?\p"
+	.string "You managed to find us at just the\n"
+	.string "right time again, didn't you?\p"
+	.string "Wanna hop in with us? We're waiting to\n"
+	.string "get into the museum. Something the\l"
+	.string "boss wants is inside.\p"
+	.string "Feel free to slide in behind me when,\n"
+	.string "you're ready.$"
+SlateportCity_EventScript_AquaMember4a:
+	msgbox SlateportCity_Text_1DDF32, MSGBOX_NPC
+	faceoriginaldir
+	release
+	end
+SlateportCity_Text_1DDF33:
+	.string "{AQUA_BOY}: Feel free to cut in line\n"
+	.string "behind me. We should be going in soon.$"
+
+
 
 @ -----------------------------------------------------
 @ Captain Stern Scene
@@ -1008,16 +1111,16 @@ SlateportCity_EventScript_CaptainStern:: @ 81DD1F8
 	releaseall
 	end
 SlateportCity_Text_1DE502: @ 81DE502
-	.string "CAPT. STERN: Yes, indeed. We intend to\n"
+	.string "Capt. Stern: Yes, indeed. We intend to\n"
 	.string "move ahead with our exploration.$"
 SlateportCity_Text_1DE54A: @ 81DE54A
-	.string "GABBY: That's wonderful, CAPT. STERN!\n"
+	.string "Gabby: That's wonderful, Capt. Stern!\n"
 	.string "Thank you for taking the time from\l"
 	.string "your busy schedule to talk to us.\p"
 	.string "We hope we can interview you again\n"
 	.string "with news of more discoveries!$"
 SlateportCity_Text_1DE5F7: @ 81DE5F7
-	.string "CAPT. STERN: Whew…\p"
+	.string "Capt. Stern: Whew…\p"
 	.string "That was my first time to be filmed for\n"
 	.string "TV. That was nerve-wracking.$"
 SlateportCity_Movement_1DD33C: @ 81DD33C
@@ -1131,16 +1234,16 @@ SlateportCity_EventScript_PowderJarLady:: @ 81DD36E
 	end
 SlateportCity_Text_1DEBCE: @ 81DEBCE
 	.string "If a wild Pokémon gets hurt, it heals\n"
-	.string "itself by chewing on BERRIES.\p"
+	.string "itself by chewing on berries.\p"
 	.string "Did you know that?\p"
 	.string "Somebody saw that and got the idea\n"
-	.string "of making medicine from BERRIES.\p"
+	.string "of making medicine from berries.\p"
 	.string "Did you know that?\p"
-	.string "To turn BERRIES into medicine,\n"
+	.string "To turn berries into medicine,\n"
 	.string "they must be crushed into powder.\p"
 	.string "Did you know that?\p"
 	.string "You seem to have an interest\n"
-	.string "in BERRIES!\p"
+	.string "in berries!\p"
 	.string "I've got something good for someone\n"
 	.string "like you.$"
 
@@ -1155,7 +1258,7 @@ SlateportCity_EventScript_1DD39A:: @ 81DD39A
 	end
 SlateportCity_Text_1DEE40: @ 81DEE40
 	.string "Have you brought me some\n"
-	.string "BERRY POWDER?$"
+	.string "Berry Powder?$"
 
 SlateportCity_EventScript_1DD3C0:: @ 81DD3C0
 	msgbox SlateportCity_Text_1DED27, MSGBOX_DEFAULT
@@ -1163,14 +1266,14 @@ SlateportCity_EventScript_1DD3C0:: @ 81DD3C0
 	end
 SlateportCity_Text_1DED27: @ 81DED27
 	.string "I recently had machines installed at\n"
-	.string "Pokémon CENTERS for crushing BERRIES.\p"
-	.string "The BERRY CRUSH machines are at\n"
-	.string "the DIRECT CORNER upstairs.\p"
+	.string "Pokémon Centers for crushing berries.\p"
+	.string "The berry crush machines are at\n"
+	.string "the direct corner upstairs.\p"
 	.string "Did you know?\p"
-	.string "Could you make BERRY POWDER for\n"
+	.string "Could you make Berry Powder for\n"
 	.string "me using those machines?\p"
 	.string "I can make you all sorts of medicine\n"
-	.string "if you bring me lots of BERRY POWDER.$"
+	.string "if you bring me lots of Berry Powder.$"
 
 SlateportCity_EventScript_1DD3CA:: @ 81DD3CA
 	message SlateportCity_Text_1DEE67
@@ -1281,7 +1384,7 @@ SlateportCity_EventScript_1DD54A:: @ 81DD54A
 	end
 SlateportCity_Text_1DEFBC: @ 81DEFBC
 	.string "Come back if you'd like to trade your\n"
-	.string "BERRY POWDER for some medicine.\p"
+	.string "Berry Powder for some medicine.\p"
 	.string "I'm always running a bazaar here.\p"
 	.string "Did you know?$"
 
@@ -1308,15 +1411,15 @@ SlateportCity_EventScript_1DD557:: @ 81DD557
 	end
 SlateportCity_Text_1DEE90: @ 81DEE90
 	.string "Okay, you want to exchange your\n"
-	.string "BERRY POWDER for one {STR_VAR_1}?$"
+	.string "Berry Powder for one {STR_VAR_1}?$"
 SlateportCity_Text_1DEEF7: @ 81DEEF7
-	.string "This is fine BERRY POWDER.\n"
+	.string "This is fine Berry Powder.\n"
 	.string "It will make excellent medicine.\p"
 	.string "Would you like to trade more of your\n"
-	.string "BERRY POWDER for something else?$"
+	.string "Berry Powder for something else?$"
 SlateportCity_Text_1DEF79: @ 81DEF79
 	.string "Okay! When you get some more\n"
-	.string "BERRY POWDER, bring it to me, please!$"
+	.string "Berry Powder, bring it to me, please!$"
 
 SlateportCity_EventScript_1DD5C1:: @ 81DD5C1
 	msgbox gText_BagIsFull3, MSGBOX_DEFAULT
@@ -1330,7 +1433,7 @@ SlateportCity_EventScript_1DD5CE:: @ 81DD5CE
 	end
 SlateportCity_Text_1DEEC9: @ 81DEEC9
 	.string "Oh, dear. You don't have enough\n"
-	.string "BERRY POWDER.$"
+	.string "Berry Powder.$"
 	
 
 
@@ -1362,23 +1465,23 @@ SlateportCity_Text_1DE64F: @ 81DE64F
 
 SlateportCity_Text_1DE724: @ 81DE724
 	.string "Fufufu…\n"
-	.string "CAPT. STERN, I presume.\p"
+	.string "Capt. Stern, I presume.\p"
 	.string "We of Team Aqua will assume\n"
 	.string "control of your submarine!\p"
 	.string "Your objections are meaningless!\n"
 	.string "We expect your total cooperation!\p"
 	.string "Fufufu…\n"
-	.string "Just watch and learn what TEAM\l"
-	.string "AQUA has planned!$"
+	.string "Just watch and learn what Team\l"
+	.string "Aqua has planned!$"
 
 SlateportCity_Text_1DE7F7: @ 81DE7F7
-	.string "CAPT. STERN: What was that all about?\p"
+	.string "Capt. Stern: What was that all about?\p"
 	.string "It sounded like someone using\n"
 	.string "a megaphone…\p"
 	.string "Where did it come from?$"
 
 SlateportCity_Text_1DE860: @ 81DE860
-	.string "It's from the HARBOR!\p"
+	.string "It's from the harbor!\p"
 	.string "The submarine!\n"
 	.string "They're trying to take it!$"
 
