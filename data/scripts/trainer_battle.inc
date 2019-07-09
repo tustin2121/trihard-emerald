@@ -123,6 +123,7 @@ EventScript_DoTrainerBattle:: @ 8271454
 	goto_if_eq EventScript_EndTrainerBattle
 
 EventScript_EndTrainerBattle:: @ 8271491
+	markasdialog
 	gotobeatenscript
 	releaseall
 	end

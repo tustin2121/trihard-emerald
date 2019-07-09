@@ -2913,7 +2913,7 @@ Std_RegisteredInMatchCall:: @ 82742C9
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DEFAULT
+	msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DESCRIBE
 	waitfanfare
 	closemessage
 	delay 30
