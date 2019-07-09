@@ -291,6 +291,67 @@ RustboroCity_Text_1E249D: @ 81E249D
 	.string "Don't you think it'd be cool if you\n"
 	.string "could beat two Trainers by yourself?$"
 
+
+
+RustboroCity_EventScript_AquaBoy::
+	goto_if_set FLAG_SCENE_0, RustboroCity_EventScript_AquaBoyB
+	msgbox RustboroCity_Text_AquaBoy, MSGBOX_NPC
+	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
+	setflag FLAG_SCENE_0
+	end
+RustboroCity_Text_AquaBoy:
+	.string "Those are another gang's colors\n"
+	.string "you're wearing, isn't it?\p"
+	.string "If you're already part of a gang,\n"
+	.string "why are you itching to join us?\p"
+	.string "Did you get lost? Kicked out?\p"
+	.string "Pulled away without a choice?\n"
+	.string "Oh, I hit a nerve. My bad.$"
+RustboroCity_EventScript_AquaBoyB:
+	msgbox RustboroCity_Text_AquaBoyB, MSGBOX_NPC
+	end
+RustboroCity_Text_AquaBoyB:
+	.string "Can't let you into the family unless\n"
+	.string "you prove yourself first.\p"
+	.string "I know you know how this goes.$"
+
+
+RustboroCity_EventScript_AquaGirl::
+	goto_if_set FLAG_SCENE_1, RustboroCity_EventScript_AquaGirlB
+	selectpointer_ongender RustboroCity_Text_AquaGirl_Boy, RustboroCity_Text_AquaGirl_Girl
+	msgbox_selected MSGBOX_NPC
+	addvar VAR_AQUA_GIRL_FRIENDSHIP, 1
+	setflag FLAG_SCENE_1
+	end
+RustboroCity_Text_AquaGirl_Boy:
+	.string "Gotta say, boy. Usually when some guy,\n"
+	.string "sneaks up behind me, it ain't to ask\l"
+	.string "to join my gang.\p"
+	.string "You caught me off guard there.\n"
+	.string "Do it again, and I deck ya one.$"
+RustboroCity_Text_AquaGirl_Girl:
+	.string "Gotta say, girl. I was ready to turn\n"
+	.string "around a deck a guy wanting to get\l"
+	.string "handsey with me.\p"
+	.string "Yeah, you know what I mean. That\n"
+	.string "face your making is mood.$"
+RustboroCity_EventScript_AquaGirlB:
+	msgbox RustboroCity_Text_AquaGirlB, MSGBOX_NPC
+	end
+RustboroCity_Text_AquaGirlB:
+	.string "If ya stand around gabbing, you're\n"
+	.string "never gonna get the {ITEM}Goods{END}, are ya?$"
+
+
+RustboroCity_EventScript_AquaThree::
+	msgbox RustboroCity_Text_AquaThree, MSGBOX_NPC
+	end
+RustboroCity_Text_AquaThree:
+	.string "Did you get the {ITEM}Devon Goods{END}\n"
+	.string "back from that Magma Bloke yet?\p"
+	.string "He ran off into the Rusturf Tunnel.$"
+
+
 @ -----------------------------------------------------
 @ Cutscene: The Heist
 

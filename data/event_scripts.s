@@ -1781,15 +1781,6 @@ PetalburgCity_Gym_DisableMrBriney:: @ 82721F8
 	setvar VAR_BRINEY_LOCATION, 0
 	return
 
-RusturfTunnel_EventScript_272216:: @ 8272216
-	removeobject 1
-	removeobject 10
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_MAN
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_WOMAN
-	setvar VAR_RUSTURF_TUNNEL_STATE, 6
-	setflag FLAG_RUSTURF_TUNNEL_OPENED
-	return
-
 EventScript_27222B:: @ 827222B
 	delay 30
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp

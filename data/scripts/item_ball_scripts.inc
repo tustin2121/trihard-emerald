@@ -80,26 +80,6 @@ Route115_EventScript_ItemPPUp:: @ 8290E6B
 	giveitem_std ITEM_PP_UP, 1, 1
 	end
 
-Route116_EventScript_ItemXSpecial:: @ 8290E78
-	giveitem_std ITEM_X_SPECIAL, 1, 1
-	end
-
-Route116_EventScript_ItemEther:: @ 8290E85
-	giveitem_std ITEM_ETHER, 1, 1
-	end
-
-Route116_EventScript_ItemRepel:: @ 8290E92
-	giveitem_std ITEM_REPEL, 1, 1
-	end
-
-Route116_EventScript_ItemHPUp:: @ 8290E9F
-	giveitem_std ITEM_HP_UP, 1, 1
-	end
-
-Route116_EventScript_ItemPotion:: @ 8290EAC
-	giveitem_std ITEM_POTION, 1, 1
-	end
-
 Route117_EventScript_ItemGreatBall:: @ 8290EB9
 	giveitem_std ITEM_GREAT_BALL, 1, 1
 	end
