@@ -69,6 +69,7 @@ static void DebugHandle_SetVar();
 static void DebugHandle_SetLegendaryFight();
 static void DebugHandle_GiveDebugParty();
 static void DebugHandle_TestScript1();
+static void DebugHandle_SwapGenders();
 static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
@@ -99,6 +100,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_SetLegendaryFight,
 	DebugHandle_GiveDebugParty,
 	DebugHandle_TestScript1,
+	DebugHandle_SwapGenders,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -351,10 +353,21 @@ void DebugHandle_GiveDebugParty()
 	DebugSetCallbackSuccess();
 }
 
+// arguments: none
+// returns: none
 void DebugHandle_TestScript1()
 {
 	ScriptContext1_SetupScript(DebugScript_TestScript1);
 	DebugSetCallbackSuccess();
+}
+
+// arguments:
+//   args[0] = gender/form
+// returns: none
+void DebugHandle_SwapGenders()
+{
+	gSaveBlock2Ptr->playerForm = gDebugInterrupts.args[0];
+	DebugHandle_ReloadMap();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

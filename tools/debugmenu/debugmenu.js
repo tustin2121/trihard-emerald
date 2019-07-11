@@ -19,6 +19,7 @@ const DebugHandle_SetVar = 11;
 const DebugHandle_SetLegendaryFight = 12;
 const DebugHandle_GiveDebugParty = 13;
 const DebugHandle_TestScript1 = 14;
+const DebugHandle_SwapGenders = 15;
 
 // Menu Functions
 function initMenuV1() {
@@ -63,6 +64,10 @@ function initMenuV1() {
 				writeInterrupts({ funcId: DebugHandle_ShowCredits });
 				switchMenu();
 			});
+		$(`<li>Change Player Gender/Form…</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu('genders');
+			});
 		$(`<li>Open Sound Test</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowSoundTest });
@@ -99,6 +104,28 @@ function initMenuV1() {
 				writeInterruptFlags(val);
 				switchMenu(); 
 			});
+	}{
+		let $m = $subMenus['genders'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
+		let $opts = [
+			$(`<li>Male / Team Skull</li>`).attr('value', 0),
+			$(`<li>Male / Aqua Bandanna</li>`).attr('value', 2),
+			$(`<li>Male / Aqua Uniform</li>`).attr('value', 4),
+			$(`<li>Male / Final Outfit</li>`).attr('value', 6),
+			$(`<li>Female / Team Skull</li>`).attr('value', 1),
+			$(`<li>Female / Aqua Bandanna</li>`).attr('value', 3),
+			$(`<li>Female / Aqua Uniform</li>`).attr('value', 5),
+			$(`<li>Female / Final Outfit</li>`).attr('value', 7),
+		];
+		$opts.forEach($x=>$x.appendTo($m)
+			.attr('name', 'genderid')
+			.on('click', function(){
+			writeInterrupts({ funcId: DebugHandle_SwapGenders, args:[
+				Number.parseInt($(this).val())
+			] });
+			switchMenu();
+		}));
 	}{
 		let $m = $subMenus['weather'] = $('<ul>').appendTo('body');
 		$(`<li>&lt; Back</li>`).appendTo($m)
