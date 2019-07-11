@@ -2372,6 +2372,9 @@ const struct SpriteFrameImage gEventObjectPicTable_Wally[] = {
     overworld_frame(gEventObjectPic_Wally, 2, 4, 6),
     overworld_frame(gEventObjectPic_Wally, 2, 4, 7),
     overworld_frame(gEventObjectPic_Wally, 2, 4, 8),
+    overworld_frame(gEventObjectPic_Wally, 2, 4, 9), // logan mirror
+    overworld_frame(gEventObjectPic_Wally, 2, 4, 10), // logan mirror
+    overworld_frame(gEventObjectPic_Wally, 2, 4, 11), // logan mirror
 };
 
 const struct SpriteFrameImage gEventObjectPicTable_RubySapphireLittleBoy[] = {
