@@ -159,6 +159,21 @@ PetalburgCity_Mart_Text_207EB0: @ 8207EB0
 	.string "lose HP in battle until it dies!\l"
 	.string "Take some Antidotes with you.$"
 
+
+
+PetalburgCity_Mart_EventScript_LoganCousin:: @ 8207DE8
+	msgbox PetalburgCity_Mart_Text_LoganCousin, MSGBOX_NPC
+	end
+PetalburgCity_Mart_Text_LoganCousin: @ 8207EB0
+	.string "I'm pretty sure they've forgotten about\n"
+	.string "me upstairs at this point.\p"
+	.string "Which is fine by me. I can meet my\n"
+	.string "boyfriend on the way back, without\l"
+	.string "having to lie to Aunt Gretchen about\l"
+	.string "who he is again.$"
+			
+			
+
 @ -----------------------------------------------------
 
 PetalburgCity_PokemonCenter_1F_EventScript_StarterLady:: @ 8207A1C

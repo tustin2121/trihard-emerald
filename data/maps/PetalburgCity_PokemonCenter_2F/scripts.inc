@@ -107,16 +107,16 @@ PetalburgCity_PokemonCenter_2F_Text_SleepingGirlsBag:
 	.string "She's not gonna miss those…$"
 
 
-PetalburgCity_PokemonCenter_2F_EventScript_LoganAunt::
+PetalburgCity_PokemonCenter_2F_EventScript_LoganMom::
 	msgbox PetalburgCity_PokemonCenter_2F_TextLoganAfter2, MSGBOX_NPC
 	end
 
-PetalburgCity_PokemonCenter_2F_EventScript_LoganUncle::
-	msgbox PetalburgCity_PokemonCenter_2F_Text_LoganUncle, MSGBOX_NPC
+PetalburgCity_PokemonCenter_2F_EventScript_LoganDad::
+	msgbox PetalburgCity_PokemonCenter_2F_Text_LoganDad, MSGBOX_NPC
 	end
-PetalburgCity_PokemonCenter_2F_Text_LoganUncle:
+PetalburgCity_PokemonCenter_2F_Text_LoganDad:
 	.string "That Gym Leader shouldn't have turned\n"
-	.string "Logan away like that.\p"
+	.string "our son away like that.\p"
 	.string "We're pursuing legal action now.$"
 
 PetalburgCity_PokemonCenter_2F_EventScript_LoganBed::

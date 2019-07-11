@@ -173,7 +173,7 @@ PetalburgCity_Gym_EventScript_204AAC:: @ 8204AAC
 	compare VAR_0x8008, 3
 	call_if_eq PetalburgCity_Gym_EventScript_204CB5
 	removeobject 10
-	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN_RELATIVES
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN_PARENTS
 	setvar VAR_NUM_BADGES, 1
 	setvar VAR_PETALBURG_STATE, 2
 	clearflag FLAG_HIDE_PETALBURG_CITY_LOGAN

@@ -114,6 +114,26 @@ Common_Movement_WalkRight1:
 	walk_right
 	step_end
 
+Common_Movement_WalkUp2: @ 82725C9
+	walk_up
+	walk_up
+	step_end
+
+Common_Movement_WalkDown2:
+	walk_down
+	walk_down
+	step_end
+
+Common_Movement_WalkLeft2:
+	walk_left
+	walk_left
+	step_end
+
+Common_Movement_WalkRight2:
+	walk_right
+	walk_right
+	step_end
+
 Common_Movement_WalkUpOutOfFrame:
 	walk_up
 	walk_up

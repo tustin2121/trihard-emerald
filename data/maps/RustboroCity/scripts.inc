@@ -1,4 +1,5 @@
 RustboroCity_MapScripts:: @ 81E06BD
+	map_script MAP_SCRIPT_ON_RESUME, RustboroCity_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_MapScript2_FrameTable
 	.byte 0
@@ -18,7 +19,23 @@ RustboroCity_OnTransition: @ 81E06C8
 	@ compare VAR_RUSTBORO_STATE, 6
 	@ goto_if_eq RustboroCity_EventScript_1E06EC
 	end
-	
+
+@ -----------------------------------------------------
+
+RustboroCity_OnResume:
+	call_if_unset FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE, RustboroCity_EventScript_SetupDevonScene
+	end
+
+RustboroCity_EventScript_SetupDevonScene:
+	createvobject EVENT_OBJ_GFX_SCIENTIST_1,    50, 11, 21, 3, DIR_NORTH
+	createvobject EVENT_OBJ_GFX_DEVON_EMPLOYEE, 51, 10, 21, 3, DIR_NORTH
+	createvobject EVENT_OBJ_GFX_WOMAN_3,        52, 15, 16, 3, DIR_WEST
+	createvobject EVENT_OBJ_GFX_SCIENTIST_2,    53,  9, 22, 3, DIR_NORTH
+	createvobject EVENT_OBJ_GFX_POLICEMAN,      54, 14, 16, 3, DIR_EAST
+	createvobject EVENT_OBJ_GFX_POLICEMAN,      55,  9, 17, 3, DIR_EAST
+	createvobject EVENT_OBJ_GFX_SCIENTIST_1,    56, 10, 19, 3, DIR_EAST
+	createvobject EVENT_OBJ_GFX_SCIENTIST_1,    57,  8, 16, 3, DIR_EAST
+	return
 
 @ RustboroCity_EventScript_1E06EC:: @ 81E06EC
 @ 	compare VAR_TEMP_0, 11
@@ -182,7 +199,7 @@ RustboroCity_Text_1E1480: @ 81E1480
 
 
 
-RustboroCity_EventScript_1E0893:: @ 81E0893
+RustboroCity_EventScript_GymBadgeGuy:: @ 81E0893
 	lock
 	faceplayer
 	markasdialog
@@ -362,6 +379,7 @@ RustboroCity_Text_AquaThree:
 
 RustboroCity_TriggerScript_HeistCutscene1::
 	lockall
+	setobjectmovementtype LID_MAGMA, MOVEMENT_TYPE_FACE_RIGHT
 	setobjectxyperm LID_MAGMA, 14, 21
 	setobjectxyperm LID_AQUA_BOY, 13, 21
 	setobjectxyperm LID_AQUA_GIRL, 12, 21
@@ -398,8 +416,13 @@ RustboroCity_TriggerScript_HeistCutscene1::
 	removeobject LID_AQUA_GIRL
 	removeobject LID_AQUA_3
 	call RustboroCity_EventScript_SetupAqua2
+	@ Reset magma grunt actor to separate person
+	setobjectmovementtype LID_MAGMA, MOVEMENT_TYPE_LYING_DOWN
+	setobjectxyperm LID_MAGMA, 13, 18
+	clearflag FLAG_HIDE_RUSTBORO_CITY_MAGMA_GRUNT
 	clearflag FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS
 	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
+	call RustboroCity_EventScript_SetupDevonScene
 	setflag FLAG_DEVON_GOODS_STOLEN
 	setvar VAR_RUSTBORO_STATE, 2
 	setvar VAR_RUSTURF_TUNNEL_STATE, 2
@@ -960,7 +983,7 @@ RustboroCity_EventScript_SetupAqua3:
 
 
 
-
+// TODO: setvar VAR_ROUTE104_STATE, 1
 
 
 
@@ -1547,7 +1570,6 @@ RustboroCity_EventScript_1E100B:: @ 81E100B
 	delay 30
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	setvar VAR_RUSTBORO_STATE, 8
-	setvar VAR_0x4063, 2
 	setvar VAR_0x8008, 0
 	msgbox RustboroCity_Text_1E1AFA, MSGBOX_YESNO
 	compare VAR_RESULT, 1
@@ -1618,7 +1640,6 @@ RustboroCity_EventScript_1E1114:: @ 81E1114
 	delay 30
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	setvar VAR_RUSTBORO_STATE, 8
-	setvar VAR_0x4063, 2
 	msgbox RustboroCity_Text_1E1E34, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq RustboroCity_EventScript_1E1191

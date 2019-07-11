@@ -1218,7 +1218,7 @@
 	.endm
 	
 	@ Creates a virtual object, which is a sprite which has no presense on the map itself, and can only turn with the below command
-	.macro createvobject sprite:req, virtualID:req, x:req, y:req, elevation, direction
+	.macro createvobject sprite:req, virtualID:req, x:req, y:req, elevation=3, direction=DIR_SOUTH
 	.byte 0xaa
 	.byte \sprite
 	.byte \virtualID

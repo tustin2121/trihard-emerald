@@ -33,11 +33,31 @@ PetalburgCity_EventScript_1DC316:: @ 81DC316
 
 PetalburgCity_OnLoad:
 	call_if_unset FLAG_HIDE_PETALBURG_CITY_GYM_LOCK, PetalburgCity_OnLoad_BlockGym
+	selectpointer_clamp PetalburgCity_OnLoad_ScriptTable_LoganFlagFix, VAR_LOGAN_STATE
+	call 0
 	end
 
 PetalburgCity_OnLoad_BlockGym:
 	setmetatile 15, 8, 0x200, TRUE
 	return
+
+.align 2
+PetalburgCity_OnLoad_ScriptTable_LoganFlagFix:
+	.4byte PetalburgCity_OnLoad_LoganFlagFix1
+	.4byte PetalburgCity_OnLoad_LoganFlagFix2
+	.4byte PetalburgCity_OnLoad_LoganFlagFix3
+	.4byte 0
+
+PetalburgCity_OnLoad_LoganFlagFix1:
+	setflag FLAG_HIDE_PETALBURG_CENTER_LOGAN
+	end
+PetalburgCity_OnLoad_LoganFlagFix2:
+	clearflag FLAG_HIDE_PETALBURG_CENTER_LOGAN
+	end
+PetalburgCity_OnLoad_LoganFlagFix3:
+	setflag FLAG_HIDE_PETALBURG_CENTER_LOGAN
+	end
+
 
 @ -----------------------------------------------------
 
@@ -125,7 +145,7 @@ PetalburgCity_Text_1DCA30: @ 81DCA30
 	.string "excess Pokémon, but there's not.$"
 
 
-PetalburgCity_EventScript_LoganAunt:: @ 81DC3FD
+PetalburgCity_EventScript_LoganMom:: @ 81DC3FD
 	msgbox PetalburgCity_Text_1DC837, MSGBOX_NPC
 	end
 PetalburgCity_Text_1DC837: @ 81DC837
@@ -135,7 +155,7 @@ PetalburgCity_Text_1DC837: @ 81DC837
 	.string "himself if we don't find him!$"
 
 
-PetalburgCity_TriggerScript_LoganAunt::
+PetalburgCity_TriggerScript_LoganMom::
 	lock
 	markasdialog
 	applymovement 1, Common_Movement_FacePlayer
@@ -153,27 +173,28 @@ PetalburgCity_TriggerScript_LoganAunt::
 	release
 	end
 PetalburgCity_Text_1DC838A:
-	.string "Have you seen our nephew?!\n"
+	.string "Have you seen our son?!\n"
 	.string "We need to leave soon!\p"
 	.string "Please help us find him!$"
 PetalburgCity_Text_1DC838B:
-	.string "Have you seen our nephew?!\p"
+	.string "Have you seen our son?!\p"
 	.string "You have?! Where is he?!\p"
 	.string "You don't know?! Well, he has to be\n"
 	.string "around here somewhere!\p"
 	.string "Please help us find him!$"
 
 
-PetalburgCity_EventScript_LoganUncle:: @ 81DC3FD
+PetalburgCity_EventScript_LoganDad:: @ 81DC3FD
 	msgbox PetalburgCity_Text_1DC839, MSGBOX_NPC
 	end
 PetalburgCity_Text_1DC839: @ 81DC837
-	.string "Have you found him yet, Gretchen?!\p"
+	.string "{RIVAL_HERO}? {RIVAL_HERO}!\p"
 	.string "Oh, hello. We're searching for our\n"
-	.string "nephew, {RIVAL_HERO}. If you see him\l"
-	.string "come see us, please?$"
+	.string "son, {RIVAL_HERO}. If you see him\l"
+	.string "come find us, please?$"
 
 @ -----------------------------------------------------
+@ Cutscene: Logan in the dirt
 
 PetalburgCity_TriggerScript_FindLogan::
 	lockall
@@ -207,7 +228,8 @@ PetalburgCity_TriggerScript_FindLogan::
 	waitmovement 0
 	special RemoveCameraObject
 	setvar VAR_PETALBURG_STATE, 2
-	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN_RELATIVES
+	setvar VAR_LOGAN_STATE, 1
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN_PARENTS
 	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN
 	clearflag FLAG_HIDE_PETALBURG_CITY_GYM_LOCK
 	clearflag FLAG_HIDE_PETALBURG_CENTER_LOGAN
@@ -222,7 +244,7 @@ PetalburgCity_Movement_FindLogan1:
 	step_end
 PetalburgCity_Text_FindLogan2:
 	.string "I… … did it… … …\p"
-	.string "I… caught a R-Ralts… … …\n"
+	.string "I… caught a S-Seedot… … …\n"
 	.string "all… by my… … myself… … …$"
 .align 2
 PetalburgCity_MovementTable_FindLogan3:
@@ -321,43 +343,43 @@ PetalburgCity_Movement_FindLogan4c:
 @ 	goto PetalburgCity_EventScript_1DC4CA
 @ 	end
 
-PetalburgCity_EventScript_1DC4CA:: @ 81DC4CA
-	applymovement 8, Common_Movement_FacePlayer
-	waitmovement 0
-	playbgm MUS_TSURETEK, 0
-	playse SE_PIN
-	applymovement 8, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 8, Common_Movement_Delay48
-	waitmovement 0
-	@ Movement
-	selectpointer PetalburgCity_MovementTable_1DC57F_Boy, VAR_0x8008
-	applymovement 8, 0
-	waitmovement 0
-	selectpointer PetalburgCity_MovementTable_1DC57F_Player, VAR_0x8008
-	applymovement EVENT_OBJ_ID_PLAYER, 0
-	waitmovement 0
+@ PetalburgCity_EventScript_1DC4CA:: @ 81DC4CA
+@ 	applymovement 8, Common_Movement_FacePlayer
+@ 	waitmovement 0
+@ 	playbgm MUS_TSURETEK, 0
+@ 	playse SE_PIN
+@ 	applymovement 8, Common_Movement_ExclamationMark
+@ 	waitmovement 0
+@ 	applymovement 8, Common_Movement_Delay48
+@ 	waitmovement 0
+@ 	@ Movement
+@ 	selectpointer PetalburgCity_MovementTable_1DC57F_Boy, VAR_0x8008
+@ 	applymovement 8, 0
+@ 	waitmovement 0
+@ 	selectpointer PetalburgCity_MovementTable_1DC57F_Player, VAR_0x8008
+@ 	applymovement EVENT_OBJ_ID_PLAYER, 0
+@ 	waitmovement 0
 	
-	msgbox PetalburgCity_Text_1DC881, MSGBOX_DEFAULT
-	closemessage
+@ 	msgbox PetalburgCity_Text_1DC881, MSGBOX_DEFAULT
+@ 	closemessage
 	
-	selectpointer PetalburgCity_MovementTable_1DC5C9_Boy, VAR_0x8008
-	applymovement 8, 0
-	selectpointer PetalburgCity_MovementTable_1DC5C9_Player, VAR_0x8008
-	applymovement EVENT_OBJ_ID_PLAYER, 0
-	waitmovement 0
+@ 	selectpointer PetalburgCity_MovementTable_1DC5C9_Boy, VAR_0x8008
+@ 	applymovement 8, 0
+@ 	selectpointer PetalburgCity_MovementTable_1DC5C9_Player, VAR_0x8008
+@ 	applymovement EVENT_OBJ_ID_PLAYER, 0
+@ 	waitmovement 0
 	
-	msgbox PetalburgCity_Text_1DC91B, MSGBOX_DEFAULT
-	applymovement 8, Common_Movement_WalkInPlaceRight
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
-	waitmovement 0
-	msgbox PetalburgCity_Text_1DC93E, MSGBOX_DEFAULT
-	closemessage
-	applymovement 8, PetalburgCity_Movement_1DC658
-	waitmovement 0
-	fadedefaultbgm
-	releaseall
-	end
+@ 	msgbox PetalburgCity_Text_1DC91B, MSGBOX_DEFAULT
+@ 	applymovement 8, Common_Movement_WalkInPlaceRight
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+@ 	waitmovement 0
+@ 	msgbox PetalburgCity_Text_1DC93E, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement 8, PetalburgCity_Movement_1DC658
+@ 	waitmovement 0
+@ 	fadedefaultbgm
+@ 	releaseall
+@ 	end
 PetalburgCity_EventScript_1DC82E:: @ 81DC82E
 	msgbox PetalburgCity_Text_1DC881, MSGBOX_NPC
 	end
@@ -368,194 +390,194 @@ PetalburgCity_Text_1DC881: @ 81DC881
 	.string "do when they reach a new town?\p"
 	.string "They first check what kind of Gym\n"
 	.string "is in the town.$"
-PetalburgCity_Text_1DC91B: @ 81DC91B
-	.string "See? This is Petalburg City's Gym.$"
-PetalburgCity_Text_1DC93E: @ 81DC93E
-	.string "This is the Gym's sign. Look for it\n"
-	.string "whenever you're looking for a Gym.$"
+@ PetalburgCity_Text_1DC91B: @ 81DC91B
+@ 	.string "See? This is Petalburg City's Gym.$"
+@ PetalburgCity_Text_1DC93E: @ 81DC93E
+@ 	.string "This is the Gym's sign. Look for it\n"
+@ 	.string "whenever you're looking for a Gym.$"
 
-.align 2
-PetalburgCity_MovementTable_1DC57F_Boy:
-	.4byte PetalburgCity_Movement_1DC615
-	.4byte PetalburgCity_Movement_1DC61A
-	.4byte PetalburgCity_Movement_1DC61D
-	.4byte PetalburgCity_Movement_1DC622
-	.4byte 0
-PetalburgCity_MovementTable_1DC57F_Player:
-	.4byte Common_Movement_WalkInPlaceDown
-	.4byte Common_Movement_NoOp
-	.4byte Common_Movement_WalkInPlaceUp
-	.4byte Common_Movement_WalkInPlaceUp
-	.4byte 0
-.align 2
-PetalburgCity_MovementTable_1DC5C9_Boy:
-	.4byte PetalburgCity_Movement_1DC628
-	.4byte PetalburgCity_Movement_1DC633
-	.4byte PetalburgCity_Movement_1DC641
-	.4byte PetalburgCity_Movement_1DC64C
-	.4byte 0
-PetalburgCity_MovementTable_1DC5C9_Player:
-	.4byte PetalburgCity_Movement_1DC665
-	.4byte PetalburgCity_Movement_1DC66F
-	.4byte PetalburgCity_Movement_1DC67C
-	.4byte PetalburgCity_Movement_1DC686
-	.4byte 0
+@ .align 2
+@ PetalburgCity_MovementTable_1DC57F_Boy:
+@ 	.4byte PetalburgCity_Movement_1DC615
+@ 	.4byte PetalburgCity_Movement_1DC61A
+@ 	.4byte PetalburgCity_Movement_1DC61D
+@ 	.4byte PetalburgCity_Movement_1DC622
+@ 	.4byte 0
+@ PetalburgCity_MovementTable_1DC57F_Player:
+@ 	.4byte Common_Movement_WalkInPlaceDown
+@ 	.4byte Common_Movement_NoOp
+@ 	.4byte Common_Movement_WalkInPlaceUp
+@ 	.4byte Common_Movement_WalkInPlaceUp
+@ 	.4byte 0
+@ .align 2
+@ PetalburgCity_MovementTable_1DC5C9_Boy:
+@ 	.4byte PetalburgCity_Movement_1DC628
+@ 	.4byte PetalburgCity_Movement_1DC633
+@ 	.4byte PetalburgCity_Movement_1DC641
+@ 	.4byte PetalburgCity_Movement_1DC64C
+@ 	.4byte 0
+@ PetalburgCity_MovementTable_1DC5C9_Player:
+@ 	.4byte PetalburgCity_Movement_1DC665
+@ 	.4byte PetalburgCity_Movement_1DC66F
+@ 	.4byte PetalburgCity_Movement_1DC67C
+@ 	.4byte PetalburgCity_Movement_1DC686
+@ 	.4byte 0
 
-PetalburgCity_Movement_1DC611:: @ 81DC611
-	delay_16
-	delay_16
-	delay_16
-	step_end
+@ PetalburgCity_Movement_1DC611:: @ 81DC611
+@ 	delay_16
+@ 	delay_16
+@ 	delay_16
+@ 	step_end
 
-PetalburgCity_Movement_1DC615: @ 81DC615
-	walk_right
-	walk_right
-	walk_right
-	walk_in_place_fastest_up
-	step_end
+@ PetalburgCity_Movement_1DC615: @ 81DC615
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_in_place_fastest_up
+@ 	step_end
 
-PetalburgCity_Movement_1DC61A: @ 81DC61A
-	walk_right
-	walk_right
-	step_end
+@ PetalburgCity_Movement_1DC61A: @ 81DC61A
+@ 	walk_right
+@ 	walk_right
+@ 	step_end
 
-PetalburgCity_Movement_1DC61D: @ 81DC61D
-	walk_right
-	walk_right
-	walk_right
-	walk_in_place_fastest_down
-	step_end
+@ PetalburgCity_Movement_1DC61D: @ 81DC61D
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_in_place_fastest_down
+@ 	step_end
 
-PetalburgCity_Movement_1DC622: @ 81DC622
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_in_place_fastest_down
-	step_end
+@ PetalburgCity_Movement_1DC622: @ 81DC622
+@ 	walk_down
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_in_place_fastest_down
+@ 	step_end
 
-PetalburgCity_Movement_1DC628: @ 81DC628
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_right
-	walk_in_place_fastest_up
-	step_end
+@ PetalburgCity_Movement_1DC628: @ 81DC628
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_up
+@ 	walk_right
+@ 	walk_in_place_fastest_up
+@ 	step_end
 
-PetalburgCity_Movement_1DC633: @ 81DC633
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	walk_right
-	walk_in_place_fastest_up
-	step_end
+@ PetalburgCity_Movement_1DC633: @ 81DC633
+@ 	walk_down
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_up
+@ 	walk_up
+@ 	walk_right
+@ 	walk_in_place_fastest_up
+@ 	step_end
 
-PetalburgCity_Movement_1DC641: @ 81DC641
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_right
-	walk_in_place_fastest_up
-	step_end
+@ PetalburgCity_Movement_1DC641: @ 81DC641
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_up
+@ 	walk_right
+@ 	walk_in_place_fastest_up
+@ 	step_end
 
-PetalburgCity_Movement_1DC64C: @ 81DC64C
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	walk_right
-	walk_in_place_fastest_up
-	step_end
+@ PetalburgCity_Movement_1DC64C: @ 81DC64C
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_up
+@ 	walk_up
+@ 	walk_right
+@ 	walk_in_place_fastest_up
+@ 	step_end
 
-PetalburgCity_Movement_1DC658: @ 81DC658
-	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	step_end
+@ PetalburgCity_Movement_1DC658: @ 81DC658
+@ 	walk_down
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	step_end
 
-PetalburgCity_Movement_1DC665: @ 81DC665
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	step_end
+@ PetalburgCity_Movement_1DC665: @ 81DC665
+@ 	walk_down
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_up
+@ 	step_end
 
-PetalburgCity_Movement_1DC66F: @ 81DC66F
-	delay_16
-	delay_16
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	step_end
+@ PetalburgCity_Movement_1DC66F: @ 81DC66F
+@ 	delay_16
+@ 	delay_16
+@ 	walk_down
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_up
+@ 	walk_up
+@ 	step_end
 
-PetalburgCity_Movement_1DC67C: @ 81DC67C
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	step_end
+@ PetalburgCity_Movement_1DC67C: @ 81DC67C
+@ 	walk_up
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_up
+@ 	step_end
 
-PetalburgCity_Movement_1DC686: @ 81DC686
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	step_end
+@ PetalburgCity_Movement_1DC686: @ 81DC686
+@ 	walk_up
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_up
+@ 	walk_up
+@ 	step_end
 
 
 

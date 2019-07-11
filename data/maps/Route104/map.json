@@ -107,10 +107,91 @@
             "elevation": 3,
             "script": "Route104_TriggerScript_MrBrineyRival",
             "type": "trigger",
-            "var": "VAR_0x4063",
-            "var_value": "1",
+            "var": "VAR_RUSTBORO_STATE",
+            "var_value": "7",
             "x": 17,
             "y": 51
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitForest",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 19,
+            "y": 46
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitForest",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 19,
+            "y": 45
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitForest",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 19,
+            "y": 44
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitForest",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 19,
+            "y": 43
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitForest",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 19,
+            "y": 42
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitLedge",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 30,
+            "y": 48
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitLedge",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 31,
+            "y": 48
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitLedge",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 32,
+            "y": 48
+        },
+        {
+            "elevation": 0,
+            "script": "Route104_TriggerScript_MeetLogan_ExitLedge",
+            "type": "trigger",
+            "var": "VAR_LOGAN_STATE",
+            "var_value": "2",
+            "x": 33,
+            "y": 48
         }
     ],
     "id": "MAP_ROUTE104",
@@ -143,7 +224,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 25,
-            "y": 49
+            "y": 50
         },
         {
             "elevation": 3,
@@ -181,8 +262,8 @@
             "script": "Route104_EventScript_TheifLady",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 30,
-            "y": 50
+            "x": 31,
+            "y": 51
         },
         {
             "elevation": 3,
@@ -560,6 +641,19 @@
             "trainer_type": "0",
             "x": 17,
             "y": 50
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_WALLY",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 39,
+            "y": 34
         }
     ],
     "region_map_section": "MAPSEC_ROUTE_104",
