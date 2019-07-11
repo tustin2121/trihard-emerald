@@ -22,10 +22,11 @@ EverGrandeCity_PokemonLeague_1F_EventScript_2295FC:: @ 82295FC
 EverGrandeCity_PokemonLeague_1F_EventScript_22960A:: @ 822960A
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart EverGrandeCity_PokemonLeague_1F_Pokemart_229624
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -36,7 +37,7 @@ EverGrandeCity_PokemonLeague_1F_Pokemart_229624: @ 8229624
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_FULL_RESTORE
 	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_NONE
 	release

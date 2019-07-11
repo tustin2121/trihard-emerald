@@ -140,7 +140,7 @@ SootopolisCity_Mart_MartScript_Do:
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart SootopolisCity_Mart_Pokemart_2267AC
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -150,7 +150,7 @@ SootopolisCity_Mart_Pokemart_2267AC: @ 82267AC
 	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFEND

@@ -23,7 +23,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDDEN_ITEM_ROUTE_109_REVIVE",
-            "item": "ITEM_REVIVE",
+            "item": "ITEM_RARE_CANDY",
             "type": "hidden_item",
             "x": 16,
             "y": 23

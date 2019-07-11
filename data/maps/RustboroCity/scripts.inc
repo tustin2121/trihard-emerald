@@ -258,9 +258,8 @@ RustboroCity_Text_1E1695: @ 81E1695
 RustboroCity_EventScript_LittleBoy:: @ 81E0922
 	lock
 	faceplayer
-	msgbox RustboroCity_Text_1E16F4, MSGBOX_DEFAULT
-	applymovement 7, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	msgbox RustboroCity_Text_1E16F4, MSGBOX_DIALOG
+	faceoriginaldir
 	release
 	end
 RustboroCity_Text_1E16F4: @ 81E16F4
@@ -273,9 +272,8 @@ RustboroCity_Text_1E16F4: @ 81E16F4
 RustboroCity_EventScript_LittleGirl:: @ 81E0938
 	lock
 	faceplayer
-	msgbox RustboroCity_Text_1E174B, MSGBOX_DEFAULT
-	applymovement 8, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	msgbox RustboroCity_Text_1E174B, MSGBOX_DIALOG
+	faceoriginaldir
 	release
 	end
 RustboroCity_Text_1E174B: @ 81E174B

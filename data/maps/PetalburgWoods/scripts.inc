@@ -18,7 +18,7 @@ PetalburgWoods_Text_22EC10: @ 822EC10
 	.string "being exposed to any harm.$"
 
 PetalburgWoods_SignScript_TrainerTips2:: @ 822E264
-	msgbox PetalburgWoods_Text_22ED07, MSGBOX_SIGN
+	msgbox PetalburgWoods_Text_22ED07, MSGBOX_DESCRIBE
 	end
 PetalburgWoods_Text_22ED07: @ 822ED07
 	.string "{TIPS} TRAINER TIPS {END}\p"

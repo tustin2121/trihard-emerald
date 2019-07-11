@@ -104,6 +104,10 @@ function initMenuV1() {
 				writeInterruptFlags(val);
 				switchMenu(); 
 			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
 	}{
 		let $m = $subMenus['genders'] = $('<ul>').appendTo('body');
 		$(`<li>&lt; Back</li>`).appendTo($m)

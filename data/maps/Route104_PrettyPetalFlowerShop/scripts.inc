@@ -66,7 +66,7 @@ Route104_PrettyPetalFlowerShop_EventScript_22A3E4:: @ 822A3E4
 	message Route104_PrettyPetalFlowerShop_Text_22A3E4
 	waitmessage
 	pokemartdecoration2 Route104_PrettyPetalFlowerShop_Pokemart_Plants
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 Route104_PrettyPetalFlowerShop_Text_22A3E4:: @ 8272A52

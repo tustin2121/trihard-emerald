@@ -40,10 +40,11 @@ MauvilleCity_PokemonCenter_1F_NurseScript:: @ 8210E78
 MauvilleCity_Mart_MartScript:: @ 82110E6
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart MauvilleCity_Mart_Pokemart_211100
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

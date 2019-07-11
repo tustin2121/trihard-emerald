@@ -7,7 +7,7 @@ LilycoveCity_DepartmentStore_3F_EventScript_21FC65:: @ 821FC65
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart LilycoveCity_DepartmentStore_3F_Pokemart_21FC7C
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -25,10 +25,11 @@ LilycoveCity_DepartmentStore_3F_Pokemart_21FC7C: @ 821FC7C
 LilycoveCity_DepartmentStore_3F_EventScript_21FC8C:: @ 821FC8C
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart LilycoveCity_DepartmentStore_3F_Pokemart_21FCA4
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

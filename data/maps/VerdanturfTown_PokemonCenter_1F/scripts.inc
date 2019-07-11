@@ -21,10 +21,11 @@ VerdanturfTown_PokemonCenter_1F_NurseScript:: @ 820273A
 VerdanturfTown_Mart_MartScript:: @ 8202587
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart VerdanturfTown_Mart_Pokemart_2025A0
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

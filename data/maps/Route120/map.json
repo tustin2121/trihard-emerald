@@ -80,7 +80,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDDEN_ITEM_ROUTE_120_REVIVE",
-            "item": "ITEM_REVIVE",
+            "item": "ITEM_RARE_CANDY",
             "type": "hidden_item",
             "x": 31,
             "y": 11

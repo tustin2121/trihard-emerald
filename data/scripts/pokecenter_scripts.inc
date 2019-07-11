@@ -312,6 +312,7 @@ PokemonCenter_1F_NurseText_Goodluck:
 PokemonCenter_1F_EventScript_FreePokeballCounter::
 	lock
 	faceplayer
+	markasdialog 14
 	@ Deny if the player hasn't yet completed the tutorial
 	compare VAR_FREE_POKEBALL_STATE, 0
 	goto_if_eq PokemonCenter_1F_EventScript_FreePokeballCounter_DenyTutorial

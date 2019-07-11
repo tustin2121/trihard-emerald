@@ -25,11 +25,12 @@ PetalburgCity_PokemonCenter_1F_NurseScript:: @ 82079FC
 PetalburgCity_Mart_MartScript:: @ 8207D69
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	goto_if_set FLAG_PETALBURG_MART_EXPANDED_ITEMS, PetalburgCity_Mart_EventScript_207DA6
 	pokemart PetalburgCity_Mart_Pokemart_207D8C
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -52,7 +53,7 @@ PetalburgCity_Mart_Pokemart_207D8C: @ 8207D8C
 
 PetalburgCity_Mart_EventScript_207DA6:: @ 8207DA6
 	pokemart PetalburgCity_Mart_Pokemart_207DB8
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

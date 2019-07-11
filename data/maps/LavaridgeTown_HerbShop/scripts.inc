@@ -4,10 +4,11 @@ LavaridgeTown_HerbShop_MapScripts:: @ 81FE4D6
 LavaridgeTown_HerbShop_EventScript_1FE4D7:: @ 81FE4D7
 	lock
 	faceplayer
+	markasdialog
 	message LavaridgeTown_HerbShop_Text_1FE53E
 	waitmessage
 	pokemart LavaridgeTown_HerbShop_Pokemart_1FE4F0
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -16,7 +17,7 @@ LavaridgeTown_HerbShop_Pokemart_1FE4F0: @ 81FE4F0
 	.2byte ITEM_ENERGY_POWDER
 	.2byte ITEM_ENERGY_ROOT
 	.2byte ITEM_HEAL_POWDER
-	.2byte ITEM_REVIVAL_HERB
+	@ .2byte ITEM_REVIVAL_HERB
 	.2byte ITEM_NONE
 	release
 	end

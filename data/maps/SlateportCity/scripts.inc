@@ -328,10 +328,11 @@ SlateportCity_EventScript_EnergyGuru:: @ 81DCDBD
 	lock
 	faceplayer
 	markasdialog
+	markasdialog
 	message SlateportCity_Text_1DD64A
 	waitmessage
 	pokemart SlateportCity_Pokemart_1DCDD4
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 SlateportCity_Text_1DD64A: @ 81DD64A
@@ -667,7 +668,7 @@ SlateportCity_EventScript_DollShop:: @ 81DD16A
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration SlateportCity_PokemartDecor_Dolls
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 	.align 2
@@ -688,7 +689,7 @@ SlateportCity_EventScript_DecorShop1:: @ 81DD198
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration SlateportCity_PokemartDecor_1DD1B8
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 SlateportCity_EventScript_1DD18E:: @ 81DD18E
@@ -730,7 +731,7 @@ SlateportCity_EventScript_TMShop:: @ 81DD1D8
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart SlateportCity_Pokemart_1DD1F0
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 	.align 2
@@ -1285,15 +1286,15 @@ SlateportCity_EventScript_1DD3CA:: @ 81DD3CA
 	case 0, SlateportCity_EventScript_1DD46E
 	case 1, SlateportCity_EventScript_1DD482
 	case 2, SlateportCity_EventScript_1DD496
-	case 3, SlateportCity_EventScript_1DD4AA
-	case 4, SlateportCity_EventScript_1DD4BE
-	case 5, SlateportCity_EventScript_1DD4D2
-	case 6, SlateportCity_EventScript_1DD4E6
-	case 7, SlateportCity_EventScript_1DD4FA
-	case 8, SlateportCity_EventScript_1DD50E
-	case 9, SlateportCity_EventScript_1DD522
-	case 10, SlateportCity_EventScript_1DD536
-	case 11, SlateportCity_EventScript_1DD54A
+	@ case 3, SlateportCity_EventScript_1DD4AA
+	case 3, SlateportCity_EventScript_1DD4BE
+	case 4, SlateportCity_EventScript_1DD4D2
+	case 5, SlateportCity_EventScript_1DD4E6
+	case 6, SlateportCity_EventScript_1DD4FA
+	case 7, SlateportCity_EventScript_1DD50E
+	case 8, SlateportCity_EventScript_1DD522
+	case 9, SlateportCity_EventScript_1DD536
+	case 10, SlateportCity_EventScript_1DD54A
 	case 127, SlateportCity_EventScript_1DD54A
 	end
 SlateportCity_Text_1DEE67: @ 81DEE67
@@ -1321,12 +1322,12 @@ SlateportCity_EventScript_1DD496:: @ 81DD496
 	goto SlateportCity_EventScript_1DD557
 	end
 
-SlateportCity_EventScript_1DD4AA:: @ 81DD4AA
-	bufferitemname 0, ITEM_REVIVAL_HERB
-	setvar VAR_0x8008, 33
-	setvar VAR_0x8009, 300
-	goto SlateportCity_EventScript_1DD557
-	end
+@ SlateportCity_EventScript_1DD4AA:: @ 81DD4AA
+@ 	bufferitemname 0, ITEM_REVIVAL_HERB
+@ 	setvar VAR_0x8008, 33
+@ 	setvar VAR_0x8009, 300
+@ 	goto SlateportCity_EventScript_1DD557
+@ 	end
 
 SlateportCity_EventScript_1DD4BE:: @ 81DD4BE
 	bufferitemname 0, ITEM_PROTEIN
