@@ -1262,6 +1262,11 @@
 	.2byte \y
 	.endm
 
+	@ TriHard Emerald: Mourning cutscene
+	.macro domourning
+	.byte 0xb1
+	.endm
+
 	@ TriHard Emerald: Do dream cutscene
 	.macro dodreams forceParam=0
 	.byte 0xb2

@@ -917,14 +917,18 @@ static void ExitMourningScene(void)
     }
 }
 
-void DoMourningCutscene(void)
+bool8 DoMourningCutscene(void)
 {
     if (GetMonToMourn())
     {
         PlayBGM(MUS_END);
-        ScriptContext1_Stop();
         sMourningScene = AllocZeroed(sizeof(*sMourningScene));
         SetMainCallback2(CB2_MourningSetup);
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
     }
 }
 
