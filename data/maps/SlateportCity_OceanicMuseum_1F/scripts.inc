@@ -1,5 +1,15 @@
 SlateportCity_OceanicMuseum_1F_MapScripts:: @ 820AD95
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SlateportCity_OceanicMuseum_1F_MapTable
 	.byte 0
+
+SlateportCity_OceanicMuseum_1F_MapTable:
+	map_script_2 VAR_SLATEPORT_MUSEUM_HEIST_STATE, 1, SlateportCity_OceanicMuseum_1F_PositionForHeist
+	.2byte 0
+
+SlateportCity_OceanicMuseum_1F_PositionForHeist:
+	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
+	end
+
 
 @ -----------------------------------------------------
 @ Entrance Fee
@@ -64,7 +74,6 @@ SlateportCity_OceanicMuseum_1F_Text_20B03D: @ 820B03D
 SlateportCity_OceanicMuseum_1F_EventScript_20AE39:: @ 820AE39
 	msgbox SlateportCity_OceanicMuseum_1F_Text_20B075, MSGBOX_DEFAULT
 	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
-	hidemoneybox
 	releaseall
 	end
 SlateportCity_OceanicMuseum_1F_Text_20B075: @ 820B075
@@ -345,6 +354,8 @@ SlateportCity_OceanicMuseum_1F_EventScript_AquaBoy:: @ 820AEF8
 SlateportCity_OceanicMuseum_1F_TriggerScript_AquaBoy::
 	lock
 	setvar THIS_EVENT, 13
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
 	goto SlateportCity_OceanicMuseum_1F_EventScript_AquaBoyCommon
 	end
 
@@ -360,6 +371,7 @@ SlateportCity_OceanicMuseum_1F_EventScript_AquaBoyCommon:
 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 2
 	setflag FLAG_SCENE_0
 	setflag FLAG_SCENE_3
+	release
 	end
 
 SlateportCity_OceanicMuseum_1F_EventScript_AquaBoy_Meeting:
@@ -411,8 +423,8 @@ SlateportCity_OceanicMuseum_1F_Text_AquaBoy_Mission:
 	.string "I'll be right behind you, after I pass\n"
 	.string "the message to the rest of these guys.$"
 SlateportCity_OceanicMuseum_1F_Text_AquaBoy_Repeat:
-	.string "{AQUA_BOY}:I'll be up right behind you.\p"
-	.string "I have to descretely pass the message\l"
+	.string "{AQUA_BOY}: I'll be up right behind you.\p"
+	.string "I have to descretely pass the message\n"
 	.string "to everyone else first.\p"
 	.string "I can't just shout our intention to\n"
 	.string "mug Stern. That's asking for trouble.$"

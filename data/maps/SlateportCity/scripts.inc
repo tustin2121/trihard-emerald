@@ -1129,6 +1129,8 @@ SlateportCity_EventScript_AquaLineMove:
 	applymovement LID_FRONT2, SlateportCity_Movement_AquaLineMove_GoIn
 	waitmovement 0
 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 1
+	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
+	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
 	warp MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F, 255, 10, 4
 	waitstate
 	releaseall
