@@ -52,8 +52,9 @@ VAR_RUSTBORO_STATE :=
 	9 = Post Logan Meeting
 
 
-VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE :=
+VAR_SLATEPORT_MUSEUM_HEIST_STATE :=
 	0 = Aqua lining up outside museum
 	1 = Aqua inside museum
-	2 = Aqua has left, Logan meets on way out
-	3 = Post-Logan
+	2 = Player breifed on mission
+	3 = Aqua has left, Logan meets on way out
+	4 = Post-Logan

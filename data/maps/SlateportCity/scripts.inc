@@ -13,7 +13,7 @@ SlateportCity_OnTransition: @ 81DCC6C
 	call SlateportCity_EventScript_1DCC8D
 	compare VAR_SLATEPORT_STATE, 1
 	call_if_eq SlateportCity_EventScript_1DCC99
-	@ compare VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1
+	@ compare VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3
 	@ call_if_eq SlateportCity_EventScript_PositionScottAfterMuseum
 	end
 SlateportCity_EventScript_1DCC8D:: @ 81DCC8D
@@ -52,7 +52,7 @@ SlateportCity_EventScript_1DCD06:: @ 81DCD06
 	return
 
 SlateportCity_MapScript2_FrameTable: @ 81DCD12
-	map_script_2 VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 2, SlateportCity_EventScript_LoganAfterMuseum
+	map_script_2 VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3, SlateportCity_EventScript_LoganAfterMuseum
 	.2byte 0
 
 @ -----------------------------------------------------
@@ -61,7 +61,7 @@ SlateportCity_MapScript2_FrameTable: @ 81DCD12
 SlateportCity_EventScript_LoganAfterMuseum:
 	lockall
 	@ Logan limps out and scolds the player
-	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
+	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 4
 	releaseall
 	end
 
@@ -97,7 +97,7 @@ SlateportCity_EventScript_LoganAfterMuseum:
 @ 	setobjectxyperm LID_SCOTT, 18, 12
 @ 	setobjectmovementtype LID_SCOTT, MOVEMENT_TYPE_FACE_DOWN
 @ 	clearflag FLAG_HIDE_MAP_NAME_POPUP
-@ 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 2
+@ 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 2
 @ 	addvar VAR_SCOTT_STATE, 1
 @ 	releaseall
 @ 	end
@@ -154,61 +154,61 @@ SlateportCity_EventScript_LoganAfterMuseum:
 @ 	step_end
 
 
-SlateportCity_EventScript_1DD5DC:: @ 81DD5DC
-	lockall
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
-	waitmovement 0
-	opendoor 10, 12
-	waitdooranim
-	addobject 35
-	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DD630
-	applymovement 35, SlateportCity_Movement_1DD637
-	waitmovement 0
-	closedoor 10, 12
-	waitdooranim
-	msgbox SlateportCity_Text_1DF28C, MSGBOX_DEFAULT
-	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DD634
-	applymovement 35, SlateportCity_Movement_1DD63A
-	waitmovement 0
-	removeobject 35
-	addvar VAR_SCOTT_STATE, 1
-	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
-	releaseall
-	end
-SlateportCity_Text_1DF28C: @ 81DF28C
-	.string "SCOTT: Oh, hey!\n"
-	.string "If it isn't {PLAYER}!\p"
-	.string "{PLAYER}, let me guess--you're going\n"
-	.string "to take the Battle Tent challenge?\p"
-	.string "Yeah! That's a good idea!\n"
-	.string "That's a really great idea!\p"
-	.string "After all, a tough TRAINER is\n"
-	.string "the perfect fit for the Battle Tent!\p"
-	.string "Give it your best effort!$"
-SlateportCity_Movement_1DD630: @ 81DD630
-	lock_facing_direction
-	walk_down
-	unlock_facing_direction
-	step_end
-SlateportCity_Movement_1DD637: @ 81DD637
-	delay_8
-	walk_down
-	step_end
-SlateportCity_Movement_1DD634: @ 81DD634
-	delay_16
-	walk_in_place_fastest_right
-	step_end
-SlateportCity_Movement_1DD63A: @ 81DD63A
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
+@ SlateportCity_EventScript_1DD5DC:: @ 81DD5DC
+@ 	lockall
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
+@ 	waitmovement 0
+@ 	opendoor 10, 12
+@ 	waitdooranim
+@ 	addobject 35
+@ 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DD630
+@ 	applymovement 35, SlateportCity_Movement_1DD637
+@ 	waitmovement 0
+@ 	closedoor 10, 12
+@ 	waitdooranim
+@ 	msgbox SlateportCity_Text_1DF28C, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DD634
+@ 	applymovement 35, SlateportCity_Movement_1DD63A
+@ 	waitmovement 0
+@ 	removeobject 35
+@ 	addvar VAR_SCOTT_STATE, 1
+@ 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3
+@ 	releaseall
+@ 	end
+@ SlateportCity_Text_1DF28C: @ 81DF28C
+@ 	.string "SCOTT: Oh, hey!\n"
+@ 	.string "If it isn't {PLAYER}!\p"
+@ 	.string "{PLAYER}, let me guess--you're going\n"
+@ 	.string "to take the Battle Tent challenge?\p"
+@ 	.string "Yeah! That's a good idea!\n"
+@ 	.string "That's a really great idea!\p"
+@ 	.string "After all, a tough TRAINER is\n"
+@ 	.string "the perfect fit for the Battle Tent!\p"
+@ 	.string "Give it your best effort!$"
+@ SlateportCity_Movement_1DD630: @ 81DD630
+@ 	lock_facing_direction
+@ 	walk_down
+@ 	unlock_facing_direction
+@ 	step_end
+@ SlateportCity_Movement_1DD637: @ 81DD637
+@ 	delay_8
+@ 	walk_down
+@ 	step_end
+@ SlateportCity_Movement_1DD634: @ 81DD634
+@ 	delay_16
+@ 	walk_in_place_fastest_right
+@ 	step_end
+@ SlateportCity_Movement_1DD63A: @ 81DD63A
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	walk_right
+@ 	step_end
 
 
 @ -----------------------------------------------------
@@ -882,15 +882,15 @@ SlateportCity_EventScript_AquaMember5:: @ 81DD0C1
 	end
 SlateportCity_Text_1DDE6E: @ 81DDE6E
 	.string "What?\n"
-	.string "What do you want?$"
+	.string "Whaddya want?$"
 SlateportCity_Text_1DDE86: @ 81DDE86
-	.string "You want to read this sign?\n"
-	.string "I'll read it for you!$"
+	.string "You wanna to read this sign, do ya?\n"
+	.string "I'll read it for ya!$"
 SlateportCity_Text_1DDEB8: @ 81DDEB8
-	.string "Let's see…\p"
-	.string "Um… I think it says something like\n"
+	.string "Les'see…\p"
+	.string "Err… I think it says som'ing like\n"
 	.string "“the life in the sea is endless.”\p"
-	.string "Yup, I'm pretty sure that's what\n"
+	.string "Yup, pretty sure tha's what\n"
 	.string "it says.$"
 
 
@@ -1007,8 +1007,9 @@ SlateportCity_Text_AquaBoy1:
 	.string "Oh, you're that {PLAYER_boy} who helped us\n"
 	.string "back in Rustboro. Didn't get a chance\l"
 	.string "to introduce myself before.\p"
-	.string "My name's {AQUA_BOY}. Yours?\p"
-	.string "{PLAYER}? Sweet.\p"
+	.string "My name's {AQUA_BOY}.\p"
+	.string "You're {PLAYER}, right?\n"
+	.string "Sweet. See, I remembered!\p"
 	.string "Hey, wanna help again? There's something\n"
 	.string "the boss wants in the museum. No idea\l"
 	.string "what it is, of course.\p"
@@ -1033,6 +1034,114 @@ SlateportCity_Text_1DDF32:
 	.string "{AQUA_BOY}: Feel free to cut in line\n"
 	.string "behind me. We should be going in soon.$"
 
+@ -----------------------------------------------------
+@ Cutscene: Entering the Musaem
+
+#define LID_BEHIND 31
+#define LID_BOY 32
+
+SlateportCity_TriggerScript_AquaLineFront::
+	lockall
+	@ !
+	applymovement LID_BEHIND, Common_Movement_FacePlayer
+	waitmovement 0
+	playse SE_PIN
+	applymovement LID_BEHIND, Common_Movement_ExclamationMarkAndWait
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	markasdialog
+	msgbox SlateportCity_Text_AquaLineFront1
+	@ Check friendship and kick out if not friend
+	compare VAR_AQUA_BOY_FRIENDSHIP, 0
+	goto_if_eq SlateportCity_TriggerScript_AquaLineFront_Ejected
+	@ Bailey butts in
+	applymovement LID_BOY, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	markasdialog -6
+	msgbox SlateportCity_Text_AquaLineFront2
+	applymovement LID_BEHIND, Common_Movement_FaceUp
+	waitmovement 0
+	applymovement LID_BEHIND, Common_Movement_Angry
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	msgbox SlateportCity_Text_AquaLineFront3
+	applymovement LID_BOY, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	delay 30
+	goto SlateportCity_EventScript_AquaLineMove
+	end
+SlateportCity_Text_AquaLineFront1:
+	.string "Oy! Donchya know howta\n"
+	.string "queue properly?!\p"
+	.string "Get to tha back with ya!$"
+SlateportCity_Text_AquaLineFront2:
+	.string "{AQUA_BOY}: Chill, dude, it's alright.\n"
+	.string "{PLAYER_They}'s with us. {PLAYER_They} just hasn't gotten\l"
+	.string "the uniform yet.$"
+SlateportCity_Text_AquaLineFront3:
+	.string "{AQUA_BOY}: Don't mind him. We're all\n"
+	.string "going to the same place anyway.$"
+SlateportCity_TriggerScript_AquaLineFront_Ejected:
+	closemessage
+	applymovement LID_BEHIND, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown1
+	waitmovement 0
+	releaseall
+	end
+
+#undef LID_BOY
+#undef LID_BEHIND
+
+SlateportCity_TriggerScript_AquaLineBack::
+	lockall
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	delay 30
+	special SpawnCameraObject
+	applymovement EVENT_OBJ_ID_CAMERA, SlateportCity_Movement_AquaLineBack_Camera
+	waitmovement 0
+	goto SlateportCity_EventScript_AquaLineMove
+	@ special RemoveCameraObject
+	end
+SlateportCity_Movement_AquaLineBack_Camera:
+	walk_diag_southeast
+	walk_diag_southeast
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+#define LID_FRONT1 5
+#define LID_FRONT2 18
+#define LID_FRONT3 19
+
+SlateportCity_EventScript_AquaLineMove:
+	applymovement LID_FRONT1, SlateportCity_Movement_AquaLineMove_GoIn
+	waitmovement 0
+	playse SE_KAIDAN
+	applymovement LID_FRONT2, Common_Movement_WalkRight1
+	waitmovement 0
+	applymovement LID_FRONT3, Common_Movement_WalkRight1
+	applymovement LID_FRONT2, SlateportCity_Movement_AquaLineMove_GoIn
+	waitmovement 0
+	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 1
+	warp MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F, 255, 10, 4
+	waitstate
+	releaseall
+	end
+SlateportCity_Movement_AquaLineMove_GoIn:
+	walk_up
+	set_invisible
+	step_end
+
+	
+#undef LID_FRONT1
+#undef LID_FRONT2
+#undef LID_FRONT3
 
 
 @ -----------------------------------------------------

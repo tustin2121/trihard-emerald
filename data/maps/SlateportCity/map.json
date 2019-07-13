@@ -34,7 +34,7 @@
             "script": "Common_EventScript_ShowPokemartSign",
             "type": "sign",
             "x": 21,
-            "y": 24
+            "y": 25
         },
         {
             "elevation": 0,
@@ -50,7 +50,7 @@
             "script": "Common_EventScript_ShowPokemartSign",
             "type": "sign",
             "x": 22,
-            "y": 24
+            "y": 25
         },
         {
             "elevation": 0,
@@ -128,31 +128,22 @@
     ],
     "coord_events": [
         {
-            "elevation": 3,
-            "script": "SlateportCity_EventScript_1DD5DC",
-            "type": "trigger",
-            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
-            "var_value": "2",
-            "x": 18,
-            "y": 10
-        },
-        {
             "elevation": 0,
-            "script": "NULL",
+            "script": "SlateportCity_TriggerScript_AquaLineFront",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
+            "var": "VAR_SLATEPORT_MUSEUM_HEIST_STATE",
             "var_value": "0",
             "x": 35,
             "y": 27
         },
         {
             "elevation": 0,
-            "script": "NULL",
+            "script": "SlateportCity_TriggerScript_AquaLineBack",
             "type": "trigger",
-            "var": "VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE",
+            "var": "VAR_SLATEPORT_MUSEUM_HEIST_STATE",
             "var_value": "0",
-            "x": 27,
-            "y": 27
+            "x": 29,
+            "y": 25
         }
     ],
     "id": "MAP_SLATEPORT_CITY",
@@ -544,12 +535,12 @@
             "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SlateportCity_EventScript_AquaMember11",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 28,
-            "y": 27
+            "x": 29,
+            "y": 26
         },
         {
             "elevation": 3,

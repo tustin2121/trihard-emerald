@@ -1,6 +1,142 @@
 SlateportCity_OceanicMuseum_2F_MapScripts:: @ 820BAFF
 	.byte 0
 
+@ -----------------------------------------------------
+@ Exhibits
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD0A:: @ 820BD0A
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C4F9, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C4F9: @ 820C4F9
+	.string "{CENTER}{TIPS}WATER QUALITY SAMPLE 1{END}\n"
+	.string "{CENTER}The sea is all connected, but the\n"
+	.string "{CENTER}water seems to differ by region.$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD13:: @ 820BD13
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C566, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C566: @ 820C566
+	.string "{CENTER}{TIPS}WATER QUALITY SAMPLE 2{END}\n"
+	.string "{CENTER}Does the saltiness of seawater\n"
+	.string "{CENTER}differ by region, too?$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD1C:: @ 820BD1C
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C5C6, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C5C6: @ 820C5C6
+	.string "{CENTER}In the sea, the weight of water itself\n"
+	.string "{CENTER}exerts pressure. In shallow water, the\n"
+	.string "{CENTER}pressure is not very heavy. However,\n"
+	.string "{CENTER}in extremely deep water, the pressure\n"
+	.string "{CENTER}can reach even tens of thousands of\l"
+	.string "{CENTER}tons on a small area.”$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD25:: @ 820BD25
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C6C7, MSGBOX_DESCRIBE
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C6C7: @ 820C6C7
+	.string "“Model of Hoenn Region”\p"
+	.string "It's a miniature diorama of the\n"
+	.string "Hoenn region, like the sign says.\p"
+	.string "If only they had a model of Alola\n"
+	.string "here too…$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD2E:: @ 820BD2E
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C72F, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C72F: @ 820C72F
+	.string "{CENTER}Near the bottom of the sea, water\n"
+	.string "{CENTER}flows due to differences in such\l"
+	.string "{CENTER}factors as temperature and salinity.$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD37:: @ 820BD37
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C7C1, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C7C1: @ 820C7C1
+	.string "{CENTER}Toward the surface, seawater flows\n"
+	.string "{CENTER}as currents driven by the winds.$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD40:: @ 820BD40
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C82F, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C82F: @ 820C82F
+	.string "{CENTER}{TIPS}The Ferry S.S. Tidal{END}\p"
+	.string "{CENTER}A scale replica of the ship under\n"
+	.string "{CENTER}construction at Stern's Shipyard.$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD49:: @ 820BD49
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C88B, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C88B: @ 820C88B
+	.string "{CENTER}{TIPS}SUBMARINE EXPLORER 1{END}\p"
+	.string "{CENTER}A replica of the high-performance\n"
+	.string "{CENTER}ocean floor exploration submarine.$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD52:: @ 820BD52
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C8E8, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C8E8: @ 820C8E8
+	.string "{CENTER}{TIPS}Submersible Pod{END}\p"
+	.string "{CENTER}A replica of a compact, unmanned\n"
+	.string "{CENTER}pod for seafloor exploration.$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD5B:: @ 820BD5B
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C93A, MSGBOX_SIGN
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C93A: @ 820C93A
+	.string "{CENTER}{TIPS}S.S. Anne{END}\p"
+	.string "{CENTER}A replica of the luxury liner that\n"
+	.string "{CENTER}circles the globe.$"
+
+@ -----------------------------------------------------
+@ People
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD64:: @ 820BD64
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C43F, MSGBOX_NPC
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C43F: @ 820C43F
+	.string "I saw a model of a ship here.\p"
+	.string "It reminded me of the Abandoned Ship\n"
+	.string "near Dewford Town…$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD6D:: @ 820BD6D
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C495, MSGBOX_NPC
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C495: @ 820C495
+	.string "Don't you dare run around inside\n"
+	.string "the museum!$"
+
+
+SlateportCity_OceanicMuseum_2F_EventScript_20BD76:: @ 820BD76
+	lock
+	faceplayer
+	msgbox SlateportCity_OceanicMuseum_2F_Text_20C4C2, MSGBOX_DIALOG
+	closemessage
+	faceoriginaldir
+	release
+	end
+SlateportCity_OceanicMuseum_2F_Text_20C4C2: @ 820C4C2
+	.string "Wow, the submarine's awesome!\n"
+	.string "I want to go for a ride!$"
+
+@ -----------------------------------------------------
+@ Cutscene: Stern Mugging
+
+
+
+
+
+
 SlateportCity_OceanicMuseum_2F_EventScript_20BB00:: @ 820BB00
 	lock
 	faceplayer
@@ -86,7 +222,7 @@ SlateportCity_OceanicMuseum_2F_EventScript_20BB00:: @ 820BB00
 	setflag FLAG_DELIVERED_DEVON_GOODS
 	clearflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
 	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
-	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1
+	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3
 	fadescreen 0
 	release
 	end
@@ -215,63 +351,11 @@ SlateportCity_OceanicMuseum_2F_Movement_20BCFE: @ 820BCFE
 	walk_in_place_fastest_up
 	step_end
 
-SlateportCity_OceanicMuseum_2F_EventScript_20BD0A:: @ 820BD0A
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C4F9, MSGBOX_SIGN
-	end
 
-SlateportCity_OceanicMuseum_2F_EventScript_20BD13:: @ 820BD13
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C566, MSGBOX_SIGN
-	end
 
-SlateportCity_OceanicMuseum_2F_EventScript_20BD1C:: @ 820BD1C
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C5C6, MSGBOX_SIGN
-	end
 
-SlateportCity_OceanicMuseum_2F_EventScript_20BD25:: @ 820BD25
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C6C7, MSGBOX_SIGN
-	end
 
-SlateportCity_OceanicMuseum_2F_EventScript_20BD2E:: @ 820BD2E
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C72F, MSGBOX_SIGN
-	end
 
-SlateportCity_OceanicMuseum_2F_EventScript_20BD37:: @ 820BD37
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C7C1, MSGBOX_SIGN
-	end
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BD40:: @ 820BD40
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C82F, MSGBOX_SIGN
-	end
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BD49:: @ 820BD49
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C88B, MSGBOX_SIGN
-	end
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BD52:: @ 820BD52
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C8E8, MSGBOX_SIGN
-	end
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BD5B:: @ 820BD5B
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C93A, MSGBOX_SIGN
-	end
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BD64:: @ 820BD64
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C43F, MSGBOX_NPC
-	end
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BD6D:: @ 820BD6D
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C495, MSGBOX_NPC
-	end
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BD76:: @ 820BD76
-	lock
-	faceplayer
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C4C2, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
 
 SlateportCity_OceanicMuseum_2F_Text_20BD8D: @ 820BD8D
 	.string "Yes? If you're looking for STERN,\n"
@@ -366,76 +450,15 @@ SlateportCity_OceanicMuseum_2F_Text_20C36C: @ 820C36C
 	.string "Feel free to wander around and check\n"
 	.string "out our facilities, though.$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C43F: @ 820C43F
-	.string "I saw a model of a ship here.\p"
-	.string "It reminded me of the Abandoned Ship\n"
-	.string "near Dewford Town…$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C495: @ 820C495
-	.string "Don't you dare run around inside\n"
-	.string "the museum!$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C4C2: @ 820C4C2
-	.string "Wow, the submarine's awesome!\n"
-	.string "I want to go for a ride!$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C4F9: @ 820C4F9
-	.string "“WATER QUALITY SAMPLE 1,” the\n"
-	.string "label says.\p"
-	.string "The sea is all connected, but the\n"
-	.string "water seems to differ by region.$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C566: @ 820C566
-	.string "“WATER QUALITY SAMPLE 2,” the\n"
-	.string "label says.\p"
-	.string "Does the saltiness of seawater differ\n"
-	.string "by region, too?$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C5C6: @ 820C5C6
-	.string "A rubber ball is expanding and\n"
-	.string "shrinking.\p"
-	.string "“In the sea, the weight of water itself\n"
-	.string "exerts pressure.\p"
-	.string "“In shallow water, the pressure is not\n"
-	.string "very heavy.\p"
-	.string "“However, in extremely deep water,\n"
-	.string "the pressure can reach even tens of\l"
-	.string "thousands of tons on a small area.”$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C6C7: @ 820C6C7
-	.string "“MODEL OF Hoenn REGION”\p"
-	.string "It's a miniature diorama of the\n"
-	.string "Hoenn region.\p"
-	.string "Where is Littleroot Town on this?$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C72F: @ 820C72F
-	.string "It's a display on the flow of seawater.\p"
-	.string "“Near the bottom of the sea, water\n"
-	.string "flows due to differences in such\l"
-	.string "factors as temperature and salinity.”$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C7C1: @ 820C7C1
-	.string "It's a display on the flow of seawater.\p"
-	.string "“Toward the surface, seawater flows\n"
-	.string "as currents driven by the winds.”$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C82F: @ 820C82F
-	.string "“THE FERRY S.S. TIDAL\p"
-	.string "“A scale replica of the ship under\n"
-	.string "construction at STERN'S SHIPYARD.”$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C88B: @ 820C88B
-	.string "“SUBMARINE EXPLORER 1\p"
-	.string "“A replica of the high-performance\n"
-	.string "ocean floor exploration submarine.”$"
 
-SlateportCity_OceanicMuseum_2F_Text_20C8E8: @ 820C8E8
-	.string "“SUBMERSIBLE POD\p"
-	.string "“A replica of a compact, unmanned\n"
-	.string "pod for seafloor exploration.”$"
-
-SlateportCity_OceanicMuseum_2F_Text_20C93A: @ 820C93A
-	.string "“S.S. ANNE\p"
-	.string "“A replica of the luxury liner that\n"
-	.string "circles the globe.”$"
 
