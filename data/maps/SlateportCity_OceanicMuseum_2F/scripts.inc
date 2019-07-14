@@ -132,333 +132,487 @@ SlateportCity_OceanicMuseum_2F_Text_20C4C2: @ 820C4C2
 @ -----------------------------------------------------
 @ Cutscene: Stern Mugging
 
+#define LID_STERN 1
+#define LID_LOGAN 8
+#define LID_AQUA_BOY 3
+#define LID_AQUA_2 4
+#define LID_DOCS 9
+#define LID_ARCHIE 2
 
-
-
-
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BB00:: @ 820BB00
-	lock
-	faceplayer
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20BD8D, MSGBOX_DEFAULT
+SlateportCity_OceanicMuseum_2F_TriggerScript_SternMugging::
+	lockall
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	subvar VAR_INTERACT_Y, 4
+	@ "Technobable!"
+	markasdialog -2
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging1
+	playse SE_SELECT
+	@ "Sweet!"
+	markasdialog 18
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging2
 	closemessage
+	@ Player steps forward, others notice
+	selectpointer SlateportCity_OceanicMuseum_2F_MovementTable_SternMugging3_Player, VAR_INTERACT_Y
+	applymovement EVENT_OBJ_ID_PLAYER, 0
+	waitmovement 0
+	applymovement LID_STERN, Common_Movement_WalkInPlaceLeft
+	applymovement LID_LOGAN, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	@ "Oh, hello?"
+	markasdialog -4
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging4
+	playse SE_SELECT
+	@ "Hi Player!"
+	markasdialog 16
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging5
+	playse SE_SELECT
+	@ "This is Stern!"
+	applymovement LID_LOGAN, SlateportCity_OceanicMuseum_2F_Movement_SternMugging6_Logan
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging6
+	waitmovement 0
+	@ Player steps forward
+	closemessage
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
+	waitmovement 0
+	@ "Nice to, uh...?!"
+	markasdialog -6
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging7
+	closemessage
+	@ The backup arrives
 	playbgm MUS_AQA_0, 1
-	addobject 3
-	applymovement 3, SlateportCity_OceanicMuseum_2F_Movement_20BCE4
+	setobjectxyperm LID_AQUA_BOY, 6, 1
+	addobject LID_AQUA_BOY
+	applymovement LID_AQUA_BOY, SlateportCity_OceanicMuseum_2F_Movement_SternMugging7_Aqua1
 	waitmovement 0
-	addobject 4
-	applymovement 4, SlateportCity_OceanicMuseum_2F_Movement_20BCF3
+	setobjectxyperm LID_AQUA_2, 6, 1
+	addobject LID_AQUA_2
+	applymovement LID_AQUA_2, Common_Movement_WalkDown1
 	waitmovement 0
-	applymovement 3, SlateportCity_OceanicMuseum_2F_Movement_20BCE8
-	applymovement 4, SlateportCity_OceanicMuseum_2F_Movement_20BCF5
+	applymovement LID_AQUA_BOY, SlateportCity_OceanicMuseum_2F_Movement_SternMugging7_Aqua2
+	applymovement LID_AQUA_2, SlateportCity_OceanicMuseum_2F_Movement_SternMugging7_Aqua3
 	waitmovement 0
-	compare VAR_FACING, 1
-	call_if_eq SlateportCity_OceanicMuseum_2F_EventScript_20BC92
-	compare VAR_FACING, 4
-	call_if_eq SlateportCity_OceanicMuseum_2F_EventScript_20BC92
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20BE40, MSGBOX_DEFAULT
-	compare VAR_FACING, 4
-	call_if_ne SlateportCity_OceanicMuseum_2F_EventScript_20BC9D
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20BE69, MSGBOX_DEFAULT
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20BE93, MSGBOX_DEFAULT
+	@ "Who are these guys?!"
+	applymovement LID_LOGAN, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	applymovement LID_LOGAN, Common_Movement_ExclamationMark
+	playse SE_PIN
+	markasdialog 14
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging8
+	waitmovement 0
+	playse SE_SELECT
+	@ "Hand it over"
+	markasdialog 6
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging9
+	playse SE_SELECT
+	@ "You're not with these guys, right?"
+	applymovement LID_LOGAN, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	markasdialog 14
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging10
 	closemessage
-	applymovement 4, SlateportCity_OceanicMuseum_2F_Movement_20BCE2
+	@ Player moves forward threateningly
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
 	waitmovement 0
-	compare VAR_FACING, 1
-	call_if_eq SlateportCity_OceanicMuseum_2F_EventScript_20BCA8
-	compare VAR_FACING, 3
-	call_if_eq SlateportCity_OceanicMuseum_2F_EventScript_20BCB3
-	trainerbattle_no_intro TRAINER_GRUNT_14, SlateportCity_OceanicMuseum_2F_Text_20BEE2
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20BEFA, MSGBOX_DEFAULT
+	applymovement LID_STERN, Common_Movement_BackOffRight1
+	waitmovement 0
+	applymovement LID_LOGAN, SlateportCity_OceanicMuseum_2F_Movement_SternMugging11_LoganSlide
+	waitmovement 0
+	@
+	markasdialog 14
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging11
+	@ FIGHT
+	trainerbattle_no_intro TRAINER_LOGAN_STERNCUTSCENE, SlateportCity_OceanicMuseum_2F_Text_SternMugging_LoganLose
+	@
+	applymovement LID_LOGAN, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	markasdialog 14
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging12
+	@ Logan runs off
 	closemessage
-	applymovement 4, SlateportCity_OceanicMuseum_2F_Movement_20BCEF
+	applymovement LID_LOGAN, SlateportCity_OceanicMuseum_2F_Movement_SternMugging13_Logan
+	applymovement LID_AQUA_BOY, SlateportCity_OceanicMuseum_2F_Movement_SternMugging13_Aqua
+	waitmovement LID_LOGAN
+	setobjectxy LID_LOGAN, 30, 0
+	moveobjectoffscreen LID_LOGAN
+	@ Aqua closes in
+	markasdialog -8
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
+	applymovement LID_AQUA_BOY, SlateportCity_OceanicMuseum_2F_Movement_SternMugging14_AquaBoy
+	applymovement LID_AQUA_2, SlateportCity_OceanicMuseum_2F_Movement_SternMugging14_Aqua2
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging13
 	waitmovement 0
-	applymovement 3, SlateportCity_OceanicMuseum_2F_Movement_20BCE2
-	waitmovement 0
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20BF35, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_GRUNT_15, SlateportCity_OceanicMuseum_2F_Text_20BF66
-	applymovement 3, SlateportCity_OceanicMuseum_2F_Movement_20BCEF
-	waitmovement 0
-	applymovement 3, Common_Movement_WalkInPlaceDown
-	applymovement 4, Common_Movement_WalkInPlaceUp
-	waitmovement 0
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20BF7A, MSGBOX_DEFAULT
+	@ Bailey finds papers
 	closemessage
-	delay 35
-	addobject 2
-	applymovement 2, SlateportCity_OceanicMuseum_2F_Movement_20BCD8
-	applymovement 4, SlateportCity_OceanicMuseum_2F_Movement_20BCFE
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20BFF2, MSGBOX_DEFAULT
-	closemessage
-	applymovement 2, SlateportCity_OceanicMuseum_2F_Movement_20BCD6
+	applymovement LID_AQUA_BOY, Common_Movement_ExclamationMarkAndWait
+	playse SE_PIN
 	waitmovement 0
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C059, MSGBOX_DEFAULT
-	closemessage
+	@ 
+	applymovement LID_AQUA_BOY, SlateportCity_OceanicMuseum_2F_Movement_SternMugging15_AquaBoy
+	applymovement LID_DOCS, SlateportCity_OceanicMuseum_2F_Movement_SternMugging15_Docs
+	markasdialog -6
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging15
+	waitmovement LID_AQUA_BOY
+	@ Back off, enter Archie
 	savebgm MUS_DUMMY
 	fadedefaultbgm
-	fadescreen 1
-	removeobject 2
-	removeobject 3
-	removeobject 4
-	fadescreen 0
-	delay 30
-	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	setobjectxyperm LID_ARCHIE, 6, 2
+	addobject LID_ARCHIE
+	applymovement LID_AQUA_BOY, SlateportCity_OceanicMuseum_2F_Movement_SternMugging16_AquaBoy
+	applymovement LID_AQUA_2, SlateportCity_OceanicMuseum_2F_Movement_SternMugging16_Aqua2
+	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_OceanicMuseum_2F_Movement_SternMugging16_Player
 	waitmovement 0
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C2BE, MSGBOX_DEFAULT
-	setvar VAR_0x8004, 269
-	call SlateportCity_OceanicMuseum_2F_EventScript_2723E4
-	msgbox SlateportCity_OceanicMuseum_2F_Text_20C36C, MSGBOX_DEFAULT
-	closemessage
-	fadescreen 1
-	playfanfare MUS_ME_ASA
+	@ "Excellent"
+	markasdialog 6
+	message SlateportCity_OceanicMuseum_2F_Text_SternMugging17
+	waitmessage
+	@ Archie steps forward to look at player
+	applymovement LID_AQUA_BOY, SlateportCity_OceanicMuseum_2F_Movement_SternMugging18_AquaBoy
+	applymovement LID_ARCHIE, SlateportCity_OceanicMuseum_2F_Movement_SternMugging18_Archie
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging18
+	playse SE_SELECT
+	@ "He wants to join"
+	markasdialog -6
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging19
+	playse SE_SELECT
+	@ Archie speech
+	markasdialog 6
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging20
+	playse SE_SELECT
+	@ Bandanna get!
+	message SlateportCity_OceanicMuseum_2F_Text_SternMugging21, MSGTYPE_DESCRIBE
+	waitmessage
+	playfanfare MUS_ME_BACHI
+	message SlateportCity_OceanicMuseum_2F_Text_SternMugging22, MSGTYPE_DESCRIBE
 	waitfanfare
-	special HealPlayerParty
-	removeobject 1
+	@
+	applymovement LID_ARCHIE, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging23
+	@
+	fadescreen 5 @ FADE_TO_BLACK_NO_WINDOW
+	playse SE_KAIDAN
+	@ removeobject LID_ARCHIE
+	@ removeobject LID_AQUA_BOY
+	@ removeobject LID_AQUA_2
+	@ removeobject LID_LOGAN
+	@ removeobject LID_STERN
+	@ removeobject LID_DOCS
+	setvar VAR_0x8000, 1
+	callnative SetPlayerOutfit
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging24, MSGBOX_DESCRIBE
+	closemessage
+	@ clean up
 	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
-	compare VAR_0x40DA, 0
-	call_if_eq SlateportCity_OceanicMuseum_2F_EventScript_20BC8C
+	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN
 	setflag FLAG_DELIVERED_DEVON_GOODS
-	clearflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
-	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3
-	fadescreen 0
-	release
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	@ reload map
+	warpcustom MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_2F, 255, VAR_INTERACT_X, VAR_INTERACT_Y
+	waitstate
+	releaseall
 	end
 
-SlateportCity_OceanicMuseum_2F_EventScript_20BC8C:: @ 820BC8C
-	setvar VAR_0x40DA, 1
-	return
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BC92:: @ 820BC92
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
-	waitmovement 0
-	return
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BC9D:: @ 820BC9D
-	applymovement 1, Common_Movement_WalkInPlaceLeft
-	waitmovement 0
-	return
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BCA8:: @ 820BCA8
-	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_OceanicMuseum_2F_Movement_20BCBE
-	waitmovement 0
-	return
-
-SlateportCity_OceanicMuseum_2F_EventScript_20BCB3:: @ 820BCB3
-	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_OceanicMuseum_2F_Movement_20BCC2
-	waitmovement 0
-	return
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCBE: @ 820BCBE
-	walk_left
-	walk_down
-	walk_in_place_fastest_left
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCC2: @ 820BCC2
-	walk_up
-	walk_left
-	walk_left
-	walk_down
-	walk_in_place_fastest_left
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCC8: @ 820BCC8
-	walk_up
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_up
-	walk_up
-	walk_left
-	walk_left
-	walk_up
-	walk_up
-	delay_8
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCD6: @ 820BCD6
-	walk_right
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCD8: @ 820BCD8
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCE2: @ 820BCE2
-	walk_right
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCE4: @ 820BCE4
-	walk_down
-	walk_right
-	walk_in_place_fastest_down
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCE8: @ 820BCE8
-	walk_down
-	walk_down
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCEF: @ 820BCEF
-	lock_facing_direction
-	walk_left
-	unlock_facing_direction
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCF3: @ 820BCF3
-	walk_down
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCF5: @ 820BCF5
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-SlateportCity_OceanicMuseum_2F_Movement_20BCFE: @ 820BCFE
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_8
-	walk_fast_down
-	walk_in_place_fastest_up
-	step_end
-
-
-
-
-
-
-
-SlateportCity_OceanicMuseum_2F_Text_20BD8D: @ 820BD8D
-	.string "Yes? If you're looking for STERN,\n"
-	.string "that would be me.\p"
-	.string "Ah! Those must be the parts I ordered\n"
-	.string "from MR. STONE of DEVON.\p"
-	.string "Thank you! That's great!\n"
-	.string "We can prepare for our expedition now.$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BE40: @ 820BE40
-	.string "Hehehe, hold it!\n"
-	.string "We'll take those parts!$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BE69: @ 820BE69
-	.string "CAPT. STERN: Wh-what?\n"
-	.string "Who are you people?$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BE93: @ 820BE93
-	.string "We're Team Aqua!\p"
-	.string "Our BOSS wants those parts!\n"
-	.string "Shut your yap and fork them over!$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BEE2: @ 820BEE2
-	.string "Awaaaah!\n"
-	.string "A kid beat me!$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BEFA: @ 820BEFA
-	.string "Oh, man, what a disaster…\n"
-	.string "The BOSS is going to be furious…$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BF35: @ 820BF35
-	.string "Humph, sniveling wimp!\n"
-	.string "Let me take care of this!$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BF66: @ 820BF66
-	.string "What?!\n"
-	.string "I lost, too!$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BF7A: @ 820BF7A
-	.string "Now what? If we don't get the parts,\n"
-	.string "we're in for it!\p"
-	.string "Arrgh, I didn't count on being meddled\n"
-	.string "with by some meddling kid!$"
-
-SlateportCity_OceanicMuseum_2F_Text_20BFF2: @ 820BFF2
-	.string "I came to see what was taking so\n"
-	.string "long to snatch some parts, and you\l"
-	.string "simps are held up by a mere child?$"
-
-SlateportCity_OceanicMuseum_2F_Text_20C059: @ 820C059
-	.string "We are Team Aqua,\n"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging1:
+	.string "Capt. Stern: Yes, we're really close to\n"
+	.string "a major breakthrough with this deep\l"
+	.string "sea technology.\p"
+	.string "We're mainly just waiting on a\n"
+	.string "delivery of some important parts.$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging2:
+	.string "{RIVAL_HERO}: That's really neat!\p"
+	.string "It'd be really nifty to be on that\n"
+	.string "submarine when it goes that deep!$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging4:
+	.string "Capt. Stern: Oh, hello, young {PLAYER_man}.\n"
+	.string "Can I… … help you?$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging5:
+	.string "{RIVAL_HERO}: Hey, {PLAYER}!\n"
+	.string "Fancy meeting you here!$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging6:
+	.string "Mr. Stern, this is {PLAYER}!\n"
+	.string "{PLAYER_They} helped me out once back in\l"
+	.string "Petalburg!\p"
+	.string "{PLAYER}, this is Captain Stern!$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging7:
+	.string "Capt. Stern: Ah, nice to, uh…\p"
+	.string "Wh-What's with the look?$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging8:
+	.string "{RIVAL_HERO}: {P_PLAYER}?!\n"
+	.string "W-Who are these guys?!$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging9:
+	.string "{AQUA_BOY}: Alright, Stern.\n"
+	.string "This is a stick up.\p"
+	.string "Just hand over those documents,\n"
+	.string "and no one will get hurt.$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging10:
+	.string "{RIVAL_HERO}: You're not WITH these\n"
+	.string "guys, are you, {PLAYER}?!$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging11:
+	.string "{RIVAL_HERO}: What's wrong with you,\n"
+	.string "{PLAYER}?! I thought you were one of\l"
+	.string "the good guys!\p"
+	.string "I can't let you do this!\n"
+	.string "You'll have to get through me first!$"
+@ FIGHT
+SlateportCity_OceanicMuseum_2F_Text_SternMugging_LoganLose:
+	.string "Oh, crud, you're really tough…$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging12:
+	.string "{RIVAL_HERO}: Seedot?! Are you alright?!$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging13:
+	.string "Capt. Stern: Ah, fellas…\p"
+	.string "Perhaps we can, um… negotiate something?$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging15:
+	.string "{AQUA_BOY}: Back off, guys.\n"
+	.string "I got the docs right here.\p"
+	.string "We can head out.$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging17:
+	.string "Excellent! Excellent work!\n"
+	.string "Just what I wanted.\p$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging18:
+	.string "Ah, excuse me, who are you?$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging19:
+	.string "{AQUA_BOY}: This is {PLAYER}, sir.\n"
+	.string "{PLAYER_They} just helped us get these papers.\p"
+	.string "{PLAYER_They}… wants to join the Team, sir.$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging20:
+	.string "Do you, now?\n"
+	.string "Do you love the sea as much as we?\p"
+	.string "For we are {REF}Team Aqua{END},\n"
 	.string "and we love the sea!\p"
 	.string "And I am Team Aqua's leader,\n"
-	.string "ARCHIE!\p"
-	.string "What makes you interfere with us?\p"
-	.string "…No! You can't be!\n"
-	.string "You're not one of Team Magma?\p"
-	.string "Wait, that can't be right.\n"
-	.string "You're not dressed for the part.\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
+	.string "{REF}Archie{END}!\p"
 	.string "Pokémon, people… All life depends on\n"
 	.string "the sea.\p"
 	.string "So, Team Aqua is dedicated to\n"
 	.string "the expansion of the sea.\p"
-	.string "Don't you agree? What we are doing\n"
-	.string "is a magnificent undertaking.\p"
-	.string "Ah, fine…\n"
-	.string "You're still too young to understand\l"
-	.string "our noble objective.\p"
-	.string "But, I warn you, don't even consider\n"
-	.string "interfering with our plans again.\p"
-	.string "The consequences will cost you\n"
-	.string "dearly!\p"
-	.string "And don't you forget it!$"
-
-SlateportCity_OceanicMuseum_2F_Text_20C2BE: @ 820C2BE
-	.string "CAPT. STERN: You're…\n"
-	.string "Ah, okay, you're {PLAYER}…\p"
-	.string "Anyway, that was a tense situation!\n"
-	.string "Thank you for saving us!\p"
-	.string "Oh, yes, I almost forgot that you\n"
-	.string "even brought the parts from DEVON!$"
-
-SlateportCity_OceanicMuseum_2F_Text_20C36C: @ 820C36C
-	.string "CAPT. STERN: Whoops!\n"
-	.string "There's no time to lose!\p"
-	.string "We have to set out on our ocean-floor\n"
-	.string "expedition really soon.\p"
-	.string "Thanks again, but now I've got\n"
-	.string "to go!\p"
-	.string "Feel free to wander around and check\n"
-	.string "out our facilities, though.$"
+	.string "What we are doing is a magnificent\n"
+	.string "undertaking. Don't you agree?\p"
+	.string "… … … … … …\n"
+	.string "Ah, it's fine… Perhaps you are still\l"
+	.string "too young to understand our noble\l"
+	.string "objective to its fullest.\p"
+	.string "But that does not mean you have not\n"
+	.string "proven yourself today.\p"
+	.string "I apologize. This will have to do for\n"
+	.string "the interum.$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging21:
+	.string "Archie takes the armband from his arm\n"
+	.string "and hands it to you.\p$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging22:
+	.string "Recieved the Team Aqua Bandana!$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging23:
+	.string "Archie: Time to leave, boys.$"
+SlateportCity_OceanicMuseum_2F_Text_SternMugging24:
+	.string "{PLAYER} donned the headband.$"
 
 
+.align 2
+SlateportCity_OceanicMuseum_2F_MovementTable_SternMugging3_Player:
+	.4byte SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player1
+	.4byte SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player2
+	.4byte SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player3
+	.4byte SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player4
+	.4byte SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player5
+	.4byte 0
 
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player1:
+	walk_down
+	walk_down
+	walk_right
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player2:
+	walk_down
+	walk_right
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player3:
+	walk_right
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player4:
+	walk_up
+	walk_right
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging3_Player5:
+	walk_up
+	walk_up
+	walk_right
+	step_end
 
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging6_Logan:
+	walk_left
+	walk_left
+	walk_in_place_fast_right
+	step_end
 
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging7_Aqua1: @ 820BCE4
+	walk_down
+	walk_right
+	walk_in_place_fastest_down
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging7_Aqua2:
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging7_Aqua3:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
 
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging11_LoganSlide:
+	walk_fast_right
+	face_down
+	lock_facing_direction
+	walk_fast_right
+	unlock_facing_direction
+	face_left
+	lock_facing_direction
+	walk_fast_down
+	unlock_facing_direction
+	walk_in_place_fastest_left
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging13_Logan:
+	walk_fast_up
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	set_invisible
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging13_Aqua:
+	delay_8
+	delay_8
+	delay_8
+	delay_8
+	face_up
+	lock_facing_direction
+	slide_down
+	unlock_facing_direction
+	walk_in_place_fast_left
+	step_end
 
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging14_AquaBoy:
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fast_down
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging14_Aqua2:
+	walk_right
+	walk_right
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	step_end
 
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging15_AquaBoy:
+	walk_right
+	walk_in_place_up
+	delay_16
+	walk_in_place_down
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging15_Docs:
+	delay_16
+	delay_16
+	delay_8
+	set_invisible
+	step_end
 
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging16_AquaBoy:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	emote_exclamation_mark
+	delay_16
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging16_Aqua2:
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	emote_exclamation_mark
+	delay_16
+	delay_8
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_left
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging16_Player:
+	lock_facing_direction
+	walk_left
+	unlock_facing_direction
+	delay_16
+	delay_16
+	delay_16
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	step_end
 
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging18_AquaBoy:
+	face_left
+	lock_facing_direction
+	walk_right
+	unlock_facing_direction
+	step_end
+SlateportCity_OceanicMuseum_2F_Movement_SternMugging18_Archie:
+	delay_16
+	walk_down
+	step_end
 
-
+#undef LID_STERN
+#undef LID_LOGAN
+#undef LID_AQUA_BOY
+#undef LID_AQUA_2
+#undef LID_DOCS
+#undef LID_ARCHIE
 

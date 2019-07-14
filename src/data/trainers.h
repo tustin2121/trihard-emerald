@@ -279,19 +279,31 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Grunt13 }
     },
 
-    [TRAINER_GRUNT_14] =
+    [TRAINER_LOGAN_STERNCUTSCENE] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("Grunt"),
+        .trainerPic = TRAINER_PIC_WALLY,
+        .trainerName = _("Logan"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = 1,
-        .party = {.NoItemDefaultMoves = sParty_Grunt14 }
+        .partySize = 3,
+        .party = {.NoItemDefaultMoves = sParty_Logan_SternMugging }
     },
+    // {
+    //     .partyFlags = 0,
+    //     .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+    //     .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
+    //     .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
+    //     .trainerName = _("Grunt"),
+    //     .items = {},
+    //     .doubleBattle = FALSE,
+    //     .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+    //     .partySize = 1,
+    //     .party = {.NoItemDefaultMoves = sParty_Grunt14 }
+    // },
 
     [TRAINER_GRUNT_15] =
     {

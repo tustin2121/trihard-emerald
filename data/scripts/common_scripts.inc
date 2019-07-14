@@ -98,6 +98,30 @@ Common_Movement_FaceUp: @ 82725B2
 	face_up
 	step_end
 
+Common_Movement_BackOffUp1: @ 82725C9
+	lock_facing_direction
+	walk_up
+	unlock_facing_direction
+	step_end
+
+Common_Movement_BackOffDown1:
+	lock_facing_direction
+	walk_down
+	unlock_facing_direction
+	step_end
+
+Common_Movement_BackOffLeft1:
+	lock_facing_direction
+	walk_left
+	unlock_facing_direction
+	step_end
+
+Common_Movement_BackOffRight1:
+	lock_facing_direction
+	walk_right
+	unlock_facing_direction
+	step_end
+
 Common_Movement_WalkUp1: @ 82725C9
 	walk_up
 	step_end

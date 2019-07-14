@@ -834,9 +834,9 @@
 #define FLAG_HIDE_BRINEYS_HOUSE_PEEKO                               0x371
 #define FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA                          0x372
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS         0x373
-#define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1     0x374
-#define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_2     0x375
-#define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_ARCHIE           0x376
+#define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA             0x374
+#define FLAG_UNUSED_0x375                                           0x375 // TE: Unused
+#define FLAG_UNUSED_0x376                                           0x376 // TE: Unused
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN    0x377
 #define FLAG_HIDE_BATTLE_TOWER_OPPONENT                             0x378
 #define FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL                  0x379

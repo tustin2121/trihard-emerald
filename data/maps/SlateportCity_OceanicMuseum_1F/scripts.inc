@@ -366,7 +366,6 @@ SlateportCity_OceanicMuseum_1F_EventScript_AquaBoyCommon:
 	goto_if_set   FLAG_SCENE_3, SlateportCity_OceanicMuseum_1F_EventScript_AquaBoy_Repeat
 	call_if_set   FLAG_SCENE_0, SlateportCity_OceanicMuseum_1F_EventScript_AquaBoy_Update
 	call_if_unset FLAG_SCENE_0, SlateportCity_OceanicMuseum_1F_EventScript_AquaBoy_Meeting
-	playse SE_SELECT
 	msgbox SlateportCity_OceanicMuseum_1F_Text_AquaBoy_Mission
 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 2
 	setflag FLAG_SCENE_0

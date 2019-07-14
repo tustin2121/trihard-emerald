@@ -1027,3 +1027,8 @@ void HashInteractLocation(void)
     gSpecialVar_0x8000 += gSpecialVar_InteractX;
     gSpecialVar_0x8000 += gSpecialVar_InteractY;
 }
+
+void SetPlayerOutfit(void)
+{
+    gSaveBlock2Ptr->playerForm = (gSaveBlock2Ptr->playerForm & 1) | (gSpecialVar_0x8000 << 1);
+}
