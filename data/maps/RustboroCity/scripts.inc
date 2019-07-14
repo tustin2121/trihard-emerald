@@ -1095,6 +1095,7 @@ RustboroCity_TriggerScript_AquaTaskReturn_Finish:
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_BRINEY_LOCATION, 1
+	call Common_EventScript_ClearSceneFlags
 	releaseall
 	end
 
@@ -1317,112 +1318,6 @@ RustboroCity_Movement_AquaTaskReturn9:
 #undef LID_AQUA_GIRL
 #undef LID_AQUA_BOY
 #undef LID_AQUA_3
-
-
-	@ lockall
-	@ setobjectxyperm 9, 14, 21
-	@ setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-	@ msgbox RustboroCity_Text_1E17FE, MSGBOX_DEFAULT
-	@ closemessage
-	@ playbgm MUS_AQA_0, 0
-	@ addobject 10
-	@ addobject 9
-	@ applymovement 10, RustboroCity_Movement_1E0AA0
-	@ waitmovement 0
-	@ removeobject 10
-	@ applymovement 9, RustboroCity_Movement_1E0AB1
-	@ waitmovement 0
-	@ msgbox RustboroCity_Text_1E1817, MSGBOX_DEFAULT
-	@ closemessage
-	@ applymovement 9, RustboroCity_Movement_1E0AB9
-	@ waitmovement 0
-	@ fadedefaultbgm
-	@ removeobject 9
-	@ setobjectxyperm 9, 30, 10
-	@ clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
-	@ setflag FLAG_DEVON_GOODS_STOLEN
-	@ setvar VAR_RUSTBORO_STATE, 2
-	@ setvar VAR_RUSTURF_TUNNEL_STATE, 2
-	@ setvar VAR_ROUTE116_STATE, 1
-	@ clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
-	@ clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
-	@ clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-	@ setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-	@ setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	@ releaseall
-
-
-
-
-
-
-// TODO: setvar VAR_ROUTE104_STATE, 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@ RustboroCity_EventScript_1E095A:: @ 81E095A
-@ 	lockall
-@ 	setobjectxyperm 9, 14, 21
-@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-@ 	setvar VAR_0x8004, 0
-@ 	goto RustboroCity_EventScript_1E09CD
-@ 	end
-
-@ RustboroCity_EventScript_1E0971:: @ 81E0971
-@ 	lockall
-@ 	setobjectxyperm 9, 14, 21
-@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-@ 	setvar VAR_0x8004, 1
-@ 	goto RustboroCity_EventScript_1E09CD
-@ 	end
-
-@ RustboroCity_EventScript_1E0988:: @ 81E0988
-@ 	lockall
-@ 	setobjectxyperm 9, 14, 21
-@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-@ 	setvar VAR_0x8004, 2
-@ 	goto RustboroCity_EventScript_1E09CD
-@ 	end
-
-@ RustboroCity_EventScript_1E099F:: @ 81E099F
-@ 	lockall
-@ 	setobjectxyperm 9, 14, 21
-@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-@ 	setvar VAR_0x8004, 3
-@ 	goto RustboroCity_EventScript_1E09CD
-@ 	end
-
-@ RustboroCity_EventScript_1E09B6:: @ 81E09B6
-@ 	lockall
-@ 	setobjectxyperm 9, 14, 21
-@ 	setobjectmovementtype 9, MOVEMENT_TYPE_FACE_RIGHT
-@ 	setvar VAR_0x8004, 4
-@ 	goto RustboroCity_EventScript_1E09CD
-@ 	end
-
-@ RustboroCity_EventScript_1E09CD:: @ 81E09CD
-	
-@ 	end
-@ RustboroCity_Text_1E17FE: @ 81E17FE
-@ 	.string "Get out!\n"
-@ 	.string "Out of the way!$"
-@ RustboroCity_Text_1E1817: @ 81E1817
-@ 	.string "Wait! Pleeeaaase!\p"
-@ 	.string "Don't take my GOODS!$"
 
 @ -----------------------------------------------------
 

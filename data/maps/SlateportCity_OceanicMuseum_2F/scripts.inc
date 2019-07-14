@@ -313,6 +313,7 @@ SlateportCity_OceanicMuseum_2F_TriggerScript_SternMugging::
 	setflag FLAG_DELIVERED_DEVON_GOODS
 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3
 	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	call Common_EventScript_ClearSceneFlags
 	@ reload map
 	warpcustom MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_2F, 255, VAR_INTERACT_X, VAR_INTERACT_Y
 	waitstate
