@@ -150,7 +150,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0AFE",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "4",
@@ -168,7 +168,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0B16",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "4",
@@ -177,7 +177,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0B22",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "4",
@@ -195,7 +195,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0C37",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "4",
@@ -294,7 +294,7 @@
         },
         {
             "elevation": 0,
-            "script": "NULL",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "4",
@@ -436,7 +436,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_RUSTBORO_CITY_MAGMA_GRUNT",
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE",
             "graphics_id": "EVENT_OBJ_GFX_MAGMA_MEMBER_M",
             "movement_range_x": 0,
             "movement_range_y": 0,

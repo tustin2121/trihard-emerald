@@ -597,15 +597,15 @@
         {
             "elevation": 0,
             "flag": "FLAG_HIDE_SLATEPORT_CITY_SCOTT",
-            "graphics_id": "EVENT_OBJ_GFX_SCOTT",
+            "graphics_id": "EVENT_OBJ_GFX_WALLY",
             "movement_range_x": 1,
             "movement_range_y": 2,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 18,
-            "y": 12
+            "x": 36,
+            "y": 23
         },
         {
             "elevation": 0,

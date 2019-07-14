@@ -22,6 +22,7 @@
 #include "text_window.h"
 #include "string_util.h"
 #include "sound.h"
+#include "naming_screen.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "constants/maps.h"
@@ -70,6 +71,7 @@ static void DebugHandle_SetLegendaryFight();
 static void DebugHandle_GiveDebugParty();
 static void DebugHandle_TestScript1();
 static void DebugHandle_SwapGenders();
+static void DebugHandle_RenamePlayer();
 static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
@@ -101,6 +103,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_GiveDebugParty,
 	DebugHandle_TestScript1,
 	DebugHandle_SwapGenders,
+	DebugHandle_RenamePlayer,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -369,6 +372,38 @@ void DebugHandle_SwapGenders()
 	gSaveBlock2Ptr->playerForm = gDebugInterrupts.args[0];
 	DebugHandle_ReloadMap();
 }
+
+
+static void CB2_FinishRenaming()
+{
+	int i;
+	for (i = 0; i < PARTY_SIZE; i++)
+	{
+		if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) == SPECIES_NONE) continue;
+		SetMonData(&gPlayerParty[i], MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+	}
+	
+	CB2_ReturnToFieldContinueScript();
+}
+
+static void Task_InitPlayerNamingScreen(u8 taskId)
+{
+	if (!gPaletteFade.active)
+	{
+		DestroyTask(taskId);
+		DoNamingScreen(0, gSaveBlock2Ptr->playerName, GetPlayerGender(), 0, 0, CB2_FinishRenaming);
+	}
+}
+// arguments: none
+// returns: none
+void DebugHandle_RenamePlayer()
+{
+	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+	CreateTask(Task_InitPlayerNamingScreen, 0);
+	ScriptContext1_SetupScript(DebugScript_ShowDebugScreen);
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Sound Test Dialog

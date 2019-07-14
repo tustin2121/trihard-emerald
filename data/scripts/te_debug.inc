@@ -31,6 +31,7 @@ DebugScript_ShowDebugScreen::
 	lockall
 	playse SE_SELECT
 	waitstate @ script pauses here until manually reenabled
+	special DebugSetCallbackSuccess
 	releaseall
 	end
 

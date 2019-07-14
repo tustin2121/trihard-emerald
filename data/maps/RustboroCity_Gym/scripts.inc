@@ -157,7 +157,7 @@ RustboroCity_Gym_Text_2139A7: @ 82139A7
 	.string "By battling many TRAINERS, you should\n"
 	.string "learn many things.$"
 RustboroCity_Gym_EventScript_212F66:: @ 8212F66
-	message RustboroCity_Gym_Text_2137EC
+	message RustboroCity_Gym_Text_2137EC, MSGTYPE_DESCRIBE
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox RustboroCity_Gym_Text_213816, MSGBOX_DEFAULT

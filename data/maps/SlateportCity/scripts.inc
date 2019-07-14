@@ -13,8 +13,6 @@ SlateportCity_OnTransition: @ 81DCC6C
 	call SlateportCity_EventScript_1DCC8D
 	compare VAR_SLATEPORT_STATE, 1
 	call_if_eq SlateportCity_EventScript_1DCC99
-	@ compare VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3
-	@ call_if_eq SlateportCity_EventScript_PositionScottAfterMuseum
 	end
 SlateportCity_EventScript_1DCC8D:: @ 81DCC8D
 	setflag FLAG_VISITED_SLATEPORT_CITY
@@ -54,162 +52,6 @@ SlateportCity_EventScript_1DCD06:: @ 81DCD06
 SlateportCity_MapScript2_FrameTable: @ 81DCD12
 	map_script_2 VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3, SlateportCity_EventScript_LoganAfterMuseum
 	.2byte 0
-
-@ -----------------------------------------------------
-@ Scott (TODO: REMOVE)
-
-SlateportCity_EventScript_LoganAfterMuseum:
-	lockall
-	@ Logan limps out and scolds the player
-	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 4
-	releaseall
-	end
-
-
-@ SlateportCity_EventScript_ScottAfterMuseum:: @ 81DCD1C
-@ 	lockall
-@ 	addobject LID_SCOTT
-@ 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DCDA8
-@ 	applymovement LID_SCOTT, SlateportCity_Movement_1DCDAC
-@ 	waitmovement 0
-@ 	msgbox SlateportCity_Text_1DF032, MSGBOX_DEFAULT
-@ 	closemessage
-@ 	applymovement LID_SCOTT, Common_Movement_WalkInPlaceLeft
-@ 	waitmovement 0
-@ 	delay 60
-@ 	msgbox SlateportCity_Text_1DF0FE, MSGBOX_DEFAULT
-@ 	applymovement LID_SCOTT, Common_Movement_WalkInPlaceRight
-@ 	waitmovement 0
-@ 	msgbox SlateportCity_Text_1DF12B, MSGBOX_DEFAULT
-@ 	closemessage
-@ 	delay 30
-@ 	playfanfare MUS_ME_TORE_EYE
-@ 	msgbox SlateportCity_Text_1DF1A6, MSGBOX_DEFAULT
-@ 	waitfanfare
-@ 	closemessage
-@ 	delay 30
-@ 	setflag FLAG_ENABLE_SCOTT_MATCH_CALL
-@ 	msgbox SlateportCity_Text_1DF1D3, MSGBOX_DEFAULT
-@ 	closemessage
-@ 	applymovement LID_SCOTT, SlateportCity_Movement_1DCDB4
-@ 	waitmovement 0
-@ 	removeobject LID_SCOTT
-@ 	setobjectxyperm LID_SCOTT, 18, 12
-@ 	setobjectmovementtype LID_SCOTT, MOVEMENT_TYPE_FACE_DOWN
-@ 	clearflag FLAG_HIDE_MAP_NAME_POPUP
-@ 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 2
-@ 	addvar VAR_SCOTT_STATE, 1
-@ 	releaseall
-@ 	end
-@ SlateportCity_Movement_1DCDA8: @ 81DCDA8
-@ 	delay_16
-@ 	delay_8
-@ 	walk_in_place_fastest_left
-@ 	step_end
-@ SlateportCity_Movement_1DCDAC: @ 81DCDAC
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	step_end
-@ SlateportCity_Text_1DF032: @ 81DF032
-@ 	.string "SCOTT: Huh?\n"
-@ 	.string "I'm sure I met you somewhere before.\p"
-@ 	.string "Have I introduced myself to you?\n"
-@ 	.string "If not, my name's SCOTT.\p"
-@ 	.string "I just saw Team Aqua run away from\n"
-@ 	.string "here like they were stung.\p"
-@ 	.string "Let me guess--you drove them away?$"
-@ SlateportCity_Text_1DF0FE: @ 81DF0FE
-@ 	.string "SCOTT: Hmm…\n"
-@ 	.string "Maybe, just maybe, this TRAINER…$"
-@ SlateportCity_Text_1DF12B: @ 81DF12B
-@ 	.string "SCOTT: All right! I think you're going\n"
-@ 	.string "to become a good friend.\p"
-@ 	.string "So, let's register each other in our\n"
-@ 	.string "PokéNavs.\p"
-@ 	.string "… … … … … …$"
-@ SlateportCity_Text_1DF1A6: @ 81DF1A6
-@ 	.string "Registered this SCOTT person\n"
-@ 	.string "in the PokéNav.$"
-@ SlateportCity_Text_1DF1D3: @ 81DF1D3
-@ 	.string "SCOTT: What I'd like to do is tag along\n"
-@ 	.string "with you, but I do want to keep an eye\l"
-@ 	.string "on the talents of other people, too.\p"
-@ 	.string "So, I'll be off to roam other towns\n"
-@ 	.string "a bit more.\p"
-@ 	.string "Be seeing you, {PLAYER}!$"
-@ SlateportCity_Movement_1DCDB4: @ 81DCDB4
-@ 	walk_left
-@ 	walk_left
-@ 	walk_left
-@ 	walk_left
-@ 	walk_left
-@ 	walk_left
-@ 	walk_left
-@ 	walk_left
-@ 	step_end
-
-
-@ SlateportCity_EventScript_1DD5DC:: @ 81DD5DC
-@ 	lockall
-@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
-@ 	waitmovement 0
-@ 	opendoor 10, 12
-@ 	waitdooranim
-@ 	addobject 35
-@ 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DD630
-@ 	applymovement 35, SlateportCity_Movement_1DD637
-@ 	waitmovement 0
-@ 	closedoor 10, 12
-@ 	waitdooranim
-@ 	msgbox SlateportCity_Text_1DF28C, MSGBOX_DEFAULT
-@ 	closemessage
-@ 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DD634
-@ 	applymovement 35, SlateportCity_Movement_1DD63A
-@ 	waitmovement 0
-@ 	removeobject 35
-@ 	addvar VAR_SCOTT_STATE, 1
-@ 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3
-@ 	releaseall
-@ 	end
-@ SlateportCity_Text_1DF28C: @ 81DF28C
-@ 	.string "SCOTT: Oh, hey!\n"
-@ 	.string "If it isn't {PLAYER}!\p"
-@ 	.string "{PLAYER}, let me guess--you're going\n"
-@ 	.string "to take the Battle Tent challenge?\p"
-@ 	.string "Yeah! That's a good idea!\n"
-@ 	.string "That's a really great idea!\p"
-@ 	.string "After all, a tough TRAINER is\n"
-@ 	.string "the perfect fit for the Battle Tent!\p"
-@ 	.string "Give it your best effort!$"
-@ SlateportCity_Movement_1DD630: @ 81DD630
-@ 	lock_facing_direction
-@ 	walk_down
-@ 	unlock_facing_direction
-@ 	step_end
-@ SlateportCity_Movement_1DD637: @ 81DD637
-@ 	delay_8
-@ 	walk_down
-@ 	step_end
-@ SlateportCity_Movement_1DD634: @ 81DD634
-@ 	delay_16
-@ 	walk_in_place_fastest_right
-@ 	step_end
-@ SlateportCity_Movement_1DD63A: @ 81DD63A
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	step_end
-
 
 @ -----------------------------------------------------
 @ Signs
@@ -1145,6 +987,78 @@ SlateportCity_Movement_AquaLineMove_GoIn:
 #undef LID_FRONT2
 #undef LID_FRONT3
 
+@ -----------------------------------------------------
+@ Cutscene: Logan Post Museum
+
+#define LID_LOGAN 35
+
+SlateportCity_EventScript_LoganAfterMuseum:
+	lockall
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	special SpawnCameraObject
+	@
+	playse SE_KAIDAN
+	setobjectxyperm LID_LOGAN, VAR_INTERACT_X, 26
+	addobject LID_LOGAN
+	delay 32
+	playse SE_W233B
+	applymovement LID_LOGAN, SlateportCity_Movement_LoganAfterMuseum_LoganShove
+	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_LoganAfterMuseum_PlayerShoved
+	applymovement EVENT_OBJ_ID_CAMERA, Common_Movement_WalkDown1
+	markasdialog
+	msgbox SlateportCity_Text_LoganAfterMuseum1
+	waitmovement EVENT_OBJ_ID_PLAYER
+	waitmovement EVENT_OBJ_ID_CAMERA
+	special RemoveCameraObject
+	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_LoganAfterMuseum_PlayerWatch
+	applymovement LID_LOGAN, SlateportCity_Movement_LoganAfterMuseum_LoganRunOff
+	waitmovement 0
+	removeobject LID_LOGAN
+	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 4
+	setvar VAR_LOGAN_STATE, 5
+	releaseall
+	end
+SlateportCity_Text_LoganAfterMuseum1:
+	.string "{RIVAL_HERO}: What is your problem,\n"
+	.string "you big stupid jerk?!\p"
+	.string "You nearly got my Seedot killed!\p"
+	.string "This isn't the end of this!$"
+
+SlateportCity_Movement_LoganAfterMuseum_PlayerShoved:
+	slide_down
+	slide_down
+	emote_exclamation_mark
+	delay_16
+	delay_16
+	face_left
+	delay_16
+	face_right
+	delay_16
+	face_down
+	delay_8
+	player_run_up
+	step_end
+SlateportCity_Movement_LoganAfterMuseum_LoganShove:
+	delay_8
+	walk_slow_down
+	step_end
+
+SlateportCity_Movement_LoganAfterMuseum_LoganRunOff:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+SlateportCity_Movement_LoganAfterMuseum_PlayerWatch:
+	delay_8
+	walk_in_place_fastest_left
+	step_end
+
+#undef LID_LOGAN
 
 @ -----------------------------------------------------
 @ Captain Stern Scene

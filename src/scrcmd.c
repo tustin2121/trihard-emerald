@@ -480,7 +480,7 @@ bool8 ScrCmd_compare_var_to_var(struct ScriptContext *ctx)
 bool8 ScrCmd_addvar(struct ScriptContext *ctx)
 {
     u16 *ptr = GetVarPointer(ScriptReadHalfword(ctx));
-    *ptr += ScriptReadHalfword(ctx);
+    *ptr += VarGet(ScriptReadHalfword(ctx));
     return FALSE;
 }
 

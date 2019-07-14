@@ -13,6 +13,8 @@ RustboroCity_OnTransition: @ 81E06C8
 	call_if_eq RustboroCity_EventScript_SetupAqua2
 	compare VAR_RUSTBORO_STATE, 3
 	call_if_eq RustboroCity_EventScript_SetupAqua3
+	compare VAR_RUSTBORO_STATE, 4
+	call_if_eq RustboroCity_EventScript_SetupAqua4
 	@ compare VAR_RUSTBORO_STATE, 6
 	@ call_if_eq Common_EventScript_HideMapNamePopup
 	@ getplayerxy VAR_TEMP_0, VAR_TEMP_1
@@ -417,7 +419,7 @@ RustboroCity_TriggerScript_HeistCutscene1::
 	@ Reset magma grunt actor to separate person
 	setobjectmovementtype LID_MAGMA, MOVEMENT_TYPE_LYING_DOWN
 	setobjectxyperm LID_MAGMA, 13, 18
-	clearflag FLAG_HIDE_RUSTBORO_CITY_MAGMA_GRUNT
+	@ clearflag FLAG_UNUSED_0x2DB
 	clearflag FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS
 	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
 	call RustboroCity_EventScript_SetupDevonScene
@@ -640,6 +642,7 @@ RustboroCity_TriggerScript_AquasTask1::
 	waitmovement EVENT_OBJ_ID_PLAYER
 	@ Clean up
 	setvar VAR_RUSTBORO_STATE, 3
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
 	setobjectmovementtype LID_AQUA_BOY, MOVEMENT_TYPE_LOOK_AROUND
 	setobjectmovementtype LID_AQUA_GIRL, MOVEMENT_TYPE_LOOK_AROUND
 	setobjectmovementtype LID_AQUA_3, MOVEMENT_TYPE_LOOK_AROUND
@@ -937,6 +940,378 @@ RustboroCity_EventScript_SetupAqua3:
 	setobjectmovementtype LID_AQUA_GIRL, MOVEMENT_TYPE_LOOK_AROUND
 	setobjectmovementtype LID_AQUA_3, MOVEMENT_TYPE_LOOK_AROUND
 	return
+
+@ -----------------------------------------------------
+
+RustboroCity_EventScript_SetupAqua4:
+	setobjectxyperm LID_AQUA_BOY, 29, 12
+	setobjectxyperm LID_AQUA_GIRL, 27, 12
+	setobjectxyperm LID_AQUA_3, 28, 12
+	return
+
+RustboroCity_TriggerScript_AquaTaskReturn::
+	lockall
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	subvar VAR_INTERACT_Y, 8
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	applymovement LID_AQUA_BOY, Common_Movement_ExclamationMarkAndWait
+	waitmovement 0
+	@
+	markasdialog -26
+	msgbox RustboroCity_Text_AquaTaskReturn1
+	closemessage
+	@
+	selectpointer RustboroCity_MovementTable_AquaTaskReturn2_Player, VAR_INTERACT_Y
+	applymovement EVENT_OBJ_ID_PLAYER, 0
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquaTaskReturn2_AquaBoy
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquaTaskReturn2_AquaGirl
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquaTaskReturn2_AquaThree
+	waitmovement 0
+	waitmovement EVENT_OBJ_ID_PLAYER
+	@
+	markasdialog 6
+	msgbox RustboroCity_Text_AquaTaskReturn3
+	playse SE_SELECT
+	@
+	msgbox RustboroCity_Text_AquaTaskReturn4, MSGBOX_DESCRIBE
+	playse SE_SELECT
+	takeitem ITEM_DEVON_GOODS, 1
+	@
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquaTaskReturn5_AquaThree
+	msgbox RustboroCity_Text_AquaTaskReturn5
+	closemessage
+	@ 
+	special SpawnCameraObject
+	playse SE_PIN
+	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquaTaskReturn6_Player
+	applymovement LID_AQUA_3, RustboroCity_Movement_AquaTaskReturn6_AquaThree
+	@ Determine friendship level, split cutscene
+	setvar VAR_TEMP_F, 0
+	addvar VAR_TEMP_F, VAR_AQUA_BOY_FRIENDSHIP
+	addvar VAR_TEMP_F, VAR_AQUA_GIRL_FRIENDSHIP
+	compare VAR_TEMP_F, 2 @ Broken??
+	goto_if_eq RustboroCity_TriggerScript_AquaTaskReturn_FriendBoth
+	compare VAR_AQUA_BOY_FRIENDSHIP, 1
+	goto_if_eq RustboroCity_TriggerScript_AquaTaskReturn_FriendBoy
+	compare VAR_AQUA_GIRL_FRIENDSHIP, 1
+	goto_if_eq RustboroCity_TriggerScript_AquaTaskReturn_FriendGirl
+	goto RustboroCity_TriggerScript_AquaTaskReturn_FriendNone
+	end
+
+RustboroCity_TriggerScript_AquaTaskReturn_FriendBoth:
+	@ three runs off, protag is sad
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquaTaskReturn6_AquaGirl
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquaTaskReturn6_AquaBoy
+	waitmovement LID_AQUA_BOY
+	@
+	markasdialog 6
+	msgbox RustboroCity_Text_AquaTaskReturn7
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	playse SE_SELECT
+	message RustboroCity_Text_AquaTaskReturn8_boy
+	waitmessage
+	@
+	applymovement LID_AQUA_GIRL, Common_Movement_WalkRight2
+	markasdialog -14
+	message RustboroCity_Text_AquaTaskReturn8_bgirl
+	waitmessage
+	waitmovement 0
+	@
+	markasdialog 6
+	message RustboroCity_Text_AquaTaskReturn8a
+	waitmessage
+	@
+	goto RustboroCity_TriggerScript_AquaTaskReturn_Finish
+	end
+
+RustboroCity_TriggerScript_AquaTaskReturn_FriendBoy:
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquaTaskReturn6_AquaGirl
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquaTaskReturn6_AquaBoy
+	waitmovement LID_AQUA_BOY
+	@
+	markasdialog 12
+	msgbox RustboroCity_Text_AquaTaskReturn7
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	playse SE_SELECT
+	message RustboroCity_Text_AquaTaskReturn8_boy
+	waitmessage
+	message RustboroCity_Text_AquaTaskReturn8a
+	waitmessage
+	@
+	goto RustboroCity_TriggerScript_AquaTaskReturn_Finish
+	end
+
+RustboroCity_TriggerScript_AquaTaskReturn_FriendGirl:
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquaTaskReturn6a_AquaGirl
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquaTaskReturn6a_AquaBoy
+	waitmovement LID_AQUA_GIRL
+	@
+	markasdialog 12
+	msgbox RustboroCity_Text_AquaTaskReturn7
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	playse SE_SELECT
+	message RustboroCity_Text_AquaTaskReturn8_girl
+	waitmessage
+	message RustboroCity_Text_AquaTaskReturn8a
+	waitmessage
+	@
+	goto RustboroCity_TriggerScript_AquaTaskReturn_Finish
+	end
+
+RustboroCity_TriggerScript_AquaTaskReturn_FriendNone:
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquaTaskReturn6_AquaGirl
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquaTaskReturn6_AquaBoy
+	waitmovement LID_AQUA_BOY
+	@
+	markasdialog 6
+	msgbox RustboroCity_Text_AquaTaskReturn7
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	playse SE_SELECT
+	message RustboroCity_Text_AquaTaskReturn8_none
+	waitmessage
+	@
+	goto RustboroCity_TriggerScript_AquaTaskReturn_Finish
+	end
+	
+RustboroCity_TriggerScript_AquaTaskReturn_Finish:
+	msgbox RustboroCity_Text_AquaTaskReturn9
+	closemessage
+	applymovement LID_AQUA_GIRL, RustboroCity_Movement_AquaTaskReturn9
+	applymovement LID_AQUA_BOY, RustboroCity_Movement_AquaTaskReturn9
+	applymovement EVENT_OBJ_ID_CAMERA, Common_Movement_WalkRight2
+	waitmovement LID_AQUA_BOY
+	waitmovement EVENT_OBJ_ID_CAMERA
+	@ Clean up
+	special RemoveCameraObject
+	removeobject LID_AQUA_GIRL
+	removeobject LID_AQUA_BOY
+	removeobject LID_AQUA_3
+	setvar VAR_RUSTBORO_STATE, 7
+	setvar VAR_LOGAN_STATE, 2
+	setflag FLAG_HIDE_ROUTE_116_TUNNELER
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_LOVER_MAN
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_LOVER_WOMAN
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	setvar VAR_BRINEY_LOCATION, 1
+	releaseall
+	end
+
+RustboroCity_Text_AquaTaskReturn1:
+	.string "Oh! {PLAYER_They}'s back!$"
+RustboroCity_Text_AquaTaskReturn3:
+	.string "So, did you get it?$"
+RustboroCity_Text_AquaTaskReturn4:
+	.string "{PLAYER} handed over the\n"
+	.string "{ITEM}Devon Goods{END}$"
+RustboroCity_Text_AquaTaskReturn5:
+	.string "Oh, wow, {PLAYER_they} actually got it!\n"
+	.string "The boss'll be so pleased!\p"
+	.string "Thanks, sucker!!$"
+RustboroCity_Text_AquaTaskReturn7:
+	.string "Hey, uh…\p"
+	.string "Sorry about him.\p"
+	.string "You did great, getting that for us.\n"
+	.string "What's your name, kid?$"
+RustboroCity_Text_AquaTaskReturn8_boy:
+	.string "{PLAYER}?\n"
+	.string "My name's {AQUA_BOY}.\p$"
+RustboroCity_Text_AquaTaskReturn8_girl:
+	.string "{PLAYER}?\n"
+	.string "My name's {AQUA_GIRL}.\p$"
+RustboroCity_Text_AquaTaskReturn8_bgirl:
+	.string "And my name's {AQUA_GIRL}.\p$"
+RustboroCity_Text_AquaTaskReturn8a:
+	.string "We'll put in a good word for you.\p"
+	.string "Maybe the boss'll give ya some colors\n"
+	.string "if we meet again, alright?\p$"
+RustboroCity_Text_AquaTaskReturn8_none:
+	.string "{PLAYER}?\n"
+	.string "We'll put in a good word for you.\p"
+	.string "Maybe the boss'll give ya some colors\n"
+	.string "if we meet again, alright?\p$"
+RustboroCity_Text_AquaTaskReturn9:
+	.string "See yah around, {PLAYER}.$"
+
+.align 2
+RustboroCity_MovementTable_AquaTaskReturn2_Player:
+	.4byte RustboroCity_Movement_AquaTaskReturn2_Player1
+	.4byte RustboroCity_Movement_AquaTaskReturn2_Player2
+	.4byte RustboroCity_Movement_AquaTaskReturn2_Player3
+	.4byte RustboroCity_Movement_AquaTaskReturn2_Player4
+	.4byte RustboroCity_Movement_AquaTaskReturn2_Player5
+	.4byte 0
+RustboroCity_Movement_AquaTaskReturn2_Player1:
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+RustboroCity_Movement_AquaTaskReturn2_Player2:
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+RustboroCity_Movement_AquaTaskReturn2_Player3:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+RustboroCity_Movement_AquaTaskReturn2_Player4:
+	walk_up
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+RustboroCity_Movement_AquaTaskReturn2_Player5:
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+RustboroCity_Movement_AquaTaskReturn2_AquaBoy:
+	walk_up
+	walk_right
+	walk_right
+	delay_16
+	delay_16
+	walk_in_place_fast_up
+	step_end
+RustboroCity_Movement_AquaTaskReturn2_AquaGirl:
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fast_down
+	step_end
+RustboroCity_Movement_AquaTaskReturn2_AquaThree:
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+RustboroCity_Movement_AquaTaskReturn5_AquaThree:
+	lock_facing_direction
+	walk_left
+	unlock_facing_direction
+	delay_1
+	step_end
+
+RustboroCity_Movement_AquaTaskReturn6_Player:
+	emote_exclamation_mark
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_down
+	delay_16
+	delay_16
+	walk_slow_right
+	delay_16
+	walk_slow_right
+	step_end
+RustboroCity_Movement_AquaTaskReturn6_AquaThree:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+RustboroCity_Movement_AquaTaskReturn6_AquaGirl:
+	delay_2
+	delay_4
+	walk_left
+	walk_fast_left
+	walk_left
+	delay_16
+	delay_16
+	delay_4
+	delay_1
+	walk_in_place_fast_down
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_right
+	step_end
+RustboroCity_Movement_AquaTaskReturn6_AquaBoy:
+	delay_8
+	delay_1
+	walk_slow_left
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_right
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_right
+	step_end
+
+RustboroCity_Movement_AquaTaskReturn6a_AquaBoy:
+	walk_left
+	walk_fast_left
+	walk_left
+	delay_16
+	delay_16
+	walk_in_place_fast_up
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_right
+	step_end
+RustboroCity_Movement_AquaTaskReturn6a_AquaGirl:
+	walk_slow_left
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_in_place_right
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_right
+	walk_right
+	step_end
+
+RustboroCity_Movement_AquaTaskReturn9:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
 
 #undef LID_MAGMA
 #undef LID_AQUA_GIRL

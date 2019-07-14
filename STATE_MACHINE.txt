@@ -4,7 +4,8 @@ VAR_LOGAN_STATE :=
 	2 = Logan has run away from Petalburg, trigger on Route 104
 	3 = Logan is in Rustboro
 	4 = Logan is in Slateport
-	5 = 
+	5 = Logan post-museum
+	6 = 
 
 VAR_AQUA_GIRL_FRIENDSHIP :=
 	0 = No relationship 
@@ -45,11 +46,10 @@ VAR_RUSTBORO_STATE :=
 	2 = Post-Heist, Aquas to give task on trigger
 	3 = Post Task Assignment
 	4 = Post Task Completion, Aquas will recieve player on trigger
-	5 = 
-	6 =
+	5 = <skiped>
+	6 = <skiped>
 	7 = Rival PokeNav/Fight Trigger
-	8 = Post Rival Trigger, Trigger Logan Meeting
-	9 = Post Logan Meeting
+	8 = Post Rival Trigger
 
 
 VAR_SLATEPORT_MUSEUM_HEIST_STATE :=

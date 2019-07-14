@@ -20,6 +20,7 @@ const DebugHandle_SetLegendaryFight = 12;
 const DebugHandle_GiveDebugParty = 13;
 const DebugHandle_TestScript1 = 14;
 const DebugHandle_SwapGenders = 15;
+const DebugHandle_RenamePlayer = 16;
 
 // Menu Functions
 function initMenuV1() {
@@ -67,6 +68,11 @@ function initMenuV1() {
 		$(`<li>Change Player Gender/Form…</li>`).appendTo($m)
 			.on('click', function(){
 				switchMenu('genders');
+			});
+		$(`<li>Change Player Name</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_RenamePlayer });
+				switchMenu();
 			});
 		$(`<li>Open Sound Test</li>`).appendTo($m)
 			.on('click', function(){

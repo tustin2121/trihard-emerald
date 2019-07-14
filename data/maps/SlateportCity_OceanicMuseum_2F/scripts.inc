@@ -255,6 +255,7 @@ SlateportCity_OceanicMuseum_2F_TriggerScript_SternMugging::
 	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging15
 	waitmovement LID_AQUA_BOY
 	@ Back off, enter Archie
+	closemessage
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	setobjectxyperm LID_ARCHIE, 6, 2
@@ -400,7 +401,7 @@ SlateportCity_OceanicMuseum_2F_Text_SternMugging20:
 	.string "But that does not mean you have not\n"
 	.string "proven yourself today.\p"
 	.string "I apologize. This will have to do for\n"
-	.string "the interum.$"
+	.string "the interim.$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging21:
 	.string "Archie takes the armband from his arm\n"
 	.string "and hands it to you.\p$"
