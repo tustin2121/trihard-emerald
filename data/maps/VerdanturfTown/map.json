@@ -67,6 +67,14 @@
             "type": "sign",
             "x": 7,
             "y": 3
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Common_EventScript_BattleTentClosed",
+            "type": "sign",
+            "x": 3,
+            "y": 7
         }
     ],
     "connections": [
@@ -151,7 +159,7 @@
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 3,
-            "y": 7
+            "y": 6
         },
         {
             "dest_map": "MAP_VERDANTURF_TOWN_MART",

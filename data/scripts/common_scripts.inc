@@ -227,6 +227,13 @@ gText_PokemonCenterSign:: @ 8272B9E
 	.string "“Rejuvenate your tired partners!”\n"
 	.string "{PLACE}Pokémon Center$"
 
+Common_EventScript_BattleTentClosed::
+	msgbox gText_BattleTentClosed, MSGBOX_SIGN
+	end
+gText_BattleTentClosed:
+	.string "{CENTER}Closed for Renovations$"
+
+
 @ Music/Sound Scripts
 
 Common_EventScript_StartBrineyBoatSequence:: @ 82720A0
