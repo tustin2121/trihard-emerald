@@ -901,7 +901,7 @@ PetalburgCity_Gym_Text_205FE5: @ 8205FE5
 	.string "And for some reason, I was reminded\n"
 	.string "inexplicably of my own {PLAYER_son}.\p"
 	.string "{PLAYER_They} is still back in Johto, so I'm\n"
-	.string "sure you don't know him, but he has\l"
+	.string "sure you don't know {PLAYER_them}, but {PLAYER_they} has\l"
 	.string "the same determination as you.\p"
 	.string "Challenger! Are you prepared to take\n"
 	.string "me on?!$"
