@@ -46,11 +46,11 @@
             "graphics_id": "EVENT_OBJ_GFX_SAILOR",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
             "script": "MossdeepCity_SpaceCenter_1F_EventScript_SunStoneGuy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 6,
+            "x": 1,
             "y": 6
         },
         {
@@ -134,28 +134,41 @@
         {
             "elevation": 0,
             "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_INVISIBLE_NINJA_BOY",
-            "graphics_id": "EVENT_OBJ_GFX_NINJA_BOY",
+            "graphics_id": "EVENT_OBJ_GFX_LETTER",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_INVISIBLE",
-            "script": "MossdeepCity_SpaceCenter_1F_EventScript_2231CF",
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "MossdeepCity_SpaceCenter_1F_EventScript_Notice",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 2,
-            "y": 5
+            "x": 10,
+            "y": 7
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN",
-            "graphics_id": "EVENT_OBJ_GFX_STEVEN",
+            "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_AQUA_BOY",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "MossdeepCity_SpaceCenter_1F_EventScript_2231B9",
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 1,
-            "y": 4
+            "x": 7,
+            "y": 7
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA",
+            "graphics_id": "EVENT_OBJ_GFX_MAGMA_MEMBER_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "MossdeepCity_SpaceCenter_1F_EventScript_DefeatedGrunt",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 6,
+            "y": 7
         }
     ],
     "region_map_section": "MAPSEC_MOSSDEEP_CITY",

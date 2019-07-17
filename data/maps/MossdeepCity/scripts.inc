@@ -1,5 +1,6 @@
 MossdeepCity_MapScripts:: @ 81E4A96
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, MossdeepCity_MapTable
 	.byte 0
 
 MossdeepCity_OnTransition: @ 81E4A9C
@@ -14,6 +15,15 @@ MossdeepCity_EventScript_MarkCityVisited:: @ 81E4B38
 	setflag FLAG_VISITED_MOSSDEEP_CITY
 	setvar VAR_TEMP_1, 1
 	end
+
+MossdeepCity_MapTable:
+	@ map_script_2 VAR_LAST_WARP_ID, 8, MossdeepCity_MapTable_StepMusicOn
+	.2byte 0
+
+@ MossdeepCity_MapTable_StepMusicOn:
+@ 	compare VAR_MOSSDEEP_STATE, 2
+@ 	goto_if_eq MossdeepCity_EventScript_MusicOn
+@ 	end
 
 @ -----------------------------------------------------
 @ Sign
@@ -219,152 +229,64 @@ MossdeepCity_Text_1E5581: @ 81E5581
 	.string "mentored Wallace.$"
 
 @ -----------------------------------------------------
+@ State: Magma Invasion
+
+MossdeepCity_EventScript_BlockingAqua::
+	msgbox MossdeepCity_Text_BlockingAqua, MSGBOX_NPC
+	end
+MossdeepCity_Text_BlockingAqua:
+	.string "Oh, hey! {AQUA_BOY} was looking for you!\p"
+	.string "Magma decided to take over the Space\n"
+	.string "Center for some reason. You should go\l"
+	.string "find him to help!\p"
+	.string "Me? I'm the undersea radio relay.\p"
+	.string "The boss and them are in the sub\n"
+	.string "looking for a cave or something?\p"
+	.string "This is the only place on the island\n"
+	.string "where I could get reception.$"
 
 
-MossdeepCity_EventScript_1E4B41:: @ 81E4B41
-@ 	lockall
-@ 	applymovement 14, MossdeepCity_Movement_1E4BAD
-@ 	waitmovement 0
-@ 	applymovement 10, MossdeepCity_Movement_1E4BB7
-@ 	applymovement 11, MossdeepCity_Movement_1E4BB7
-@ 	applymovement 12, MossdeepCity_Movement_1E4BB7
-@ 	applymovement 13, MossdeepCity_Movement_1E4BB7
-@ 	waitmovement 0
-@ 	applymovement 14, MossdeepCity_Movement_1E4BBC
-@ 	applymovement 10, MossdeepCity_Movement_1E4BCA
-@ 	applymovement 11, MossdeepCity_Movement_1E4BDD
-@ 	applymovement 12, MossdeepCity_Movement_1E4BEF
-@ 	applymovement 13, MossdeepCity_Movement_1E4C00
-@ 	waitmovement 0
-@ 	removeobject 14
-@ 	removeobject 10
-@ 	removeobject 11
-@ 	removeobject 12
-@ 	removeobject 13
-@ 	delay 30
-@ 	setvar VAR_MOSSDEEP_STATE, 2
-@ 	setflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
-@ 	releaseall
+MossdeepCity_EventScript_FightingAqua1::
+	lock
+	faceplayer
+	msgbox MossdeepCity_Text_FightingAqua1, MSGBOX_DIALOG
+	faceoriginaldir
+	end
+MossdeepCity_Text_FightingAqua1:
+	.string "{AQUA_BOY} is inside! I'm holding off\n"
+	.string "this one! Get in and help!$"
+
+
+MossdeepCity_EventScript_FightingAqua2::
+	lock
+	faceplayer
+	msgbox MossdeepCity_Text_FightingAqua2, MSGBOX_DIALOG
+	faceoriginaldir
+	end
+MossdeepCity_Text_FightingAqua2:
+	.string "Magma struck at the perfect time,\n"
+	.string "didn't they?\p"
+	.string "Right when half our men are underwater\n"
+	.string "searching for a cave!$"
+
+
+MossdeepCity_EventScript_FightingMagma2::
+	lock
+	faceplayer
+	msgbox MossdeepCity_Text_FightingMagma2, MSGBOX_DIALOG
+	faceoriginaldir
+	end
+MossdeepCity_Text_FightingMagma2:
+	.string "Why must you people meddle in our\n"
+	.string "affairs constantly?!$"
+
+
+MossdeepCity_EventScript_MusicOn::
+	playbgm MUS_MGM0, 0
 	end
 
-@ MossdeepCity_Movement_1E4BAD: @ 81E4BAD
-@ 	delay_16
-@ 	face_right
-@ 	delay_16
-@ 	delay_16
-@ 	delay_16
-@ 	delay_16
-@ 	face_left
-@ 	delay_16
-@ 	delay_16
-@ 	step_end
-
-@ MossdeepCity_Movement_1E4BB7: @ 81E4BB7
-@ 	face_right
-@ 	delay_16
-@ 	delay_16
-@ 	delay_16
-@ 	step_end
-
-@ MossdeepCity_Movement_1E4BBC: @ 81E4BBC
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_down
-@ 	walk_down
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	step_end
-
-@ MossdeepCity_Movement_1E4BCA: @ 81E4BCA
-@ 	delay_16
-@ 	delay_8
-@ 	walk_down
-@ 	walk_down
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_down
-@ 	walk_down
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	step_end
-
-@ MossdeepCity_Movement_1E4BDD: @ 81E4BDD
-@ 	delay_16
-@ 	delay_8
-@ 	walk_down
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_down
-@ 	walk_down
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	step_end
-
-@ MossdeepCity_Movement_1E4BEF: @ 81E4BEF
-@ 	delay_16
-@ 	delay_8
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_down
-@ 	walk_down
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	step_end
-
-@ MossdeepCity_Movement_1E4C00: @ 81E4C00
-@ 	delay_16
-@ 	delay_8
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_down
-@ 	walk_down
-@ 	walk_down
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	walk_right
-@ 	step_end
-
-
-
-
-
-
-
+MossdeepCity_EventScript_MusicOff::
+	fadedefaultbgm
+	end
 
 

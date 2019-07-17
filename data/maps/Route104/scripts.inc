@@ -879,7 +879,7 @@ Route104_Text_RivalMain1_Female: @ 81EDF04
 	.string "I was just visiting Mr. Briney.\n"
 	.string "He told me you saved his Peeko.\p"
 	.string "I… honestly didn't think you were\n"
-	.string "capable of compa- erm… Compass! Skils!\p"
+	.string "capable of compa- erm… Compass! Skills!\p"
 	.string "Anyway, swap numbers? Ha! Haaa…$"
 Route104_Text_RivalMain2_Male: @ 81EDC8F
 	.string "{PLAYER} registered May\n"

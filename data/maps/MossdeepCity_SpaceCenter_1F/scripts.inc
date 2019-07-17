@@ -6,8 +6,8 @@ MossdeepCity_SpaceCenter_1F_MapScripts:: @ 8222F41
 @ -----------------------------------------------------
 
 MossdeepCity_SpaceCenter_1F_OnTransition: @ 8222F4C
-	compare VAR_MOSSDEEP_STATE, 2
-	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_222F58
+	compare VAR_MOSSDEEP_STATE, 1
+	goto_if_le MossdeepCity_SpaceCenter_1F_EventScript_222F58
 	end
 
 MossdeepCity_SpaceCenter_1F_EventScript_222F58:: @ 8222F58
@@ -20,22 +20,23 @@ MossdeepCity_SpaceCenter_1F_EventScript_222F58:: @ 8222F58
 	setobjectxyperm 1, 3, 4
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_RIGHT
 	setobjectmovementtype 2, MOVEMENT_TYPE_FACE_RIGHT
-	compare VAR_MOSSDEEP_SPACE_CENTER_STATE_1, 1
-	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_222FAA
-	compare VAR_MOSSDEEP_SPACE_CENTER_STATE_1, 2
-	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_222FB2
-	compare VAR_MOSSDEEP_SPACE_CENTER_STATE_1, 3
-	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_222FBA
+	selectpointer MossdeepCity_SpaceCenter_1F_PointerTable_PositionGuard, VAR_MOSSDEEP_SPACE_CENTER_STATE_1
+	goto 0
 	end
 
+.align 2
+MossdeepCity_SpaceCenter_1F_PointerTable_PositionGuard:
+	.4byte MossdeepCity_SpaceCenter_1F_EventScript_222FAA
+	.4byte MossdeepCity_SpaceCenter_1F_EventScript_222FAA
+	.4byte MossdeepCity_SpaceCenter_1F_EventScript_222FB2
+	.4byte MossdeepCity_SpaceCenter_1F_EventScript_222FBA
+	.4byte 0
 MossdeepCity_SpaceCenter_1F_EventScript_222FAA:: @ 8222FAA
 	setobjectxyperm 9, 12, 2
 	end
-
 MossdeepCity_SpaceCenter_1F_EventScript_222FB2:: @ 8222FB2
 	setobjectxyperm 9, 13, 3
 	end
-
 MossdeepCity_SpaceCenter_1F_EventScript_222FBA:: @ 8222FBA
 	setobjectxyperm 9, 14, 2
 	end
@@ -43,21 +44,22 @@ MossdeepCity_SpaceCenter_1F_EventScript_222FBA:: @ 8222FBA
 @ -----------------------------------------------------
 
 MossdeepCity_SpaceCenter_1F_OnLoad: @ 8222FC2
-	compare VAR_MOSSDEEP_STATE, 2
+	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_le MossdeepCity_SpaceCenter_1F_EventScript_222FCE
 	end
 
 MossdeepCity_SpaceCenter_1F_EventScript_222FCE:: @ 8222FCE
-	setmetatile 2, 5, 996, 1
+	setmetatile 10, 7, 0x3E4, 1 @ Magma Notice
 	return
 
 @ -----------------------------------------------------
+@ People
 
 MossdeepCity_SpaceCenter_1F_EventScript_LaunchGuy:: @ 8222FD8
 	lock
 	faceplayer
 	markasdialog
-	compare VAR_MOSSDEEP_STATE, 2
+	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_223024
 	dotimebasedevents
 	specialvar VAR_RESULT, GetWeekCount
@@ -109,7 +111,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_RocketScientist1:: @ 8223063
 	lock
 	faceplayer
 	markasdialog
-	compare VAR_MOSSDEEP_STATE, 2
+	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_22307A
 	msgbox MossdeepCity_SpaceCenter_1F_Text_2233D3, MSGBOX_DEFAULT
 	release
@@ -139,7 +141,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_SunStoneGuy:: @ 822308E
 	lock
 	faceplayer
 	markasdialog
-	compare VAR_MOSSDEEP_STATE, 2
+	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_2230DA
 	goto_if_set FLAG_RECEIVED_SUN_STONE_MOSSDEEP, MossdeepCity_SpaceCenter_1F_EventScript_2230D0
 	msgbox MossdeepCity_SpaceCenter_1F_Text_223540, MSGBOX_DEFAULT
@@ -191,9 +193,9 @@ MossdeepCity_SpaceCenter_1F_EventScript_22312D:: @ 822312D
 	lock
 	faceplayer
 	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_SpaceCenter_1F_EventScript_223154
-	compare VAR_MOSSDEEP_STATE, 2
+	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_22315E
-	compare VAR_MOSSDEEP_STATE, 2
+	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_lt MossdeepCity_SpaceCenter_1F_EventScript_223154
 	goto MossdeepCity_SpaceCenter_1F_EventScript_22315E
 	end
@@ -219,9 +221,9 @@ MossdeepCity_SpaceCenter_1F_EventScript_223168:: @ 8223168
 	lock
 	faceplayer
 	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_SpaceCenter_1F_EventScript_22318F
-	compare VAR_MOSSDEEP_STATE, 2
+	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_2231A4
-	compare VAR_MOSSDEEP_STATE, 2
+	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_lt MossdeepCity_SpaceCenter_1F_EventScript_22318F
 	goto MossdeepCity_SpaceCenter_1F_EventScript_2231A4
 	end
@@ -250,33 +252,33 @@ MossdeepCity_SpaceCenter_1F_Text_2237B5: @ 82237B5
 
 
 
-MossdeepCity_SpaceCenter_1F_EventScript_2231B9:: @ 82231B9
-	lock
-	faceplayer
-	msgbox MossdeepCity_SpaceCenter_1F_Text_223849, MSGBOX_DEFAULT
-	faceoriginaldir
-	release
-	end
-MossdeepCity_SpaceCenter_1F_Text_223849: @ 8223849
-	.string "STEVEN: {PLAYER}, have you read that\n"
-	.string "proclamation already?\p"
-	.string "Team Magma is coming after the rocket\n"
-	.string "fuel on this island.\p"
-	.string "I don't know what they'd need it for,\n"
-	.string "but they can't be allowed to take it.\p"
-	.string "I'll keep an eye on things for\n"
-	.string "a while longer.\p"
-	.string "In the meantime, why don't you go\n"
-	.string "check out the town?$"
+@ MossdeepCity_SpaceCenter_1F_EventScript_2231B9:: @ 82231B9
+@ 	lock
+@ 	faceplayer
+@ 	msgbox MossdeepCity_SpaceCenter_1F_Text_223849, MSGBOX_DEFAULT
+@ 	faceoriginaldir
+@ 	release
+@ 	end
+@ MossdeepCity_SpaceCenter_1F_Text_223849: @ 8223849
+@ 	.string "STEVEN: {PLAYER}, have you read that\n"
+@ 	.string "proclamation already?\p"
+@ 	.string "Team Magma is coming after the rocket\n"
+@ 	.string "fuel on this island.\p"
+@ 	.string "I don't know what they'd need it for,\n"
+@ 	.string "but they can't be allowed to take it.\p"
+@ 	.string "I'll keep an eye on things for\n"
+@ 	.string "a while longer.\p"
+@ 	.string "In the meantime, why don't you go\n"
+@ 	.string "check out the town?$"
 
 
 
-MossdeepCity_SpaceCenter_1F_EventScript_2231CF:: @ 82231CF
+MossdeepCity_SpaceCenter_1F_EventScript_Notice:: @ 82231CF
 	lockall
-	msgbox MossdeepCity_SpaceCenter_1F_Text_223C2C, MSGBOX_DEFAULT
+	msgbox MossdeepCity_SpaceCenter_1F_Text_Notice, MSGBOX_DESCRIBE
 	releaseall
 	end
-MossdeepCity_SpaceCenter_1F_Text_223C2C: @ 8223C2C
+MossdeepCity_SpaceCenter_1F_Text_Notice: @ 8223C2C
 	.string "This is…\n"
 	.string "An intent-to-steal notice?\p"
 	.string "“To the staff of the SPACE CENTER:\n"
@@ -289,7 +291,40 @@ MossdeepCity_SpaceCenter_1F_Text_223C2C: @ 8223C2C
 	.string "                                          Team Magma”$"
 
 @ -----------------------------------------------------
-@ Trainers
+@ Cutscene: Bailey
+
+MossdeepCity_SpaceCenter_1F_EventScript_AquaBoy::
+	
+	end
+MossdeepCity_SpaceCenter_1F_Text_AquaBoy1:
+	.string "Oh, good, you're here.$"
+MossdeepCity_SpaceCenter_1F_Text_AquaBoy2:
+	.string "I've got limited resources on account of\n"
+	.string "the boss's undersea expedition.\p"
+	.string "Help me clear these guys out, please?\p"
+	.string "They want the rocket fuel for something,\n"
+	.string "and I don't know what.\p"
+	.string "I need to inform the boss if it might\n"
+	.string "cause trouble for us.\p"
+	.string "Try and minimize their manpower, and I'll\n"
+	.string "go see if I can sneak upstairs.$"
+			
+
+@ -----------------------------------------------------
+@ Magma Grunts
+
+MossdeepCity_SpaceCenter_1F_EventScript_DefeatedGrunt::
+	msgbox MossdeepCity_SpaceCenter_1F_Text_DefeatedGrunt, MSGBOX_NPC
+	end
+MossdeepCity_SpaceCenter_1F_Text_DefeatedGrunt:
+	.string "What? Your buddy beat me already.\p"
+	.string "I'll tell you the same thing I told\n"
+	.string "him: I dunno what my boss wants the\l"
+	.string "fuel for.\p"
+	.string "He never tells us anything.\n"
+	.string "Does YOUR boss tell you anything?$"
+
+
 
 MossdeepCity_SpaceCenter_1F_EventScript_2231DA:: @ 82231DA
 	trainerbattle_single TRAINER_GRUNT_32, MossdeepCity_SpaceCenter_1F_Text_22396C, MossdeepCity_SpaceCenter_1F_Text_223999
@@ -321,12 +356,13 @@ MossdeepCity_SpaceCenter_1F_Text_223A4B: @ 8223A4B
 	.string "we'll come unannounced.$"
 
 
+
 MossdeepCity_SpaceCenter_1F_EventScript_223208:: @ 8223208
 	trainerbattle_single TRAINER_GRUNT_33, MossdeepCity_SpaceCenter_1F_Text_223A8A, MossdeepCity_SpaceCenter_1F_Text_223AFA
 	msgbox MossdeepCity_SpaceCenter_1F_Text_223B37, MSGBOX_AUTOCLOSE
 	end
 MossdeepCity_SpaceCenter_1F_Text_223A8A: @ 8223A8A
-	.string "The rocket fuel the SPACE CENTER has\n"
+	.string "The rocket fuel the Space Center has\n"
 	.string "in storage--that's what we're after.\p"
 	.string "We mean to take every last bit of it!$"
 MossdeepCity_SpaceCenter_1F_Text_223AFA: @ 8223AFA
@@ -360,6 +396,12 @@ MossdeepCity_SpaceCenter_1F_Text_223B90: @ 8223B90
 	.string "gets past me!$"
 MossdeepCity_SpaceCenter_1F_Text_223BC2: @ 8223BC2
 	.string "Ack! Ack! Aaack!$"
+MossdeepCity_SpaceCenter_1F_Movement_2232A2: @ 82232A2
+	face_left
+	lock_facing_direction
+	walk_right
+	unlock_facing_direction
+	step_end
 MossdeepCity_SpaceCenter_1F_EventScript_22326E:: @ 822326E
 	msgbox MossdeepCity_SpaceCenter_1F_Text_223BD3, MSGBOX_DEFAULT
 	release
@@ -368,8 +410,6 @@ MossdeepCity_SpaceCenter_1F_Text_223BD3: @ 8223BD3
 	.string "Please, tell our leader that\n"
 	.string "I never abandoned my post.\l"
 	.string "That I stayed to the bitter end…$"
-
-
 MossdeepCity_SpaceCenter_1F_EventScript_223278:: @ 8223278
 	applymovement 9, MossdeepCity_SpaceCenter_1F_Movement_22329A
 	waitmovement 0
@@ -381,7 +421,6 @@ MossdeepCity_SpaceCenter_1F_Movement_22329A: @ 822329A
 	walk_left
 	unlock_facing_direction
 	step_end
-
 MossdeepCity_SpaceCenter_1F_EventScript_223289:: @ 8223289
 	applymovement 9, MossdeepCity_SpaceCenter_1F_Movement_22329E
 	waitmovement 0
@@ -389,13 +428,6 @@ MossdeepCity_SpaceCenter_1F_EventScript_223289:: @ 8223289
 	release
 	end
 MossdeepCity_SpaceCenter_1F_Movement_22329E: @ 822329E
-	lock_facing_direction
-	walk_right
-	unlock_facing_direction
-	step_end
-
-MossdeepCity_SpaceCenter_1F_Movement_2232A2: @ 82232A2
-	face_left
 	lock_facing_direction
 	walk_right
 	unlock_facing_direction
