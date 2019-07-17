@@ -13,9 +13,24 @@ For future person reference:
 	* `ON_RETURN_TO_FIELD`
 	* `ON_DIVE_WARP` is only used for the sealed chamber. idk what it does.
 * Event Objects
-	* Event Objects that are more than 1 or 2 tiles off screen are entirely despawned and removed from the event object array. Event Objects that come within this range again are recreated from the in-memory template.
+	* Event Objects that are more than 1 or 2 tiles off screen are entirely despawned and removed from the event object array. Event Objects that come within this range again are recreated from the in-memory event object template list.
 		* As such, these objects will need to be explicitly added again if a script wishes to move them from off screen.
 		* Note that this behavior means that setting or clearing a hidden flag on the object will take immediate effect as long as where the object's position is is far enough from the camera.
+	* Event object templates cannot be placed off the map above or to the left; coordinates are stored unsigned. They can however be placed off the map to the right or below with no problem.
+	* Event objects are able to walk off the edges of their maps with no problem.
+	* A map's event objects do not get instantiated until the player enters the map. Connected maps will not have events on them until the player steps onto the map itself. This is why there's often a buffer space of at least 7 squares (the radius of the camera view area) between routes and towns in the map design.
+* Elevation
+	* Part of a tilemap's collision.
+	* The term "Elevation" is a misnomer. An event object at a higher "elevation" does not necessarily mean it will be in front of objects and tiles at a lower elevation. Each "elevation" level means something different.
+	* Objects at two different elevations cannot interact with one another. Objects cannot pass from one elevation directly to another.
+	* The player "bumps" into an elevation difference; as such, a door warp placed at a different elevation from the floor in front of it can still be entered.
+	* Elevation of an event object is tied to the tile the event object is currently standing on. Attempting to set the elevation of an event object does nothing because it is always immedeately overridden by the tilemap on the next frame.
+		* The exception is elevations 0 and 15. These do not overwrite an event object's elevation.
+	* Tilemaps default to elevation 3. This is the standard elevation where high-tiles (layer 1) will go over objects while low tiles (layers 2, 3) will go under.
+	* Elevation 4 is the standard elevation for going over high-tiles.
+	* Elevation 0 is the transition elevation. You do not need it for doors, but you will need it for bridges. Objects on this elevation will keep their previous elevation, and can step off onto any other elevation. 
+	* Elevation 15 is the bridge elevation. Objects on this elevation will keep their previous elevation, and cannot step off onto any elevation other than their previous elevation.
+	* I have not investigated other elevations yet.
 * Scripting
 	* Set your editor rulers to column 13 and column 56. As long as your script's text strings are within these two rulers, it will usually be within the limits of the standard field text box.
 		* The above assumes a 4 space indent followed by `.string` will precede every string.
@@ -28,14 +43,19 @@ For future person reference:
 	* The `special FunctionName` syntax is a glorified `callnative FunctionName`. There's in effect no difference between them. The `special` command will be smaller as it uses a u16 index into a table instead of a u32 pointer to a function, but the special table must be maintained as a tradeoff.
 	* Pointer tables MUST be aligned 2. You must have an `.align 2` above a pointer table's symbol, otherwise it's 50/50 whether any pointers in the table will work from build to build. This is because of the ARM chip's word boundry requirements (which are u16s, btw).
 		* This goes for Pokemart item lists as well.
+	* `setobjectxyperm` changes an event object template's x/y position. These only affect objects before they are instantiated (ie, not on screen). `setobjectxy` changes an event object's x/y position. These only affect objects after they are instantiated (ie, on screen).
+		* When changing object positions in an OnLoad script, use `setobjectxyperm`, as the objects aren't yet instantiated.
 * Virtual Objects
-	* They are sprites which act like event objects.
+	* They are sprites which look like event objects, but do not act like event objects.
 	* They cannot be moved like event objects. They only stand there and can be turned to look in any cardinal direction. Do not expect to make actors of these objects.
 	* They must be given an elevation on creation, or bad things like all the other event objects on screen vanishing will occur.
-	* They cannot be removed once created.
-	* The player walks through them, as they are not proper event objects.
-	* They can be used to bypass the event object limit on a given screen as long as the player isn't able to get near them.
+	* They cannot be removed via scripting once created. They will be removed when the map is unloaded or the overworld is cleared (ie, going into a menu screen).
+	* The player walks through them; they do not provide collision.
+	* They can be used to bypass the visible event object limit on a given screen (~16) as long as the player isn't able to get near them.
 	* They are used in and were made for the contest cutscenes. Check out how they work there.
+* Triggers
+	* If you are warped onto a trigger, they will not trigger. This includes warping onto a door warp and stepping down from it.
+		* Use a frame table script to run a script upon entering from a warp instead.
 * Trainers
 	* Trainers with line of sight to anything other than 0 must have as their first script command a trainer battle. The engine depends on the data being set up in this manner.
 	* Trainers with "no_intro" battle commands must not have line of sight of more than 0. The game will crash. This is a corollary to the above point.
