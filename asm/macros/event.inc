@@ -1617,6 +1617,13 @@
 	.2byte \input
 	.byte \article  @0="one", 1="the"
 	.endm
+	
+	.macro addvar_if a:req, destination:req, value:req
+	.byte 0xe7
+	.byte \a
+	.2byte \destination
+	.2byte \value
+	.endm
 
 @ Supplementary
 
@@ -1686,6 +1693,16 @@
 
 	.macro call_if_ne dest:req @ NOT EQUAL
 	call_if 5, \dest
+	.endm
+	
+	.macro addvar_if_unset flag:req, var:req, val:req
+	checkflag \flag
+	addvar_if 0, \var, \val
+	.endm
+	
+	.macro addvar_if_set flag:req, var:req, val:req
+	checkflag \flag
+	addvar_if 1, \var, \val
 	.endm
 
 	.macro switch var:req

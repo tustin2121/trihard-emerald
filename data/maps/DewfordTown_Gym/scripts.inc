@@ -6,6 +6,71 @@ DewfordTown_Gym_OnTransition: @ 81FC642
 	call DewfordTown_Gym_EventScript_1FC648
 	end
 
+@ -----------------------------------------------------
+@ Front of Gym
+
+DewfordTown_Gym_EventScript_1FC983:: @ 81FC983
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_DEWFORD_GYM, DewfordTown_Gym_EventScript_1FC998
+	msgbox DewfordTown_Gym_Text_1FC9D6, MSGBOX_DEFAULT
+	release
+	end
+DewfordTown_Gym_Text_1FC9D6: @ 81FC9D6
+	.string "Hey, how's it going?\p"
+	.string "Dewford's gym leader Brawly commands\n"
+	.string "Fighting-type Pokémon.\p"
+	.string "Going against him with Normal-type\n"
+	.string "Pokémon is asking for trouble.\p"
+	.string "Fighting Pokémon will lay a serious\n"
+	.string "smack down on Normal Pokémon,\l"
+	.string "so be careful!\p"
+	.string "What's worse, the gym is as dark as\n"
+	.string "the ocean floor.\p"
+	.string "But it will get brighter after defeating\n"
+	.string "the trainers in your way.$"
+DewfordTown_Gym_EventScript_1FC998:: @ 81FC998
+	msgbox DewfordTown_Gym_Text_1FCB5C, MSGBOX_DEFAULT
+	release
+	end
+DewfordTown_Gym_Text_1FCB5C: @ 81FCB5C
+	.string "Whoah! It's turned too bright in here!$"
+
+
+DewfordTown_Gym_GymSignage:: @ 81FC9A2
+	lockall
+	msgbox DewfordTown_Gym_Text_GymSignageTitle, MSGBOX_SIGN
+	setvar VAR_0x8000, 0
+	addvar_if_set FLAG_BADGE02_GET, VAR_0x8000, 1
+	addvar_if_set FLAG_BADGE03_GET, VAR_0x8000, 1
+	selectpointer_clamp DewfordTown_Gym_TextArray_GymSignageNames, VAR_0x8000
+	msgbox_selected MSGBOX_SIGN
+	releaseall
+	end
+DewfordTown_Gym_Text_GymSignageTitle: @ 820744C
+	.string "{GYM}Dewford Town Pokémon Gym{END}\n"
+	.string "Brawly's Certified Trainers:$"
+DewfordTown_Gym_TextArray_GymSignageNames:
+	.4byte DewfordTown_Gym_Text_GymSignageNameList1
+	.4byte DewfordTown_Gym_Text_GymSignageNameList2
+	.4byte DewfordTown_Gym_Text_GymSignageNameList3
+	.4byte 0
+DewfordTown_Gym_Text_GymSignageNameList1:
+	.string "Kelly, Wallace, Leslie, Darlene, Clifton,\n"
+	.string "Phoebe, Katie, Holly, Connor, Flannery,\n"
+	.string "Ethan, {RIVAL_BIRCH}$"
+DewfordTown_Gym_Text_GymSignageNameList2:
+	.string "Kelly, Wallace, Leslie, Darlene, Clifton,\n"
+	.string "Phoebe, Katie, Holly, Connor, Flannery,\n"
+	.string "Ethan, {RIVAL_BIRCH}, {PLAYER}$"
+DewfordTown_Gym_Text_GymSignageNameList3:
+	.string "Kelly, Wallace, Leslie, Darlene, Clifton,\n"
+	.string "Phoebe, Katie, Holly, Connor, Flannery,\n"
+	.string "Ethan, {RIVAL_BIRCH}, {PLAYER}, {RIVAL_HERO}$"
+
+@ -----------------------------------------------------
+@ Gym Puzzle
+
 DewfordTown_Gym_EventScript_1FC648:: @ 81FC648
 	checktrainerflag TRAINER_BRAWLY_1
 	goto_if_eq DewfordTown_Gym_EventScript_1FC6A2
@@ -56,6 +121,8 @@ DewfordTown_Gym_EventScript_1FC6BA:: @ 81FC6BA
 DewfordTown_Gym_EventScript_1FC6BE:: @ 81FC6BE
 	setflashradius 7
 	return
+
+@ -----------------------------------------------------
 
 DewfordTown_Gym_EventScript_1FC6C2:: @ 81FC6C2
 	call DewfordTown_Gym_EventScript_1FC768
@@ -272,60 +339,8 @@ DewfordTown_Gym_EventScript_1FC97C:: @ 81FC97C
 	release
 	end
 
-DewfordTown_Gym_EventScript_1FC983:: @ 81FC983
-	lock
-	faceplayer
-	goto_if_set FLAG_DEFEATED_DEWFORD_GYM, DewfordTown_Gym_EventScript_1FC998
-	msgbox DewfordTown_Gym_Text_1FC9D6, MSGBOX_DEFAULT
-	release
-	end
 
-DewfordTown_Gym_EventScript_1FC998:: @ 81FC998
-	msgbox DewfordTown_Gym_Text_1FCB5C, MSGBOX_DEFAULT
-	release
-	end
 
-DewfordTown_Gym_EventScript_1FC9A2:: @ 81FC9A2
-	lockall
-	goto_if_set FLAG_BADGE02_GET, DewfordTown_Gym_EventScript_1FC9C2
-	goto DewfordTown_Gym_EventScript_1FC9CC
-	end
-
-DewfordTown_Gym_EventScript_1FC9B2:: @ 81FC9B2
-	lockall
-	goto_if_set FLAG_BADGE02_GET, DewfordTown_Gym_EventScript_1FC9C2
-	goto DewfordTown_Gym_EventScript_1FC9CC
-	end
-
-DewfordTown_Gym_EventScript_1FC9C2:: @ 81FC9C2
-	msgbox DewfordTown_Gym_Text_1FD28B, MSGBOX_DEFAULT
-	releaseall
-	end
-
-DewfordTown_Gym_EventScript_1FC9CC:: @ 81FC9CC
-	msgbox DewfordTown_Gym_Text_1FD272, MSGBOX_DEFAULT
-	releaseall
-	end
-
-DewfordTown_Gym_Text_1FC9D6: @ 81FC9D6
-	.string "Hey, how's it going, Champion-\n"
-	.string "bound {PLAYER}?\p"
-	.string "Dewford's gym leader Brawly commands\n"
-	.string "Fighting-type Pokémon.\p"
-	.string "Going against him with Normal-type\n"
-	.string "Pokémon is asking for trouble.\p"
-	.string "Fighting Pokémon will lay a serious\n"
-	.string "smack down on Normal Pokémon,\l"
-	.string "so be careful!\p"
-	.string "What's worse, the GYM is as dark as\n"
-	.string "the ocean floor.\p"
-	.string "But it will get brighter after defeating\n"
-	.string "the trainers in your way.\p"
-	.string "Hey, okay, go for it!$"
-
-DewfordTown_Gym_Text_1FCB5C: @ 81FCB5C
-	.string "Whoah! It's turned too bright in here!\p"
-	.string "Your future is bright, too!$"
 
 DewfordTown_Gym_Text_1FCB9F: @ 81FCB9F
 	.string "Might is right!\n"
@@ -448,13 +463,7 @@ DewfordTown_Gym_Text_1FD20D: @ 81FD20D
 	.string "wave to cause a storm of astonishment\l"
 	.string "among trainers one day!$"
 
-DewfordTown_Gym_Text_1FD272: @ 81FD272
-	.string "Dewford Town Pokémon Gym$"
 
-DewfordTown_Gym_Text_1FD28B: @ 81FD28B
-	.string "Dewford Town Pokémon Gym\p"
-	.string "Brawly's Certified Trainers:\n"
-	.string "{PLAYER}$"
 
 DewfordTown_Gym_Text_1FD2C4: @ 81FD2C4
 	.string "Brawly: A wave may draw back, but it\n"

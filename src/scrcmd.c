@@ -484,6 +484,17 @@ bool8 ScrCmd_addvar(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_addvar_if(struct ScriptContext *ctx)
+{
+    u8 condition = ScriptReadByte(ctx);
+    u16 *ptr = GetVarPointer(ScriptReadHalfword(ctx));
+    u16 val = VarGet(ScriptReadHalfword(ctx));
+
+    if (sScriptConditionTable[condition][ctx->comparisonResult] == 1)
+        *ptr += val;
+    return FALSE;
+}
+
 bool8 ScrCmd_subvar(struct ScriptContext *ctx)
 {
     u16 *ptr = GetVarPointer(ScriptReadHalfword(ctx));

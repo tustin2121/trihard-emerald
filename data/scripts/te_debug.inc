@@ -140,18 +140,15 @@ DebugScript_GiveDebugPartyAndSetFlags::
 
 DebugScript_TestScript1::
 	lockall
+	setvar VAR_0x8000, 0
+	addvar_if_set FLAG_BADGE01_GET, VAR_0x8000, 1
+	addvar_if_set FLAG_BADGE04_GET, VAR_0x8000, 1
+	buffernumberstring 0, VAR_0x8000
 	msgbox ScriptText_TS1
-	callnative CheckIfStarterAlive
-	selectpointer_from VAR_RESULT, ScriptText_TS2, ScriptText_TS3
-	msgbox_selected
 	releaseall
 	end
 ScriptText_TS1:
-	.string "Running Starter Check Test$"
-ScriptText_TS2:
-	.string "Starter is DEAD$"
-ScriptText_TS3:
-	.string "Starter is Alive$"
+	.string "addvar: {STR_VAR_1}$"
 
 ScriptText_DebugBoxText:
 	.string "Oh! There's some Pokemon and badges in\n"

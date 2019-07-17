@@ -41,7 +41,10 @@ RustboroCity_Gym_Text_2132E2: @ 82132E2
 RustboroCity_Gym_GymSignage:: @ 8213047
 	lockall
 	msgbox RustboroCity_Gym_Text_GymSignageTitle, MSGBOX_SIGN
-	selectpointer_clamp RustboroCity_Gym_TextArray_GymSignageNames, VAR_NUM_BADGES
+	setvar VAR_0x8000, 0
+	addvar_if_set FLAG_BADGE01_GET, VAR_0x8000, 1
+	addvar_if_set FLAG_BADGE04_GET, VAR_0x8000, 1
+	selectpointer_clamp RustboroCity_Gym_TextArray_GymSignageNames, VAR_0x8000
 	msgbox_selected MSGBOX_SIGN
 	releaseall
 	end

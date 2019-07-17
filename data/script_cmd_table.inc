@@ -231,6 +231,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_setyesnotext
 	.4byte ScrCmd_checkplayeroutfit
 	.4byte ScrCmd_buffernumberstring2
+	.4byte ScrCmd_addvar_if
 
 gScriptCmdTableEnd:: @ 81DBA08
 	.4byte ScrCmd_nop

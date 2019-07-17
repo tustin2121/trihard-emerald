@@ -863,17 +863,24 @@ Route104_EventScript_RivalMain:: @ 81ECD33
 	releaseall
 	end
 Route104_Text_RivalMain1_Male: @ 81EDBFF
-	.string "May: Oh, hi, {PLAYER}!\p"
-	.string "DEVON upgraded your PokéNav with\n"
-	.string "the MATCH CALL system, huh?\p"
-	.string "We should register each other so we\n"
-	.string "can get in contact anytime.$"
+	.string "May: Oh, {P_PLAYER}!\n"
+	.string "Hey! How have you been doing?\p"
+	.string "I was just visiting Mr. Briney.\n"
+	.string "He was telling me how you saved his\l"
+	.string "Wingull.\p"
+	.string "I… didn't think you had it in you…\n"
+	.string "Uh… “it” being spunkiness! Yes!\p"
+	.string "We should swap numbers! Just in\n"
+	.string "case! Never know, right? Hahaha!$"
 Route104_Text_RivalMain1_Female: @ 81EDF04
-	.string "Brendan: Oh, hey, {PLAYER}!\p"
-	.string "Cool, you had DEVON install the MATCH\n"
-	.string "CALL system on your PokéNav!\p"
-	.string "Let's register each other in our\n"
-	.string "PokéNavs so we can keep in touch.$"
+	.string "Brendan: Gah, {P_PLAYER}! Hi!\p"
+	.string "H-How have you been? Got a new badge,\n"
+	.string "huh? That's good.\p"
+	.string "I was just visiting Mr. Briney.\n"
+	.string "He told me you saved his Peeko.\p"
+	.string "I… honestly didn't think you were\n"
+	.string "capable of compa- erm… Compass! Skils!\p"
+	.string "Anyway, swap numbers? Ha! Haaa…$"
 Route104_Text_RivalMain2_Male: @ 81EDC8F
 	.string "{PLAYER} registered May\n"
 	.string "in the PokéNav.$"
@@ -888,31 +895,28 @@ Route104_Movement_1ECDC8: @ 81ECDC8
 	walk_slow_left
 	step_end
 Route104_Text_RivalMain3_Male: @ 81EDCB1
-	.string "May: Oh, by the way, {PLAYER},\n"
-	.string "how's your Pokédex coming along?$"
+	.string "May: So, uh, {PLAYER}, how many Pokémon\n"
+	.string "have you ki- caught?$"
 Route104_Text_RivalMain3_Female: @ 81EDFC6
-	.string "Brendan: {PLAYER}, how's your Pokédex?\n"
-	.string "Have you filled in any pages yet?$"
+	.string "Brendan: {PLAYER}, how's your Pokémon…\n"
+	.string "collection coming?$"
 Route104_Movement_1ECDCA: @ 81ECDCA
 	walk_down
 	face_right
 	step_end
 Route104_Text_RivalMain4_Male: @ 81EDCED
-	.string "Mine's looking pretty decent.\n"
-	.string "So…\l"
-	.string "How about a little battle?$"
+	.string "How about a little battle?\p"
+	.string "I just wanna see how far you've come.$"
 Route104_Text_RivalMain4_Female: @ 81EE009
-	.string "Me, I'm doing great!\p"
 	.string "Want to check out how good I am with\n"
 	.string "a battle?$"
 Route104_Text_RivalMain5_Male: @ 81EDD2A
 	.string "May: Oh, what's the matter?\p"
-	.string "Haven't you caught or raised your\n"
-	.string "Pokémon very much?\p"
+	.string "You too chicken?\p"
 	.string "That's not very good for a trainer!$"
 Route104_Text_RivalMain5_Female: @ 81EE04D
 	.string "Brendan: What's the matter? Don't have\n"
-	.string "any confidence in your Pokémon?$"
+	.string "any confidence in yourself?$"
 
 Route104_EventScript_RivalMain2:: @ 81ECDD0
 	selectpointer_ongender Route104_Text_RivalMain6_Male, Route104_Text_RivalMain6_Female
@@ -942,8 +946,8 @@ Route104_EventScript_RivalBattle_Male:
 	case 2, Route104_EventScript_1ECE5C
 	end
 Route104_Text_RivalMain7_Male: @ 81EDDDB
-	.string "May: You just became a trainer,\n"
-	.string "{PLAYER}. I'm not going to lose!$"
+	.string "May: I'm not going to lose to someone\n"
+	.string "like you!$"
 
 Route104_EventScript_RivalBattle_Female: @ 81ECF09
 	msgbox Route104_Text_RivalMain7_Female, MSGBOX_DEFAULT
@@ -953,8 +957,8 @@ Route104_EventScript_RivalBattle_Female: @ 81ECF09
 	case 2, Route104_EventScript_1ECF73
 	end
 Route104_Text_RivalMain7_Female: @ 81EE0C7
-	.string "Brendan: I know you just became\n"
-	.string "a trainer, but I won't go easy!$"
+	.string "Brendan: I won't go easy on someone\n"
+	.string "like you!$"
 
 Route104_EventScript_1ECE36:: @ 81ECE36
 	trainerbattle_no_intro TRAINER_MAY_14, Route104_Text_1EDE18
@@ -973,7 +977,7 @@ Route104_EventScript_1ECE5C:: @ 81ECE5C
 	end
 Route104_Text_1EDE18: @ 81EDE18
 	.string "Yikes!\n"
-	.string "You're better than I expected!$"
+	.string "You're worse than I expected!$"
 
 Route104_EventScript_1ECF4D:: @ 81ECF4D
 	trainerbattle_no_intro TRAINER_BRENDAN_10, Route104_Text_1EE107
@@ -991,8 +995,8 @@ Route104_EventScript_1ECF73:: @ 81ECF73
 	goto Route104_EventScript_PostRivalBattle
 	end
 Route104_Text_1EE107: @ 81EE107
-	.string "Hmm…\n"
-	.string "You're pretty good.$"
+	.string "Sheesh!\n"
+	.string "You're worse then I thought!$"
 
 Route104_EventScript_PostRivalBattle:: @ 81ECF38
 	selectpointer_ongender Route104_Text_1EDE3E, Route104_Text_1EE120
@@ -1003,16 +1007,16 @@ Route104_EventScript_PostRivalBattle:: @ 81ECF38
 	end
 Route104_Text_1EDE3E: @ 81EDE3E
 	.string "May: I can tell you've gotten pretty\n"
-	.string "good with the way you handle Pokémon.\p"
+	.string "tough with the way you handle Pokémon.\p"
 	.string "But instead of only making them\n"
-	.string "battle, you should be like Mr. Briney.\p"
+	.string "fight, you should be like Mr. Briney.\p"
 	.string "It's important to become friends with\n"
 	.string "Pokémon, too.$"
 Route104_Text_1EE120: @ 81EE120
 	.string "Brendan: You've gotten pretty decent\n"
 	.string "at handling Pokémon.\p"
 	.string "But, you know, you shouldn't just be\n"
-	.string "making Pokémon battle.\p"
+	.string "making Pokémon fight.\p"
 	.string "Like Mr. Briney, it's important to\n"
 	.string "become friends with your Pokémon.$"
 
