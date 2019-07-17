@@ -266,11 +266,11 @@ SlateportCity_BattleTentLobby_Text_208DF1: @ 8208DF1
 	.string "Wouldn't it be nice if they had more of\n"
 	.string "a selection?$"
 
-@ SlateportCity_BattleTentLobby_EventScript_208A99:: @ 8208A99
+SlateportCity_BattleTentLobby_EventScript_208A99:: @ 8208A99
 @ 	lockall
 @ 	msgbox SlateportCity_BattleTentLobby_Text_259721, MSGBOX_DEFAULT
 @ 	goto SlateportCity_BattleTentLobby_EventScript_208AA8
-@ 	end
+	end
 
 @ SlateportCity_BattleTentLobby_EventScript_208AA8:: @ 8208AA8
 @ 	message SlateportCity_BattleTentLobby_Text_259743

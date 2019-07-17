@@ -58,3 +58,10 @@ VAR_SLATEPORT_MUSEUM_HEIST_STATE :=
 	2 = Player breifed on mission
 	3 = Aqua has left, Logan meets on way out
 	4 = Post-Logan
+
+
+VAR_MOSSDEEP_STATE :=
+	0 = Pre-Invasion State
+	1 = Magma Invasion
+	2 = Post-Invasion State
+

@@ -1626,10 +1626,6 @@ Common_EventScript_NoRoomLeftForAnother:: @ 8272071
 	msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT
 	return
 
-Common_EventScript_SetWeather15:: @ 827207A
-	setweather WEATHER_ALTERNATING
-	return
-
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 	call Common_EventScript_PartyHealSave_Setup
 	call Common_EventScript_PartyHealSave_Save

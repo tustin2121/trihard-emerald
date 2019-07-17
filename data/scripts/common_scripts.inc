@@ -282,6 +282,10 @@ Common_EventScript_NameReceivedPokemon:: @ 82723DD
 	waitstate
 	return
 
+Common_EventScript_SetWeatherAlternating:: @ 827207A
+	setweather WEATHER_ALTERNATING
+	return
+
 Common_ShowEasyChatScreen:: @ 8271E7C
 	fadescreen 1
 	special ShowEasyChatScreen

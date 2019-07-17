@@ -738,7 +738,7 @@
 #define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM              0x311
 #define FLAG_HIDE_ROUTE_119_SCOTT                                   0x312
 #define FLAG_HIDE_LILCOVE_MOTEL_SCOTT                               0x313
-#define FLAG_HIDE_MOSSDEEP_CITY_SCOTT                               0x314
+#define FLAG_UNUSED_0x314                                           0x314 // TE: Unused
 #define FLAG_HIDE_FANCLUB_OLD_LADY                                  0x315
 #define FLAG_HIDE_FANCLUB_BOY                                       0x316
 #define FLAG_HIDE_FANCLUB_LITTLE_BOY                                0x317

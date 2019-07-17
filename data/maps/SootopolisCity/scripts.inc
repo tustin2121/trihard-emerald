@@ -116,7 +116,7 @@ SootopolisCity_MapScript_SetWeatherType:: @ 81E5805
 	compare VAR_SKY_PILLAR_STATE, 1
 	goto_if_eq SootopolisCity_EventScript_1E583E
 	compare VAR_SKY_PILLAR_STATE, 1
-	goto_if_le Common_EventScript_SetWeather15
+	goto_if_le Common_EventScript_SetWeatherAlternating
 	return
 SootopolisCity_EventScript_1E583E:: @ 81E583E
 	setweather WEATHER_RAIN_HEAVY
