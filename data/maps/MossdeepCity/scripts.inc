@@ -9,12 +9,21 @@ MossdeepCity_OnTransition: @ 81E4A9C
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeatherAlternating
+	compare VAR_MOSSDEEP_STATE, 0
+	call_if_eq MossdeepCity_EventScript_UpdateInvasionFlags
 	end
 
 MossdeepCity_EventScript_MarkCityVisited:: @ 81E4B38
 	setflag FLAG_VISITED_MOSSDEEP_CITY
 	setvar VAR_TEMP_1, 1
 	end
+
+MossdeepCity_EventScript_UpdateInvasionFlags:
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+	return
 
 MossdeepCity_MapTable:
 	@ map_script_2 VAR_LAST_WARP_ID, 8, MossdeepCity_MapTable_StepMusicOn
@@ -237,8 +246,8 @@ MossdeepCity_EventScript_BlockingAqua::
 MossdeepCity_Text_BlockingAqua:
 	.string "Oh, hey! {AQUA_BOY} was looking for you!\p"
 	.string "Magma decided to take over the Space\n"
-	.string "Center for some reason. You should go\l"
-	.string "find him to help!\p"
+	.string "Center for some reason.\l"
+	.string "You should go find him to help!\p"
 	.string "Me? I'm the undersea radio relay.\p"
 	.string "The boss and them are in the sub\n"
 	.string "looking for a cave or something?\p"

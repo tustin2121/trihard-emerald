@@ -2340,35 +2340,6 @@ gText_Wallace_Pokenav_2B3790:: @ 82B3790
 	.string "But what is a rare stone exactly?\n"
 	.string "All I can think of is a METEORITE…$"
 
-MossdeepCity_SpaceCenter_2F_Text_2B38C1: @ 82B38C1
-	.string "… … … … … …\n"
-	.string "… … … … … Beep!\p"
-	.string "May: Hi, {PLAYER}!\p"
-	.string "I was just in PACIFIDLOG a little\n"
-	.string "while ago.\p"
-	.string "I saw a giant green Pokémon\n"
-	.string "flying high in the sky.\p"
-	.string "I…\n"
-	.string "I've never seen anything like it.\p"
-	.string "I wonder what it was.\n"
-	.string "Is this maybe a major discovery?\p"
-	.string "… … … … … …\n"
-	.string "… … … … … Click!$"
-
-MossdeepCity_SpaceCenter_2F_Text_2B39C6: @ 82B39C6
-	.string "… … … … … …\n"
-	.string "… … … … … Beep!\p"
-	.string "Brendan: Hey, {PLAYER}!\n"
-	.string "I was in PACIFIDLOG just now.\p"
-	.string "I saw this huge green Pokémon\n"
-	.string "flying across the sky.\p"
-	.string "I've never seen anything that\n"
-	.string "amazing before.\p"
-	.string "I wish you could've seen it,\n"
-	.string "{PLAYER}.\p"
-	.string "… … … … … …\n"
-	.string "… … … … … Click!$"
-
 gText_May_Pokenav_2B3AB3:: @ 2B3AB3
 	.string "May: Hi, {PLAYER}!\p"
 	.string "MR. BRINEY retired as a SAILOR,\n"

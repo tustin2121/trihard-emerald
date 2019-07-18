@@ -1,6 +1,7 @@
 MossdeepCity_SpaceCenter_1F_MapScripts:: @ 8222F41
 	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_SpaceCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_SpaceCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_SpaceCenter_1F_FrameTable
 	.byte 0
 
 @ -----------------------------------------------------
@@ -26,7 +27,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_222F58:: @ 8222F58
 
 .align 2
 MossdeepCity_SpaceCenter_1F_PointerTable_PositionGuard:
-	.4byte MossdeepCity_SpaceCenter_1F_EventScript_222FAA
+	.4byte Common_EventScript_NopEnd
 	.4byte MossdeepCity_SpaceCenter_1F_EventScript_222FAA
 	.4byte MossdeepCity_SpaceCenter_1F_EventScript_222FB2
 	.4byte MossdeepCity_SpaceCenter_1F_EventScript_222FBA
@@ -40,6 +41,12 @@ MossdeepCity_SpaceCenter_1F_EventScript_222FB2:: @ 8222FB2
 MossdeepCity_SpaceCenter_1F_EventScript_222FBA:: @ 8222FBA
 	setobjectxyperm 9, 14, 2
 	end
+
+@ -----------------------------------------------------
+
+MossdeepCity_SpaceCenter_1F_FrameTable:
+	map_script_2 VAR_MOSSDEEP_STATE, 0, MossdeepCity_SpaceCenter_1F_EventScript_AquaBoy
+	.2byte 0
 
 @ -----------------------------------------------------
 
@@ -192,6 +199,7 @@ MossdeepCity_SpaceCenter_1F_Text_223664: @ 8223664
 MossdeepCity_SpaceCenter_1F_EventScript_22312D:: @ 822312D
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_SpaceCenter_1F_EventScript_223154
 	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_22315E
@@ -220,6 +228,7 @@ MossdeepCity_SpaceCenter_1F_Text_2236E8: @ 82236E8
 MossdeepCity_SpaceCenter_1F_EventScript_223168:: @ 8223168
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_SpaceCenter_1F_EventScript_22318F
 	compare VAR_MOSSDEEP_STATE, 1
 	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_2231A4
@@ -293,8 +302,35 @@ MossdeepCity_SpaceCenter_1F_Text_Notice: @ 8223C2C
 @ -----------------------------------------------------
 @ Cutscene: Bailey
 
+#define LID_AQUA_BOY 11
+#define LID_MAGMA_GUY 12
+
 MossdeepCity_SpaceCenter_1F_EventScript_AquaBoy::
-	
+	lockall
+	@
+	delay 24
+	applymovement LID_MAGMA_GUY, MossdeepCity_SpaceCenter_1F_Movement_MagmaShoved
+	waitmovement 0
+	playse SE_W233B
+	delay 24
+	@
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	markasdialog
+	msgbox MossdeepCity_SpaceCenter_1F_Text_AquaBoy1
+	@
+	applymovement LID_AQUA_BOY, Common_Movement_WalkDown1
+	msgbox MossdeepCity_SpaceCenter_1F_Text_AquaBoy2
+	waitmovement 0
+	closemessage
+	@
+	applymovement LID_AQUA_BOY, MossdeepCity_SpaceCenter_1F_Movement_AquaRunOff
+	waitmovement 0
+	removeobject LID_AQUA_BOY
+	@ Clean up
+	setvar VAR_MOSSDEEP_STATE, 1
+	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE_2, 1
+	releaseall
 	end
 MossdeepCity_SpaceCenter_1F_Text_AquaBoy1:
 	.string "Oh, good, you're here.$"
@@ -308,7 +344,28 @@ MossdeepCity_SpaceCenter_1F_Text_AquaBoy2:
 	.string "cause trouble for us.\p"
 	.string "Try and minimize their manpower, and I'll\n"
 	.string "go see if I can sneak upstairs.$"
-			
+
+MossdeepCity_SpaceCenter_1F_Movement_MagmaShoved:
+	lock_facing_direction
+	slide_left
+	unlock_facing_direction
+	step_end
+MossdeepCity_SpaceCenter_1F_Movement_AquaRunOff:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+#undef LID_AQUA_BOY
+#undef LID_MAGMA_GUY
 
 @ -----------------------------------------------------
 @ Magma Grunts
@@ -378,6 +435,7 @@ MossdeepCity_SpaceCenter_1F_Text_223B37: @ 8223B37
 MossdeepCity_SpaceCenter_1F_EventScript_22321F:: @ 822321F
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F, MossdeepCity_SpaceCenter_1F_EventScript_22326E
 	msgbox MossdeepCity_SpaceCenter_1F_Text_223B90, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_GRUNT_23, MossdeepCity_SpaceCenter_1F_Text_223BC2
