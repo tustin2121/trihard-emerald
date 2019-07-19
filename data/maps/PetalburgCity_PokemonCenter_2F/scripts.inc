@@ -18,7 +18,6 @@ PetalburgCity_PokemonCenter_2F_MapTable: @ 8255C41
 	.2byte 0
 
 PetalburgCity_PokemonCenter_2F_OnLoad:
-	pokecenter_sitonbed 2, 17
 	call_if_set FLAG_PETALBURG_CENTER_INCIDENT, PetalburgCity_PokemonCenter_2F_EventScript_AfterKickout_LockRoom
 	end
 

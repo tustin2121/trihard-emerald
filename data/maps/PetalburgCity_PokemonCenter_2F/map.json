@@ -99,7 +99,7 @@
             "y": 17
         },
         {
-            "elevation": 12,
+            "elevation": 4,
             "flag": "0",
             "graphics_id": "EVENT_OBJ_GFX_WOMAN_1",
             "movement_range_x": 0,
@@ -112,7 +112,7 @@
             "y": 17
         },
         {
-            "elevation": 14,
+            "elevation": 4,
             "flag": "0",
             "graphics_id": "EVENT_OBJ_GFX_CAMPER",
             "movement_range_x": 0,

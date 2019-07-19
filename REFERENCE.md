@@ -54,7 +54,7 @@ For future person reference:
 	* They can be used to bypass the visible event object limit on a given screen (~16) as long as the player isn't able to get near them.
 	* They are used in and were made for the contest cutscenes. Check out how they work there.
 * Triggers
-	* If you are warped onto a trigger, they will not trigger. This includes warping onto a door warp and stepping down from it.
+	* If you are warped onto a trigger, it will not trigger. This includes warping onto a door warp and stepping down from it onto a trigger.
 		* Use a frame table script to run a script upon entering from a warp instead.
 * Trainers
 	* Trainers with line of sight to anything other than 0 must have as their first script command a trainer battle. The engine depends on the data being set up in this manner.

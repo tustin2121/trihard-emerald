@@ -66,11 +66,6 @@
 	.endm
 
 @ Convienence Macros
-
-	@ Only use this in pokecenter tilesets, on the 2nd floor
-	.macro pokecenter_sitonbed x:req, y:req
-	setmetatileex \x, \y, 0x30C, 4, FALSE  @ set tile to bed, elevation 4
-	.endm
 	
 	.macro trysteal item:req, num:req, flag:req
 	@ If already stolen from, exit
