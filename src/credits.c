@@ -745,7 +745,7 @@ static void Task_CreditsTheEnd3(u8 taskIdA)
                                 | DISPCNT_OBJ_1D_MAP
                                 | DISPCNT_BG0_ON);
 
-    gTasks[taskIdA].data[TDA_0] = 0xEB;
+    gTasks[taskIdA].data[TDA_0] = 215; //235
     gTasks[taskIdA].func = Task_CreditsTheEnd4;
 }
 
