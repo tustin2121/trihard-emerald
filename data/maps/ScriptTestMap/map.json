@@ -27,7 +27,7 @@
     "id": "MAP_SCRIPT_TEST_MAP",
     "layout": "LAYOUT_SCRIPT_TEST_MAP",
     "map_type": "MAP_TYPE_UNUSED_1",
-    "music": "MUS_DAN02",
+    "music": "MUS_BORNLOSE",
     "name": "ScriptTestMap",
     "object_events": [
         {

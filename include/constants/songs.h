@@ -280,7 +280,7 @@
 #define MUS_KACHI2 353          // Wild Pokémon Defeated with Intro
 #define MUS_KACHI3 354          // Gym Leader Defeated
 #define MUS_KACHI5 355          // Victory! Elite Four
-#define MUS_PCC 356             // Crystal - Pokémon Communication Center
+#define MUS_BORNLOSE 356        // TriHard: Pokémon Center (Born to Lose Remix)
 #define MUS_NIBI 357            // GSC - Viridian/Saffron/Pewter/etc
 #define MUS_SUIKUN 358          // Crystal - Battle! Legendary Beasts
 #define MUS_DOORO1 359          // Route 101
