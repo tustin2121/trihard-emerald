@@ -743,7 +743,7 @@
 #define FLAG_HIDE_FANCLUB_BOY                                       0x316
 #define FLAG_HIDE_FANCLUB_LITTLE_BOY                                0x317
 #define FLAG_HIDE_FANCLUB_LADY                                      0x318
-#define FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT               0x319
+#define FLAH_UNUSED_0x319                                           0x319
 #define FLAG_HIDE_LITTLEROOT_TOWN_RIVAL                             0x31A
 #define FLAG_HIDE_LITTLEROOT_TOWN_BIRCH                             0x31B
 #define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1                          0x31C

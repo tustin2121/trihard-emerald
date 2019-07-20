@@ -3,6 +3,8 @@ EverGrandeCity_PokemonLeague_1F_MapScripts:: @ 82295D2
 	map_script MAP_SCRIPT_ON_RESUME, EverGrandeCity_PokemonLeague_1F_MapScript1_277C30
 	.byte 0
 
+@ -----------------------------------------------------
+
 EverGrandeCity_PokemonLeague_1F_OnTransition: @ 82295DD
 	setrespawn HEAL_LOCATION_EVER_GRANDE_CITY_2
 	setflag FLAG_LANDMARK_POKEMON_LEAGUE
@@ -14,10 +16,13 @@ EverGrandeCity_PokemonLeague_1F_EventScript_2295ED:: @ 82295ED
 	setobjectxyperm 4, 10, 2
 	return
 
+@ -----------------------------------------------------
+
 EverGrandeCity_PokemonLeague_1F_EventScript_2295FC:: @ 82295FC
 	setvar VAR_0x800B, 1
 	goto PokemonCenter_1F_NurseHealScript
 	end
+
 
 EverGrandeCity_PokemonLeague_1F_EventScript_22960A:: @ 822960A
 	lock
@@ -29,8 +34,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_22960A:: @ 822960A
 	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
-
-	.align 2
+.align 2
 EverGrandeCity_PokemonLeague_1F_Pokemart_229624: @ 8229624
 	.2byte ITEM_ULTRA_BALL
 	.2byte ITEM_HYPER_POTION
@@ -42,6 +46,8 @@ EverGrandeCity_PokemonLeague_1F_Pokemart_229624: @ 8229624
 	.2byte ITEM_NONE
 	release
 	end
+
+@ -----------------------------------------------------
 
 EverGrandeCity_PokemonLeague_1F_EventScript_229636:: @ 8229636
 	lockall

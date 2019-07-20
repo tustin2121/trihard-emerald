@@ -303,6 +303,15 @@ function initMenuV1() {
 			.on('click', function(){
 				switchMenu(); 
 			});
+		$m.append(`<hr>`);
+		$(`<li>Warp to Test Map</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ 
+					funcId: DebugHandle_WarpRequest,
+					args: [33, 2, 0, 0xFF, 0xFF],
+				});
+				switchMenu();
+			});
 	}
 	switchMenu();
 }

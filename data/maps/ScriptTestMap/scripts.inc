@@ -74,5 +74,156 @@ ScriptTestMap_Movement_RunAround:
 	step_end
 
 
+
+
+
+ScriptTestMap_EventScript_CryTest0::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 0
+	msgbox ScriptTestMap_Text_CryTest0, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest0:
+	.string "playmoncry 0$"
+
+ScriptTestMap_EventScript_CryTest1::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 1
+	msgbox ScriptTestMap_Text_CryTest1, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest1:
+	.string "playmoncry 1$"
+
+ScriptTestMap_EventScript_CryTest2::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 2
+	msgbox ScriptTestMap_Text_CryTest2, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest2:
+	.string "playmoncry 2$"
+
+ScriptTestMap_EventScript_CryTest3::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 3
+	msgbox ScriptTestMap_Text_CryTest3, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest3:
+	.string "playmoncry 3$"
+
+ScriptTestMap_EventScript_CryTest4::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 4
+	msgbox ScriptTestMap_Text_CryTest4, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest4:
+	.string "playmoncry 4$"
+
+ScriptTestMap_EventScript_CryTest5::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 5
+	msgbox ScriptTestMap_Text_CryTest5, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest5:
+	.string "playmoncry 5$"
+
+ScriptTestMap_EventScript_CryTest6::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 6
+	msgbox ScriptTestMap_Text_CryTest6, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest6:
+	.string "playmoncry 6$"
+
+ScriptTestMap_EventScript_CryTest7::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 7
+	msgbox ScriptTestMap_Text_CryTest7, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest7:
+	.string "playmoncry 7$"
+
+ScriptTestMap_EventScript_CryTest8::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 8
+	msgbox ScriptTestMap_Text_CryTest8, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest8:
+	.string "playmoncry 8$"
+
+ScriptTestMap_EventScript_CryTest9::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 9
+	msgbox ScriptTestMap_Text_CryTest9, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest9:
+	.string "playmoncry 9$"
+
+ScriptTestMap_EventScript_CryTest10::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 10
+	msgbox ScriptTestMap_Text_CryTest10, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest10:
+	.string "playmoncry 10$"
+
+ScriptTestMap_EventScript_CryTest11::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, 11
+	msgbox ScriptTestMap_Text_CryTest11, MSGBOX_DIALOG
+	waitmoncry
+	release
+	end
+ScriptTestMap_Text_CryTest11:
+	.string "playmoncry 11$"
+
+
+
+
+
 #undef VID_JAMES
 #undef VID_JOEY
