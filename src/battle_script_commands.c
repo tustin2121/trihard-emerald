@@ -1025,6 +1025,7 @@ static void JumpIfMoveFailed(u8 adder, u16 move)
     else
     {
         TrySetDestinyBondToHappen();
+        gBattlescriptNextInstr = BS_ptr;
         if (AbilityBattleEffects(ABILITYEFFECT_ABSORBING, gBattlerTarget, 0, 0, move))
             return;
     }
@@ -6928,7 +6929,8 @@ static void atk79_setatkhptozero(void)
 static void atk7A_jumpifnexttargetvalid(void)
 {
     const u8 *jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
-
+    if (jumpPtr == NULL) jumpPtr = gBattlescriptNextInstr;
+    
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         for (gBattlerTarget++; ; gBattlerTarget++)
@@ -10178,7 +10180,13 @@ static void atkEF_handleballthrow(void)
     gActiveBattler = gBattlerAttacker;
     gBattlerTarget = gBattlerAttacker ^ BIT_SIDE;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    if (gBattleTypeFlags & BATTLE_TYPE_RAGING_LEGENDARY)
+    {
+        BtlController_EmitBallThrowAnim(0, BALL_TRAINER_BLOCK);
+        MarkBattlerForControllerExec(gActiveBattler);
+        gBattlescriptCurrInstr = BattleScript_LegendaryBallBlock;
+    }
+    else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         BtlController_EmitBallThrowAnim(0, BALL_TRAINER_BLOCK);
         MarkBattlerForControllerExec(gActiveBattler);

@@ -744,17 +744,17 @@ void DrawMainBattleBackground(void)
         LZDecompressVram(gBattleTerrainTilemap_Building, (void*)(BG_SCREEN_ADDR(26)));
         LoadCompressedPalette(gBattleTerrainPalette_Frontier, 0x20, 0x60);
     }
-    else if (gBattleTypeFlags & BATTLE_TYPE_GROUDON)
-    {
-        LZDecompressVram(gBattleTerrainTiles_Cave, (void*)(BG_CHAR_ADDR(2)));
-        LZDecompressVram(gBattleTerrainTilemap_Cave, (void*)(BG_SCREEN_ADDR(26)));
-        LoadCompressedPalette(gBattleTerrainPalette_Groudon, 0x20, 0x60);
-    }
     else if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE)
     {
         LZDecompressVram(gBattleTerrainTiles_Water, (void*)(BG_CHAR_ADDR(2)));
         LZDecompressVram(gBattleTerrainTilemap_Water, (void*)(BG_SCREEN_ADDR(26)));
         LoadCompressedPalette(gBattleTerrainPalette_Kyogre, 0x20, 0x60);
+    }
+    else if (gBattleTypeFlags & BATTLE_TYPE_GROUDON)
+    {
+        LZDecompressVram(gBattleTerrainTiles_Cave, (void*)(BG_CHAR_ADDR(2)));
+        LZDecompressVram(gBattleTerrainTilemap_Cave, (void*)(BG_SCREEN_ADDR(26)));
+        LoadCompressedPalette(gBattleTerrainPalette_Groudon, 0x20, 0x60);
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_RAYQUAZA)
     {
@@ -1141,15 +1141,15 @@ void DrawBattleEntryBackground(void)
             CopyBgTilemapBufferToVram(2);
         }
     }
-    else if (gBattleTypeFlags & BATTLE_TYPE_GROUDON)
-    {
-        LZDecompressVram(gBattleTerrainAnimTiles_Cave, (void*)(BG_CHAR_ADDR(1)));
-        LZDecompressVram(gBattleTerrainAnimTilemap_Cave, (void*)(BG_SCREEN_ADDR(28)));
-    }
     else if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE)
     {
         LZDecompressVram(gBattleTerrainAnimTiles_Underwater, (void*)(BG_CHAR_ADDR(1)));
         LZDecompressVram(gBattleTerrainAnimTilemap_Underwater, (void*)(BG_SCREEN_ADDR(28)));
+    }
+    else if (gBattleTypeFlags & BATTLE_TYPE_GROUDON)
+    {
+        LZDecompressVram(gBattleTerrainAnimTiles_Cave, (void*)(BG_CHAR_ADDR(1)));
+        LZDecompressVram(gBattleTerrainAnimTilemap_Cave, (void*)(BG_SCREEN_ADDR(28)));
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_RAYQUAZA)
     {

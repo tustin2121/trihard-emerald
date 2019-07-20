@@ -57,19 +57,19 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "NULL",
+            "script": "SootopolisCity_TriggerScript_FightLegendaries",
             "type": "trigger",
-            "var": "VAR_TEMP_0",
-            "var_value": "0",
+            "var": "VAR_TEMP_F",
+            "var_value": "1",
             "x": 31,
             "y": 44
         },
         {
             "elevation": 3,
-            "script": "NULL",
+            "script": "SootopolisCity_TriggerScript_FightLegendaries",
             "type": "trigger",
-            "var": "VAR_TEMP_0",
-            "var_value": "0",
+            "var": "VAR_TEMP_F",
+            "var_value": "1",
             "x": 31,
             "y": 43
         }

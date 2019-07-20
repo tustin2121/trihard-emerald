@@ -65,3 +65,18 @@ VAR_MOSSDEEP_STATE :=
 	1 = Magma Invasion Ongoing
 	3 = Post-Invasion State
 
+VAR_SKY_PILLAR_STATE :=
+	0 = No Rayquaza
+	1 = Kyogre Released, Raining
+	2 = Saw the fighting legendaries
+	3 = Met with Wallace, next stop Sky Pillar
+	4 = Outside Sky Pillar, things getting worse.
+	5 = Rayquaza left Sky Pillar, to Sootopolis!
+	6 = Rayquaza shouted SHUT UP, also post gym
+
+VAR_SKY_PILLAR_STATE :=
+	0 = Initial State
+	1 = Rayquaza Released
+	2 = Post Legendary Battle (will turn player to face up)
+	3 = Post Legendary Battle
+

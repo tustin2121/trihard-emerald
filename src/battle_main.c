@@ -199,6 +199,7 @@ EWRAM_DATA u8 gAbsentBattlerFlags = 0;
 EWRAM_DATA u8 gCritMultiplier = 0;
 EWRAM_DATA u8 gMultiHitCounter = 0;
 EWRAM_DATA const u8 *gBattlescriptCurrInstr = NULL;
+EWRAM_DATA const u8 *gBattlescriptNextInstr = NULL;
 EWRAM_DATA u32 gUnusedBattleMainVar = 0;
 EWRAM_DATA u8 gChosenActionByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT] = {NULL};
@@ -5710,7 +5711,14 @@ static void HandleAction_Run(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
+    if (gBattleTypeFlags & BATTLE_TYPE_RAGING_LEGENDARY)
+    {
+        ClearFuryCutterDestinyBondGrudge(gBattlerAttacker);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+        gBattlescriptCurrInstr = BattleScript_PrintFailedToRunString;
+        gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+    }
+    else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
     {
         gCurrentTurnActionNumber = gBattlersCount;
 

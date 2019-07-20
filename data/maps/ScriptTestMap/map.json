@@ -23,6 +23,15 @@
     ],
     "connections": null,
     "coord_events": [
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_Fight",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 10,
+            "y": 15
+        }
     ],
     "id": "MAP_SCRIPT_TEST_MAP",
     "layout": "LAYOUT_SCRIPT_TEST_MAP",
@@ -68,6 +77,32 @@
             "trainer_type": "0",
             "x": 16,
             "y": 8
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_KYOGRE_1",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 12,
+            "y": 16
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_GROUDON_1",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 8,
+            "y": 16
         }
     ],
     "region_map_section": "MAPSEC_LITTLEROOT_TOWN",

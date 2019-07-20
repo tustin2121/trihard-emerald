@@ -24,31 +24,16 @@ ScriptTestMap_SignScript_Text2:
 	.string "Poof! Robot Joey vanishes!$"
 
 
-ScriptTestMap_TriggerScript_WalkUp::
+ScriptTestMap_TriggerScript_Fight::
 	lock
-	applymovement VID_JOEY, Common_Movement_WalkUp1
-	waitmovement 0
-	release
-	end
-
-ScriptTestMap_TriggerScript_WalkDown::
-	lock
-	applymovement VID_JOEY, Common_Movement_WalkDown1
-	waitmovement 0
-	release
-	end
-
-ScriptTestMap_TriggerScript_WalkLeft::
-	lock
-	applymovement VID_JOEY, Common_Movement_WalkLeft1
-	waitmovement 0
-	release
-	end
-
-ScriptTestMap_TriggerScript_WalkRight::
-	lock
-	applymovement VID_JOEY, Common_Movement_WalkRight1
-	waitmovement 0
+	setweather WEATHER_RAIN_HEAVY
+	doweather
+	special WaitWeather
+	waitstate
+	callnative BattleSetup_StartLegendaryRageBattle
+	waitstate
+	@ specialvar VAR_RESULT, GetBattleOutcome
+	
 	release
 	end
 

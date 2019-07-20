@@ -15,12 +15,16 @@ SootopolisCity_MapScript1_OnResume: @ 81E590B
 @ -----------------------------------------------------
 
 SootopolisCity_MapScript1_OnLoad: @ 81E5676
+	call_if_set FLAG_LEGENDARIES_IN_SOOTOPOLIS, SootopolisCity_EventScript_SetupLegendariesBattleTrigger
 	call_if_set FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_EventScript_DestroyCenterRoof
 	call_if_unset FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, SootopolisCity_EventScript_BlockGymDoor
 	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, Common_EventScript_NopEnd
 	call_if_unset FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, SootopolisCity_EventScript_BlockDoors
 	end
 
+SootopolisCity_EventScript_SetupLegendariesBattleTrigger::
+	setvar VAR_TEMP_F, 1
+	return
 SootopolisCity_EventScript_DestroyCenterRoof:: @ 81E5692
 	setmetatile 42, 28, 0x300, 1
 	setmetatile 43, 28, 0x301, 1
@@ -1090,7 +1094,19 @@ SootopolisCity_Text_1E6618: @ 81E6618
 	.string "If you live in this town, you end up\n"
 	.string "getting physically fit.$"
 
+@ -----------------------------------------------------
+@ Legendary Battle Triggers
 
+SootopolisCity_TriggerScript_FightLegendaries::
+	lock
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	callnative BattleSetup_StartLegendaryRageBattle
+	waitstate
+	@ TODO
+	release
+	end
+
+@ -----------------------------------------------------
 
 
 

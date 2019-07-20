@@ -146,7 +146,7 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectPursuit
 	.4byte BattleScript_EffectRapidSpin
 	.4byte BattleScript_EffectSonicboom
-	.4byte BattleScript_EffectUnused83
+	.4byte BattleScript_EffectSurfAll
 	.4byte BattleScript_EffectMorningSun
 	.4byte BattleScript_EffectSynthesis
 	.4byte BattleScript_EffectMoonlight
@@ -249,7 +249,7 @@ BattleScript_EffectFalseSwipe::
 BattleScript_EffectQuickAttack::
 BattleScript_EffectUnused6e::
 BattleScript_EffectPursuit::
-BattleScript_EffectUnused83::
+@ BattleScript_EffectSurfAll::
 BattleScript_EffectUnused8d::
 BattleScript_EffectUnusedA3::
 BattleScript_EffectHit::
@@ -299,6 +299,54 @@ BattleScript_MoveMissed::
 	resultmessage
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectSurfAll::
+	attackcanceler
+	attackstring
+	ppreduce
+	selectfirstvalidtarget
+BattleScript_HitAllWithUnderwaterBonusLoop::
+	movevaluescleanup
+	jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_HitAllNoUnderwaterBonus
+	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER
+	setbyte sDMG_MULTIPLIER, 0x2
+	goto BattleScript_DoHitAllSurf
+BattleScript_HitAllNoUnderwaterBonus::
+	bicword gHitMarker, HITMARKER_IGNORE_UNDERWATER
+	setbyte sDMG_MULTIPLIER, 0x1
+BattleScript_DoHitAllSurf:
+	accuracycheck BattleScript_DoHitAllSurfMissed, ACC_CURR_MOVE
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 0x1
+	tryfaintmon BS_TARGET, FALSE, NULL
+	moveendto ATK49_NEXT_TARGET
+	jumpifnexttargetvalid BattleScript_HitAllWithUnderwaterBonusLoop
+	end
+BattleScript_DoHitAllSurfMissed:
+	pause 0x20
+	typecalc
+	effectivenesssound
+	resultmessage
+	waitmessage 0x40
+	moveendto ATK49_NEXT_TARGET
+	jumpifnexttargetvalid BattleScript_HitAllWithUnderwaterBonusLoop
+	end
+
 
 BattleScript_EffectSleep::
 	attackcanceler
@@ -2849,11 +2897,13 @@ BattleScript_HandleFaintedMon::
 	jumpifbyte CMP_NOT_EQUAL, gBattleOutcome, 0, BattleScript_FaintedMonEnd
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_FaintedMonTryChooseAnother
 	jumpifword CMP_NO_COMMON_BITS, gHitMarker, HITMARKER_x400000, BattleScript_FaintedMonTryChooseAnother
+	jumpifbattletype BATTLE_TYPE_RAGING_LEGENDARY, BattleScript_FaintedMonTryChooseAnother @ Can never escape rage battle
 	printstring STRINGID_USENEXTPKMN
 	setbyte gBattleCommunication, 0x0
 	yesnobox
 	jumpifbyte CMP_EQUAL, gBattleCommunication + 1, 0x0, BattleScript_FaintedMonTryChooseAnother
 	jumpifplayerran BattleScript_FaintedMonEnd
+BattleScript_FaintedMonCantEscape::
 	printstring STRINGID_CANTESCAPE2
 BattleScript_FaintedMonTryChooseAnother::
 	openpartyscreen 0x3, BattleScript_FaintedMonEnd
@@ -4012,6 +4062,21 @@ BattleScript_DrizzleActivates::
 	call BattleScript_WeatherFormChanges
 	end3
 
+BattleScript_KyogreRains::
+	pause 0x20
+	printstring STRINGID_KYOGRERAIN
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_RAIN_CONTINUES, NULL
+	call BattleScript_WeatherFormChanges
+	end3
+BattleScript_GroudonSun::
+	pause 0x20
+	printstring STRINGID_GROUDONSUN
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_SUN_CONTINUES, NULL
+	call BattleScript_WeatherFormChanges
+	end3
+
 BattleScript_SpeedBoostActivates::
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_PKMNRAISEDSPEED
@@ -4156,6 +4221,16 @@ BattleScript_FlashFireBoost::
 	printfromtable gFlashFireStringIds
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
+
+BattleScript_FlashFireBoost_NextTarget::
+	ppreduce
+	attackstring
+	pause 0x20
+	printfromtable gFlashFireStringIds
+	waitmessage 0x40
+	moveendto ATK49_NEXT_TARGET
+	jumpifnexttargetvalid 0
+	end
 
 BattleScript_AbilityPreventsPhasingOut::
 	pause 0x20

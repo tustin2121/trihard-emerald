@@ -261,6 +261,7 @@ static const u8 sText_PkmnCantUseMoveTorment[] = _("{B_ACTIVE_NAME_WITH_PREFIX} 
 static const u8 sText_PkmnCantUseMoveTaunt[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use\n{B_CURRENT_MOVE} after the TAUNT!\p");
 static const u8 sText_PkmnCantUseMoveSealed[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use the\nsealed {B_CURRENT_MOVE}!\p");
 static const u8 sText_PkmnMadeItRain[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nmade it rain!");
+static const u8 sText_KyogreMadeItRain[] = _("The pouring rain\ntakes back over!");
 static const u8 sText_PkmnRaisedSpeed[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nraised its SPEED!");
 static const u8 sText_PkmnProtectedBy[] = _("{B_DEF_NAME_WITH_PREFIX} was protected\nby {B_DEF_ABILITY}!");
 static const u8 sText_PkmnPreventsUsage[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nprevents {B_ATK_NAME_WITH_PREFIX}\lfrom using {B_CURRENT_MOVE}!");
@@ -283,6 +284,7 @@ static const u8 sText_PkmnsXBlocksY2[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B
 static const u8 sText_PkmnsXRestoredHPALittle2[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\nrestored its HP a little!");
 static const u8 sText_PkmnsXWhippedUpSandstorm[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nwhipped up a sandstorm!");
 static const u8 sText_PkmnsXIntensifiedSun[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nintensified the sun's rays!");
+static const u8 sText_GroudonMadeItSunny[] = _("The intense heat of\nthe sun broke through!");
 static const u8 sText_PkmnsXPreventsYLoss[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nprevents {B_BUFF1} loss!");
 static const u8 sText_PkmnsXInfatuatedY[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\ninfatuated {B_ATK_NAME_WITH_PREFIX}!");
 static const u8 sText_PkmnsXMadeYIneffective[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nmade {B_CURRENT_MOVE} ineffective!");
@@ -458,7 +460,8 @@ static const u8 sText_WallyUsedItem[] = _("WALLY used\n{B_LAST_ITEM}!");
 static const u8 sText_Trainer1UsedItem[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nused {B_LAST_ITEM}!");
 static const u8 sText_TrainerBlockedBall[] = _("The trainer blocked the ball!");
 static const u8 sText_DontBeAThief[] = _("Don't be a thief!");
-static const u8 sText_ItDodgedBall[] = _("It dodged the thrown ball!\nThis Pokémon can't be caught!");
+// static const u8 sText_ItDodgedBall[] = _("It dodged the thrown ball!\nThis Pokémon can't be caught!");
+static const u8 sText_ItDodgedBall[] = _("The ball was blown away by\nthe harsh weather!\lThese Pokémon can't be caught!");
 static const u8 sText_YouMissedPkmn[] = _("You missed the Pokémon!");
 static const u8 sText_PkmnBrokeFree[] = _("Oh, no!\nThe Pokémon broke free!");
 static const u8 sText_ItAppearedCaught[] = _("Aww!\nIt appeared to be caught!");
@@ -895,6 +898,8 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNSHOOKPARALYSIS - 12] = sText_AffectionCureParalysis,
     [STRINGID_PKMNAFFECTIONSURVIVE - 12] = sText_AffectionSurvive,
     [STRINGID_AFFECTIONEVADE - 12] = sText_AffectionEvade,
+    [STRINGID_KYOGRERAIN - 12] = sText_KyogreMadeItRain,
+    [STRINGID_GROUDONSUN - 12] = sText_GroudonMadeItSunny,
 };
 
 const u16 gMissStringIds[] =
@@ -2020,10 +2025,10 @@ void BufferStringBattle(u16 stringID)
         }
         else
         {
-            if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
-                stringPtr = sText_WildPkmnAppeared2;
-            else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) // interesting, looks like they had something planned for wild double battles
+            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) // interesting, looks like they had something planned for wild double battles
                 stringPtr = sText_TwoWildPkmnAppeared;
+            else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
+                stringPtr = sText_WildPkmnAppeared2;
             else if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL)
                 stringPtr = sText_WildPkmnAppearedPause;
             else

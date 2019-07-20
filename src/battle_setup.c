@@ -531,6 +531,26 @@ void BattleSetup_StartLegendaryBattle(void)
     sub_80B1218();
 }
 
+void BattleSetup_StartLegendaryRageBattle(void)
+{
+    ZeroEnemyPartyMons();
+    CreateMon(&gEnemyParty[0], SPECIES_GROUDON, 120, 0x20, 0, 0, 0, 0);
+    CreateMon(&gEnemyParty[1], SPECIES_KYOGRE, 120, 0x20, 0, 0, 0, 0);
+    
+    ScriptContext2_Enable();
+    gMain.savedCallback = CB2_EndScriptedWildBattle;
+    gBattleTypeFlags = BATTLE_TYPE_LEGENDARY;
+    gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+    gBattleTypeFlags |= BATTLE_TYPE_GROUDON;
+    gBattleTypeFlags |= BATTLE_TYPE_KYOGRE;
+    CreateBattleStartTask(B_TRANSITION_GROUDON, MUS_BATTLE34);
+        
+    IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
+    IncrementGameStat(GAME_STAT_WILD_BATTLES);
+    sub_80EECC8();
+    sub_80B1218();
+}
+
 void StartGroudonKyogreBattle(void)
 {
     ScriptContext2_Enable();
