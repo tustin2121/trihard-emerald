@@ -3169,3 +3169,40 @@ const struct SpriteFrameImage gEventObjectPicTable_ChairItems4[] = {
 const struct SpriteFrameImage gEventObjectPicTable_ChairItems5[] = {
     obj_frame_tiles(gEventObjectPic_ChairItems5),
 };
+
+const struct SpriteFrameImage gEventObjectPicTable_FormerAquaM[] = {
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 0),
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 1),
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 2),
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 3),
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 4),
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 5),
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 6),
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 7),
+    overworld_frame(gEventObjectPic_FormerAquaM, 2, 4, 8),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_FormerAquaF[] = {
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 0),
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 1),
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 2),
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 3),
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 4),
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 5),
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 6),
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 7),
+    overworld_frame(gEventObjectPic_FormerAquaF, 2, 4, 8),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_FormerMagmaM[] = {
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 0),
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 1),
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 2),
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 3),
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 4),
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 5),
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 6),
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 7),
+    overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 8),
+};
+

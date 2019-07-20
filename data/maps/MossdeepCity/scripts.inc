@@ -290,12 +290,91 @@ MossdeepCity_Text_FightingMagma2:
 	.string "affairs constantly?!$"
 
 
-MossdeepCity_EventScript_MusicOn::
-	playbgm MUS_MGM0, 0
+@ -----------------------------------------------------
+@ Cutscene: The Rains Begin
+
+#define LID_AQUA_BOY 18
+#define LID_AQUA_GIRL 19
+#define LID_MAGMA_GUY 20
+#define LID_LOGAN 17
+
+MossdeepCity_EventScript_RainsBegin_OnLoad1::
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_AQUA_MEMBER_M
+	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_AQUA_MEMBER_F
+	setvar VAR_OBJ_GFX_ID_2, EVENT_OBJ_GFX_MEGMA_MEMBER_M
+	return
+
+MossdeepCity_EventScript_RainsBegin::
+	lockall
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	subvar VAR_INTERACT_Y, 10
+	@ "PLAYER!"
+	markasdialog 30 @off the edge of the screen
+	msgbox MossdeepCity_Text_RainsBegin1
+	closemessage
+	@
+	
+	
+	
+	
+	setweather WEATHER_ALTERNATING
+	doweather
+	delay 20
+	setflag FLAG_SYS_WEATHER_CTRL
+	@ player looks around as the rains begin
+	
+	
+	releaseall
 	end
 
-MossdeepCity_EventScript_MusicOff::
-	fadedefaultbgm
-	end
+MossdeepCity_Text_RainsBegin1:
+	.string "{AQUA_BOY}: {PLAYER}!!$"
+
+.align 2
+MossdeepCity_MovementTable_RainsBegin2:
+	.4byte 0
+	.4byte 0
+
+MossdeepCity_Movement_RainsBegin2_PlayerSearch0:
+	emote_question_mark
+	delay_8
+	face_left
+	delay_16
+	face_right
+	delay_16
+	delay_16
+	walk_down
+	walk_down
+	emote_exclamation_mark
+	walk_down
+	step_end
+MossdeepCity_Movement_RainsBegin2_PlayerSearch1:
+	emote_question_mark
+	delay_8
+	face_right
+	delay_16
+	face_left
+	delay_16
+	delay_16
+	walk_down
+	emote_exclamation_mark
+	walk_down
+	step_end
+MossdeepCity_Movement_RainsBegin2_PlayerSearch2:
+	emote_question_mark
+	delay_8
+	face_right
+	delay_16
+	walk_left
+	delay_16
+	delay_16
+	walk_down
+	emote_exclamation_mark
+	walk_down
+	step_end
 
 
+#undef LID_AQUA_BOY 
+#undef LID_AQUA_GIRL
+#undef LID_MAGMA_GUY
+#undef LID_LOGAN

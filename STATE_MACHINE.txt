@@ -64,6 +64,8 @@ VAR_MOSSDEEP_STATE :=
 	0 = Magma Invasion Preamble
 	1 = Magma Invasion Ongoing
 	3 = Post-Invasion State
+	10 = Prepared for Rain
+	11 = Mid-Rain Cutscene
 
 VAR_RAYQUAZA_STATE :=
 	0 = No Rayquaza

@@ -462,3 +462,7 @@ const u32 gEventObjectPic_ChairItems2[] = INCBIN_U32("graphics/event_objects/pic
 const u32 gEventObjectPic_ChairItems3[] = INCBIN_U32("graphics/event_objects/pics/misc/chair_item3.4bpp");
 const u32 gEventObjectPic_ChairItems4[] = INCBIN_U32("graphics/event_objects/pics/misc/chair_item4.4bpp");
 const u32 gEventObjectPic_ChairItems5[] = INCBIN_U32("graphics/event_objects/pics/misc/chair_item5.4bpp");
+
+const u32 gEventObjectPic_FormerAquaM[] = INCBIN_U32("graphics/event_objects/pics/people/team_aqua/aqua_formermember_m.4bpp");
+const u32 gEventObjectPic_FormerAquaF[] = INCBIN_U32("graphics/event_objects/pics/people/team_aqua/aqua_formermember_f.4bpp");
+const u32 gEventObjectPic_FormerMagmaM[] = INCBIN_U32("graphics/event_objects/pics/people/team_magma/magma_formermember_m.4bpp");

@@ -313,6 +313,10 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ChairItems3;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ChairItems4;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ChairItems5;
 
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_FormerAquaM;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_FormerAquaF;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_FormerMagmaM;
+
 
 const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] = {
     [EVENT_OBJ_GFX_PROTAG_BOY1_NORMAL]      = &gEventObjectGraphicsInfo_ProtagBoy1_Normal,
@@ -631,6 +635,10 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     [EVENT_OBJ_GFX_CHAIR_ITEMS_3]           = &gEventObjectGraphicsInfo_ChairItems3,
     [EVENT_OBJ_GFX_CHAIR_ITEMS_4]           = &gEventObjectGraphicsInfo_ChairItems4,
     [EVENT_OBJ_GFX_CHAIR_ITEMS_5]           = &gEventObjectGraphicsInfo_ChairItems5,
+    
+    [EVENT_OBJ_GFX_FORMER_AQUA_M]           = &gEventObjectGraphicsInfo_FormerAquaM,
+    [EVENT_OBJ_GFX_FORMER_AQUA_F]           = &gEventObjectGraphicsInfo_FormerAquaF,
+    [EVENT_OBJ_GFX_FORMER_MAGMA_M]          = &gEventObjectGraphicsInfo_FormerMagmaM,
 };
 
 const struct EventObjectGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
