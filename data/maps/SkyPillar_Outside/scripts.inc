@@ -45,7 +45,7 @@ SkyPillar_Outside_EventScript_239304:: @ 8239304
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 3
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	delay 40
 	msgbox SkyPillar_Outside_Text_2394BC, MSGBOX_DEFAULT
@@ -57,7 +57,7 @@ SkyPillar_Outside_EventScript_239304:: @ 8239304
 	setvar VAR_0x8005, 3
 	setvar VAR_0x8006, 20
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	delay 20
 	applymovement 1, Common_Movement_WalkInPlaceLeft

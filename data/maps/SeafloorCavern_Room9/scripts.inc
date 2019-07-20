@@ -63,7 +63,7 @@ SeafloorCavern_Room9_EventScript_234DC9:: @ 8234DC9
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	applymovement 1, SeafloorCavern_Room9_Movement_23504B
 	waitmovement 0
@@ -73,7 +73,7 @@ SeafloorCavern_Room9_EventScript_234DC9:: @ 8234DC9
 	setvar VAR_0x8005, 2
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	delay 30
 	setvar VAR_0x8004, 2

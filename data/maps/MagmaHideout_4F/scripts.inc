@@ -33,7 +33,7 @@ MagmaHideout_4F_EventScript_23A560:: @ 823A560
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	applymovement 1, MagmaHideout_4F_Movement_23A67D
 	waitmovement 0
@@ -43,7 +43,7 @@ MagmaHideout_4F_EventScript_23A560:: @ 823A560
 	setvar VAR_0x8005, 2
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	delay 30
 	applymovement 6, MagmaHideout_4F_Movement_23A680

@@ -108,7 +108,7 @@ SkyPillar_Top_EventScript_23979A:: @ 823979A
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 3
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	waitse
 	playmoncry SPECIES_RAYQUAZA, 2
@@ -116,7 +116,7 @@ SkyPillar_Top_EventScript_23979A:: @ 823979A
 	setvar VAR_0x8005, 2
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	waitmoncry
 	applymovement 1, SkyPillar_Top_Movement_23984B

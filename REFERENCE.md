@@ -23,11 +23,14 @@ For future person reference:
 	* Part of a tilemap's collision.
 	* The term "Elevation" is a misnomer. An event object at a higher "elevation" does not necessarily mean it will be in front of objects and tiles at a lower elevation. Each "elevation" level means something different.
 	* Objects at two different elevations cannot interact with one another. Objects cannot pass from one elevation directly to another.
+		* Similarly, a trigger at an elevation that does not match the player's elevation will not trigger. I presume this limitation is in place so that triggers placed on a bridge can't get triggered by going under the bridge.
+			* Remember to place water triggers at elevation 1, surfing level.
 	* The player "bumps" into an elevation difference; as such, a door warp placed at a different elevation from the floor in front of it can still be entered.
 	* Elevation of an event object is tied to the tile the event object is currently standing on. Attempting to set the elevation of an event object does nothing because it is always immedeately overridden by the tilemap on the next frame.
 		* The exception is elevations 0 and 15. These do not overwrite an event object's elevation.
 	* Tilemaps default to elevation 3. This is the standard elevation where high-tiles (layer 1) will go over objects while low tiles (layers 2, 3) will go under.
 	* Elevation 4 is the standard elevation for going over high-tiles.
+	* Elevation 1 is the surfing elevation. Presumably the actual prompt to surf is handled by the metatile behavior, and the exiting surf is handled by bumping into a higher elevation, but this is unresearched.
 	* Elevation 0 is the transition elevation. You do not need it for doors, but you will need it for bridges. Objects on this elevation will keep their previous elevation, and can step off onto any other elevation. 
 	* Elevation 15 is the bridge elevation. Objects on this elevation will keep their previous elevation, and cannot step off onto any elevation other than their previous elevation.
 	* I have not investigated other elevations yet.

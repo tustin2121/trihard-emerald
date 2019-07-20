@@ -10,7 +10,17 @@ SootopolisCity_MapScripts:: @ 81E565C
 
 SootopolisCity_MapScript1_OnResume: @ 81E590B
 	setdivewarp MAP_UNDERWATER_SOOTOPOLIS_CITY, 255, 9, 6
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, SootopolisCity_EventScript_RemoveLegendaries
 	end
+
+SootopolisCity_EventScript_RemoveLegendaries:: @ 8267D5E
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_WON
+	goto_if_ne Common_EventScript_NopReturn
+	call SootopolisCity_EventScript_RemoveLegendaryPedistals
+	removeobject 9
+	removeobject 10
+	return
 
 @ -----------------------------------------------------
 
@@ -191,6 +201,9 @@ SootopolisCity_EventScript_1E5901:: @ 81E5901
 
 @ -----------------------------------------------------
 
+#define LID_GROUDON 9
+#define LID_KYOGRE 10
+
 SootopolisCity_MapScript2_FrameTable: @ 81E5914
 	map_script_2 VAR_RAYQUAZA_STATE, 1, SootopolisCity_EventScript_1E5926
 	map_script_2 VAR_SKY_PILLAR_STATE, 1, SootopolisCity_EventScript_1E5BFE
@@ -219,55 +232,55 @@ SootopolisCity_EventScript_1E5946:: @ 81E5946
 	setvar VAR_0x8004, 0
 	special sub_813B7D8
 	waitstate
-	applymovement 10, Common_Movement_WalkInPlaceLeft
-	applymovement 9, Common_Movement_WalkInPlaceRight
+	applymovement LID_KYOGRE, Common_Movement_WalkInPlaceLeft
+	applymovement LID_GROUDON, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	delay 60
 	waitse
 	playmoncry SPECIES_KYOGRE, 2
-	applymovement 10, SootopolisCity_Movement_1E5BB8
-	applymovement 9, SootopolisCity_Movement_1E5BE5
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_SlamLeft
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_WaitSlamRight
 	waitmovement 0
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
-	applymovement 10, SootopolisCity_Movement_1E5BCF
-	applymovement 9, SootopolisCity_Movement_1E5BF0
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_RetreatRight
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_RetreatLeft
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_GROUDON, 2
-	applymovement 10, SootopolisCity_Movement_1E5BC2
-	applymovement 9, SootopolisCity_Movement_1E5BDD
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_WaitSlamLeft
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_SlamRight
 	waitmovement 0
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
-	applymovement 10, SootopolisCity_Movement_1E5BCF
-	applymovement 9, SootopolisCity_Movement_1E5BF0
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_RetreatRight
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_RetreatLeft
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_KYOGRE, 2
-	applymovement 10, SootopolisCity_Movement_1E5BB8
-	applymovement 9, SootopolisCity_Movement_1E5BE5
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_SlamLeft
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_WaitSlamRight
 	waitmovement 0
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
-	applymovement 10, SootopolisCity_Movement_1E5BCF
-	applymovement 9, SootopolisCity_Movement_1E5BF0
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_RetreatRight
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_RetreatLeft
 	waitmovement 0
 	special SpawnCameraObject
-	applymovement 10, SootopolisCity_Movement_1E5BD6
-	applymovement 9, SootopolisCity_Movement_1E5BF7
+	applymovement LID_KYOGRE, SootopolisCity_Movement_1E5BD6
+	applymovement LID_GROUDON, SootopolisCity_Movement_1E5BF7
 	applymovement EVENT_OBJ_ID_CAMERA, SootopolisCity_Movement_1E5A75
 	waitmovement 0
 	special RemoveCameraObject
@@ -304,6 +317,7 @@ SootopolisCity_Movement_1E5A75: @ 81E5A75
 	walk_slow_diag_northeast
 	step_end
 
+
 SootopolisCity_EventScript_1E5A82:: @ 81E5A82
 	delay 60
 	special SpawnCameraObject
@@ -317,55 +331,55 @@ SootopolisCity_EventScript_1E5A82:: @ 81E5A82
 	setvar VAR_0x8004, 0
 	special sub_813B7D8
 	waitstate
-	applymovement 10, Common_Movement_WalkInPlaceLeft
-	applymovement 9, Common_Movement_WalkInPlaceRight
+	applymovement LID_KYOGRE, Common_Movement_WalkInPlaceLeft
+	applymovement LID_GROUDON, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	delay 60
 	waitse
 	playmoncry SPECIES_KYOGRE, 2
-	applymovement 10, SootopolisCity_Movement_1E5BB8
-	applymovement 9, SootopolisCity_Movement_1E5BE5
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_SlamLeft
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_WaitSlamRight
 	waitmovement 0
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
-	applymovement 10, SootopolisCity_Movement_1E5BCF
-	applymovement 9, SootopolisCity_Movement_1E5BF0
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_RetreatRight
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_RetreatLeft
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_GROUDON, 2
-	applymovement 10, SootopolisCity_Movement_1E5BC2
-	applymovement 9, SootopolisCity_Movement_1E5BDD
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_WaitSlamLeft
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_SlamRight
 	waitmovement 0
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
-	applymovement 10, SootopolisCity_Movement_1E5BCF
-	applymovement 9, SootopolisCity_Movement_1E5BF0
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_RetreatRight
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_RetreatLeft
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_KYOGRE, 2
-	applymovement 10, SootopolisCity_Movement_1E5BB8
-	applymovement 9, SootopolisCity_Movement_1E5BE5
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_SlamLeft
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_WaitSlamRight
 	waitmovement 0
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
-	applymovement 10, SootopolisCity_Movement_1E5BCF
-	applymovement 9, SootopolisCity_Movement_1E5BF0
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_RetreatRight
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_RetreatLeft
 	waitmovement 0
 	special SpawnCameraObject
-	applymovement 10, SootopolisCity_Movement_1E5BD6
-	applymovement 9, SootopolisCity_Movement_1E5BF7
+	applymovement LID_KYOGRE, SootopolisCity_Movement_1E5BD6
+	applymovement LID_GROUDON, SootopolisCity_Movement_1E5BF7
 	applymovement EVENT_OBJ_ID_CAMERA, SootopolisCity_Movement_1E5BAE
 	waitmovement 0
 	special RemoveCameraObject
@@ -395,7 +409,7 @@ SootopolisCity_Movement_1E5BAE: @ 81E5BAE
 	walk_slow_diag_southwest
 	walk_slow_diag_southwest
 	step_end
-SootopolisCity_Movement_1E5BB8: @ 81E5BB8
+SootopolisCity_Movement_Kyogre_SlamLeft: @ 81E5BB8
 	walk_in_place_slow_left
 	walk_in_place_slow_left
 	walk_in_place_slow_left
@@ -406,7 +420,7 @@ SootopolisCity_Movement_1E5BB8: @ 81E5BB8
 	walk_left_affine
 	clear_affine_anim
 	step_end
-SootopolisCity_Movement_1E5BC2: @ 81E5BC2
+SootopolisCity_Movement_Kyogre_WaitSlamLeft: @ 81E5BC2
 	delay_16
 	delay_16
 	delay_16
@@ -420,7 +434,7 @@ SootopolisCity_Movement_1E5BC2: @ 81E5BC2
 	walk_left_affine
 	clear_affine_anim
 	step_end
-SootopolisCity_Movement_1E5BCF: @ 81E5BCF
+SootopolisCity_Movement_Kyogre_RetreatRight: @ 81E5BCF
 	lock_facing_direction
 	walk_right
 	delay_16
@@ -436,7 +450,7 @@ SootopolisCity_Movement_1E5BD6: @ 81E5BD6
 	walk_in_place_slow_left
 	walk_in_place_slow_left
 	step_end
-SootopolisCity_Movement_1E5BDD: @ 81E5BDD
+SootopolisCity_Movement_Groudon_SlamRight: @ 81E5BDD
 	walk_in_place_slow_right
 	walk_in_place_slow_right
 	walk_in_place_slow_right
@@ -445,7 +459,7 @@ SootopolisCity_Movement_1E5BDD: @ 81E5BDD
 	delay_16
 	walk_fast_right
 	step_end
-SootopolisCity_Movement_1E5BE5: @ 81E5BE5
+SootopolisCity_Movement_Groudon_WaitSlamRight: @ 81E5BE5
 	delay_16
 	delay_16
 	delay_16
@@ -457,7 +471,7 @@ SootopolisCity_Movement_1E5BE5: @ 81E5BE5
 	delay_16
 	walk_fast_right
 	step_end
-SootopolisCity_Movement_1E5BF0: @ 81E5BF0
+SootopolisCity_Movement_Groudon_RetreatLeft: @ 81E5BF0
 	lock_facing_direction
 	walk_left
 	delay_16
@@ -473,6 +487,56 @@ SootopolisCity_Movement_1E5BF7: @ 81E5BF7
 	walk_in_place_slow_right
 	walk_in_place_slow_right
 	step_end
+
+
+SootopolisCity_TriggerScript_FightLegendaries::
+	lock
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	
+	waitse
+	playmoncry SPECIES_KYOGRE, 2
+	delay 30
+	playmoncry SPECIES_GROUDON, 2
+	applymovement LID_KYOGRE, SootopolisCity_Movement_Kyogre_SlamLeft
+	applymovement LID_GROUDON, SootopolisCity_Movement_Groudon_SlamRight
+	waitmovement 0
+	setvar VAR_0x8004, 1
+	setvar VAR_0x8005, 1
+	setvar VAR_0x8006, 8
+	setvar VAR_0x8007, 5
+	special DoCameraShakeEffect
+	waitstate
+	delay 10
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	callnative BattleSetup_StartLegendaryRageBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	@ If we get here, the player likely won, but if not...
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_WON
+	goto_if_ne Common_EventScript_ReleaseEnd
+	@ The player won somehow!
+	@ See the OnResume FLAG_SYS_CTRL_OBJ_DELETE for deleting the legendaries
+	@ Fade out the weather
+	setweather WEATHER_NONE
+	doweather
+	special WaitWeather
+	waitstate
+	@ Clean up, warp to normal city
+	clearflag FLAG_SYS_WEATHER_CTRL
+	setflag FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY
+	setvar VAR_SKY_PILLAR_STATE, 10
+	setvar VAR_RAYQUAZA_STATE, 5
+	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	fadenewbgm MUS_RUNECITY
+	delay 120
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	warp8 MAP_SOOTOPOLIS_CITY, 255, VAR_INTERACT_X, VAR_INTERACT_Y
+	waitstate
+	end
+
+#undef LID_GROUDON
+#undef LID_KYOGRE
 
 @ -----------------------------------------------------
 
@@ -494,7 +558,7 @@ SootopolisCity_EventScript_1E5C1E:: @ 81E5C1E
 	special RemoveCameraObject
 	delay 60
 	fadescreenspeed 1, 8
-	call SootopolisCity_EventScript_1E5D82
+	call SootopolisCity_EventScript_RemoveLegendaryPedistals
 	removeobject 9
 	removeobject 10
 	addobject 11
@@ -511,7 +575,7 @@ SootopolisCity_EventScript_1E5C1E:: @ 81E5C1E
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 3
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	waitse
 	playmoncry SPECIES_RAYQUAZA, 2
@@ -519,7 +583,7 @@ SootopolisCity_EventScript_1E5C1E:: @ 81E5C1E
 	setvar VAR_0x8005, 2
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	waitmoncry
 	setweather WEATHER_NONE
@@ -547,7 +611,7 @@ SootopolisCity_EventScript_1E5CCE:: @ 81E5CCE
 	special RemoveCameraObject
 	delay 60
 	fadescreenspeed 1, 8
-	call SootopolisCity_EventScript_1E5D82
+	call SootopolisCity_EventScript_RemoveLegendaryPedistals
 	removeobject 9
 	removeobject 10
 	addobject 11
@@ -564,7 +628,7 @@ SootopolisCity_EventScript_1E5CCE:: @ 81E5CCE
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 3
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	waitse
 	playmoncry SPECIES_RAYQUAZA, 2
@@ -572,7 +636,7 @@ SootopolisCity_EventScript_1E5CCE:: @ 81E5CCE
 	setvar VAR_0x8005, 2
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	waitmoncry
 	setweather WEATHER_NONE
@@ -592,7 +656,7 @@ SootopolisCity_EventScript_1E5CCE:: @ 81E5CCE
 	waitstate
 	end
 
-SootopolisCity_EventScript_1E5D82:: @ 81E5D82
+SootopolisCity_EventScript_RemoveLegendaryPedistals:: @ 81E5D82
 	setmetatile 27, 43, 656, 0
 	setmetatile 28, 43, 656, 0
 	setmetatile 29, 43, 656, 0
@@ -782,6 +846,7 @@ SootopolisCity_Text_1E6F38: @ 81E6F38
 	.string "With the passing of the crisis,\n"
 	.string "the cave, too, shall sleep…$"
 SootopolisCity_EventScript_1E5ECE:: @ 81E5ECE
+	goto_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, SootopolisCity_EventScript_1E5ECG
 	msgbox SootopolisCity_Text_1E6ED4, MSGBOX_DEFAULT
 	release
 	end
@@ -790,12 +855,23 @@ SootopolisCity_Text_1E6ED4: @ 81E6ED4
 	.string "The clash between the two awakened\n"
 	.string "Pokémon was quelled by the awakening\l"
 	.string "of a third Pokémon…$"
+SootopolisCity_EventScript_1E5ECG:
+	msgbox SootopolisCity_Text_1E6ED5, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_Text_1E6ED5: @ 81E6ED4
+	.string "Oh, my…\p"
+	.string "The clash between the two awakened\n"
+	.string "Pokémon… you managed to quell it all\l"
+	.string "by yourself! I'm in awe.$"
+	
 
 
 
 SootopolisCity_EventScript_Kiri:: @ 81E5ED8
 	lock
 	faceplayer
+	markasdialog
 	compare VAR_RAYQUAZA_STATE, 1
 	goto_if_le SootopolisCity_EventScript_1E5F1B
 	compare VAR_RAYQUAZA_STATE, 6
@@ -813,6 +889,7 @@ SootopolisCity_Text_1E6BFF: @ 81E6BFF
 	.string "another big Pokémon!\p"
 	.string "Please, someone make them stop!$"
 SootopolisCity_EventScript_1E5F10:: @ 81E5F10
+	goto_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, SootopolisCity_EventScript_1E5F11
 	msgbox SootopolisCity_Text_1E6C53, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -820,6 +897,14 @@ SootopolisCity_EventScript_1E5F10:: @ 81E5F10
 SootopolisCity_Text_1E6C53: @ 81E6C53
 	.string "A pretty Pokémon came down from\n"
 	.string "the sky…$"
+SootopolisCity_EventScript_1E5F11:: @ 81E5F10
+	msgbox SootopolisCity_Text_1E6C54, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+SootopolisCity_Text_1E6C54: @ 81E6C53
+	.string "Wow, {PLAYER_sir}!\n"
+	.string "You beat up those big Pokémon…$"
 SootopolisCity_EventScript_1E5F1B:: @ 81E5F1B
 	dotimebasedevents
 	goto_if_set FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY, SootopolisCity_EventScript_1E5FBB
@@ -918,6 +1003,7 @@ SootopolisCity_Text_1E71A1: @ 81E71A1
 	.string "Is all of this because of those\n"
 	.string "Pokémon?$"
 SootopolisCity_EventScript_1E600D:: @ 81E600D
+	goto_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, SootopolisCity_EventScript_1E600G
 	msgbox SootopolisCity_Text_1E728C, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -925,6 +1011,15 @@ SootopolisCity_Text_1E728C: @ 81E728C
 	.string "Oh?\p"
 	.string "It was you who brought that flying\n"
 	.string "Pokémon here?\p"
+	.string "Well, aren't you amazing!$"
+SootopolisCity_EventScript_1E600G:: @ 81E600D
+	msgbox SootopolisCity_Text_1E728H, MSGBOX_DEFAULT
+	releaseall
+	end
+SootopolisCity_Text_1E728H: @ 81E728C
+	.string "Oh?\p"
+	.string "It was you who slew the giant\n"
+	.string "Pokémon singlehandedly?\p"
 	.string "Well, aren't you amazing!$"
 
 
@@ -985,11 +1080,20 @@ SootopolisCity_Text_1E710B: @ 81E710B
 	.string "blink as if they were alive…\l"
 	.string "It's my favorite scenery.$"
 SootopolisCity_EventScript_1E6084:: @ 81E6084
+	goto_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, SootopolisCity_EventScript_1E6084H
 	msgbox SootopolisCity_Text_1E70D4, MSGBOX_DEFAULT
 	release
 	end
 SootopolisCity_Text_1E70D4: @ 81E70D4
 	.string "When that third Pokémon flew down,\n"
+	.string "I feared the worst.$"
+SootopolisCity_EventScript_1E6084H:: @ 81E6084
+	msgbox SootopolisCity_Text_1E70D5, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_Text_1E70D5: @ 81E70D4
+	.string "When I saw you heading out into the\n"
+	.string "middle of the crater by yourself,\l"
 	.string "I feared the worst.$"
 SootopolisCity_EventScript_1E6065:: @ 81E6065
 	msgbox SootopolisCity_Text_1E7078, MSGBOX_DEFAULT
@@ -1045,6 +1149,7 @@ SootopolisCity_Text_1E68A1: @ 81E68A1
 
 SootopolisCity_EventScript_1E60E3:: @ 81E60E3
 	lockall
+	markasdialog
 	applymovement 5, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_RAYQUAZA_STATE, 5
@@ -1069,12 +1174,20 @@ SootopolisCity_Text_1E6692: @ 81E6692
 	.string "Why can't they be friends, those\n"
 	.string "Pokémon?$"
 SootopolisCity_EventScript_1E612D:: @ 81E612D
+	goto_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, SootopolisCity_EventScript_1E612G
 	msgbox SootopolisCity_Text_1E6750, MSGBOX_DEFAULT
 	release
 	end
 SootopolisCity_Text_1E6750: @ 81E6750
 	.string "What? What? What?\n"
 	.string "What is that green Pokémon?!$"
+SootopolisCity_EventScript_1E612G:: @ 81E612D
+	msgbox SootopolisCity_Text_1E6755, MSGBOX_DEFAULT
+	release
+	end
+SootopolisCity_Text_1E6755: @ 81E6750
+	.string "What? What? What?\n"
+	.string "All by yourself?! What?!$"
 SootopolisCity_EventScript_1E6137:: @ 81E6137
 	msgbox SootopolisCity_Text_1E677F, MSGBOX_DEFAULT
 	release
@@ -1094,17 +1207,157 @@ SootopolisCity_Text_1E6618: @ 81E6618
 	.string "If you live in this town, you end up\n"
 	.string "getting physically fit.$"
 
-@ -----------------------------------------------------
-@ Legendary Battle Triggers
 
-SootopolisCity_TriggerScript_FightLegendaries::
-	lock
-	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
-	callnative BattleSetup_StartLegendaryRageBattle
-	waitstate
-	@ TODO
-	release
+
+SootopolisCity_EventScript_1E635D:: @ 81E635D
+	lockall
+	markasdialog
+	applymovement 15, Common_Movement_FacePlayer
+	waitmovement 0
+	compare VAR_RAYQUAZA_STATE, 5
+	goto_if_eq SootopolisCity_EventScript_1E6388
+	msgbox SootopolisCity_Text_1E67DC, MSGBOX_DEFAULT
+	closemessage
+	applymovement 15, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
 	end
+SootopolisCity_Text_1E67DC: @ 81E67DC
+	.string "I just get this sense somehow that\n"
+	.string "the two Pokémon aren't angry.\p"
+	.string "I think… They probably can't control\n"
+	.string "their own power…$"
+SootopolisCity_EventScript_1E6388:: @ 81E6388
+	goto_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, SootopolisCity_EventScript_1E6389
+	msgbox SootopolisCity_Text_1E6853, MSGBOX_DEFAULT
+	closemessage
+	releaseall
+	end
+SootopolisCity_Text_1E6853: @ 81E6853
+	.string "That flying Pokémon came down from\n"
+	.string "the sky and stopped the rampaging\l"
+	.string "Pokémon…$"
+SootopolisCity_EventScript_1E6389:: @ 81E6388
+	msgbox SootopolisCity_Text_1E6854, MSGBOX_DEFAULT
+	closemessage
+	releaseall
+	end
+SootopolisCity_Text_1E6854: @ 81E6853
+	.string "How you managed to stop the rampaging\n"
+	.string "Pokémon… I'll never know…$"
+
+
+
+SootopolisCity_EventScript_1E6393:: @ 81E6393
+	lockall
+	markasdialog
+	compare VAR_RAYQUAZA_STATE, 5
+	goto_if_eq SootopolisCity_EventScript_1E63C7
+	msgbox SootopolisCity_Text_1E6936, MSGBOX_DEFAULT
+	closemessage
+	applymovement 14, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox SootopolisCity_Text_1E696C, MSGBOX_DEFAULT
+	closemessage
+	applymovement 14, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
+	end
+SootopolisCity_Text_1E6936: @ 81E6936
+	.string "Go for it, red Pokémon!\n"
+	.string "Don't back off, blue Pokémon!$"
+SootopolisCity_Text_1E696C: @ 81E696C
+	.string "… … … … … …\p"
+	.string "Hi, do you know the names of those\n"
+	.string "Pokémon fighting over there?$"
+SootopolisCity_EventScript_1E63C7:: @ 81E63C7
+	applymovement 14, Common_Movement_FacePlayer
+	waitmovement 0
+	goto_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, SootopolisCity_EventScript_1E63C8
+	msgbox SootopolisCity_Text_1E69B8, MSGBOX_DEFAULT
+	releaseall
+	end
+SootopolisCity_Text_1E69B8: @ 81E69B8
+	.string "I was wondering which one would win,\n"
+	.string "the red one or the blue one, but, oh no,\l"
+	.string "it's the green one that settles things!\p"
+	.string "Talk about a huge turn of events!$"
+SootopolisCity_EventScript_1E63C8:: @ 81E63C7
+	msgbox SootopolisCity_Text_1E69B9, MSGBOX_DEFAULT
+	releaseall
+	end
+SootopolisCity_Text_1E69B9: @ 81E69B8
+	.string "I was wondering which one would win,\n"
+	.string "the red one or the blue one, but, oh no,\l"
+	.string "you had to go and ruin it by beating\l"
+	.string "them up all by yourself!\p"
+	.string "Thanks, party pooper!$"
+
+
+
+SootopolisCity_EventScript_1E63DB:: @ 81E63DB
+	lockall
+	applymovement 13, Common_Movement_FacePlayer
+	waitmovement 0
+	compare VAR_RAYQUAZA_STATE, 5
+	goto_if_eq SootopolisCity_EventScript_1E6406
+	msgbox SootopolisCity_Text_1E6C7C, MSGBOX_DEFAULT
+	closemessage
+	applymovement 13, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
+	end
+SootopolisCity_Text_1E6C7C: @ 81E6C7C
+	.string "Oh, no!\n"
+	.string "Sootopolis City will get wrecked!$"
+SootopolisCity_EventScript_1E6406:: @ 81E6406
+	msgbox SootopolisCity_Text_1E6CA6, MSGBOX_DEFAULT
+	closemessage
+	releaseall
+	end
+SootopolisCity_Text_1E6CA6: @ 81E6CA6
+	.string "Sootopolis City didn't get wrecked!\p"
+	.string "Well, except for the Pokémon Center…\n"
+	.string "Its roof is in shambles…$"
+
+
+
+SootopolisCity_EventScript_1E6411:: @ 81E6411
+	lockall
+	applymovement 12, Common_Movement_FacePlayer
+	waitmovement 0
+	compare VAR_RAYQUAZA_STATE, 5
+	goto_if_eq SootopolisCity_EventScript_1E643C
+	msgbox SootopolisCity_Text_1E6A50, MSGBOX_DEFAULT
+	closemessage
+	applymovement 12, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	releaseall
+	end
+SootopolisCity_Text_1E6A50: @ 81E6A50
+	.string "There's an ancient legend that claims\n"
+	.string "the land and sea were shaped by\l"
+	.string "a colossal battle between Pokémon.\p"
+	.string "Well, I'm seeing that happen with\n"
+	.string "my very own eyes!\p"
+	.string "Whoa! I never expected to be\n"
+	.string "witness to something this huge!$"
+SootopolisCity_EventScript_1E643C:: @ 81E643C
+	msgbox SootopolisCity_Text_1E6B2A, MSGBOX_DEFAULT
+	releaseall
+	end
+SootopolisCity_Text_1E6B2A: @ 81E6B2A
+	.string "There's an ancient legend that claims\n"
+	.string "the land and sea were shaped by\l"
+	.string "a colossal battle between Pokémon.\p"
+	.string "Well, I saw that happen with\n"
+	.string "my very own eyes!\p"
+	.string "Whoa! I never expected to be\n"
+	.string "witness to something this huge!$"
+
+
+
+
 
 @ -----------------------------------------------------
 
@@ -1132,16 +1385,28 @@ SootopolisCity_EventScript_1E61AE:: @ 81E61AE
 	msgbox SootopolisCity_Text_1E7866, MSGBOX_DEFAULT
 	releaseall
 	end
+SootopolisCity_Text_1E7866: @ 81E7866
+	.string "STEVEN: I think you have what's\n"
+	.string "needed to help him…$"
 
 SootopolisCity_EventScript_1E61B8:: @ 81E61B8
 	msgbox SootopolisCity_Text_1E794B, MSGBOX_DEFAULT
 	releaseall
 	end
+SootopolisCity_Text_1E794B: @ 81E794B
+	.string "STEVEN: It looks like both MAXIE and\n"
+	.string "ARCHIE have gone away somewhere.\p"
+	.string "Perhaps they've gone to Mt. Pyre to\n"
+	.string "return those ORBS…$"
 
 SootopolisCity_EventScript_1E61C2:: @ 81E61C2
 	msgbox SootopolisCity_Text_1E789A, MSGBOX_DEFAULT
 	releaseall
 	end
+SootopolisCity_Text_1E789A: @ 81E789A
+	.string "STEVEN: The Sky Pillar…\p"
+	.string "I've never been there.\n"
+	.string "I wonder where it could be?$"
 
 SootopolisCity_EventScript_1E61CC:: @ 81E61CC
 	msgbox SootopolisCity_Text_1E75CB, MSGBOX_DEFAULT
@@ -1169,6 +1434,35 @@ SootopolisCity_EventScript_1E61CC:: @ 81E61CC
 	warp MAP_CAVE_OF_ORIGIN_ENTRANCE, 255, 9, 20
 	waitstate
 	end
+SootopolisCity_Text_1E75CB: @ 81E75CB
+	.string "STEVEN: Those Pokémon fighting…\n"
+	.string "GROUDON… And KYOGRE…\p"
+	.string "The two super-ancient Pokémon\n"
+	.string "were awakened from a long sleep…\p"
+	.string "And now they are smashing each other\n"
+	.string "with their uncontrollable energy…\p"
+	.string "…{PLAYER}.\p"
+	.string "You being here now I'll take to mean\n"
+	.string "that you're prepared to become\l"
+	.string "involved in this crisis.\p"
+	.string "Well, then, there's someone that\n"
+	.string "I'd like you to meet.\p"
+	.string "Come with me, please.$"
+SootopolisCity_Text_1E7737: @ 81E7737
+	.string "STEVEN: Listen, {PLAYER}.\p"
+	.string "Does seeing GROUDON and KYOGRE make\n"
+	.string "you think Pokémon are to be feared?\p"
+	.string "But that's not true.\n"
+	.string "Pokémon are really more…\p"
+	.string "…Why am I asking you this?\n"
+	.string "You already know.$"
+SootopolisCity_Text_1E77F0: @ 81E77F0
+	.string "STEVEN: Okay, here we are!\p"
+	.string "Inside here you'll find someone named\n"
+	.string "WALLACE.\p"
+	.string "I think you have what's needed to\n"
+	.string "help him…$"
+
 
 SootopolisCity_EventScript_1E6243:: @ 81E6243
 	applymovement 7, SootopolisCity_Movement_1E6267
@@ -1446,83 +1740,8 @@ SootopolisCity_Movement_1E635A: @ 81E635A
 	walk_up
 	step_end
 
-SootopolisCity_EventScript_1E635D:: @ 81E635D
-	lockall
-	applymovement 15, Common_Movement_FacePlayer
-	waitmovement 0
-	compare VAR_RAYQUAZA_STATE, 5
-	goto_if_eq SootopolisCity_EventScript_1E6388
-	msgbox SootopolisCity_Text_1E67DC, MSGBOX_DEFAULT
-	closemessage
-	applymovement 15, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	releaseall
-	end
 
-SootopolisCity_EventScript_1E6388:: @ 81E6388
-	msgbox SootopolisCity_Text_1E6853, MSGBOX_DEFAULT
-	closemessage
-	releaseall
-	end
 
-SootopolisCity_EventScript_1E6393:: @ 81E6393
-	lockall
-	compare VAR_RAYQUAZA_STATE, 5
-	goto_if_eq SootopolisCity_EventScript_1E63C7
-	msgbox SootopolisCity_Text_1E6936, MSGBOX_DEFAULT
-	closemessage
-	applymovement 14, Common_Movement_FacePlayer
-	waitmovement 0
-	msgbox SootopolisCity_Text_1E696C, MSGBOX_DEFAULT
-	closemessage
-	applymovement 14, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	releaseall
-	end
-
-SootopolisCity_EventScript_1E63C7:: @ 81E63C7
-	applymovement 14, Common_Movement_FacePlayer
-	waitmovement 0
-	msgbox SootopolisCity_Text_1E69B8, MSGBOX_DEFAULT
-	releaseall
-	end
-
-SootopolisCity_EventScript_1E63DB:: @ 81E63DB
-	lockall
-	applymovement 13, Common_Movement_FacePlayer
-	waitmovement 0
-	compare VAR_RAYQUAZA_STATE, 5
-	goto_if_eq SootopolisCity_EventScript_1E6406
-	msgbox SootopolisCity_Text_1E6C7C, MSGBOX_DEFAULT
-	closemessage
-	applymovement 13, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	releaseall
-	end
-
-SootopolisCity_EventScript_1E6406:: @ 81E6406
-	msgbox SootopolisCity_Text_1E6CA6, MSGBOX_DEFAULT
-	closemessage
-	releaseall
-	end
-
-SootopolisCity_EventScript_1E6411:: @ 81E6411
-	lockall
-	applymovement 12, Common_Movement_FacePlayer
-	waitmovement 0
-	compare VAR_RAYQUAZA_STATE, 5
-	goto_if_eq SootopolisCity_EventScript_1E643C
-	msgbox SootopolisCity_Text_1E6A50, MSGBOX_DEFAULT
-	closemessage
-	applymovement 12, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	releaseall
-	end
-
-SootopolisCity_EventScript_1E643C:: @ 81E643C
-	msgbox SootopolisCity_Text_1E6B2A, MSGBOX_DEFAULT
-	releaseall
-	end
 
 SootopolisCity_EventScript_1E6446:: @ 81E6446
 	lock
@@ -1677,151 +1896,11 @@ SootopolisCity_Movement_1E656D:: @ 81E656D
 
 
 
-
-
-
-
-
-
-
-SootopolisCity_Text_1E67DC: @ 81E67DC
-	.string "I just get this sense somehow that\n"
-	.string "the two Pokémon aren't angry.\p"
-	.string "I think… They probably can't control\n"
-	.string "their own power…$"
-
-SootopolisCity_Text_1E6853: @ 81E6853
-	.string "That flying Pokémon came down from\n"
-	.string "the sky and stopped the rampaging\l"
-	.string "Pokémon…$"
-
-
-
-
-
-SootopolisCity_Text_1E6936: @ 81E6936
-	.string "Go for it, red Pokémon!\n"
-	.string "Don't back off, blue Pokémon!$"
-
-SootopolisCity_Text_1E696C: @ 81E696C
-	.string "… … … … … …\p"
-	.string "Hi, do you know the names of those\n"
-	.string "Pokémon fighting over there?$"
-
-SootopolisCity_Text_1E69B8: @ 81E69B8
-	.string "I was wondering which one would win,\n"
-	.string "the red one or the blue one, but, oh no,\l"
-	.string "it's the green one that settles things!\p"
-	.string "Talk about a huge turn of events!$"
-
-SootopolisCity_Text_1E6A50: @ 81E6A50
-	.string "There's an ancient legend that claims\n"
-	.string "the land and sea were shaped by\l"
-	.string "a colossal battle between Pokémon.\p"
-	.string "Well, I'm seeing that happen with\n"
-	.string "my very own eyes!\p"
-	.string "Whoa! I never expected to be\n"
-	.string "witness to something this huge!$"
-
-SootopolisCity_Text_1E6B2A: @ 81E6B2A
-	.string "There's an ancient legend that claims\n"
-	.string "the land and sea were shaped by\l"
-	.string "a colossal battle between Pokémon.\p"
-	.string "Well, I saw that happen with\n"
-	.string "my very own eyes!\p"
-	.string "Whoa! I never expected to be\n"
-	.string "witness to something this huge!$"
-
-
-
-
-SootopolisCity_Text_1E6C7C: @ 81E6C7C
-	.string "Oh, no!\n"
-	.string "Sootopolis City will get wrecked!$"
-
-SootopolisCity_Text_1E6CA6: @ 81E6CA6
-	.string "Sootopolis City didn't get wrecked!$"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SootopolisCity_Text_1E75CB: @ 81E75CB
-	.string "STEVEN: Those Pokémon fighting…\n"
-	.string "GROUDON… And KYOGRE…\p"
-	.string "The two super-ancient Pokémon\n"
-	.string "were awakened from a long sleep…\p"
-	.string "And now they are smashing each other\n"
-	.string "with their uncontrollable energy…\p"
-	.string "…{PLAYER}.\p"
-	.string "You being here now I'll take to mean\n"
-	.string "that you're prepared to become\l"
-	.string "involved in this crisis.\p"
-	.string "Well, then, there's someone that\n"
-	.string "I'd like you to meet.\p"
-	.string "Come with me, please.$"
-
-SootopolisCity_Text_1E7737: @ 81E7737
-	.string "STEVEN: Listen, {PLAYER}.\p"
-	.string "Does seeing GROUDON and KYOGRE make\n"
-	.string "you think Pokémon are to be feared?\p"
-	.string "But that's not true.\n"
-	.string "Pokémon are really more…\p"
-	.string "…Why am I asking you this?\n"
-	.string "You already know.$"
-
-SootopolisCity_Text_1E77F0: @ 81E77F0
-	.string "STEVEN: Okay, here we are!\p"
-	.string "Inside here you'll find someone named\n"
-	.string "WALLACE.\p"
-	.string "I think you have what's needed to\n"
-	.string "help him…$"
-
-SootopolisCity_Text_1E7866: @ 81E7866
-	.string "STEVEN: I think you have what's\n"
-	.string "needed to help him…$"
-
-SootopolisCity_Text_1E789A: @ 81E789A
-	.string "STEVEN: The Sky Pillar…\p"
-	.string "I've never been there.\n"
-	.string "I wonder where it could be?$"
-
 SootopolisCity_Text_1E78E5: @ 81E78E5
 	.string "STEVEN: So that's RAYQUAZA…\p"
 	.string "It's incredible how the two rampaging\n"
 	.string "Pokémon would flee from it in fear…$"
 
-SootopolisCity_Text_1E794B: @ 81E794B
-	.string "STEVEN: It looks like both MAXIE and\n"
-	.string "ARCHIE have gone away somewhere.\p"
-	.string "Perhaps they've gone to Mt. Pyre to\n"
-	.string "return those ORBS…$"
 
 SootopolisCity_Text_1E79C8: @ 81E79C8
 	.string "WALLACE: Oh?\n"

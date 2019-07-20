@@ -543,7 +543,11 @@ void BattleSetup_StartLegendaryRageBattle(void)
     gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
     gBattleTypeFlags |= BATTLE_TYPE_GROUDON;
     gBattleTypeFlags |= BATTLE_TYPE_KYOGRE;
-    CreateBattleStartTask(B_TRANSITION_GROUDON, MUS_BATTLE34);
+    
+    if (gSpecialVar_InteractY % 2 == 0)
+        CreateBattleStartTask(B_TRANSITION_GROUDON, MUS_BATTLE34);
+    else
+        CreateBattleStartTask(B_TRANSITION_KYOGRE, MUS_BATTLE34);
         
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);

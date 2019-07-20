@@ -65,7 +65,7 @@ VAR_MOSSDEEP_STATE :=
 	1 = Magma Invasion Ongoing
 	3 = Post-Invasion State
 
-VAR_SKY_PILLAR_STATE :=
+VAR_RAYQUAZA_STATE :=
 	0 = No Rayquaza
 	1 = Kyogre Released, Raining
 	2 = Saw the fighting legendaries
@@ -79,4 +79,5 @@ VAR_SKY_PILLAR_STATE :=
 	1 = Rayquaza Released
 	2 = Post Legendary Battle (will turn player to face up)
 	3 = Post Legendary Battle
+	10 = Initial State, Post Legendary Battle (won by player)
 

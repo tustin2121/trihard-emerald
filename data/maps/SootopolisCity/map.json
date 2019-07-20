@@ -56,7 +56,7 @@
     "connections": null,
     "coord_events": [
         {
-            "elevation": 3,
+            "elevation": 1,
             "script": "SootopolisCity_TriggerScript_FightLegendaries",
             "type": "trigger",
             "var": "VAR_TEMP_F",
@@ -65,7 +65,7 @@
             "y": 44
         },
         {
-            "elevation": 3,
+            "elevation": 1,
             "script": "SootopolisCity_TriggerScript_FightLegendaries",
             "type": "trigger",
             "var": "VAR_TEMP_F",
