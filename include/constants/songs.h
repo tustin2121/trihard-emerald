@@ -541,7 +541,6 @@
 #define MUS_NONE 0xFFFF
 
 
-
 #define CRY_MODE_NORMAL 0
 #define CRY_MODE_SHORT 1
 #define CRY_MODE_HIGH 2

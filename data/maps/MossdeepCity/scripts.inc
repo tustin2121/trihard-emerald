@@ -293,48 +293,253 @@ MossdeepCity_Text_FightingMagma2:
 @ -----------------------------------------------------
 @ Cutscene: The Rains Begin
 
+#define LID_RANDO_LADY 3
+#define LID_RANDO_DUDE 1
 #define LID_AQUA_BOY 18
 #define LID_AQUA_GIRL 19
 #define LID_MAGMA_GUY 20
 #define LID_LOGAN 17
 
 MossdeepCity_EventScript_RainsBegin_OnLoad1::
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_AQUA_MEMBER_M
-	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_AQUA_MEMBER_F
-	setvar VAR_OBJ_GFX_ID_2, EVENT_OBJ_GFX_MEGMA_MEMBER_M
 	return
 
 MossdeepCity_EventScript_RainsBegin::
 	lockall
 	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
 	subvar VAR_INTERACT_Y, 10
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_AQUA_MEMBER_M
+	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_AQUA_MEMBER_F
+	setvar VAR_OBJ_GFX_ID_2, EVENT_OBJ_GFX_MEGMA_MEMBER_M
 	@ "PLAYER!"
 	markasdialog 30 @off the edge of the screen
 	msgbox MossdeepCity_Text_RainsBegin1
 	closemessage
+	@ Player looks for voice
+	applymovement LID_RANDO_LADY, MossdeepCity_Movement_RainsBegin2_LadyMeander
+	applymovement LID_RANDO_DUDE, MossdeepCity_Movement_RainsBegin2_DudeMeander
+	selectpointer MossdeepCity_MovementTable_RainsBegin2_PlayerSearch, VAR_INTERACT_Y
+	applymovement EVENT_OBJ_ID_PLAYER, 0
+	waitmovement 0
+	@ Bailey runs up
+	setobjectxyperm LID_AQUA_BOY, 34, 19
+	addobject LID_AQUA_BOY
+	applymovement LID_AQUA_BOY, MossdeepCity_Movement_RainsBegin3
+	waitmovement 0
 	@
-	
-	
-	
-	
+	markasdialog 8
+	msgbox MossdeepCity_Text_RainsBegin4
+	closemessage
+	@ The rain begins
 	setweather WEATHER_ALTERNATING
 	doweather
 	delay 20
 	setflag FLAG_SYS_WEATHER_CTRL
-	@ player looks around as the rains begin
+	@ people react
+	playse SE_PIN
+	applymovement LID_AQUA_BOY, MossdeepCity_Movement_RainsBegin5_AquaReact
+	applymovement LID_RANDO_LADY, MossdeepCity_Movement_RainsBegin5_LadyReact
+	applymovement LID_RANDO_DUDE, MossdeepCity_Movement_RainsBegin5_DudeReact
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin5_PlayerReact
+	waitmovement LID_AQUA_BOY
+	msgbox MossdeepCity_Text_RainsBegin5
+	waitmovement EVENT_OBJ_ID_PLAYER
+	closemessage
+	@ runs off, player follows
+	fadenewbgm MUS_OOAME
+	special SpawnCamera
+	applymovement LID_AQUA_BOY, MossdeepCity_Movement_RainsBegin6_AquaRun
+	waitmovement 0
+	setobjectxyperm LID_AQUA_BOY, 31, 25
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin6_PlayerRun
+	applymovement EVENT_OBJ_ID_CAMERA, MossdeepCity_Movement_RainsBegin6_CameraRun
+	waitmovement EVENT_OBJ_ID_PLAYER
+	waitmovement EVENT_OBJ_ID_CAMERA
+	@
+	markasdialog 10
+	msgbox MossdeepCity_Text_RainsBegin7
+	@
+	markasdialog 26
+	msgbox MossdeepCity_Text_RainsBegin8
+	closemessage
+	@ Magma dude runs up
+	setobjectxyperm LID_MAGMA_GUY, 38, 25
+	addobject LID_MAGMA_GUY
+	applymovement LID_MAGMA_GUY, MossdeepCity_Movement_RainsBegin8
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	@
+	markasdialog -3
+	msgbox MossdeepCity_Text_RainsBegin9
+	closemessage
+	@ roar
+	waitse
+	playmoncry SPECIES_GROUDON, CRY_MODE_SLOW
+	delay 16
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+	applymovement LID_MAGMA_GUY, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	waitmoncry
+	delay 30
+	@ Jessica arrives
+	setobjectxyperm LID_AQUA_GIRL, 28, 33
+	addobject LID_AQUA_GIRL
+	playse SE_DANSA
+	applymovement LID_AQUA_GIRL, MossdeepCity_Movement_RainsBegin10
+	waitmovement 0
+	@
+	markasdialog -5
+	msgbox MossdeepCity_Text_RainsBegin11
+	@
+	markasdialog 10
+	message MossdeepCity_Text_RainsBegin12
+	applymovement LID_AQUA_BOY, MossdeepCity_Movement_RainsBegin12
+	waitmovement 0
+	applymovement LID_AQUA_GIRL, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	waitmessage
+	waitbuttonpress
+	playse SE_SELECT
+	@
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin13
+	markasdialog -5
+	msgbox MossdeepCity_Text_RainsBegin13
+	waitmovement 0
+	@
+	markasdialog 10
+	msgbox MossdeepCity_Text_RainsBegin14
+	@
+	markasdialog -5
+	msgbox MossdeepCity_Text_RainsBegin15
+	closemessage
+	@ roar
+	waitse
+	playmoncry SPECIES_KYOGRE, CRY_MODE_SLOW
+	delay 14
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceDown
+	applymovement LID_AQUA_GIRL, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	waitmoncry
+	delay 30
+	@ Logan arrives
+	setobjectxyperm LID_LOGAN, 25, 33
+	addobject LID_LOGAN
+	playse SE_DANSA
+	applymovement LID_LOGAN, MossdeepCity_Movement_RainsBegin16
+	waitmovement 0
+	@ Logan chews them out
+	markasdialog 10
+	message MossdeepCity_Text_RainsBegin17
+	delay 8
+	applymovement LID_AQUA_GIRL, Common_Movement_FaceLeft
+	delay 6
+	applymovement LID_AQUA_BOY, Common_Movement_FaceLeft
+	delay 10
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceLeft
+	delay 4
+	applymovement LID_MAGMA_GUY, Common_Movement_FaceLeft
+	waitmessage
+	waitbuttonpress
+	playse SE_SELECT
+	@
+	applymovement LID_LOGAN, MossdeepCity_Movement_RainsBegin18
+	waitmovement 0
+	removeobject LID_LOGAN
+	setobjectxyperm LID_LOGAN, 80, 0
 	
 	
+	special RemoveCamera
 	releaseall
 	end
 
 MossdeepCity_Text_RainsBegin1:
 	.string "{AQUA_BOY}: {PLAYER}!!$"
+MossdeepCity_Text_RainsBegin4:
+	.string "{AQUA_BOY}: {PLAYER}! We have a problem!\p"
+	.string "Archie radio'd in that they found\n"
+	.string "what they were looking for:\l"
+	.string "an ancient Pokémon, just like Groudon!\p"
+	.string "I think this confirms my worst fears.\n"
+	.string "Team Aqua IS just as insane as\l"
+	.string "Team Magma was…$"
+MossdeepCity_Text_RainsBegin5:
+	.string "{AQUA_BOY}: Oh no…\p"
+	.string "Oh no no no no no…$"
+MossdeepCity_Text_RainsBegin7:
+	.string "{AQUA_BOY}: {PLAYER}…\p"
+	.string "Y-You see it, right…?\p"
+	.string "A massive sudden storm has formed over\n"
+	.string "the entire East Hoenn Sea…\p"
+	.string "The storm clouds seem to be centered\n"
+	.string "over Sootopolis…$"
+MossdeepCity_Text_RainsBegin8:
+	.string "Augh! What is happening?!$"
+MossdeepCity_Text_RainsBegin9:
+	.string "Magma Grunt: The weather! It can't\n"
+	.string "decide what it wants to do!\p"
+	.string "And Sootopolis! Did you see those\n"
+	.string "beasts start fighting on top of it?!\p"
+	.string "One of them looked like Groudon!$"
+MossdeepCity_Text_RainsBegin11:
+	.string "{AQUA_GIRL}: We… We couldn't…\n"
+	.string "We couldn't… couldn't control it…$"
+MossdeepCity_Text_RainsBegin12:
+	.string "{AQUA_BOY}: {AQUA_GIRL}, are you alright?\p"
+	.string "You're shaking."
+MossdeepCity_Text_RainsBegin13:
+	.string "{AQUA_GIRL}: N-No… No I'm not alright…\n"
+	.string "{AQUA_BOY}, that thing nearly crushed us\l"
+	.string "as it escaped the cavern!$"
+MossdeepCity_Text_RainsBegin14:
+	.string "{AQUA_BOY}: W-What thing?\n"
+	.string "The ancient Pokémon?!$"
+MossdeepCity_Text_RainsBegin15:
+	.string "{AQUA_GIRL}: Yes…{PAUSE 20} Kyogre…$"
+MossdeepCity_Text_RainsBegin17:
+	.string "{RIVAL_HERO}: I hope you lot are\n"
+	.string "happy with yourselves!\p"
+	.string "Thanks to your brilliant Teams,\n"
+	.string "there's now two ancient super-powerful\l"
+	.string "pissed-off Pokémon rampaging about,\l"
+	.string "causing mass destruction!\p"
+	.string "The world is gonna be torn to shreds\n"
+	.string "thanks to you numbskulls!\p"
+	.string "I've already lost half my team trying\n"
+	.string "to clean up your mess! Steven's lost\l"
+	.string "most of his team!\p"
+	.string "Who knows if anyone can stop these\n"
+	.string "things before it's too late!\p"
+	.string "I really hope you're freaking happy!!$"
+MossdeepCity_Text_RainsBegin19:
+	
 
 .align 2
-MossdeepCity_MovementTable_RainsBegin2:
-	.4byte 0
+MossdeepCity_MovementTable_RainsBegin2_PlayerSearch:
+	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch0
+	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch1
+	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch2
+	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch3
+	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch4
 	.4byte 0
 
+MossdeepCity_Movement_RainsBegin2_LadyMeander:
+	delay_8
+	delay_4
+	delay_1
+	walk_left
+	delay_16
+	delay_2
+	walk_up
+	step_end
+MossdeepCity_Movement_RainsBegin2_DudeMeander:
+	delay_16
+	delay_2
+	delay_1
+	delay_8
+	delay_8
+	walk_right
+	step_end
 MossdeepCity_Movement_RainsBegin2_PlayerSearch0:
 	emote_question_mark
 	delay_8
@@ -368,13 +573,211 @@ MossdeepCity_Movement_RainsBegin2_PlayerSearch2:
 	walk_left
 	delay_16
 	delay_16
-	walk_down
+	face_down
 	emote_exclamation_mark
+	delay_16
+	walk_down
+	step_end
+MossdeepCity_Movement_RainsBegin2_PlayerSearch3:
+	emote_question_mark
+	delay_8
+	face_right
+	delay_16
+	walk_left
+	delay_16
+	delay_16
+	face_down
+	emote_exclamation_mark
+	delay_16
+	step_end
+MossdeepCity_Movement_RainsBegin2_PlayerSearch4:
+	emote_question_mark
+	delay_8
+	face_left
+	delay_16
+	delay_16
+	walk_up
+	delay_16
+	walk_left
+	delay_16
+	delay_16
+	face_down
+	emote_exclamation_mark
+	delay_16
+	step_end
+
+MossdeepCity_Movement_RainsBegin3:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+MossdeepCity_Movement_RainsBegin5_AquaReact:
+	emote_exclamation_mark
+	delay_16
+	delay_16
+	delay_16
+	face_down
+	step_end
+MossdeepCity_Movement_RainsBegin5_PlayerReact:
+	delay_16
+	delay_16
+	delay_8
+	emote_question_mark
+	delay_16
+	face_left
+	delay_16
+	face_right
+	delay_16
+	face_up
+	step_end
+MossdeepCity_Movement_RainsBegin5_LadyReact:
+	delay_16
+	delay_16
+	emote_question_mark
+	delay_16
+	delay_8
+	face_down
+	delay_16
+	face_right
+	delay_16
+	face_up
+	step_end
+MossdeepCity_Movement_RainsBegin5_DudeReact:
+	delay_16
+	delay_16
+	delay_16
+	emote_question_mark
+	delay_16
+	delay_8
+	face_up
+	delay_16
+	face_left
+	delay_16
+	face_right
+	step_end
+
+MossdeepCity_Movement_RainsBegin6_AquaRun:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+MossdeepCity_Movement_RainsBegin6_PlayerRun:
+	emote_question_mark
+	delay_16
+	delay_16
+	delay_16
+	player_run_down
+	player_run_down
+	player_run_down
+	player_run_down
+	player_run_down
+	player_run_down
+	player_run_left
+	player_run_left
+	player_run_down
+	player_run_down
+	player_run_down
+	player_run_down
+	walk_fast_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	walk_in_place_down
+	step_end
+MossdeepCity_Movement_RainsBegin6_CameraRun:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_diag_southwest
+	walk_diag_southwest
+	walk_diag_southwest
+	walk_diag_southwest
+	walk_diag_southwest
+	walk_down
+	walk_down
+	walk_down
 	walk_down
 	step_end
 
+MossdeepCity_Movement_RainsBegin8:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+MossdeepCity_Movement_RainsBegin10:
+	jump_2_up
+	delay_8
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+MossdeepCity_Movement_RainsBegin12:
+	walk_down
+	walk_in_place_right
+	step_end
+
+MossdeepCity_Movement_RainsBegin13:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_down
+	walk_fast_down
+	walk_in_place_fast_left
+	step_end
+
+MossdeepCity_Movement_RainsBegin16:
+	ride_water_current_up
+	jump_2_up
+	delay_16
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	delay_16
+	delay_16
+	delay_16
+	emote_angry
+	delay_16
+	delay_16
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	step_end
+	
+MossdeepCity_Movement_RainsBegin18:
+	emote_angry
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
 
 #undef LID_AQUA_BOY 
 #undef LID_AQUA_GIRL
 #undef LID_MAGMA_GUY
 #undef LID_LOGAN
+#undef LID_RANDO_LADY
+#undef LID_RANDO_DUDE
