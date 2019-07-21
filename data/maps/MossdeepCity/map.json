@@ -134,12 +134,12 @@
         },
         {
             "elevation": 5,
-            "script": "0",
+            "script": "MossdeepCity_EventScript_LoganCenter",
             "type": "trigger",
             "var": "VAR_MOSSDEEP_STATE",
-            "var_value": "0",
-            "x": 29,
-            "y": 27
+            "var_value": "12",
+            "x": 28,
+            "y": 17
         },
         {
             "elevation": 5,

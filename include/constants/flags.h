@@ -738,12 +738,12 @@
 #define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM              0x311
 #define FLAG_HIDE_ROUTE_119_SCOTT                                   0x312
 #define FLAG_HIDE_LILCOVE_MOTEL_SCOTT                               0x313
-#define FLAG_UNUSED_0x314                                           0x314 // TE: Unused
+#define FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS               0x314 // TriHard
 #define FLAG_HIDE_FANCLUB_OLD_LADY                                  0x315
 #define FLAG_HIDE_FANCLUB_BOY                                       0x316
 #define FLAG_HIDE_FANCLUB_LITTLE_BOY                                0x317
 #define FLAG_HIDE_FANCLUB_LADY                                      0x318
-#define FLAH_UNUSED_0x319                                           0x319
+#define FLAG_HIDE_MOSSDEEP_SPACE_CENTER_TEAM_MEMBERS                0x319 // TriHard
 #define FLAG_HIDE_LITTLEROOT_TOWN_RIVAL                             0x31A
 #define FLAG_HIDE_LITTLEROOT_TOWN_BIRCH                             0x31B
 #define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1                          0x31C

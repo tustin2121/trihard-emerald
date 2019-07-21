@@ -134,7 +134,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_HIDE_MOSSDEEP_SPACE_CENTER_TEAM_MEMBERS",
             "graphics_id": "EVENT_OBJ_GFX_MAGMA_MEMBER_M",
             "movement_range_x": 1,
             "movement_range_y": 1,
@@ -173,7 +173,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_HIDE_MOSSDEEP_SPACE_CENTER_TEAM_MEMBERS",
             "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
             "movement_range_x": 0,
             "movement_range_y": 0,

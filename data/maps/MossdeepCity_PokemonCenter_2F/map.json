@@ -110,6 +110,45 @@
             "trainer_type": "0",
             "x": 7,
             "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_FORMER_AQUA_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "MossdeepCity_PokemonCenter_2F_EventScript_AquaBoy",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 2,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_FORMER_AQUA_F",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "MossdeepCity_PokemonCenter_2F_EventScript_AquaGirl",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 1,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_FORMER_MAGMA_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "MossdeepCity_PokemonCenter_2F_EventScript_MagmaGuy",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 0,
+            "y": 7
         }
     ],
     "region_map_section": "MAPSEC_MOSSDEEP_CITY",

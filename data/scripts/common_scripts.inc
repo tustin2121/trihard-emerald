@@ -38,6 +38,13 @@ Common_Movement_Angry: @ 8272598
 	emote_angry
 	step_end
 
+Common_Movement_AngryAndWait:: @ 8272598
+	emote_angry
+	delay_16
+	delay_16
+	delay_16
+	step_end
+
 Common_Movement_AngryReaction: @ 8272598
 	delay_16
 	emote_exclamation_mark

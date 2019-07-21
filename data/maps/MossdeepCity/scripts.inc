@@ -25,6 +25,7 @@ MossdeepCity_EventScript_UpdateInvasionFlags:
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_SPACE_CENTER_TEAM_MEMBERS
 	return
 
 MossdeepCity_OnLoad:
@@ -584,6 +585,8 @@ MossdeepCity_EventScript_RainsBegin::
 	setflag FLAG_SYS_WEATHER_CTRL
 	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
 	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
+	setflag FLAG_HIDE_MOSSDEEP_SPACE_CENTER_TEAM_MEMBERS
+	clearflag FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS
 	setvar VAR_STEVENS_HOUSE_STATE, 2
 	setvar VAR_SEAFLOOR_CAVERN_STATE, 1
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE
@@ -603,7 +606,7 @@ MossdeepCity_Text_RainsBegin1:
 	.string "{AQUA_BOY}: {PLAYER}!!$"
 MossdeepCity_Text_RainsBegin4:
 	.string "{AQUA_BOY}: {PLAYER}! We have a problem!\p"
-	.string "Archie radio'd in that they found\n"
+	.string "Archie radioed in that they found\n"
 	.string "what they were looking for:\l"
 	.string "an ancient Pokémon, just like Groudon!\p"
 	.string "I think this confirms my worst fears.\n"
@@ -648,7 +651,7 @@ MossdeepCity_Text_RainsBegin17:
 	.string "happy with yourselves!\p"
 	.string "Thanks to your brilliant Teams,\n"
 	.string "there's now two ancient super-powerful\l"
-	.string "pissed-off Pokémon rampaging about,\l"
+	.string "ticked off Pokémon rampaging about,\l"
 	.string "causing mass destruction!\p"
 	.string "The world is gonna be torn to shreds\n"
 	.string "thanks to you numbskulls!\p"
@@ -1081,3 +1084,63 @@ MossdeepCity_Movement_RainsBegin26:
 #undef LID_LOGAN
 #undef LID_RANDO_LADY
 #undef LID_RANDO_DUDE
+
+@ -----------------------------------------------------
+@ Scene: Logan in a Huff
+
+#define LID_LOGAN 17
+
+MossdeepCity_EventScript_LoganCenter::
+	lock
+	opendoor 28, 16
+	waitdooranim
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_ExclamationMarkAndWait
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_BackOffDown1
+	waitmovement 0
+	setobjectxyperm LID_LOGAN, 28, 16
+	addobject LID_LOGAN
+	applymovement LID_LOGAN, Common_Movement_WalkDown1
+	waitmovement 0
+	closedoor 28, 16
+	waitdooranim
+	markasdialog
+	msgbox MossdeepCity_Text_LoganCenter1
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_AngryAndWait
+	waitmovement 0
+	msgbox MossdeepCity_Text_LoganCenter2
+	closemessage
+	setfieldeffectargument 0, 1
+	dofieldeffect FLDEFF_NPCFLY_OUT
+	delay 15
+	setobjectxyperm LID_LOGAN, 80, 0
+	removeobject LID_LOGAN
+	moveobjectoffscreen LID_LOGAN
+	waitfieldeffect FLDEFF_NPCFLY_OUT
+	msgbox MossdeepCity_Text_LoganCenter3, MSGBOX_DESCRIBE
+	giveitem_std ITEM_TM58
+	setflag FLAG_RECEIVED_TM58
+	setvar VAR_MOSSDEEP_STATE, 13
+	release
+	end
+MossdeepCity_Text_LoganCenter1:
+	.string "{RIVAL_HERO}: Oh, excuse you.\p"
+	.string "Did you drop your bandanna? Wouldn't\n"
+	.string "want you to get kicked out of your\l"
+	.string "gang for a dress code violation.$"
+MossdeepCity_Text_LoganCenter2:
+	.string "Don't you swear at me!\p"
+	.string "It's YOUR fault we're in this mess\n"
+	.string "to begin with! You and your gang!\p"
+	.string "Why don't you go home? At least you\n"
+	.string "can't cause any more damage there.\p"
+	.string "Now excuse me. I need to fly into\n"
+	.string "Sootopolis to try and stop the\l"
+	.string "rampaging god-beasts.$"
+MossdeepCity_Text_LoganCenter3:
+	.string "{RIVAL_HERO} left something behind\n"
+	.string "on the ground.$"
+
+#undef LID_LOGAN

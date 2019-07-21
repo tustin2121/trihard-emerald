@@ -12,7 +12,7 @@ EverGrandeCity_PokemonCenter_1F_OnTransition: @ 8229A3F
 
 EverGrandeCity_PokemonCenter_1F_EventScript_229A4C:: @ 8229A4C
 	goto_if_unset FLAG_BADGE06_GET, Common_EventScript_NopReturn
-	clearflag FLAH_UNUSED_0x319
+	@ clearflag FLAH_UNUSED_0x319
 	return
 
 @ -----------------------------------------------------
