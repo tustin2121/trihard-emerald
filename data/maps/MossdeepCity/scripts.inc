@@ -1,6 +1,8 @@
 MossdeepCity_MapScripts:: @ 81E4A96
+	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, MossdeepCity_MapTable
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_FrameTable
 	.byte 0
 
 MossdeepCity_OnTransition: @ 81E4A9C
@@ -25,14 +27,30 @@ MossdeepCity_EventScript_UpdateInvasionFlags:
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
 	return
 
+MossdeepCity_OnLoad:
+	compare VAR_MOSSDEEP_STATE, 11
+	call_if_eq MossdeepCity_OnLoad_AddTeamPile
+	compare VAR_MOSSDEEP_STATE, 12
+	call_if_eq MossdeepCity_OnLoad_AddTeamPile
+	end
+
+MossdeepCity_OnLoad_AddTeamPile:
+	setmetatile 31, 26, 0x380, FALSE
+	return
+	
+
 MossdeepCity_MapTable:
 	@ map_script_2 VAR_LAST_WARP_ID, 8, MossdeepCity_MapTable_StepMusicOn
 	.2byte 0
 
-@ MossdeepCity_MapTable_StepMusicOn:
-@ 	compare VAR_MOSSDEEP_STATE, 2
-@ 	goto_if_eq MossdeepCity_EventScript_MusicOn
-@ 	end
+MossdeepCity_FrameTable:
+	map_script_2 VAR_MOSSDEEP_STATE, 11, MossdeepCity_FrameTable_ClearFlags
+	.2byte 0
+
+MossdeepCity_FrameTable_ClearFlags:
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	setvar VAR_MOSSDEEP_STATE, 12
+	end
 
 @ -----------------------------------------------------
 @ Sign
@@ -309,9 +327,9 @@ MossdeepCity_EventScript_RainsBegin::
 	subvar VAR_INTERACT_Y, 10
 	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_AQUA_MEMBER_M
 	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_AQUA_MEMBER_F
-	setvar VAR_OBJ_GFX_ID_2, EVENT_OBJ_GFX_MEGMA_MEMBER_M
+	setvar VAR_OBJ_GFX_ID_2, EVENT_OBJ_GFX_MAGMA_MEMBER_M
 	@ "PLAYER!"
-	markasdialog 30 @off the edge of the screen
+	markasdialog 29 @off the edge of the screen
 	msgbox MossdeepCity_Text_RainsBegin1
 	closemessage
 	@ Player looks for voice
@@ -346,10 +364,10 @@ MossdeepCity_EventScript_RainsBegin::
 	closemessage
 	@ runs off, player follows
 	fadenewbgm MUS_OOAME
-	special SpawnCamera
+	special SpawnCameraObject
 	applymovement LID_AQUA_BOY, MossdeepCity_Movement_RainsBegin6_AquaRun
 	waitmovement 0
-	setobjectxyperm LID_AQUA_BOY, 31, 25
+	setobjectxy LID_AQUA_BOY, 31, 25
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin6_PlayerRun
 	applymovement EVENT_OBJ_ID_CAMERA, MossdeepCity_Movement_RainsBegin6_CameraRun
 	waitmovement EVENT_OBJ_ID_PLAYER
@@ -357,16 +375,19 @@ MossdeepCity_EventScript_RainsBegin::
 	@
 	markasdialog 10
 	msgbox MossdeepCity_Text_RainsBegin7
+	closemessage
+	delay 16
 	@
 	markasdialog 26
 	msgbox MossdeepCity_Text_RainsBegin8
 	closemessage
 	@ Magma dude runs up
-	setobjectxyperm LID_MAGMA_GUY, 38, 25
+	setobjectxyperm LID_MAGMA_GUY, 37, 25
 	addobject LID_MAGMA_GUY
 	applymovement LID_MAGMA_GUY, MossdeepCity_Movement_RainsBegin8
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	@
 	markasdialog -3
@@ -378,6 +399,7 @@ MossdeepCity_EventScript_RainsBegin::
 	delay 16
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	applymovement LID_MAGMA_GUY, Common_Movement_WalkInPlaceDown
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	waitmoncry
 	delay 30
@@ -390,6 +412,7 @@ MossdeepCity_EventScript_RainsBegin::
 	@
 	markasdialog -5
 	msgbox MossdeepCity_Text_RainsBegin11
+	playse SE_SELECT
 	@
 	markasdialog 10
 	message MossdeepCity_Text_RainsBegin12
@@ -404,10 +427,12 @@ MossdeepCity_EventScript_RainsBegin::
 	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin13
 	markasdialog -5
 	msgbox MossdeepCity_Text_RainsBegin13
+	playse SE_SELECT
 	waitmovement 0
 	@
 	markasdialog 10
 	msgbox MossdeepCity_Text_RainsBegin14
+	playse SE_SELECT
 	@
 	markasdialog -5
 	msgbox MossdeepCity_Text_RainsBegin15
@@ -441,15 +466,136 @@ MossdeepCity_EventScript_RainsBegin::
 	applymovement LID_MAGMA_GUY, Common_Movement_FaceLeft
 	waitmessage
 	waitbuttonpress
-	playse SE_SELECT
-	@
-	applymovement LID_LOGAN, MossdeepCity_Movement_RainsBegin18
-	waitmovement 0
+	closemessage
+	@ Logan runs off
+	applymovement LID_AQUA_GIRL, MossdeepCity_Movement_RainsBegin18_AquaGirl
+	applymovement LID_AQUA_BOY, MossdeepCity_Movement_RainsBegin18_AquaBoy
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin18_Player
+	applymovement LID_MAGMA_GUY, MossdeepCity_Movement_RainsBegin18_MagmaGuy
+	applymovement LID_LOGAN, MossdeepCity_Movement_RainsBegin18_Logan
+	waitmovement LID_LOGAN
 	removeobject LID_LOGAN
 	setobjectxyperm LID_LOGAN, 80, 0
-	
-	
-	special RemoveCamera
+	waitmovement LID_AQUA_BOY
+	@ Bailey is contemplative, takes off his aqua garb
+	applymovement LID_AQUA_GIRL, MossdeepCity_Movement_RainsBegin19_AquaGirl
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin19_Player
+	applymovement LID_MAGMA_GUY, MossdeepCity_Movement_RainsBegin19_MagmaGuy
+	applymovement LID_AQUA_BOY, MossdeepCity_Movement_RainsBegin19_AquaBoy
+	waitmovement LID_AQUA_BOY
+	@
+	setvar VAR_0x8000, 31
+	setvar VAR_0x8001, 26
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceLeft
+	waitmovement LID_AQUA_BOY
+	delay 16
+	setobjectxyperm LID_AQUA_BOY, 31, 25
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_FORMER_AQUA_M
+	removeobject LID_AQUA_BOY
+	setmetatile VAR_0x8000, VAR_0x8001, 0x370, FALSE
+	special DrawWholeMapView
+	addobject LID_AQUA_BOY
+	delay 8
+	waitmovement LID_MAGMA_GUY
+	@ Bailey leaves
+	markasdialog 10
+	msgbox MossdeepCity_Text_RainsBegin21
+	closemessage
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin21_Player
+	applymovement LID_AQUA_BOY, MossdeepCity_Movement_RainsBegin21_AquaBoy
+	waitmovement LID_AQUA_BOY
+	applymovement LID_AQUA_GIRL, MossdeepCity_Movement_RainsBegin21_AquaGirl
+	waitmovement LID_AQUA_GIRL
+	@
+	markasdialog -5
+	msgbox MossdeepCity_Text_RainsBegin22
+	closemessage
+	@ takes off aqua garb
+	applymovement LID_AQUA_GIRL, Common_Movement_WalkInPlaceRight
+	waitmovement LID_AQUA_GIRL
+	delay 24
+	setobjectxyperm LID_AQUA_GIRL, 31, 25
+	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_FORMER_AQUA_F
+	removeobject LID_AQUA_GIRL
+	setmetatile VAR_0x8000, VAR_0x8001, 0x378, FALSE
+	special DrawWholeMapView
+	addobject LID_AQUA_GIRL
+	delay 8
+	@ 
+	applymovement LID_AQUA_BOY, Common_Movement_WalkUp1
+	applymovement LID_AQUA_GIRL, MossdeepCity_Movement_RainsBegin22_AquaGirl
+	applymovement LID_MAGMA_GUY, MossdeepCity_Movement_RainsBegin23
+	delay 16
+	markasdialog -6
+	message MossdeepCity_Text_RainsBegin23
+	waitmovement LID_MAGMA_GUY
+	waitmessage
+	@ takes off magma garb
+	applymovement LID_MAGMA_GUY, Common_Movement_WalkInPlaceLeft
+	waitmovement LID_MAGMA_GUY
+	delay 12
+	setobjectxyperm LID_MAGMA_GUY, 31, 25
+	setvar VAR_OBJ_GFX_ID_2, EVENT_OBJ_GFX_FORMER_MAGMA_M
+	removeobject LID_MAGMA_GUY
+	setmetatile VAR_0x8000, VAR_0x8001, 0x380, FALSE
+	special DrawWholeMapView
+	addobject LID_MAGMA_GUY
+	delay 8
+	waitbuttonpress
+	playse SE_SELECT
+	applymovement LID_MAGMA_GUY, MossdeepCity_Movement_RainsBegin24
+	markasdialog -6
+	msgbox MossdeepCity_Text_RainsBegin24
+	closemessage
+	waitmovement 0
+	@
+	removeobject LID_MAGMA_GUY
+	removeobject LID_AQUA_GIRL
+	removeobject LID_AQUA_BOY
+	setobjectxyperm LID_MAGMA_GUY, 80, 0
+	setobjectxyperm LID_AQUA_GIRL, 80, 0
+	setobjectxyperm LID_AQUA_BOY, 80, 0
+	@ 
+	delay 20
+	applymovement EVENT_OBJ_ID_CAMERA, MossdeepCity_Movement_RainsBegin26
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_RainsBegin25
+	waitmovement 0
+	delay 30
+	special RemoveCameraObject
+	@ Fade out, change clothes
+	fadescreen 5 @ FADE_TO_BLACK_NO_WINDOW
+	setvar VAR_0x8000, 3
+	callnative SetPlayerOutfit
+	@ Clean up
+	setvar VAR_MOSSDEEP_STATE, 11
+	setvar VAR_ROUTE128_STATE, 2
+	setvar VAR_RAYQUAZA_STATE, 1
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+	setflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	clearflag FLAG_HIDE_ROUTE_128_ARCHIE
+	clearflag FLAG_HIDE_ROUTE_128_MAXIE
+	setflag FLAG_SYS_WEATHER_CTRL
+	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
+	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN
+	setvar VAR_STEVENS_HOUSE_STATE, 2
+	setvar VAR_SEAFLOOR_CAVERN_STATE, 1
+	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE
+	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAXIE
+	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS
+	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE_1
+	setflag FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	call Common_EventScript_ClearSceneFlags
+	setflag FLAG_HIDE_MAP_NAME_POPUP
+	warpcustom MAP_MOSSDEEP_CITY, 255, VAR_INTERACT_X, VAR_INTERACT_Y
+	waitstate
 	releaseall
 	end
 
@@ -472,7 +618,8 @@ MossdeepCity_Text_RainsBegin7:
 	.string "A massive sudden storm has formed over\n"
 	.string "the entire East Hoenn Sea…\p"
 	.string "The storm clouds seem to be centered\n"
-	.string "over Sootopolis…$"
+	.string "over Sootopolis…\p"
+	.string "This…{PAUSE 10} This is bad…$"
 MossdeepCity_Text_RainsBegin8:
 	.string "Augh! What is happening?!$"
 MossdeepCity_Text_RainsBegin9:
@@ -485,8 +632,8 @@ MossdeepCity_Text_RainsBegin11:
 	.string "{AQUA_GIRL}: We… We couldn't…\n"
 	.string "We couldn't… couldn't control it…$"
 MossdeepCity_Text_RainsBegin12:
-	.string "{AQUA_BOY}: {AQUA_GIRL}, are you alright?\p"
-	.string "You're shaking."
+	.string "{AQUA_BOY}: {AQUA_GIRL}, are you alright?\n"
+	.string "You're shaking.$"
 MossdeepCity_Text_RainsBegin13:
 	.string "{AQUA_GIRL}: N-No… No I'm not alright…\n"
 	.string "{AQUA_BOY}, that thing nearly crushed us\l"
@@ -506,13 +653,25 @@ MossdeepCity_Text_RainsBegin17:
 	.string "The world is gonna be torn to shreds\n"
 	.string "thanks to you numbskulls!\p"
 	.string "I've already lost half my team trying\n"
-	.string "to clean up your mess! Steven's lost\l"
-	.string "most of his team!\p"
+	.string "to clean up your mess!\l"
+	.string "Steven's lost most of his team!\p"
 	.string "Who knows if anyone can stop these\n"
 	.string "things before it's too late!\p"
 	.string "I really hope you're freaking happy!!$"
-MossdeepCity_Text_RainsBegin19:
-	
+MossdeepCity_Text_RainsBegin21:
+	.string "{AQUA_BOY}: Well… I don't know about\n"
+	.string "you guys…\p"
+	.string "But if the world's gonna end…\n"
+	.string "I don't want to be sober when it does…\p"
+	.string "I hope the center has a good selection…$"
+MossdeepCity_Text_RainsBegin22:
+	.string "{AQUA_GIRL}: {AQUA_BOY}, wait for me.$"
+MossdeepCity_Text_RainsBegin23:
+	.string "Magma Grunt: Can I come too?$"
+MossdeepCity_Text_RainsBegin24:
+	.string "{AQUA_BOY}: By all means!\p"
+	.string "Consider us brothers in screwing over\n"
+	.string "the world…$"
 
 .align 2
 MossdeepCity_MovementTable_RainsBegin2_PlayerSearch:
@@ -521,6 +680,7 @@ MossdeepCity_MovementTable_RainsBegin2_PlayerSearch:
 	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch2
 	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch3
 	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch4
+	.4byte MossdeepCity_Movement_RainsBegin2_PlayerSearch5
 	.4byte 0
 
 MossdeepCity_Movement_RainsBegin2_LadyMeander:
@@ -605,6 +765,22 @@ MossdeepCity_Movement_RainsBegin2_PlayerSearch4:
 	emote_exclamation_mark
 	delay_16
 	step_end
+MossdeepCity_Movement_RainsBegin2_PlayerSearch5:
+	emote_question_mark
+	delay_8
+	face_left
+	delay_16
+	delay_16
+	walk_up
+	walk_up
+	delay_16
+	walk_left
+	delay_16
+	delay_16
+	face_down
+	emote_exclamation_mark
+	delay_16
+	step_end
 
 MossdeepCity_Movement_RainsBegin3:
 	walk_fast_up
@@ -676,12 +852,8 @@ MossdeepCity_Movement_RainsBegin6_PlayerRun:
 	player_run_down
 	player_run_down
 	player_run_down
-	player_run_down
 	player_run_left
 	player_run_left
-	player_run_down
-	player_run_down
-	player_run_down
 	player_run_down
 	walk_fast_down
 	walk_down
@@ -714,20 +886,23 @@ MossdeepCity_Movement_RainsBegin8:
 	walk_fast_left
 	walk_fast_left
 	walk_fast_left
-	walk_fast_left
 	step_end
 
 MossdeepCity_Movement_RainsBegin10:
 	jump_2_up
+	delay_16
+	walk_in_place_down
+	delay_16
+	walk_right
 	delay_8
 	walk_right
 	walk_right
 	walk_right
-	walk_right
-	walk_right
+	delay_8
 	walk_up
 	walk_up
-	walk_up
+	walk_slow_up
+	walk_slow_up
 	walk_up
 	step_end
 
@@ -754,25 +929,150 @@ MossdeepCity_Movement_RainsBegin16:
 	walk_fast_up
 	walk_fast_up
 	delay_16
+	walk_in_place_fast_right
 	delay_16
 	delay_16
 	emote_angry
 	delay_16
 	delay_16
 	walk_fast_down
+	walk_fast_down
+	walk_fast_right
 	walk_fast_right
 	walk_fast_right
 	step_end
 	
-MossdeepCity_Movement_RainsBegin18:
+MossdeepCity_Movement_RainsBegin18_Logan:
 	emote_angry
+	delay_8
+	walk_fast_left
+	walk_fast_left
 	walk_fast_left
 	walk_fast_up
 	walk_fast_up
 	walk_fast_up
 	walk_fast_up
 	walk_fast_up
-	walk_fast_up
+	step_end
+MossdeepCity_Movement_RainsBegin18_AquaBoy:
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_up
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	face_left
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	face_down
+	step_end
+MossdeepCity_Movement_RainsBegin18_AquaGirl:
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_2
+	face_up
+	step_end
+MossdeepCity_Movement_RainsBegin18_MagmaGuy:
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_8
+	face_up
+	step_end
+MossdeepCity_Movement_RainsBegin18_Player:
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_8
+	delay_4
+	face_up
+	step_end
+
+MossdeepCity_Movement_RainsBegin19_AquaBoy:
+	delay_16
+	walk_in_place_down
+	delay_16
+	step_end
+MossdeepCity_Movement_RainsBegin19_AquaGirl:
+	delay_8
+	delay_4
+	face_left
+MossdeepCity_Movement_RainsBegin19_MagmaGuy:
+	delay_16
+	delay_16
+	delay_4
+	face_left
+MossdeepCity_Movement_RainsBegin19_Player:
+	delay_16
+	delay_2
+	face_left
+	step_end
+
+MossdeepCity_Movement_RainsBegin21_AquaBoy:
+	walk_slow_up
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	walk_slow_up
+	walk_slow_up
+	step_end
+MossdeepCity_Movement_RainsBegin21_Player:
+	delay_16
+	walk_up
+	walk_up
+	face_left
+	step_end
+MossdeepCity_Movement_RainsBegin21_AquaGirl:
+	walk_left
+	walk_up
+	step_end
+
+MossdeepCity_Movement_RainsBegin22_AquaGirl:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+MossdeepCity_Movement_RainsBegin23:
+	delay_16
+	delay_16
+	delay_16
+	walk_left
+	face_down
+	step_end
+MossdeepCity_Movement_RainsBegin24:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+MossdeepCity_Movement_RainsBegin25:
+	walk_left
+	walk_left
+	walk_down
+	step_end
+MossdeepCity_Movement_RainsBegin26:
+	walk_diag_northeast
+	walk_diag_northeast
 	step_end
 
 #undef LID_AQUA_BOY 

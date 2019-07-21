@@ -11,6 +11,7 @@
 #include "rotating_gate.h"
 #include "sprite.h"
 #include "text.h"
+#include "event_data.h"
 
 EWRAM_DATA bool8 gUnusedBikeCameraAheadPanback = FALSE;
 
@@ -203,6 +204,11 @@ static void RedrawMapSliceWest(struct FieldCameraOffset *cameraOffset, const str
             temp -= 32;
         DrawMetatileAt(mapLayout, temp * 32 + r5, gSaveBlock1Ptr->pos.x + 14, gSaveBlock1Ptr->pos.y + i / 2);
     }
+}
+
+void CurrentMapDrawMetatileFromScript()
+{
+    CurrentMapDrawMetatileAt(gSpecialVar_0x8000, gSpecialVar_0x8001);
 }
 
 void CurrentMapDrawMetatileAt(int x, int y)

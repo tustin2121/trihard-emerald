@@ -134,7 +134,7 @@ static const u8 sBasePaletteGammaTypes[32] =
     GAMMA_NORMAL,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
-    GAMMA_NORMAL,
+    GAMMA_NONE,
     GAMMA_NONE,
     GAMMA_NONE,
     // sprite palettes
