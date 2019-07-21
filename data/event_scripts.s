@@ -5609,3 +5609,13 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/SootopolisCity_PokemonCenter_Alt/scripts.inc"
 
 	.include "data/maps/ScriptTestMap/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom1/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom2/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom3/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom4/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom5/scripts.inc"

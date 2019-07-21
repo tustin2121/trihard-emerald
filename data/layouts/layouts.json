@@ -88,7 +88,7 @@
             "name": "EverGrandeCity_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_EverGrande",
-            "width": 40
+            "width": 50
         },
         {
             "blockdata_filepath": "data/layouts/LittlerootTown/map.bin",
@@ -1143,12 +1143,12 @@
         {
             "blockdata_filepath": "data/layouts/EverGrandeCity_ChampionsRoom/map.bin",
             "border_filepath": "data/layouts/EverGrandeCity_ChampionsRoom/border.bin",
-            "height": 13,
+            "height": 34,
             "id": "LAYOUT_EVER_GRANDE_CITY_CHAMPIONS_ROOM",
             "name": "EverGrandeCity_ChampionsRoom_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_EliteFour",
-            "width": 13
+            "width": 19
         },
         {
             "blockdata_filepath": "data/layouts/EverGrandeCity_ShortHall/map.bin",
@@ -2693,12 +2693,12 @@
         {
             "blockdata_filepath": "data/layouts/EverGrandeCity_PokemonLeague_1F/map.bin",
             "border_filepath": "data/layouts/EverGrandeCity_PokemonLeague_1F/border.bin",
-            "height": 12,
+            "height": 18,
             "id": "LAYOUT_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F",
             "name": "EverGrandeCity_PokemonLeague_1F_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_PokemonCenter",
-            "width": 19
+            "width": 25
         },
         {
             "blockdata_filepath": "data/layouts/Route119_WeatherInstitute_1F/map.bin",
@@ -4429,6 +4429,16 @@
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_EverGrande",
             "width": 20
+        },
+        {
+            "blockdata_filepath": "data/layouts/EverGrandeCity_WaitingRoom/map.bin",
+            "border_filepath": "data/layouts/EverGrandeCity_WaitingRoom/border.bin",
+            "height": 10,
+            "id": "LAYOUT_EVER_GRANDE_CITY_WAITING_ROOM",
+            "name": "EverGrandeCity_WaitingRoom_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_BattleFrontier",
+            "width": 11
         }
     ],
     "layouts_table_label": "gMapLayouts"
