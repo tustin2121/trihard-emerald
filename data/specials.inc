@@ -159,8 +159,6 @@ gSpecials:: @ 81DBA64
 	def_special PetalburgGymSpecial1
 	def_special PetalburgGymSpecial2
 	def_special GetPlayerTrainerIdOnesDigit
-	def_special GetPlayerBigGuyGirlString
-	def_special GetRivalSonDaughterString
 	def_special SetFlagInVar
 	def_special CableCarWarp
 	def_special CableCar
@@ -319,7 +317,7 @@ gSpecials:: @ 81DBA64
 	def_special GetShieldToyTVDecorationInfo
 	def_special IsPokerusInParty
 	def_special SetSootopolisGymCrackedIceMetatiles
-	def_special sub_8139560
+	def_special DoCameraShakeEffect
 	def_special StartGroudonKyogreBattle
 	def_special BattleSetup_StartLegendaryBattle
 	def_special StartRegiBattle
@@ -421,7 +419,7 @@ gSpecials:: @ 81DBA64
 	def_special DoMirageTowerCeilingCrumble
 	def_special SetMirageTowerVisibility
 	def_special StartPlayerDescendMirageTower
-	def_special sub_81398C0
+	def_special LoadTMMoveName
 	def_special IsWirelessAdapterConnected
 	def_special BerryBlenderLinkBecomeLeader
 	def_special BerryBlenderLinkJoinGroup
@@ -504,7 +502,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80A08CC
 	def_special Unused_SetWeatherSunny
 	def_special sub_81AFDA0
-	def_special sub_813B4E0
+	def_special IsRematchTrainerRegistered
 	def_special ShouldDoBrailleRegicePuzzle
 	def_special EnableNationalPokedex
 	def_special sub_80E2548
@@ -526,8 +524,8 @@ gSpecials:: @ 81DBA64
 	def_special sub_813B968
 	def_special sub_80F8B94
 	def_special ShowTrainerHillRecords
-	def_special sub_80B4808
-	def_special sub_813B9A0
+	def_special DoSpinningTrainerApproach
+	def_special PreventDewfordHealSoftlock
 	def_special sub_81B9918
 	def_special sub_80722E0
 	def_special TryPrepareSecondApproachingTrainer

@@ -1464,7 +1464,8 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
         gRegionMap->playerIconSprite = NULL;
         return;
     }
-    if (gSaveBlock2Ptr->playerGender == FEMALE)
+    //TODO: MULTIFORM PLAYER
+    if (GetPlayerGender() == FEMALE)
     {
         sheet.data = sRegionMapPlayerIcon_MayGfx;
         palette.data = sRegionMapPlayerIcon_MayPal;
@@ -1619,13 +1620,14 @@ u8 *sub_81245DC(u8 *dest, u16 mapSecId)
 
 u8 *sub_8124610(u8 *dest, u16 mapSecId)
 {
-    if (mapSecId == MAPSEC_AQUA_HIDEOUT_OLD)
+    switch (mapSecId)
     {
-        return StringCopy(dest, gText_Hideout);
-    }
-    else
-    {
-        return sub_81245DC(dest, mapSecId);
+        case MAPSEC_STARTER_MARKER:
+            return StringCopy(dest, gText_StarterLocation);
+        case MAPSEC_AQUA_HIDEOUT_OLD:
+            return StringCopy(dest, gText_Hideout);
+        default:
+            return sub_81245DC(dest, mapSecId);
     }
 }
 
@@ -2007,7 +2009,7 @@ static void sub_8124E0C(void)
                             SetWarpDestinationToHealLocation(HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST);
                             break;
                         case MAPSEC_LITTLEROOT_TOWN:
-                            SetWarpDestinationToHealLocation(gSaveBlock2Ptr->playerGender == MALE ? HEAL_LOCATION_LITTLEROOT_TOWN_1 : HEAL_LOCATION_LITTLEROOT_TOWN_2);
+                            SetWarpDestinationToHealLocation(GetPlayerGender() == MALE ? HEAL_LOCATION_LITTLEROOT_TOWN_1 : HEAL_LOCATION_LITTLEROOT_TOWN_2);
                             break;
                         case MAPSEC_EVER_GRANDE_CITY:
                             SetWarpDestinationToHealLocation(FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) && sFlyMap->regionMap.posWithinMapSec == 0 ? HEAL_LOCATION_EVER_GRANDE_CITY_2 : HEAL_LOCATION_EVER_GRANDE_CITY_1);

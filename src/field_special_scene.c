@@ -300,9 +300,9 @@ void Task_HandlePorthole(u8 taskId)
         }
         break;
     case EXIT_PORTHOLE: // exit porthole.
-        FlagClear(FLAG_SPECIAL_FLAG_0x4001);
+        FlagClear(FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT);
         FlagClear(FLAG_HIDE_MAP_NAME_POPUP);
-        SetWarpDestinationToDynamicWarp(0);
+        SetWarpDestinationToDynamicWarp();
         DoDiveWarp();
         DestroyTask(taskId);
         break;
@@ -337,7 +337,7 @@ void sub_80FB768(void)
 void sub_80FB7A4(void)
 {
     FlagSet(FLAG_SYS_CRUISE_MODE);
-    FlagSet(FLAG_SPECIAL_FLAG_0x4001);
+    FlagSet(FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT);
     FlagSet(FLAG_HIDE_MAP_NAME_POPUP);
     SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1);
     sub_80FB59C();

@@ -79,7 +79,9 @@
 #define ABILITY_SHELL_ARMOR 75
 #define ABILITY_CACOPHONY 76
 #define ABILITY_AIR_LOCK 77
+#define ABILITY_EARTH_RISE 78 // Groudon's Ability to block Water
+#define ABILITY_SEA_BUFFER 79 // Kyogre's Ability to block Ground
 
-#define ABILITIES_COUNT 78
+#define ABILITIES_COUNT 80
 
 #endif  // GUARD_CONSTANTS_ABILITIES_H

@@ -24,8 +24,8 @@
             "script": "EverGrandeCity_PokemonLeague_1F_EventScript_2295FC",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 3,
-            "y": 2
+            "x": 7,
+            "y": 5
         },
         {
             "elevation": 3,
@@ -37,21 +37,8 @@
             "script": "EverGrandeCity_PokemonLeague_1F_EventScript_22960A",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 16,
-            "y": 2
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_MAN_3",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "EverGrandeCity_PokemonLeague_1F_EventScript_229636",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 8,
-            "y": 2
+            "x": 19,
+            "y": 6
         },
         {
             "elevation": 3,
@@ -64,7 +51,20 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 11,
-            "y": 2
+            "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_MAN_3",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "EverGrandeCity_PokemonLeague_1F_EventScript_229636",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 14,
+            "y": 5
         }
     ],
     "region_map_section": "MAPSEC_EVER_GRANDE_CITY",
@@ -75,36 +75,36 @@
             "dest_map": "MAP_EVER_GRANDE_CITY",
             "dest_warp_id": 0,
             "elevation": 3,
-            "x": 9,
-            "y": 11
+            "x": 12,
+            "y": 14
         },
         {
             "dest_map": "MAP_EVER_GRANDE_CITY",
             "dest_warp_id": 0,
             "elevation": 3,
-            "x": 10,
-            "y": 11
+            "x": 13,
+            "y": 14
         },
         {
-            "dest_map": "MAP_EVER_GRANDE_CITY_HALL5",
+            "dest_map": "MAP_EVER_GRANDE_CITY_WAITING_ROOM1",
             "dest_warp_id": 0,
             "elevation": 3,
-            "x": 9,
-            "y": 1
+            "x": 12,
+            "y": 4
         },
         {
-            "dest_map": "MAP_EVER_GRANDE_CITY_HALL5",
+            "dest_map": "MAP_EVER_GRANDE_CITY_WAITING_ROOM1",
             "dest_warp_id": 0,
             "elevation": 3,
-            "x": 10,
-            "y": 1
+            "x": 13,
+            "y": 4
         },
         {
             "dest_map": "MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F",
             "dest_warp_id": 0,
             "elevation": 4,
-            "x": 1,
-            "y": 7
+            "x": 3,
+            "y": 9
         }
     ],
     "weather": "WEATHER_NONE"

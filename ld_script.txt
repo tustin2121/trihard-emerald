@@ -227,6 +227,7 @@ SECTIONS {
         src/battle_controller_link_partner.o(.text);
         src/battle_message.o(.text);
         src/cable_car.o(.text);
+        src/cutscene_mourning.o(.text);
         src/math_util.o(.text);
         src/roulette_util.o(.text);
         src/rom_81520A8.o(.text);
@@ -568,6 +569,7 @@ SECTIONS {
         src/battle_controller_link_partner.o(.rodata);
         src/battle_message.o(.rodata);
         src/cable_car.o(.rodata);
+        src/cutscene_mourning.o(.rodata);
         src/save.o(.rodata);
         src/field_effect_helpers.o(.rodata);
         src/contest_ai.o(.rodata);
@@ -932,7 +934,7 @@ SECTIONS {
         sound/songs/midi/mus_kachi2.o(.rodata);
         sound/songs/midi/mus_kachi3.o(.rodata);
         sound/songs/midi/mus_kachi5.o(.rodata);
-        sound/songs/midi/mus_pcc.o(.rodata);
+        sound/songs/midi/mus_bornlose.o(.rodata);
         sound/songs/midi/mus_nibi.o(.rodata);
         sound/songs/midi/mus_suikun.o(.rodata);
         sound/songs/midi/mus_dooro1.o(.rodata);

@@ -11,6 +11,7 @@
 #include "rotating_gate.h"
 #include "sprite.h"
 #include "text.h"
+#include "event_data.h"
 
 EWRAM_DATA bool8 gUnusedBikeCameraAheadPanback = FALSE;
 
@@ -41,6 +42,7 @@ static IWRAM_DATA s16 sHorizontalCameraPan;
 static IWRAM_DATA s16 sVerticalCameraPan;
 static IWRAM_DATA u8 gUnknown_03000E2C;
 static IWRAM_DATA void (*sFieldCameraPanningCallback)(void);
+static IWRAM_DATA u8 sBG3Parallax;
 
 struct CameraObject gFieldCamera;
 u16 gTotalCameraPixelOffsetY;
@@ -85,8 +87,18 @@ void FieldUpdateBgTilemapScroll(void)
     SetGpuReg(REG_OFFSET_BG1VOFS, r4);
     SetGpuReg(REG_OFFSET_BG2HOFS, r5);
     SetGpuReg(REG_OFFSET_BG2VOFS, r4);
-    SetGpuReg(REG_OFFSET_BG3HOFS, r5);
-    SetGpuReg(REG_OFFSET_BG3VOFS, r4);
+    if (!sBG3Parallax)
+    {
+        SetGpuReg(REG_OFFSET_BG3HOFS, r5);
+        SetGpuReg(REG_OFFSET_BG3VOFS, r4);
+    }
+    else
+    {
+        u32 px = r5 >> 2;
+        u32 py = r4 >> 2;
+        SetGpuReg(REG_OFFSET_BG3HOFS, px - 0);
+        SetGpuReg(REG_OFFSET_BG3VOFS, py - 0);
+    }
 }
 
 void sub_8089C08(s16 *a, s16 *b)
@@ -205,6 +217,11 @@ static void RedrawMapSliceWest(struct FieldCameraOffset *cameraOffset, const str
     }
 }
 
+void CurrentMapDrawMetatileFromScript()
+{
+    CurrentMapDrawMetatileAt(gSpecialVar_0x8000, gSpecialVar_0x8001);
+}
+
 void CurrentMapDrawMetatileAt(int x, int y)
 {
     int offset = MapPosToBgTilemapOffset(&sFieldCameraOffset, x, y);
@@ -250,10 +267,12 @@ static void DrawMetatile(s32 metatileLayerType, u16 *metatiles, u16 offset)
     {
     case 2: // LAYER_TYPE_
         // Draw metatile's bottom layer to the bottom background layer.
-        gBGTilemapBuffers3[offset] = metatiles[0];
-        gBGTilemapBuffers3[offset + 1] = metatiles[1];
-        gBGTilemapBuffers3[offset + 0x20] = metatiles[2];
-        gBGTilemapBuffers3[offset + 0x21] = metatiles[3];
+        if (!sBG3Parallax) {
+            gBGTilemapBuffers3[offset] = metatiles[0];
+            gBGTilemapBuffers3[offset + 1] = metatiles[1];
+            gBGTilemapBuffers3[offset + 0x20] = metatiles[2];
+            gBGTilemapBuffers3[offset + 0x21] = metatiles[3];
+        }
 
         // Draw transparent tiles to the middle background layer.
         gBGTilemapBuffers1[offset] = 0;
@@ -269,10 +288,12 @@ static void DrawMetatile(s32 metatileLayerType, u16 *metatiles, u16 offset)
         break;
     case 1:  // LAYER_TYPE_COVERED_BY_OBJECTS
         // Draw metatile's bottom layer to the bottom background layer.
-        gBGTilemapBuffers3[offset] = metatiles[0];
-        gBGTilemapBuffers3[offset + 1] = metatiles[1];
-        gBGTilemapBuffers3[offset + 0x20] = metatiles[2];
-        gBGTilemapBuffers3[offset + 0x21] = metatiles[3];
+        if (!sBG3Parallax) {
+            gBGTilemapBuffers3[offset] = metatiles[0];
+            gBGTilemapBuffers3[offset + 1] = metatiles[1];
+            gBGTilemapBuffers3[offset + 0x20] = metatiles[2];
+            gBGTilemapBuffers3[offset + 0x21] = metatiles[3];
+        }
 
         // Draw metatile's top layer to the middle background layer.
         gBGTilemapBuffers1[offset] = metatiles[4];
@@ -288,10 +309,12 @@ static void DrawMetatile(s32 metatileLayerType, u16 *metatiles, u16 offset)
         break;
     case 0: // LAYER_TYPE_NORMAL
         // Draw garbage to the bottom background layer.
-        gBGTilemapBuffers3[offset] = 0x3014;
-        gBGTilemapBuffers3[offset + 1] = 0x3014;
-        gBGTilemapBuffers3[offset + 0x20] = 0x3014;
-        gBGTilemapBuffers3[offset + 0x21] = 0x3014;
+        if (!sBG3Parallax) {
+            gBGTilemapBuffers3[offset] = 0x3014;
+            gBGTilemapBuffers3[offset + 1] = 0x3014;
+            gBGTilemapBuffers3[offset + 0x20] = 0x3014;
+            gBGTilemapBuffers3[offset + 0x21] = 0x3014;
+        }
 
         // Draw metatile's bottom layer to the middle background layer.
         gBGTilemapBuffers1[offset] = metatiles[0];

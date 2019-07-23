@@ -18,25 +18,23 @@ SlateportCity_PokemonCenter_1F_OnTransition: @ 820DACA
 
 SlateportCity_PokemonCenter_1F_NurseScript:: @ 820DAD3
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 
 SlateportCity_Mart_MartScript:: @ 820DC49
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart SlateportCity_Mart_Pokemart_20DC60
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
 SlateportCity_Mart_Pokemart_20DC60: @ 820DC60
-	.2byte ITEM_POKE_BALL
+	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION
@@ -55,7 +53,7 @@ SlateportCity_PokemonCenter_1F_PCMan::
 	lock
 	faceplayer
 	msgbox SlateportCity_PokemonCenter_1F_Text_PCMan, MSGBOX_DEFAULT
-	applymovement 7, SlateportCity_PokemonCenter_1F_PCMan_Movement
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	release
 	end
@@ -64,10 +62,6 @@ SlateportCity_PokemonCenter_1F_Text_PCMan:
 	.string "Just five more minutes!\p"
 	.string "Someone is wrong on the internet, and I\n"
 	.string "need to correct them.$"
-
-SlateportCity_PokemonCenter_1F_PCMan_Movement:
-	face_up
-	step_end
 
 
 SlateportCity_PokemonCenter_1F_EventScript_BattleTipSailor:: @ 820DAE1

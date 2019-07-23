@@ -542,14 +542,14 @@ static bool8 MainState_EndNaming(void)
     SetInputState(INPUT_STATE_DISABLED);
     sub_80E3E94(0);
     sub_80E3948(3, 0, 1);
-    if (gNamingScreenData->templateNum == NAMING_SCREEN_CAUGHT_MON &&
-        CalculatePlayerPartyCount() >= 6)
-    {
-        DisplaySentToPCMessage();
-        gNamingScreenData->state = MAIN_STATE_UPDATE_SENT_TO_PC_MESSAGE;
-        return FALSE;
-    }
-    else
+    // if (gNamingScreenData->templateNum == NAMING_SCREEN_CAUGHT_MON &&
+    //     CalculatePlayerPartyCount() >= 6)
+    // {
+    //     DisplaySentToPCMessage();
+    //     gNamingScreenData->state = MAIN_STATE_UPDATE_SENT_TO_PC_MESSAGE;
+    //     return FALSE;
+    // }
+    // else
     {
         gNamingScreenData->state = MAIN_STATE_BEGIN_FADE_OUT;
         return TRUE;  //Exit the naming screen
@@ -961,7 +961,7 @@ static void CursorInit(void)
 #if TPP_MODE
     {
         u16 rval = Random();
-        SetCursorPos(rval % 9, (rval >> 8) % 4);
+        SetCursorPos(rval % 7, (rval >> 8) % 4);
     }
 #else
     SetCursorPos(0, 0);
@@ -1212,7 +1212,7 @@ static void NamingScreen_CreatePlayerIcon(void)
     u8 rivalGfxId;
     u8 spriteId;
 
-    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(0, gNamingScreenData->monSpecies);
+    rivalGfxId = GetPlayerAvatarGraphicsIdByStateIdAndGender(0, gNamingScreenData->monSpecies);
     spriteId = AddPseudoEventObject(rivalGfxId, SpriteCallbackDummy, 0x38, 0x25, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], 4);
@@ -1886,22 +1886,22 @@ static bool8 sub_80E503C(u8 character)
 
 static void sub_80E5074(void)
 {
-    DoNamingScreen(0, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(0, gSaveBlock2Ptr->playerName, GetPlayerGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void sub_80E509C(void)
 {
-    DoNamingScreen(1, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(1, gSaveBlock2Ptr->playerName, GetPlayerGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void sub_80E50C4(void)
 {
-    DoNamingScreen(2, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(2, gSaveBlock2Ptr->playerName, GetPlayerGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 static void sub_80E50EC(void)
 {
-    DoNamingScreen(3, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
+    DoNamingScreen(3, gSaveBlock2Ptr->playerName, GetPlayerGender(), 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 //--------------------------------------------------

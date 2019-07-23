@@ -1,9 +1,6 @@
 #ifndef GUARD_FIELD_EVENT_OBJ_H
 #define GUARD_FIELD_EVENT_OBJ_H
 
-#define NUM_OBJECT_GRAPHICS_INFO 240
-#define SPRITE_VAR 241
-
 enum SpinnerRunnerFollowPatterns
 {
     RUNFOLLOW_ANY,
@@ -102,8 +99,8 @@ const struct EventObjectGraphicsInfo *GetEventObjectGraphicsInfo(u16 graphicsId)
 void npc_by_local_id_and_map_set_field_1_bit_x20(u8, u8, u8, u8);
 void FreeAndReserveObjectSpritePalettes(void);
 void sub_808E82C(u8, u8, u8, s16, s16);
-void sub_808E7E4(u8, u8, u8);
-void sub_808E78C(u8, u8, u8, u8);
+void ResetSubpriorityForObjectEvent(u8, u8, u8);
+void SetSubpriorityForObjectEvent(u8, u8, u8, u8);
 void sub_808E75C(s16, s16);
 void EventObjectGetLocalIdAndMap(struct EventObject *eventObject, void *localId, void *mapNum, void *mapGroup);
 void ShiftEventObjectCoords(struct EventObject *, s16, s16);
@@ -256,6 +253,7 @@ void MovementType_JogInPlace(struct Sprite *);
 void MovementType_RunInPlace(struct Sprite *);
 void MovementType_Invisible(struct Sprite *);
 void MovementType_WalkSlowlyInPlace(struct Sprite *);
+void MovementType_LyingDown(struct Sprite *);
 u8 GetSlideMovementAction(u32);
 u8 GetJumpInPlaceMovementAction(u32);
 u8 GetJumpMovementAction(u32);
@@ -417,6 +415,9 @@ u8 MovementType_RunInPlace_Step0(struct EventObject *, struct Sprite *);
 u8 MovementType_Invisible_Step0(struct EventObject *, struct Sprite *);
 u8 MovementType_Invisible_Step1(struct EventObject *, struct Sprite *);
 u8 MovementType_Invisible_Step2(struct EventObject *, struct Sprite *);
+u8 MovementType_LyingDown_Step0(struct EventObject *, struct Sprite *);
+u8 MovementType_LyingDown_Step1(struct EventObject *, struct Sprite *);
+u8 MovementType_LyingDown_Step2(struct EventObject *, struct Sprite *);
 void sub_8097C44(u8 var, bool32 var2);
 bool32 sub_8097C8C(u8 var);
 void sub_8097BB4(u8 var1, u16 graphicsId);

@@ -69,14 +69,14 @@ RustboroCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 SlateportCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 SootopolisCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
 VerdanturfTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-	map_script_2 VAR_CABLE_CLUB_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_CABLE_CLUB_STATE, 2, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_CABLE_CLUB_STATE, 5, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_CABLE_CLUB_STATE, 3, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_CABLE_CLUB_STATE, 4, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_CABLE_CLUB_STATE, 6, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_CABLE_CLUB_STATE, 7, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	map_script_2 VAR_CABLE_CLUB_STATE, 8, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 2, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 5, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 3, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 4, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 6, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 7, OldaleTown_PokemonCenter_2F_EventScript_276BAE
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 8, OldaleTown_PokemonCenter_2F_EventScript_276BAE
 	.2byte 0
 
 MossdeepCity_GameCorner_1F_EventScript_276BAE:: @ 8276BAE
@@ -106,22 +106,22 @@ RustboroCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 SlateportCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 SootopolisCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
 VerdanturfTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-	compare VAR_CABLE_CLUB_STATE, 1
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
-	compare VAR_CABLE_CLUB_STATE, 2
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
-	compare VAR_CABLE_CLUB_STATE, 5
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
-	compare VAR_CABLE_CLUB_STATE, 3
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C1D
-	compare VAR_CABLE_CLUB_STATE, 4
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C23
-	compare VAR_CABLE_CLUB_STATE, 6
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C29
-	compare VAR_CABLE_CLUB_STATE, 7
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C2F
-	compare VAR_CABLE_CLUB_STATE, 8
-	goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C35
+	@ compare VAR_CABLE_CLUB_STATE, 1
+	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
+	@ compare VAR_CABLE_CLUB_STATE, 2
+	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
+	@ compare VAR_CABLE_CLUB_STATE, 5
+	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
+	@ compare VAR_CABLE_CLUB_STATE, 3
+	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C1D
+	@ compare VAR_CABLE_CLUB_STATE, 4
+	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C23
+	@ compare VAR_CABLE_CLUB_STATE, 6
+	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C29
+	@ compare VAR_CABLE_CLUB_STATE, 7
+	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C2F
+	@ compare VAR_CABLE_CLUB_STATE, 8
+	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C35
 	end
 
 OldaleTown_PokemonCenter_2F_EventScript_276C17:: @ 8276C17
@@ -166,14 +166,14 @@ SlateportCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 SootopolisCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 VerdanturfTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
 	@ map_script_2 VAR_FREE_POKEBALL_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276DE0
-	map_script_2 VAR_CABLE_CLUB_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	map_script_2 VAR_CABLE_CLUB_STATE, 2, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	map_script_2 VAR_CABLE_CLUB_STATE, 5, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	map_script_2 VAR_CABLE_CLUB_STATE, 3, OldaleTown_PokemonCenter_2F_EventScript_276CE7
-	map_script_2 VAR_CABLE_CLUB_STATE, 4, OldaleTown_PokemonCenter_2F_EventScript_276D2C
-	map_script_2 VAR_CABLE_CLUB_STATE, 6, OldaleTown_PokemonCenter_2F_EventScript_276D6C
-	map_script_2 VAR_CABLE_CLUB_STATE, 7, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	map_script_2 VAR_CABLE_CLUB_STATE, 8, OldaleTown_PokemonCenter_2F_EventScript_276C9D
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276C85
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 2, OldaleTown_PokemonCenter_2F_EventScript_276C85
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 5, OldaleTown_PokemonCenter_2F_EventScript_276C85
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 3, OldaleTown_PokemonCenter_2F_EventScript_276CE7
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 4, OldaleTown_PokemonCenter_2F_EventScript_276D2C
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 6, OldaleTown_PokemonCenter_2F_EventScript_276D6C
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 7, OldaleTown_PokemonCenter_2F_EventScript_276C85
+	@ map_script_2 VAR_CABLE_CLUB_STATE, 8, OldaleTown_PokemonCenter_2F_EventScript_276C9D
 	.2byte 0
 
 OldaleTown_PokemonCenter_2F_EventScript_276C85:: @ 8276C85
@@ -182,7 +182,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276C85:: @ 8276C85
 	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -193,7 +193,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276C9D:: @ 8276C9D
 	call OldaleTown_PokemonCenter_2F_EventScript_277C1D
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -216,7 +216,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276CE7:: @ 8276CE7
 	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -238,7 +238,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276D2C:: @ 8276D2C
 	call OldaleTown_PokemonCenter_2F_EventScript_277BF7
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -261,7 +261,7 @@ OldaleTown_PokemonCenter_2F_EventScript_276D6C:: @ 8276D6C
 	call OldaleTown_PokemonCenter_2F_EventScript_277BD1
 	special DrawWholeMapView
 	playse SE_TK_KASYA
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 
@@ -941,7 +941,7 @@ EventScript_ConfirmLeaveTradeRoom:: @ 82774EF
 	msgbox Text_TerminateLinkConfirmation, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq EventScript_TerminateLink
-	erasebox 0, 0, 29, 19
+	@ erasebox 0, 0, 29, 19
 	releaseall
 	end
 

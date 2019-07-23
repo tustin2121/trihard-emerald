@@ -1,3 +1,32 @@
+@ Mother Match Calls
+
+gText_Dad_Pokenav_NoAnswer::
+	.string "… … … … … …\n"
+	.string "… … … … … …\p"
+	.string "The person you have dialed is\n"
+	.string "unavailable right now.\p"
+	.string "Please leave a message after\n"
+	.string "the tone…$"
+	
+gText_Dad_Pokenav_AreYouHurt::
+	.string "Dad: {PLAYER}, hi! Is everything\n"
+	.string "okay? Are you hurt?\p"
+	.string "Oh, you're just calling to say hi?\p"
+	.string "Sorry, I can't talk long. In a meeting.\p"
+	.string "Maybe we can catch up tonight?$"
+
+gText_Dad_Pokenav_TeamWarn::
+	.string "Dad: Hey, {PLAYER}. How are you doing?\p"
+	.string "I heard there are these “teams” going\n"
+	.string "around causing trouble out there.\p"
+	.string "Try and avoid them, alright?\n"
+	.string "I don't want you getting into trouble.\p"
+	
+
+
+
+@ General Match Calls
+
 MatchCall_WildBattleText1:: @ 82A971C
 	.string "Hi! {PLAYER}, hello!\n"
 	.string "This is {STR_VAR_1}.\p"
@@ -2014,29 +2043,6 @@ MatchCall_BattlePyramidText14:: @ 82B21FC
 	.string "You're an inspiration!\n"
 	.string "See you again!$"
 
-gText_Mom_Pokenav_2B227B:: @ 82B227B
-	.string "MOM: Your father and you…\n"
-	.string "Everyone is captivated by Pokémon.\p"
-	.string "What is the charm of Pokémon?\p"
-	.string "Me?\n"
-	.string "I adore Pokémon that help me with\l"
-	.string "my everyday chores.$"
-
-gText_Mom_Pokenav_2B2310:: @ 82B2310
-	.string "MOM: Hi, {PLAYER}!\n"
-	.string "Your father keeps himself locked\l"
-	.string "away in the PETALBURG GYM.\p"
-	.string "He comes home every so often.\n"
-	.string "But he goes back to the GYM when\l"
-	.string "he's eaten everything he can.\p"
-	.string "I'm guessing that losing to you\n"
-	.string "was a big blow to his pride!$"
-
-gText_Mom_Pokenav_2B23F3:: @ 82B23F3
-	.string "MOM: {PLAYER}…\n"
-	.string "Don't worry about me or the house.\p"
-	.string "Wear those RUNNING SHOES until\n"
-	.string "they fall apart, honey!$"
 
 gText_Roxanne_Pokenav_2B2456:: @ 82B2456
 	.string "ROXANNE: Oh, hello, {PLAYER}!\p"
@@ -2130,6 +2136,34 @@ gText_Wattson_Pokenav_2B2B01:: @ 82B2B01
 	.string "Wattson: Wahahaha!\p"
 	.string "A battle with you is always charged\n"
 	.string "with shocking power!$"
+
+gText_Norman_Pokenav_2B5719:: @ 82B2912
+	.string "Norman: Hiyah! Haah! Dwah!\p"
+	.string "…Oh? {PLAYER}!\p"
+	.string "You caught me right in the middle\n"
+	.string "of a Pokémon training session!\p"
+	.string "When the time comes, I'll face you\n"
+	.string "again, head on in battle.$"
+
+gText_Norman_Pokenav_2B5795:: @ 82B29CA
+	.string "Norman: Ah, {PLAYER}.\p"
+	.string "I heard what you've accomplished.\p"
+	.string "I'm going to remain here and\n"
+	.string "redouble my training.\p"
+	.string "The way of battling is deep\n"
+	.string "and unforgiving!$"
+
+gText_Norman_Pokenav_2B584D:: @ 82B2AB6
+	.string "Norman: Hm? {PLAYER}?\n"
+	.string "What good timing!\p"
+	.string "This time, I'm going to challenge\n"
+	.string "you to battle.\p"
+	.string "I'm waiting in the Petalburg Gym.\n"
+	.string "Accept my challenge anytime!$"
+
+gText_Norman_Pokenav_2B58E3:: @ 82B2B01
+	.string "Norman: You amaze me, {PLAYER}.\n"
+	.string "How much higher will you soar?$"
 
 gText_Flannery_Pokenav_2B2B4D:: @ 82B2B4D
 	.string "FLANNERY: {PLAYER}…\p"
@@ -2306,40 +2340,11 @@ gText_Wallace_Pokenav_2B3790:: @ 82B3790
 	.string "But what is a rare stone exactly?\n"
 	.string "All I can think of is a METEORITE…$"
 
-MossdeepCity_SpaceCenter_2F_Text_2B38C1: @ 82B38C1
-	.string "… … … … … …\n"
-	.string "… … … … … Beep!\p"
-	.string "May: Hi, {PLAYER}!\p"
-	.string "I was just in PACIFIDLOG a little\n"
-	.string "while ago.\p"
-	.string "I saw a giant green Pokémon\n"
-	.string "flying high in the sky.\p"
-	.string "I…\n"
-	.string "I've never seen anything like it.\p"
-	.string "I wonder what it was.\n"
-	.string "Is this maybe a major discovery?\p"
-	.string "… … … … … …\n"
-	.string "… … … … … Click!$"
-
-MossdeepCity_SpaceCenter_2F_Text_2B39C6: @ 82B39C6
-	.string "… … … … … …\n"
-	.string "… … … … … Beep!\p"
-	.string "Brendan: Hey, {PLAYER}!\n"
-	.string "I was in PACIFIDLOG just now.\p"
-	.string "I saw this huge green Pokémon\n"
-	.string "flying across the sky.\p"
-	.string "I've never seen anything that\n"
-	.string "amazing before.\p"
-	.string "I wish you could've seen it,\n"
-	.string "{PLAYER}.\p"
-	.string "… … … … … …\n"
-	.string "… … … … … Click!$"
-
 gText_May_Pokenav_2B3AB3:: @ 2B3AB3
 	.string "May: Hi, {PLAYER}!\p"
 	.string "MR. BRINEY retired as a SAILOR,\n"
 	.string "but I still see him out on the sea\l"
-	.string "with his pet PEEKO sometimes.\p"
+	.string "with his pet Peeko sometimes.\p"
 	.string "He must love the sea still.$"
 
 gText_May_Pokenav_2B3B3F:: @ 2B3B3F
@@ -2464,7 +2469,7 @@ gText_Brendan_Pokenav_2B43EF:: @ 2B43EF
 	.string "Brendan: Hey, {PLAYER}!\p"
 	.string "MR. BRINEY retired as a SAILOR,\n"
 	.string "but I still see him out on the sea\l"
-	.string "with his pet PEEKO sometimes.\p"
+	.string "with his pet Peeko sometimes.\p"
 	.string "I guess he must love\n"
 	.string "the sea still.$"
 
@@ -2709,70 +2714,6 @@ gText_Scott_Pokenav_2B56CA:: @ 2B56CA
 	.string "SCOTT appears to be out of\n"
 	.string "the PokéNav's service area…$"
 
-gText_Norman_Pokenav_2B5719:: @ 82B5719
-	.string "Norman: In RUSTBORO, there's a man\n"
-	.string "that goes by the odd name of\l"
-	.string "the CUTTER.\p"
-	.string "If you're in the area, you should\n"
-	.string "pay him a visit.$"
-
-gText_Norman_Pokenav_2B5795:: @ 82B5795
-	.string "Norman: Hm… Little by little, but also\n"
-	.string "very surely, you're getting\l"
-	.string "tougher, {PLAYER}.\p"
-	.string "The stronger you get, the farther\n"
-	.string "and higher you soar from Mother\l"
-	.string "and me…\p"
-	.string "This feeling is hard to explain.$"
-
-gText_Norman_Pokenav_2B584D:: @ 82B584D
-	.string "Norman: I see…\n"
-	.string "You've collected four Gym BadgeS…\p"
-	.string "There's no avoiding it now.\n"
-	.string "We will battle like I promised.\p"
-	.string "Come anytime.\n"
-	.string "We'll all be waiting for you!$"
-
-gText_Norman_Pokenav_2B58E3:: @ 82B58E3
-	.string "Norman: {PLAYER}! You'd better go visit\n"
-	.string "Mother every so often.\p"
-	.string "I'm going to remain here and\n"
-	.string "redouble my training.\p"
-	.string "The way of battling is deep\n"
-	.string "and unforgiving!$"
-
-gText_Norman_Pokenav_2B5979:: @ 82B5979
-	.string "Norman: Oh, hi, {PLAYER}!\p"
-	.string "What's that? MAGMA EMBLEM?\n"
-	.string "I don't know what that's about.\p"
-	.string "But with a name like that, it may\n"
-	.string "be somehow linked to a volcano!$"
-
-gText_Norman_Pokenav_2B5A07:: @ 82B5A07
-	.string "Norman: Hiyah! Haah! Dwah!\p"
-	.string "…Oh? {PLAYER}!\p"
-	.string "You caught me right in the middle\n"
-	.string "of a Pokémon training session!$"
-
-gText_Norman_Pokenav_2B5A69:: @ 82B5A69
-	.string "Norman: {PLAYER}!\p"
-	.string "Who would've thought you'd become\n"
-	.string "the Pokémon League CHAMPION…\p"
-	.string "Okay!\n"
-	.string "I won't be left behind!$"
-
-gText_Norman_Pokenav_2B5ACF:: @ 82B5ACF
-	.string "Norman: Hm? {PLAYER}?\n"
-	.string "What good timing!\p"
-	.string "This time, I'm going to challenge\n"
-	.string "you to battle.\p"
-	.string "I'm waiting in the PETALBURG GYM.\n"
-	.string "Accept my challenge anytime!$"
-
-gText_Norman_Pokenav_2B5B5E:: @ 82B5B5E
-	.string "Norman: …You amaze me, {PLAYER}.\n"
-	.string "How much higher will you soar?$"
-
 gText_Steven_Pokenav_2B5B95:: @ 82B5B95
 	.string "STEVEN: Hi, {PLAYER}!\p"
 	.string "Have you been to MAUVILLE\n"
@@ -2831,24 +2772,7 @@ gText_Steven_Pokenav_2B5ED9:: @ 82B5ED9
 	.string "I hope we can meet again\n"
 	.string "somewhere!$"
 
-Route101_Text_2B5F52: @ 82B5F52
-	.string "Prof. Birch: Oh, {PLAYER}!\n"
-	.string "I've already heard about you!\p"
-	.string "It seems your PokéNav's been\n"
-	.string "upgraded with MATCH CALL.\p"
-	.string "Well, I should register, too!\p"
-	.string "That way, I'd be able to examine\n"
-	.string "your Pokédex even while you're\l"
-	.string "out in the field.\p"
-	.string "… … … … … …$"
 
-Route101_Text_2B603A: @ 82B603A
-	.string "Registered Prof. Birch\n"
-	.string "in the PokéNav.$"
-
-	.string "Prof. Birch: When one has both\n"
-	.string "the Pokédex and PokéNav, studying\l"
-	.string "Pokémon becomes more fun, eh?$"
 
 gText_MrStone_Pokenav_2B60C0:: @ 82B60C0
 	.string "MR. STONE: Oh? {PLAYER}!\p"

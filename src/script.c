@@ -38,6 +38,8 @@ void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTable
 
     for (i = 0; i < 20; i++)
         ctx->stack[i] = 0;
+    
+    gSpecialVar_TextboxType = 0;
 }
 
 u8 SetupBytecodeScript(struct ScriptContext *ctx, const u8 *ptr)

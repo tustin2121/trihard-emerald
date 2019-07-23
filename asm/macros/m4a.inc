@@ -1,13 +1,13 @@
-	.macro song label, music_player, unknown
+	.macro song label, music_player, arg
 	.4byte \label
 	.2byte \music_player
-	.2byte \unknown
+	.2byte \arg
 	.endm
 
-	.macro music_player info_struct, track_struct, unknown_1, unknown_2
+	.macro music_player info_struct, track_struct, arg1, arg2
 	.4byte \info_struct
 	.4byte \track_struct
-	.byte \unknown_1
+	.byte \arg1
 	.space 1
-	.2byte \unknown_2
+	.2byte \arg2
 	.endm

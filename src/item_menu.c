@@ -127,7 +127,7 @@ void sub_81ABAE0(void);
 u8 sub_81AB1F0(u8);
 void sub_81AC23C(u8);
 void bag_menu_change_item_callback(s32 a, bool8 b, struct ListMenu*);
-void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a);
+void BagMenu_PrintItemQuantity(u8 rboxId, int item_index_in_pocket, u8 a);
 void ItemMenu_UseOutOfBattle(u8 taskId);
 void ItemMenu_Toss(u8 taskId);
 void ItemMenu_Register(u8 taskId);
@@ -148,6 +148,8 @@ void BagMenuActuallyToss(u8 taskId);
 void BagMenuCancelToss(u8 taskId);
 void sub_81AD84C(u8 taskId);
 void sub_81AD6FC(u8 taskId);
+
+extern void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField, const u8 *str);
 
 // .rodata
 
@@ -186,7 +188,7 @@ static const struct ListMenuTemplate sItemListMenu =
 {
     .items = NULL,
     .moveCursorFunc = bag_menu_change_item_callback,
-    .itemPrintFunc = sub_81AB520,
+    .itemPrintFunc = BagMenu_PrintItemQuantity,
     .totalItems = 0,
     .maxShowed = 0,
     .windowId = 0,
@@ -250,7 +252,7 @@ const TaskFunc gUnknown_08614054[] = {
     item_menu_type_b
 };
 
-const struct YesNoFuncTable gUnknown_08614084 = {BagMenuActuallyToss, BagMenuCancelToss};
+const struct YesNoFuncTable sBagMenuYN_TossCallbacks = {BagMenuActuallyToss, BagMenuCancelToss};
 
 const struct YesNoFuncTable gUnknown_0861408C = {sub_81AD84C, sub_81AD6FC};
 
@@ -449,7 +451,7 @@ static EWRAM_DATA struct TempWallyStruct *gUnknown_0203CE80 = 0;
 extern u8 *const gPocketNamesStringsTable[];
 extern u8* gReturnToXStringsTable[];
 extern const u8 EventScript_SelectWithoutRegisteredItem[];
-extern const u16 gUnknown_0860F074[];
+extern const u16 gTextBoxPalette[];
 
 void ResetBagScrollPositions(void)
 {
@@ -705,14 +707,14 @@ bool8 load_bag_menu_graphics(void)
             }
             break;
         case 2:
-            if (!IsWallysBag() && gSaveBlock2Ptr->playerGender != MALE)
+            if (!IsWallysBag() && GetPlayerGender() != MALE)
                 LoadCompressedPalette(gBagScreenFemale_Pal, 0, 0x40);
             else
                 LoadCompressedPalette(gBagScreenMale_Pal, 0, 0x40);
             gUnknown_0203CE54->unk834++;
             break;
         case 3:
-            if (IsWallysBag() == TRUE || gSaveBlock2Ptr->playerGender == MALE)
+            if (IsWallysBag() == TRUE || GetPlayerGender() == MALE)
                 LoadCompressedSpriteSheet(&gUnknown_0857FB34);
             else
                 LoadCompressedSpriteSheet(&gUnknown_0857FB3C);
@@ -822,7 +824,7 @@ void bag_menu_change_item_callback(s32 a, bool8 b, struct ListMenu *unused)
     }
 }
 
-void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a)
+void BagMenu_PrintItemQuantity(u8 rboxId, int item_index_in_pocket, u8 a)
 {
     u16 itemId;
     u16 itemQuantity;
@@ -839,6 +841,15 @@ void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a)
         }
         itemId = BagGetItemIdByPocketPosition(gUnknown_0203CE58.pocket + 1, item_index_in_pocket);
         itemQuantity = BagGetQuantityByPocketPosition(gUnknown_0203CE58.pocket + 1, item_index_in_pocket);
+        
+        if (ItemId_GetHighlight(itemId))
+        {
+            ListMenuOverrideSetColors(
+                ItemId_GetHighlight(itemId), 
+                sItemListMenu.fillValue, 
+                sItemListMenu.cursorShadowPal);
+        }
+        
         if (gUnknown_0203CE58.pocket == BERRIES_POCKET)
         {
             ConvertIntToDecimalStringN(gStringVar1, itemQuantity, 1, 3);
@@ -846,12 +857,12 @@ void sub_81AB520(u8 rboxId, int item_index_in_pocket, u8 a)
             offset = GetStringRightAlignXOffset(7, gStringVar4, 0x77);
             bag_menu_print(rboxId, 7, gStringVar4, offset, a, 0, 0, -1, 0);
         }
-        else if (gUnknown_0203CE58.pocket != KEYITEMS_POCKET && (unique = ItemId_GetImportance(itemId)) == FALSE)
+        else if (gUnknown_0203CE58.pocket != KEYITEMS_POCKET && ItemId_GetImportance(itemId) == FALSE && ItemId_GetShouldHideQuantity(itemId) == FALSE)
         {
             ConvertIntToDecimalStringN(gStringVar1, itemQuantity, 1, 2);
             StringExpandPlaceholders(gStringVar4, gText_xVar1);
             offset = GetStringRightAlignXOffset(7, gStringVar4, 0x77);
-            bag_menu_print(rboxId, 7, gStringVar4, offset, a, unique, unique, -1, unique);
+            bag_menu_print(rboxId, 7, gStringVar4, offset, a, 0, 0, -1, 0);
         }
         else
         {
@@ -1652,6 +1663,19 @@ void ItemMenu_Toss(u8 taskId)
 
     bag_menu_remove_some_window();
     data[8] = 1;
+    
+    // THE: Don't allow tossing of certain items
+    switch (gSpecialVar_ItemId)
+    {
+    case ITEM_SKULL_EMBLEM:
+        DisplayCannotUseItemMessage(taskId, FALSE, gText_TeamSkullNoToss);
+        return;
+    case ITEM_EXP_SHARE:
+        DisplayCannotUseItemMessage(taskId, FALSE, gText_TooImportantToToss2);
+        return;
+    default: break; //Allow tossing of anything else
+    }
+    
     if (data[2] == 1)
     {
         BagMenuConfirmToss(taskId);
@@ -1676,7 +1700,7 @@ void BagMenuConfirmToss(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_ConfirmTossItems);
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     bag_menu_print(1, 1, gStringVar4, 3, 1, 0, 0, 0, 0);
-    bag_menu_yes_no(taskId, 5, &gUnknown_08614084);
+    bag_menu_yes_no(taskId, 5, &sBagMenuYN_TossCallbacks);
 }
 
 void BagMenuCancelToss(u8 taskId)
@@ -2270,7 +2294,7 @@ void setup_bag_menu_textboxes(void)
     LoadUserWindowBorderGfx(0, 1, 0xE0);
     LoadMessageBoxGfx(0, 10, 0xD0);
     sub_819A2BC(0xC0, 1);
-    LoadPalette(&gUnknown_0860F074, 0xF0, 0x20);
+    LoadPalette(&gTextBoxPalette, 0xF0, 0x20);
     for (i = 0; i < 3; i++)
     {
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
@@ -2328,8 +2352,8 @@ void bag_menu_RemoveBagItem_message_window(u8 a)
     u8 *ptr = &gUnknown_0203CE54->windowPointers[a];
     if (*ptr != 0xFF)
     {
-        ClearDialogWindowAndFrameToTransparent(*ptr, FALSE);
-        // This ClearWindowTilemap call is redundant, since ClearDialogWindowAndFrameToTransparent already calls it.
+        ClearTextWindowAndFrameToTransparent(*ptr, FALSE);
+        // This ClearWindowTilemap call is redundant, since ClearTextWindowAndFrameToTransparent already calls it.
         ClearWindowTilemap(*ptr);
         RemoveWindow(*ptr);
         schedule_bg_copy_tilemap_to_vram(1);

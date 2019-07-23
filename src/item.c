@@ -89,19 +89,24 @@ void CopyItemName(u16 itemId, u8 *dst)
 
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-    if (itemId == ITEM_POKE_BALL)
+    if (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ENIGMA_BERRY)
     {
-        if (quantity < 2)
-            StringCopy(dst, ItemId_GetName(ITEM_POKE_BALL));
-        else
-            StringCopy(dst, gText_PokeBalls);
+        GetBerryCountString(dst, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
+    }
+    else if (quantity < 2 || ItemId_GetPluralName(itemId)[0] == EOS)
+    {
+        StringCopy(dst, ItemId_GetName(itemId));
+    }
+    else if (ItemId_GetPluralName(itemId)[0] == 0)
+    {
+        dst = StringCopy(dst, ItemId_GetName(itemId));
+        *dst = 0xE7; //'s'
+        dst++;
+        *dst = EOS;
     }
     else
     {
-        if (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ENIGMA_BERRY)
-            GetBerryCountString(dst, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
-        else
-            StringCopy(dst, ItemId_GetName(itemId));
+        StringCopy(dst, ItemId_GetPluralName(itemId));
     }
 }
 
@@ -1020,6 +1025,11 @@ const u8 *ItemId_GetName(u16 itemId)
     return gItems[SanitizeItemId(itemId)].name;
 }
 
+const u8 *ItemId_GetPluralName(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].plural;
+}
+
 u16 ItemId_GetId(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].itemId;
@@ -1048,6 +1058,16 @@ const u8 *ItemId_GetDescription(u16 itemId)
 u8 ItemId_GetImportance(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].importance;
+}
+
+u8 ItemId_GetHighlight(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].highlight;
+}
+
+u8 ItemId_GetShouldHideQuantity(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].hideQuantity;
 }
 
 // unused

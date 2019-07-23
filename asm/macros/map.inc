@@ -65,8 +65,8 @@
 	inc _num_signs
 	.endm
 
-	.macro bg_hidden_item_event x, y, height, item, flag
-	bg_event \x, \y, \height, 7, \item, ((\flag) - FLAG_HIDDEN_ITEMS_START), 0
+	.macro bg_hidden_item_event x, y, height, item, flag, count=1
+	bg_event \x, \y, \height, 7, \item, ((\flag) - FLAG_HIDDEN_ITEMS_START), \count
 	.endm
 
 	.macro bg_secret_base_event x, y, height, secret_base_id

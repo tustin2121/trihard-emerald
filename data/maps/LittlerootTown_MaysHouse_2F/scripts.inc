@@ -3,6 +3,8 @@ LittlerootTown_MaysHouse_2F_MapScripts:: @ 81F9296
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_MaysHouse_2F_MapScript2_1F931D
 	.byte 0
 
+@ -----------------------------------------------------
+
 LittlerootTown_MaysHouse_2F_MapScript1_1F92A1: @ 81F92A1
 	compare VAR_LITTLEROOT_RIVAL_STATE, 2
 	call_if_lt LittlerootTown_MaysHouse_2F_EventScript_1F930A
@@ -11,7 +13,7 @@ LittlerootTown_MaysHouse_2F_MapScript1_1F92A1: @ 81F92A1
 	compare VAR_LITTLEROOT_INTRO_STATE, 4
 	call_if_eq LittlerootTown_MaysHouse_2F_EventScript_2926FE
 	call LittlerootTown_MaysHouse_2F_EventScript_275CE1
-	setvar VAR_SECRET_BASE_INITIALIZED, 0
+	@ setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
 LittlerootTown_MaysHouse_2F_EventScript_1F92CD:: @ 81F92CD
@@ -44,25 +46,30 @@ LittlerootTown_MaysHouse_2F_EventScript_1F9317:: @ 81F9317
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 2
 	return
 
+@ -----------------------------------------------------
+
 LittlerootTown_MaysHouse_2F_MapScript2_1F931D: @ 81F931D
-	map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, LittlerootTown_MaysHouse_2F_EventScript_1F9327
+	@ map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, LittlerootTown_MaysHouse_2F_EventScript_1F9327
 	.2byte 0
 
-LittlerootTown_MaysHouse_2F_EventScript_1F9327:: @ 81F9327
-	checkplayergender
-	compare VAR_RESULT, 1
-	goto_if_eq EventScript_275D0C
-	end
+@ LittlerootTown_MaysHouse_2F_EventScript_1F9327:: @ 81F9327
+@ 	checkplayergender
+@ 	compare VAR_RESULT, 1
+@ 	goto_if_eq EventScript_275D0C
+@ 	end
+
+@ -----------------------------------------------------
 
 LittlerootTown_MaysHouse_2F_EventScript_1F9334:: @ 81F9334
 	lockall
 	compare VAR_LITTLEROOT_RIVAL_STATE, 2
 	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_1F934A
-	msgbox LittlerootTown_MaysHouse_2F_Text_1F9991, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalsHouse_2F_Text_1F9962, MSGBOX_DESCRIBE
 	releaseall
 	end
 
 LittlerootTown_MaysHouse_2F_EventScript_1F934A:: @ 81F934A
+	flagasdialog
 	delay 10
 	addobject 1
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F946F
@@ -96,7 +103,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F93BA:: @ 81F93BA
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox LittlerootTown_MaysHouse_2F_Text_1F959C, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_1F9483
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F9479
@@ -108,7 +115,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F93E9:: @ 81F93E9
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox LittlerootTown_MaysHouse_2F_Text_1F959C, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_1F9497
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F948F
@@ -120,7 +127,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F9418:: @ 81F9418
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
-	msgbox LittlerootTown_MaysHouse_2F_Text_1F959C, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F94A4
 	waitmovement 0
@@ -131,7 +138,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F9440:: @ 81F9440
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox LittlerootTown_MaysHouse_2F_Text_1F959C, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_1F94BB
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_1F94B2
@@ -250,52 +257,26 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F94C1:: @ 81F94C1
 LittlerootTown_MaysHouse_2F_EventScript_1F94C1:: @ 81F94C1
 	lockall
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F94F7
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F94E3
-	compare VAR_RESULT, FEMALE
-	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F94ED
-	end
-
-LittlerootTown_BrendansHouse_2F_EventScript_1F94E3:: @ 81F94E3
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F978A, MSGBOX_DEFAULT
-	releaseall
-	end
-
-LittlerootTown_BrendansHouse_2F_EventScript_1F94ED:: @ 81F94ED
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9962, MSGBOX_DEFAULT
+	selectpointer_ongender LittlerootTown_MaysHouse_2F_Text_1F978A, LittlerootTown_BrendansHouse_2F_Text_1F9962
+	msgbox_selected MSGBOX_DIALOG
 	releaseall
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F94F7:: @ 81F94F7
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F951D
-	compare VAR_RESULT, FEMALE
-	call_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F952F
+	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F9541
+	selectpointer_ongender LittlerootTown_MaysHouse_2F_Text_1F99C9, LittlerootTown_BrendansHouse_2F_Text_1F9B0D
+	msgbox_selected MSGBOX_DIALOG
 	setflag FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE
 	releaseall
 	end
 
-LittlerootTown_BrendansHouse_2F_EventScript_1F951D:: @ 81F951D
-	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F9541
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F99C9, MSGBOX_DEFAULT
-	return
-
-LittlerootTown_BrendansHouse_2F_EventScript_1F952F:: @ 81F952F
-	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, LittlerootTown_BrendansHouse_2F_EventScript_1F954A
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9B0D, MSGBOX_DEFAULT
-	return
-
 LittlerootTown_BrendansHouse_2F_EventScript_1F9541:: @ 81F9541
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9A9E, MSGBOX_DEFAULT
-	return
-
-LittlerootTown_BrendansHouse_2F_EventScript_1F954A:: @ 81F954A
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9BE7, MSGBOX_DEFAULT
-	return
+	selectpointer_ongender LittlerootTown_MaysHouse_2F_Text_1F9A9E, LittlerootTown_BrendansHouse_2F_Text_1F9BE7
+	msgbox_selected MSGBOX_DIALOG
+	releaseall
+	end
 
 EventScript_PlayerPCFemale:: @ 81F9553
 	lockall
@@ -312,7 +293,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F956C:: @ 81F956C
 	end
 
 LittlerootTown_MaysHouse_2F_EventScript_1F9576:: @ 81F9576
-	msgbox Text_PCLivestreamEvent, MSGBOX_DEFAULT
+	msgbox Text_PCLivestreamEvent, MSGBOX_DESCRIBE
 	releaseall
 	end
 
@@ -323,64 +304,20 @@ LittlerootTown_MaysHouse_2F_EventScript_1F958F:: @ 81F958F
 	releaseall
 	end
 
-LittlerootTown_MaysHouse_2F_Text_1F959C: @ 81F959C
-	.string "Huh?\n"
-	.string "Who… Who are you?\p"
-	.string "… … … … … … … …\n"
-	.string "… … … … … … … …\p"
-	.string "Oh, you're {PLAYER}.\n"
-	.string "So your move was today.\p"
-	.string "Um… I'm MAY.\n"
-	.string "Glad to meet you!\p"
-	.string "I…\n"
-	.string "I have this dream of becoming friends\l"
-	.string "with Pokémon all over the world.\p"
-	.string "I… I heard about you, {PLAYER}, from\n"
-	.string "my dad, Prof. Birch.\p"
-	.string "I was hoping that you would be nice,\n"
-	.string "{PLAYER}, and that we could be friends.\p"
-	.string "Oh, this is silly, isn't it?\n"
-	.string "I… I've just met you, {PLAYER}.\p"
-	.string "Eheheh…\p"
-	.string "Oh, no! I forgot!\p"
-	.string "I was supposed to go help Dad catch\n"
-	.string "some wild Pokémon!\p"
-	.string "{PLAYER}, I'll catch you later!$"
-
-LittlerootTown_BrendansHouse_2F_Text_1F978A: @ 81F978A
+LittlerootTown_MaysHouse_2F_Text_1F978A: @ 81F978A
 	.string "Pokémon fully restored!\n"
 	.string "Items ready, and…$"
-
-LittlerootTown_BrendansHouse_2F_Text_1F97B4: @ 81F97B4
-	.string "Hey!\n"
-	.string "You…\p"
-	.string "Who are you?\p"
-	.string "Oh, you're {PLAYER}, aren't you?\n"
-	.string "Moved in next door, right?\p"
-	.string "I didn't know that you're a girl.\p"
-	.string "Dad, Prof. Birch, said that our new\n"
-	.string "next-door neighbor is a Gym Leader's\l"
-	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
-	.string "So, hi, neighbor!\p"
-	.string "Huh? Hey, {PLAYER}, don't you have\n"
-	.string "a Pokémon?\p"
-	.string "Do you want me to go catch you one?\p"
-	.string "Aw, darn, I forgot…\p"
-	.string "I'm supposed to go help my dad catch\n"
-	.string "some wild Pokémon.\p"
-	.string "Some other time, okay?$"
 
 LittlerootTown_BrendansHouse_2F_Text_1F9962: @ 81F9962
 	.string "Pokémon fully restored…\n"
 	.string "Items all packed, and…$"
 
-LittlerootTown_BrendansHouse_2F_Text_1F9991: @ 81F9991
-LittlerootTown_MaysHouse_2F_Text_1F9991: @ 81F9991
-	.string "It's {RIVAL}'s POKé BALL!\p"
-	.string "Better leave it right where it is.$"
+LittlerootTown_RivalsHouse_2F_Text_1F9962: @ 81F9991
+	.string "It's {RIVAL}'s Poké Ball!\p"
+	.string "If you try to take it,\n"
+	.string "{RIVAL_they} might see.$"
 
-LittlerootTown_BrendansHouse_2F_Text_1F99C9: @ 81F99C9
+LittlerootTown_MaysHouse_2F_Text_1F99C9: @ 81F99C9
 	.string "May: {PLAYER}!\p"
 	.string "I was just checking my Pokédex.\p"
 	.string "There's still a lot of Pokémon that\n"
@@ -390,7 +327,7 @@ LittlerootTown_BrendansHouse_2F_Text_1F99C9: @ 81F99C9
 	.string "I wonder where I should go catch\n"
 	.string "some Pokémon next?$"
 
-LittlerootTown_BrendansHouse_2F_Text_1F9A9E: @ 81F9A9E
+LittlerootTown_MaysHouse_2F_Text_1F9A9E: @ 81F9A9E
 	.string "May: I wonder where I should go catch\n"
 	.string "some Pokémon next?\p"
 	.string "Wouldn't it be funny if we ran into each\n"
@@ -411,3 +348,14 @@ LittlerootTown_BrendansHouse_2F_Text_1F9BE7: @ 81F9BE7
 	.string "Hey, {PLAYER}, if I see you while I'm out\n"
 	.string "catching Pokémon, I can pitch you a\l"
 	.string "battle if you'd like.$"
+
+@ -----------------------------------------------------
+@ Trigger: Sleeping in bed
+
+LittlerootTown_MaysHouse_2F_TriggerScript_SleepInBed::
+	checkplayergender
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_PlayersHouse_2F_TriggerScript_SleepInBed
+	release
+	end
+

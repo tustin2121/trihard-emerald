@@ -46,7 +46,7 @@ JaggedPass_EventScript_2306BB:: @ 82306BB
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	msgbox JaggedPass_Text_230DBA, MSGBOX_DEFAULT
 	closemessage
@@ -54,7 +54,7 @@ JaggedPass_EventScript_2306BB:: @ 82306BB
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 16
 	setvar VAR_0x8007, 3
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	playse SE_KOUKA_M
 	setmetatile 16, 17, 598, 1
@@ -111,7 +111,7 @@ JaggedPass_EventScript_23079C:: @ 823079C
 	end
 
 JaggedPass_EventScript_2307C8:: @ 82307C8
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	msgbox JaggedPass_Text_230A2C, MSGBOX_DEFAULT
 	register_matchcall TRAINER_DIANA_1
 	release
@@ -132,7 +132,7 @@ JaggedPass_EventScript_2307FB:: @ 82307FB
 	end
 
 JaggedPass_EventScript_230827:: @ 8230827
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	msgbox JaggedPass_Text_230BC6, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ETHAN_1
 	release

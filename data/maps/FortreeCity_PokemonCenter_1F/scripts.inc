@@ -17,20 +17,18 @@ FortreeCity_PokemonCenter_1F_OnTransition: @ 82173E3
 
 FortreeCity_PokemonCenter_1F_NurseScript:: @ 82173E7
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 
 FortreeCity_Mart_MartScript:: @ 8217666
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart FortreeCity_Mart_Pokemart_217680
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -43,7 +41,7 @@ FortreeCity_Mart_Pokemart_217680: @ 8217680
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_WOOD_MAIL
 	.2byte ITEM_NONE

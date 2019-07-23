@@ -184,7 +184,7 @@ Route110_EventScript_1EF420:: @ 81EF420
 	end
 
 Route110_EventScript_1EF44C:: @ 81EF44C
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route110_Text_298201, MSGBOX_DEFAULT
 	register_matchcall TRAINER_EDWIN_1
@@ -221,7 +221,7 @@ Route110_EventScript_1EF4C7:: @ 81EF4C7
 	end
 
 Route110_EventScript_1EF4F3:: @ 81EF4F3
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route110_Text_297CFE, MSGBOX_DEFAULT
 	register_matchcall TRAINER_BENJAMIN_1
@@ -248,7 +248,7 @@ Route110_EventScript_1EF540:: @ 81EF540
 	end
 
 Route110_EventScript_1EF56C:: @ 81EF56C
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route110_Text_297ECD, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ABIGAIL_1
@@ -270,7 +270,7 @@ Route110_EventScript_1EF5A2:: @ 81EF5A2
 	end
 
 Route110_EventScript_1EF5CE:: @ 81EF5CE
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route110_Text_2983EE, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ISABEL_1

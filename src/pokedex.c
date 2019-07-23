@@ -3441,7 +3441,7 @@ void sub_80BF82C(u8 taskId)
             gMain.state++;
             break;
         case 5:
-            spriteId = sub_80C0EF8(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), 152, 56, 0);
+            spriteId = sub_80C0EF8(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerForm), 152, 56, 0);
             gSprites[spriteId].oam.affineMode = 1;
             gSprites[spriteId].oam.matrixNum = 1;
             gSprites[spriteId].oam.priority = 0;

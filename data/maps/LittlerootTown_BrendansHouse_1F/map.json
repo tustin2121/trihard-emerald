@@ -4,6 +4,14 @@
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "LittlerootTown_BrendansHouse_1F_SignScript_Fridge",
+            "type": "sign",
+            "x": 0,
+            "y": 2
+        }
     ],
     "connections": null,
     "coord_events": [
@@ -52,16 +60,16 @@
     "object_events": [
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM",
-            "graphics_id": "EVENT_OBJ_GFX_MOM",
+            "flag": "FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_DAD",
+            "graphics_id": "EVENT_OBJ_GFX_DAD",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "LittlerootTown_BrendansHouse_1F_EventScript_2929C5",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "LittlerootTown_PlayerHouse_1F_EventScript_Dad",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 2,
-            "y": 6
+            "y": 3
         },
         {
             "elevation": 3,
@@ -104,15 +112,15 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_PLAYERS_HOUSE_DAD",
-            "graphics_id": "EVENT_OBJ_GFX_NORMAN",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "0x0",
+            "flag": "FLAG_TEMP_1E",
+            "graphics_id": "EVENT_OBJ_GFX_LETTER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "LittlerootTown_PlayerHouse_1F_EventScript_Letter",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
+            "x": 3,
             "y": 6
         },
         {
@@ -122,7 +130,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-            "script": "LittlerootTown_BrendansHouse_1F_EventScript_1F8A3D",
+            "script": "LittlerootTown_RivalHouse_1F_EventScript_Charlie",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 1,

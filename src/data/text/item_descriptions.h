@@ -1,17 +1,17 @@
 const u8 gDummyItemDescription[] = _("?????");
 // Pokeballs
-const u8 gMasterBallItemDescription[] = _("The best BALL that\ncatches a Pokémon\nwithout fail.");
-const u8 gUltraBallItemDescription[] = _("A better BALL with\na higher catch rate\nthan a GREAT BALL.");
-const u8 gGreatBallItemDescription[] = _("A good BALL with a\nhigher catch rate\nthan a POKé BALL.");
+const u8 gMasterBallItemDescription[] = _("The best Ball that\ncatches a Pokémon\nwithout fail.");
+const u8 gUltraBallItemDescription[] = _("A better Ball with\na higher catch rate\nthan a Great Ball.");
+const u8 gGreatBallItemDescription[] = _("A good Ball with a\nhigher catch rate\nthan a Poké Ball.");
 const u8 gPokeBallItemDescription[] = _("A tool used for\ncatching wild\nPokémon.");
-const u8 gSafariBallItemDescription[] = _("A special BALL that\nis used only in the\nSafari Zone.");
-const u8 gNetBallItemDescription[] = _("A BALL that works\nwell on WATER- and\nBUG-type Pokémon.");
-const u8 gDiveBallItemDescription[] = _("A BALL that works\nbetter on Pokémon\non the ocean floor.");
-const u8 gNestBallItemDescription[] = _("A BALL that works\nbetter on weaker\nPokémon.");
-const u8 gRepeatBallItemDescription[] = _("A BALL that works\nbetter on Pokémon\ncaught before.");
-const u8 gTimerBallItemDescription[] = _("A BALL that gains\npower in battles\ntaking many turns.");
-const u8 gLuxuryBallItemDescription[] = _("A cozy BALL that\nmakes Pokémon\nmore friendly.");
-const u8 gPremierBallItemDescription[] = _("A rare BALL made\nin commemoration\nof some event.");
+const u8 gSafariBallItemDescription[] = _("A special Ball that\nis used only in the\nSafari Zone.");
+const u8 gNetBallItemDescription[] = _("A Ball that works\nwell on Water- and\nBug-type Pokémon.");
+const u8 gDiveBallItemDescription[] = _("A Ball that works\nbetter on Pokémon\non the ocean floor.");
+const u8 gNestBallItemDescription[] = _("A Ball that works\nbetter on weaker\nPokémon.");
+const u8 gRepeatBallItemDescription[] = _("A Ball that works\nbetter on Pokémon\ncaught before.");
+const u8 gTimerBallItemDescription[] = _("A Ball that gains\npower in battles\ntaking many turns.");
+const u8 gLuxuryBallItemDescription[] = _("A cozy Ball that\nmakes Pokémon\nmore friendly.");
+const u8 gPremierBallItemDescription[] = _("A rare Ball made\nin commemoration\nof some event.");
 // Medicine
 const u8 gPotionItemDescription[] = _("Restores the HP of\na Pokémon by\n20 points.");
 const u8 gAntidoteItemDescription[] = _("Heals a poisoned\nPokémon.");
@@ -199,11 +199,11 @@ const u8 gLuckyPunchItemDescription[] = _("A hold item that\nraises CHANSEY's\nc
 const u8 gMetalPowderItemDescription[] = _("A hold item that\nraises DITTO's\nDEFENSE.");
 const u8 gThickClubItemDescription[] = _("A hold item that \nraises CUBONE or\nMAROWAK's ATTACK.");
 const u8 gStickItemDescription[] = _("A hold item that\nraises FARFETCH'D's\ncritical-hit ratio.");
-const u8 gRedScarfItemDescription[] = _("A hold item that\nraises COOL in\nCONTESTS.");
-const u8 gBlueScarfItemDescription[] = _("A hold item that\nraises BEAUTY in\nCONTESTS.");
-const u8 gPinkScarfItemDescription[] = _("A hold item that\nraises CUTE in\nCONTESTS.");
-const u8 gGreenScarfItemDescription[] = _("A hold item that\nraises SMART in\nCONTESTS.");
-const u8 gYellowScarfItemDescription[] = _("A hold item that\nraises TOUGH in\nCONTESTS.");
+const u8 gRedScarfItemDescription[] = _("A hold item that\nraises COOL in\nContests.");
+const u8 gBlueScarfItemDescription[] = _("A hold item that\nraises BEAUTY in\nContests.");
+const u8 gPinkScarfItemDescription[] = _("A hold item that\nraises CUTE in\nContests.");
+const u8 gGreenScarfItemDescription[] = _("A hold item that\nraises SMART in\nContests.");
+const u8 gYellowScarfItemDescription[] = _("A hold item that\nraises TOUGH in\nContests.");
 // Key items
 const u8 gMachBikeItemDescription[] = _("A folding bicycle\nthat doubles your\nspeed or better.");
 const u8 gCoinCaseItemDescription[] = _("A case that holds\nup to 9,999 COINS.");
@@ -212,7 +212,7 @@ const u8 gOldRodItemDescription[] = _("Use by any body of\nwater to fish for\nwi
 const u8 gGoodRodItemDescription[] = _("A decent fishing\nrod for catching\nwild Pokémon.");
 const u8 gSuperRodItemDescription[] = _("The best fishing\nrod for catching\nwild Pokémon.");
 const u8 gSSTicketItemDescription[] = _("The ticket required\nfor sailing on a\nferry.");
-const u8 gContestPassItemDescription[] = _("The pass required\nfor entering\nPokémon CONTESTS.");
+const u8 gContestPassItemDescription[] = _("The pass required\nfor entering\nPokémon Contests.");
 const u8 gWailmerPailItemDescription[] = _("A tool used for\nwatering BERRIES\nand plants.");
 const u8 gDevonGoodsItemDescription[] = _("A package that\ncontains DEVON's\nmachine parts.");
 const u8 gSootSackItemDescription[] = _("A sack used to\ngather and hold\nvolcanic ash.");
@@ -324,3 +324,9 @@ const u8 gSapphireItemDescription[] = _("A brilliant blue gem\nthat symbolizes\n
 // Emerald-specific key items
 const u8 gMagmaEmblemItemDescription[] = _("A medal-like item in\nthe same shape as\nTeam Magma's mark.");
 const u8 gOldSeaMapItemDescription[] = _("A faded sea chart\nthat shows the way\nto a certain island.");
+
+// THE: Added items
+const u8 gSkullEmblemDescription[] = _("Your old Team Skull\nchain. Maybe it'll\nbring luck.");
+const u8 gChallengeAmuletItemDescription[] = _("Your old broken\nAlolan Island\nChallenge amulet.");
+const u8 gHomemadeSoupItemDescription[] = _("Dad's famous Dash\nof Figy Soup.\nRestores 60 HP.");
+const u8 gMalasadaItemDescription[] = _("An Alolan specialty\nthat heals all\nstatus problems.");

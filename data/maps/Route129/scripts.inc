@@ -13,7 +13,7 @@ Route129_MapScript1_1F7294: @ 81F7294
 
 Route129_OnTransition: @ 81F72AB
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
-	call_if_eq Route129_EventScript_273D13
+	call_if_eq Common_EventScript_HideMapNamePopup
 	compare VAR_RAYQUAZA_STATE, 4
 	call_if_ge Route129_EventScript_1F72D8
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_129_WEST
@@ -23,7 +23,7 @@ Route129_OnTransition: @ 81F72AB
 	end
 
 Route129_EventScript_1F72D8:: @ 81F72D8
-	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeatherAlternating
 	return
 
 Route129_MapScript2_1F72E2: @ 81F72E2

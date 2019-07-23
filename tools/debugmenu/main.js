@@ -14,7 +14,7 @@ global.emulator = new Emulator();
 function createWindow() {
 	let wid = generateId();
 	let win = new BrowserWindow({ 
-		width: 220, height: 360,
+		width: 310, height: 660,
 		webPreferences: {
 			webSecurity: false,
 			backgroundThrottling: false,

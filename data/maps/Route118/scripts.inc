@@ -7,7 +7,7 @@ Route118_MapScripts:: @ 81F3DBC
 Route118_OnTransition: @ 81F3DCC
 	call Route118_EventScript_28CCC7
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
-	call_if_eq Route118_EventScript_273D13
+	call_if_eq Common_EventScript_HideMapNamePopup
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_118_EAST
 	call_if_eq UnusualWeather_StartGroudonWeather
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_118_WEST
@@ -195,7 +195,7 @@ Route118_EventScript_1F3F87:: @ 81F3F87
 	end
 
 Route118_EventScript_1F3FB3:: @ 81F3FB3
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route118_Text_29D343, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ROSE_1
@@ -227,7 +227,7 @@ Route118_EventScript_1F4017:: @ 81F4017
 	end
 
 Route118_EventScript_1F4043:: @ 81F4043
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route118_Text_29D74A, MSGBOX_DEFAULT
 	register_matchcall TRAINER_DALTON_1

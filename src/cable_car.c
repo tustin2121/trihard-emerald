@@ -767,9 +767,16 @@ static void LoadCableCarSprites(void)
     u8 spriteId;
     u8 i;
 
-    u16 playerGraphicsIds[2] = {
+    u16 playerGraphicsIds[8] = {
+        //TODO: MULTIFORM PLAYER
         EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL,
-        EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
+        EVENT_OBJ_GFX_RIVAL_MAY_NORMAL,
+        EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL,
+        EVENT_OBJ_GFX_RIVAL_MAY_NORMAL,
+        EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL,
+        EVENT_OBJ_GFX_RIVAL_MAY_NORMAL,
+        EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL,
+        EVENT_OBJ_GFX_RIVAL_MAY_NORMAL,
     };
     u16 rval = Random();
     u16 hikerGraphicsIds[4] = {
@@ -797,7 +804,7 @@ static void LoadCableCarSprites(void)
     {
         case 0:
         default:
-            spriteId = AddPseudoEventObject(playerGraphicsIds[gSaveBlock2Ptr->playerGender], sub_8150948, 200, 73, 102);
+            spriteId = AddPseudoEventObject(playerGraphicsIds[gSaveBlock2Ptr->playerForm], sub_8150948, 200, 73, 102);
             if (spriteId != MAX_SPRITES)
             {
                 gSprites[spriteId].oam.priority = 2;
@@ -821,7 +828,7 @@ static void LoadCableCarSprites(void)
             break;
         case 1:
             CopyToBgTilemapBufferRect_ChangePalette(0, sCableCar->mtChimneyTilemap + 0x24, 24, 26, 12, 3, 17);
-            spriteId = AddPseudoEventObject(playerGraphicsIds[gSaveBlock2Ptr->playerGender], sub_8150948, 128, 39, 102);
+            spriteId = AddPseudoEventObject(playerGraphicsIds[gSaveBlock2Ptr->playerForm], sub_8150948, 128, 39, 102);
             if (spriteId != MAX_SPRITES)
             {
                 gSprites[spriteId].oam.priority = 2;

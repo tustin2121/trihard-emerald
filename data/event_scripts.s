@@ -24,6 +24,7 @@
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.include "constants/constants.inc"
+	.include "asm/macros/te_macros.inc"
 
 	.section script_data, "aw", %progbits
 
@@ -51,8 +52,12 @@ gSpecialVars:: @ 81DBA0C
 	.4byte gSpecialVar_ContestCategory
 	.4byte gSpecialVar_MonBoxId
 	.4byte gSpecialVar_MonBoxPos
-	.4byte gSpecialVar_Unused_0x8014
+	.4byte gSpecialVar_TextboxType
 	.4byte gTrainerBattleOpponent_A
+	.4byte gSpecialVar_InteractX
+	.4byte gSpecialVar_InteractY
+	.4byte gSpecialVar_LastWarpId
+	.4byte gSpecialVar_DialogTailOffset
 
 	.include "data/specials.inc"
 
@@ -69,6 +74,7 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_9
 	.4byte Std_10
 	.4byte Std_MsgboxDescribe
+	.4byte Std_MsgboxDialogue
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/PetalburgCity/scripts.inc"
@@ -625,19 +631,6 @@ EventScript_23B6D7:: @ 823B6D7
 	msgbox Text_2769FF, MSGBOX_SIGN
 	end
 
-gText_23B6E0:: @ 823B6E0
-	.string "There's a small indent in the wall.$"
-
-gText_23B704:: @ 823B704
-	.string "There's a small indent in the wall.\p"
-	.string "Use the SECRET POWER?$"
-
-gText_23B73E:: @ 823B73E
-	.string "Discovered a small cavern!$"
-
-SecretBase_RedCave1_Text_23B759: @ 823B759
-	.string "Want to make your SECRET BASE here?$"
-
 	.include "data/maps/SingleBattleColosseum/scripts.inc"
 	.include "data/maps/TradeCenter/scripts.inc"
 	.include "data/maps/RecordCorner/scripts.inc"
@@ -790,7 +783,15 @@ SecretBase_RedCave1_Text_23B759: @ 823B759
 Std_MsgboxNPC:: @ 8271315
 	lock
 	faceplayer
-	message 0x0
+	message 0x0, MSGTYPE_DIALOG
+	waitmessage
+	waitbuttonpress
+	release
+	return
+
+Std_MsgboxDialogue:: @ 8271315
+	lock
+	message 0x0, MSGTYPE_DIALOG
 	waitmessage
 	waitbuttonpress
 	release
@@ -802,11 +803,12 @@ Std_MsgboxSign:: @ 8271320
 	waitmessage
 	waitbuttonpress
 	releaseall
+	cleanupsignmessage
 	return
 
 Std_MsgboxDescribe:: @ 8271320
 	lockall
-	message 0x0
+	message 0x0, MSGTYPE_DESCRIBE
 	waitmessage
 	waitbuttonpress
 	releaseall
@@ -950,12 +952,12 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQUIL
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN
 	setflag FLAG_UNKNOWN_0x363
-	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
-	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+	setflag FLAG_UNUSED_0x2DB @ Remove?
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
 	setflag FLAG_HIDE_RUSBORO_CITY_RIVAL
-	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
+	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
@@ -974,12 +976,14 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4
 	setflag FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
 	setflag FLAG_HIDE_PETALBURG_GYM_GREETER
-	setflag FLAG_HIDE_PETALBURG_GYM_WALLYS_UNCLE
+	setflag FLAG_HIDE_PETALBURG_CENTER_LOGAN
+	setflag FLAG_HIDE_PETALBURG_CITY_GYM_LOCK
+	@ setflag FLAG_HIDE_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_BRENDAN
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_BRENDAN
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
-	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	setflag FLAG_HIDE_PLAYERS_HOUSE_LETTER
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL
 	setflag FLAG_HIDE_FANCLUB_OLD_LADY
@@ -1001,8 +1005,6 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_WOMAN
 	setflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_UNCLE
-	setflag FLAG_HIDE_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAXIE
@@ -1031,13 +1033,13 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_LOVER_MAN
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_LOVER_WOMAN
-	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_ARCHIE
-	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1
-	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_2
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA
+	setflag FLAG_UNUSED_0x376
+	setflag FLAG_UNUSED_0x375
 	setflag FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
 	setflag FLAG_HIDE_BATTLE_TOWER_OPPONENT
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
-	setflag FLAG_HIDE_LITTLE_ROOT_TOWN_PLAYERS_BEDROOM_MOM
+	setflag FLAG_HIDE_LITTLE_ROOT_TOWN_PLAYERS_BEDROOM_DAD
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH
 	setflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
@@ -1097,10 +1099,16 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_DEOXYS
 	setflag FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION
 	setflag FLAG_HIDE_FALLORBOR_TOWN_BATTLE_TENT_SCOTT
-	setflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
+	@ setflag FLAH_UNUSED_0x319
 	setflag FLAG_HIDE_SKY_PILLAR_WALLACE
 	setflag FLAG_RAYQUAZA_ON_SKY_TOWER_SUMMIT
 	call EventScript_ResetAllBerries
+	end
+
+EventScript_SetupTrihardEmeraldNewGame::
+	giveitem ITEM_SKULL_EMBLEM, 1
+	giveitem ITEM_CHALLENGE_AMULET, 1
+	giveitem ITEM_MALASADA, 3
 	end
 
 EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
@@ -1150,7 +1158,7 @@ EverGrandeCity_HallOfFame_EventScript_27183F:: @ 827183F
 EverGrandeCity_HallOfFame_EventScript_271843:: @ 8271843
 	setvar VAR_LITTLEROOT_HOUSES_STATE, 3
 	setvar VAR_LITTLEROOT_HOUSES_STATE_2, 3
-	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	clearflag FLAG_HIDE_PLAYERS_HOUSE_LETTER
 	return
 
 EverGrandeCity_HallOfFame_EventScript_271851:: @ 8271851
@@ -1211,7 +1219,9 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 	setvar VAR_ELITE_4_STATE, 0
 	return
 
-	.include "data/pokecenter_scripts.inc"
+	.include "data/scripts/pokecenter_scripts.inc"
+	.include "data/scripts/briney_boat.inc"
+	.include "data/scripts/common_scripts.inc"
 
 Std_ObtainItem:: @ 8271AD3
 	giveitem VAR_0x8000, VAR_0x8001
@@ -1269,9 +1279,13 @@ Std_ObtainItem_HandleItemType4:: @ 8271B85
 	return
 
 Std_ObtainItem_DisplayPutItemInPocket:: @ 8271B95
-	message gUnknown_08272A78
+	buffernumberstring2 0, VAR_0x8001, 1
+	message gText_ObtainedTheItem, MSGTYPE_DESCRIBE
 	waitfanfare
-	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
+	@ msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
+	message gText_PutItemInPocket, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	setvar VAR_RESULT, 1
 	return
 
@@ -1303,9 +1317,12 @@ EventScript_271BC5:: @ 8271BC5
 
 EventScript_271BE0:: @ 8271BE0
 	playfanfare MUS_FANFA4
-	message gUnknown_08272B09
+	message gUnknown_08272B09, MSGTYPE_DESCRIBE
 	waitfanfare
-	msgbox gUnknown_08272B48, MSGBOX_DEFAULT
+	@ msgbox gUnknown_08272B48, MSGBOX_DEFAULT
+	message gUnknown_08272B48, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	setvar VAR_RESULT, 1
 	return
 
@@ -1334,7 +1351,7 @@ Std_FindItem:: @ 8271BFD
 EventScript_PickItemUp:: @ 8271C3A
 	removeobject VAR_LAST_TALKED
 	giveitem VAR_0x8004, VAR_0x8005
-	specialvar VAR_RESULT, sub_81398C0
+	specialvar VAR_RESULT, LoadTMMoveName
 	copyvar VAR_0x8008, VAR_RESULT
 	compare VAR_0x8008, 1
 	call_if_eq EventScript_271C8F
@@ -1356,15 +1373,23 @@ EventScript_271C86:: @ 8271C86
 
 EventScript_271C8F:: @ 8271C8F
 	bufferitemnameplural 0, VAR_0x8004, VAR_0x8005
-	message gText_PlayerFoundOneItemTwoLines
+	@ message gText_PlayerFoundOneTMItem, MSGTYPE_DESCRIBE
+	message gText_PlayerFoundOneTMItem, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	return
 
 EventScript_271C9B:: @ 8271C9B
-	message gText_PlayerFoundOneItem
+	buffernumberstring2 0, VAR_0x8005
+	@ message gText_PlayerFoundOneItem, MSGTYPE_DESCRIBE
+	message gText_PlayerFoundOneItem, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	return
 
 EventScript_271CA1:: @ 8271CA1
-	msgbox gUnknown_08272A78, MSGBOX_DEFAULT
+	buffernumberstring2 0, VAR_0x8001, 1
+	msgbox gText_ObtainedTheItem, MSGBOX_DEFAULT
 	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
 	return
@@ -1372,9 +1397,9 @@ EventScript_271CA1:: @ 8271CA1
 EventScript_HiddenItemScript:: @ 8271CB7
 	lockall
 	waitse
-	giveitem VAR_0x8005, 1
+	giveitem VAR_0x8005, VAR_0x8006
 	copyvar VAR_0x8007, VAR_RESULT
-	bufferitemnameplural 1, VAR_0x8005, 1
+	bufferitemnameplural 1, VAR_0x8005, VAR_0x8006
 	checkitemtype VAR_0x8005
 	call Std_ObtainItem_BufferItemTypeAndPlayJingle
 	compare VAR_0x8007, 1
@@ -1386,7 +1411,7 @@ EventScript_HiddenItemScript:: @ 8271CB7
 EventScript_271CE8:: @ 8271CE8
 	copyvar VAR_0x8008, VAR_0x8004
 	copyvar VAR_0x8004, VAR_0x8005
-	specialvar VAR_RESULT, sub_81398C0
+	specialvar VAR_RESULT, LoadTMMoveName
 	compare VAR_RESULT, 1
 	goto_if_eq EventScript_271D0E
 	compare VAR_RESULT, 0
@@ -1395,12 +1420,13 @@ EventScript_271CE8:: @ 8271CE8
 
 EventScript_271D0E:: @ 8271D0E
 	bufferitemnameplural 0, VAR_0x8004, 1
-	message gText_PlayerFoundOneItemTwoLines
+	message gText_PlayerFoundOneTMItem, MSGTYPE_DESCRIBE
 	goto EventScript_271D2A
 	end
 
 EventScript_271D1F:: @ 8271D1F
-	message gText_PlayerFoundOneItem
+	buffernumberstring2 0, VAR_0x8006
+	message gText_PlayerFoundOneItem, MSGTYPE_DESCRIBE
 	goto EventScript_271D2A
 	end
 
@@ -1409,15 +1435,25 @@ EventScript_271D2A:: @ 8271D2A
 	waitfanfare
 	bufferitemnameplural 1, VAR_0x8004, 1
 	copyvar VAR_0x8004, VAR_0x8008
-	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
+	@ msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
+	message gText_PutItemInPocket, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	special sub_80EDCE8
 	special SetFlagInVar
 	releaseall
 	end
 
 EventScript_271D47:: @ 8271D47
-	msgbox gText_PlayerFoundOneItem, MSGBOX_DEFAULT
-	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	buffernumberstring2 0, VAR_0x8006
+	@ msgbox gText_PlayerFoundOneItem, MSGBOX_DEFAULT
+	message gText_PlayerFoundOneItem, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	@ msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	message gText_TooBadBagIsFull, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	setvar VAR_RESULT, 0
 	releaseall
 	end
@@ -1451,28 +1487,6 @@ EventScript_PC:: @ 8271D92
 	releaseall
 	end
 
-Common_EventScript_ShowPokemartSign:: @ 8271E6A
-	msgbox gText_PokemartSign, MSGBOX_SIGN
-	end
-
-Common_EventScript_ShowPokemonCenterSign:: @ 8271E73
-	msgbox gText_PokemonCenterSign, MSGBOX_SIGN
-	end
-
-Common_ShowEasyChatScreen:: @ 8271E7C
-	fadescreen 1
-	special ShowEasyChatScreen
-	fadescreen 0
-	return
-
-DewfordTown_Gym_EventScript_271E84:: @ 8271E84
-LavaridgeTown_Gym_1F_EventScript_271E84:: @ 8271E84
-MauvilleCity_Gym_EventScript_271E84:: @ 8271E84
-RustboroCity_Gym_EventScript_271E84:: @ 8271E84
-	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
-	setflag FLAG_PETALBURG_MART_EXPANDED_ITEMS
-	return
-
 DewfordTown_EventScript_271E8B:: @ 8271E8B
 DewfordTown_Hall_EventScript_271E8B:: @ 8271E8B
 	dotimebasedevents
@@ -1485,57 +1499,6 @@ Route104_MrBrineysHouse_EventScript_271E95:: @ 8271E95
 Route109_EventScript_271E95:: @ 8271E95
 	copyvar VAR_0x8008, VAR_BRINEY_LOCATION
 	setvar VAR_BRINEY_LOCATION, 0
-	return
-
-EventScript_UseSurf:: @ 8271EA0
-	checkpartymove MOVE_SURF
-	compare VAR_RESULT, 6
-	goto_if_eq EventScript_CantSurf
-	bufferpartymonnick 0, VAR_RESULT
-	setfieldeffectargument 0, VAR_RESULT
-	lockall
-	msgbox gText_WantToUseSurf, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq EventScript_CancelSurf
-	msgbox gText_PlayerUsedSurf, MSGBOX_DEFAULT
-	dofieldeffect FLDEFF_USE_SURF
-
-EventScript_CancelSurf:: @ 8271ED5
-	releaseall
-
-EventScript_CantSurf:: @ 8271ED6
-	end
-
-Common_EventScript_SetupRivalGender:: @ 8271ED7
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq RustboroCity_EventScript_271EEF
-	compare VAR_RESULT, FEMALE
-	goto_if_eq RustboroCity_EventScript_271EF5
-	end
-
-RustboroCity_EventScript_271EEF:: @ 8271EEF
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
-	return
-
-RustboroCity_EventScript_271EF5:: @ 8271EF5
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
-	return
-
-Common_EventScript_SetupRivalOnBikeGender:: @ 8271EFB
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LavaridgeTown_EventScript_271F13
-	compare VAR_RESULT, FEMALE
-	goto_if_eq LavaridgeTown_EventScript_271F19
-	end
-
-LavaridgeTown_EventScript_271F13:: @ 8271F13
-	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_MAY_MACH_BIKE
-	return
-
-LavaridgeTown_EventScript_271F19:: @ 8271F19
-	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE
 	return
 
 EventScript_271F1F:: @ 8271F1F
@@ -1574,9 +1537,9 @@ SootopolisCity_Gym_1F_EventScript_271F43:: @ 8271F43
 	end
 
 DewfordTown_Gym_EventScript_271FA1:: @ 8271FA1
-	settrainerflag TRAINER_JOSH
-	settrainerflag TRAINER_TOMMY
-	settrainerflag TRAINER_MARC
+	@ settrainerflag TRAINER_JOSH
+	@ settrainerflag TRAINER_TOMMY
+	@ settrainerflag TRAINER_MARC
 	return
 
 DewfordTown_Gym_EventScript_271FAB:: @ 8271FAB
@@ -1608,13 +1571,13 @@ DewfordTown_Gym_EventScript_271FCE:: @ 8271FCE
 	return
 
 DewfordTown_Gym_EventScript_271FE7:: @ 8271FE7
-	settrainerflag TRAINER_RANDALL
-	settrainerflag TRAINER_PARKER
-	settrainerflag TRAINER_GEORGE
-	settrainerflag TRAINER_BERKE
-	settrainerflag TRAINER_MARY
-	settrainerflag TRAINER_ALEXIA
-	settrainerflag TRAINER_JODY
+	@ settrainerflag TRAINER_RANDALL
+	@ settrainerflag TRAINER_PARKER
+	@ settrainerflag TRAINER_GEORGE
+	@ settrainerflag TRAINER_BERKE
+	@ settrainerflag TRAINER_MARY
+	@ settrainerflag TRAINER_ALEXIA
+	@ settrainerflag TRAINER_JODY
 	return
 
 DewfordTown_Gym_EventScript_271FFD:: @ 8271FFD
@@ -1654,15 +1617,6 @@ DewfordTown_Gym_EventScript_272035:: @ 8272035
 	settrainerflag TRAINER_DAPHNE
 	return
 
-Common_EventScript_ShowBagIsFull:: @ 8272054
-	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
-	release
-	end
-
-Common_EventScript_BagIsFull:: @ 827205E
-	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
-	return
-
 Route114_LanettesHouse_EventScript_272067:: @ 8272067
 	msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT
 	release
@@ -1672,55 +1626,36 @@ Common_EventScript_NoRoomLeftForAnother:: @ 8272071
 	msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT
 	return
 
-Common_EventScript_SetWeather15:: @ 827207A
-	setweather WEATHER_ALTERNATING
-	return
-
-Common_EventScript_PlayGymBadgeFanfare:: @ 827207E
-	playfanfare MUS_ME_BACHI
-	waitfanfare
-	return
-
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
+	call Common_EventScript_PartyHealSave_Setup
+	call Common_EventScript_PartyHealSave_Save
+	call Common_EventScript_PartyHealSave_Complete
+	return
+
+Common_EventScript_PartyHealSave_Setup::
 	fadescreen 5 @ FADE_TO_BLACK_NO_WINDOW
 	playfanfare MUS_ME_ASA
 	waitfanfare
 	special HealPlayerParty
+	advancetime 7, 30, 30
+	return
+Common_EventScript_PartyHealSave_Save::
 	@ TriHard Emerald: Force Save
 	special ForceSaveGame
 	waitstate
 	closemessage
 	delay 1 @ delay 1 frame to allow the save game window to actually close
+	return
+Common_EventScript_PartyHealSave_Complete::
 	fadescreen 4 @ FADE_FROM_BLACK_NO_WINDOW
 	return
 
-EventScript_RegionMap:: @ 827208F
-	lockall
-	msgbox Common_Text_LookCloserAtMap, MSGBOX_DEFAULT
-	fadescreen 1
-	special FieldShowRegionMap
-	waitstate
-	releaseall
-	end
 
-DewfordTown_EventScript_2720A0:: @ 82720A0
-Route104_EventScript_2720A0:: @ 82720A0
-Route109_EventScript_2720A0:: @ 82720A0
-	setflag FLAG_SPECIAL_FLAG_0x4001
-	playbgm MUS_M_BOAT, 0
-	return
-
-DewfordTown_EventScript_2720A8:: @ 82720A8
-Route104_EventScript_2720A8:: @ 82720A8
-Route109_EventScript_2720A8:: @ 82720A8
-	clearflag FLAG_SPECIAL_FLAG_0x4001
-	fadedefaultbgm
-	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_2720AD:: @ 82720AD
 Route101_EventScript_2720AD:: @ 82720AD
 Route103_EventScript_2720AD:: @ 82720AD
-	compare VAR_PETALBURG_GYM_STATE, 0
+	compare VAR_NUM_BADGES, 0
 	goto_if_eq Common_EventScript_NopReturn
 	goto_if_set FLAG_SYS_GAME_CLEAR, Route101_EventScript_27211A
 	compare VAR_BIRCH_STATE, 0
@@ -1830,7 +1765,7 @@ SlateportCity_Harbor_Movement_2721F0: @ 82721F0
 	walk_right
 	step_end
 
-PetalburgCity_Gym_EventScript_2721F8:: @ 82721F8
+PetalburgCity_Gym_DisableMrBriney:: @ 82721F8
 	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_108_MR_BRINEY
@@ -1840,15 +1775,6 @@ PetalburgCity_Gym_EventScript_2721F8:: @ 82721F8
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_BRINEY_LOCATION, 0
-	return
-
-RusturfTunnel_EventScript_272216:: @ 8272216
-	removeobject 1
-	removeobject 10
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_MAN
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_WOMAN
-	setvar VAR_RUSTURF_TUNNEL_STATE, 6
-	setflag FLAG_RUSTURF_TUNNEL_OPENED
 	return
 
 EventScript_27222B:: @ 827222B
@@ -1912,7 +1838,7 @@ EventScript_2722A7:: @ 82722A7
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	releaseall
 	end
@@ -1998,7 +1924,7 @@ Route119_EventScript_272365:: @ 8272365
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
-	applymovement VAR_LAST_TALKED, Route119_Movement_2723C7
+	applymovement VAR_LAST_TALKED, Common_Movement_KecleonShowAnim
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_KECLEON, 2
@@ -2021,38 +1947,6 @@ Route119_EventScript_272365:: @ 8272365
 Route119_EventScript_2723C1:: @ 82723C1
 	goto Route119_EventScript_27376D
 	end
-
-Route119_Movement_2723C7: @ 82723C7
-Route120_Movement_2723C7: @ 82723C7
-Common_Movement_KecleonShowAnim: @ 82723C7
-	set_visible
-	delay_4
-	set_invisible
-	delay_4
-	set_visible
-	delay_4
-	set_invisible
-	delay_4
-	set_visible
-	delay_8
-	set_invisible
-	delay_8
-	set_visible
-	delay_8
-	set_invisible
-	delay_8
-	set_visible
-	delay_16
-	set_invisible
-	delay_16
-	set_visible
-	step_end
-
-Common_EventScript_NameReceivedPokemon:: @ 82723DD
-	fadescreen 1
-	special ChangePokemonNickname
-	waitstate
-	return
 
 FallarborTown_House1_EventScript_2723E4:: @ 82723E4
 GraniteCave_StevensRoom_EventScript_2723E4:: @ 82723E4
@@ -2139,65 +2033,6 @@ EverGrandeCity_SidneysRoom_EventScript_27255F:: @ 827255F
 	setmetatile 7, 13, 526, 1
 	return
 
-SlateportCity_Movement_272596: @ 8272596
-Movement_Emote_QuestionMark:: @ 8272596
-	emote_question_mark
-	step_end
-
-Common_Movement_ExclamationMark: @ 8272598
-	emote_exclamation_mark
-	step_end
-
-Common_Movement_Delay48: @ 827259A
-	delay_16
-	delay_16
-	delay_16
-	step_end
-
-Common_Movement_FacePlayer: @ 827259E
-	face_player
-	step_end
-
-Common_Movement_FaceAwayPlayer: @ 82725A0
-	face_away_player
-	step_end
-
-Common_Movement_FaceOriginalDirection: @ 82725A2
-	face_original_direction
-	step_end
-
-Common_Movement_WalkInPlaceLeft: @ 82725A4
-	walk_in_place_fastest_left
-	step_end
-
-Common_Movement_WalkInPlaceUp: @ 82725A6
-	walk_in_place_fastest_up
-	step_end
-
-Common_Movement_WalkInPlaceRight: @ 82725A8
-	walk_in_place_fastest_right
-	step_end
-
-Common_Movement_WalkInPlaceDown: @ 82725AA
-	walk_in_place_fastest_down
-	step_end
-
-RustboroCity_Movement_2725AC: @ 82725AC
-	face_right
-	step_end
-
-RustboroCity_Movement_2725AE: @ 82725AE
-	face_left
-	step_end
-
-Common_Movement_FaceDown: @ 82725B0
-	face_down
-	step_end
-
-Common_Movement_FaceUp: @ 82725B2
-	face_up
-	step_end
-
 BattleFrontier_BattleDomeBattleRoom_Movement_2725B4: @ 82725B4
 MeteorFalls_1F_1R_Movement_2725B4: @ 82725B4
 	walk_in_place_down
@@ -2233,42 +2068,12 @@ EverGrandeCity_SidneysRoom_Movement_2725C6: @ 82725C6
 	delay_16
 	step_end
 
-Route110_TrickHouseEntrance_Movement_2725C9: @ 82725C9
-	walk_up
-	step_end
-
 Movement_2725CB:: @ 82725CB
 	walk_up
 	walk_up
 	step_end
 
-EventScript_PictureBookShelf:: @ 82725CE
-	msgbox Text_PictureBookShelf, MSGBOX_SIGN
-	end
-
-EventScript_BookShelf:: @ 82725D7
-	msgbox Text_BookShelf, MSGBOX_SIGN
-	end
-
-EventScript_PokemonCenterBookShelf:: @ 82725E0
-	msgbox Text_PokemonCenterBookShelf, MSGBOX_SIGN
-	end
-
-EventScript_Vase:: @ 82725E9
-	msgbox Text_Vase, MSGBOX_SIGN
-	end
-
-EventScript_EmptyTrashCan:: @ 82725F2
-	msgbox Text_EmptyTrashCan, MSGBOX_SIGN
-	end
-
-EventScript_ShopShelf:: @ 82725FB
-	msgbox Text_ShopShelf, MSGBOX_SIGN
-	end
-
-EventScript_Blueprint:: @ 8272604
-	msgbox Text_Blueprint, MSGBOX_SIGN
-	end
+	.include "data/scripts/metatile_scripts.inc"
 
 Text_WouldYouLikeToMixRecords: @ 827260D
 	.string "Would you like to mix records with\n"
@@ -2304,11 +2109,8 @@ gText_Mart_Welcome:: @ 8272A21
 gText_Mart_Goodbye:: @ 8272A3F
 	.string "Please come again!$"
 
-gUnknown_08272A52:: @ 8272A52
-	.string "{PLAYER}, welcome!\pWhat can I do for you?$"
-
-gUnknown_08272A78:: @ 8272A78
-	.string "Obtained the {STR_VAR_2}!$"
+gText_ObtainedTheItem:: @ 8272A78
+	.string "Scored {STR_VAR_1} {STR_VAR_2}!$"
 
 gText_BagIsFull3:: @ 8272A89
 	.string "The bag is full…$"
@@ -2317,10 +2119,7 @@ gText_PutItemInPocket:: @ 8272A9A
 	.string "{PLAYER} put away the {STR_VAR_2}\nin the {STR_VAR_3} POCKET.$"
 
 gText_PlayerFoundOneItem:: @ 8272ABF
-	.string "{PLAYER} found one {STR_VAR_2}!$"
-
-gText_TooBadBagIsFull:: @ 8272AD0
-	.string "Too bad!\nThe bag is full…$"
+	.string "{PLAYER} found {STR_VAR_1} {STR_VAR_2}!$"
 
 gText_PlayerPutItemInBag:: @ 8272AEA
 	.string "{PLAYER} put away the {STR_VAR_2}\nin the bag.$"
@@ -2334,14 +2133,10 @@ gText_NoRoomLeftForAnother:: @ 8272B1A
 gUnknown_08272B48:: @ 8272B48
 	.string "The {STR_VAR_2} was transferred\nto the PC.$"
 
-gText_PokemartSign:: @ 8272B6A
-	.string "“Selected items for your convenience!”\n{PLACE}Pokémon Mart$"
-
-gText_PokemonCenterSign:: @ 8272B9E
-	.string "“Rejuvenate your tired partners!”\n{PLACE}Pokémon Center$"
-
 gUnknown_08272BCF:: @ 8272BCF
-	.string "{STR_VAR_1} might like this program.\n… … … … … … … … … … … … … … … …\pBetter get going!$"
+	.string "{RIVAL_ALOLA} would like this program.\n"
+	.string "… … … … … … … … … … … … … … … …\p"
+	.string "Ugh, better get going…$"
 
 gUnknown_08272C1D:: @ 8272C1D
 	.string "Welcome to {PLACE}Lilycove Department Store{END}.\pWhich floor would you like?$"
@@ -2373,8 +2168,6 @@ gUnknown_08272DE3:: @ 8272DE3
 gText_RegisteredTrainerinPokeNav:: @ 8272E0F
 	.string "Registered {STR_VAR_1} {STR_VAR_2}\nin the PokéNav.$"
 
-	.include "data/text/surf.inc"
-
 gUnknown_0827301B:: @ 827301B
 	.string "It sounded as if a door opened\nsomewhere far away.$"
 
@@ -2399,7 +2192,7 @@ gUnknown_08273161:: @ 8273161
 gUnknown_08273178:: @ 8273178
 	.string "Thank you for accessing the\nMYSTERY GIFT System.$"
 
-gText_PlayerFoundOneItemTwoLines:: @ 82731A9
+gText_PlayerFoundOneTMItem:: @ 82731A9
 	.string "{PLAYER} found one {STR_VAR_1}\n{STR_VAR_2}!$"
 
 gText_Sudowoodo_Attacked:: @ 82731BD
@@ -2459,9 +2252,6 @@ gText_UnusualWeatherEnded_Sun:: @ 8273684
 EventScript_SelectWithoutRegisteredItem:: @ 82736B3
 	msgbox gText_SelectWithoutRegisteredItem, MSGBOX_SIGN
 	end
-
-Common_EventScript_NopReturn:: @ 827374E
-	return
 
 EventScript_UnusedSetVarResult1:: @ 827374F
 	setvar VAR_RESULT, 1
@@ -2850,17 +2640,6 @@ UnusualWeather_EventScript_PlaceTilesRoute129East:: @ 8273CA6
 	setmetatile 43, 22, 334, 0
 	return
 
-Route105_EventScript_273D13:: @ 8273D13
-Route114_EventScript_273D13:: @ 8273D13
-Route115_EventScript_273D13:: @ 8273D13
-Route116_EventScript_273D13:: @ 8273D13
-Route118_EventScript_273D13:: @ 8273D13
-Route125_EventScript_273D13:: @ 8273D13
-Route127_EventScript_273D13:: @ 8273D13
-Route129_EventScript_273D13:: @ 8273D13
-	setflag FLAG_HIDE_MAP_NAME_POPUP
-	return
-
 UnusualWeather_StartKyogreWeather:: @ 8273D17
 	setweather WEATHER_RAIN_HEAVY
 	return
@@ -3130,7 +2909,7 @@ Std_RegisteredInMatchCall:: @ 82742C9
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DEFAULT
+	msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DESCRIBE
 	waitfanfare
 	closemessage
 	delay 30
@@ -3787,11 +3566,6 @@ EventScript_2926F8:: @ 82926F8
 	end
 
 	.include "data/scripts/players_house.inc"
-
-EventScript_RunningShoesManual:: @ 8292DE5
-	msgbox LittlerootTown_BrendansHouse_1F_Text_1F7F66, MSGBOX_SIGN
-	end
-
 	.include "data/scripts/pokeblocks.inc"
 
 gText_SoPretty:: @ 8294295
@@ -3904,34 +3678,6 @@ MauvilleCity_GameCorner_EventScript_2A5B0D:: @ 82A5B0D
 	.include "data/text/braille.inc"
 	.include "data/text/berries.inc"
 	.include "data/text/shoal_cave.inc"
-
-Text_PictureBookShelf: @ 82A81E5
-	.string "There's a set of Pokémon picture books.$"
-
-Text_BookShelf: @ 82A820D
-	.string "It's filled with all sorts of books.$"
-
-Text_PokemonCenterBookShelf: @ 82A8232
-	.string "Pokémon magazines!\n"
-	.string "Pokémon Pal…\p"
-	.string "Pokémon Handbook…\n"
-	.string "Adorable Pokémon…$"
-
-Text_Vase: @ 82A8276
-	.string "This vase looks expensive…\n"
-	.string "Peered inside…\p"
-	.string "But, it was empty.$"
-
-Text_EmptyTrashCan: @ 82A82B3
-	.string "It's empty.$"
-
-Text_ShopShelf: @ 82A82BF
-	.string "The shelves brim with all sorts of\n"
-	.string "Pokémon merchandise.$"
-
-Text_Blueprint: @ 82A82F7
-	.string "A blueprint of some sort?\n"
-	.string "It's too complicated!$"
 
 GraniteCave_B1F_MapScript2_2A8327: @ 82A8327
 MirageTower_2F_MapScript2_2A8327: @ 82A8327
@@ -5859,3 +5605,17 @@ gText_082C877B:: @ 82C877B
 	.include "data/scripts/te_debug.inc"
 
 	.include "data/maps/SootopolisLegendsEdit/scripts.inc"
+
+	.include "data/maps/SootopolisCity_PokemonCenter_Alt/scripts.inc"
+
+	.include "data/maps/ScriptTestMap/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom1/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom2/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom3/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom4/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom5/scripts.inc"

@@ -340,7 +340,7 @@ SSTidalCorridor_Text_23C6EC: @ 823C6EC
 	.string "soul as a sailor!$"
 
 SSTidalCorridor_Text_23C7E1: @ 823C7E1
-	.string "PEEKO: Pihyo pihyohyo…$"
+	.string "Peeko: Pihyo pihyohyo…$"
 
 SSTidalCorridor_Text_23C7F8: @ 823C7F8
 	.string "Cabin 1$"

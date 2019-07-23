@@ -11,10 +11,7 @@ PacifidlogTown_PokemonCenter_1F_OnTransition: @ 82034B2
 
 PacifidlogTown_PokemonCenter_1F_NurseScript:: @ 82034B6
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 @ -----------------------------------------------------
@@ -23,7 +20,7 @@ PacifidlogTown_PokemonCenter_1F_PC_Boy::
 	lockall
 	faceplayer
 	msgbox PacifidlogTown_PokemonCenter_1F_PC_Boy_Text, MSGBOX_DEFAULT
-	applymovement 8, Common_Movement_FaceUp
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	releaseall
 	end

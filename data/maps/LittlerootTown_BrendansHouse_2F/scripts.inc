@@ -3,6 +3,8 @@ LittlerootTown_BrendansHouse_2F_MapScripts:: @ 81F83E3
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_BrendansHouse_2F_MapScript2_1F846A
 	.byte 0
 
+@ -----------------------------------------------------
+
 LittlerootTown_BrendansHouse_2F_MapScript1_1F83EE: @ 81F83EE
 	compare VAR_LITTLEROOT_RIVAL_STATE, 2
 	call_if_lt LittlerootTown_BrendansHouse_2F_EventScript_1F8457
@@ -11,7 +13,7 @@ LittlerootTown_BrendansHouse_2F_MapScript1_1F83EE: @ 81F83EE
 	compare VAR_LITTLEROOT_INTRO_STATE, 4
 	call_if_eq LittlerootTown_BrendansHouse_2F_EventScript_2926FE
 	call LittlerootTown_BrendansHouse_2F_EventScript_275CE1
-	setvar VAR_SECRET_BASE_INITIALIZED, 0
+	@ setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F841A:: @ 81F841A
@@ -43,25 +45,30 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8464:: @ 81F8464
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 2
 	return
 
+@ -----------------------------------------------------
+
 LittlerootTown_BrendansHouse_2F_MapScript2_1F846A: @ 81F846A
-	map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, LittlerootTown_BrendansHouse_2F_EventScript_1F8474
+	@ map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, LittlerootTown_BrendansHouse_2F_EventScript_1F8474
 	.2byte 0
 
-LittlerootTown_BrendansHouse_2F_EventScript_1F8474:: @ 81F8474
-	checkplayergender
-	compare VAR_RESULT, 0
-	goto_if_eq EventScript_275D0C
-	end
+@ LittlerootTown_BrendansHouse_2F_EventScript_1F8474:: @ 81F8474
+@ 	checkplayergender
+@ 	compare VAR_RESULT, 0
+@ 	goto_if_eq EventScript_275D0C
+@ 	end
+
+@ -----------------------------------------------------
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F8481:: @ 81F8481
 	lockall
 	compare VAR_LITTLEROOT_RIVAL_STATE, 2
 	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_1F8497
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F9991, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalsHouse_2F_Text_1F9962, MSGBOX_DEFAULT
 	releaseall
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F8497:: @ 81F8497
+	flagasdialog
 	delay 10
 	addobject 1
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85BC
@@ -95,7 +102,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8507:: @ 81F8507
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F97B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85CF
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85C6
@@ -107,7 +114,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8536:: @ 81F8536
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F97B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85E2
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85DB
@@ -119,7 +126,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8565:: @ 81F8565
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F97B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_1F85F6
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F85ED
@@ -131,7 +138,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F8594:: @ 81F8594
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F97B4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_RivalHouse_1F_Text_1F8EC6, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_1F8604
 	waitmovement 0
@@ -270,45 +277,40 @@ LittlerootTown_BrendansHouse_2F_EventScript_1F864C:: @ 81F864C
 	releaseall
 	end
 
+@ -----------------------------------------------------
+@ Trigger: Sleeping in bed
+
+LittlerootTown_BrendansHouse_2F_TriggerScript_SleepInBed::
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_PlayersHouse_2F_TriggerScript_SleepInBed
+	release
+	end
+
+@ -----------------------------------------------------
+
 LittlerootTown_BrendansHouse_2F_EventScript_1F8656:: @ 81F8656
 LittlerootTown_MaysHouse_2F_EventScript_1F8656:: @ 81F8656
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F877F, MSGBOX_DESCRIBE
+	msgbox LittlerootTown_PlayersHouse_2F_Text_1F877F, MSGBOX_DESCRIBE
 	end
-LittlerootTown_BrendansHouse_2F_Text_1F877F: @ 81F877F
+LittlerootTown_PlayersHouse_2F_Text_1F877F: @ 81F877F
 	.string "{PLAYER} flipped open the notebook.\p"
-	.string "ADVENTURE RULE NO. 1\n"
-	.string "Open the MENU with START.\p"
-	.string "ADVENTURE RULE NO. 2\n"
-	.string "Record your progress with SAVE.\p"
+	.string "{TIPS}TRIHARD ADVENTURE RULES{END}\p"
+	.string "{NO} 1: Rest at a Pokémon Center,\n"
+	.string "at home, or a heal house to SAVE!\p"
+	.string "{NO} 2: If you white out or forfiet,\n"
+	.string "the game will RESET without saving!\p"
+	.string "{NO} 3: Fainting means DEATH!\n"
+	.string "Don't let your Pokémon faint!\p"
 	.string "The remaining pages are blank…$"
 
 LittlerootTown_BrendansHouse_2F_EventScript_1F865F:: @ 81F865F
 LittlerootTown_MaysHouse_2F_EventScript_1F865F:: @ 81F865F
-	msgbox LittlerootTown_BrendansHouse_2F_Text_1F884F, MSGBOX_DESCRIBE
+	msgbox LittlerootTown_PlayersHouse_2F_Text_1F884F, MSGBOX_DESCRIBE
 	end
-LittlerootTown_BrendansHouse_2F_Text_1F884F: @ 81F884F
+LittlerootTown_PlayersHouse_2F_Text_1F884F: @ 81F884F
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
 	.string "serve as the Controller.$"
-
-LittlerootTown_BrendansHouse_2F_Text_1F8668: @ 81F8668
-	.string "The clock is stopped…\p"
-	.string "Better set it and start it!$"
-
-LittlerootTown_BrendansHouse_2F_Text_1F869A: @ 81F869A
-	.string "MOM: {PLAYER}, how do you like your\n"
-	.string "new room?\p"
-	.string "Good! Everything's put away neatly!\p"
-	.string "They finished moving everything in\n"
-	.string "downstairs, too.\p"
-	.string "Pokémon movers are so convenient!\p"
-	.string "Oh, you should make sure that\n"
-	.string "everything's all there on your desk.$"
-
-
-
-Common_Text_LookCloserAtMap: @ 81F8820
-	.string "{PLAYER} took a closer look at the\n"
-	.string "Hoenn region map.$"
 
 

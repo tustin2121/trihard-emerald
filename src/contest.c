@@ -2630,6 +2630,17 @@ void sub_80DA8C8(u8 partyIndex)
     s16 cute;
     s16 smart;
     s16 tough;
+    u16 playerGraphicsIds[8] = {
+        //TODO: MULTIFORM PLAYER
+        EVENT_OBJ_GFX_LINK_BRENDAN,
+        EVENT_OBJ_GFX_LINK_MAY,
+        EVENT_OBJ_GFX_LINK_BRENDAN,
+        EVENT_OBJ_GFX_LINK_MAY,
+        EVENT_OBJ_GFX_LINK_BRENDAN,
+        EVENT_OBJ_GFX_LINK_MAY,
+        EVENT_OBJ_GFX_LINK_BRENDAN,
+        EVENT_OBJ_GFX_LINK_MAY,
+    };
 
     StringCopy(name, gSaveBlock2Ptr->playerName);
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
@@ -2637,10 +2648,7 @@ void sub_80DA8C8(u8 partyIndex)
         sub_80DF9D4(name);
     }
     memcpy(gContestMons[gContestPlayerMonIndex].trainerName, name, 8);
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        gContestMons[gContestPlayerMonIndex].trainerGfxId = EVENT_OBJ_GFX_LINK_BRENDAN;
-    else
-        gContestMons[gContestPlayerMonIndex].trainerGfxId = EVENT_OBJ_GFX_LINK_MAY;
+    gContestMons[gContestPlayerMonIndex].trainerGfxId = playerGraphicsIds[gSaveBlock2Ptr->playerForm];
     gContestMons[gContestPlayerMonIndex].aiChecks = 0;
     gContestMons[gContestPlayerMonIndex].unk2C[0] = 0;
     gContestMons[gContestPlayerMonIndex].species = GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES);

@@ -228,7 +228,7 @@ static void CB2_SaveFailedScreen(void)
         LoadPalette(gBirchBagGrassPal, 0, 0x40);
         LoadPalette(sSaveFailedClockPal, 0x100, 0x20);
         LoadPalette(gTextWindowFrame1_Pal, 0xE0, 0x20);
-        LoadPalette(gUnknown_0860F074, 0xF0, 0x20);
+        LoadPalette(gTextBoxPalette, 0xF0, 0x20);
         DrawStdFrameWithCustomTileAndPalette(gSaveFailedWindowIds[TEXT_WIN_ID], FALSE, 0x214, 0xE);
         DrawStdFrameWithCustomTileAndPalette(gSaveFailedWindowIds[CLOCK_WIN_ID], FALSE, 0x214, 0xE);
         FillWindowPixelBuffer(gSaveFailedWindowIds[CLOCK_WIN_ID], PIXEL_FILL(1)); // backwards?

@@ -35,6 +35,15 @@
             "type": "sign",
             "x": 12,
             "y": 8
+        },
+        {
+            "count": "5",
+            "elevation": 3,
+            "flag": "FLAG_HIDDEN_ITEM_LITTLEROOT_BERRIES",
+            "item": "ITEM_ORAN_BERRY",
+            "type": "hidden_item",
+            "x": 1,
+            "y": 3
         }
     ],
     "connections": [
@@ -74,43 +83,25 @@
         },
         {
             "elevation": 3,
-            "script": "LittlerootTown_EventScript_1E81F9",
+            "script": "LittlerootTown_TriggerScript_FinalIntro_EnteringBrendans",
             "type": "trigger",
             "var": "VAR_0x4050",
             "var_value": "3",
-            "x": 8,
+            "x": 5,
             "y": 9
         },
         {
             "elevation": 3,
-            "script": "LittlerootTown_EventScript_1E8205",
+            "script": "LittlerootTown_TriggerScript_FinalIntro_EnteringMays",
             "type": "trigger",
             "var": "VAR_0x4050",
             "var_value": "3",
-            "x": 9,
+            "x": 14,
             "y": 9
         },
         {
             "elevation": 3,
-            "script": "LittlerootTown_EventScript_1E81E1",
-            "type": "trigger",
-            "var": "VAR_0x4050",
-            "var_value": "3",
-            "x": 10,
-            "y": 9
-        },
-        {
-            "elevation": 3,
-            "script": "LittlerootTown_EventScript_1E81ED",
-            "type": "trigger",
-            "var": "VAR_0x4050",
-            "var_value": "3",
-            "x": 11,
-            "y": 9
-        },
-        {
-            "elevation": 3,
-            "script": "LittlerootTown_EventScript_1E81BB",
+            "script": "LittlerootTown_TriggerScript_FinalIntro_LeavingTown",
             "type": "trigger",
             "var": "VAR_0x4050",
             "var_value": "3",
@@ -119,7 +110,7 @@
         },
         {
             "elevation": 3,
-            "script": "LittlerootTown_EventScript_1E81CE",
+            "script": "LittlerootTown_TriggerScript_FinalIntro_LeavingTown",
             "type": "trigger",
             "var": "VAR_0x4050",
             "var_value": "3",
@@ -143,8 +134,8 @@
             "script": "LittlerootTown_EventScript_1E8034",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 16,
-            "y": 10
+            "x": 17,
+            "y": 11
         },
         {
             "elevation": 3,
@@ -153,7 +144,7 @@
             "movement_range_x": 2,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "LittlerootTown_EventScript_1E8022",
+            "script": "LittlerootTown_EventScript_ScienceGuy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 12,
@@ -166,7 +157,7 @@
             "movement_range_x": 2,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "LittlerootTown_EventScript_1E802B",
+            "script": "LittlerootTown_EventScript_RandomBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 14,
@@ -175,7 +166,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE",
-            "graphics_id": "EVENT_OBJ_GFX_MOM",
+            "graphics_id": "EVENT_OBJ_GFX_DAD",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",

@@ -56,20 +56,20 @@
     "connections": null,
     "coord_events": [
         {
-            "elevation": 3,
-            "script": "NULL",
+            "elevation": 1,
+            "script": "SootopolisCity_TriggerScript_FightLegendaries",
             "type": "trigger",
-            "var": "VAR_TEMP_0",
-            "var_value": "0",
+            "var": "VAR_TEMP_F",
+            "var_value": "1",
             "x": 31,
             "y": 44
         },
         {
-            "elevation": 3,
-            "script": "NULL",
+            "elevation": 1,
+            "script": "SootopolisCity_TriggerScript_FightLegendaries",
             "type": "trigger",
-            "var": "VAR_TEMP_0",
-            "var_value": "0",
+            "var": "VAR_TEMP_F",
+            "var_value": "1",
             "x": 31,
             "y": 43
         }
@@ -87,7 +87,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "SootopolisCity_EventScript_1E5E8D",
+            "script": "SootopolisCity_EventScript_CaveOfOriginMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 31,
@@ -103,8 +103,8 @@
             "script": "SootopolisCity_EventScript_1E5FE2",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 47,
-            "y": 33
+            "x": 48,
+            "y": 36
         },
         {
             "elevation": 3,
@@ -113,7 +113,7 @@
             "movement_range_x": 1,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-            "script": "SootopolisCity_EventScript_1E5ED8",
+            "script": "SootopolisCity_EventScript_Kiri",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 9,

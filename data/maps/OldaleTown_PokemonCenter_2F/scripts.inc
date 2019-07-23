@@ -17,3 +17,22 @@ OldaleTown_PokemonCenter_2F_EventScript_1FC239:: @ 81FC239
 	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
 	end
 
+@ -----------------------------------------------------
+
+OldaleTown_PokemonCenter_2F_EventScript_RoadblockDoor::
+	goto_if_unset FLAG_ADVENTURE_STARTED, PokemonCenter_2F_EventScript_OccupiedSign
+	msgbox OldaleTown_PokemonCenter_2F_Text_RoadblockDoor, MSGBOX_DESCRIBE
+	end
+OldaleTown_PokemonCenter_2F_Text_RoadblockDoor:
+	.string "The door is open, but you can't get\n"
+	.string "through even if you wanted to.\p"
+	.string "There's three people inside tending\n"
+	.string "to a boy who looks very badly hurt.$"
+
+OldaleTown_PokemonCenter_2F_EventScript_Mother::
+	msgbox OldaleTown_PokemonCenter_2F_Text_Mother, MSGBOX_DESCRIBE
+	end
+OldaleTown_PokemonCenter_2F_Text_Mother:
+	.string "This woman looks like she's incredibly\n"
+	.string "distressed.$"
+

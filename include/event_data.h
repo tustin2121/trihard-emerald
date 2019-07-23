@@ -47,6 +47,10 @@ extern u16 gSpecialVar_LastTalked;
 extern u16 gSpecialVar_Facing;
 extern u16 gSpecialVar_MonBoxId;
 extern u16 gSpecialVar_MonBoxPos;
-extern u16 gSpecialVar_Unused_0x8014;
+extern u16 gSpecialVar_TextboxType;
+extern u16 gSpecialVar_InteractX;
+extern u16 gSpecialVar_InteractY;
+extern u16 gSpecialVar_LastWarpId;
+extern u16 gSpecialVar_DialogTailOffset;
 
 #endif // GUARD_EVENT_DATA_H

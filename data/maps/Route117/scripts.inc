@@ -4,6 +4,7 @@ Route117_MapScripts:: @ 81F397D
 	.byte 0
 
 Route117_OnTransition: @ 81F3983
+	setflag FLAG_HIDE_ROUTE_117_POLICEMAN @ dummy out the policeman
 	call Route117_EventScript_1F3989
 	end
 
@@ -181,6 +182,7 @@ Route117_EventScript_DaycareSign:: @ 81F39C7
 	messagesign Route117_Text_DaycareSign1
 	waitmessage
 	waitbuttonpress
+	cleanupsignmessage
 	message Route117_Text_DaycareSign2
 	waitmessage
 	waitbuttonpress
@@ -192,7 +194,7 @@ Route117_Text_DaycareSign1: @ 81F3D8E
 Route117_Text_DaycareSign2:
 	.string "There's a noticed pinned on the sign\n"
 	.string "just below those words:\l"
-	.string "“Closed pending police investigation.”$"
+	.string "“For Sale by Owner.”$"
 
 
 Route117_EventScript_DaycareDoor:: @ 81F39C7
@@ -201,7 +203,7 @@ Route117_EventScript_DaycareDoor:: @ 81F39C7
 Route117_Text_DaycareDoor:
 	.string "The door's locked.\p"
 	.string "There's a sign in the window:\n"
-	.string "“Closed pending police investigation.”$"
+	.string "“For Sale by Owner.”$"
 
 
 @ -----------------------------------------------------
@@ -226,7 +228,7 @@ Route117_Text_29C498: @ 829C498
 	.string "character is another way of enjoying\l"
 	.string "Pokémon.$"
 Route117_EventScript_1F39FC:: @ 81F39FC
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route117_Text_29C508, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ISAAC_1
@@ -267,7 +269,7 @@ Route117_Text_29C679: @ 829C679
 	.string "Try raising Pokémon with more\n"
 	.string "attention to their character traits.$"
 Route117_EventScript_1F3A5E:: @ 81F3A5E
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route117_Text_29C6BC, MSGBOX_DEFAULT
 	register_matchcall TRAINER_LYDIA_1
@@ -308,7 +310,7 @@ Route117_Text_29C800: @ 829C800
 	.string "I might have dropped to last during\n"
 	.string "that battle…$"
 Route117_EventScript_1F3AC0:: @ 81F3AC0
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route117_Text_29C846, MSGBOX_DEFAULT
 	register_matchcall TRAINER_DYLAN_1
@@ -353,7 +355,7 @@ Route117_Text_29C9D0: @ 829C9D0
 	.string "Okay! I'll resume my training!\n"
 	.string "Tomorrow!$"
 Route117_EventScript_1F3B22:: @ 81F3B22
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route117_Text_29CA32, MSGBOX_DEFAULT
 	register_matchcall TRAINER_MARIA_1

@@ -345,10 +345,10 @@
 	.endm
 
 	@ Plays the specified (song_number) song. The byte is apparently supposed to be 0x00.
-	.macro playbgm song_number:req, unknown:req
+	.macro playbgm song_number:req, save=0
 	.byte 0x33
 	.2byte \song_number
-	.byte \unknown
+	.byte \save
 	.endm
 
 	@ Saves the specified (song_number) song to be played later.
@@ -369,9 +369,10 @@
 	.endm
 
 	@ Fades out the currently-playing song.
-	.macro fadeoutbgm speed:req
+	.macro fadeoutbgm speed:req, wait=1
 	.byte 0x37
 	.byte \speed
+	.byte \wait
 	.endm
 
 	@ Fades the previously-playing song back in.
@@ -505,6 +506,7 @@
 	.endm
 
 	@ Adds a quantity amount of item index to the player's PC. Both arguments can be variables.
+	@ NEVER USED
 	.macro givepcitem index:req, quantity:req
 	.byte 0x49
 	.2byte \index
@@ -770,10 +772,10 @@
 	.2byte \index
 	.endm
 
-	.macro setobjectmovementtype word:req, byte:req
+	.macro setobjectmovementtype lid:req, type:req
 	.byte 0x65
-	.2byte \word
-	.byte \byte
+	.2byte \lid
+	.byte \type
 	.endm
 
 	@ If a standard message box (or its text) is being drawn on-screen, this command blocks script execution until the box and its text have been fully drawn.
@@ -781,10 +783,11 @@
 	.byte 0x66
 	.endm
 
-	@ Starts displaying a standard message box containing the specified text. If text is a pointer, then the string at that offset will be loaded and used. If text is script bank 0, then the value of script bank 0 will be treated as a pointer to the text. (You can use loadpointer to place a string pointer in a script bank.)
-	.macro message text:req
+	@ Starts displaying a standard message box containing the specified text. If text is a pointer, then the string at that offset will be loaded and used. If text is script bank 0, then the value of script bank 0 will be treated as a pointer to the text. (You can use loadword to place a string pointer in a script bank.)
+	.macro message text:req, type=0
 	.byte 0x67
 	.4byte \text
+	.byte \type
 	.endm
 
 	@ Closes the current message box.
@@ -852,29 +855,32 @@
 	.byte \per_row
 	.byte \B
 	.endm
-
-	@ Nopped in Emerald.
-	.macro drawbox
+	
+	@ Clone of warp that does not play a sound effect nor fade the screen.
+	.macro warpcustom map:req, warp:req, X:req, Y:req
 	.byte 0x72
+	map \map
+	.byte \warp
+	.2byte \X
+	.2byte \Y
 	.endm
 
-	@ Nopped in Emerald, but still consumes parameters.
-	.macro erasebox byte1:req, byte2:req, byte3:req, byte4:req
+	@ Advances the time of day by the given time
+	.macro advancetime hour:req, min:req, deviation=0
 	.byte 0x73
-	.byte \byte1
-	.byte \byte2
-	.byte \byte3
-	.byte \byte4
+	.byte \hour
+	.byte \min
+	.2byte \deviation
 	.endm
 
 	@ Nopped in Emerald, but still consumes parameters.
-	.macro drawboxtext byte1:req, byte2:req, byte3:req, byte4:req
-	.byte 0x74
-	.byte \byte1
-	.byte \byte2
-	.byte \byte3
-	.byte \byte4
-	.endm
+	@ .macro drawboxtext byte1:req, byte2:req, byte3:req, byte4:req
+	@ .byte 0x74
+	@ .byte \byte1
+	@ .byte \byte2
+	@ .byte \byte3
+	@ .byte \byte4
+	@ .endm
 
 	@ Displays a box containing the front sprite for the specified (species) Pokemon species.
 	.macro drawmonpic species:req, x:req, y:req
@@ -902,14 +908,14 @@
 	.endm
 
 	@ Gives the player one of the specified (species) Pokemon at level level holding item. The unknown arguments should all be zeroes.
-	.macro givemon species:req, level:req, item:req, unknown1:req, unknown2:req, unknown3:req
+	.macro givemon species:req, level:req, item:req
 	.byte 0x79
 	.2byte \species
 	.byte \level
 	.2byte \item
-	.4byte \unknown1
-	.4byte \unknown2
-	.byte \unknown3
+	.4byte 0
+	.4byte 0
+	.byte 0
 	.endm
 
 	.macro giveegg species:req
@@ -924,7 +930,7 @@
 	.2byte \move
 	.endm
 
-	@ Checks if at least one Pokemon in the player's party knows the specified (index) attack. If so, variable 0x800D (LASTRESULT) is set to the (zero-indexed) slot number of the first Pokemon that knows the move. If not, LASTRESULT is set to 0x0006. Variable 0x8004 is also set to this Pokemon's species.
+	@ Checks if at least one Pokemon in the player's party knows the specified (index) attack. If so, variable 0x800D (VAR_RESULT) is set to the (zero-indexed) slot number of the first Pokemon that knows the move. If not, VAR_RESULT is set to 0x0006. Variable 0x8004 is also set to this Pokemon's species.
 	.macro checkpartymove index:req
 	.byte 0x7c
 	.2byte \index
@@ -1210,20 +1216,22 @@
 	.2byte \index
 	map \map
 	.endm
-
-	.macro createvobject sprite:req, byte2:req, x:req, y:req, elevation, direction
+	
+	@ Creates a virtual object, which is a sprite which has no presense on the map itself, and can only turn with the below command
+	.macro createvobject sprite:req, virtualID:req, x:req, y:req, elevation=3, direction=DIR_SOUTH
 	.byte 0xaa
 	.byte \sprite
-	.byte \byte2
+	.byte \virtualID
 	.2byte \x
 	.2byte \y
 	.byte \elevation
 	.byte \direction
 	.endm
-
-	.macro turnvobject index:req, direction:req
+	
+	@ Turns a virtual object
+	.macro turnvobject virtualID:req, direction:req
 	.byte 0xab
-	.byte \index
+	.byte \virtualID
 	.byte \direction
 	.endm
 
@@ -1261,17 +1269,14 @@
 	.endm
 
 	@ In Emerald, this command consumes its parameters and does nothing. In FireRed, this command is a nop.
-	.macro addelevmenuitem a:req, b:req, c:req, d:req
+	.macro domourning
 	.byte 0xb1
-	.byte \a
-	.2byte \b
-	.2byte \c
-	.2byte \d
 	.endm
 
-	@ In FireRed and Emerald, this command is a nop.
-	.macro showelevmenu
+	@ TriHard Emerald: Do dream cutscene
+	.macro dodreams forceParam=0
 	.byte 0xb2
+	.byte \forceParam
 	.endm
 
 	.macro checkcoins out:req
@@ -1367,9 +1372,10 @@
 	.endm
 
 	@ Increases the value of the specified game stat by 1. The stat's value will not be allowed to exceed 0x00FFFFFF.
-	.macro incrementgamestat stat:req
+	.macro incrementgamestat stat:req, num=1
 	.byte 0xc3
 	.byte \stat
+	.byte \num
 	.endm
 
 	@ Sets the destination that using an Escape Rope or Dig will take the player to.
@@ -1393,39 +1399,46 @@
 	.2byte \box
 	.endm
 
-	@ Sets the color of the text in standard message boxes. 0x00 produces blue (male) text, 0x01 produces red (female) text, 0xFF resets the color to the default for the current OW's gender, and all other values produce black text.
-	.macro textcolor color:req
+	@ Performs the animation notmally associated with doing a field move, ie, calling out a pokemon, and that pokemon displaying breifly on screen
+	@ Optionally, index will select the mon to use, defaulting to the head of the party.
+	.macro dofieldmoveanim index=0
 	.byte 0xc7
-	.byte \color
+	.2byte \index
 	.endm
 
-	@ The exact purpose of this command is unknown, but it is related to the blue help-text box that appears on the bottom of the screen when the Main Menu is opened.
-	.macro loadhelp pointer:req
+	@ Sets the color of the text in standard message boxes. 0x00 produces blue (male) text, 0x01 produces red (female) text, 0xFF resets the color to the default for the current OW's gender, and all other values produce black text.
+	.macro warptodynamic 
 	.byte 0xc8
-	.4byte \pointer
 	.endm
 
 	@ The exact purpose of this command is unknown, but it is related to the blue help-text box that appears on the bottom of the screen when the Main Menu is opened.
-	.macro unloadhelp
+	.macro setmetatileex x:req, y:req, tileid:req, elevation:req, collision:req
 	.byte 0xc9
+	.2byte \x
+	.2byte \y
+	.2byte \tileid
+	.2byte \elevation
+	.2byte \collision
 	.endm
 
 	@ After using this command, all standard message boxes will use the signpost frame.
-	.macro signmsg
+	.macro setweather_nodelay weather:req 
 	.byte 0xca
+	.2byte \weather
 	.endm
 
 	@ Ends the effects of signmsg, returning message box frames to normal.
-	.macro normalmsg
+	.macro checkpartycapability cap:req
 	.byte 0xcb
+	.2byte \cap
 	.endm
 
 	@ Compares the value of a hidden variable to a dword.
-	.macro comparehiddenvar a:req, value:req
-	.byte 0xcc
-	.byte \a
-	.4byte \value
-	.endm
+	@ .macro comparehiddenvar a:req, value:req
+	@ .byte 0xcc
+	@ .byte \a
+	@ .4byte \value
+	@ .endm
 
 	@ Makes the Pokemon in the specified slot of the player's party obedient. It will not randomly disobey orders in battle.
 	.macro setmonobedient slot:req
@@ -1466,9 +1479,9 @@
 	.byte \location
 	.endm
 
-	.macro mossdeepgym1 unknown:req
+	.macro mossdeepgym1 arg:req
 	.byte 0xd3
-	.2byte \unknown
+	.2byte \arg
 	.endm
 
 	.macro mossdeepgym2
@@ -1502,6 +1515,9 @@
 	.endm
 
 	.macro cleanupbraillemessage
+	.byte 0xda
+	.endm
+	.macro cleanupsignmessage
 	.byte 0xda
 	.endm
 
@@ -1554,12 +1570,59 @@
 	.2byte \quantity
 	.endm
 	
-	@ Selects a string from the given array and loads it into word 0 for use with message 0.
+	@ Selects a pointer from the given array and loads it into word 0 (for use with message 0 and other things).
+	@ This version errors if the index goes past the end of the array.
 	@ Note: the array MUST be word-aligned with .align 2
-	.macro selectstring array:req, index:req
+	.macro selectpointer array:req, index:req
 	.byte 0xe3
 	.4byte \array
 	.2byte \index
+	.byte 0
+	.endm
+	
+	@ Selects a pointer from the given array and loads it into word 0 (for use with message 0 and other things).
+	@ This version wraps the array (modulus) if the index would go past the end of the array.
+	@ Note: the array MUST be word-aligned with .align 2
+	.macro selectpointer_wrap array:req, index:req
+	.byte 0xe3
+	.4byte \array
+	.2byte \index
+	.byte 1
+	.endm
+	
+	@ Selects a pointer from the given array and loads it into word 0 (for use with message 0 and other things).
+	@ This version maxes out at the end of the array if the index would go past it.
+	@ Note: the array MUST be word-aligned with .align 2
+	.macro selectpointer_clamp array:req, index:req
+	.byte 0xe3
+	.4byte \array
+	.2byte \index
+	.byte 2
+	.endm
+	
+	.macro setyesnotext yes:req, no:req
+	.byte 0xe4
+	.4byte \yes
+	.4byte \no
+	.endm
+	
+	.macro checkplayeroutfit
+	.byte 0xe5
+	.endm
+	
+	@ Converts the value of input to a decimal string, and writes that string to the specified buffer.
+	.macro buffernumberstring2 out:req, input:req, article=0
+	.byte 0xe6
+	.byte \out
+	.2byte \input
+	.byte \article  @0="one", 1="the"
+	.endm
+	
+	.macro addvar_if a:req, destination:req, value:req
+	.byte 0xe7
+	.byte \a
+	.2byte \destination
+	.2byte \value
 	.endm
 
 @ Supplementary
@@ -1631,6 +1694,16 @@
 	.macro call_if_ne dest:req @ NOT EQUAL
 	call_if 5, \dest
 	.endm
+	
+	.macro addvar_if_unset flag:req, var:req, val:req
+	checkflag \flag
+	addvar_if 0, \var, \val
+	.endm
+	
+	.macro addvar_if_set flag:req, var:req, val:req
+	checkflag \flag
+	addvar_if 1, \var, \val
+	.endm
 
 	.macro switch var:req
 	copyvar VAR_0x8000, \var
@@ -1648,10 +1721,18 @@
 	MSGBOX_YESNO = 5
 	MSGBOX_AUTOCLOSE = 6
 	MSGBOX_DESCRIBE = 11
+	MSGBOX_DIALOG = 12
+	MSGBOX_DIALOGUE = 12
+	
+    MSGTYPE_STANDARD = 1
+    MSGTYPE_DIALOG = 2
+    MSGTYPE_DIALOGUE = 2
+    MSGTYPE_SIGN = 3
+	MSGTYPE_DESCRIBE = 4
 
 	YES = 1
 	NO  = 0
-
+	
 	.macro msgbox text:req, type=MSGBOX_DEFAULT
 	loadword 0, \text
 	callstd \type

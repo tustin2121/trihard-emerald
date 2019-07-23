@@ -47,3 +47,22 @@ li.unchecked::before {
 li.checked::before {
 	content: '\002611  ';
 }
+
+input[type="number"] {
+    font-family: pokeplatinum, monospace;
+    font-size: 2rem;
+    line-height: 2rem;
+    width: 6rem;
+}
+input[type="text"] {
+	font-family: pokeplatinum, monospace;
+    font-size: 2rem;
+    line-height: 2rem;
+    width: 6rem;
+}
+input[type="text"].invalid {
+	color:red;
+}
+p {
+    margin: 0.8em 0;
+}

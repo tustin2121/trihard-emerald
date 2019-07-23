@@ -506,7 +506,7 @@ Route110_TrickHouseEntrance_EventScript_26A126:: @ 826A126
 	setmetatile 5, 1, 537, 0
 	special DrawWholeMapView
 	delay 20
-	applymovement EVENT_OBJ_ID_PLAYER, Route110_TrickHouseEntrance_Movement_2725C9
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp1
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Route110_TrickHouseEntrance_Movement_26A1A7
 	waitmovement 0

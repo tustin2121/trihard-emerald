@@ -23,6 +23,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "random.h"
 #include "task.h"
 #include "text_window.h"
 #include "scanline_effect.h"
@@ -1042,8 +1043,9 @@ static void BagAction_UseOnField(u8 taskId)
         || pocketId == POCKET_TM_HM
         || ItemIsMail(gSpecialVar_ItemId) == TRUE)
     {
+        const u8* advice = gText_DadsAdviceTable[Random() % (sizeof(gText_DadsAdviceTable)>>2)];
         sub_81C61A8();
-        DisplayItemMessageInBattlePyramid(taskId, gText_DadsAdvice, sub_81C6714);
+        DisplayItemMessageInBattlePyramid(taskId, advice, sub_81C6714);
     }
     else if (ItemId_GetFieldFunc(gSpecialVar_ItemId) != NULL)
     {
@@ -1392,7 +1394,7 @@ static void sub_81C6BD8(void)
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 0x1, 0xE0);
     LoadMessageBoxGfx(0, 0xA, 0xD0);
-    LoadPalette(gUnknown_0860F074, 0xF0, 0x20);
+    LoadPalette(gTextBoxPalette, 0xF0, 0x20);
 
     for (i = 0; i < 5; i++)
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
@@ -1463,8 +1465,8 @@ void DisplayItemMessageInBattlePyramid(u8 taskId, const u8 *str, void (*callback
 
 static void sub_81C6E1C(void)
 {
-    ClearDialogWindowAndFrameToTransparent(2, FALSE);
-    // This ClearWindowTilemap call is redundant, since ClearDialogWindowAndFrameToTransparent already calls it.
+    ClearTextWindowAndFrameToTransparent(2, FALSE);
+    // This ClearWindowTilemap call is redundant, since ClearTextWindowAndFrameToTransparent already calls it.
     ClearWindowTilemap(2);
     schedule_bg_copy_tilemap_to_vram(1);
 }

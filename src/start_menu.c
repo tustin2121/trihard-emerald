@@ -751,7 +751,7 @@ static bool8 StartMenuBattlePyramidRetireCallback(void)
 
 void sub_809FDD4(void)
 {
-    ClearDialogWindowAndFrameToTransparent(0, FALSE);
+    ClearTextWindowAndFrameToTransparent(0, FALSE);
     ScriptUnfreezeEventObjects();
     CreateStartMenuTask(sub_809FA34);
     ScriptContext2_Enable();
@@ -787,13 +787,13 @@ static bool8 SaveCallback(void)
     case SAVE_IN_PROGRESS:
         return FALSE;
     case SAVE_CANCELED: // Back to start menu
-        ClearDialogWindowAndFrameToTransparent(0, FALSE);
+        ClearTextWindowAndFrameToTransparent(0, FALSE);
         InitStartMenu();
         gMenuCallback = HandleStartMenuInput;
         return FALSE;
     case SAVE_SUCCESS:
     case SAVE_ERROR:    // Close start menu
-        ClearDialogWindowAndFrameToTransparent(0, TRUE);
+        ClearTextWindowAndFrameToTransparent(0, TRUE);
         ScriptUnfreezeEventObjects();
         ScriptContext2_Disable();
         SoftResetInBattlePyramid();
@@ -830,7 +830,7 @@ static bool8 BattlePyramidRetireCallback(void)
     case SAVE_IN_PROGRESS:
         return FALSE;
     case SAVE_CANCELED: // Yes (Retire from battle pyramid)
-        ClearDialogWindowAndFrameToTransparent(0, TRUE);
+        ClearTextWindowAndFrameToTransparent(0, TRUE);
         ScriptUnfreezeEventObjects();
         ScriptContext2_Disable();
         ScriptContext1_SetupScript(BattleFrontier_BattlePyramidEmptySquare_EventScript_252C88);
@@ -875,7 +875,7 @@ void ForceSaveGame(void) // Called from scripts
 static void ShowSaveMessage(const u8 *message, u8 (*saveCallback)(void))
 {
     StringExpandPlaceholders(gStringVar4, message);
-    Menu_LoadAndDisplayDialogBoxCustomPalette(0, TRUE);
+    Menu_LoadAndDisplayTextBoxCustomPalette(0, TRUE);
     AddTextPrinterForMessage_2(TRUE);
     sSavingComplete = TRUE;
     sSaveDialogCallback = saveCallback;
@@ -1329,7 +1329,7 @@ static void ShowSaveInfoWindow(void)
     sSaveInfoWindowId = AddWindow(&saveInfoWindow);
     DrawStdWindowFrame(sSaveInfoWindowId, FALSE);
 
-    gender = gSaveBlock2Ptr->playerGender;
+    gender = GetPlayerGender();
     color = TEXT_COLOR_RED;  // Red when female, blue when male.
 
     if (gender == MALE)

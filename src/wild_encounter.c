@@ -34,6 +34,7 @@ static bool8 IsWildLevelAllowedByRepel(u8 level);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u8 ability, u8 *monIndex);
+static bool8 TryHeldItemInfluencedWildMonIndex(u8 maxIndex, u8 *monIndex);
 static bool8 IsAbilityAllowingEncounter(u8 level);
 
 // EWRAM vars
@@ -398,15 +399,18 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 ar
             break;
 
         wildMonIndex = ChooseWildMonIndex_Land();
+        TryHeldItemInfluencedWildMonIndex(11, &wildMonIndex);
         break;
     case WILD_AREA_WATER:
         if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ELECTRIC, ABILITY_STATIC, &wildMonIndex))
             break;
 
         wildMonIndex = ChooseWildMonIndex_WaterRock();
+        TryHeldItemInfluencedWildMonIndex(4, &wildMonIndex);
         break;
     case WILD_AREA_ROCKS:
         wildMonIndex = ChooseWildMonIndex_WaterRock();
+        TryHeldItemInfluencedWildMonIndex(4, &wildMonIndex);
         break;
     }
 
@@ -905,6 +909,21 @@ static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildM
         return FALSE;
 
     return TryGetRandomWildMonIndexByType(wildMon, type, LAND_WILD_COUNT, monIndex);
+}
+
+static bool8 TryHeldItemInfluencedWildMonIndex(u8 maxIndex, u8 *monIndex)
+{
+    if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
+        return FALSE;
+    // If the front of the party is holding the Skull Emblem, influence the mon index up by one.
+    else if (GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM) != ITEM_SKULL_EMBLEM)
+        return FALSE;
+    else if (Random() % 10 <= 6) //30% chance
+        return FALSE;
+    
+    (*monIndex)++;
+    if (*monIndex > maxIndex) *monIndex = maxIndex;
+    return TRUE;
 }
 
 static void ApplyFluteEncounterRateMod(u32 *encRate)

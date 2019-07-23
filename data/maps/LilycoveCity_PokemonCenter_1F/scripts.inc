@@ -33,15 +33,13 @@ LilycoveCity_PokemonCenter_1F_EventScript_21C5E4:: @ 821C5E4
 
 LilycoveCity_PokemonCenter_1F_NurseScript:: @ 821C5E8
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 LilycoveCity_PokemonCenter_1F_LittleKidMartScript::
 	lock
 	faceplayer
+	markasdialog
 	checkplayergender
 	compare VAR_RESULT, MALE
 	call_if_eq LilycoveCity_PokemonCenter_1F_LittleKidMartScript_WelcomeM
@@ -82,7 +80,7 @@ LilycoveCity_PokemonCenter_1F_PCMan::
 	faceplayer
 	msgbox LilycoveCity_PokemonCenter_1F_PCMan_Text1, MSGBOX_DEFAULT
 	closemessage
-	applymovement 8, Common_Movement_FaceUp
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	delay 10
 	special DoPCBangShakingEffect

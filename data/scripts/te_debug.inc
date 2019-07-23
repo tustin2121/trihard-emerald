@@ -18,30 +18,108 @@ DebugScript_ShowPCBox::
 	releaseall
 	end
 
+DebugScript_ShowSoundTest::
+	lockall
+	playse SE_SELECT
+	message DebugScript_Text_SoundTest_Title
+	waitstate @ script pauses here until manually reenabled
+	closemessage
+	releaseall
+	end
+
+DebugScript_ShowDebugScreen::
+	lockall
+	playse SE_SELECT
+	waitstate @ script pauses here until manually reenabled
+	special DebugSetCallbackSuccess
+	releaseall
+	end
+
+DebugScript_MessageEnd::
+	waitmessage
+	closemessage
+	end
+
+DebugScript_SetLegendaryWeatherBefore::
+	setvar VAR_RAYQUAZA_STATE, 0
+	setvar VAR_SKY_PILLAR_STATE, 0
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	clearflag FLAG_SYS_WEATHER_CTRL
+	clearflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
+	clearflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+	clearflag FLAG_DEFEATED_SOOTOPOLIS_GYM
+	end
+
+DebugScript_SetLegendaryWeatherDuring::
+	setvar VAR_RAYQUAZA_STATE, 2
+	setvar VAR_SKY_PILLAR_STATE, 0
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+	setflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	setflag FLAG_SYS_WEATHER_CTRL
+	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
+	clearflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+	clearflag FLAG_DEFEATED_SOOTOPOLIS_GYM
+	end
+
+DebugScript_SetLegendaryWeatherAfter::
+	setvar VAR_RAYQUAZA_STATE, 6
+	setvar VAR_SKY_PILLAR_STATE, 3
+	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	clearflag FLAG_SYS_WEATHER_CTRL
+	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
+	setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+	clearflag FLAG_DEFEATED_SOOTOPOLIS_GYM
+	end
+
+DebugScript_SetLegendaryWeatherAfterGym::
+	setvar VAR_RAYQUAZA_STATE, 6
+	setvar VAR_SKY_PILLAR_STATE, 3
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_GROUDON
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE
+	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
+	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	clearflag FLAG_SYS_WEATHER_CTRL
+	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
+	setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+	setflag FLAG_DEFEATED_SOOTOPOLIS_GYM
+	end
+
+
+DebugScript_GiveDebugPartyMessage::
+	msgbox ScriptText_GiveDebugPartyMessage
+	release
+	end
+ScriptText_GiveDebugPartyMessage:
+	.string "Party replaced with Debug Party.$"
+
 DebugScript_GiveDebugPartyAndSetFlags::
 	lockall
-	@ Give debug party
-	givemon SPECIES_RATTATA, 2, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_WAILMER, 30, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_BRELOOM, 27, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_SWELLOW, 30, ITEM_NONE, 0, 0, 0
-	givemon SPECIES_QUILAVA, 50, ITEM_EVERSTONE, 0, 0, 0
-	setmonmove 1, 3, MOVE_FLY
-	@ Set starting scripts past the end of the prologue
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
 	
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_DAD
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_DAD
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
 	
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_DAD
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
 	setflag FLAG_RESCUED_BIRCH
@@ -60,6 +138,27 @@ DebugScript_GiveDebugPartyAndSetFlags::
 	releaseall
 	return
 
-ScriptText_DebugBoxText: @ 823BF75
+DebugScript_TestScript1::
+	lockall
+	setvar VAR_0x8000, 0
+	addvar_if_set FLAG_BADGE01_GET, VAR_0x8000, 1
+	addvar_if_set FLAG_BADGE04_GET, VAR_0x8000, 1
+	buffernumberstring 0, VAR_0x8000
+	msgbox ScriptText_TS1
+	releaseall
+	end
+ScriptText_TS1:
+	.string "addvar: {STR_VAR_1}$"
+
+ScriptText_DebugBoxText:
 	.string "Oh! There's some Pokemon and badges in\n"
 	.string "this box! Yoink!$"
+
+DebugScript_Text_SoundTest_Title::
+	.string "Sound Test: {START_BUTTON} Exit$"
+DebugScript_Text_SoundTest_SFX::
+	.string "SFX: {STR_VAR_1}$"
+DebugScript_Text_SoundTest_BGM::
+	.string "BGM: {STR_VAR_1}$"
+DebugScript_Text_SoundTest_PH::
+	.string "PH?: {STR_VAR_1}$"

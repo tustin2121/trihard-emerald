@@ -3,7 +3,9 @@
 		"*.inc": "arm",
 		"decorations.h": "c",
 		"decoration.h": "c",
-		"tiles.h": "c"
+		"tiles.h": "c",
+		"global.h": "c",
+		"te_debug.h": "c"
 	},
 	"[arm]": {
 		"editor.rulers": [12, 55]

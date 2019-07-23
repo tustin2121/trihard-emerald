@@ -18,20 +18,18 @@ LavaridgeTown_PokemonCenter_1F_OnTransition: @ 81FFB05
 
 LavaridgeTown_PokemonCenter_1F_NurseScript:: @ 81FFB0E
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 
 LavaridgeTown_Mart_MartScript:: @ 81FF9CE
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart LavaridgeTown_Mart_Pokemart_1FF9E8
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -43,7 +41,7 @@ LavaridgeTown_Mart_Pokemart_1FF9E8: @ 81FF9E8
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
 	.2byte ITEM_BURN_HEAL
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_NONE
@@ -56,16 +54,13 @@ LavaridgeTown_PokemonCenter_1F_PC_Girl::
 	lock
 	faceplayer
 	msgbox LavaridgeTown_PokemonCenter_1F_PC_Girl_Text, MSGBOX_DEFAULT
-	applymovement 8, LavaridgeTown_PokemonCenter_1F_PC_Girl_Movement
+	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0
 	release
 	end
 LavaridgeTown_PokemonCenter_1F_PC_Girl_Text:
 	.string "Stop it and leave.\p"
 	.string "Now. Get out!$"
-LavaridgeTown_PokemonCenter_1F_PC_Girl_Movement:
-	face_up
-	step_end
 
 
 LavaridgeTown_PokemonCenter_1F_EventScript_1FFB2E:: @ 81FFB2E

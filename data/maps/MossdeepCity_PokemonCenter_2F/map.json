@@ -1,9 +1,41 @@
 {
     "allow_bike": false,
     "allow_escape_rope": false,
-    "allow_running": false,
+    "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 14,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 18,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 12,
+            "y": 3
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 16,
+            "y": 3
+        }
     ],
     "connections": null,
     "coord_events": [
@@ -46,25 +78,25 @@
             "graphics_id": "EVENT_OBJ_GFX_BALL_CUSHION",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_INVISIBLE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "PokemonCenter_2F_EventScript_OccupiedSign",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 12,
-            "y": 3
+            "x": 2,
+            "y": 17
         },
         {
-            "elevation": 3,
+            "elevation": 4,
             "flag": "0",
             "graphics_id": "EVENT_OBJ_GFX_BALL_CUSHION",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_INVISIBLE",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "PokemonCenter_2F_EventScript_OccupiedSign",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 16,
-            "y": 3
+            "y": 17
         },
         {
             "elevation": 3,
@@ -78,6 +110,45 @@
             "trainer_type": "0",
             "x": 7,
             "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_FORMER_AQUA_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "MossdeepCity_PokemonCenter_2F_EventScript_AquaBoy",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 2,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_FORMER_AQUA_F",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "MossdeepCity_PokemonCenter_2F_EventScript_AquaGirl",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 1,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_FORMER_MAGMA_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "MossdeepCity_PokemonCenter_2F_EventScript_MagmaGuy",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 0,
+            "y": 7
         }
     ],
     "region_map_section": "MAPSEC_MOSSDEEP_CITY",
@@ -120,28 +191,28 @@
             "y": 27
         },
         {
-            "dest_map": "MAP_DEWFORD_TOWN_POKEMON_CENTER_2F",
+            "dest_map": "MAP_MOSSDEEP_CITY_POKEMON_CENTER_2F",
             "dest_warp_id": 1,
             "elevation": 3,
             "x": 14,
             "y": 3
         },
         {
-            "dest_map": "MAP_DEWFORD_TOWN_POKEMON_CENTER_2F",
+            "dest_map": "MAP_MOSSDEEP_CITY_POKEMON_CENTER_2F",
             "dest_warp_id": 4,
             "elevation": 3,
             "x": 18,
             "y": 3
         },
         {
-            "dest_map": "MAP_DEWFORD_TOWN_POKEMON_CENTER_2F",
+            "dest_map": "MAP_MOSSDEEP_CITY_POKEMON_CENTER_2F",
             "dest_warp_id": 2,
             "elevation": 3,
             "x": 12,
             "y": 5
         },
         {
-            "dest_map": "MAP_DEWFORD_TOWN_POKEMON_CENTER_2F",
+            "dest_map": "MAP_MOSSDEEP_CITY_POKEMON_CENTER_2F",
             "dest_warp_id": 3,
             "elevation": 3,
             "x": 16,

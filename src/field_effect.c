@@ -202,15 +202,15 @@ static void sub_80B8F24(struct Task *);
 static void sub_80B9128(struct Sprite *);
 
 static void sub_80B91D4(u8);
-static void sub_80B9204(struct Task *);
-static void sub_80B925C(struct Task *);
-static void sub_80B92A0(struct Task *);
-static void sub_80B92F8(struct Task *);
-static void sub_80B933C(struct Task *);
-static void sub_80B9390(struct Task *);
-static void sub_80B9418(struct Task *);
-static void sub_80B9474(struct Task *);
-static void sub_80B9494(struct Task *);
+static void UseFly1_AnimatePlayer(struct Task *);
+static void UseFly2_AnimateMonIn(struct Task *);
+static void UseFly3_PokemonFliesOut(struct Task *);
+static void UseFly4_PreparePlayer(struct Task *);
+static void UseFly5_PokemonSwoop(struct Task *);
+static void UseFly6_JumpOnMon1(struct Task *);
+static void UseFly7_JumpOnMon2(struct Task *);
+static void UseFly8_FlyAway(struct Task *);
+static void UseFly9_FadeOut(struct Task *);
 
 static u8 sub_80B94C4(void);
 static u8 sub_80B9508(u8);
@@ -2977,7 +2977,7 @@ static void sub_80B8E14(struct Task *task)
     eventObject = &gEventObjects[gPlayerAvatar.eventObjectId];
     if (!EventObjectIsMovementOverridden(eventObject) || EventObjectClearHeldMovementIfFinished(eventObject))
     {
-        sub_808C114();
+        PlayPlayerFieldMoveAnimation();
         EventObjectSetHeldMovement(eventObject, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
         task->data[0]++;
     }
@@ -3108,24 +3108,24 @@ u8 FldEff_UseFly(void)
     return 0;
 }
 
-void (*const gUnknown_0855C4F4[])(struct Task *) = {
-    sub_80B9204,
-    sub_80B925C,
-    sub_80B92A0,
-    sub_80B92F8,
-    sub_80B933C,
-    sub_80B9390,
-    sub_80B9418,
-    sub_80B9474,
-    sub_80B9494,
+void (*const UseFly_StepFunctions[])(struct Task *) = {
+    UseFly1_AnimatePlayer,
+    UseFly2_AnimateMonIn,
+    UseFly3_PokemonFliesOut,
+    UseFly4_PreparePlayer,
+    UseFly5_PokemonSwoop,
+    UseFly6_JumpOnMon1,
+    UseFly7_JumpOnMon2,
+    UseFly8_FlyAway,
+    UseFly9_FadeOut,
 };
 
 static void sub_80B91D4(u8 taskId)
 {
-    gUnknown_0855C4F4[gTasks[taskId].data[0]](&gTasks[taskId]);
+    UseFly_StepFunctions[gTasks[taskId].data[0]](&gTasks[taskId]);
 }
 
-static void sub_80B9204(struct Task *task)
+static void UseFly1_AnimatePlayer(struct Task *task)
 {
     struct EventObject *eventObject = &gEventObjects[gPlayerAvatar.eventObjectId];
     if (!EventObjectIsMovementOverridden(eventObject) || EventObjectClearHeldMovementIfFinished(eventObject))
@@ -3133,13 +3133,13 @@ static void sub_80B9204(struct Task *task)
         task->data[15] = gPlayerAvatar.flags;
         gPlayerAvatar.preventStep = TRUE;
         SetPlayerAvatarStateMask(1);
-        sub_808C114();
+        PlayPlayerFieldMoveAnimation();
         EventObjectSetHeldMovement(eventObject, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
         task->data[0]++;
     }
 }
 
-static void sub_80B925C(struct Task *task)
+static void UseFly2_AnimateMonIn(struct Task *task)
 {
     struct EventObject *eventObject = &gEventObjects[gPlayerAvatar.eventObjectId];
     if (EventObjectClearHeldMovementIfFinished(eventObject))
@@ -3150,7 +3150,7 @@ static void sub_80B925C(struct Task *task)
     }
 }
 
-static void sub_80B92A0(struct Task *task)
+static void UseFly3_PokemonFliesOut(struct Task *task)
 {
     if (!FieldEffectActiveListContains(FLDEFF_FIELD_MOVE_SHOW_MON))
     {
@@ -3165,7 +3165,7 @@ static void sub_80B92A0(struct Task *task)
     }
 }
 
-static void sub_80B92F8(struct Task *task)
+static void UseFly4_PreparePlayer(struct Task *task)
 {
     if (sub_80B9508(task->data[1]))
     {
@@ -3176,7 +3176,7 @@ static void sub_80B92F8(struct Task *task)
     }
 }
 
-static void sub_80B933C(struct Task *task)
+static void UseFly5_PokemonSwoop(struct Task *task)
 {
     struct EventObject *eventObject = &gEventObjects[gPlayerAvatar.eventObjectId];
     if ((task->data[2] == 0 || (--task->data[2]) == 0) && EventObjectClearHeldMovementIfFinished(eventObject))
@@ -3187,7 +3187,7 @@ static void sub_80B933C(struct Task *task)
     }
 }
 
-static void sub_80B9390(struct Task *task)
+static void UseFly6_JumpOnMon1(struct Task *task)
 {
     if ((++task->data[2]) >= 8)
     {
@@ -3205,7 +3205,7 @@ static void sub_80B9390(struct Task *task)
     }
 }
 
-static void sub_80B9418(struct Task *task)
+static void UseFly7_JumpOnMon2(struct Task *task)
 {
     if ((++task->data[2]) >= 10)
     {
@@ -3219,7 +3219,7 @@ static void sub_80B9418(struct Task *task)
     }
 }
 
-static void sub_80B9474(struct Task *task)
+static void UseFly8_FlyAway(struct Task *task)
 {
     if (sub_80B9508(task->data[1]))
     {
@@ -3228,7 +3228,7 @@ static void sub_80B9474(struct Task *task)
     }
 }
 
-static void sub_80B9494(struct Task *task)
+static void UseFly9_FadeOut(struct Task *task)
 {
     if (!gPaletteFade.active)
     {
@@ -3500,7 +3500,7 @@ static void sub_80B9978(struct Task *task)
         sprite->pos2.x = 0;
         sprite->pos2.y = 0;
         sprite->coordOffsetEnabled = 1;
-        sub_808C114();
+        PlayPlayerFieldMoveAnimation();
         EventObjectSetHeldMovement(eventObject, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
         task->data[0]++;
     }
@@ -3800,6 +3800,74 @@ static void Fldeff_MoveDeoxysRock_Step(u8 taskId)
                 DestroyTask(taskId);
             }
             break;
+    }
+}
+
+
+static void DoFieldMove_AnimatePlayer(u8 taskId);
+static void DoFieldMove_AnimateMonAnim(u8 taskId);
+static void DoFieldMove_WaitAnimation(u8 taskId);
+static void DoFieldMove_Ending(u8 taskId);
+
+u8 FldEff_DoFieldMoveAnimation(u16 partyIndex)
+{
+    u8 taskId = CreateTask(DoFieldMove_AnimatePlayer, 8);
+    gTasks[taskId].data[0] = partyIndex;
+    return taskId;
+}
+
+static void DoFieldMove_AnimatePlayer(u8 taskId)
+{
+    u8 eventObjId;
+
+    ScriptContext2_Enable();
+    gPlayerAvatar.preventStep = TRUE;
+    eventObjId = gPlayerAvatar.eventObjectId;
+    if (!EventObjectIsMovementOverridden(&gEventObjects[eventObjId])
+     || EventObjectClearHeldMovementIfFinished(&gEventObjects[eventObjId]))
+    {
+        PlayPlayerFieldMoveAnimation();
+        EventObjectSetHeldMovement(&gEventObjects[eventObjId], MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
+        gTasks[taskId].func = DoFieldMove_AnimateMonAnim;
+    }
+}
+
+static void DoFieldMove_AnimateMonAnim(u8 taskId)
+{
+    if (EventObjectCheckHeldMovementStatus(&gEventObjects[gPlayerAvatar.eventObjectId]) == TRUE)
+    {
+        gFieldEffectArguments[0] = gTasks[taskId].data[0];
+        FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON_INIT);
+        gTasks[taskId].func = DoFieldMove_WaitAnimation;
+    }
+}
+
+static void DoFieldMove_WaitAnimation(u8 taskId)
+{
+    if (!FieldEffectActiveListContains(FLDEFF_FIELD_MOVE_SHOW_MON))
+    {
+        gFieldEffectArguments[1] = GetPlayerFacingDirection();
+        if (gFieldEffectArguments[1] == 1)
+            gFieldEffectArguments[2] = 0;
+        if (gFieldEffectArguments[1] == 2)
+            gFieldEffectArguments[2] = 1;
+        if (gFieldEffectArguments[1] == 3)
+            gFieldEffectArguments[2] = 2;
+        if (gFieldEffectArguments[1] == 4)
+            gFieldEffectArguments[2] = 3;
+        EventObjectSetGraphicsId(&gEventObjects[gPlayerAvatar.eventObjectId], GetPlayerAvatarGraphicsIdByCurrentState());
+        StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], gFieldEffectArguments[2]);
+        FieldEffectActiveListRemove(FLDEFF_FIELD_MOVE_SHOW_MON);
+        gTasks[taskId].func = DoFieldMove_Ending;
+    }
+}
+
+static void DoFieldMove_Ending(u8 taskId)
+{
+    if (!FieldEffectActiveListContains(FLDEFF_FIELD_MOVE_SHOW_MON))
+    {
+        gPlayerAvatar.preventStep = FALSE;
+        DestroyTask(taskId);
     }
 }
 

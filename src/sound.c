@@ -370,7 +370,7 @@ void PlayCry5(u16 species, u8 mode)
 
 void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode)
 {
-    bool32 v0;
+    bool32 reverse;
     u32 release;
     u32 length;
     u32 pitch;
@@ -380,7 +380,7 @@ void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode)
 
     species--;
     length = 140;
-    v0 = FALSE;
+    reverse = FALSE;
     release = 0;
     pitch = 15360;
     chorus = 0;
@@ -408,7 +408,7 @@ void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode)
         break;
     case 4:
         length = 25;
-        v0 = TRUE;
+        reverse = TRUE;
         release = 100;
         pitch = 15600;
         chorus = 192;
@@ -436,7 +436,7 @@ void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode)
         break;
     case 9:
         length = 15;
-        v0 = TRUE;
+        reverse = TRUE;
         release = 125;
         pitch = 15200;
         break;
@@ -474,19 +474,19 @@ void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode)
     {
     case 0:
         gMPlay_PokemonCry = SetPokemonCryTone(
-          v0 ? &gCryTable2[(128 * 0) + index] : &gCryTable[(128 * 0) + index]);
+          reverse ? &gCryTable2[(128 * 0) + index] : &gCryTable[(128 * 0) + index]);
         break;
     case 1:
         gMPlay_PokemonCry = SetPokemonCryTone(
-          v0 ? &gCryTable2[(128 * 1) + index] : &gCryTable[(128 * 1) + index]);
+          reverse ? &gCryTable2[(128 * 1) + index] : &gCryTable[(128 * 1) + index]);
         break;
     case 2:
         gMPlay_PokemonCry = SetPokemonCryTone(
-          v0 ? &gCryTable2[(128 * 2) + index] : &gCryTable[(128 * 2) + index]);
+          reverse ? &gCryTable2[(128 * 2) + index] : &gCryTable[(128 * 2) + index]);
         break;
     case 3:
         gMPlay_PokemonCry = SetPokemonCryTone(
-          v0 ? &gCryTable2[(128 * 3) + index] : &gCryTable[(128 * 3) + index]);
+          reverse ? &gCryTable2[(128 * 3) + index] : &gCryTable[(128 * 3) + index]);
         break;
     }
 }

@@ -166,7 +166,7 @@ Route111_EventScript_1F0EB9:: @ 81F0EB9
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_DAILY_ROUTE_111_RECEIVED_BERRY
-	special GetPlayerBigGuyGirlString
+@	special GetPlayerBigGuyGirlString
 	msgbox Route111_Text_2A6F3D, MSGBOX_DEFAULT
 	release
 	end
@@ -476,7 +476,7 @@ Route111_EventScript_1F1260:: @ 81F1260
 	end
 
 Route111_EventScript_1F128C:: @ 81F128C
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route111_Text_298C00, MSGBOX_DEFAULT
 	register_matchcall TRAINER_DUSTY_1
@@ -513,7 +513,7 @@ Route111_EventScript_1F1307:: @ 81F1307
 	end
 
 Route111_EventScript_1F1333:: @ 81F1333
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route111_Text_29903D, MSGBOX_DEFAULT
 	register_matchcall TRAINER_WILTON_1
@@ -535,7 +535,7 @@ Route111_EventScript_1F1369:: @ 81F1369
 	end
 
 Route111_EventScript_1F1395:: @ 81F1395
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route111_Text_29921D, MSGBOX_DEFAULT
 	register_matchcall TRAINER_BROOKE_1

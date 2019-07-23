@@ -232,8 +232,8 @@ static const u8 sTileBitAttributes[] =
     [MB_UNUSED_DB] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_DC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_DD] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_DE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_DF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_POKEMON_CENTER_CLOCK] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_POKEMON_CENTER_SLEEP_WARN] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_PICTURE_BOOK_SHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_BOOKSHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_POKEMON_CENTER_BOOKSHELF] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -1399,6 +1399,22 @@ bool8 MetatileBehavior_IsPictureBookShelf(u8 metatileBehavior)
 bool8 MetatileBehavior_IsBookShelf(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_BOOKSHELF)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsPokeCenterClock(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_POKEMON_CENTER_CLOCK)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsPokeCenterSleepSign(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_POKEMON_CENTER_SLEEP_WARN)
         return TRUE;
     else
         return FALSE;

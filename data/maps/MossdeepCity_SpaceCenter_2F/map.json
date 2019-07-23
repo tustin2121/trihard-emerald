@@ -1,12 +1,39 @@
 {
     "allow_bike": false,
     "allow_escape_rope": false,
-    "allow_running": false,
+    "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
     ],
     "connections": null,
     "coord_events": [
+        {
+            "elevation": 0,
+            "script": "MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle",
+            "type": "trigger",
+            "var": "VAR_MOSSDEEP_STATE",
+            "var_value": "1",
+            "x": 10,
+            "y": 7
+        },
+        {
+            "elevation": 0,
+            "script": "MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle",
+            "type": "trigger",
+            "var": "VAR_MOSSDEEP_STATE",
+            "var_value": "1",
+            "x": 10,
+            "y": 6
+        },
+        {
+            "elevation": 0,
+            "script": "MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle",
+            "type": "trigger",
+            "var": "VAR_MOSSDEEP_STATE",
+            "var_value": "1",
+            "x": 10,
+            "y": 5
+        }
     ],
     "id": "MAP_MOSSDEEP_CITY_SPACE_CENTER_2F",
     "layout": "LAYOUT_MOSSDEEP_CITY_SPACE_CENTER_2F",
@@ -38,7 +65,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 11,
-            "y": 8
+            "y": 9
         },
         {
             "elevation": 3,
@@ -51,7 +78,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 5,
-            "y": 6
+            "y": 7
         },
         {
             "elevation": 3,
@@ -59,12 +86,12 @@
             "graphics_id": "EVENT_OBJ_GFX_STEVEN",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "MossdeepCity_SpaceCenter_2F_EventScript_223F7A",
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 1,
-            "y": 8
+            "x": 3,
+            "y": 5
         },
         {
             "elevation": 3,
@@ -107,16 +134,16 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA",
+            "flag": "FLAG_HIDE_MOSSDEEP_SPACE_CENTER_TEAM_MEMBERS",
             "graphics_id": "EVENT_OBJ_GFX_MAGMA_MEMBER_M",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "MossdeepCity_SpaceCenter_2F_EventScript_223F59",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "script": "MossdeepCity_SpaceCenter_2F_EventScript_DispondantMagmaGrunt",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 0,
-            "y": 8
+            "x": 2,
+            "y": 5
         },
         {
             "elevation": 3,
@@ -124,11 +151,50 @@
             "graphics_id": "EVENT_OBJ_GFX_MAXIE",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "MossdeepCity_SpaceCenter_2F_EventScript_223F6F",
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 1,
+            "x": 2,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN",
+            "graphics_id": "EVENT_OBJ_GFX_WALLY",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 3,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_MOSSDEEP_SPACE_CENTER_TEAM_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "MossdeepCity_SpaceCenter_2F_EventScript_AquaBoy",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 6,
+            "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_GAMEBOY_KID",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "MossdeepCity_SpaceCenter_2F_EventScript_GameKid",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 12,
             "y": 9
         }
     ],

@@ -371,10 +371,10 @@ static bool8 MailReadBuildGraphics(void)
             gPlttBufferUnfaded[251] = sUnknown_0859F2B8[sMailRead->mailType].color12;
             gPlttBufferFaded[251] = sUnknown_0859F2B8[sMailRead->mailType].color12;
             LoadPalette(sUnknown_0859F2B8[sMailRead->mailType].palette, 0, 32);
-            gPlttBufferUnfaded[10] = sUnknown_0859F2B0[gSaveBlock2Ptr->playerGender][0];
-            gPlttBufferFaded[10] = sUnknown_0859F2B0[gSaveBlock2Ptr->playerGender][0];
-            gPlttBufferUnfaded[11] = sUnknown_0859F2B0[gSaveBlock2Ptr->playerGender][1];
-            gPlttBufferFaded[11] = sUnknown_0859F2B0[gSaveBlock2Ptr->playerGender][1];
+            gPlttBufferUnfaded[10] = sUnknown_0859F2B0[GetPlayerGender()][0];
+            gPlttBufferFaded[10] = sUnknown_0859F2B0[GetPlayerGender()][0];
+            gPlttBufferUnfaded[11] = sUnknown_0859F2B0[GetPlayerGender()][1];
+            gPlttBufferFaded[11] = sUnknown_0859F2B0[GetPlayerGender()][1];
             break;
         case 13:
             if (sMailRead->flag)

@@ -1333,7 +1333,6 @@ const u16 gUnknown_08DC6510[] = INCBIN_U16("graphics/contest/clink_tilemap11.bin
 // pokenav
 
 const u16 gPokenavCondition_Pal[] = INCBIN_U16("graphics/pokenav/condition.gbapal");
-
 const u32 gPokenavCondition_Gfx[] = INCBIN_U32("graphics/pokenav/condition.4bpp.lz");
 const u32 gPokenavCondition_Tilemap[] = INCBIN_U32("graphics/pokenav/condition.bin.lz");
 
@@ -1408,6 +1407,7 @@ const u32 gEasyChatWindow_Tilemap[] = INCBIN_U32("graphics/easy_chat/window.bin.
 
 const u16 gWallclockMale_Pal[] = INCBIN_U16("graphics/interface/wallclock_male.gbapal");
 const u16 gWallclockFemale_Pal[] = INCBIN_U16("graphics/interface/wallclock_female.gbapal");
+const u16 gWallclockPokecenter_Pal[] = INCBIN_U16("graphics/interface/wallclock_pokecenter.gbapal");
 const u32 gWallclock_Gfx[] = INCBIN_U32("graphics/interface/wallclock.4bpp.lz");
 const u32 gUnknown_08DCC648[] = INCBIN_U32("graphics/interface/wallclock1.bin.lz");
 const u32 gUnknown_08DCC908[] = INCBIN_U32("graphics/interface/wallclock2.bin.lz");
@@ -1539,6 +1539,9 @@ const u8 gMessageBox_Gfx[] = INCBIN_U8("graphics/text_window/message_box.4bpp");
 
 const u16 gMessageBoxSign_Pal[] = INCBIN_U16("graphics/text_window/message_sign.gbapal");
 const u8 gMessageBoxSign_Gfx[] = INCBIN_U8("graphics/text_window/message_sign.4bpp");
+
+// const u16 gMessageBoxDialog_Pal[] = INCBIN_U16("graphics/text_window/message_dialog.gbapal");
+const u8 gMessageBoxDialogue_Gfx[] = INCBIN_U8("graphics/text_window/message_dialog.4bpp");
 
 const u32 gWallpaperIcon_Cross[] = INCBIN_U32("graphics/pokemon_storage/cross_icon.4bpp.lz");
 const u32 gWallpaperIcon_Bolt[] = INCBIN_U32("graphics/pokemon_storage/bolt_icon.4bpp.lz");

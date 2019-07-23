@@ -184,7 +184,7 @@ void sub_8184E58(void)
                                     | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
                                     | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
 
-        sPlayers[0].gender = gSaveBlock2Ptr->playerGender;
+        sPlayers[0].gender = GetPlayerGender();
         sPlayers[0].battlerId = 0;
         sPlayers[0].language = gGameLanguage;
 

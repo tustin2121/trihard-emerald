@@ -843,6 +843,7 @@ static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
 
 static const u16 *const sPlayerMugshotsPals[2] =
 {
+    //TODO: MULTIFORM PLAYER
     sMugshotPal_Brendan,
     sMugshotPal_May
 };
@@ -2144,7 +2145,7 @@ static bool8 Phase2_Mugshot_Func2(struct Task *task)
     sub_8149F58(&dst1, &dst2);
     CpuSet(sUnknown_085B9AF0, dst2, 0xF0);
     LoadPalette(sOpponentMugshotsPals[task->tMugshotId], 0xF0, 0x20);
-    LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerGender], 0xFA, 0xC);
+    LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerForm], 0xFA, 0xC);
 
     for (i = 0; i < 20; i++)
     {
@@ -2385,7 +2386,7 @@ static void Mugshots_CreateOpponentPlayerSprites(struct Task *task)
                                                      sMugshotsOpponentCoords[mugshotId][0] - 32,
                                                      sMugshotsOpponentCoords[mugshotId][1] + 42,
                                                      0, gDecompressionBuffer);
-    task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), 272, 106, 0, gDecompressionBuffer);
+    task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerForm), 272, 106, 0, gDecompressionBuffer);
 
     opponentSprite = &gSprites[task->tOpponentSpriteId];
     playerSprite = &gSprites[task->tPlayerSpriteId];

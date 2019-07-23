@@ -30,6 +30,7 @@
 #include "wild_encounter.h"
 #include "constants/bg_event_constants.h"
 #include "constants/event_objects.h"
+#include "constants/items.h"
 #include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
@@ -231,7 +232,9 @@ static bool8 TryStartInteractionScript(struct MapPosition *position, u16 metatil
      && script != SecretBase_EventScript_DollInteract
      && script != SecretBase_EventScript_CushionInteract)
         PlaySE(SE_SELECT);
-
+    
+    gSpecialVar_InteractX = position->x;
+    gSpecialVar_InteractY = position->y;
     ScriptContext1_SetupScript(script);
     return TRUE;
 }
@@ -345,8 +348,10 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
     case 5:
     case 6:
     case BG_EVENT_HIDDEN_ITEM:
-        gSpecialVar_0x8004 = ((u32)bgEvent->bgUnion.script >> 16) + FLAG_HIDDEN_ITEMS_START;
-        gSpecialVar_0x8005 = (u32)bgEvent->bgUnion.script;
+        gSpecialVar_0x8004 = bgEvent->bgUnion.hiddenItem.flagId + FLAG_HIDDEN_ITEMS_START;
+        gSpecialVar_0x8005 = bgEvent->bgUnion.hiddenItem.item;
+        gSpecialVar_0x8006 = bgEvent->bgUnion.hiddenItem.count;
+        if (gSpecialVar_0x8006 == 0) gSpecialVar_0x8006 = 1;
         if (FlagGet(gSpecialVar_0x8004) == TRUE)
             return NULL;
         return EventScript_HiddenItemScript;
@@ -355,7 +360,7 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
         {
             gSpecialVar_0x8004 = bgEvent->bgUnion.secretBaseId;
             if (TrySetCurSecretBase())
-                return EventScript_2759F1;
+                return EventScript_UseSecretPower;
         }
         return NULL;
     }
@@ -382,23 +387,27 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
     if (MetatileBehavior_IsTrickHousePuzzleDoor(metatileBehavior) == TRUE)
         return Route110_TrickHouseEntrance_EventScript_26A22A;
     if (MetatileBehavior_IsRegionMap(metatileBehavior) == TRUE)
-        return EventScript_RegionMap;
+        return MetatileScript_RegionMap;
     if (MetatileBehavior_IsRunningShoesManual(metatileBehavior) == TRUE)
-        return EventScript_RunningShoesManual;
+        return MetatileScript_RunningShoesManual;
     if (MetatileBehavior_IsPictureBookShelf(metatileBehavior) == TRUE)
-        return EventScript_PictureBookShelf;
+        return MetatileScript_PictureBookShelf;
     if (MetatileBehavior_IsBookShelf(metatileBehavior) == TRUE)
-        return EventScript_BookShelf;
+        return MetatileScript_BookShelf;
+    if (MetatileBehavior_IsPokeCenterClock(metatileBehavior) == TRUE)
+        return MetatileScript_PokemonCenterClock;
+    if (MetatileBehavior_IsPokeCenterSleepSign(metatileBehavior) == TRUE)
+        return MetatileScript_PokemonCenterSleepSign;
     if (MetatileBehavior_IsPokeCenterBookShelf(metatileBehavior) == TRUE)
-        return EventScript_PokemonCenterBookShelf;
+        return MetatileScript_PokemonCenterBookShelf;
     if (MetatileBehavior_IsVase(metatileBehavior) == TRUE)
-        return EventScript_Vase;
+        return MetatileScript_Vase;
     if (MetatileBehavior_IsTrashCan(metatileBehavior) == TRUE)
-        return EventScript_EmptyTrashCan;
+        return MetatileScript_EmptyTrashCan;
     if (MetatileBehavior_IsShopShelf(metatileBehavior) == TRUE)
-        return EventScript_ShopShelf;
+        return MetatileScript_ShopShelf;
     if (MetatileBehavior_IsBlueprint(metatileBehavior) == TRUE)
-        return EventScript_Blueprint;
+        return MetatileScript_Blueprint;
     if (MetatileBehavior_IsPlayerFacingWirelessBoxResults(metatileBehavior, direction) == TRUE)
         return EventScript_WirelessBoxResults;
     if (MetatileBehavior_IsCableBoxResults2(metatileBehavior, direction) == TRUE)
@@ -582,11 +591,11 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(RustboroCity_Gym_EventScript_21307B);
             return TRUE;
         }
-        if (ShouldDoRivalRayquazaCall() == TRUE)
-        {
-            ScriptContext1_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_224175);
-            return TRUE;
-        }
+        // if (ShouldDoRivalRayquazaCall() == TRUE)
+        // {
+        //     ScriptContext1_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_224175);
+        //     return TRUE;
+        // }
     }
 
     if (SafariZoneTakeStep() == TRUE)
@@ -619,6 +628,18 @@ static void UpdateHappinessStepCounter(void)
         for (i = 0; i < PARTY_SIZE; i++)
         {
             AdjustFriendship(mon, FRIENDSHIP_EVENT_WALKING);
+            mon++;
+        }
+    }
+    else if (*ptr == 64)
+    {
+        struct Pokemon *mon = gPlayerParty;
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetMonData(mon, MON_DATA_HELD_ITEM) == ITEM_SKULL_EMBLEM)
+            {
+                AdjustFriendship(mon, FRIENDSHIP_EVENT_WALKING);
+            }
             mon++;
         }
     }
@@ -812,7 +833,7 @@ static void SetupWarp(struct MapHeader *unused, s8 warpEventId, struct MapPositi
 
     if (warpEvent->mapNum == MAP_NUM(NONE))
     {
-        SetWarpDestinationToDynamicWarp(warpEvent->warpId);
+        SetWarpDestinationToDynamicWarp();
     }
     else
     {
@@ -997,4 +1018,17 @@ int SetCableClubWarp(void)
     MapGridGetMetatileBehaviorAt(position.x, position.y);  //unnecessary
     SetupWarp(&gMapHeader, GetWarpEventAtMapPosition(&gMapHeader, &position), &position);
     return 0;
+}
+
+void HashInteractLocation(void)
+{
+    gSpecialVar_0x8000 = gSaveBlock1Ptr->location.mapGroup;
+    gSpecialVar_0x8000 += gSaveBlock1Ptr->location.mapNum;
+    gSpecialVar_0x8000 += gSpecialVar_InteractX;
+    gSpecialVar_0x8000 += gSpecialVar_InteractY;
+}
+
+void SetPlayerOutfit(void)
+{
+    gSaveBlock2Ptr->playerForm = (gSaveBlock2Ptr->playerForm & 1) | (gSpecialVar_0x8000 << 1);
 }

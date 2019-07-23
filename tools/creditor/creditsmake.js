@@ -80,11 +80,15 @@ for (const incard of credits) {
 		if (!card[i]) {
 			card[i] = i<5?"_":"NULL";
 		} else if (typeof card[i] === 'string') {
+			let shouldReplace = false;
 			let title = false;	
 			let str = card[i];
 			if (str.startsWith('#')) {
 				title = true;
 				str = str.slice(1);
+			}
+			if (str.indexOf('{') > -1) {
+				shouldReplace = true;
 			}
 			let strid = strids.get(str);
 			if (!strid) {
@@ -93,7 +97,7 @@ for (const incard of credits) {
 				strid = strid.replace(/[^a-zA-Z0-9]/gi, '');
 				strids.set(str, strid);
 				strings.push(`static const u8 gCreditsText_${strid}[] = _("${str}");`)
-				entries.push(`static const struct CreditsEntry gCreditsEntry_${strid}[] = {0, ${title?'TRUE':'FALSE'}, gCreditsText_${strid}};`);
+				entries.push(`static const struct CreditsEntry gCreditsEntry_${strid}[] = {${shouldReplace?'TRUE':'FALSE'}, ${title?'TRUE':'FALSE'}, gCreditsText_${strid}};`);
 			}
 			card[i] = `gCreditsEntry_${strid}`;
 		}

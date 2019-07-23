@@ -199,6 +199,7 @@ EWRAM_DATA u8 gAbsentBattlerFlags = 0;
 EWRAM_DATA u8 gCritMultiplier = 0;
 EWRAM_DATA u8 gMultiHitCounter = 0;
 EWRAM_DATA const u8 *gBattlescriptCurrInstr = NULL;
+EWRAM_DATA const u8 *gBattlescriptNextInstr = NULL;
 EWRAM_DATA u32 gUnusedBattleMainVar = 0;
 EWRAM_DATA u8 gChosenActionByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT] = {NULL};
@@ -452,24 +453,24 @@ const u8 gTypeEffectiveness[336] =
 
 const u8 gTypeNames[][TYPE_NAME_LENGTH + 1] =
 {
-    _("NORMAL"),
-    _("FIGHT"),
-    _("FLYING"),
-    _("POISON"),
-    _("GROUND"),
-    _("ROCK"),
-    _("BUG"),
-    _("GHOST"),
-    _("STEEL"),
+    _("Normal"),
+    _("Fight"),
+    _("Flying"),
+    _("Poison"),
+    _("Ground"),
+    _("Rock"),
+    _("Bug"),
+    _("Ghost"),
+    _("Steel"),
     _("???"),
-    _("FIRE"),
-    _("WATER"),
-    _("GRASS"),
-    _("ELECTR"),
-    _("PSYCHC"),
-    _("ICE"),
-    _("DRAGON"),
-    _("DARK"),
+    _("Fire"),
+    _("Water"),
+    _("Grass"),
+    _("Electr"),
+    _("Psychc"),
+    _("Ice"),
+    _("Dragon"),
+    _("Dark"),
 };
 
 // This is a factor in how much money you get for beating a trainer.
@@ -4372,6 +4373,7 @@ static void HandleTurnActionSelectionState(void)
                          && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
                          && gBattleBufferB[gActiveBattler][1] == B_ACTION_RUN)
                 {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = (FlagGet(FLAG_CAN_CONCEDE))? 1 : 0;
                     BattleScriptExecute(BattleScript_PrintCantRunFromTrainer);
                     gBattleCommunication[gActiveBattler] = STATE_BEFORE_ACTION_CHOSEN;
                 }
@@ -5188,7 +5190,7 @@ static void HandleEndTurn_FinishBattle(void)
 
         sub_8186444();
         Restore1HPDeathPreventedMons();
-        RemoveDeadMonFromParty();
+        RemoveDeadMonFromParty(TRUE);
         BeginFastPaletteFade(3);
         FadeOutMapMusic(5);
         gBattleMainFunc = FreeResetData_ReturnToOvOrDoEvolutions;
@@ -5709,7 +5711,14 @@ static void HandleAction_Run(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
+    if (gBattleTypeFlags & BATTLE_TYPE_RAGING_LEGENDARY)
+    {
+        ClearFuryCutterDestinyBondGrudge(gBattlerAttacker);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+        gBattlescriptCurrInstr = BattleScript_PrintFailedToRunString;
+        gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+    }
+    else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
     {
         gCurrentTurnActionNumber = gBattlersCount;
 

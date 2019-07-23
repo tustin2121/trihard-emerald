@@ -93,6 +93,14 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     [TRAINER_PIC_LEAF] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_RS_BRENDAN] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_RS_MAY] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_PROTAG_MALE_1] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_PROTAG_FEMALE_1] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_PROTAG_MALE_2] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_PROTAG_FEMALE_2] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_PROTAG_MALE_3] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_PROTAG_FEMALE_3] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_PROTAG_MALE_4] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_PROTAG_FEMALE_4] = {.size = 8, .y_offset = 1},
 };
 
 const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
@@ -190,6 +198,14 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(LEAF, gTrainerFrontPic_Leaf, 0x800),
     TRAINER_SPRITE(RS_BRENDAN, gTrainerFrontPic_RubySapphireBrendan, 0x800),
     TRAINER_SPRITE(RS_MAY, gTrainerFrontPic_RubySapphireMay, 0x800),
+    TRAINER_SPRITE(PROTAG_MALE_1,   gTrainerFrontPic_ProtagMale1, 0x800),
+    TRAINER_SPRITE(PROTAG_FEMALE_1, gTrainerFrontPic_ProtagFemale1, 0x800),
+    TRAINER_SPRITE(PROTAG_MALE_2,   gTrainerFrontPic_ProtagMale2, 0x800),
+    TRAINER_SPRITE(PROTAG_FEMALE_2, gTrainerFrontPic_ProtagFemale2, 0x800),
+    TRAINER_SPRITE(PROTAG_MALE_3,   gTrainerFrontPic_ProtagMale3, 0x800),
+    TRAINER_SPRITE(PROTAG_FEMALE_3, gTrainerFrontPic_ProtagFemale3, 0x800),
+    TRAINER_SPRITE(PROTAG_MALE_4,   gTrainerFrontPic_ProtagMale4, 0x800),
+    TRAINER_SPRITE(PROTAG_FEMALE_4, gTrainerFrontPic_ProtagFemale4, 0x800),
 };
 
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
@@ -287,4 +303,12 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(LEAF, gTrainerPalette_Leaf),
     TRAINER_PAL(RS_BRENDAN, gTrainerPalette_RubySapphireBrendan),
     TRAINER_PAL(RS_MAY, gTrainerPalette_RubySapphireMay),
+    TRAINER_PAL(PROTAG_MALE_1,   gTrainerPalette_Protag),
+    TRAINER_PAL(PROTAG_FEMALE_1, gTrainerPalette_Protag),
+    TRAINER_PAL(PROTAG_MALE_2,   gTrainerPalette_Protag),
+    TRAINER_PAL(PROTAG_FEMALE_2, gTrainerPalette_Protag),
+    TRAINER_PAL(PROTAG_MALE_3,   gTrainerPalette_Protag),
+    TRAINER_PAL(PROTAG_FEMALE_3, gTrainerPalette_Protag),
+    TRAINER_PAL(PROTAG_MALE_4,   gTrainerPalette_Protag),
+    TRAINER_PAL(PROTAG_FEMALE_4, gTrainerPalette_Protag),
 };

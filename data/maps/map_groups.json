@@ -161,7 +161,8 @@
         "SootopolisCity_House7",
         "SootopolisCity_LotadAndSeedotHouse",
         "SootopolisCity_MysteryEventsHouse_1F",
-        "SootopolisCity_MysteryEventsHouse_B1F"
+        "SootopolisCity_MysteryEventsHouse_B1F",
+        "SootopolisCity_PokemonCenter_Alt"
     ],
     "gMapGroup16": [
         "EverGrandeCity_SidneysRoom",
@@ -178,7 +179,12 @@
         "EverGrandeCity_HallOfFame",
         "EverGrandeCity_PokemonCenter_1F",
         "EverGrandeCity_PokemonCenter_2F",
-        "EverGrandeCity_PokemonLeague_2F"
+        "EverGrandeCity_PokemonLeague_2F",
+        "EverGrandeCity_WaitingRoom1",
+        "EverGrandeCity_WaitingRoom2",
+        "EverGrandeCity_WaitingRoom3",
+        "EverGrandeCity_WaitingRoom4",
+        "EverGrandeCity_WaitingRoom5"
     ],
     "gMapGroup17": [
         "Route104_MrBrineysHouse",
@@ -518,7 +524,8 @@
     ],
     "gMapGroup33": [
         "Route124_DivingTreasureHuntersHouse",
-        "SootopolisLegendsEdit"
+        "SootopolisLegendsEdit",
+        "ScriptTestMap"
     ],
     "gMapGroup4": [
         "LavaridgeTown_HerbShop",

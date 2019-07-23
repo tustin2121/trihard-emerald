@@ -503,6 +503,7 @@ enum
     ENDTURN_SANDSTORM,
     ENDTURN_SUN,
     ENDTURN_HAIL,
+    ENDTURN_RAGING_WEATHER,
     ENDTURN_FIELD_COUNT,
 };
 
@@ -749,6 +750,26 @@ u8 DoFieldEndTurnEffects(void)
 
                 gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
                 gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                BattleScriptExecute(gBattlescriptCurrInstr);
+                effect++;
+            }
+            gBattleStruct->turnCountersTracker++;
+            break;
+        case ENDTURN_RAGING_WEATHER:
+            if (gBattleTypeFlags & BATTLE_TYPE_RAGING_LEGENDARY)
+            {
+                // Only change to rainy if Kyogre is active still
+                if (gBattleWeather & WEATHER_SUN_ANY && gEnemyParty[1].hp > 0)
+                {
+                    gBattleWeather = WEATHER_RAIN_PERMANENT;
+                    gBattlescriptCurrInstr = BattleScript_KyogreRains;
+                }
+                // Only change to sunny if Groudon is active still
+                else if (gBattleWeather & WEATHER_RAIN_ANY && gEnemyParty[0].hp > 0)
+                {
+                    gBattleWeather = WEATHER_SUN_PERMANENT;
+                    gBattlescriptCurrInstr = BattleScript_GroudonSun;
+                }
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
             }
@@ -2054,8 +2075,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
             }
             break;
         case ABILITYEFFECT_MOVES_BLOCK: // 2
-            if (gLastUsedAbility == ABILITY_SOUNDPROOF)
+            switch (gLastUsedAbility)
             {
+            case ABILITY_SOUNDPROOF:
                 for (i = 0; sSoundMovesTable[i] != 0xFFFF; i++)
                 {
                     if (sSoundMovesTable[i] == move)
@@ -2068,6 +2090,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
                     effect = 1;
                 }
+                break;
             }
             break;
         case ABILITYEFFECT_ABSORBING: // 3
@@ -2121,6 +2144,34 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
 
                             effect = 2;
                         }
+                    }
+                    break;
+                case ABILITY_EARTH_RISE:
+                    if (moveType == TYPE_WATER)
+                    {
+                        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                        if (move == MOVE_SURF)
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_NextTarget;
+                        else if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
+                        else
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
+
+                        effect = 2;
+                    }
+                    break;
+                case ABILITY_SEA_BUFFER:
+                    if (moveType == TYPE_GROUND)
+                    {
+                        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                        if (move == MOVE_EARTHQUAKE)
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_NextTarget;
+                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
+                        else
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
+
+                        effect = 2;
                     }
                     break;
                 }

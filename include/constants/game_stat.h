@@ -56,8 +56,9 @@
 #define GAME_STAT_NUM_NPCS_HARRASSED		52
 #define GAME_STAT_NUM_OPPO_CASUALTIES		53
 #define GAME_STAT_NUM_PARTY_CASUALTIES		54
+#define GAME_STAT_NUM_THINGS_STOLEN			55
 
-#define NUM_USED_GAME_STATS                 55
+#define NUM_USED_GAME_STATS                 56
 #define NUM_GAME_STATS                      64
 
 #endif // GUARD_CONSTANTS_GAME_STAT_H

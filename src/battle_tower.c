@@ -31,8 +31,8 @@
 #include "constants/species.h"
 #include "constants/easy_chat.h"
 
-extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_224157[];
-extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_224166[];
+// extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_224157[];
+// extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_224166[];
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
@@ -2345,18 +2345,18 @@ void DoSpecialTrainerBattle(void)
         PlayMapChosenOrBattleBGM(0);
         BattleTransition_StartOnField(sub_80B100C(7));
         break;
-    case SPECIAL_BATTLE_STEVEN:
-        gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER;
-        FillPartnerParty(TRAINER_STEVEN_PARTNER);
-        gApproachingTrainerId = 0;
-        BattleSetup_ConfigureTrainerBattle(MossdeepCity_SpaceCenter_2F_EventScript_224157 + 1);
-        gApproachingTrainerId = 1;
-        BattleSetup_ConfigureTrainerBattle(MossdeepCity_SpaceCenter_2F_EventScript_224166 + 1);
-        gPartnerTrainerId = TRAINER_STEVEN_PARTNER;
-        CreateTask(Task_StartBattleAfterTransition, 1);
-        PlayMapChosenOrBattleBGM(0);
-        BattleTransition_StartOnField(B_TRANSITION_MAGMA);
-        break;
+    // case SPECIAL_BATTLE_STEVEN:
+    //     gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER;
+    //     FillPartnerParty(TRAINER_STEVEN_PARTNER);
+    //     gApproachingTrainerId = 0;
+    //     BattleSetup_ConfigureTrainerBattle(MossdeepCity_SpaceCenter_2F_EventScript_224157 + 1);
+    //     gApproachingTrainerId = 1;
+    //     BattleSetup_ConfigureTrainerBattle(MossdeepCity_SpaceCenter_2F_EventScript_224166 + 1);
+    //     gPartnerTrainerId = TRAINER_STEVEN_PARTNER;
+    //     CreateTask(Task_StartBattleAfterTransition, 1);
+    //     PlayMapChosenOrBattleBGM(0);
+    //     BattleTransition_StartOnField(B_TRANSITION_MAGMA);
+    //     break;
     }
 }
 
@@ -2379,7 +2379,7 @@ static void sub_8163EE4(void)
     ClearBattleTowerRecord(playerRecord);
     lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
-    if (gSaveBlock2Ptr->playerGender != MALE)
+    if (GetPlayerGender() != MALE)
     {
         class = gTowerFemaleFacilityClasses[(gSaveBlock2Ptr->playerTrainerId[0] +
                                        gSaveBlock2Ptr->playerTrainerId[1] +
@@ -3040,7 +3040,7 @@ static void FillEReaderTrainerWithPlayerData(void)
     struct BattleTowerEReaderTrainer *ereaderTrainer = &gSaveBlock2Ptr->frontier.ereaderTrainer;
     s32 i, j;
 
-    if (gSaveBlock2Ptr->playerGender != MALE)
+    if (GetPlayerGender() != MALE)
     {
         ereaderTrainer->facilityClass = gTowerFemaleFacilityClasses[(gSaveBlock2Ptr->playerTrainerId[0] + gSaveBlock2Ptr->playerTrainerId[1]
                                                         + gSaveBlock2Ptr->playerTrainerId[2] + gSaveBlock2Ptr->playerTrainerId[3]) % ARRAY_COUNT(gTowerFemaleFacilityClasses)];

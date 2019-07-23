@@ -105,10 +105,7 @@ TrainerHill_Entrance_EventScript_2681EE:: @ 82681EE
 
 TrainerHill_Entrance_EventScript_2681EF:: @ 82681EF
 	setvar VAR_0x800B, 2
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 TrainerHill_Entrance_EventScript_2681FD:: @ 82681FD
@@ -261,11 +258,12 @@ TrainerHill_Entrance_EventScript_2683BE:: @ 82683BE
 TrainerHill_Entrance_EventScript_2683C7:: @ 82683C7
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	goto_if_set FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_EventScript_268402
 	pokemart TrainerHill_Entrance_Pokemart_2683E8
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -288,7 +286,7 @@ TrainerHill_Entrance_Pokemart_2683E8: @ 82683E8
 
 TrainerHill_Entrance_EventScript_268402:: @ 8268402
 	pokemart TrainerHill_Entrance_Pokemart_268414
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -298,7 +296,7 @@ TrainerHill_Entrance_Pokemart_268414: @ 8268414
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_FULL_RESTORE
 	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_SPECIAL
 	.2byte ITEM_X_ATTACK

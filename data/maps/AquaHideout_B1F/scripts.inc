@@ -87,7 +87,7 @@ AquaHideout_B1F_EventScript_233A85:: @ 8233A85
 	end
 
 AquaHideout_B1F_EventScript_233AA0:: @ 8233AA0
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox AquaHideout_B1F_Text_233B5E, MSGBOX_DEFAULT
 	release

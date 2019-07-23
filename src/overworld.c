@@ -477,6 +477,20 @@ void IncrementGameStat(u8 index)
     }
 }
 
+void IncrementGameStatBy(u8 index, u8 value)
+{
+    if (index < NUM_USED_GAME_STATS)
+    {
+        u32 statVal = GetGameStat(index);
+        if (statVal < 0xFFFFFF && statVal + value < 0xFFFFFF)
+            statVal += value;
+        else
+            statVal = 0xFFFFFF;
+
+        SetGameStat(index, statVal);
+    }
+}
+
 u32 GetGameStat(u8 index)
 {
     if (index >= NUM_USED_GAME_STATS)
@@ -576,6 +590,7 @@ void ApplyCurrentWarp(void)
     gSaveBlock1Ptr->location = sWarpDestination;
     gFixedDiveWarp = sDummyWarpData;
     gFixedHoleWarp = sDummyWarpData;
+    gSpecialVar_LastWarpId = sWarpDestination.warpId;
 }
 
 static void ClearDiveAndHoleWarps(void)
@@ -679,7 +694,7 @@ void SetDynamicWarpWithCoords(s32 unused, s8 mapGroup, s8 mapNum, s8 warpId, s8 
     SetWarpData(&gSaveBlock1Ptr->dynamicWarp, mapGroup, mapNum, warpId, x, y);
 }
 
-void SetWarpDestinationToDynamicWarp(u8 unusedWarpId)
+void SetWarpDestinationToDynamicWarp()
 {
     sWarpDestination = gSaveBlock1Ptr->dynamicWarp;
 }
@@ -1058,6 +1073,8 @@ static bool16 ShouldLegendaryMusicPlayAtLocation(struct WarpData *warp)
             }
         }
     }
+    if (warp->mapGroup == MAP_GROUP(SOOTOPOLIS_CITY_POKEMON_CENTER_1F))
+        return TRUE;
     return FALSE;
 }
 
@@ -1088,9 +1105,7 @@ static bool16 IsInfiltratedWeatherInstitute(struct WarpData *warp)
 
 static bool16 IsInflitratedSpaceCenter(struct WarpData *warp)
 {
-    if (VarGet(VAR_MOSSDEEP_STATE) == 0)
-        return FALSE;
-    else if (VarGet(VAR_MOSSDEEP_STATE) > 2)
+    if (VarGet(VAR_MOSSDEEP_STATE) > 1)
         return FALSE;
     else if (warp->mapGroup != MAP_GROUP(MOSSDEEP_CITY_SPACE_CENTER_1F))
         return FALSE;
@@ -1190,7 +1205,7 @@ void Overworld_ClearSavedMusic(void)
 
 static void sub_8085810(void)
 {
-    if (FlagGet(FLAG_SPECIAL_FLAG_0x4001) != TRUE)
+    if (FlagGet(FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT) != TRUE)
     {
         u16 newMusic = GetWarpDestinationMusic();
         u16 currentMusic = GetCurrentMapMusic();
@@ -1238,7 +1253,7 @@ void TryFadeOutOldMapMusic(void)
 {
     u16 currentMusic = GetCurrentMapMusic();
     u16 warpMusic = GetWarpDestinationMusic();
-    if (FlagGet(FLAG_SPECIAL_FLAG_0x4001) != TRUE && warpMusic != GetCurrentMapMusic())
+    if (FlagGet(FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT) != TRUE && warpMusic != GetCurrentMapMusic())
     {
         if (currentMusic == MUS_NAMINORI
             && VarGet(VAR_SKY_PILLAR_STATE) == 2
@@ -2182,7 +2197,7 @@ static void mli4_mapscripts_and_other(void)
     ResetEventObjects();
     GetCameraFocusCoords(&x, &y);
     player = GetInitialPlayerAvatarState();
-    InitPlayerAvatar(x, y, player->direction, gSaveBlock2Ptr->playerGender);
+    InitPlayerAvatar(x, y, player->direction, gSaveBlock2Ptr->playerForm);
     SetPlayerAvatarTransitionFlags(player->transitionFlags);
     ResetInitialPlayerAvatarState();
     TrySpawnEventObjects(0, 0);

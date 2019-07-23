@@ -21,7 +21,7 @@
 #define TRAINER_GRUNT_11         17
 #define TRAINER_GRUNT_12         18
 #define TRAINER_GRUNT_13         19
-#define TRAINER_GRUNT_14         20
+#define TRAINER_LOGAN_STERNCUTSCENE         20
 #define TRAINER_GRUNT_15         21
 #define TRAINER_GRUNT_16         22
 #define TRAINER_GRUNT_17         23

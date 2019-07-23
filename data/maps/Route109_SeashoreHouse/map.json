@@ -9,7 +9,7 @@
   "map_type": "MAP_TYPE_INDOOR",
   "allow_bike": false,
   "allow_escape_rope": false,
-  "allow_running": false,
+  "allow_running": true,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
@@ -37,7 +37,7 @@
       "movement_range_y": 0,
       "trainer_type": "1",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route109_SeashoreHouse_EventScript_2694E2",
+      "script": "Route109_SeashoreHouse_TrainerScript_Dwayne",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "movement_range_y": 0,
       "trainer_type": "1",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route109_SeashoreHouse_EventScript_269518",
+      "script": "Route109_SeashoreHouse_TrainerScript_Simon",
       "flag": "0"
     },
     {
@@ -63,7 +63,7 @@
       "movement_range_y": 0,
       "trainer_type": "1",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route109_SeashoreHouse_EventScript_2694FD",
+      "script": "Route109_SeashoreHouse_TrainerScript_Johanna",
       "flag": "0"
     }
   ],

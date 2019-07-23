@@ -2757,7 +2757,7 @@ static void sub_8020740(void)
     FillWindowPixelBuffer(3, PIXEL_FILL(1));
     LoadUserWindowBorderGfx(3, 1, 0xD0);
     LoadUserWindowBorderGfx_(3, 0xA, 0x20);
-    LoadPalette(gUnknown_0860F074, 0xE0,  0x20);
+    LoadPalette(gTextBoxPalette, 0xE0,  0x20);
 }
 
 static void sub_8020770(void)

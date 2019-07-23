@@ -1471,6 +1471,7 @@ void InitSpriteAffineAnim(struct Sprite *sprite)
     }
 }
 
+// Note: Rotation => 180 deg == 0x1000
 void SetOamMatrixRotationScaling(u8 matrixNum, s16 xScale, s16 yScale, u16 rotation)
 {
     struct ObjAffineSrcData srcData;

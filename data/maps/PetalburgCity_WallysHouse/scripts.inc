@@ -1,135 +1,148 @@
 PetalburgCity_WallysHouse_MapScripts:: @ 8204229
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_WallysHouse_MapScript2_204247
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PetalburgCity_WallysHouse_MapScript2_204234
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_WallysHouse_MapScript2_FrameTable
+	@ map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PetalburgCity_WallysHouse_MapScript2_MapTable
+	map_script MAP_SCRIPT_ON_LOAD, PetalburgCity_WallysHouse_OnLoad
 	.byte 0
 
-PetalburgCity_WallysHouse_MapScript2_204234: @ 8204234
-	map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_WallysHouse_EventScript_20423E
+@ -----------------------------------------------------
+
+@ PetalburgCity_WallysHouse_MapScript2_MapTable: @ 8204234
+@ 	map_script_2 VAR_LOGAN_STATE, 0, PetalburgCity_WallysHouse_EventScript_HideActors1
+@ 	map_script_2 VAR_LOGAN_STATE, 1, PetalburgCity_WallysHouse_EventScript_HideActors2
+@ 	map_script_2 VAR_LOGAN_STATE, 2, PetalburgCity_WallysHouse_EventScript_HideActors2
+@ 	map_script_2 VAR_LOGAN_STATE, 3, PetalburgCity_WallysHouse_EventScript_HideActors3
+@ 	.2byte 0
+
+PetalburgCity_WallysHouse_OnLoad:
+	selectpointer_clamp PetalburgCity_WallysHouse_OnLoad_ScriptTable, VAR_LOGAN_STATE
+	goto 0
+	end
+	
+.align 2
+PetalburgCity_WallysHouse_OnLoad_ScriptTable:
+	.4byte PetalburgCity_WallysHouse_EventScript_HideActors1
+	.4byte PetalburgCity_WallysHouse_EventScript_HideActors2
+	.4byte PetalburgCity_WallysHouse_EventScript_HideActors2
+	.4byte PetalburgCity_WallysHouse_EventScript_HideActors3
+	.4byte 0
+
+PetalburgCity_WallysHouse_EventScript_HideActors1: @ 820423E
+	setflag FLAG_TEMP_10 @ Used to hide Logan's Dad
+	setflag FLAG_TEMP_11 @ Used to hide Logan's Mom
+	end
+PetalburgCity_WallysHouse_EventScript_HideActors2:
+	setflag FLAG_TEMP_10 @ Used to hide Logan's Dad
+	setflag FLAG_TEMP_11 @ Used to hide Logan's Mom
+	setflag FLAG_TEMP_12 @ Used to hide Logan's cousin
+	end
+
+PetalburgCity_WallysHouse_EventScript_HideActors3:
+	setflag FLAG_TEMP_12 @ Used to hide Logan's cousin
+	goto_if_set FLAG_TATTLED_ON_LOGAN, PetalburgCity_WallysHouse_EventScript_HideMom
+	end
+PetalburgCity_WallysHouse_EventScript_HideMom:
+	setflag FLAG_TEMP_11 @ Used to hide Logan's Mom
+	end
+	
+@ 	turnobject EVENT_OBJ_ID_PLAYER, 4
+@ 	turnobject 1, 3
+
+@ -----------------------------------------------------
+
+PetalburgCity_WallysHouse_MapScript2_FrameTable: @ 8204247
+	@ map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_WallysHouse_EventScript_204251
 	.2byte 0
 
-PetalburgCity_WallysHouse_EventScript_20423E:: @ 820423E
-	turnobject EVENT_OBJ_ID_PLAYER, 4
-	turnobject 1, 3
-	end
+@ -----------------------------------------------------
+@ Mom
 
-PetalburgCity_WallysHouse_MapScript2_204247: @ 8204247
-	map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_WallysHouse_EventScript_204251
-	.2byte 0
-
-PetalburgCity_WallysHouse_EventScript_204251:: @ 8204251
-	lockall
-	msgbox PetalburgCity_WallysHouse_Text_20446E, MSGBOX_DEFAULT
-	giveitem_std ITEM_TM53
-	setflag FLAG_RECEIVED_TM53
-	msgbox PetalburgCity_WallysHouse_Text_20461A, MSGBOX_DEFAULT
-	setvar VAR_PETALBURG_STATE, 5
-	releaseall
-	end
-
-PetalburgCity_WallysHouse_EventScript_204278:: @ 8204278
+PetalburgCity_WallysHouse_EventScript_Mother::
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, PetalburgCity_WallysHouse_EventScript_2042AC
-	goto_if_set FLAG_RECEIVED_TM53, PetalburgCity_WallysHouse_EventScript_2042A2
-	goto_if_set FLAG_THANKED_FOR_PLAYING_WITH_WALLY, PetalburgCity_WallysHouse_EventScript_2042B6
-	msgbox PetalburgCity_WallysHouse_Text_2042DF, MSGBOX_DEFAULT
-	setflag FLAG_THANKED_FOR_PLAYING_WITH_WALLY
+	markasdialog
+	switch VAR_LOGAN_STATE
+	case 3, PetalburgCity_WallysHouse_EventScript_MotherState3
+	
+	msgbox PetalburgCity_WallysHouse_Text_Mother
 	release
 	end
+PetalburgCity_WallysHouse_Text_Mother:
+	.string "Oh, I'm so worried about our little boy…$"
 
-PetalburgCity_WallysHouse_EventScript_2042A2:: @ 82042A2
-	msgbox PetalburgCity_WallysHouse_Text_204661, MSGBOX_DEFAULT
+
+PetalburgCity_WallysHouse_EventScript_MotherState3:
+	goto_if_set FLAG_TEMP_1, PetalburgCity_WallysHouse_EventScript_MotherState3no2
+	setyesnotext gYN_Yeah, gYN_No
+	msgbox PetalburgCity_WallysHouse_Text_MotherState3, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq PetalburgCity_WallysHouse_EventScript_MotherState3yes
+	goto PetalburgCity_WallysHouse_EventScript_MotherState3no
 	release
 	end
+PetalburgCity_WallysHouse_Text_MotherState3:
+	.string "We came home this afternoon to find\n"
+	.string "our little boy {RIVAL_HERO} GONE!\p"
+	.string "We've looked everywhere!\n"
+	.string "He's not anywhere in the city!\p"
+	.string "Have you seen him, {PLAYER}?\n"
+	.string "Please tell me you have!$"
 
-PetalburgCity_WallysHouse_EventScript_2042AC:: @ 82042AC
-	msgbox PetalburgCity_WallysHouse_Text_204698, MSGBOX_DEFAULT
+PetalburgCity_WallysHouse_EventScript_MotherState3yes:
+	setflag FLAG_TATTLED_ON_LOGAN
+	msgbox PetalburgCity_WallysHouse_Text_MotherState3yes
+	
+	end
+PetalburgCity_WallysHouse_Text_MotherState3yes:
+	.string "Oh Lord Arceus above, you have?!\p"
+	.string "He's run off to Rustboro?!\p"
+	.string "I have to go get him right now!!$"
+
+PetalburgCity_WallysHouse_EventScript_MotherState3no:
+	setflag FLAG_TEMP_1
+	messageautoscroll PetalburgCity_WallysHouse_Text_MotherState3no
+	waitmessage
+	waitbuttonpress
+	@fallthrough
+PetalburgCity_WallysHouse_EventScript_MotherState3no2:
+	msgbox PetalburgCity_WallysHouse_Text_MotherState3no2
 	release
 	end
+PetalburgCity_WallysHouse_Text_MotherState3no:
+	.string "Oh, I'm so worried about him!\n"
+	.string "He could be hurt out there!\l"
+	.string "Mauled by a wild Pokémon!\l"
+	.string "Harrased by one of those evil teams!\l"
+	.string "Tortured by more Gym Leaders!\l"
+	.string "Murdered by a poacher!\l"
+	.string "Have his feelings hurt by bullies!\l"
+	.string "Robbed by another trainer!\l"
+	.string "Fail to reach his dreams!\l"
+	.string "Trip and fall off a cliff into the sea!\l"
+	.string "Or worst of all, never shower another\l"
+	.string "day in his life!$"
+PetalburgCity_WallysHouse_Text_MotherState3no2:
+	.string "Oh Lord Acerus, help me find him!$"
+			
 
-PetalburgCity_WallysHouse_EventScript_2042B6:: @ 82042B6
-	msgbox PetalburgCity_WallysHouse_Text_20444D, MSGBOX_DEFAULT
-	release
+@ -----------------------------------------------------
+@ Dad
+
+PetalburgCity_WallysHouse_EventScript_Father::
 	end
 
-PetalburgCity_WallysHouse_EventScript_2042C0:: @ 82042C0
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_TM53, PetalburgCity_WallysHouse_EventScript_2042D5
-	msgbox PetalburgCity_WallysHouse_Text_204732, MSGBOX_DEFAULT
-	release
+@ -----------------------------------------------------
+@ Dad
+
+PetalburgCity_WallysHouse_EventScript_Cousin::
+	msgbox PetalburgCity_WallysHouse_Text_Cousin, MSGBOX_NPC
 	end
-
-PetalburgCity_WallysHouse_EventScript_2042D5:: @ 82042D5
-	msgbox PetalburgCity_WallysHouse_Text_2047A7, MSGBOX_DEFAULT
-	release
-	end
-
-PetalburgCity_WallysHouse_Text_2042DF: @ 82042DF
-	.string "You're…\n"
-	.string "Ah, you must be {PLAYER}, right?\p"
-	.string "Thank you for playing with WALLY a\n"
-	.string "little while ago.\p"
-	.string "He's been frail and sickly ever\n"
-	.string "since he was a baby.\p"
-	.string "We've sent him to stay with my relatives\n"
-	.string "in Verdanturf Town for a while.\p"
-	.string "The air is a lot cleaner there\n"
-	.string "than it is here.\p"
-	.string "What's that? Where's WALLY?\n"
-	.string "He's already left, our WALLY.\p"
-	.string "I wonder where he could have\n"
-	.string "gotten by now?$"
-
-PetalburgCity_WallysHouse_Text_20444D: @ 820444D
-	.string "I wonder how our WALLY is doing?$"
-
-PetalburgCity_WallysHouse_Text_20446E: @ 820446E
-	.string "{PLAYER}! Please excuse us for\n"
-	.string "dragging you here this way.\p"
-	.string "But our WALLY's become very healthy\n"
-	.string "since he went to Verdanturf Town.\p"
-	.string "We owe it all to you!\p"
-	.string "When WALLY left town, you helped\n"
-	.string "him catch a Pokémon, right?\p"
-	.string "I think that made WALLY really\n"
-	.string "happy.\p"
-	.string "Actually, not just WALLY.\n"
-	.string "It made me, his father, happy too.\p"
-	.string "Happy that he's gained such a great\n"
-	.string "friend as you.\p"
-	.string "This isn't a bribe or anything, but\n"
-	.string "I'd really like you to have this.$"
-
-PetalburgCity_WallysHouse_Text_20461A: @ 820461A
-	.string "If your Pokémon can SURF, you'll be\n"
-	.string "able to go to all sorts of places.$"
-
-PetalburgCity_WallysHouse_Text_204661: @ 8204661
-	.string "WALLY's coming home soon.\n"
-	.string "I'm looking forward to that.$"
-
-PetalburgCity_WallysHouse_Text_204698: @ 8204698
-	.string "Oh? You met WALLY in\n"
-	.string "Ever Grande City?\p"
-	.string "Oh, {PLAYER}, don't be silly.\p"
-	.string "He may have gotten healthy, but he\n"
-	.string "can't go somewhere far away like\l"
-	.string "that all by himself.$"
-
-PetalburgCity_WallysHouse_Text_204732: @ 8204732
-	.string "WALLY was really happy when he told\n"
-	.string "us that he caught a Pokémon.\p"
-	.string "It's been ages since I've seen him\n"
-	.string "smile like that.$"
-
-PetalburgCity_WallysHouse_Text_2047A7: @ 82047A7
-	.string "I want you to keep this a secret\n"
-	.string "from my husband…\p"
-	.string "But our WALLY left Verdanturf Town\n"
-	.string "without telling anyone.\p"
-	.string "You know, WALLY is frail, but\n"
-	.string "he's surprisingly strong-willed.\p"
-	.string "I'm sure that he'll come back safe\n"
-	.string "and sound one day!$"
+PetalburgCity_WallysHouse_Text_Cousin:
+	.string "'Sup. They still looking for {RIVAL_HERO}\n"
+	.string "out there?\p"
+	.string "{RIVAL_HERO} said he didn't want to go to\n"
+	.string "Vanderturf Town with us this morning.\p"
+	.string "I don't care, but his mom does and\n"
+	.string "is forcing him to go.\p"
+	.string "Frankly, I don't blame the kid.\n"
+	.string "I'm so glad Aunt Gretchen isn't my mom.$"
 

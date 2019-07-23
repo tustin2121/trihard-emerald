@@ -914,30 +914,6 @@ u8 GetPlayerTrainerIdOnesDigit(void)
     return (u16)((gSaveBlock2Ptr->playerTrainerId[1] << 8) | gSaveBlock2Ptr->playerTrainerId[0]) % 10;
 }
 
-void GetPlayerBigGuyGirlString(void)
-{
-    if (gSaveBlock2Ptr->playerGender == MALE)
-    {
-        StringCopy(gStringVar1, gText_BigGuy);
-    }
-    else
-    {
-        StringCopy(gStringVar1, gText_BigGirl);
-    }
-}
-
-void GetRivalSonDaughterString(void)
-{
-    if (gSaveBlock2Ptr->playerGender == MALE)
-    {
-        StringCopy(gStringVar1, gText_Daughter);
-    }
-    else
-    {
-        StringCopy(gStringVar1, gText_Son);
-    }
-}
-
 u8 GetBattleOutcome(void)
 {
     return gBattleOutcome;
@@ -1471,7 +1447,7 @@ bool8 IsPokerusInParty(void)
     return TRUE;
 }
 
-void sub_8139560(void)
+void DoCameraShakeEffect(void)
 {
     u8 taskId = CreateTask(sub_81395BC, 9);
     gTasks[taskId].data[0] = gSpecialVar_0x8005;
@@ -1642,7 +1618,7 @@ u16 sub_813986C(void)
     }
 }
 
-bool8 sub_81398C0(void)
+bool8 LoadTMMoveName(void)
 {
     if (gSpecialVar_0x8004 >= ITEM_TM01 && gSpecialVar_0x8004 <= ITEM_TM58)
     {
@@ -2445,7 +2421,7 @@ static const u8 *const sSpecialScriptChoiceLists[][16] = {
         gText_EnergyPowder50,
         gText_EnergyRoot80,
         gText_HealPowder50,
-        gText_RevivalHerb300,
+        // gText_RevivalHerb300,
         gText_Protein1000,
         gText_Iron1000,
         gText_Carbos1000,
@@ -2454,6 +2430,7 @@ static const u8 *const sSpecialScriptChoiceLists[][16] = {
         gText_HPUp1000,
         gText_PPUp3000,
         gText_Exit,
+        NULL,
         NULL,
         NULL,
         NULL,
@@ -2783,7 +2760,7 @@ void sub_813A76C(void)
     {
         if (gLinkPlayers[i].gender == MALE)
         {
-            VarSet(VAR_OBJ_GFX_ID_F - i, EVENT_OBJ_GFX_BRENDAN_NORMAL);
+            VarSet(VAR_OBJ_GFX_ID_F - i, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL);
         }
         else
         {
@@ -3646,7 +3623,7 @@ bool32 sub_813B490(void)
     return TRUE;
 }
 
-bool32 sub_813B4E0(void)
+bool32 IsRematchTrainerRegistered(void)
 {
     int index = GetRematchIdxByTrainerIdx(gSpecialVar_0x8004);
     if (index >= 0)
@@ -3885,7 +3862,7 @@ void sub_813B968(void)
     gSpecialVar_Result -= (gSpecialVar_Result / 20) * 20;
 }
 
-void sub_813B9A0(void)
+void PreventDewfordHealSoftlock(void)
 {
     if (gSaveBlock1Ptr->lastHealLocation.mapGroup == MAP_GROUP(DEWFORD_TOWN) && gSaveBlock1Ptr->lastHealLocation.mapNum == MAP_NUM(DEWFORD_TOWN))
     {

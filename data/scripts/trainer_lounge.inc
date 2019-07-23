@@ -5,14 +5,18 @@ PokemonCenter_2F_EventScript_Teala::
 	msgbox PokemonCenter_2F_Text_TealaGreeting, MSGBOX_DEFAULT @TODO
 	release
 	end
+PokemonCenter_2F_Text_TealaGreeting:
+	.string "Welcome to the Trainer's Lounge.\n"
+	.string "My name is Teala; how may I help you?$"
+
 
 PokemonCenter_2F_EventScript_OccupiedSign::
 	msgbox PokemonCenter_2F_Text_OccupiedSign, MSGBOX_SIGN
 	end
+PokemonCenter_2F_Text_OccupiedSign:
+	.string "Locked: Occupied.$"
 
-PokemonCenter_2F_Text_TealaGreeting:
-	.string "Welcome to the Trainer's Lounge.\n"
-	.string "My name is Teala; how may I help you?$"
+
 
 PokemonCenter_2F_Text_TealaExplaination: @ "What is this place?"
 	.string "This is the Trainer's Lounge.\p"
@@ -29,5 +33,3 @@ PokemonCenter_2F_Text_TealaExplaination: @ "What is this place?"
 	.string "We are not liable for lost or stolen\n"
 	.string "posessions while sleeping with us.)$"
 
-PokemonCenter_2F_Text_OccupiedSign:
-	.string "Locked: Occupied.$"

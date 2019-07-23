@@ -38,14 +38,14 @@ NavelRock_Bottom_EventScript_2692A2:: @ 82692A2
 	setvar VAR_0x8005, 3
 	setvar VAR_0x8006, 4
 	setvar VAR_0x8007, 2
-	special sub_8139560
+	special DoCameraShakeEffect
 	delay 30
 	playse SE_T_AME_E
 	setvar VAR_0x8004, 0
 	setvar VAR_0x8005, 3
 	setvar VAR_0x8006, 4
 	setvar VAR_0x8007, 2
-	special sub_8139560
+	special DoCameraShakeEffect
 	delay 30
 	delay 50
 	waitse

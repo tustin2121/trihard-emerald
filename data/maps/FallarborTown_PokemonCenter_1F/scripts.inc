@@ -18,20 +18,18 @@ FallarborTown_PokemonCenter_1F_OnTransition: @ 8200BD8
 
 FallarborTown_PokemonCenter_1F_NurseScript:: @ 8200BE1
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 
 FallarborTown_Mart_MartScript:: @ 81FFCBF
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart FallarborTown_Mart_Pokemart_1FFCD8
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

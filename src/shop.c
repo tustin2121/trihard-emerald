@@ -1161,7 +1161,7 @@ static void BuyMenuReturnToItemList(u8 taskId)
     u16 scrollPos;
     u16 cursorPos;
 
-    ClearDialogWindowAndFrameToTransparent(5, 0);
+    ClearTextWindowAndFrameToTransparent(5, 0);
     BuildItemList();
     DestroyListMenuTask(tListTaskId, &scrollPos, &cursorPos);
     tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, scrollPos, cursorPos);

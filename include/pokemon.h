@@ -95,6 +95,7 @@
 #define MON_DATA_SPDEF2            88
 
 #define MAX_LEVEL 100
+#define EXP_MAX_LEVEL 120
 
 #define OT_ID_RANDOM_NO_SHINY 2
 #define OT_ID_PRESET 1
@@ -445,7 +446,7 @@ extern const u8 gFacilityClassToTrainerClass[];
 extern const struct BaseStats gBaseStats[];
 extern const u8 *const gItemEffectTable[];
 extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
-extern const u32 gExperienceTables[][MAX_LEVEL + 1];
+extern const u32 gExperienceTables[][EXP_MAX_LEVEL + 1];
 extern const u16 *const gLevelUpLearnsets[];
 extern const u8 gPPUpGetMask[];
 extern const u8 gPPUpSetMask[];
@@ -522,7 +523,7 @@ u8 SendMonToPC(struct Pokemon* mon);
 bool8 CanMonDie(int partySlot);
 void KillMon(int partySlot);
 void Restore1HPDeathPreventedMons(void);
-void RemoveDeadMonFromParty(void);
+void RemoveDeadMonFromParty(bool8 endOfBattle);
 u8 CalculatePlayerPartyCount(void);
 u8 CalculateEnemyPartyCount(void);
 u8 GetMonsStateToDoubles(void);
@@ -574,6 +575,7 @@ void PartySpreadPokerus(struct Pokemon *party);
 bool8 TryIncrementMonLevel(struct Pokemon *mon);
 u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm);
 u32 CanSpeciesLearnTMHM(u16 species, u8 tm);
+bool8 IsMonCapable(struct Pokemon *mon, u16 move);
 u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves);
 u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
 u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);

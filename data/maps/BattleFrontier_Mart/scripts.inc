@@ -4,10 +4,11 @@ BattleFrontier_Mart_MapScripts:: @ 8267ACB
 BattleFrontier_Mart_EventScript_267ACC:: @ 8267ACC
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart BattleFrontier_Mart_Pokemart_267AE4
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -18,7 +19,7 @@ BattleFrontier_Mart_Pokemart_267AE4: @ 8267AE4
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_FULL_RESTORE
 	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_PROTEIN
 	.2byte ITEM_CALCIUM

@@ -203,7 +203,7 @@ Route120_EventScript_1F568B:: @ 81F568B
 	closemessage
 	applymovement 30, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement 30, Route120_Movement_2723C7
+	applymovement 30, Common_Movement_KecleonShowAnim
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_KECLEON, 2
@@ -299,7 +299,7 @@ Route120_EventScript_1F57EE:: @ 81F57EE
 	end
 
 Route120_EventScript_1F581A:: @ 81F581A
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route120_Text_29E75D, MSGBOX_DEFAULT
 	register_matchcall TRAINER_ROBERT_1
@@ -331,7 +331,7 @@ Route120_EventScript_1F587E:: @ 81F587E
 	end
 
 Route120_EventScript_1F58AA:: @ 81F58AA
-	special sub_80B4808
+	special DoSpinningTrainerApproach
 	waitmovement 0
 	msgbox Route120_Text_29EA31, MSGBOX_DEFAULT
 	register_matchcall TRAINER_JEFFREY_1

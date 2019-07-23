@@ -73,7 +73,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_checkitemspace
 	.4byte ScrCmd_checkitem
 	.4byte ScrCmd_checkitemtype
-	.4byte ScrCmd_givepcitem
+	.4byte ScrCmd_givepcitem @ NEVER USED
 	.4byte ScrCmd_checkpcitem
 	.4byte ScrCmd_givedecoration
 	.4byte ScrCmd_takedecoration
@@ -114,8 +114,8 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_multichoice
 	.4byte ScrCmd_multichoicedefault
 	.4byte ScrCmd_multichoicegrid
-	.4byte ScrCmd_drawbox
-	.4byte ScrCmd_erasebox
+	.4byte ScrCmd_warpcustom
+	.4byte ScrCmd_advancetime
 	.4byte ScrCmd_drawboxtext
 	.4byte ScrCmd_showmonpic
 	.4byte ScrCmd_hidemonpic
@@ -177,8 +177,8 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_waitdooranim
 	.4byte ScrCmd_setdooropen
 	.4byte ScrCmd_setdoorclosed
-	.4byte ScrCmd_addelevmenuitem
-	.4byte ScrCmd_showelevmenu
+	.4byte ScrCmd_domourning
+	.4byte ScrCmd_dodreams
 	.4byte ScrCmd_checkcoins
 	.4byte ScrCmd_givecoins
 	.4byte ScrCmd_takecoins
@@ -199,11 +199,11 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_setescapewarp
 	.4byte ScrCmd_waitmoncry
 	.4byte ScrCmd_bufferboxname
-	.4byte ScrCmd_nop1
-	.4byte ScrCmd_nop1
-	.4byte ScrCmd_nop1
-	.4byte ScrCmd_nop1
-	.4byte ScrCmd_nop1
+	.4byte ScrCmd_dofieldmoveanim
+	.4byte ScrCmd_warptodynamic
+	.4byte ScrCmd_setmetatileex
+	.4byte ScrCmd_setweather_nodelay
+	.4byte ScrCmd_checkpartycapability
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_setmonobedient
 	.4byte ScrCmd_checkmonobedience
@@ -227,7 +227,11 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_warpE0
 	.4byte ScrCmd_buffercontesttype
 	.4byte ScrCmd_bufferitemnameplural
-	.4byte ScrCmd_selectstring
+	.4byte ScrCmd_selectpointer
+	.4byte ScrCmd_setyesnotext
+	.4byte ScrCmd_checkplayeroutfit
+	.4byte ScrCmd_buffernumberstring2
+	.4byte ScrCmd_addvar_if
 
 gScriptCmdTableEnd:: @ 81DBA08
 	.4byte ScrCmd_nop

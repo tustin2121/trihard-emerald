@@ -127,7 +127,7 @@ void SetVBlankHBlankCallbacksToNull(void)
 void DisplayMessageAndContinueTask(u8 taskId, u8 windowId, u16 arg2, u8 arg3, u8 fontId, u8 textSpeed, const u8 *string, void *taskFunc)
 {
     gUnknown_0203A140 = windowId;
-    DrawDialogFrameWithCustomTileAndPalette(windowId, TRUE, arg2, arg3);
+    DrawTextFrameWithCustomTileAndPalette(windowId, TRUE, arg2, arg3);
 
     if (string != gStringVar4)
         StringExpandPlaceholders(gStringVar4, string);

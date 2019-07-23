@@ -33,26 +33,24 @@ MauvilleCity_PokemonCenter_1F_EventScript_210E74:: @ 8210E74
 
 MauvilleCity_PokemonCenter_1F_NurseScript:: @ 8210E78
 	setvar VAR_0x800B, 1
-	call PokemonCenter_1F_NurseHealScript
-	waitmessage
-	waitbuttonpress
-	release
+	goto PokemonCenter_1F_NurseHealScript
 	end
 
 
 MauvilleCity_Mart_MartScript:: @ 82110E6
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart MauvilleCity_Mart_Pokemart_211100
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
 	.align 2
 MauvilleCity_Mart_Pokemart_211100: @ 8211100
-	.2byte ITEM_POKE_BALL
+	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_SUPER_POTION
 	.2byte ITEM_ANTIDOTE

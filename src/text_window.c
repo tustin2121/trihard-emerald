@@ -97,21 +97,27 @@ void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
     LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, 0x20);
 }
 
+void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sWindowFrames[frameId].tiles, 0x120, destOffset);
+    LoadPalette(sWindowFrames[frameId].pal, palOffset, 0x20);
+}
+
 void LoadMessageSignGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBoxSign_Gfx, 0x140, destOffset);
     LoadPalette(gMessageBoxSign_Pal, palOffset, 0x20);
 }
 
+void LoadMessageDialogueGfx(u8 windowId, u16 destOffset, u8 palOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBoxDialogue_Gfx, 0x160, destOffset);
+    LoadPalette(gMessageBoxSign_Pal, palOffset, 0x20);
+}
+
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadUserWindowBorderGfx(windowId, destOffset, palOffset);
-}
-
-void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset)
-{
-    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sWindowFrames[frameId].tiles, 0x120, destOffset);
-    LoadPalette(sWindowFrames[frameId].pal, palOffset, 0x20);
 }
 
 void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)

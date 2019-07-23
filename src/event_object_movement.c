@@ -128,6 +128,7 @@ static void ClearEventObjectMovement(struct EventObject *, struct Sprite *);
 static void EventObjectSetSingleMovement(struct EventObject *, struct Sprite *, u8);
 static void oamt_npc_ministep_reset(struct Sprite *, u8, u8);
 static void UpdateEventObjectSpriteSubpriorityAndVisibility(struct Sprite *);
+void UpdateEventObjectZCoordAndPriority(struct EventObject *, struct Sprite *);
 
 const u8 gReflectionEffectPaletteMap[] = {1, 1, 6, 7, 8, 9, 6, 7, 8, 9, 11, 11, 0, 0, 0, 0};
 
@@ -225,6 +226,7 @@ static void (*const sMovementTypeCallbacks[])(struct Sprite *) =
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = MovementType_WalkSlowlyInPlace,
+    [MOVEMENT_TYPE_LYING_DOWN] = MovementType_LyingDown,
 };
 
 const u8 gRangedMovementTypes[] = {
@@ -309,6 +311,7 @@ const u8 gRangedMovementTypes[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = 0,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = 0,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = 0,
+    [MOVEMENT_TYPE_LYING_DOWN] = 0,
 };
 
 const u8 gInitialMovementTypeFacingDirections[] = {
@@ -393,6 +396,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = DIR_NORTH,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = DIR_WEST,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = DIR_EAST,
+    [MOVEMENT_TYPE_LYING_DOWN] = DIR_SOUTH,
 };
 
 #define EVENT_OBJ_PAL_TAG_0  0x1103
@@ -430,6 +434,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define EVENT_OBJ_PAL_TAG_32 0x1121
 #define EVENT_OBJ_PAL_TAG_33 0x1122
 #define EVENT_OBJ_PAL_TAG_34 0x1123
+#define EVENT_OBJ_PAL_TAG_PROTAG 0x1124
 #define EVENT_OBJ_PAL_TAG_NONE 0x11FF
 
 #include "data/field_event_obj/event_object_graphics_info_pointers.h"
@@ -476,6 +481,7 @@ const struct SpritePalette sEventObjectSpritePalettes[] = {
     {gEventObjectPalette32, EVENT_OBJ_PAL_TAG_32},
     {gEventObjectPalette33, EVENT_OBJ_PAL_TAG_33},
     {gEventObjectPalette34, EVENT_OBJ_PAL_TAG_34},
+    {gEventObjectPaletteProtag, EVENT_OBJ_PAL_TAG_PROTAG},
     {NULL,                  0x0000},
 };
 
@@ -1679,7 +1685,7 @@ u8 AddPseudoEventObject(u16 graphicsId, void (*callback)(struct Sprite *), s16 x
     return spriteId;
 }
 
-u8 sprite_new(u16 graphicsId, u8 a1, s16 x, s16 y, u8 z, u8 direction)
+u8 sprite_new(u16 graphicsId, u8 localId, s16 x, s16 y, u8 z, u8 direction)
 {
     u8 spriteId;
     struct Sprite *sprite;
@@ -1706,7 +1712,7 @@ u8 sprite_new(u16 graphicsId, u8 a1, s16 x, s16 y, u8 z, u8 direction)
             sprite->oam.paletteNum -= 16;
         }
         sprite->coordOffsetEnabled = TRUE;
-        sprite->data[0] = a1;
+        sprite->data[0] = localId;
         sprite->data[1] = z;
         if (graphicsInfo->paletteSlot == 10)
         {
@@ -2073,7 +2079,7 @@ void sub_808E75C(s16 x, s16 y)
     }
 }
 
-void sub_808E78C(u8 localId, u8 mapNum, u8 mapGroup, u8 subpriority)
+void SetSubpriorityForObjectEvent(u8 localId, u8 mapNum, u8 mapGroup, u8 subpriority)
 {
     u8 eventObjectId;
     struct EventObject *eventObject;
@@ -2088,7 +2094,7 @@ void sub_808E78C(u8 localId, u8 mapNum, u8 mapGroup, u8 subpriority)
     }
 }
 
-void sub_808E7E4(u8 localId, u8 mapNum, u8 mapGroup)
+void ResetSubpriorityForObjectEvent(u8 localId, u8 mapNum, u8 mapGroup)
 {
     u8 eventObjectId;
     struct EventObject *eventObject;
@@ -4681,6 +4687,34 @@ bool8 MovementType_Invisible_Step2(struct EventObject *eventObject, struct Sprit
     return FALSE;
 }
 
+
+movement_type_def(MovementType_LyingDown, gMovementTypeFuncs_LyingDown)
+
+bool8 MovementType_LyingDown_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    // StartSpriteAnimInDirection(eventObject, sprite, DIR_SOUTH, 0x14);
+    ClearEventObjectMovement(eventObject, sprite);
+    EventObjectSetSingleMovement(eventObject, sprite, MOVEMENT_ACTION_NURSE_JOY_BOW_DOWN);
+    sprite->data[1] = 1;
+    return TRUE;
+}
+
+bool8 MovementType_LyingDown_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (EventObjectExecSingleMovementAction(eventObject, sprite))
+    {
+        sprite->data[1] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementType_LyingDown_Step2(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    eventObject->singleMovementActive = 0;
+    return FALSE;
+}
+
 static void ClearEventObjectMovement(struct EventObject *eventObject, struct Sprite *sprite)
 {
     eventObject->singleMovementActive = 0;
@@ -6704,6 +6738,14 @@ bool8 MovementAction_EmoteQuestionMark_Step0(struct EventObject *eventObject, st
 {
     EventObjectGetLocalIdAndMap(eventObject, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
     FieldEffectStart(FLDEFF_QUESTION_MARK_ICON);
+    sprite->data[2] = 1;
+    return TRUE;
+}
+
+bool8 MovementAction_EmoteAngry_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    EventObjectGetLocalIdAndMap(eventObject, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
+    FieldEffectStart(FLDEFF_ANGRY_ICON);
     sprite->data[2] = 1;
     return TRUE;
 }

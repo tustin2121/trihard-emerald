@@ -333,6 +333,7 @@ ITEM   = FC 01 06   @ item name highlight
 ACTOR  = FC 01 08   @ person/actor name highlight
 REF    = FC 01 08   @ reference to something highlight
 TIPS   = FC 04 06 00 07   @ Trainer Tips
+BOLD   = FC 03 02   @ A faux bold by setting the shadow the same as the text
 END    = FC 19      @ reset highlight
 
 STRING = FD
@@ -348,6 +349,7 @@ RIVAL_HERO     = FD 06  @ name of the wally replacement "Logan"
 RIVAL_ALOLA    = FD 07  @ name of the alolan friend "Alex"
 AQUA_BOY       = FD 08  @ name of the male team aqua friend "Bailey"
 AQUA_GIRL      = FD 09  @ name of the female team aqua friend "Jessica"
+P_PLAYER       = FD 0F  @ Player name, but with the first character stuttered
 
 @ pronouns for same-gender characters (the player)
 PLAYER_They    = FD 10  @ "He" or "She"
@@ -358,14 +360,19 @@ PLAYER_they    = FD 14  @ "he" or "she"
 PLAYER_them    = FD 15  @ "him" or "her"
 PLAYER_their   = FD 16  @ "his" or "her"
 PLAYER_theirs  = FD 17  @ "his" or "hers"
-PLAYER_sir     = FD 18  @ "sir" or "miss" addressing the player
-PLAYER_miss    = FD 18  @ "sir" or "miss" addressing the player
-PLAYER_boy     = FD 19  @ "boy" or "girl" addressing the player
-PLAYER_girl    = FD 19  @ "boy" or "girl" addressing the player
-PLAYER_dude    = FD 1A  @ "dude" or "gurl" addressing the player
-PLAYER_gurl    = FD 1A  @ "dude" or "gurl" addressing the player
-PLAYER_man     = FD 1B  @ "man" or "lady" addressing the player
-PLAYER_lady    = FD 1B  @ "man" or "lady" addressing the player
+PLAYER_son     = FD 18  @ "son" or "daughter" addressing the player
+PLAYER_daughter= FD 18  @ "son" or "daughter" addressing the player
+PLAYER_sir     = FD 19  @ "sir" or "miss" addressing the player
+PLAYER_miss    = FD 19  @ "sir" or "miss" addressing the player
+PLAYER_boy     = FD 1A  @ "boy" or "girl" addressing the player
+PLAYER_girl    = FD 1A  @ "boy" or "girl" addressing the player
+PLAYER_dude    = FD 1B  @ "dude" or "gurl" addressing the player
+PLAYER_gurl    = FD 1B  @ "dude" or "gurl" addressing the player
+PLAYER_man     = FD 1C  @ "man" or "lady" addressing the player
+PLAYER_lady    = FD 1C  @ "man" or "lady" addressing the player
+PLAYER_guy     = FD 1D  @ "guy" or "girl" addressing the player
+PLAYER_buddy   = FD 1E  @ "buddy" or "honey" addressing the player
+PLAYER_honey   = FD 1E  @ "buddy" or "honey" addressing the player
 
 @ pronouns for the opposite-gender characters (rival, alola friend)
 RIVAL_They     = FD 20  @ "He" or "She"
@@ -376,7 +383,12 @@ RIVAL_they     = FD 24  @ "he" or "she"
 RIVAL_them     = FD 25  @ "him" or "her"
 RIVAL_their    = FD 26  @ "his" or "her"
 RIVAL_theirs   = FD 27  @ "his" or "hers"
+RIVAL_son      = FD 28  @ "son" or "daughter" addressing the rival
+RIVAL_daughter = FD 28  @ "son" or "daughter" addressing the rival
+RIVAL_boy      = FD 2A  @ "boy" or "girl" addressing the rival
+RIVAL_girl     = FD 2A  @ "boy" or "girl" addressing the rival
 
+TIME_OF_DAY	   = FD 30
 
 @ battle string placeholders
 
@@ -467,6 +479,7 @@ ENG = FC 16
 PAUSE_MUSIC = FC 17
 RESUME_MUSIC = FC 18
 RESETCOLOR = FC 19
+CENTER = FC 1A
 
 @ colors
 
@@ -767,7 +780,7 @@ MUS_KACHI22 = 60 01
 MUS_KACHI2 = 61 01
 MUS_KACHI3 = 62 01
 MUS_KACHI5 = 63 01
-MUS_PCC = 64 01
+MUS_BORNLOSE = 64 01
 MUS_NIBI = 65 01
 MUS_SUIKUN = 66 01
 MUS_DOORO1 = 67 01
