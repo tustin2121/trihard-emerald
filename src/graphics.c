@@ -1609,6 +1609,8 @@ const u16 gUnknown_08DE3398[] = INCBIN_U16("graphics/berry_crusher/tiles.gbapal"
 const u32 gUnknown_08DE34B8[] = INCBIN_U32("graphics/berry_crusher/tiles.4bpp.lz");
 const u32 gUnknown_08DE3FD4[] = INCBIN_U32("graphics/berry_crusher/tiles.bin.lz");
 
+const u32 gChampionStadiumBg[] = INCBIN_U32("graphics/misc/champbg.bin.lz");
+
 // random garbage at the end.
 // asm(".space 0x54BAC \n\
 //      .byte 0x0D, 0x00, 0x58, 0x02 \n\

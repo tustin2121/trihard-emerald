@@ -12,6 +12,8 @@
 #include "sprite.h"
 #include "text.h"
 #include "event_data.h"
+#include "decompress.h"
+#include "bg.h"
 
 EWRAM_DATA bool8 gUnusedBikeCameraAheadPanback = FALSE;
 
@@ -42,11 +44,12 @@ static IWRAM_DATA s16 sHorizontalCameraPan;
 static IWRAM_DATA s16 sVerticalCameraPan;
 static IWRAM_DATA u8 gUnknown_03000E2C;
 static IWRAM_DATA void (*sFieldCameraPanningCallback)(void);
-static IWRAM_DATA u8 sBG3Parallax;
 
 struct CameraObject gFieldCamera;
 u16 gTotalCameraPixelOffsetY;
 u16 gTotalCameraPixelOffsetX;
+
+extern const u32 gChampionStadiumBg[];
 
 // text
 static void move_tilemap_camera_to_upper_left_corner_(struct FieldCameraOffset *cameraOffset)
@@ -94,10 +97,10 @@ void FieldUpdateBgTilemapScroll(void)
     }
     else
     {
-        u32 px = r5 >> 2;
-        u32 py = r4 >> 2;
-        SetGpuReg(REG_OFFSET_BG3HOFS, px - 0);
-        SetGpuReg(REG_OFFSET_BG3VOFS, py - 0);
+        u32 px = (gSaveBlock1Ptr->pos.x * 3) + (gFieldCamera.x >> 4);
+        u32 py = (gSaveBlock1Ptr->pos.y * 3) + (gFieldCamera.y >> 4);
+        SetGpuReg(REG_OFFSET_BG3HOFS, px - 16);
+        SetGpuReg(REG_OFFSET_BG3VOFS, py - 12);
     }
 }
 
@@ -133,6 +136,9 @@ static void DrawWholeMapViewInternal(int x, int y, const struct MapLayout *mapLa
                 temp -= 32;
             DrawMetatileAt(mapLayout, r6 + temp, x + j / 2, y + i / 2);
         }
+    }
+    if (sBG3Parallax) {
+        LZDecompressWram(gChampionStadiumBg, gBGTilemapBuffers3);
     }
 }
 
@@ -529,4 +535,11 @@ static void CameraPanningCB_PanAhead(void)
             sVerticalCameraPan -= 2;
         }
     }
+}
+
+void SetupChampionBackgroundPanning()
+{
+    sBG3Parallax = TRUE;
+    // LZDecompressWram(gChampionStadiumBg, gBGTilemapBuffers3);
+    // CopyBgTilemapBufferToVram(3);
 }
