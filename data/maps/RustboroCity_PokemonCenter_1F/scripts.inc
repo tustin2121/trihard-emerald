@@ -129,7 +129,7 @@ RustboroCity_Mart_EventScript_214F74:: @ 8214F74
 	msgbox RustboroCity_Mart_Text_214F8F, MSGBOX_NPC
 	end
 RustboroCity_Mart_Text_214F8F: @ 8214F8F
-	.string "I'm bought some Parlyz Heals and\n"
+	.string "I bought some Paralyze Heal and\n"
 	.string "Antidotes.\p"
 	.string "Just in case I run into Shroomish\n"
 	.string "in Petalburg Woods.$"

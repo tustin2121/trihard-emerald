@@ -7,6 +7,33 @@
     ],
     "connections": null,
     "coord_events": [
+        {
+            "elevation": 0,
+            "script": "EverGrandeCity_ChampionsRoom_TriggerScript_GoWave",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 8,
+            "y": 23
+        },
+        {
+            "elevation": 0,
+            "script": "EverGrandeCity_ChampionsRoom_TriggerScript_GoWave",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 9,
+            "y": 23
+        },
+        {
+            "elevation": 0,
+            "script": "EverGrandeCity_ChampionsRoom_TriggerScript_GoWave",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 10,
+            "y": 23
+        }
     ],
     "id": "MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM",
     "layout": "LAYOUT_EVER_GRANDE_CITY_CHAMPIONS_ROOM",

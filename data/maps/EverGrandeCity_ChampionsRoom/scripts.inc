@@ -25,6 +25,11 @@ EverGrandeCity_ChampionsRoom_EventScript_228A0F:: @ 8228A0F
 
 EverGrandeCity_ChampionsRoom_OnResume:
 	callnative SetupChampionBackgroundPanning
+	compare VAR_TEMP_0, 1
+	goto_if_eq EverGrandeCity_ChampionsRoom_OnResume_Wave
+	end
+EverGrandeCity_ChampionsRoom_OnResume_Wave:
+	callnative DoChampWaveFlags
 	end
 
 @ -----------------------------------------------------
@@ -356,4 +361,10 @@ EverGrandeCity_ChampionsRoom_Text_2294F5: @ 82294F5
 	.string "It can't be helped if that's the rule.\p"
 	.string "{PLAYER}, way to go!\n"
 	.string "Congratulations!$"
+
+EverGrandeCity_ChampionsRoom_TriggerScript_GoWave::
+	callnative DoChampWaveFlags
+	setvar VAR_TEMP_0, 1
+	end
+
 

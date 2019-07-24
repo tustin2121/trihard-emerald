@@ -97,10 +97,12 @@ void FieldUpdateBgTilemapScroll(void)
     }
     else
     {
-        u32 px = (gSaveBlock1Ptr->pos.x * 3) + (gFieldCamera.x >> 4);
-        u32 py = (gSaveBlock1Ptr->pos.y * 3) + (gFieldCamera.y >> 4);
-        SetGpuReg(REG_OFFSET_BG3HOFS, px - 16);
-        SetGpuReg(REG_OFFSET_BG3VOFS, py - 12);
+        u16 px = gTotalCameraPixelOffsetX + 0x600;
+        u16 py = gTotalCameraPixelOffsetY;
+        px = 0x108 - (px / 6);
+        py = 0x158 - (py / 4);
+        SetGpuReg(REG_OFFSET_BG3HOFS, px);
+        SetGpuReg(REG_OFFSET_BG3VOFS, py);
     }
 }
 
