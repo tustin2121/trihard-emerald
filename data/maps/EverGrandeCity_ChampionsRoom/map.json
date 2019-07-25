@@ -14,7 +14,7 @@
             "var": "VAR_TEMP_0",
             "var_value": "0",
             "x": 8,
-            "y": 23
+            "y": 25
         },
         {
             "elevation": 0,
@@ -23,7 +23,7 @@
             "var": "VAR_TEMP_0",
             "var_value": "0",
             "x": 9,
-            "y": 23
+            "y": 25
         },
         {
             "elevation": 0,
@@ -32,7 +32,34 @@
             "var": "VAR_TEMP_0",
             "var_value": "0",
             "x": 10,
-            "y": 23
+            "y": 25
+        },
+        {
+            "elevation": 0,
+            "script": "EverGrandeCity_ChampionsRoom_TriggerScript_GoChampion",
+            "type": "trigger",
+            "var": "VAR_TEMP_1",
+            "var_value": "0",
+            "x": 8,
+            "y": 11
+        },
+        {
+            "elevation": 0,
+            "script": "EverGrandeCity_ChampionsRoom_TriggerScript_GoChampion",
+            "type": "trigger",
+            "var": "VAR_TEMP_1",
+            "var_value": "0",
+            "x": 9,
+            "y": 11
+        },
+        {
+            "elevation": 0,
+            "script": "EverGrandeCity_ChampionsRoom_TriggerScript_GoChampion",
+            "type": "trigger",
+            "var": "VAR_TEMP_1",
+            "var_value": "0",
+            "x": 10,
+            "y": 11
         }
     ],
     "id": "MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM",
@@ -70,7 +97,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_CHAMPIONS_ROOM_BIRCH",
-            "graphics_id": "EVENT_OBJ_GFX_PROF_BIRCH",
+            "graphics_id": "EVENT_OBJ_GFX_DAD",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -78,7 +105,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 9,
-            "y": 20
+            "y": 31
         }
     ],
     "region_map_section": "MAPSEC_EVER_GRANDE_CITY",
@@ -90,7 +117,7 @@
             "dest_warp_id": 1,
             "elevation": 3,
             "x": 9,
-            "y": 28
+            "y": 34
         },
         {
             "dest_map": "MAP_EVER_GRANDE_CITY_HALL_OF_FAME",

@@ -3929,3 +3929,38 @@ void DoChampWaveFlags()
 #undef TILE_OFFSET
 #undef TILE_POSX
 #undef TILE_POSY
+
+/* 
+void Task_ChampCheer(u8 taskId)
+{
+    u32 rand;
+    u8 i, idx;
+    u16 tile;
+    
+    if (!sBG3Parallax)
+    {
+        DestroyTask(taskId);
+        return;
+    }
+    gTasks[taskId].data[0]++;
+    if (gTasks[taskId].data[0] % 8 != 0) return; //only change every 8 frames
+    rand = Random32();
+    
+    gTasks[taskId].data[1] = (gTasks[taskId].data[1]+1) % 23;
+    for (i = 0; i < 63; i++)
+    {
+        idx = ((i + gTasks[taskId].data[1]) * 23) % 0x400;
+        tile = gBGTilemapBuffers3[idx];
+        // if (tile < 0x100 || tile >= 0x140) continue; //Only do crowds
+        // if ((rand >> (i%31)) & 1) continue; //only switch if randomly determined
+        tile ^= (tile & 0x4); //switch between sitting and standing
+        gBGTilemapBuffers3[idx] = tile;
+    }
+    schedule_bg_copy_tilemap_to_vram(3);
+}
+
+void DoChampCheer()
+{
+    CreateTask(Task_ChampCheer, 0xFF);
+}
+*/

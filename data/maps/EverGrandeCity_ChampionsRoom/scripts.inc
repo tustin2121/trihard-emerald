@@ -23,6 +23,12 @@ EverGrandeCity_ChampionsRoom_EventScript_228A0F:: @ 8228A0F
 
 @ -----------------------------------------------------
 
+EverGrandeCity_ChampionsRoom_FrameTable: @ 8228A14
+	@ map_script_2 VAR_TEMP_1, 0, EverGrandeCity_ChampionsRoom_EventScript_228A1E
+	.2byte 0
+
+@ -----------------------------------------------------
+
 EverGrandeCity_ChampionsRoom_OnResume:
 	callnative SetupChampionBackgroundPanning
 	compare VAR_TEMP_0, 1
@@ -33,41 +39,206 @@ EverGrandeCity_ChampionsRoom_OnResume_Wave:
 	end
 
 @ -----------------------------------------------------
+@ Triggers
 
-EverGrandeCity_ChampionsRoom_FrameTable: @ 8228A14
-	@ map_script_2 VAR_TEMP_1, 0, EverGrandeCity_ChampionsRoom_EventScript_228A1E
-	.2byte 0
+EverGrandeCity_ChampionsRoom_TriggerScript_GoWave::
+	callnative DoChampWaveFlags
+	playse SE_DENDOU
+	setvar VAR_TEMP_0, 1
+	end
 
-EverGrandeCity_ChampionsRoom_EventScript_228A1E:: @ 8228A1E
+
+EverGrandeCity_ChampionsRoom_TriggerScript_GoChampion::
 	lockall
-	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_2725C1
-	waitmovement 0
-	delay 40
-	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_228A42
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	subvar VAR_INTERACT_X, 8
+	special SpawnCameraObject
+	selectpointer EverGrandeCity_ChampionsRoom_MovementTable_Player, VAR_INTERACT_X
+	applymovement EVENT_OBJ_ID_PLAYER, 0
+	selectpointer EverGrandeCity_ChampionsRoom_MovementTable_Camera, VAR_INTERACT_X
+	applymovement EVENT_OBJ_ID_CAMERA, 0
 	waitmovement 0
 	setvar VAR_TEMP_1, 1
-	goto EverGrandeCity_ChampionsRoom_EventScript_228A45
-    releaseall
-    end
+	setvar VAR_TEMP_0, 2
+	playbgm MUS_DAIGO, 0
+	call_if_unset FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, EverGrandeCity_ChampionsRoom_EventScript_ChampTalk1
+	call_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, EverGrandeCity_ChampionsRoom_EventScript_ChampTalk2
+	goto EverGrandeCity_ChampionsRoom_EventScript_Battle
+	end
 
-EverGrandeCity_ChampionsRoom_Movement_228A42: @ 8228A42
+.align 2
+EverGrandeCity_ChampionsRoom_MovementTable_Player:
+	.4byte EverGrandeCity_ChampionsRoom_Movement_Player1
+	.4byte EverGrandeCity_ChampionsRoom_Movement_Player2
+	.4byte EverGrandeCity_ChampionsRoom_Movement_Player3
+	.4byte 0
+EverGrandeCity_ChampionsRoom_MovementTable_Camera:
+	.4byte EverGrandeCity_ChampionsRoom_Movement_Camera1
+	.4byte EverGrandeCity_ChampionsRoom_Movement_Camera2
+	.4byte EverGrandeCity_ChampionsRoom_Movement_Camera3
+	.4byte 0
+
+EverGrandeCity_ChampionsRoom_Movement_Player1: @ 82725C1
+	walk_right
+	walk_up
 	walk_up
 	walk_up
 	step_end
+EverGrandeCity_ChampionsRoom_Movement_Camera1:
+	walk_slow_diag_northeast
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	step_end
+EverGrandeCity_ChampionsRoom_Movement_Player2: @ 82725C1
+	delay_16
+	walk_up
+	walk_up
+	walk_up
+	step_end
+EverGrandeCity_ChampionsRoom_Movement_Camera2:
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	step_end
+EverGrandeCity_ChampionsRoom_Movement_Player3: @ 82725C1
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	step_end
+EverGrandeCity_ChampionsRoom_Movement_Camera3:
+	walk_slow_diag_northwest
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	walk_slow_up
+	step_end
 
-EverGrandeCity_ChampionsRoom_EventScript_228A45:: @ 8228A45
-	playbgm MUS_DAIGO, 0
-	msgbox EverGrandeCity_ChampionsRoom_Text_228C4C, MSGBOX_DEFAULT
+EverGrandeCity_ChampionsRoom_EventScript_ChampTalk1:
+	msgbox EverGrandeCity_ChampionsRoom_Text_ChampTalk1, MSGBOX_DIALOG
+	return
+EverGrandeCity_ChampionsRoom_Text_ChampTalk1:
+	.string "Wallace: Welcome, {PLAYER}.\p"
+	.string "I've heard many things about you over\n"
+	.string "the course of the last week.\p"
+	.string "The news media says you used to be with\n"
+	.string "Team Aqua, and that you're attempting\l"
+	.string "to atone for that sin.\p"
+	.string "There was another contestant who even\n"
+	.string "said you helped stop the Sootopolis\l"
+	.string "City incident.\p"
+	.string "I don't know how true these rumors are,\n"
+	.string "but they make for facinating TV.\p"
+	.string "You did manage to make it this far\n"
+	.string "in the Championship Competition.\p"
+	.string "Tell me. What drives you so?\p"
+	.string "Why do you push your Pokémon to the\n"
+	.string "edge for this title?\p"
+	.string "Is it power you seek?\n"
+	.string "Validation, perhaps?\l"
+	.string "A sense of self-worth?\p"
+	.string "Hm. Perhaps I've hit a nerve.\n"
+	.string "I see the impatience in your face.\p"
+	.string "Very well, I suppose I've talked\n"
+	.string "long enough.\p"
+	.string "The people in this stadium are not here\n"
+	.string "to hear me talk.\l"
+	.string "{PLAY_SE SE_DENDOU}They are here to see a battle!\p"
+	.string "Let's see which of us can most elegantly\n"
+	.string "dance atop the Champion's Plinth!\p"
+	.string "EN GARDE!$"
+	
+
+EverGrandeCity_ChampionsRoom_EventScript_ChampTalk2:
+	msgbox EverGrandeCity_ChampionsRoom_Text_ChampTalk2, MSGBOX_DIALOG
+	return
+EverGrandeCity_ChampionsRoom_Text_ChampTalk2: @ 8228C4C
+	.string "Wallace: Welcome, {PLAYER}.\p"
+	.string "That incident in Sootopolis City…\n"
+	.string "That was superb work, putting an end\l"
+	.string "to that crisis all by yourself.\p"
+	.string "You overcame that difficult situation\n"
+	.string "by working as one with your Pokémon.\p"
+	.string "After that showing, frankly it's no\n"
+	.string "surprise that you made it this far in\l"
+	.string "the Championship Competition.\p"
+	.string "Tell me. What drives you so?\p"
+	.string "Why do you push your Pokémon to the\n"
+	.string "edge for this title?\p"
+	.string "Is it power you seek?\n"
+	.string "Validation, perhaps?\l"
+	.string "A sense of self-worth?\p"
+	.string "Perhaps you're just looking for the next\n"
+	.string "thrill after taking out those beasts!\p"
+	.string "I see the impatience in your face.\p"
+	.string "Very well, I suppose I've talked\n"
+	.string "long enough.\p"
+	.string "The people in this stadium are not here\n"
+	.string "to hear me talk.\l"
+	.string "{PLAY_SE SE_DENDOU}They are here to see a battle!\p"
+	.string "Let's see which of us can most elegantly\n"
+	.string "dance atop the Champion's Plinth!\p"
+	.string "EN GARDE!$"
+
+EverGrandeCity_ChampionsRoom_EventScript_Battle:: @ 8228A45
+	setflag FLAG_DEATH_PREVENT
+	savebgm MUS_KACHI5
+	special RemoveCameraObject
 	trainerbattle_no_intro TRAINER_WALLACE, EverGrandeCity_ChampionsRoom_Text_228EAC
-	goto EverGrandeCity_ChampionsRoom_EventScript_228A61
+	goto EverGrandeCity_ChampionsRoom_EventScript_AfterMath
+	end
+EverGrandeCity_ChampionsRoom_Text_228EAC: @ 8228EAC
+	.string "I, the champion, fall in defeat…\p"
+	.string "That was wonderful work.\n"
+	.string "You were elegant, infuriatingly so.\l"
+	.string "And yet it was utterly glorious!\p"
+	.string "Kudos to you, {PLAYER}!\p"
+	.string "You are a truly noble Pokémon\n"
+	.string "Trainer!$"
+
+EverGrandeCity_ChampionsRoom_EventScript_AfterMath:: @ 8228A61
+	special SpawnCameraObject
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp1
+	applymovement EVENT_OBJ_ID_CAMERA, Common_Movement_WalkDown1
+	applymovement 1, Common_Movement_WalkDown1
+	waitmovement 0
+	special RemoveCameraObject
+	msgbox EverGrandeCity_ChampionsRoom_Text_228F66, MSGBOX_DIALOG
+	@ TODO either walk up to the cheering crowds, or walk down right away
+	@ Walk down to cheering, meet up with Dad at the bottom of the walk
+	@ Dad congratulates you.
+	@ Your Team Aqua friends are also there possibly, with high enough friendship.
+	warp MAP_EVER_GRANDE_CITY_HALL_OF_FAME, 255, 7, 16
+	waitstate
+	releaseall
 	end
 
-EverGrandeCity_ChampionsRoom_EventScript_228A61:: @ 8228A61
+EverGrandeCity_ChampionsRoom_Text_228F66: @ 8228F66
+	.string "Wallace: The Pokémon you sent into\n"
+	.string "battle…\p"
+	.string "At times they danced like a spring\n"
+	.string "breeze, and at times they struck\l"
+	.string "like lightning.\p"
+	.string "It was with light, yet surefooted,\n"
+	.string "elegance that you led your Pokémon.\p"
+	.string "Even I felt bedazzled by your\n"
+	.string "masterful performance!\p"
+	.string "You now stand at the glorious peak\n"
+	.string "of the Pokémon League.\p"
+	.string "I now proclaim you to be the new\n"
+	.string "Hoenn region Champion!$"
+
+
+
 	playse SE_DOOR
 	setmetatile 6, 1, 838, 0
 	setmetatile 6, 2, 839, 0
 	special DrawWholeMapView
-	msgbox EverGrandeCity_ChampionsRoom_Text_228F66, MSGBOX_DEFAULT
+	
 	closemessage
 	playse SE_DOOR
 	checkplayergender
@@ -243,52 +414,8 @@ EverGrandeCity_ChampionsRoom_Movement_228C43: @ 8228C43
 	walk_in_place_fastest_left
 	step_end
 
-EverGrandeCity_ChampionsRoom_Text_228C4C: @ 8228C4C
-	.string "WALLACE: Welcome, {PLAYER}.\p"
-	.string "That incident in Sootopolis City…\n"
-	.string "That was superb work, putting an end\l"
-	.string "to that crisis all by yourself.\p"
-	.string "Oops!\p"
-	.string "It wouldn't be fair to say that you\n"
-	.string "alone ended the crisis.\p"
-	.string "You overcame that difficult situation\n"
-	.string "by working as one with your Pokémon.\p"
-	.string "We TRAINERS raise Pokémon by giving\n"
-	.string "them items and by teaching them new\l"
-	.string "techniques for battle.\p"
-	.string "But we ourselves also learn many\n"
-	.string "things from Pokémon.\p"
-	.string "And this is where your achievements\n"
-	.string "are put to the test against what\l"
-	.string "others like you have achieved.\p"
-	.string "Now!\p"
-	.string "Who can most elegantly dance with\n"
-	.string "their Pokémon in Hoenn?\p"
-	.string "Show me right here and now!$"
 
-EverGrandeCity_ChampionsRoom_Text_228EAC: @ 8228EAC
-	.string "I, the CHAMPION, fall in defeat…\p"
-	.string "That was wonderful work.\n"
-	.string "You were elegant, infuriatingly so.\l"
-	.string "And yet it was utterly glorious!\p"
-	.string "Kudos to you, {PLAYER}!\p"
-	.string "You are a truly noble Pokémon\n"
-	.string "TRAINER!$"
 
-EverGrandeCity_ChampionsRoom_Text_228F66: @ 8228F66
-	.string "WALLACE: The Pokémon you sent into\n"
-	.string "battle…\p"
-	.string "At times they danced like a spring\n"
-	.string "breeze, and at times they struck\l"
-	.string "like lightning.\p"
-	.string "It was with light, yet surefooted,\n"
-	.string "elegance that you led your Pokémon.\p"
-	.string "Even I felt bedazzled by your\n"
-	.string "masterful performance!\p"
-	.string "You now stand at the glorious peak\n"
-	.string "of the Pokémon League.\p"
-	.string "I now proclaim you to be the new\n"
-	.string "Hoenn region…$"
 
 EverGrandeCity_ChampionsRoom_Text_2290CA: @ 82290CA
 	.string "May: {PLAYER}!\p"
@@ -362,9 +489,5 @@ EverGrandeCity_ChampionsRoom_Text_2294F5: @ 82294F5
 	.string "{PLAYER}, way to go!\n"
 	.string "Congratulations!$"
 
-EverGrandeCity_ChampionsRoom_TriggerScript_GoWave::
-	callnative DoChampWaveFlags
-	setvar VAR_TEMP_0, 1
-	end
 
 

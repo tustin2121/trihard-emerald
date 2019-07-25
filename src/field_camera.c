@@ -100,7 +100,7 @@ void FieldUpdateBgTilemapScroll(void)
         u16 px = gTotalCameraPixelOffsetX + 0x600;
         u16 py = gTotalCameraPixelOffsetY;
         px = 0x108 - (px / 6);
-        py = 0x158 - (py / 4);
+        py = 0x170 - (py / 4);
         SetGpuReg(REG_OFFSET_BG3HOFS, px);
         SetGpuReg(REG_OFFSET_BG3VOFS, py);
     }

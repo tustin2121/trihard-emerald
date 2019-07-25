@@ -1111,7 +1111,7 @@ EventScript_SetupTrihardEmeraldNewGame::
 	giveitem ITEM_MALASADA, 3
 	end
 
-EverGrandeCity_HallOfFame_EventScript_2717C1:: @ 82717C1
+EverGrandeCity_HallOfFame_SetChampionFlags:: @ 82717C1
 	special sub_81AFDD0
 	setflag FLAG_IS_CHAMPION
 	call EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries
@@ -2050,13 +2050,6 @@ Route121_Movement_2725B8: @ 82725B8
 EverGrandeCity_SidneysRoom_Movement_2725BA: @ 82725BA
 	walk_up
 	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-EverGrandeCity_ChampionsRoom_Movement_2725C1: @ 82725C1
 	walk_up
 	walk_up
 	walk_up
