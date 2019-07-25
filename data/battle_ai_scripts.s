@@ -22,7 +22,7 @@ gBattleAI_ScriptsTable:: @ 82DBEF8
 	.4byte AI_DoubleBattle
 	.4byte AI_HPAware
 	.4byte AI_Unknown
-	.4byte AI_Ret
+	.4byte AI_RagingLegendary
 	.4byte AI_Ret
 	.4byte AI_Ret
 	.4byte AI_Ret
@@ -3388,6 +3388,23 @@ AI_FirstBattle:
 
 AI_FirstBattle_Flee:
 	flee
+
+@ -----------------------------------------------------
+AI_RagingLegendary:
+	if_move MOVE_REST, AI_RagingLegendary_DiscourageRestWhenHighHP
+	if_target_is_ally AI_RagingLegendary_UseMultiHitOnAlly
+	end
+
+AI_RagingLegendary_UseMultiHitOnAlly:
+	if_move MOVE_SURF, Score_Plus5
+	if_move MOVE_EARTHQUAKE, Score_Plus5
+	if_move MOVE_MAGNITUDE, Score_Plus5
+	end
+
+AI_RagingLegendary_DiscourageRestWhenHighHP:
+	if_hp_more_than AI_USER, 70, Score_Minus3
+	if_hp_more_than AI_USER, 30, Score_Minus1
+	end
 
 AI_Ret:
 	end

@@ -39,6 +39,7 @@ LilycoveCity_PokemonCenter_1F_NurseScript:: @ 821C5E8
 LilycoveCity_PokemonCenter_1F_LittleKidMartScript::
 	lock
 	faceplayer
+	markasdialog
 	checkplayergender
 	compare VAR_RESULT, MALE
 	call_if_eq LilycoveCity_PokemonCenter_1F_LittleKidMartScript_WelcomeM

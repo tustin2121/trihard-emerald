@@ -359,18 +359,94 @@ LittlerootTown_PlayersHouse_1F_Text_DadIntroGoPlay:
 @ -----------------------------------------------------
 @ Event Object: Dad's Letter
 
-LittlerootTown_PlayerHouse_1F_EventScript_Letter::
-	
-	@ setflag FLAG_DAILY_DADS_LETTER_REMOVED
+LittlerootTown_PlayerHouse_1F_OnLoad_Letter::
+	goto_if_unset FLAG_DAD_IS_AT_WORK, LittlerootTown_PlayerHouse_1F_OnLoad_LetterHide
+	call_if_set FLAG_DAILY_DADS_LETTER_REMOVED, LittlerootTown_PlayerHouse_1F_OnLoad_LetterHide
+	end
+LittlerootTown_PlayerHouse_1F_OnLoad_LetterHide:
+	setflag FLAG_TEMP_1E
 	end
 
+LittlerootTown_PlayerHouse_1F_EventScript_Letter::
+	lock
+	faceplayer
+	message LittlerootTown_PlayerHouse_1F_Text_Letter, MSGTYPE_DESCRIBE
+	waitmessage
+	call_if_unset FLAG_DAD_LETTER_STARTER_ITEM, LittlerootTown_PlayerHouse_1F_EventScript_Letter_CheckStarter
+	call_if_unset FLAG_DAD_LETTER_AMULET, LittlerootTown_PlayerHouse_1F_EventScript_Letter_CheckNorman
+	goto LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoStandard
+	end
+LittlerootTown_PlayerHouse_1F_Text_Letter:
+	.string "It's a note from dad:\p$"
+
+LittlerootTown_PlayerHouse_1F_EventScript_Letter_CheckStarter:
+	@ Check if the starter is alive
+	callnative CheckIfStarterAlive
+	compare VAR_RESULT, FALSE
+	goto_if_eq LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoStarter
+	return
+
+LittlerootTown_PlayerHouse_1F_EventScript_Letter_CheckNorman:
+	@ Check if got Norman's badge
+	goto_if_set FLAG_BADGE05_GET, LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoNorman
+	return
+
+
+LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoStarter:
+	bufferspeciesname 0, VAR_0x8000
+	message LittlerootTown_PlayerHouse_1F_Text_LetterStarter1, MSGTYPE_SIGN
+	waitmessage
+	removeobject THIS_EVENT
+	msgbox LittlerootTown_PlayerHouse_1F_Text_LetterStarter2, MSGBOX_DESCRIBE
+	giveitem_std ITEM_FOCUS_BAND, 1
+	setflag FLAG_DAILY_DADS_LETTER_REMOVED
+	setflag FLAG_DAD_LETTER_STARTER_ITEM
+	release
+	end
+LittlerootTown_PlayerHouse_1F_Text_LetterStarter1:
+	.string "Hey, champ, I got something special\n"
+	.string "for your {STR_VAR_1} to wear.\p"
+	.string "I think it'll look good on it, an--”$"
+LittlerootTown_PlayerHouse_1F_Text_LetterStarter2:
+	.string "{PLAYER} crumpled up the letter\n"
+	.string "and threw it out.\p"
+	.string "There's an item under it.$"
+
+
+LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoNorman:
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_SIGN
+	msgbox LittlerootTown_PlayerHouse_1F_Text_LetterNorman1
+	giveitem_std ITEM_AMULET_COIN, 1
+	setflag FLAG_DAILY_DADS_LETTER_REMOVED
+	setflag FLAG_DAD_LETTER_AMULET
+	release
+	end
+LittlerootTown_PlayerHouse_1F_Text_LetterNorman1:
+	.string "Hey, champ, I heard you've been doing\n"
+	.string "well on your journey.\p"
+	.string "I found this in a shop in Rustboro.\n"
+	.string "I hear it brings good luck if you have\l"
+	.string "one of your Pokemon wearing it.\l"
+	.string "{CLEAR_TO 0x80}--Dad$"
+
+
+LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoStandard:
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_SIGN
+	msgbox LittlerootTown_PlayerHouse_1F_Text_LetterCommon
+	applymovement THIS_EVENT, Common_Movement_FaceDown
+	setflag FLAG_DAILY_DADS_LETTER_REMOVED
+	release
+	end
 LittlerootTown_PlayerHouse_1F_Text_LetterCommon:
-	.string "Hey, {PLAYER_buddy}, I have to work late again\n"
-	.string "tonight."
-	.string "Don't forget to get a good night's rest upstairs."
-	.string "Resting often is good for you and your Pokemon; it makes them stronger."
-	.string "There's some containers of my soup in the fridge."
-	.string "Feel free to take some with you when you go out again."
+	.string "Hey, {PLAYER_buddy}, I have to\n"
+	.string "work late again tonight.\p"
+	.string "Don't forget to get a good night's\n"
+	.string "rest upstairs. Resting often is good\l"
+	.string "for you and your Pokemon.\p"
+	.string "There's some soup in the fridge.\n"
+	.string "Take some with you when you go.\l"
+	.string "{CLEAR_TO 0x80}--Dad$"
+
 
 @ -----------------------------------------------------
 @ Signpost: Fridge
@@ -557,14 +633,14 @@ LittlerootTown_BrendansHouse_1F_EventScript_292A43:: @ 8292A43
 	goto LittlerootTown_BrendansHouse_1F_EventScript_292A86
 
 LittlerootTown_BrendansHouse_1F_EventScript_292A51:: @ 8292A51
-	goto_if_set FLAG_MOM_SAYS_GOODBYE, LittlerootTown_BrendansHouse_1F_EventScript_292A86
-	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7D73, MSGBOX_DEFAULT
-	giveitem_std ITEM_AMULET_COIN
-	compare VAR_RESULT, 0
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7DBE, MSGBOX_DEFAULT
-	setflag FLAG_MOM_SAYS_GOODBYE
-	release
+	@ goto_if_set FLAG_MOM_SAYS_GOODBYE, LittlerootTown_BrendansHouse_1F_EventScript_292A86
+	@ msgbox LittlerootTown_PlayersHouse_1F_Text_1F7D73, MSGBOX_DEFAULT
+	@ giveitem_std ITEM_AMULET_COIN
+	@ compare VAR_RESULT, 0
+	@ goto_if_eq Common_EventScript_ShowBagIsFull
+	@ msgbox LittlerootTown_PlayersHouse_1F_Text_1F7DBE, MSGBOX_DEFAULT
+	@ setflag FLAG_MOM_SAYS_GOODBYE
+	@ release
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_292A86:: @ 8292A86

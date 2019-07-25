@@ -1,16 +1,24 @@
 {
     "allow_bike": false,
     "allow_escape_rope": false,
-    "allow_running": false,
+    "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
         {
             "elevation": 3,
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-            "script": "NULL",
+            "script": "SootopolisCity_PokemonCenter_1F_EventScript_PC",
             "type": "sign",
             "x": 3,
             "y": 3
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "SootopolisCity_PokemonCenter_1F_FreePokeballBox",
+            "type": "sign",
+            "x": 13,
+            "y": 4
         }
     ],
     "connections": null,
@@ -40,7 +48,7 @@
             "flag": "0",
             "graphics_id": "EVENT_OBJ_GFX_MART_EMPLOYEE",
             "movement_range_x": 0,
-            "movement_range_y": 0,
+            "movement_range_y": 2,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SootopolisCity_Mart_MartScript",
             "trainer_sight_or_berry_tree_id": "0",
@@ -55,7 +63,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "PokemonCenter_1F_EventScript_FreePokeballCounter",
+            "script": "SootopolisCity_PokemonCenter_1F_FreePokeballCounter",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 15,
@@ -106,7 +114,7 @@
             "graphics_id": "EVENT_OBJ_GFX_FAT_MAN",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "SootopolisCity_Mart_EventScript_PPUpMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
@@ -125,6 +133,45 @@
             "trainer_type": "0",
             "x": 13,
             "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_1E",
+            "graphics_id": "EVENT_OBJ_GFX_TEALA",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "SootopolisCity_PokemonCenter_1F_EventScript_Teala",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 2,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS",
+            "graphics_id": "EVENT_OBJ_GFX_YOUNGSTER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "SootopolisCity_PokemonCenter_1F_EventScript_Youngster",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 14,
+            "y": 11
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS",
+            "graphics_id": "EVENT_OBJ_GFX_TWIN",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "SootopolisCity_PokemonCenter_1F_EventScript_LittleGirl",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 15,
+            "y": 11
         }
     ],
     "region_map_section": "MAPSEC_SOOTOPOLIS_CITY",

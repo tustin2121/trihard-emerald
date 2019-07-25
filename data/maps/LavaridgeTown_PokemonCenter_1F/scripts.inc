@@ -25,10 +25,11 @@ LavaridgeTown_PokemonCenter_1F_NurseScript:: @ 81FFB0E
 LavaridgeTown_Mart_MartScript:: @ 81FF9CE
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart LavaridgeTown_Mart_Pokemart_1FF9E8
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -40,7 +41,7 @@ LavaridgeTown_Mart_Pokemart_1FF9E8: @ 81FF9E8
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
 	.2byte ITEM_BURN_HEAL
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_NONE

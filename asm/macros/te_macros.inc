@@ -6,8 +6,11 @@
 	.endm
 	
 	@ Sets the next messages as a dialogue text box
-	.macro markasdialog
+	.macro markasdialog tailOff=0
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DIALOG
+	.if \tailOff != 0
+	setvar VAR_DIALOG_TAIL_OFFSET, (\tailOff + 32)
+	.endif
 	.endm
 	
 	@ Calls msgbox on a previously selected and loaded string.
@@ -16,7 +19,20 @@
 	.endm
 
 @ Select Pointer Functions
-
+	
+	@ Selects a pointer from the given selection
+	.macro selectpointer_from var:req, entry1:req, entry2:req, entry3=0, entry4=0
+	loadword 0, \entry1 
+	loadword 1, \entry2
+	.if \entry3 != 0
+		loadword 2, \entry3
+	.endif
+	.if \entry4 != 0
+		loadword 3, \entry4
+	.endif
+	selectpointer 0, \var
+	.endm
+	
 	@ Selects a string based on if the player is male or female.
 	.macro selectpointer_ongender forMale:req, forFemale:req
 	loadword MALE, \forMale 
@@ -50,11 +66,6 @@
 	.endm
 
 @ Convienence Macros
-
-	@ Only use this in pokecenter tilesets, on the 2nd floor
-	.macro pokecenter_sitonbed x:req, y:req
-	setmetatileex \x, \y, 0x30C, 4, FALSE  @ set tile to bed, elevation 4
-	.endm
 	
 	.macro trysteal item:req, num:req, flag:req
 	@ If already stolen from, exit
@@ -68,4 +79,9 @@
 	setflag \flag
 	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
 	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, \num
+	.endm
+	
+	.macro faceoriginaldir
+	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
+	waitmovement 0
 	.endm

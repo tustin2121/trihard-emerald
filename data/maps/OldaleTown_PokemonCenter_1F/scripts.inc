@@ -19,11 +19,12 @@ OldaleTown_PokemonCenter_1F_NurseScript:: @ 81FC01A
 OldaleTown_Mart_EventScript_MartScript:: @ 81FC240
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_EventScript_1FC26C
 	pokemart OldaleTown_Mart_Pokemart_1FC260
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 OldaleTown_Mart_Pokemart_1FC260: @ 81FC260
@@ -37,7 +38,7 @@ OldaleTown_Mart_Pokemart_1FC260: @ 81FC260
 
 OldaleTown_Mart_EventScript_1FC26C:: @ 81FC26C
 	pokemart OldaleTown_Mart_Pokemart_1FC27C
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 	.align 2

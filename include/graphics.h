@@ -4963,4 +4963,6 @@ extern const u16 gPokenavConditionCancel_Pal[];
 extern const u32 gUnknown_08DE34B8[];
 extern const u16 gUnknown_08DE3398[];
 
+extern const u32 gChampionStadiumBg[];
+
 #endif //GUARD_GRAPHICS_H

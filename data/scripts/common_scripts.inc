@@ -11,6 +11,11 @@ Common_EventScript_ReleaseEnd::
 Common_EventScript_ReleaseAllEnd::
 	releaseall
 	end
+	
+Common_EventScript_CloseReleaseAllEnd::
+	closemessage
+	releaseall
+	end
 
 @ Emotes
 
@@ -18,12 +23,26 @@ Common_Movement_QuestionMark:: @ 8272596
 	emote_question_mark
 	step_end
 
-Common_Movement_ExclamationMark: @ 8272598
+Common_Movement_ExclamationMark:: @ 8272598
 	emote_exclamation_mark
+	step_end
+	
+Common_Movement_ExclamationMarkAndWait:: @ 8272598
+	emote_exclamation_mark
+	delay_16
+	delay_16
+	delay_16
 	step_end
 
 Common_Movement_Angry: @ 8272598
 	emote_angry
+	step_end
+
+Common_Movement_AngryAndWait:: @ 8272598
+	emote_angry
+	delay_16
+	delay_16
+	delay_16
 	step_end
 
 Common_Movement_AngryReaction: @ 8272598
@@ -86,6 +105,30 @@ Common_Movement_FaceUp: @ 82725B2
 	face_up
 	step_end
 
+Common_Movement_BackOffUp1: @ 82725C9
+	lock_facing_direction
+	walk_up
+	unlock_facing_direction
+	step_end
+
+Common_Movement_BackOffDown1:
+	lock_facing_direction
+	walk_down
+	unlock_facing_direction
+	step_end
+
+Common_Movement_BackOffLeft1:
+	lock_facing_direction
+	walk_left
+	unlock_facing_direction
+	step_end
+
+Common_Movement_BackOffRight1:
+	lock_facing_direction
+	walk_right
+	unlock_facing_direction
+	step_end
+
 Common_Movement_WalkUp1: @ 82725C9
 	walk_up
 	step_end
@@ -99,6 +142,26 @@ Common_Movement_WalkLeft1:
 	step_end
 
 Common_Movement_WalkRight1:
+	walk_right
+	step_end
+
+Common_Movement_WalkUp2: @ 82725C9
+	walk_up
+	walk_up
+	step_end
+
+Common_Movement_WalkDown2:
+	walk_down
+	walk_down
+	step_end
+
+Common_Movement_WalkLeft2:
+	walk_left
+	walk_left
+	step_end
+
+Common_Movement_WalkRight2:
+	walk_right
 	walk_right
 	step_end
 
@@ -171,6 +234,13 @@ gText_PokemonCenterSign:: @ 8272B9E
 	.string "“Rejuvenate your tired partners!”\n"
 	.string "{PLACE}Pokémon Center$"
 
+Common_EventScript_BattleTentClosed::
+	msgbox gText_BattleTentClosed, MSGBOX_SIGN
+	end
+gText_BattleTentClosed:
+	.string "{CENTER}Closed for Renovations$"
+
+
 @ Music/Sound Scripts
 
 Common_EventScript_StartBrineyBoatSequence:: @ 82720A0
@@ -219,6 +289,10 @@ Common_EventScript_NameReceivedPokemon:: @ 82723DD
 	waitstate
 	return
 
+Common_EventScript_SetWeatherAlternating:: @ 827207A
+	setweather WEATHER_ALTERNATING
+	return
+
 Common_ShowEasyChatScreen:: @ 8271E7C
 	fadescreen 1
 	special ShowEasyChatScreen
@@ -265,6 +339,30 @@ LavaridgeTown_EventScript_271F19:: @ 8271F19
 	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE
 	return
 
+Common_EventScript_IncrementBadgeCount::
+	addvar VAR_NUM_BADGES, 1
+	compare VAR_NUM_BADGES, 4
+	call_if_eq PetalburgCity_Gym_EventScript_OpenGym
+	return
+
+Common_EventScript_ClearSceneFlags::
+	clearflag FLAG_SCENE_0
+	clearflag FLAG_SCENE_1
+	clearflag FLAG_SCENE_2
+	clearflag FLAG_SCENE_3
+	clearflag FLAG_SCENE_4
+	clearflag FLAG_SCENE_5
+	clearflag FLAG_SCENE_6
+	clearflag FLAG_SCENE_7
+	clearflag FLAG_SCENE_8
+	clearflag FLAG_SCENE_9
+	clearflag FLAG_SCENE_A
+	clearflag FLAG_SCENE_B
+	clearflag FLAG_SCENE_C
+	clearflag FLAG_SCENE_D
+	clearflag FLAG_SCENE_E
+	clearflag FLAG_SCENE_F
+	return
 
 Common_EventScript_FailTheftNoRoom::
 	msgbox Common_Text_FailTheftNoRoom, MSGBOX_DEFAULT

@@ -215,25 +215,43 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Grunt13[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_Logan_SternMugging[] = {
+    {
+        .iv = 0,
+        .lvl = 14,
+        .species = SPECIES_POOCHYENA,
+    },
+    {
+        .iv = 0,
+        .lvl = 14,
+        .species = SPECIES_WINGULL,
+    },
+    {
+        .iv = 0,
+        .lvl = 15,
+        .species = SPECIES_SEEDOT,
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_Grunt14[] = {
     {
-    .iv = 0,
-    .lvl = 15,
-    .species = SPECIES_CARVANHA,
+        .iv = 0,
+        .lvl = 15,
+        .species = SPECIES_CARVANHA,
     }
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Grunt15[] = {
     {
-    .iv = 0,
-    .lvl = 14,
-    .species = SPECIES_ZUBAT,
+        .iv = 0,
+        .lvl = 14,
+        .species = SPECIES_ZUBAT,
     },
     {
-    .iv = 0,
-    .lvl = 14,
-    .species = SPECIES_CARVANHA,
-    }
+        .iv = 0,
+        .lvl = 14,
+        .species = SPECIES_CARVANHA,
+}
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Grunt16[] = {

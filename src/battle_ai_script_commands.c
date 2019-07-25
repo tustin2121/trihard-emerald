@@ -364,6 +364,8 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves)
         AI_THINKING_STRUCT->aiFlags = GetAiScriptsInRecordedBattle();
     else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
         AI_THINKING_STRUCT->aiFlags = AI_SCRIPT_SAFARI;
+    else if (gBattleTypeFlags & BATTLE_TYPE_RAGING_LEGENDARY)
+        AI_THINKING_STRUCT->aiFlags = AI_SCRIPT_RAGING_LEGENDARY | AI_SCRIPT_HP_AWARE;
     else if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
         AI_THINKING_STRUCT->aiFlags = AI_SCRIPT_ROAMING;
     else if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)

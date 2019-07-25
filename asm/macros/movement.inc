@@ -130,3 +130,7 @@
 
 	enum_start 0xfe
 	create_movement_action step_end
+
+.macro lying_on_ground
+nurse_joy_bow
+.endm

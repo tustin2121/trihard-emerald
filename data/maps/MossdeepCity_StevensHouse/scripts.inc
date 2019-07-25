@@ -46,7 +46,7 @@ MossdeepCity_StevensHouse_EventScript_2227CA:: @ 82227CA
 	delay 20
 	applymovement 1, MossdeepCity_StevensHouse_Movement_22283B
 	waitmovement 0
-	setflag FLAG_HIDE_MOSSDEEP_CITY_SCOTT
+	@ setflag FLAG_UNUSED_0x314
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT
 	setvar VAR_STEVENS_HOUSE_STATE, 2
 	releaseall
@@ -85,7 +85,7 @@ MossdeepCity_StevensHouse_EventScript_22285B:: @ 822285B
 
 MossdeepCity_StevensHouse_EventScript_222865:: @ 8222865
 	setvar VAR_TEMP_1, 398
-	givemon SPECIES_BELDUM, 5, ITEM_NONE, 0x0, 0x0, 0
+	givemon SPECIES_BELDUM, 5, ITEM_NONE
 	compare VAR_RESULT, 0
 	goto_if_eq MossdeepCity_StevensHouse_EventScript_222895
 	compare VAR_RESULT, 1

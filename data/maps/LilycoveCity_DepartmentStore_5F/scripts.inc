@@ -19,7 +19,7 @@ LilycoveCity_DepartmentStore_5F_EventScript_21FFA6:: @ 821FFA6
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Dolls
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -47,7 +47,7 @@ LilycoveCity_DepartmentStore_5F_EventScript_21FFDC:: @ 821FFDC
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Cushions
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -72,7 +72,7 @@ LilycoveCity_DepartmentStore_5F_EventScript_22000A:: @ 822000A
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Posters
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -97,7 +97,7 @@ LilycoveCity_DepartmentStore_5F_EventScript_22003A:: @ 822003A
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Mats
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

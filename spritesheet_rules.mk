@@ -367,6 +367,12 @@ $(EVENTOBJGFXDIR)/people/team_aqua/aqua_member_f.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/people/team_aqua/aqua_member_m.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
+$(EVENTOBJGFXDIR)/people/team_aqua/aqua_formermember_f.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(EVENTOBJGFXDIR)/people/team_aqua/aqua_formermember_m.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
 $(EVENTOBJGFXDIR)/people/team_aqua/archie.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
@@ -375,6 +381,9 @@ $(EVENTOBJGFXDIR)/people/team_magma/magma_member_f.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/team_magma/magma_member_m.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(EVENTOBJGFXDIR)/people/team_magma/magma_formermember_m.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/team_magma/maxie.4bpp: %.4bpp: %.png
@@ -608,6 +617,9 @@ $(EVENTOBJGFXDIR)/people/wallace.4bpp: %.4bpp: %.png
 
 $(EVENTOBJGFXDIR)/people/wally.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/logan.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/woman_1.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
@@ -807,6 +819,8 @@ $(EVENTOBJGFXDIR)/misc/cuttable_tree.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/misc/mr_brineys_boat.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(EVENTOBJGFXDIR)/misc/letter.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
 $(EVENTOBJGFXDIR)/effects/arrow.4bpp: %.4bpp: %.png

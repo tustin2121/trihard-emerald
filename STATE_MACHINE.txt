@@ -1,0 +1,85 @@
+VAR_LOGAN_STATE :=
+	0 = Not met Logan
+	1 = Logan has been saved in Petalburg, lying in bed in Petalburg
+	2 = Logan has run away from Petalburg, trigger on Route 104
+	3 = Logan is in Rustboro
+	4 = Logan is in Slateport
+	5 = Logan post-museum
+	6 = 
+
+VAR_AQUA_GIRL_FRIENDSHIP :=
+	0 = No relationship 
+		(+1 in Rustboro Heist)
+	1 = Names have been exchanged
+		(+1 in Slateport)
+	2 = 
+		(+1 in Slateport Museum)
+
+VAR_AQUA_BOY_FRIENDSHIP :=
+	0 = No relationship 
+		(+1 in Rustboro Heist)
+	1 = Names have been exchanged
+		(+1 in Slateport)
+	2 = 
+		(+1 in Slateport Museum)
+
+
+
+VAR_PETALBURG_STATE :=
+	0 = Looking for Logan
+		FLAG_HIDE_PETALBURG_CITY_LOGAN_PARENTS => FALSE
+	1 = Logan is in the tall grass
+		FLAG_HIDE_PETALBURG_CITY_LOGAN_PARENTS => FALSE
+	2 = Logan aftermath cutscene
+	3 = Gym is shut down, Logan in Center
+		FLAG_HIDE_PETALBURG_CITY_LOGAN_PARENTS => TRUE
+		FLAG_HIDE_PETALBURG_CITY_GYM_LOCK => FALSE
+	4 = Gym is still shutdown
+	10 = Gym is open, undefeated
+	11 = Gym is open, defeated
+	12 = Go to 11
+
+
+VAR_RUSTBORO_STATE :=
+	0 = Initial Visit
+	1 = Heist will Trigger
+	2 = Post-Heist, Aquas to give task on trigger
+	3 = Post Task Assignment
+	4 = Post Task Completion, Aquas will recieve player on trigger
+	5 = <skiped>
+	6 = <skiped>
+	7 = Rival PokeNav/Fight Trigger
+	8 = Post Rival Trigger
+
+
+VAR_SLATEPORT_MUSEUM_HEIST_STATE :=
+	0 = Aqua lining up outside museum
+	1 = Aqua inside museum
+	2 = Player breifed on mission
+	3 = Aqua has left, Logan meets on way out
+	4 = Post-Logan
+
+
+VAR_MOSSDEEP_STATE :=
+	0 = Magma Invasion Preamble
+	1 = Magma Invasion Ongoing
+	3 = Post-Invasion State
+	10 = Prepared for Rain
+	11 = Mid-Rain Cutscene
+
+VAR_RAYQUAZA_STATE :=
+	0 = No Rayquaza
+	1 = Kyogre Released, Raining
+	2 = Saw the fighting legendaries
+	3 = Met with Wallace, next stop Sky Pillar
+	4 = Outside Sky Pillar, things getting worse.
+	5 = Rayquaza left Sky Pillar, to Sootopolis!
+	6 = Rayquaza shouted SHUT UP, also post gym
+
+VAR_SKY_PILLAR_STATE :=
+	0 = Initial State
+	1 = Rayquaza Released
+	2 = Post Legendary Battle (will turn player to face up)
+	3 = Post Legendary Battle
+	10 = Initial State, Post Legendary Battle (won by player)
+

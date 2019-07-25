@@ -25,10 +25,11 @@ FallarborTown_PokemonCenter_1F_NurseScript:: @ 8200BE1
 FallarborTown_Mart_MartScript:: @ 81FFCBF
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart FallarborTown_Mart_Pokemart_1FFCD8
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

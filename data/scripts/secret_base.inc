@@ -1,84 +1,16 @@
-Text_274746: @ 8274746
-	.string "If some vines drop down, this tree can\n"
-	.string "be climbed.$"
 
-Text_274779: @ 8274779
-	.string "If some vines drop down, this tree can\n"
-	.string "be climbed.\p"
-	.string "Use the SECRET POWER?$"
 
-Text_2747C2: @ 82747C2
-	.string "A thick vine dropped down!$"
-
-Text_2747DD: @ 82747DD
-	.string "If this clump of grass can be moved,\n"
-	.string "it might be possible to go inside.$"
-
-Text_274825: @ 8274825
-	.string "If this clump of grass can be moved,\n"
-	.string "it might be possible to go inside.\p"
-	.string "Use the SECRET POWER?$"
-
-Text_274883: @ 8274883
-	.string "Discovered a small entrance!$"
-
-SecretBase_RedCave1_Text_2748A0: @ 82748A0
-	.string "Have you made a SECRET BASE already?\p"
-	.string "I went here, there, everywhere before\n"
-	.string "choosing this place.\p"
-	.string "Since you're already here, how would\n"
-	.string "you like to battle?$"
-
-SecretBase_RedCave1_Text_274939: @ 8274939
-	.string "Okay!\n"
-	.string "Here we come!$"
-
-SecretBase_RedCave1_Text_27494D: @ 827494D
-	.string "Hunh?\n"
-	.string "Oh, you can't now…$"
 
 SecretBase_RedCave1_Text_274966:: @ 8274966
 	.string "Waaargh! You're too strong!\n"
 	.string "About me losing… Please keep it secret!$"
 
-SecretBase_RedCave1_Text_2749AA: @ 82749AA
-	.string "What do you think of my SECRET BASE?\n"
-	.string "Come visit me again tomorrow.$"
-
-SecretBase_RedCave1_Text_2749ED: @ 82749ED
-	.string "Have you made a SECRET BASE already?\p"
-	.string "I went here, there, everywhere before\n"
-	.string "choosing this place.\p"
-	.string "Feel free to hang out!$"
-
-SecretBase_RedCave1_Text_274A64: @ 8274A64
-	.string "There're a lot of places where\n"
-	.string "you can make a SECRET BASE.\p"
-	.string "But I like this spot best.\n"
-	.string "Don't you think it's nice?\p"
-	.string "Oh, would you like to have a battle?$"
-
-SecretBase_RedCave1_Text_274AFA: @ 8274AFA
-	.string "Okay, here goes!$"
-
-SecretBase_RedCave1_Text_274B0B: @ 8274B0B
-	.string "Oh…\n"
-	.string "You can't now, okay.$"
 
 SecretBase_RedCave1_Text_274B24:: @ 8274B24
 	.string "Hmmm… It's our loss…\n"
 	.string "But don't tell anyone!\l"
 	.string "It's a confidential secret!$"
 
-SecretBase_RedCave1_Text_274B6C: @ 8274B6C
-	.string "If you're in this area again,\n"
-	.string "I hope you'll visit me.$"
-
-SecretBase_RedCave1_Text_274BA2: @ 8274BA2
-	.string "There're a lot of places where you can\n"
-	.string "make a SECRET BASE.\p"
-	.string "But I like this spot best.\n"
-	.string "Don't you think it's nice?$"
 
 SecretBase_RedCave1_Text_274C13: @ 8274C13
 	.string "This is a popular spot.\n"
@@ -90,7 +22,7 @@ SecretBase_RedCave1_Text_274C13: @ 8274C13
 
 SecretBase_RedCave1_Text_274CB0: @ 8274CB0
 	.string "Okay!\n"
-	.string "I'm going to defend my SECRET BASE!$"
+	.string "I'm going to defend my secret base!$"
 
 SecretBase_RedCave1_Text_274CDA: @ 8274CDA
 	.string "Hunh? Is that right?\n"
@@ -156,7 +88,7 @@ SecretBase_RedCave1_Text_274FFE:: @ 8274FFE
 SecretBase_RedCave1_Text_27502A: @ 827502A
 	.string "Well, anyway, I should go buy some\n"
 	.string "decorations and furniture.\p"
-	.string "I want my SECRET BASE to be a place\n"
+	.string "I want my secret base to be a place\n"
 	.string "other people can enjoy.$"
 
 SecretBase_RedCave1_Text_2750A4: @ 82750A4
@@ -195,7 +127,7 @@ SecretBase_RedCave1_Text_275226: @ 8275226
 	.string "as much.$"
 
 SecretBase_RedCave1_Text_275287: @ 8275287
-	.string "Some people make their SECRET BASES in\n"
+	.string "Some people make their secret baseS in\n"
 	.string "hard-to-find places.\l"
 	.string "Do they want to just lie low?\p"
 	.string "But since you found me, how about we\n"
@@ -212,11 +144,11 @@ SecretBase_RedCave1_Text_275367:: @ 8275367
 	.string "I went down…$"
 
 SecretBase_RedCave1_Text_275374: @ 8275374
-	.string "Where's your SECRET BASE?\n"
+	.string "Where's your secret base?\n"
 	.string "I should go visit you there.$"
 
 SecretBase_RedCave1_Text_2753AB: @ 82753AB
-	.string "Some people make their SECRET BASES in\n"
+	.string "Some people make their secret baseS in\n"
 	.string "hard-to-find places.\l"
 	.string "Do they want to just lie low?$"
 
@@ -228,7 +160,7 @@ SecretBase_RedCave1_Text_275405: @ 8275405
 	.string "In the meantime, want to battle?$"
 
 SecretBase_RedCave1_Text_2754B2: @ 82754B2
-	.string "This is my SECRET BASE.\n"
+	.string "This is my secret base.\n"
 	.string "I can't lose!$"
 
 SecretBase_RedCave1_Text_2754D8: @ 82754D8
@@ -309,42 +241,46 @@ SecretBase_RedCave1_Text_275944: @ 8275944
 	.string "What do you think of my taste?\n"
 	.string "Are you speechless?$"
 
-EventScript_2759F1:: @ 82759F1
-	special GetSecretBaseTypeInFrontOfPlayer
+EventScript_UseSecretPower:: @ 82759F1
+	special GetSecretBaseTypeInFrontOfPlayer @Sets 8007 to base type
 	special CheckPlayerHasSecretBase
 	compare VAR_RESULT, 1
-	goto_if_eq EventScript_275BE8
-	checkpartymove MOVE_SECRET_POWER
+	goto_if_eq EventScript_MoveSecretBase
+	checkpartycapability CAPABILITY_SECRET_POWER
 	setfieldeffectargument 0, VAR_RESULT
 	buffermovename 1, MOVE_SECRET_POWER
-	compare VAR_0x8007, 1
-	goto_if_eq EventScript_275A50
-	compare VAR_0x8007, 2
-	goto_if_eq EventScript_275A50
-	compare VAR_0x8007, 3
-	goto_if_eq EventScript_275A50
-	compare VAR_0x8007, 4
-	goto_if_eq EventScript_275A50
-	compare VAR_0x8007, 5
-	goto_if_eq EventScript_275AA9
-	compare VAR_0x8007, 6
-	goto_if_eq EventScript_275B02
+	selectpointer SecretPower_PointerTable_A, VAR_0x8007
+	goto 0
 	end
+
+.align 2
+SecretPower_PointerTable_A:
+	.4byte EventScript_275A50
+	.4byte EventScript_275A50 @ 1
+	.4byte EventScript_275A50
+	.4byte EventScript_275A50
+	.4byte EventScript_275A50
+	.4byte EventScript_275AA9 @ 5
+	.4byte EventScript_275B02 @ 5
+	.4byte 0
 
 EventScript_275A50:: @ 8275A50
 	lockall
 	compare VAR_RESULT, 6
 	goto_if_eq EventScript_275A91
 	bufferpartymonnick 0, VAR_RESULT
-	msgbox gText_23B704, MSGBOX_YESNO
+	msgbox Text_SecretBase_IndentPrompt, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_275CDE
+	goto_if_eq Common_EventScript_ReleaseAllEnd
 	msgbox Text_MonUsedHM, MSGBOX_DEFAULT
 	closemessage
 	dofieldeffect FLDEFF_USE_SECRET_POWER_CAVE
 	waitstate
 	goto EventScript_275A9B
 	end
+Text_SecretBase_IndentPrompt:: @ 823B704
+	.string "There's a small indent in the wall.\p"
+	.string "Use the SECRET POWER?$"
 
 EventScript_275A86:: @ 8275A86
 	lockall
@@ -354,29 +290,37 @@ EventScript_275A86:: @ 8275A86
 	end
 
 EventScript_275A91:: @ 8275A91
-	msgbox gText_23B6E0, MSGBOX_DEFAULT
+	msgbox Text_SecretBase_IndentCant, MSGBOX_DEFAULT
 	releaseall
 	end
+Text_SecretBase_IndentCant:: @ 823B6E0
+	.string "There's a small indent in the wall.$"
 
 EventScript_275A9B:: @ 8275A9B
-	msgbox gText_23B73E, MSGBOX_DEFAULT
+	msgbox Text_SecretBase_SmallCaveResult, MSGBOX_DEFAULT
 	goto EventScript_275B5B
 	end
+Text_SecretBase_SmallCaveResult:: @ 823B73E
+	.string "Discovered a small cavern!$"
 
 EventScript_275AA9:: @ 8275AA9
 	lockall
 	compare VAR_RESULT, 6
 	goto_if_eq EventScript_275AEA
 	bufferpartymonnick 0, VAR_RESULT
-	msgbox Text_274779, MSGBOX_YESNO
+	msgbox Text_SecretBase_VinesPromp, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_275CDE
+	goto_if_eq Common_EventScript_ReleaseAllEnd
 	msgbox Text_MonUsedHM, MSGBOX_DEFAULT
 	closemessage
 	dofieldeffect FLDEFF_USE_SECRET_POWER_TREE
 	waitstate
 	goto EventScript_275AF4
 	end
+Text_SecretBase_VinesPromp: @ 8274779
+	.string "If some vines drop down, this tree can\n"
+	.string "be climbed.\p"
+	.string "Use the SECRET POWER?$"
 
 EventScript_275ADF:: @ 8275ADF
 	lockall
@@ -386,29 +330,38 @@ EventScript_275ADF:: @ 8275ADF
 	end
 
 EventScript_275AEA:: @ 8275AEA
-	msgbox Text_274746, MSGBOX_DEFAULT
+	msgbox Text_SecretBase_VinesCant, MSGBOX_DEFAULT
 	releaseall
 	end
+Text_SecretBase_VinesCant: @ 8274746
+	.string "If some vines drop down, this tree can\n"
+	.string "be climbed.$"
 
 EventScript_275AF4:: @ 8275AF4
-	msgbox Text_2747C2, MSGBOX_DEFAULT
+	msgbox Text_SecretBase_VinesResult, MSGBOX_DEFAULT
 	goto EventScript_275B5B
 	end
+Text_SecretBase_VinesResult: @ 82747C2
+	.string "A thick vine dropped down!$"
 
 EventScript_275B02:: @ 8275B02
 	lockall
 	compare VAR_RESULT, 6
 	goto_if_eq EventScript_275B43
 	bufferpartymonnick 0, VAR_RESULT
-	msgbox Text_274825, MSGBOX_YESNO
+	msgbox Text_SecretBase_GrassPrompt, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_275CDE
+	goto_if_eq Common_EventScript_ReleaseAllEnd
 	msgbox Text_MonUsedHM, MSGBOX_DEFAULT
 	closemessage
 	dofieldeffect FLDEFF_USE_SECRET_POWER_SHRUB
 	waitstate
 	goto EventScript_275B4D
 	end
+Text_SecretBase_GrassPrompt: @ 8274825
+	.string "If this clump of grass can be moved,\n"
+	.string "it might be possible to go inside.\p"
+	.string "Use the SECRET POWER?$"
 
 EventScript_275B38:: @ 8275B38
 	lockall
@@ -418,14 +371,19 @@ EventScript_275B38:: @ 8275B38
 	end
 
 EventScript_275B43:: @ 8275B43
-	msgbox Text_2747DD, MSGBOX_DEFAULT
+	msgbox Text_SecretBase_GrassCant, MSGBOX_DEFAULT
 	releaseall
 	end
+Text_SecretBase_GrassCant: @ 82747DD
+	.string "If this clump of grass can be moved,\n"
+	.string "it might be possible to go inside.$"
 
 EventScript_275B4D:: @ 8275B4D
-	msgbox Text_274883, MSGBOX_DEFAULT
+	msgbox Text_SecretBase_GrassResult, MSGBOX_DEFAULT
 	goto EventScript_275B5B
 	end
+Text_SecretBase_GrassResult: @ 8274883
+	.string "Discovered a small entrance!$"
 
 EventScript_275B5B:: @ 8275B5B
 	closemessage
@@ -452,6 +410,8 @@ SecretBase_RedCave1_EventScript_275B81:: @ 8275B81
 	playse SE_KAIDAN
 	special ClearAndLeaveSecretBase
 	end
+SecretBase_RedCave1_Text_23B759: @ 823B759
+	.string "Want to make your secret base here?$"
 
 SecretBase_RedCave1_EventScript_275BAB:: @ 8275BAB
 	closemessage
@@ -485,8 +445,8 @@ EventScript_275BDB:: @ 8275BDB
 	waitstate
 	end
 
-EventScript_275BE8:: @ 8275BE8
-	checkpartymove MOVE_SECRET_POWER
+EventScript_MoveSecretBase:: @ 8275BE8
+	checkpartycapability CAPABILITY_SECRET_POWER
 	compare VAR_RESULT, 6
 	goto_if_eq EventScript_275C9A
 	setfieldeffectargument 0, VAR_RESULT
@@ -495,36 +455,48 @@ EventScript_275BE8:: @ 8275BE8
 	special GetSecretBaseNearbyMapName
 	msgbox Text_276A3D, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_275CDE
+	goto_if_eq Common_EventScript_ReleaseAllEnd
 	msgbox Text_2766AA, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_275CDE
+	goto_if_eq Common_EventScript_ReleaseAllEnd
 	fadescreenswapbuffers 1
 	special MoveOutOfSecretBaseFromOutside
 	closemessage
 	fadescreenswapbuffers 0
 	msgbox Text_276A95, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq EventScript_275CDE
+	goto_if_eq Common_EventScript_ReleaseAllEnd
 	bufferpartymonnick 0, VAR_0x8004
 	buffermovename 1, MOVE_SECRET_POWER
 	msgbox Text_MonUsedHM, MSGBOX_DEFAULT
 	closemessage
-	closemessage
-	compare VAR_0x8007, 1
-	goto_if_eq EventScript_275A86
-	compare VAR_0x8007, 2
-	goto_if_eq EventScript_275A86
-	compare VAR_0x8007, 3
-	goto_if_eq EventScript_275A86
-	compare VAR_0x8007, 4
-	goto_if_eq EventScript_275A86
-	compare VAR_0x8007, 5
-	goto_if_eq EventScript_275ADF
-	compare VAR_0x8007, 6
-	goto_if_eq EventScript_275B38
+	selectpointer SecretPower_PointerTable_B, VAR_0x8007
+	goto 0
 	releaseall
 	end
+Text_276A3D: @ 8276A3D
+	.string "You may only make one secret base.\p"
+	.string "Would you like to move from the SECRET\n"
+	.string "BASE near {STR_VAR_1}?$"
+Text_2766AA: @ 82766AA
+	.string "All decorations and furniture in your\n"
+	.string "secret base will be returned to your PC.\p"
+	.string "Is that okay?$"
+Text_276A95: @ 8276A95
+	.string "Moving completed.\p"
+	.string "Would you like to use the SECRET POWER?$"
+
+.align 2
+SecretPower_PointerTable_B:
+	.4byte EventScript_275A86
+	.4byte EventScript_275A86 @ 1
+	.4byte EventScript_275A86
+	.4byte EventScript_275A86
+	.4byte EventScript_275A86
+	.4byte EventScript_275ADF @ 5
+	.4byte EventScript_275B38 @ 5
+	.4byte 0
+
 
 EventScript_275C9A:: @ 8275C9A
 	lockall
@@ -540,11 +512,6 @@ EventScript_275C9A:: @ 8275C9A
 	goto_if_eq EventScript_275AEA
 	compare VAR_0x8007, 6
 	goto_if_eq EventScript_275B43
-	end
-
-EventScript_275CDE:: @ 8275CDE
-	closemessage
-	releaseall
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_275CE1:: @ 8275CE1
@@ -627,27 +594,24 @@ SecretBase_YellowCave2_EventScript_275D64:: @ 8275D64
 SecretBase_YellowCave3_EventScript_275D64:: @ 8275D64
 SecretBase_YellowCave4_EventScript_275D64:: @ 8275D64
 	special GetSecretBaseOwnerInteractionState
-	compare VAR_0x8004, 0
-	goto_if_eq SecretBase_RedCave1_EventScript_275DD6
-	compare VAR_0x8004, 1
-	goto_if_eq SecretBase_RedCave1_EventScript_275E4E
-	compare VAR_0x8004, 2
-	goto_if_eq SecretBase_RedCave1_EventScript_275EC6
-	compare VAR_0x8004, 3
-	goto_if_eq SecretBase_RedCave1_EventScript_275F3E
-	compare VAR_0x8004, 4
-	goto_if_eq SecretBase_RedCave1_EventScript_275FB6
-	compare VAR_0x8004, 5
-	goto_if_eq SecretBase_RedCave1_EventScript_27602E
-	compare VAR_0x8004, 6
-	goto_if_eq SecretBase_RedCave1_EventScript_2760A6
-	compare VAR_0x8004, 7
-	goto_if_eq SecretBase_RedCave1_EventScript_27611E
-	compare VAR_0x8004, 8
-	goto_if_eq SecretBase_RedCave1_EventScript_276196
-	compare VAR_0x8004, 9
-	goto_if_eq SecretBase_RedCave1_EventScript_27620E
+	selectpointer SecretBase_PointerArray_Interactions, VAR_0x8004
+	goto 0
 	end
+
+.align 4
+SecretBase_PointerArray_Interactions:
+	.4byte SecretBase_RedCave1_EventScript_275DD6
+	.4byte SecretBase_RedCave1_EventScript_275E4E
+	.4byte SecretBase_RedCave1_EventScript_275EC6
+	.4byte SecretBase_RedCave1_EventScript_275F3E
+	.4byte SecretBase_RedCave1_EventScript_275FB6
+	.4byte SecretBase_RedCave1_EventScript_27602E
+	.4byte SecretBase_RedCave1_EventScript_2760A6
+	.4byte SecretBase_RedCave1_EventScript_27611E
+	.4byte SecretBase_RedCave1_EventScript_276196
+	.4byte SecretBase_RedCave1_EventScript_27620E
+	.4byte 0
+	
 
 SecretBase_RedCave1_EventScript_275DD6:: @ 8275DD6
 	lock
@@ -666,11 +630,26 @@ SecretBase_RedCave1_EventScript_275DD6:: @ 8275DD6
 	msgbox SecretBase_RedCave1_Text_274939, MSGBOX_DEFAULT
 	goto SecretBase_RedCave1_EventScript_276286
 	end
+SecretBase_RedCave1_Text_2748A0: @ 82748A0
+	.string "Have you made a secret base already?\p"
+	.string "I went here, there, everywhere before\n"
+	.string "choosing this place.\p"
+	.string "Since you're already here, how would\n"
+	.string "you like to battle?$"
+SecretBase_RedCave1_Text_274939: @ 8274939
+	.string "Okay!\n"
+	.string "Here we come!$"
+
 
 SecretBase_RedCave1_EventScript_275E25:: @ 8275E25
 	msgbox SecretBase_RedCave1_Text_2749ED, MSGBOX_DEFAULT
 	release
 	end
+SecretBase_RedCave1_Text_2749ED: @ 82749ED
+	.string "Have you made a secret base already?\p"
+	.string "I went here, there, everywhere before\n"
+	.string "choosing this place.\p"
+	.string "Feel free to hang out!$"
 
 SecretBase_RedCave1_EventScript_275E2F:: @ 8275E2F
 	special sub_80EB300
@@ -679,11 +658,17 @@ SecretBase_RedCave1_EventScript_275E2F:: @ 8275E2F
 	msgbox SecretBase_RedCave1_Text_27494D, MSGBOX_DEFAULT
 	release
 	end
+SecretBase_RedCave1_Text_27494D: @ 827494D
+	.string "Hunh?\n"
+	.string "Oh, you can't now…$"
 
 SecretBase_RedCave1_EventScript_275E44:: @ 8275E44
 	msgbox SecretBase_RedCave1_Text_2749AA, MSGBOX_DEFAULT
 	release
 	end
+SecretBase_RedCave1_Text_2749AA: @ 82749AA
+	.string "What do you think of my secret base?\n"
+	.string "Come visit me again tomorrow.$"
 
 SecretBase_RedCave1_EventScript_275E4E:: @ 8275E4E
 	lock
@@ -846,11 +831,24 @@ SecretBase_RedCave1_EventScript_27602E:: @ 827602E
 	msgbox SecretBase_RedCave1_Text_274AFA, MSGBOX_DEFAULT
 	goto SecretBase_RedCave1_EventScript_276286
 	end
+SecretBase_RedCave1_Text_274A64: @ 8274A64
+	.string "There're a lot of places where\n"
+	.string "you can make a secret base.\p"
+	.string "But I like this spot best.\n"
+	.string "Don't you think it's nice?\p"
+	.string "Oh, would you like to have a battle?$"
+SecretBase_RedCave1_Text_274AFA: @ 8274AFA
+	.string "Okay, here goes!$"
 
 SecretBase_RedCave1_EventScript_27607D:: @ 827607D
 	msgbox SecretBase_RedCave1_Text_274BA2, MSGBOX_DEFAULT
 	release
 	end
+SecretBase_RedCave1_Text_274BA2: @ 8274BA2
+	.string "There're a lot of places where you can\n"
+	.string "make a secret base.\p"
+	.string "But I like this spot best.\n"
+	.string "Don't you think it's nice?$"
 
 SecretBase_RedCave1_EventScript_276087:: @ 8276087
 	special sub_80EB300
@@ -859,11 +857,17 @@ SecretBase_RedCave1_EventScript_276087:: @ 8276087
 	msgbox SecretBase_RedCave1_Text_274B0B, MSGBOX_DEFAULT
 	release
 	end
+SecretBase_RedCave1_Text_274B0B: @ 8274B0B
+	.string "Oh…\n"
+	.string "You can't now, okay.$"
 
 SecretBase_RedCave1_EventScript_27609C:: @ 827609C
 	msgbox SecretBase_RedCave1_Text_274B6C, MSGBOX_DEFAULT
 	release
 	end
+SecretBase_RedCave1_Text_274B6C: @ 8274B6C
+	.string "If you're in this area again,\n"
+	.string "I hope you'll visit me.$"
 
 SecretBase_RedCave1_EventScript_2760A6:: @ 82760A6
 	lock
@@ -1047,14 +1051,10 @@ SecretBase_EventScript_CushionInteract:: @ 82766A6
 	special sub_80EB2C8
 	end
 
-Text_2766AA: @ 82766AA
-	.string "All decorations and furniture in your\n"
-	.string "SECRET BASE will be returned to your PC.\p"
-	.string "Is that okay?$"
 
 Text_WantToRegisterSecretBase: @ 8276707
 	.string "Do you want to register\n"
-	.string "{STR_VAR_1}'s SECRET BASE?$"
+	.string "{STR_VAR_1}'s secret base?$"
 
 Text_276731: @ 8276731
 	.string "This data is already registered.\n"
@@ -1078,13 +1078,13 @@ Text_SecretBasePCStartMenu: @ 827681A
 	.string "What would you like to do?$"
 
 Text_276835: @ 8276835
-	.string "Once registered, a SECRET BASE will not\n"
+	.string "Once registered, a secret base will not\n"
 	.string "disappear unless the other TRAINER\l"
 	.string "moves it to a different location.\p"
-	.string "If a SECRET BASE is deleted from the\n"
+	.string "If a secret base is deleted from the\n"
 	.string "registered list, another one may take\l"
 	.string "its place.\p"
-	.string "Up to ten SECRET BASE locations\n"
+	.string "Up to ten secret base locations\n"
 	.string "may be registered.$"
 
 Text_27692B: @ 827692B
@@ -1103,11 +1103,4 @@ Text_2769FF: @ 82769FF
 	.string "A toy TV shaped like a SKITTY.\n"
 	.string "It looks ready to stroll away…$"
 
-Text_276A3D: @ 8276A3D
-	.string "You may only make one SECRET BASE.\p"
-	.string "Would you like to move from the SECRET\n"
-	.string "BASE near {STR_VAR_1}?$"
 
-Text_276A95: @ 8276A95
-	.string "Moving completed.\p"
-	.string "Would you like to use the SECRET POWER?$"

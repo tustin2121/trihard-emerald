@@ -4,6 +4,7 @@ Route117_MapScripts:: @ 81F397D
 	.byte 0
 
 Route117_OnTransition: @ 81F3983
+	setflag FLAG_HIDE_ROUTE_117_POLICEMAN @ dummy out the policeman
 	call Route117_EventScript_1F3989
 	end
 
@@ -181,6 +182,7 @@ Route117_EventScript_DaycareSign:: @ 81F39C7
 	messagesign Route117_Text_DaycareSign1
 	waitmessage
 	waitbuttonpress
+	cleanupsignmessage
 	message Route117_Text_DaycareSign2
 	waitmessage
 	waitbuttonpress
@@ -192,7 +194,7 @@ Route117_Text_DaycareSign1: @ 81F3D8E
 Route117_Text_DaycareSign2:
 	.string "There's a noticed pinned on the sign\n"
 	.string "just below those words:\l"
-	.string "“Closed pending police investigation.”$"
+	.string "“For Sale by Owner.”$"
 
 
 Route117_EventScript_DaycareDoor:: @ 81F39C7
@@ -201,7 +203,7 @@ Route117_EventScript_DaycareDoor:: @ 81F39C7
 Route117_Text_DaycareDoor:
 	.string "The door's locked.\p"
 	.string "There's a sign in the window:\n"
-	.string "“Closed pending police investigation.”$"
+	.string "“For Sale by Owner.”$"
 
 
 @ -----------------------------------------------------

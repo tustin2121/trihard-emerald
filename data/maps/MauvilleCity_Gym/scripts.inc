@@ -90,13 +90,11 @@ MauvilleCity_Gym_EventScript_20DF2B:: @ 820DF2B
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MauvilleCity_Gym_Text_20E7AA, MSGBOX_DEFAULT
-	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
+	@ setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
 	setflag FLAG_BADGE03_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
-	compare VAR_PETALBURG_GYM_STATE, 6
-	call_if_eq MauvilleCity_Gym_EventScript_271E84
+	call Common_EventScript_IncrementBadgeCount
 	setvar VAR_0x8008, 3
 	call MauvilleCity_Gym_EventScript_271F43
 	special MauvilleGymSpecial3

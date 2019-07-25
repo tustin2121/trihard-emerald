@@ -1063,6 +1063,7 @@ static u8 SetUpCopyrightScreen(void)
     return 1;
 }
 
+extern u16 gSpecialVar_DialogTailOffset;
 void CB2_InitCopyrightScreenAfterBootup(void)
 {
     if (!SetUpCopyrightScreen())
@@ -1075,6 +1076,7 @@ void CB2_InitCopyrightScreenAfterBootup(void)
             Sav2_ClearSetDefault();
         SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
         InitHeap(gHeap, HEAP_SIZE);
+        gSpecialVar_DialogTailOffset = 38;
         if (gSaveFileStatus == 1 && gDebugInterrupts.funcId == 0)
         {
             SetMainCallback2(CB2_ContinueSavedGame);

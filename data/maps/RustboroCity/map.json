@@ -105,7 +105,7 @@
     "coord_events": [
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E095A",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -114,7 +114,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0971",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -123,7 +123,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0988",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -132,7 +132,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E099F",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -141,7 +141,7 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E09B6",
+            "script": "RustboroCity_TriggerScript_HeistCutscene1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "1",
@@ -150,74 +150,74 @@
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0AFE",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
-            "var_value": "2",
-            "x": 30,
+            "var_value": "4",
+            "x": 35,
             "y": 9
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0B0A",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "2",
-            "x": 29,
+            "x": 25,
             "y": 10
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0B16",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
-            "var_value": "2",
-            "x": 30,
+            "var_value": "4",
+            "x": 35,
             "y": 11
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0B22",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
-            "var_value": "2",
-            "x": 30,
+            "var_value": "4",
+            "x": 35,
             "y": 12
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0C2B",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
-            "var_value": "4",
-            "x": 30,
+            "var_value": "2",
+            "x": 25,
             "y": 9
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0C37",
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "4",
-            "x": 31,
+            "x": 35,
             "y": 10
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0C43",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
-            "var_value": "4",
-            "x": 30,
+            "var_value": "2",
+            "x": 25,
             "y": 11
         },
         {
             "elevation": 3,
-            "script": "RustboroCity_EventScript_1E0C4F",
+            "script": "RustboroCity_TriggerScript_AquasTask1",
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
-            "var_value": "4",
-            "x": 30,
+            "var_value": "2",
+            "x": 25,
             "y": 12
         },
         {
@@ -226,8 +226,8 @@
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "7",
-            "x": 12,
-            "y": 53
+            "x": 22,
+            "y": 56
         },
         {
             "elevation": 3,
@@ -235,8 +235,8 @@
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "7",
-            "x": 13,
-            "y": 53
+            "x": 23,
+            "y": 56
         },
         {
             "elevation": 3,
@@ -244,8 +244,8 @@
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "7",
-            "x": 14,
-            "y": 53
+            "x": 24,
+            "y": 56
         },
         {
             "elevation": 3,
@@ -253,8 +253,8 @@
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "7",
-            "x": 15,
-            "y": 53
+            "x": 25,
+            "y": 56
         },
         {
             "elevation": 3,
@@ -262,8 +262,8 @@
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "7",
-            "x": 16,
-            "y": 53
+            "x": 26,
+            "y": 56
         },
         {
             "elevation": 3,
@@ -271,8 +271,8 @@
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "7",
-            "x": 17,
-            "y": 53
+            "x": 27,
+            "y": 56
         },
         {
             "elevation": 3,
@@ -280,8 +280,8 @@
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "7",
-            "x": 18,
-            "y": 53
+            "x": 28,
+            "y": 56
         },
         {
             "elevation": 3,
@@ -289,8 +289,26 @@
             "type": "trigger",
             "var": "VAR_RUSTBORO_STATE",
             "var_value": "7",
-            "x": 19,
-            "y": 53
+            "x": 29,
+            "y": 56
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_TriggerScript_AquaTaskReturn",
+            "type": "trigger",
+            "var": "VAR_RUSTBORO_STATE",
+            "var_value": "4",
+            "x": 35,
+            "y": 8
+        },
+        {
+            "elevation": 0,
+            "script": "RustboroCity_TriggerScript_AquasTask1",
+            "type": "trigger",
+            "var": "VAR_RUSTBORO_STATE",
+            "var_value": "2",
+            "x": 25,
+            "y": 8
         }
     ],
     "id": "MAP_RUSTBORO_CITY",
@@ -306,7 +324,7 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
-            "script": "RustboroCity_EventScript_1E088A",
+            "script": "RustboroCity_EventScript_FireGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 22,
@@ -332,7 +350,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "RustboroCity_EventScript_1E08DA",
+            "script": "RustboroCity_EventScript_AspiringSchoolBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 25,
@@ -345,7 +363,7 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
-            "script": "RustboroCity_EventScript_1E08D1",
+            "script": "RustboroCity_EventScript_AspiringTrainerGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 21,
@@ -358,10 +376,10 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "RustboroCity_EventScript_1E08B2",
+            "script": "RustboroCity_EventScript_BrineyBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 12,
+            "x": 11,
             "y": 45
         },
         {
@@ -371,7 +389,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "RustboroCity_EventScript_1E0893",
+            "script": "RustboroCity_EventScript_GymBadgeGuy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 26,
@@ -384,7 +402,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "RustboroCity_EventScript_1E0922",
+            "script": "RustboroCity_EventScript_LittleBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 24,
@@ -397,7 +415,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "RustboroCity_EventScript_1E0938",
+            "script": "RustboroCity_EventScript_LittleGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 25,
@@ -405,29 +423,29 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1",
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE",
             "graphics_id": "EVENT_OBJ_GFX_MAN_2",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LYING_DOWN",
             "script": "RustboroCity_EventScript_1E0ADD",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 30,
-            "y": 10
+            "x": 11,
+            "y": 19
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT",
-            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE",
+            "graphics_id": "EVENT_OBJ_GFX_MAGMA_MEMBER_M",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LYING_DOWN",
             "script": "0x0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 13,
-            "y": 21
+            "y": 18
         },
         {
             "elevation": 3,
@@ -436,7 +454,7 @@
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "RustboroCity_EventScript_1E087E",
+            "script": "RustboroCity_EventScript_DevonEmployee",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 13,
@@ -462,7 +480,7 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "RustboroCity_EventScript_1E094E",
+            "script": "RustboroCity_EventScript_TradeGuy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 19,
@@ -470,29 +488,29 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_RUSBORO_CITY_RIVAL",
-            "graphics_id": "EVENT_OBJ_GFX_VAR_0",
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE",
+            "graphics_id": "EVENT_OBJ_GFX_DEVON_EMPLOYEE",
             "movement_range_x": 1,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "RustboroCity_EventScript_1E0DB8",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "0",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 16,
-            "y": 50
+            "x": 13,
+            "y": 21
         },
         {
             "elevation": 0,
-            "flag": "FLAG_HIDE_RUSTBORO_CITY_SCIENTIST",
-            "graphics_id": "EVENT_OBJ_GFX_SCIENTIST_1",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "0x0",
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_F",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "RustboroCity_EventScript_AquaGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 11,
-            "y": 15
+            "x": 29,
+            "y": 10
         },
         {
             "elevation": 3,
@@ -501,11 +519,89 @@
             "movement_range_x": 0,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "RustboroCity_EventScript_1E1236",
+            "script": "RustboroCity_EventScript_TriviaBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 31,
             "y": 36
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "RustboroCity_EventScript_AquaBoy",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 30,
+            "y": 11
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "RustboroCity_EventScript_AquaThree",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 30,
+            "y": 9
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE",
+            "graphics_id": "EVENT_OBJ_GFX_POLICEMAN",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 13,
+            "y": 19
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE",
+            "graphics_id": "EVENT_OBJ_GFX_SCIENTIST_1",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 12,
+            "y": 22
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE",
+            "graphics_id": "EVENT_OBJ_GFX_POLICEMAN",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 14,
+            "y": 18
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE",
+            "graphics_id": "EVENT_OBJ_GFX_MAGMA_MEMBER_F",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_LYING_DOWN",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 10,
+            "y": 17
         }
     ],
     "region_map_section": "MAPSEC_RUSTBORO_CITY",

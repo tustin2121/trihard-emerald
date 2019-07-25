@@ -24,7 +24,7 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_22022F:: @ 822022F
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration LilycoveCity_DepartmentStoreRooftop_PokemartDecor_220248
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

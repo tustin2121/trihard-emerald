@@ -166,11 +166,15 @@ class Emulator {
 		return false;
 	}
 	
-	getVarName(id) { return this.varNameTable[id]; }
+	getVarName(id) { 
+		if (!this.varNameTable) return `[ERROR]VAR_${(id).toString(16)}`;
+		return this.varNameTable[id];
+	}
 	getFlagName(id) {
 		if (id > 0x500 && id <= 0x500+0x356) {
 			return `TRAINER_FLAG_${(id-0x500).toString(16)}`;
 		}
+		if (!this.flagNameTable) return `[ERROR]FLAG_${(id).toString(16)}`;
 		return this.flagNameTable[id]; 
 	}
 	

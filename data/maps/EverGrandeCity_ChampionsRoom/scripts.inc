@@ -1,14 +1,19 @@
 EverGrandeCity_ChampionsRoom_MapScripts:: @ 82289EF
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_ChampionsRoom_OnTransition
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_ChampionsRoom_MapScript2_228A05
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_ChampionsRoom_MapScript2_228A14
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_ChampionsRoom_MapTable
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_ChampionsRoom_FrameTable
+	map_script MAP_SCRIPT_ON_RESUME, EverGrandeCity_ChampionsRoom_OnResume
 	.byte 0
+
+@ -----------------------------------------------------
 
 EverGrandeCity_ChampionsRoom_OnTransition: @ 82289FF
 	call Common_EventScript_SetupRivalGender
 	end
 
-EverGrandeCity_ChampionsRoom_MapScript2_228A05: @ 8228A05
+@ -----------------------------------------------------
+
+EverGrandeCity_ChampionsRoom_MapTable: @ 8228A05
 	map_script_2 VAR_TEMP_1, 0, EverGrandeCity_ChampionsRoom_EventScript_228A0F
 	.2byte 0
 
@@ -16,8 +21,21 @@ EverGrandeCity_ChampionsRoom_EventScript_228A0F:: @ 8228A0F
 	turnobject EVENT_OBJ_ID_PLAYER, 2
 	end
 
-EverGrandeCity_ChampionsRoom_MapScript2_228A14: @ 8228A14
-	map_script_2 VAR_TEMP_1, 0, EverGrandeCity_ChampionsRoom_EventScript_228A1E
+@ -----------------------------------------------------
+
+EverGrandeCity_ChampionsRoom_OnResume:
+	callnative SetupChampionBackgroundPanning
+	compare VAR_TEMP_0, 1
+	goto_if_eq EverGrandeCity_ChampionsRoom_OnResume_Wave
+	end
+EverGrandeCity_ChampionsRoom_OnResume_Wave:
+	callnative DoChampWaveFlags
+	end
+
+@ -----------------------------------------------------
+
+EverGrandeCity_ChampionsRoom_FrameTable: @ 8228A14
+	@ map_script_2 VAR_TEMP_1, 0, EverGrandeCity_ChampionsRoom_EventScript_228A1E
 	.2byte 0
 
 EverGrandeCity_ChampionsRoom_EventScript_228A1E:: @ 8228A1E
@@ -343,4 +361,10 @@ EverGrandeCity_ChampionsRoom_Text_2294F5: @ 82294F5
 	.string "It can't be helped if that's the rule.\p"
 	.string "{PLAYER}, way to go!\n"
 	.string "Congratulations!$"
+
+EverGrandeCity_ChampionsRoom_TriggerScript_GoWave::
+	callnative DoChampWaveFlags
+	setvar VAR_TEMP_0, 1
+	end
+
 

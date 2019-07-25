@@ -114,8 +114,8 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_multichoice
 	.4byte ScrCmd_multichoicedefault
 	.4byte ScrCmd_multichoicegrid
-	.4byte ScrCmd_drawbox
-	.4byte ScrCmd_erasebox
+	.4byte ScrCmd_warpcustom
+	.4byte ScrCmd_advancetime
 	.4byte ScrCmd_drawboxtext
 	.4byte ScrCmd_showmonpic
 	.4byte ScrCmd_hidemonpic
@@ -203,7 +203,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_warptodynamic
 	.4byte ScrCmd_setmetatileex
 	.4byte ScrCmd_setweather_nodelay
-	.4byte ScrCmd_nop1
+	.4byte ScrCmd_checkpartycapability
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_setmonobedient
 	.4byte ScrCmd_checkmonobedience
@@ -231,6 +231,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_setyesnotext
 	.4byte ScrCmd_checkplayeroutfit
 	.4byte ScrCmd_buffernumberstring2
+	.4byte ScrCmd_addvar_if
 
 gScriptCmdTableEnd:: @ 81DBA08
 	.4byte ScrCmd_nop

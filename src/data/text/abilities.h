@@ -76,6 +76,8 @@ static const u8 sPurePowerDescription[] = _("Raises ATTACK.");
 static const u8 sShellArmorDescription[] = _("Blocks critical hits.");
 static const u8 sCacophonyDescription[] = _("Avoids sound-based moves.");
 static const u8 sAirLockDescription[] = _("Negates weather effects.");
+static const u8 sEarthRiseDescription[] = _("Raises above water.");
+static const u8 sSeaBufferDescription[] = _("Buffered against earth.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -157,6 +159,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SHELL_ARMOR] = _("Shell Armor"),
     [ABILITY_CACOPHONY] = _("Cacophony"),
     [ABILITY_AIR_LOCK] = _("Air Lock"),
+    [ABILITY_EARTH_RISE] = _("Earth Rise"),
+    [ABILITY_SEA_BUFFER] = _("Sea Buffer"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -239,4 +243,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SHELL_ARMOR] = sShellArmorDescription,
     [ABILITY_CACOPHONY] = sCacophonyDescription,
     [ABILITY_AIR_LOCK] = sAirLockDescription,
+    [ABILITY_EARTH_RISE] = sEarthRiseDescription,
+    [ABILITY_SEA_BUFFER] = sSeaBufferDescription,
 };

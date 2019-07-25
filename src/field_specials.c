@@ -1447,7 +1447,7 @@ bool8 IsPokerusInParty(void)
     return TRUE;
 }
 
-void sub_8139560(void)
+void DoCameraShakeEffect(void)
 {
     u8 taskId = CreateTask(sub_81395BC, 9);
     gTasks[taskId].data[0] = gSpecialVar_0x8005;
@@ -2421,7 +2421,7 @@ static const u8 *const sSpecialScriptChoiceLists[][16] = {
         gText_EnergyPowder50,
         gText_EnergyRoot80,
         gText_HealPowder50,
-        gText_RevivalHerb300,
+        // gText_RevivalHerb300,
         gText_Protein1000,
         gText_Iron1000,
         gText_Carbos1000,
@@ -2430,6 +2430,7 @@ static const u8 *const sSpecialScriptChoiceLists[][16] = {
         gText_HPUp1000,
         gText_PPUp3000,
         gText_Exit,
+        NULL,
         NULL,
         NULL,
         NULL,
@@ -3861,7 +3862,7 @@ void sub_813B968(void)
     gSpecialVar_Result -= (gSpecialVar_Result / 20) * 20;
 }
 
-void sub_813B9A0(void)
+void PreventDewfordHealSoftlock(void)
 {
     if (gSaveBlock1Ptr->lastHealLocation.mapGroup == MAP_GROUP(DEWFORD_TOWN) && gSaveBlock1Ptr->lastHealLocation.mapNum == MAP_NUM(DEWFORD_TOWN))
     {

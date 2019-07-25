@@ -317,7 +317,11 @@
 #define EVENT_OBJ_GFX_CHAIR_ITEMS_3                	0x132
 #define EVENT_OBJ_GFX_CHAIR_ITEMS_4                	0x133
 #define EVENT_OBJ_GFX_CHAIR_ITEMS_5                	0x134
-#define EVENT_OBJ_GFX_BARD_2                     	0x135
+#define EVENT_OBJ_GFX_FORMER_AQUA_M                	0x135
+#define EVENT_OBJ_GFX_FORMER_AQUA_F                	0x136
+#define EVENT_OBJ_GFX_FORMER_MAGMA_M               	0x137
+
+#define EVENT_OBJ_GFX_BARD_2                     	0x138
 #define NUM_OBJECT_GRAPHICS_INFO 	EVENT_OBJ_GFX_BARD_2
 
 // These are dynamic object gfx ids.

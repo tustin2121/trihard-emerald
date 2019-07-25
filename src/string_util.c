@@ -18,6 +18,7 @@ EWRAM_DATA u8 gStringVar2[0x100] = {0};
 EWRAM_DATA u8 gStringVar3[0x100] = {0};
 EWRAM_DATA u8 gStringVar4[0x3E8] = {0};
 
+EWRAM_DATA u8 gStringWorking[0x100] = {0};
 EWRAM_DATA u8 gYesNoStringVar[0x20] = {0};
 EWRAM_DATA const u8* gYesString = gYN_DefaultYes;
 EWRAM_DATA const u8* gNoString = gYN_DefaultNo;
@@ -498,6 +499,14 @@ static const u8 *ExpandPlaceholder_PlayerName(void)
     return gSaveBlock2Ptr->playerName;
 }
 
+static const u8 *ExpandPlaceholder_PlayerNameStutter(void)
+{
+    gStringWorking[0] = gSaveBlock2Ptr->playerName[0];
+    gStringWorking[1] = 0xAE; //dash character
+    StringCopy7(&gStringWorking[2], gSaveBlock2Ptr->playerName);
+    return gStringWorking;
+}
+
 static const u8 *ExpandPlaceholder_StringVar1(void)
 {
     return gStringVar1;
@@ -819,7 +828,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid,
-        ExpandPlaceholder_Invalid, // 0F
+        ExpandPlaceholder_PlayerNameStutter, // 0F
         
         ExpandPlaceholder_PlayerTheyUpper, // 10
         ExpandPlaceholder_PlayerThemUpper,

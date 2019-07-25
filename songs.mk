@@ -75,6 +75,9 @@ $(MID_SUBDIR)/mus_bd_time.s: %.s: %.mid
 $(MID_SUBDIR)/mus_bijyutu.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G020 -V080
 
+$(MID_SUBDIR)/mus_bornlose.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G046 -V092
+
 $(MID_SUBDIR)/mus_boy_sup.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G067 -V078
 

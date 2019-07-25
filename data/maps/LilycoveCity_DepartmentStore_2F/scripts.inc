@@ -16,10 +16,11 @@ LilycoveCity_DepartmentStore_2F_EventScript_21FB3F:: @ 821FB3F
 LilycoveCity_DepartmentStore_2F_EventScript_21FB48:: @ 821FB48
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart LilycoveCity_DepartmentStore_2F_Pokemart_21FB60
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -43,10 +44,11 @@ LilycoveCity_DepartmentStore_2F_Pokemart_21FB60: @ 821FB60
 LilycoveCity_DepartmentStore_2F_EventScript_21FB7A:: @ 821FB7A
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart LilycoveCity_DepartmentStore_2F_Pokemart_21FB94
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -56,7 +58,7 @@ LilycoveCity_DepartmentStore_2F_Pokemart_21FB94: @ 821FB94
 	.2byte ITEM_SUPER_POTION
 	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_MAX_POTION
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_REPEL
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_MAX_REPEL

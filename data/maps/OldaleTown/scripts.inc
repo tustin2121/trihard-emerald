@@ -164,7 +164,7 @@ OldaleTown_EventScript_1E9066:: @ 81E9066
 	release
 	end
 OldaleTown_Text_1E93F8: @ 81E93F8
-	.string "Make sure your Pokémon are prepared to"
+	.string "Make sure your Pokémon are prepared to\n"
 	.string "go out into the wilds.\p"
 	.string "If they're not, you could end up like\n"
 	.string "that boy earlier… or worse…$"

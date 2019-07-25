@@ -2653,6 +2653,25 @@ const struct WildPokemon gSkyPillar_1F_LandMons[] =
 
 const struct WildPokemonInfo gSkyPillar_1F_LandMonsInfo = {10, gSkyPillar_1F_LandMons};
 
+const struct WildPokemon gSootopolisCity_LandMons[] =
+{
+    {33, 33, SPECIES_PELIPPER},
+    {34, 34, SPECIES_LOMBRE},
+    {35, 35, SPECIES_LOMBRE},
+    {34, 34, SPECIES_PELIPPER},
+    {36, 36, SPECIES_MARILL},
+    {37, 37, SPECIES_MARILL},
+    {38, 38, SPECIES_MARILL},
+    {36, 36, SPECIES_MARILL},
+    {37, 37, SPECIES_MARILL},
+    {38, 38, SPECIES_MARILL},
+    {37, 37, SPECIES_MARILL},
+    {38, 38, SPECIES_MARILL},
+};
+
+// 180 = 100% encounter rate
+const struct WildPokemonInfo gSootopolisCity_LandMonsInfo = {180, gSootopolisCity_LandMons};
+
 const struct WildPokemon gSootopolisCity_WaterMons[] =
 {
     {5, 35, SPECIES_MAGIKARP},
@@ -3999,7 +4018,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
     {
         .mapGroup = MAP_GROUP(SOOTOPOLIS_CITY),
         .mapNum = MAP_NUM(SOOTOPOLIS_CITY),
-        .landMonsInfo = NULL,
+        .landMonsInfo = &gSootopolisCity_LandMonsInfo,
         .waterMonsInfo = &gSootopolisCity_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
         .fishingMonsInfo = &gSootopolisCity_FishingMonsInfo,

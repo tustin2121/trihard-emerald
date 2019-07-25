@@ -80,32 +80,12 @@ Route115_EventScript_ItemPPUp:: @ 8290E6B
 	giveitem_std ITEM_PP_UP, 1, 1
 	end
 
-Route116_EventScript_ItemXSpecial:: @ 8290E78
-	giveitem_std ITEM_X_SPECIAL, 1, 1
-	end
-
-Route116_EventScript_ItemEther:: @ 8290E85
-	giveitem_std ITEM_ETHER, 1, 1
-	end
-
-Route116_EventScript_ItemRepel:: @ 8290E92
-	giveitem_std ITEM_REPEL, 1, 1
-	end
-
-Route116_EventScript_ItemHPUp:: @ 8290E9F
-	giveitem_std ITEM_HP_UP, 1, 1
-	end
-
-Route116_EventScript_ItemPotion:: @ 8290EAC
-	giveitem_std ITEM_POTION, 1, 1
-	end
-
 Route117_EventScript_ItemGreatBall:: @ 8290EB9
 	giveitem_std ITEM_GREAT_BALL, 1, 1
 	end
 
 Route117_EventScript_ItemRevive:: @ 8290EC6
-	giveitem_std ITEM_REVIVE, 1, 1
+	giveitem_std ITEM_GREAT_BALL, 2, 1
 	end
 
 Route118_EventScript_ItemHyperPotion:: @ 8290ED3
@@ -161,7 +141,7 @@ Route120_EventScript_ItemNestBall:: @ 8290F6F
 	end
 
 Route120_EventScript_ItemRevive:: @ 8290F7C
-	giveitem_std ITEM_REVIVE, 1, 1
+	giveitem_std ITEM_ULTRA_BALL, 3, 1
 	end
 
 Route121_EventScript_ItemCarbos:: @ 8290F89
@@ -169,7 +149,7 @@ Route121_EventScript_ItemCarbos:: @ 8290F89
 	end
 
 Route121_EventScript_ItemRevive:: @ 8290F96
-	giveitem_std ITEM_REVIVE, 1, 1
+	giveitem_std ITEM_TIMER_BALL, 2, 1
 	end
 
 Route121_EventScript_ItemZinc:: @ 8290FA3
@@ -193,7 +173,7 @@ Route123_EventScript_ItemPPUp:: @ 8290FD7
 	end
 
 Route123_EventScript_ItemRevivalHerb:: @ 8290FE4
-	giveitem_std ITEM_REVIVAL_HERB, 1, 1
+	giveitem_std ITEM_HEAL_POWDER, 2, 1
 	end
 
 Route124_EventScript_ItemRedShard:: @ 8290FF1
@@ -245,7 +225,7 @@ Route133_EventScript_ItemStarPiece:: @ 8291080
 	end
 
 Route133_EventScript_ItemMaxRevive:: @ 829108D
-	giveitem_std ITEM_MAX_REVIVE, 1, 1
+	giveitem_std ITEM_PP_MAX, 1, 1
 	end
 
 Route134_EventScript_ItemCarbos:: @ 829109A
@@ -257,7 +237,7 @@ Route134_EventScript_ItemStarPiece:: @ 82910A7
 	end
 
 PetalburgCity_EventScript_ItemMaxRevive:: @ 82910B4
-	giveitem_std ITEM_MAX_REVIVE, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 3, 1
 	end
 
 PetalburgCity_EventScript_ItemEther:: @ 82910C1
@@ -302,22 +282,6 @@ RusturfTunnel_EventScript_ItemPokeBall:: @ 8291136
 
 RusturfTunnel_EventScript_ItemMaxEther:: @ 8291143
 	giveitem_std ITEM_MAX_ETHER, 1, 1
-	end
-
-GraniteCave_1F_EventScript_ItemEscapeRope:: @ 8291150
-	giveitem_std ITEM_ESCAPE_ROPE, 1, 1
-	end
-
-GraniteCave_B1F_EventScript_ItemPokeBall:: @ 829115D
-	giveitem_std ITEM_POKE_BALL, 1, 1
-	end
-
-GraniteCave_B2F_EventScript_ItemRepel:: @ 829116A
-	giveitem_std ITEM_REPEL, 1, 1
-	end
-
-GraniteCave_B2F_EventScript_ItemRareCandy:: @ 8291177
-	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 JaggedPass_EventScript_ItemBurnHeal:: @ 8291184
@@ -389,7 +353,7 @@ AbandonedShip_Room_B1F_EventScript_ItemTM13:: @ 8291254
 	end
 
 AbandonedShip_Rooms2_1F_EventScript_ItemRevive:: @ 8291261
-	giveitem_std ITEM_REVIVE, 1, 1
+	giveitem_std ITEM_MAX_POTION, 1, 1
 	end
 
 AbandonedShip_CaptainsOffice_EventScript_ItemStorageKey:: @ 829126E
@@ -425,7 +389,7 @@ SafariZone_North_EventScript_ItemCalcium:: @ 82912C9
 	end
 
 SafariZone_Southwest_EventScript_ItemMaxRevive:: @ 82912D6
-	giveitem_std ITEM_MAX_REVIVE, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 3, 1
 	end
 
 SafariZone_Northeast_EventScript_ItemNugget:: @ 82912E3
@@ -605,7 +569,7 @@ MagmaHideout_3F_2R_EventScript_ItemPPMax:: @ 8291512
 	end
 
 MagmaHideout_4F_EventScript_MaxRevive:: @ 829151F
-	giveitem_std ITEM_MAX_REVIVE, 1, 1
+	giveitem_std ITEM_PP_MAX, 1, 1
 	end
 
 MagmaHideout_3F_3R_EventScript_ItemEscapeRope:: @ 829152C

@@ -349,6 +349,7 @@ RIVAL_HERO     = FD 06  @ name of the wally replacement "Logan"
 RIVAL_ALOLA    = FD 07  @ name of the alolan friend "Alex"
 AQUA_BOY       = FD 08  @ name of the male team aqua friend "Bailey"
 AQUA_GIRL      = FD 09  @ name of the female team aqua friend "Jessica"
+P_PLAYER       = FD 0F  @ Player name, but with the first character stuttered
 
 @ pronouns for same-gender characters (the player)
 PLAYER_They    = FD 10  @ "He" or "She"
@@ -478,6 +479,7 @@ ENG = FC 16
 PAUSE_MUSIC = FC 17
 RESUME_MUSIC = FC 18
 RESETCOLOR = FC 19
+CENTER = FC 1A
 
 @ colors
 
@@ -778,7 +780,7 @@ MUS_KACHI22 = 60 01
 MUS_KACHI2 = 61 01
 MUS_KACHI3 = 62 01
 MUS_KACHI5 = 63 01
-MUS_PCC = 64 01
+MUS_BORNLOSE = 64 01
 MUS_NIBI = 65 01
 MUS_SUIKUN = 66 01
 MUS_DOORO1 = 67 01

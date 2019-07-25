@@ -24,10 +24,11 @@ MossdeepCity_PokemonCenter_1F_NurseScript:: @ 822224E
 MossdeepCity_Mart_MartScript:: @ 82223C8
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart MossdeepCity_Mart_Pokemart_2223E0
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -38,7 +39,7 @@ MossdeepCity_Mart_Pokemart_2223E0: @ 82223E0
 	.2byte ITEM_DIVE_BALL
 	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_REVIVE
+	@ .2byte ITEM_REVIVE
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFEND

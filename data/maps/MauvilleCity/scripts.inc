@@ -2,12 +2,14 @@ MauvilleCity_MapScripts:: @ 81DF385
 	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_OnTransition
 	.byte 0
 
+@ -----------------------------------------------------
+
 MauvilleCity_OnTransition: @ 81DF38B
 	setflag FLAG_VISITED_MAUVILLE_CITY
 	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
 	clearflag FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
 	setflag FLAG_SYS_TV_START
-	clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
+	clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE @TODO remove
 	setvar VAR_MAUVILLE_GYM_STATE, 0
 	call_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_1DF3A9
 	end
@@ -18,51 +20,118 @@ MauvilleCity_EventScript_1DF3A9:: @ 81DF3A9
 	setflag FLAG_WATTSON_REMATCH_AVAILABLE
 	return
 
-MauvilleCity_EventScript_1DF3B3:: @ 81DF3B3
-	msgbox MauvilleCity_Text_1E0301, MSGBOX_NPC
-	end
-
-MauvilleCity_EventScript_1DF3BC:: @ 81DF3BC
-	msgbox MauvilleCity_Text_1E037C, MSGBOX_NPC
-	end
-
-MauvilleCity_EventScript_1DF3C5:: @ 81DF3C5
-	msgbox MauvilleCity_Text_1E03FB, MSGBOX_NPC
-	end
-
-MauvilleCity_EventScript_1DF3CE:: @ 81DF3CE
-	msgbox MauvilleCity_Text_1E044A, MSGBOX_NPC
-	end
+@ -----------------------------------------------------
+@ Signs
 
 MauvilleCity_EventScript_1DF3D7:: @ 81DF3D7
 	msgbox MauvilleCity_Text_1E0485, MSGBOX_SIGN
 	end
+MauvilleCity_Text_1E0485: @ 81E0485
+	.string "{PLACE}Mauville City{END}\n"
+	.string "“The bright and shiny city of fun!”$"
+
 
 MauvilleCity_EventScript_1DF3E0:: @ 81DF3E0
 	msgbox MauvilleCity_Text_1E04B7, MSGBOX_SIGN
 	end
+MauvilleCity_Text_1E04B7: @ 81E04B7
+	.string "{GYM}Mauville City Pokémon Gym{END}\n"
+	.string "{GYM}Leader:{END} Wattson\l"
+	.string "“The cheerfully electrifying man!”$"
+
 
 MauvilleCity_EventScript_1DF3E9:: @ 81DF3E9
 	msgbox MauvilleCity_Text_1E0504, MSGBOX_SIGN
 	end
+MauvilleCity_Text_1E0504: @ 81E0504
+	.string "“Ride in gravel and shake up your\n"
+	.string "soul!”\l"
+	.string "{PLACE}Rydel's Cycles{END}$"
+
 
 MauvilleCity_EventScript_1DF3F2:: @ 81DF3F2
 	msgbox MauvilleCity_Text_1E053C, MSGBOX_SIGN
 	end
+MauvilleCity_Text_1E053C: @ 81E053C
+	.string "“The play spot for all!”\n"
+	.string "{PLACE}Mauville Game Corner{END}$"
+
+@ -----------------------------------------------------
+@ People
+
+MauvilleCity_EventScript_1DF3B3:: @ 81DF3B3
+	msgbox MauvilleCity_Text_1E0301, MSGBOX_NPC
+	end
+MauvilleCity_Text_1E0301: @ 81E0301
+	.string "You know, it's cool to have Pokémon\n"
+	.string "battles and stuff…\p"
+	.string "But if your Pokémon gets hurt,\n"
+	.string "you have to nurse it back to health.$"
+
+
+MauvilleCity_EventScript_1DF3BC:: @ 81DF3BC
+	msgbox MauvilleCity_Text_1E037C, MSGBOX_NPC
+	end
+MauvilleCity_Text_1E037C: @ 81E037C
+	.string "The roads of this town stretch north\n"
+	.string "and south, and east and west.\p"
+	.string "Because of that, we get all sorts of\n"
+	.string "people coming through.$"
+
+
+MauvilleCity_EventScript_1DF3C5:: @ 81DF3C5
+	msgbox MauvilleCity_Text_1E03FB, MSGBOX_NPC
+	end
+MauvilleCity_Text_1E03FB: @ 81E03FB
+	.string "Have you been to {PLACE}Rydel's Cycles{END} yet?\p"
+	.string "Rydel, the owner, is a very generous\n"
+	.string "man.$"
+
+
+MauvilleCity_EventScript_1DF3CE:: @ 81DF3CE
+	msgbox MauvilleCity_Text_1E044A, MSGBOX_NPC
+	end
+MauvilleCity_Text_1E044A: @ 81E044A
+	.string "Even if you're riding a bike,\n"
+	.string "wild Pokémon could jump you.$"
+
 
 MauvilleCity_EventScript_1DF3FB:: @ 81DF3FB
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_TV_EXPLAINED, MauvilleCity_EventScript_1DF413
 	msgbox MauvilleCity_Text_1E056A, MSGBOX_DEFAULT
 	setflag FLAG_TV_EXPLAINED
 	release
 	end
-
+MauvilleCity_Text_1E056A: @ 81E056A
+	.string "Hi, do you check out TV at all?\p"
+	.string "They've added a bunch of cool new\n"
+	.string "shows recently.\p"
+	.string "TV is so cool. I've seen my friends on\n"
+	.string "TV just out of the blue.\p"
+	.string "And, sometimes, they even put you on TV\n"
+	.string "without telling you.\p"
+	.string "I wish I would be on TV sometime.\p"
+	.string "That's why I think you should check\n"
+	.string "out TVs whenever you can.$"
 MauvilleCity_EventScript_1DF413:: @ 81DF413
 	msgbox MauvilleCity_Text_1E0699, MSGBOX_DEFAULT
 	release
 	end
+MauvilleCity_Text_1E0699: @ 81E0699
+	.string "Hi, have you been checking out TVs?$"
+
+@ -----------------------------------------------------
+@
+
+@ MauvilleCity_EventScript
+
+
+
+
+
 
 MauvilleCity_EventScript_1DF41D:: @ 81DF41D
 	lock
@@ -74,6 +143,11 @@ MauvilleCity_EventScript_1DF41D:: @ 81DF41D
 	waitmovement 0
 	release
 	end
+MauvilleCity_Text_1DF7DC: @ 81DF7DC
+	.string "UNCLE: It's because of Pokémon that\n"
+	.string "this boy's got more pep, I suppose…\l"
+	.string "But he's become a bit too peppy…$"
+
 
 MauvilleCity_EventScript_1DF43D:: @ 81DF43D
 	msgbox MauvilleCity_Text_1DFAA5, MSGBOX_DEFAULT
@@ -82,6 +156,13 @@ MauvilleCity_EventScript_1DF43D:: @ 81DF43D
 	waitmovement 0
 	release
 	end
+MauvilleCity_Text_1DFAA5: @ 81DFAA5
+	.string "UNCLE: {PLAYER}, was it?\n"
+	.string "On WALLY's behalf, can I ask you to\l"
+	.string "battle with him just this once?\p"
+	.string "I don't think he's going to listen to\n"
+	.string "any reason the way he is now.$"
+
 
 MauvilleCity_EventScript_1DF452:: @ 81DF452
 	lockall
@@ -466,10 +547,6 @@ MauvilleCity_EventScript_1DF7BA:: @ 81DF7BA
 	releaseall
 	end
 
-MauvilleCity_Text_1DF7DC: @ 81DF7DC
-	.string "UNCLE: It's because of Pokémon that\n"
-	.string "this boy's got more pep, I suppose…\l"
-	.string "But he's become a bit too peppy…$"
 
 MauvilleCity_Text_1DF845: @ 81DF845
 	.string "WALLY: Aww, UNCLE, please?\p"
@@ -503,12 +580,6 @@ MauvilleCity_Text_1DFA4A: @ 81DFA4A
 	.string "{PLAYER}, my UNCLE won't know that I've\l"
 	.string "become really strong.$"
 
-MauvilleCity_Text_1DFAA5: @ 81DFAA5
-	.string "UNCLE: {PLAYER}, was it?\n"
-	.string "On WALLY's behalf, can I ask you to\l"
-	.string "battle with him just this once?\p"
-	.string "I don't think he's going to listen to\n"
-	.string "any reason the way he is now.$"
 
 MauvilleCity_Text_1DFB42: @ 81DFB42
 	.string "WALLY: {PLAYER}, please!\n"
@@ -616,56 +687,9 @@ MauvilleCity_Text_1E02AA: @ 81E02AA
 	.string "It pleases me to no end to see\n"
 	.string "the young step up and take charge!$"
 
-MauvilleCity_Text_1E0301: @ 81E0301
-	.string "You know, it's cool to have Pokémon\n"
-	.string "battles and stuff…\p"
-	.string "But if your Pokémon gets hurt,\n"
-	.string "you have to nurse it back to health.$"
 
-MauvilleCity_Text_1E037C: @ 81E037C
-	.string "The roads of this town stretch north\n"
-	.string "and south, and east and west.\p"
-	.string "Because of that, we get all sorts of\n"
-	.string "people coming through.$"
 
-MauvilleCity_Text_1E03FB: @ 81E03FB
-	.string "Have you been to {PLACE}Rydel's Cycles{END} yet?\p"
-	.string "Rydel, the owner, is a very generous\n"
-	.string "man.$"
 
-MauvilleCity_Text_1E044A: @ 81E044A
-	.string "Even if you're riding a BIKE,\n"
-	.string "wild Pokémon could jump you.$"
 
-MauvilleCity_Text_1E0485: @ 81E0485
-	.string "{PLACE}Mauville City{END}\n"
-	.string "“The bright and shiny city of fun!”$"
 
-MauvilleCity_Text_1E04B7: @ 81E04B7
-	.string "{GYM}Mauville City Pokémon Gym{END}\n"
-	.string "{GYM}Leader:{END} Wattson\l"
-	.string "“The cheerfully electrifying man!”$"
 
-MauvilleCity_Text_1E0504: @ 81E0504
-	.string "“Ride in gravel and shake up your\n"
-	.string "soul!”\l"
-	.string "{PLACE}Rydel's Cycles{END}$"
-
-MauvilleCity_Text_1E053C: @ 81E053C
-	.string "“The play spot for all!”\n"
-	.string "{PLACE}Mauville Game Corner{END}$"
-
-MauvilleCity_Text_1E056A: @ 81E056A
-	.string "Hi, do you check out TV at all?\p"
-	.string "They've added a bunch of cool new\n"
-	.string "shows recently.\p"
-	.string "TV is so cool. I've seen my friends on\n"
-	.string "TV just out of the blue.\p"
-	.string "And, sometimes, they even put you on TV\n"
-	.string "without telling you.\p"
-	.string "I wish I would be on TV sometime.\p"
-	.string "That's why I think you should check\n"
-	.string "out TVs whenever you can.$"
-
-MauvilleCity_Text_1E0699: @ 81E0699
-	.string "Hi, have you been checking out TVs?$"

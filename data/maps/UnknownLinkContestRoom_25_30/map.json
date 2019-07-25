@@ -1,5 +1,5 @@
 {
-  "id": "MAP_UNKNOWN_MAP_25_30",
+  "id": "MAP_UNKNOWN_LINK_CONTEST_ROOM_25_30",
   "name": "UnknownLinkContestRoom_25_30",
   "layout": "LAYOUT_UNKNOWN_LINK_CONTEST_ROOM_25_30",
   "music": "MUS_NIBI",
@@ -9,7 +9,7 @@
   "map_type": "MAP_TYPE_INDOOR",
   "allow_bike": false,
   "allow_escape_rope": false,
-  "allow_running": false,
+  "allow_running": true,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,

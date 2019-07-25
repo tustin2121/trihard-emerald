@@ -43,6 +43,7 @@
 #include "field_control_avatar.h"
 #include "mirage_tower.h"
 #include "constants/map_types.h"
+#include "constants/region_map_sections.h"
 #include "constants/battle_frontier.h"
 #include "field_screen_effect.h"
 #include "data.h"
@@ -530,6 +531,30 @@ void BattleSetup_StartLegendaryBattle(void)
     sub_80B1218();
 }
 
+void BattleSetup_StartLegendaryRageBattle(void)
+{
+    ZeroEnemyPartyMons();
+    CreateMon(&gEnemyParty[0], SPECIES_GROUDON, 120, 0x20, 0, 0, 0, 0);
+    CreateMon(&gEnemyParty[1], SPECIES_KYOGRE, 120, 0x20, 0, 0, 0, 0);
+    
+    ScriptContext2_Enable();
+    gMain.savedCallback = CB2_EndScriptedWildBattle;
+    gBattleTypeFlags = BATTLE_TYPE_LEGENDARY;
+    gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+    gBattleTypeFlags |= BATTLE_TYPE_GROUDON;
+    gBattleTypeFlags |= BATTLE_TYPE_KYOGRE;
+    
+    if (gSpecialVar_InteractY % 2 == 0)
+        CreateBattleStartTask(B_TRANSITION_GROUDON, MUS_BATTLE34);
+    else
+        CreateBattleStartTask(B_TRANSITION_KYOGRE, MUS_BATTLE34);
+        
+    IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
+    IncrementGameStat(GAME_STAT_WILD_BATTLES);
+    sub_80EECC8();
+    sub_80B1218();
+}
+
 void StartGroudonKyogreBattle(void)
 {
     ScriptContext2_Enable();
@@ -893,11 +918,13 @@ void ChooseStarter(void)
 
 static void CB2_GiveStarter(void)
 {
+    u16 loc = MAPSEC_STARTER_MARKER;
     u16 starterMon;
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
     ScriptGiveMon(starterMon, 5, 0, 0, 0, 0);
+    SetMonData(gPlayerParty, MON_DATA_MET_LOCATION, &loc);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);

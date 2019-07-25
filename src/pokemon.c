@@ -46,6 +46,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
+#include "constants/region_map_sections.h"
 
 struct SpeciesItem
 {
@@ -1371,6 +1372,7 @@ const s8 gNatureStatTable[][5] =
 #include "data/pokemon/level_up_learnsets.h"
 #include "data/pokemon/evolution.h"
 #include "data/pokemon/level_up_learnset_pointers.h"
+#include "data/pokemon/capabilities.h"
 
 // SPECIES_NONE are ignored in the following two tables, so decrement before accessing these arrays to get the right result
 
@@ -2856,7 +2858,7 @@ u8 GetLevelFromMonExp(struct Pokemon *mon)
     u32 exp = GetMonData(mon, MON_DATA_EXP, NULL);
     s32 level = 1;
 
-    while (level <= MAX_LEVEL && gExperienceTables[gBaseStats[species].growthRate][level] <= exp)
+    while (level <= EXP_MAX_LEVEL && gExperienceTables[gBaseStats[species].growthRate][level] <= exp)
         level++;
 
     return level - 1;
@@ -2868,7 +2870,7 @@ u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon)
     u32 exp = GetBoxMonData(boxMon, MON_DATA_EXP, NULL);
     s32 level = 1;
 
-    while (level <= MAX_LEVEL && gExperienceTables[gBaseStats[species].growthRate][level] <= exp)
+    while (level <= EXP_MAX_LEVEL && gExperienceTables[gBaseStats[species].growthRate][level] <= exp)
         level++;
 
     return level - 1;
@@ -4444,9 +4446,10 @@ void Restore1HPDeathPreventedMons(void)
     }
 }
 
-void RemoveDeadMonFromParty(void)
+void RemoveDeadMonFromParty(bool8 endOfBattle)
 {
     s32 i;
+    if (!endOfBattle) return; //TODO: Hack to fix problems with battle!
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_STATUS, NULL) == STATUS1_DEAD)
@@ -4613,6 +4616,8 @@ bool8 IsPlayerPartyFull(void)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
+            return FALSE;
+        if (GetMonData(&gPlayerParty[i], MON_DATA_STATUS, NULL) == STATUS1_DEAD)
             return FALSE;
     }
 
@@ -6215,6 +6220,12 @@ u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
     }
 }
 
+bool8 IsMonCapable(struct Pokemon *mon, u16 cap)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
+    return (gMonCapabilities[species] & cap) != 0;
+}
+
 u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
 {
     u16 learnedMoves[4];
@@ -7085,4 +7096,34 @@ bool8 CanAnyPartyMonsBeHealed(void)
 void ScrSpecial_CanAnyPartyMonsBeHealed(void)
 {
     gSpecialVar_Result = CanAnyPartyMonsBeHealed();
+}
+
+
+void CheckIfStarterAlive(void)
+{
+    u8 i;
+    u16 starter = VarGet(VAR_STARTER_MON);
+    switch (starter) {
+        case 0: gSpecialVar_0x8000 = SPECIES_TREECKO; break;
+        case 1: gSpecialVar_0x8000 = SPECIES_TORCHIC; break;
+        case 2: gSpecialVar_0x8000 = SPECIES_MUDKIP; break;
+    }
+    
+    gSpecialVar_Result = FALSE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        struct Pokemon *mon = &gPlayerParty[i];
+        if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE) break;
+        if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_EGG) continue;
+        
+        if (GetMonData(mon, MON_DATA_MET_LOCATION, NULL) == MAPSEC_STARTER_MARKER)
+        {
+            gSpecialVar_Result = TRUE;
+        }
+        // u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, 0);
+        // if (species == starter)
+        // {
+        //     gSpecialVar_Result = TRUE;
+        // }
+    }
 }

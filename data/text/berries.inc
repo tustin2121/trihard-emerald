@@ -121,38 +121,3 @@ Route123_BerryMastersHouse_Text_2A761B: @ 82A761B
 Route123_BerryMastersHouse_Text_2A7682: @ 82A7682
 	.string "Ah…$"
 
-
-
-SootopolisCity_Text_2A7BB0: @ 82A7BB0
-	.string "Hi, what's your name?\p"
-	.string "… … …  … … …  … … …\n"
-	.string "Okay. That's nice!\p"
-	.string "My name is KIRI.\p"
-	.string "My mommy and daddy named me that so\n"
-	.string "I would grow healthy and warmhearted.\l"
-	.string "That's what they wished.\p"
-	.string "You can have one of these.$"
-
-SootopolisCity_Text_2A7C7C: @ 82A7C7C
-	.string "KIRI will give you this BERRY, too!\n"
-	.string "I really like it lots!$"
-
-SootopolisCity_Text_2A7CB7: @ 82A7CB7
-	.string "I wonder what kind of wish is included\n"
-	.string "in your name.$"
-
-SootopolisCity_Text_2A7CEC: @ 82A7CEC
-	.string "Spring, summer, autumn, and winter.\p"
-	.string "If you're born in springtime, do you like\n"
-	.string "the spring, and if you're born in the\l"
-	.string "summer, do you like the summer?$"
-
-SootopolisCity_Text_2A7D80: @ 82A7D80
-	.string "Then KIRI was born in the autumn,\n"
-	.string "so I love the autumn!\p"
-	.string "Which season do you like?$"
-
-SootopolisCity_Text_2A7DD2: @ 82A7DD2
-	.string "Oh…\n"
-	.string "It doesn't matter…\p"
-	.string "There's so much that I want to know…$"

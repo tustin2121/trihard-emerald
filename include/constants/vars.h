@@ -96,11 +96,11 @@
 #define VAR_LOTAD_SIZE_RECORD                0x404F
 #define VAR_0x4050                           0x4050
 #define VAR_ROUTE102_ACCESSIBLE              0x4051
-#define VAR_UNUSED_0x4052                    0x4052 // Unused Var
+#define VAR_LOGAN_STATE                      0x4052 // Trihard Emerald
 #define VAR_LAVARIDGE_RIVAL_STATE            0x4053
 #define VAR_CURRENT_SECRET_BASE              0x4054
-#define VAR_UNUSED_0x4055                    0x4055 // Unused Var
-#define VAR_UNUSED_0x4056                    0x4056 // Unused Var
+#define VAR_AQUA_GIRL_FRIENDSHIP             0x4055 // Trihard Emerald
+#define VAR_AQUA_BOY_FRIENDSHIP              0x4056 // Trihard Emerald
 #define VAR_PETALBURG_STATE                  0x4057
 #define VAR_SLATEPORT_STATE                  0x4058
 #define VAR_UNUSED_0x4059                    0x4059 // Unused Var
@@ -113,7 +113,7 @@
 #define VAR_ROUTE101_STATE                   0x4060
 #define VAR_UNUSED_0x4061                    0x4061 // Unused Var
 #define VAR_UNUSED_0x4062                    0x4062 // Unused Var
-#define VAR_0x4063                           0x4063
+#define VAR_UNUSED_0x4063                    0x4063 // TE: Unused
 #define VAR_UNUSED_0x4064                    0x4064 // Unused Var
 #define VAR_UNUSED_0x4065                    0x4065 // Unused Var
 #define VAR_UNUSED_0x4066                    0x4066 // Unused Var
@@ -147,7 +147,7 @@
 #define VAR_LITTLEROOT_HOUSES_STATE          0x4082
 #define VAR_UNUSED_0x4083                    0x4083 // Unused Var
 #define VAR_BIRCH_LAB_STATE                  0x4084
-#define VAR_PETALBURG_GYM_STATE              0x4085
+#define VAR_NUM_BADGES                       0x4085
 #define VAR_LINK_CONTEST_ROOM_STATE          0x4086
 #define VAR_CABLE_CLUB_STATE                 0x4087
 #define VAR_CONTEST_LOCATION                 0x4088
@@ -224,7 +224,7 @@
 #define VAR_FRONTIER_FACILITY                0x40CF
 #define VAR_HAS_ENTERED_BATTLE_FRONTIER      0x40D0 // Var is used like a flag.
 #define VAR_SCOTT_STATE                      0x40D1
-#define VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE   0x40D2
+#define VAR_SLATEPORT_MUSEUM_HEIST_STATE     0x40D2
 #define VAR_0x40D3                           0x40D3
 #define VAR_SS_TIDAL_SCOTT_STATE             0x40D4 // Always equal to FLAG_MET_SCOTT_ON_SS_TIDAL
 #define VAR_ROAMER_POKEMON                   0x40D5 // 0 = Latias, 1 = Latios
@@ -299,6 +299,7 @@
 #define VAR_INTERACT_X                0x8016
 #define VAR_INTERACT_Y                0x8017
 #define VAR_LAST_WARP_ID              0x8018
+#define VAR_DIALOG_TAIL_OFFSET        0x8019
 
 #define THIS_EVENT                    0x800F //alias to VAR_LAST_TALKED
 

@@ -25,10 +25,11 @@ SlateportCity_PokemonCenter_1F_NurseScript:: @ 820DAD3
 SlateportCity_Mart_MartScript:: @ 820DC49
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart SlateportCity_Mart_Pokemart_20DC60
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

@@ -48,7 +48,7 @@ MirageTower_4F_EventScript_23ADCA:: @ 823ADCA
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 32
 	setvar VAR_0x8007, 2
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	special DoMirageTowerCeilingCrumble
 	waitstate

@@ -8,7 +8,7 @@ LittlerootTown_MaysHouse_1F_MapScript1_OnLoad: @ 81F88B5
 	compare VAR_LITTLEROOT_INTRO_STATE, 6
 	call_if_lt LittlerootTown_MaysHouse_1F_EventScript_1F88CA
 	call_if_set FLAG_DAD_IS_AT_WORK, LittlerootTown_MaysHouse_1F_EventScript_SetupLetter
-	call_if_unset FLAG_DAD_IS_AT_WORK, LittlerootTown_MaysHouse_1F_EventScript_RemoveLetter
+	call_if_unset FLAG_DAD_IS_AT_WORK, LittlerootTown_PlayerHouse_1F_OnLoad_LetterHide
 	end
 LittlerootTown_MaysHouse_1F_EventScript_1F88CA:: @ 81F88CA
 	setmetatile 5, 4, 0x270, 1
@@ -19,15 +19,10 @@ LittlerootTown_MaysHouse_1F_EventScript_1F88CA:: @ 81F88CA
 	setmetatile 0, 3, 0x274, 0
 	return
 LittlerootTown_MaysHouse_1F_EventScript_SetupLetter:: @ 81F88DD
-	call_if_set FLAG_DAILY_DADS_LETTER_REMOVED, LittlerootTown_MaysHouse_1F_EventScript_RemoveLetter
 	checkplayergender
-	@ compare VAR_RESULT, FEMALE
-	@ goto_if_eq LittlerootTown_PlayerHouse_1F_OnLoad_Letter
-	compare VAR_RESULT, MALE
-	goto_if_eq LittlerootTown_MaysHouse_1F_EventScript_RemoveLetter
-	return
-LittlerootTown_MaysHouse_1F_EventScript_RemoveLetter:: @ 81F88EA
-	removeobject 5
+	compare VAR_RESULT, FEMALE
+	goto_if_eq LittlerootTown_PlayerHouse_1F_OnLoad_Letter
+	goto LittlerootTown_PlayerHouse_1F_OnLoad_LetterHide
 	return
 
 LittlerootTown_MaysHouse_1F_MapScript1_OnTransition: @ 81F88F4

@@ -10,7 +10,7 @@
 #define SE_WIN_OPEN 6           // Start Menu
 #define SE_WALL_HIT 7           // Wall Bump
 #define SE_DOOR 8               // Opening Door
-#define SE_KAIDAN 9             // Stairs
+#define SE_KAIDAN 9             // Stairs, exiting house
 #define SE_DANSA 10             // Ledge
 #define SE_JITENSYA 11          // Bicycle Bell
 #define SE_KOUKA_L 12           // Not Very Effective
@@ -280,7 +280,7 @@
 #define MUS_KACHI2 353          // Wild Pokémon Defeated with Intro
 #define MUS_KACHI3 354          // Gym Leader Defeated
 #define MUS_KACHI5 355          // Victory! Elite Four
-#define MUS_PCC 356             // Crystal - Pokémon Communication Center
+#define MUS_BORNLOSE 356        // TriHard: Pokémon Center (Born to Lose Remix)
 #define MUS_NIBI 357            // GSC - Viridian/Saffron/Pewter/etc
 #define MUS_SUIKUN 358          // Crystal - Battle! Legendary Beasts
 #define MUS_DOORO1 359          // Route 101
@@ -539,5 +539,20 @@
 #define MUS_ROUTE_118 0x7FFF  // map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 
 #define MUS_NONE 0xFFFF
+
+
+#define CRY_MODE_NORMAL 0
+#define CRY_MODE_SHORT 1
+#define CRY_MODE_HIGH 2
+#define CRY_MODE_HIGHER 3
+#define CRY_MODE_REVERSE 4
+#define CRY_MODE_SLOW 5
+#define CRY_MODE_HIGHER2 6
+#define CRY_MODE_CLIPPED 7
+#define CRY_MODE_HIGHER3 8
+#define CRY_MODE_REVERSE_SHORT 9
+#define CRY_MODE_NORMAL2 10
+#define CRY_MODE_LOWER 11
+
 
 #endif  // GUARD_CONSTANTS_SONGS_H

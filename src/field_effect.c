@@ -20,6 +20,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokemon.h"
+#include "random.h"
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
@@ -3871,3 +3872,60 @@ static void DoFieldMove_Ending(u8 taskId)
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
+#define TILE_OFFSET 0x1140
+#define TILE_POSX 1
+#define TILE_POSY 10
+
+const static u16 sGoTiles[5][11] = {
+    { 0x8, 0xA, 0xA, 0xA, 0x8, 0xA, 0xA, 0xA, 0x8, 0xA, 0x8 },
+    { 0x8, 0xA, 0x8, 0x8, 0x8, 0xA, 0x8, 0xA, 0x8, 0xA, 0x8 },
+    { 0x8, 0xA, 0xC, 0xA, 0x8, 0xA, 0x8, 0xA, 0x8, 0xA, 0x8 },
+    { 0x8, 0xA, 0x8, 0xA, 0x8, 0xA, 0x8, 0xA, 0x8, 0x8, 0x8 },
+    { 0x8, 0xA, 0xA, 0xA, 0x8, 0xA, 0xA, 0xA, 0x8, 0xA, 0x8 },
+};
+
+void Task_ChampWaveFlags(u8 taskId)
+{
+    u32 rand;
+    u8 i, x, y;
+    u16 x2, y2, tile;
+    
+    if (!sBG3Parallax)
+    {
+        DestroyTask(taskId);
+        return;
+    }
+    gTasks[taskId].data[0]++;
+    if (gTasks[taskId].data[0] % 8 != 0) return;
+    rand = Random32();
+    
+    for (i = ((rand>>16)%3); i < 55; i++)
+    {
+        if (gTasks[taskId].data[0] < 50)
+        {
+            i += (rand % 8) + 1;
+            if (i >= 55) break;
+        }
+        y = i / 11;
+        x = i % 11;
+        x2 = TILE_POSX + x;
+        y2 = TILE_POSY + y;
+        tile = sGoTiles[y][x];
+        if (tile < 0xC && ((rand >> ((y*11+x)%32)) & 1) != 0) {
+            tile++;
+        }
+        gBGTilemapBuffers3[x2 + y2*0x20] = TILE_OFFSET + tile;
+    }
+    schedule_bg_copy_tilemap_to_vram(3);
+}
+
+void DoChampWaveFlags()
+{
+    CreateTask(Task_ChampWaveFlags, 0xFF);
+}
+
+#undef TILE_OFFSET
+#undef TILE_POSX
+#undef TILE_POSY

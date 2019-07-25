@@ -205,6 +205,7 @@ void (*gFieldCallback)(void);
 bool8 (*gFieldCallback2)(void);
 u8 gLocalLinkPlayerId; // This is our player id in a multiplayer mode.
 u8 gFieldLinkPlayerCount;
+bool8 sBG3Parallax;
 
 // EWRAM vars
 EWRAM_DATA static u8 sUnknown_020322D8 = 0;
@@ -854,6 +855,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     for (paletteIndex = 6; paletteIndex < 13; paletteIndex++)
         ApplyWeatherGammaShiftToPal(paletteIndex);
 
+    sBG3Parallax = FALSE;
     InitSecondaryTilesetAnimation();
     UpdateLocationHistoryForRoamer();
     RoamerMove();
@@ -1073,6 +1075,8 @@ static bool16 ShouldLegendaryMusicPlayAtLocation(struct WarpData *warp)
             }
         }
     }
+    if (warp->mapGroup == MAP_GROUP(SOOTOPOLIS_CITY_POKEMON_CENTER_1F))
+        return TRUE;
     return FALSE;
 }
 
@@ -1103,9 +1107,7 @@ static bool16 IsInfiltratedWeatherInstitute(struct WarpData *warp)
 
 static bool16 IsInflitratedSpaceCenter(struct WarpData *warp)
 {
-    if (VarGet(VAR_MOSSDEEP_STATE) == 0)
-        return FALSE;
-    else if (VarGet(VAR_MOSSDEEP_STATE) > 2)
+    if (VarGet(VAR_MOSSDEEP_STATE) > 1)
         return FALSE;
     else if (warp->mapGroup != MAP_GROUP(MOSSDEEP_CITY_SPACE_CENTER_1F))
         return FALSE;
@@ -1438,6 +1440,7 @@ static void InitOverworldBgs(void)
 
 void CleanupOverworldWindowsAndTilemaps(void)
 {
+    sBG3Parallax = FALSE;
     ClearMirageTowerPulseBlendEffect();
     FreeAllOverworldWindowBuffers();
     if (gBGTilemapBuffers3)
@@ -2169,6 +2172,7 @@ static void sub_8086988(u32 a1)
     else
         InitEventObjectPalettes(1);
 
+    sBG3Parallax = FALSE;
     FieldEffectActiveListClear();
     StartWeather();
     ResumePausedWeather();

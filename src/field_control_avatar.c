@@ -360,7 +360,7 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
         {
             gSpecialVar_0x8004 = bgEvent->bgUnion.secretBaseId;
             if (TrySetCurSecretBase())
-                return EventScript_2759F1;
+                return EventScript_UseSecretPower;
         }
         return NULL;
     }
@@ -591,11 +591,11 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(RustboroCity_Gym_EventScript_21307B);
             return TRUE;
         }
-        if (ShouldDoRivalRayquazaCall() == TRUE)
-        {
-            ScriptContext1_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_224175);
-            return TRUE;
-        }
+        // if (ShouldDoRivalRayquazaCall() == TRUE)
+        // {
+        //     ScriptContext1_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_224175);
+        //     return TRUE;
+        // }
     }
 
     if (SafariZoneTakeStep() == TRUE)
@@ -1026,4 +1026,9 @@ void HashInteractLocation(void)
     gSpecialVar_0x8000 += gSaveBlock1Ptr->location.mapNum;
     gSpecialVar_0x8000 += gSpecialVar_InteractX;
     gSpecialVar_0x8000 += gSpecialVar_InteractY;
+}
+
+void SetPlayerOutfit(void)
+{
+    gSaveBlock2Ptr->playerForm = (gSaveBlock2Ptr->playerForm & 1) | (gSpecialVar_0x8000 << 1);
 }

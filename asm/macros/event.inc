@@ -369,9 +369,10 @@
 	.endm
 
 	@ Fades out the currently-playing song.
-	.macro fadeoutbgm speed:req
+	.macro fadeoutbgm speed:req, wait=1
 	.byte 0x37
 	.byte \speed
+	.byte \wait
 	.endm
 
 	@ Fades the previously-playing song back in.
@@ -854,29 +855,32 @@
 	.byte \per_row
 	.byte \B
 	.endm
-
-	@ Nopped in Emerald.
-	.macro drawbox
+	
+	@ Clone of warp that does not play a sound effect nor fade the screen.
+	.macro warpcustom map:req, warp:req, X:req, Y:req
 	.byte 0x72
+	map \map
+	.byte \warp
+	.2byte \X
+	.2byte \Y
 	.endm
 
-	@ Nopped in Emerald, but still consumes parameters.
-	.macro erasebox byte1:req, byte2:req, byte3:req, byte4:req
+	@ Advances the time of day by the given time
+	.macro advancetime hour:req, min:req, deviation=0
 	.byte 0x73
-	.byte \byte1
-	.byte \byte2
-	.byte \byte3
-	.byte \byte4
+	.byte \hour
+	.byte \min
+	.2byte \deviation
 	.endm
 
 	@ Nopped in Emerald, but still consumes parameters.
-	.macro drawboxtext byte1:req, byte2:req, byte3:req, byte4:req
-	.byte 0x74
-	.byte \byte1
-	.byte \byte2
-	.byte \byte3
-	.byte \byte4
-	.endm
+	@ .macro drawboxtext byte1:req, byte2:req, byte3:req, byte4:req
+	@ .byte 0x74
+	@ .byte \byte1
+	@ .byte \byte2
+	@ .byte \byte3
+	@ .byte \byte4
+	@ .endm
 
 	@ Displays a box containing the front sprite for the specified (species) Pokemon species.
 	.macro drawmonpic species:req, x:req, y:req
@@ -904,14 +908,14 @@
 	.endm
 
 	@ Gives the player one of the specified (species) Pokemon at level level holding item. The unknown arguments should all be zeroes.
-	.macro givemon species:req, level:req, item:req, unknown1:req, unknown2:req, unknown3:req
+	.macro givemon species:req, level:req, item:req
 	.byte 0x79
 	.2byte \species
 	.byte \level
 	.2byte \item
-	.4byte \unknown1
-	.4byte \unknown2
-	.byte \unknown3
+	.4byte 0
+	.4byte 0
+	.byte 0
 	.endm
 
 	.macro giveegg species:req
@@ -1212,20 +1216,22 @@
 	.2byte \index
 	map \map
 	.endm
-
-	.macro createvobject sprite:req, byte2:req, x:req, y:req, elevation, direction
+	
+	@ Creates a virtual object, which is a sprite which has no presense on the map itself, and can only turn with the below command
+	.macro createvobject sprite:req, virtualID:req, x:req, y:req, elevation=3, direction=DIR_SOUTH
 	.byte 0xaa
 	.byte \sprite
-	.byte \byte2
+	.byte \virtualID
 	.2byte \x
 	.2byte \y
 	.byte \elevation
 	.byte \direction
 	.endm
-
-	.macro turnvobject index:req, direction:req
+	
+	@ Turns a virtual object
+	.macro turnvobject virtualID:req, direction:req
 	.byte 0xab
-	.byte \index
+	.byte \virtualID
 	.byte \direction
 	.endm
 
@@ -1422,9 +1428,10 @@
 	.endm
 
 	@ Ends the effects of signmsg, returning message box frames to normal.
-	@ .macro normalmsg
-	@ .byte 0xcb
-	@ .endm
+	.macro checkpartycapability cap:req
+	.byte 0xcb
+	.2byte \cap
+	.endm
 
 	@ Compares the value of a hidden variable to a dword.
 	@ .macro comparehiddenvar a:req, value:req
@@ -1472,9 +1479,9 @@
 	.byte \location
 	.endm
 
-	.macro mossdeepgym1 unknown:req
+	.macro mossdeepgym1 arg:req
 	.byte 0xd3
-	.2byte \unknown
+	.2byte \arg
 	.endm
 
 	.macro mossdeepgym2
@@ -1508,6 +1515,9 @@
 	.endm
 
 	.macro cleanupbraillemessage
+	.byte 0xda
+	.endm
+	.macro cleanupsignmessage
 	.byte 0xda
 	.endm
 
@@ -1607,6 +1617,13 @@
 	.2byte \input
 	.byte \article  @0="one", 1="the"
 	.endm
+	
+	.macro addvar_if a:req, destination:req, value:req
+	.byte 0xe7
+	.byte \a
+	.2byte \destination
+	.2byte \value
+	.endm
 
 @ Supplementary
 
@@ -1676,6 +1693,16 @@
 
 	.macro call_if_ne dest:req @ NOT EQUAL
 	call_if 5, \dest
+	.endm
+	
+	.macro addvar_if_unset flag:req, var:req, val:req
+	checkflag \flag
+	addvar_if 0, \var, \val
+	.endm
+	
+	.macro addvar_if_set flag:req, var:req, val:req
+	checkflag \flag
+	addvar_if 1, \var, \val
 	.endm
 
 	.macro switch var:req

@@ -14,6 +14,13 @@ const DebugHandle_GetRandomSeeds = 6;
 const DebugHandle_SetRandomSeeds = 7;
 const DebugHandle_SetWeather = 8;
 const DebugHandle_ShowSoundTest = 9;
+const DebugHandle_SetFlag = 10;
+const DebugHandle_SetVar = 11;
+const DebugHandle_SetLegendaryFight = 12;
+const DebugHandle_GiveDebugParty = 13;
+const DebugHandle_TestScript1 = 14;
+const DebugHandle_SwapGenders = 15;
+const DebugHandle_RenamePlayer = 16;
 
 // Menu Functions
 function initMenuV1() {
@@ -27,18 +34,58 @@ function initMenuV1() {
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowPCBox });
 			});
-		$(`<li>Play Credits</li>`).appendTo($m)
+		$(`<li>Reload Map</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_ReloadMap });
+			});
+		$m.append('<hr/>');
+		$(`<li>Debug Options…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('debugopts'); });
+		$(`<li>Set Flag…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('setflag'); });
+		$(`<li>Set Var…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('setvar'); });
+		$(`<li>Set Weather to…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('weather'); });
+		$(`<li>Warp to Map…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('gowarp'); });
+		$(`<li>Other Actions…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('submenu1'); });
+	}{
+		let $m = $subMenus['submenu1'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
+		$(`<li>Replace Party with Debug Team</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_GiveDebugParty });
+				switchMenu();
+			});
+			$(`<li>Play Credits</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowCredits });
+				switchMenu();
+			});
+		$(`<li>Change Player Gender/Form…</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu('genders');
+			});
+		$(`<li>Change Player Name</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_RenamePlayer });
+				switchMenu();
 			});
 		$(`<li>Open Sound Test</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ShowSoundTest });
+				switchMenu();
 			});
-		$(`<li>Set Weather to...</li>`).appendTo($m)
-			.on('click', function(){ switchMenu('weather'); });
-		$(`<li>Debug Options...</li>`).appendTo($m)
-			.on('click', function(){ switchMenu('debugopts'); });
+		$(`<li>Set Legendary Fight…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('legendary'); });
+		$(`<li>Run Test Script 1</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_TestScript1 });
+				switchMenu();
+			});
 	}{
 		let $m = $subMenus['debugopts'] = $('<ul>').appendTo('body');
 		$(`<li>Skip Battles</li>`).appendTo($m)
@@ -63,8 +110,36 @@ function initMenuV1() {
 				writeInterruptFlags(val);
 				switchMenu(); 
 			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
+	}{
+		let $m = $subMenus['genders'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
+		let $opts = [
+			$(`<li>Male / Team Skull</li>`).attr('value', 0),
+			$(`<li>Male / Aqua Bandanna</li>`).attr('value', 2),
+			$(`<li>Male / Aqua Uniform</li>`).attr('value', 4),
+			$(`<li>Male / Final Outfit</li>`).attr('value', 6),
+			$(`<li>Female / Team Skull</li>`).attr('value', 1),
+			$(`<li>Female / Aqua Bandanna</li>`).attr('value', 3),
+			$(`<li>Female / Aqua Uniform</li>`).attr('value', 5),
+			$(`<li>Female / Final Outfit</li>`).attr('value', 7),
+		];
+		$opts.forEach($x=>$x.appendTo($m)
+			.attr('name', 'genderid')
+			.on('click', function(){
+			writeInterrupts({ funcId: DebugHandle_SwapGenders, args:[
+				Number.parseInt($(this).val())
+			] });
+			switchMenu();
+		}));
 	}{
 		let $m = $subMenus['weather'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
 		let $opts = [
 			$(`<li>No Weather</li>`).attr('value', 0),
 			$(`<li>Cloudy</li>`).attr('value', 1),
@@ -95,6 +170,30 @@ function initMenuV1() {
 			switchMenu();
 		}));
 	}{
+		let $m = $subMenus['legendary'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Cancel</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
+		$(`<li>Before</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetLegendaryFight, args:[0] });
+				switchMenu();
+			});
+		$(`<li>During</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetLegendaryFight, args:[1] });
+				switchMenu();
+			});
+		$(`<li>After</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetLegendaryFight, args:[2] });
+				switchMenu();
+			});
+		$(`<li>After Gym</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetLegendaryFight, args:[3] });
+				switchMenu();
+			});
+	}{
 		let $m = $subMenus['forceopts'] = $('<ul>').appendTo('body');
 		$(`<li>Text Speed: </li>`).appendTo($m)
 			.attr('name', 'textspd')
@@ -115,6 +214,103 @@ function initMenuV1() {
 			.attr('name', 'sound')
 			.on('click', function(){
 				
+			});
+	}{
+		let $m = $subMenus['setflag'] = $('<ul>').appendTo('body');
+		let $n = $(`<input type='text' value="0" />`)
+			.on('change', function(){
+				let n = Number.parseInt($n.val(), 16);
+				$n.toggleClass('invalid', Number.isNaN(n));
+			});
+		$(`<p>Flag ID: 0x</p>`).appendTo($m)
+			.append($n);
+		$(`<li>Set Flag</li>`).appendTo($m)
+			.on('click', function(){
+				let id = Number.parseInt($n.val(), 16);
+				if (Number.isNaN(id)) return;
+				writeInterrupts({ 
+					funcId: DebugHandle_SetFlag,
+					args: [1, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Clear Flag</li>`).appendTo($m)
+			.on('click', function(){
+				let id = Number.parseInt($n.val(), 16);
+				if (Number.isNaN(id)) return;
+				writeInterrupts({ 
+					funcId: DebugHandle_SetFlag,
+					args: [0, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
+	}{
+		let $m = $subMenus['setvar'] = $('<ul>').appendTo('body');
+		let $n = $(`<input type='text' value="0" />`)
+			.on('change', function(){
+				let n = Number.parseInt($n.val(), 16);
+				$n.toggleClass('invalid', Number.isNaN(n));
+			});
+		let $v = $(`<input type='number' value="0" />`);
+		$(`<p>`).appendTo($m)
+			.append(`Var ID: 0x`).append($n).append('<br/>')
+			.append(`Value: `).append($v);
+		$(`<li>Set Variable</li>`).appendTo($m)
+			.on('click', function(){
+				let id = Number.parseInt($n.val(), 16);
+				if (Number.isNaN(id)) return;
+				let val = $v.val();
+				writeInterrupts({ 
+					funcId: DebugHandle_SetVar,
+					args: [
+						(val >> 0) & 0xFF, (val >> 8) & 0xFF,
+						( id >> 0) & 0xFF, ( id >> 8) & 0xFF,
+					],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
+	}{
+		let $m = $subMenus['gowarp'] = $('<ul>').appendTo('body');
+		let $group = $(`<input type='number' value="0" max="128" />`);
+		let $id    = $(`<input type='number' value="0" max="128" />`);
+		let $warp  = $(`<input type='number' value="0" max="128" />`);
+		$(`<p>`).appendTo($m)
+			.append(`Group: `).append($group).append('<br/>')
+			.append(`MapId: `).append($id).append('<br/>')
+			.append(`Warp: `).append($warp);
+		$(`<li>Warp</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ 
+					funcId: DebugHandle_WarpRequest,
+					args: [
+						$group.val(),
+						$id.val(),
+						$warp.val(),
+						0xFF, 0xFF,
+					],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
+		$m.append(`<hr>`);
+		$(`<li>Warp to Test Map</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ 
+					funcId: DebugHandle_WarpRequest,
+					args: [33, 2, 0, 0xFF, 0xFF],
+				});
+				switchMenu();
 			});
 	}
 	switchMenu();

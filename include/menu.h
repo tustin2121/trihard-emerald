@@ -28,6 +28,7 @@ void LoadStdWindowFrame(void);
 void DrawDialogueFrame(u8, u8);
 void DrawDescribeFrame(u8, bool8);
 void DrawSignWindowFrame(u8, u8);
+void DrawSignWindowFrame2(u8, u8);
 void ClearStdWindowAndFrame(u8 windowId, bool8 copyToVram);
 u16 AddTextPrinterParameterized2(u8 windowId, u8 fontId, const u8 *str, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16), u8 fgColor, u8 bgColor, u8 shadowColor);
 void PrintPlayerNameOnWindow(u8, const u8*, u16, u16);
@@ -105,7 +106,7 @@ void ResetBgPositions(void);
 void AddTextPrinterWithCustomSpeedForMessage(bool8 allowSkippingDelayWithButtonPress, u8 speed);
 void sub_8198C78(void);
 void PrintTextArray(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *strs);
-void PopupSignMessageBox(void);
+void PopupSignMessageBox(u8 nTiles);
 bool8 IsSignPoppedUp(void);
 
 #endif // GUARD_MENU_H

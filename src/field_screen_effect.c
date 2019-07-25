@@ -109,6 +109,7 @@ void WarpFadeScreen(void)
         break;
     case 1:
         FadeScreen(FADE_TO_WHITE, 0);
+        break;
     }
 }
 
@@ -500,6 +501,15 @@ void DoDiveWarp(void)
     ScriptContext2_Enable();
     TryFadeOutOldMapMusic();
     WarpFadeScreen();
+    PlayRainStoppingSoundEffect();
+    gFieldCallback = mapldr_default;
+    CreateTask(sub_80AFA0C, 10);
+}
+
+void DoCustomWarp(void)
+{
+    ScriptContext2_Enable();
+    TryFadeOutOldMapMusic();
     PlayRainStoppingSoundEffect();
     gFieldCallback = mapldr_default;
     CreateTask(sub_80AFA0C, 10);

@@ -57,6 +57,7 @@ gSpecialVars:: @ 81DBA0C
 	.4byte gSpecialVar_InteractX
 	.4byte gSpecialVar_InteractY
 	.4byte gSpecialVar_LastWarpId
+	.4byte gSpecialVar_DialogTailOffset
 
 	.include "data/specials.inc"
 
@@ -630,19 +631,6 @@ EventScript_23B6D7:: @ 823B6D7
 	msgbox Text_2769FF, MSGBOX_SIGN
 	end
 
-gText_23B6E0:: @ 823B6E0
-	.string "There's a small indent in the wall.$"
-
-gText_23B704:: @ 823B704
-	.string "There's a small indent in the wall.\p"
-	.string "Use the SECRET POWER?$"
-
-gText_23B73E:: @ 823B73E
-	.string "Discovered a small cavern!$"
-
-SecretBase_RedCave1_Text_23B759: @ 823B759
-	.string "Want to make your SECRET BASE here?$"
-
 	.include "data/maps/SingleBattleColosseum/scripts.inc"
 	.include "data/maps/TradeCenter/scripts.inc"
 	.include "data/maps/RecordCorner/scripts.inc"
@@ -815,6 +803,7 @@ Std_MsgboxSign:: @ 8271320
 	waitmessage
 	waitbuttonpress
 	releaseall
+	cleanupsignmessage
 	return
 
 Std_MsgboxDescribe:: @ 8271320
@@ -963,12 +952,12 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQUIL
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setflag FLAG_HIDE_PETALBURG_CITY_LOGAN
 	setflag FLAG_UNKNOWN_0x363
-	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
-	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+	setflag FLAG_UNUSED_0x2DB @ Remove?
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_SCENE
 	setflag FLAG_HIDE_RUSBORO_CITY_RIVAL
-	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
+	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
@@ -987,7 +976,9 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4
 	setflag FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS
 	setflag FLAG_HIDE_PETALBURG_GYM_GREETER
-	setflag FLAG_HIDE_PETALBURG_GYM_WALLYS_UNCLE
+	setflag FLAG_HIDE_PETALBURG_CENTER_LOGAN
+	setflag FLAG_HIDE_PETALBURG_CITY_GYM_LOCK
+	@ setflag FLAG_HIDE_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_BRENDAN
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_BRENDAN
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
@@ -1014,8 +1005,6 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_WOMAN
 	setflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_UNCLE
-	setflag FLAG_HIDE_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAXIE
@@ -1044,9 +1033,9 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_LOVER_MAN
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_LOVER_WOMAN
-	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_ARCHIE
-	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1
-	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_2
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA
+	setflag FLAG_UNUSED_0x376
+	setflag FLAG_UNUSED_0x375
 	setflag FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
 	setflag FLAG_HIDE_BATTLE_TOWER_OPPONENT
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
@@ -1110,7 +1099,7 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_DEOXYS
 	setflag FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION
 	setflag FLAG_HIDE_FALLORBOR_TOWN_BATTLE_TENT_SCOTT
-	setflag FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
+	@ setflag FLAH_UNUSED_0x319
 	setflag FLAG_HIDE_SKY_PILLAR_WALLACE
 	setflag FLAG_RAYQUAZA_ON_SKY_TOWER_SUMMIT
 	call EventScript_ResetAllBerries
@@ -1498,14 +1487,6 @@ EventScript_PC:: @ 8271D92
 	releaseall
 	end
 
-DewfordTown_Gym_EventScript_271E84:: @ 8271E84
-LavaridgeTown_Gym_1F_EventScript_271E84:: @ 8271E84
-MauvilleCity_Gym_EventScript_271E84:: @ 8271E84
-RustboroCity_Gym_EventScript_271E84:: @ 8271E84
-	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
-	setflag FLAG_PETALBURG_MART_EXPANDED_ITEMS
-	return
-
 DewfordTown_EventScript_271E8B:: @ 8271E8B
 DewfordTown_Hall_EventScript_271E8B:: @ 8271E8B
 	dotimebasedevents
@@ -1519,25 +1500,6 @@ Route109_EventScript_271E95:: @ 8271E95
 	copyvar VAR_0x8008, VAR_BRINEY_LOCATION
 	setvar VAR_BRINEY_LOCATION, 0
 	return
-
-EventScript_UseSurf:: @ 8271EA0
-	checkpartymove MOVE_SURF
-	compare VAR_RESULT, 6
-	goto_if_eq EventScript_CantSurf
-	bufferpartymonnick 0, VAR_RESULT
-	setfieldeffectargument 0, VAR_RESULT
-	lockall
-	msgbox gText_WantToUseSurf, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq EventScript_CancelSurf
-	msgbox gText_PlayerUsedSurf, MSGBOX_DEFAULT
-	dofieldeffect FLDEFF_USE_SURF
-
-EventScript_CancelSurf:: @ 8271ED5
-	releaseall
-
-EventScript_CantSurf:: @ 8271ED6
-	end
 
 EventScript_271F1F:: @ 8271F1F
 	checkplayergender
@@ -1575,9 +1537,9 @@ SootopolisCity_Gym_1F_EventScript_271F43:: @ 8271F43
 	end
 
 DewfordTown_Gym_EventScript_271FA1:: @ 8271FA1
-	settrainerflag TRAINER_JOSH
-	settrainerflag TRAINER_TOMMY
-	settrainerflag TRAINER_MARC
+	@ settrainerflag TRAINER_JOSH
+	@ settrainerflag TRAINER_TOMMY
+	@ settrainerflag TRAINER_MARC
 	return
 
 DewfordTown_Gym_EventScript_271FAB:: @ 8271FAB
@@ -1609,13 +1571,13 @@ DewfordTown_Gym_EventScript_271FCE:: @ 8271FCE
 	return
 
 DewfordTown_Gym_EventScript_271FE7:: @ 8271FE7
-	settrainerflag TRAINER_RANDALL
-	settrainerflag TRAINER_PARKER
-	settrainerflag TRAINER_GEORGE
-	settrainerflag TRAINER_BERKE
-	settrainerflag TRAINER_MARY
-	settrainerflag TRAINER_ALEXIA
-	settrainerflag TRAINER_JODY
+	@ settrainerflag TRAINER_RANDALL
+	@ settrainerflag TRAINER_PARKER
+	@ settrainerflag TRAINER_GEORGE
+	@ settrainerflag TRAINER_BERKE
+	@ settrainerflag TRAINER_MARY
+	@ settrainerflag TRAINER_ALEXIA
+	@ settrainerflag TRAINER_JODY
 	return
 
 DewfordTown_Gym_EventScript_271FFD:: @ 8271FFD
@@ -1664,10 +1626,6 @@ Common_EventScript_NoRoomLeftForAnother:: @ 8272071
 	msgbox gText_NoRoomLeftForAnother, MSGBOX_DEFAULT
 	return
 
-Common_EventScript_SetWeather15:: @ 827207A
-	setweather WEATHER_ALTERNATING
-	return
-
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 	call Common_EventScript_PartyHealSave_Setup
 	call Common_EventScript_PartyHealSave_Save
@@ -1679,6 +1637,7 @@ Common_EventScript_PartyHealSave_Setup::
 	playfanfare MUS_ME_ASA
 	waitfanfare
 	special HealPlayerParty
+	advancetime 7, 30, 30
 	return
 Common_EventScript_PartyHealSave_Save::
 	@ TriHard Emerald: Force Save
@@ -1696,7 +1655,7 @@ Common_EventScript_PartyHealSave_Complete::
 LittlerootTown_ProfessorBirchsLab_EventScript_2720AD:: @ 82720AD
 Route101_EventScript_2720AD:: @ 82720AD
 Route103_EventScript_2720AD:: @ 82720AD
-	compare VAR_PETALBURG_GYM_STATE, 0
+	compare VAR_NUM_BADGES, 0
 	goto_if_eq Common_EventScript_NopReturn
 	goto_if_set FLAG_SYS_GAME_CLEAR, Route101_EventScript_27211A
 	compare VAR_BIRCH_STATE, 0
@@ -1806,7 +1765,7 @@ SlateportCity_Harbor_Movement_2721F0: @ 82721F0
 	walk_right
 	step_end
 
-PetalburgCity_Gym_EventScript_2721F8:: @ 82721F8
+PetalburgCity_Gym_DisableMrBriney:: @ 82721F8
 	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_108_MR_BRINEY
@@ -1816,15 +1775,6 @@ PetalburgCity_Gym_EventScript_2721F8:: @ 82721F8
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_BRINEY_LOCATION, 0
-	return
-
-RusturfTunnel_EventScript_272216:: @ 8272216
-	removeobject 1
-	removeobject 10
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_MAN
-	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_LOVER_WOMAN
-	setvar VAR_RUSTURF_TUNNEL_STATE, 6
-	setflag FLAG_RUSTURF_TUNNEL_OPENED
 	return
 
 EventScript_27222B:: @ 827222B
@@ -1888,7 +1838,7 @@ EventScript_2722A7:: @ 82722A7
 	setvar VAR_0x8005, 1
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 5
-	special sub_8139560
+	special DoCameraShakeEffect
 	waitstate
 	releaseall
 	end
@@ -2217,8 +2167,6 @@ gUnknown_08272DE3:: @ 8272DE3
 
 gText_RegisteredTrainerinPokeNav:: @ 8272E0F
 	.string "Registered {STR_VAR_1} {STR_VAR_2}\nin the PokéNav.$"
-
-	.include "data/text/surf.inc"
 
 gUnknown_0827301B:: @ 827301B
 	.string "It sounded as if a door opened\nsomewhere far away.$"
@@ -2961,7 +2909,7 @@ Std_RegisteredInMatchCall:: @ 82742C9
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DEFAULT
+	msgbox gText_RegisteredTrainerinPokeNav, MSGBOX_DESCRIBE
 	waitfanfare
 	closemessage
 	delay 30
@@ -5657,3 +5605,17 @@ gText_082C877B:: @ 82C877B
 	.include "data/scripts/te_debug.inc"
 
 	.include "data/maps/SootopolisLegendsEdit/scripts.inc"
+
+	.include "data/maps/SootopolisCity_PokemonCenter_Alt/scripts.inc"
+
+	.include "data/maps/ScriptTestMap/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom1/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom2/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom3/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom4/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_WaitingRoom5/scripts.inc"

@@ -1,7 +1,7 @@
 {
     "allow_bike": false,
     "allow_escape_rope": false,
-    "allow_running": false,
+    "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
         {
@@ -99,7 +99,7 @@
             "y": 17
         },
         {
-            "elevation": 12,
+            "elevation": 4,
             "flag": "0",
             "graphics_id": "EVENT_OBJ_GFX_WOMAN_1",
             "movement_range_x": 0,
@@ -112,7 +112,7 @@
             "y": 17
         },
         {
-            "elevation": 14,
+            "elevation": 4,
             "flag": "0",
             "graphics_id": "EVENT_OBJ_GFX_CAMPER",
             "movement_range_x": 0,
@@ -149,6 +149,45 @@
             "trainer_type": "0",
             "x": 5,
             "y": 26
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_PETALBURG_CENTER_LOGAN",
+            "graphics_id": "EVENT_OBJ_GFX_WALLY",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "PetalburgCity_PokemonCenter_2F_EventScript_LoganBed",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 16,
+            "y": 17
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_PETALBURG_CENTER_LOGAN",
+            "graphics_id": "EVENT_OBJ_GFX_MOM",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "PetalburgCity_PokemonCenter_2F_EventScript_LoganMom",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 13,
+            "y": 17
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_PETALBURG_CENTER_LOGAN",
+            "graphics_id": "EVENT_OBJ_GFX_BRANDON",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "PetalburgCity_PokemonCenter_2F_EventScript_LoganDad",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 4,
+            "y": 2
         }
     ],
     "region_map_section": "MAPSEC_PETALBURG_CITY",

@@ -542,14 +542,14 @@ static bool8 MainState_EndNaming(void)
     SetInputState(INPUT_STATE_DISABLED);
     sub_80E3E94(0);
     sub_80E3948(3, 0, 1);
-    if (gNamingScreenData->templateNum == NAMING_SCREEN_CAUGHT_MON &&
-        CalculatePlayerPartyCount() >= 6)
-    {
-        DisplaySentToPCMessage();
-        gNamingScreenData->state = MAIN_STATE_UPDATE_SENT_TO_PC_MESSAGE;
-        return FALSE;
-    }
-    else
+    // if (gNamingScreenData->templateNum == NAMING_SCREEN_CAUGHT_MON &&
+    //     CalculatePlayerPartyCount() >= 6)
+    // {
+    //     DisplaySentToPCMessage();
+    //     gNamingScreenData->state = MAIN_STATE_UPDATE_SENT_TO_PC_MESSAGE;
+    //     return FALSE;
+    // }
+    // else
     {
         gNamingScreenData->state = MAIN_STATE_BEGIN_FADE_OUT;
         return TRUE;  //Exit the naming screen

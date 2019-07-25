@@ -15,7 +15,7 @@ FortreeCity_DecorationShop_EventScript_218020:: @ 8218020
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Desks
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 
@@ -39,7 +39,7 @@ FortreeCity_DecorationShop_EventScript_21804C:: @ 821804C
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Chairs
-	msgbox gText_Mart_Goodbye, MSGBOX_DEFAULT
+	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
 	release
 	end
 

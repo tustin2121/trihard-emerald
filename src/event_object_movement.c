@@ -226,6 +226,7 @@ static void (*const sMovementTypeCallbacks[])(struct Sprite *) =
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = MovementType_WalkSlowlyInPlace,
+    [MOVEMENT_TYPE_LYING_DOWN] = MovementType_LyingDown,
 };
 
 const u8 gRangedMovementTypes[] = {
@@ -310,6 +311,7 @@ const u8 gRangedMovementTypes[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = 0,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = 0,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = 0,
+    [MOVEMENT_TYPE_LYING_DOWN] = 0,
 };
 
 const u8 gInitialMovementTypeFacingDirections[] = {
@@ -394,6 +396,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = DIR_NORTH,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = DIR_WEST,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = DIR_EAST,
+    [MOVEMENT_TYPE_LYING_DOWN] = DIR_SOUTH,
 };
 
 #define EVENT_OBJ_PAL_TAG_0  0x1103
@@ -432,6 +435,14 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define EVENT_OBJ_PAL_TAG_33 0x1122
 #define EVENT_OBJ_PAL_TAG_34 0x1123
 #define EVENT_OBJ_PAL_TAG_PROTAG 0x1124
+#define EVENT_OBJ_PAL_TAG_PROTAG_M1 0x1125
+#define EVENT_OBJ_PAL_TAG_PROTAG_M2 0x1126
+#define EVENT_OBJ_PAL_TAG_PROTAG_M3 0x1127
+#define EVENT_OBJ_PAL_TAG_PROTAG_M4 0x1128
+#define EVENT_OBJ_PAL_TAG_PROTAG_F1 0x1129
+#define EVENT_OBJ_PAL_TAG_PROTAG_F2 0x112A
+#define EVENT_OBJ_PAL_TAG_PROTAG_F3 0x112B
+#define EVENT_OBJ_PAL_TAG_PROTAG_F4 0x112C
 #define EVENT_OBJ_PAL_TAG_NONE 0x11FF
 
 #include "data/field_event_obj/event_object_graphics_info_pointers.h"
@@ -479,6 +490,7 @@ const struct SpritePalette sEventObjectSpritePalettes[] = {
     {gEventObjectPalette33, EVENT_OBJ_PAL_TAG_33},
     {gEventObjectPalette34, EVENT_OBJ_PAL_TAG_34},
     {gEventObjectPaletteProtag, EVENT_OBJ_PAL_TAG_PROTAG},
+    {gEventObjectPaletteProtagF1, EVENT_OBJ_PAL_TAG_PROTAG_F1},
     {NULL,                  0x0000},
 };
 
@@ -1682,7 +1694,7 @@ u8 AddPseudoEventObject(u16 graphicsId, void (*callback)(struct Sprite *), s16 x
     return spriteId;
 }
 
-u8 sprite_new(u16 graphicsId, u8 a1, s16 x, s16 y, u8 z, u8 direction)
+u8 sprite_new(u16 graphicsId, u8 localId, s16 x, s16 y, u8 z, u8 direction)
 {
     u8 spriteId;
     struct Sprite *sprite;
@@ -1709,7 +1721,7 @@ u8 sprite_new(u16 graphicsId, u8 a1, s16 x, s16 y, u8 z, u8 direction)
             sprite->oam.paletteNum -= 16;
         }
         sprite->coordOffsetEnabled = TRUE;
-        sprite->data[0] = a1;
+        sprite->data[0] = localId;
         sprite->data[1] = z;
         if (graphicsInfo->paletteSlot == 10)
         {
@@ -4679,6 +4691,34 @@ bool8 MovementType_Invisible_Step1(struct EventObject *eventObject, struct Sprit
 }
 
 bool8 MovementType_Invisible_Step2(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    eventObject->singleMovementActive = 0;
+    return FALSE;
+}
+
+
+movement_type_def(MovementType_LyingDown, gMovementTypeFuncs_LyingDown)
+
+bool8 MovementType_LyingDown_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    // StartSpriteAnimInDirection(eventObject, sprite, DIR_SOUTH, 0x14);
+    ClearEventObjectMovement(eventObject, sprite);
+    EventObjectSetSingleMovement(eventObject, sprite, MOVEMENT_ACTION_NURSE_JOY_BOW_DOWN);
+    sprite->data[1] = 1;
+    return TRUE;
+}
+
+bool8 MovementType_LyingDown_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (EventObjectExecSingleMovementAction(eventObject, sprite))
+    {
+        sprite->data[1] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementType_LyingDown_Step2(struct EventObject *eventObject, struct Sprite *sprite)
 {
     eventObject->singleMovementActive = 0;
     return FALSE;
