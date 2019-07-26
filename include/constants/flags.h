@@ -1514,5 +1514,9 @@
 #define FLAG_SPECIAL_FLAG_0x4002                                   0x4002
 #define FLAG_SPECIAL_FLAG_0x4003                                   0x4003
 #define FLAG_SPECIAL_FLAG_0x4004                                   0x4004
+#define FLAG_DID_MOURNING_CUTSCENE                                 0x4005 // TriHard
+#define FLAG_DISABLE_FADE_INIT                                     0x4006 // TriHard
+
+#define NUM_SPECIAL_FLAGS                                          16*8
 
 #endif // GUARD_CONSTANTS_FLAGS_H

@@ -4382,7 +4382,7 @@ bool8 CanMonDie(int partySlot)
 // Sends a pokemon to the PC and removes it from the party.
 void KillMon(int partySlot)
 {
-    u8 hasMourned;
+    u8 hasMourned = 0;
     struct Pokemon* mon = &gPlayerParty[partySlot];
     
     // sanity check, don't kill "pokemon" beyond our party count
@@ -4413,12 +4413,11 @@ void KillMon(int partySlot)
     //     TakeMailFromMon(mon);
     // }
     
-    hasMourned = 0;
     SetMonData(mon, MON_DATA_HAS_MOURNED, &hasMourned);
     SendMonToPC(mon);
     ZeroMonData(mon);
-    CompactPartySlots();
-    CalculatePlayerPartyCount();
+    // CompactPartySlots();
+    // CalculatePlayerPartyCount();
 }
 
 void Restore1HPDeathPreventedMons(void)
@@ -4457,6 +4456,8 @@ void RemoveDeadMonFromParty(bool8 endOfBattle)
             KillMon(i);
         }
     }
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
 }
 
 u8 CalculatePlayerPartyCount(void)

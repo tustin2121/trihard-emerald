@@ -21,6 +21,7 @@ const DebugHandle_GiveDebugParty = 13;
 const DebugHandle_TestScript1 = 14;
 const DebugHandle_SwapGenders = 15;
 const DebugHandle_RenamePlayer = 16;
+const DebugHandle_UnmarkBoxMon = 17;
 
 // Menu Functions
 function initMenuV1() {
@@ -81,6 +82,11 @@ function initMenuV1() {
 			});
 		$(`<li>Set Legendary Fight…</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('legendary'); });
+		$(`<li>Unset Mourn Flag on All Boxed Mons</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_UnmarkBoxMon });
+				switchMenu();
+			});
 		$(`<li>Run Test Script 1</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_TestScript1 });

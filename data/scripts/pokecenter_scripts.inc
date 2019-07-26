@@ -45,6 +45,7 @@ PokemonCenter_1F_NurseHealScript_Heal:
 	applymovement EVENT_OBJ_ID_PLAYER, PokemonCenter_1F_NurseHealScript_PlayerWalk
 	fadescreenspeed 5, 2 @ FADE_TO_BLACK_NO_WINDOW
 	waitmovement 0
+	setflag FLAG_DISABLE_FADE_INIT
 	@ Heal while setting positions
 	playfanfare MUS_ME_ASA
 	applymovement VAR_0x800B, PokemonCenter_1F_NurseHealScript_NurseResetPosition
@@ -61,6 +62,7 @@ PokemonCenter_1F_NurseHealScript_Heal:
 	closemessage
 	delay 1
 	dodreams
+	clearflag FLAG_DISABLE_FADE_INIT
 	fadescreenspeed 4, 2 @ FADE_FROM_BLACK_NO_WINDOW
 	release
 	end

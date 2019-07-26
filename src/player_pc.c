@@ -75,7 +75,7 @@ static void Mailbox_NoPokemonForMail(u8 taskId);
 static void Mailbox_FadeAndReadMail(u8 taskId);
 static void Mailbox_ReturnToFieldFromReadMail(void);
 static void Mailbox_DoRedrawMailboxMenuAfterReturn(void);
-static void pal_fill_for_maplights_or_black(void);
+static void FadeScreenFromMapWarp_or_black(void);
 static void Mailbox_HandleReturnToProcessInput(u8 taskId);
 static void Mailbox_UpdateMailListAfterDeposit(void);
 
@@ -492,7 +492,7 @@ void Mailbox_DoRedrawMailboxMenuAfterReturn(void)
     LoadStdWindowFrame();
     DrawDialogueFrame(0, 1);
     InitItemStorageMenu(CreateTask(ItemStorage_HandleReturnToProcessInput, 0), 1);
-    pal_fill_black();
+    FadeScreenFromBlack();
 }
 
 static void ItemStorage_HandleReturnToProcessInput(u8 taskId)
@@ -715,11 +715,11 @@ static void Mailbox_FadeAndReadMail(u8 taskId)
 
 static void Mailbox_ReturnToFieldFromReadMail(void)
 {
-    gFieldCallback = pal_fill_for_maplights_or_black;
+    gFieldCallback = FadeScreenFromMapWarp_or_black;
     SetMainCallback2(CB2_ReturnToField);
 }
 
-static void pal_fill_for_maplights_or_black(void)
+static void FadeScreenFromMapWarp_or_black(void)
 {
     u8 taskId;
 
@@ -729,7 +729,7 @@ static void pal_fill_for_maplights_or_black(void)
         Mailbox_DrawMailboxMenu(taskId);
     else
         DestroyTask(taskId);
-    pal_fill_black();
+    FadeScreenFromBlack();
 }
 
 static void Mailbox_HandleReturnToProcessInput(u8 taskId)
@@ -836,7 +836,7 @@ static void Mailbox_UpdateMailListAfterDeposit(void)
         Mailbox_DrawMailboxMenu(taskId);
     else
         DestroyTask(taskId);
-    pal_fill_black();
+    FadeScreenFromBlack();
 }
 
 static void Mailbox_NoPokemonForMail(u8 taskId)

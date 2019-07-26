@@ -1710,13 +1710,6 @@ void CB2_ReturnToFieldContinueScript(void)
     CB2_ReturnToField();
 }
 
-void CB2_ReturnToFieldContinueScriptNoFadeIn(void)
-{
-    FieldClearVBlankHBlankCallbacks();
-    gFieldCallback = FieldCallback_ReturnToEventScriptNoFade;
-    CB2_ReturnToField();
-}
-
 void CB2_ReturnToFieldContinueScriptPlayMapMusic(void)
 {
     FieldClearVBlankHBlankCallbacks();
@@ -1778,12 +1771,12 @@ void CB2_ContinueSavedGame(void)
         ClearContinueGameWarpStatus();
         SetWarpDestinationToContinueGameWarp();
         WarpIntoMap();
-        sub_80EDB44();
+        DetermineTVShowOnContinue();
         SetMainCallback2(CB2_LoadMap);
     }
     else
     {
-        sub_80EDB44();
+        DetermineTVShowOnContinue();
         gFieldCallback = sub_8086204;
         SetMainCallback1(CB1_Overworld);
         CB2_ReturnToField();

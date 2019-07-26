@@ -72,7 +72,7 @@ static void palette_bg_faded_fill_black(void)
     CpuFastFill16(RGB_BLACK, gPlttBufferFaded, PLTT_SIZE);
 }
 
-void pal_fill_for_maplights(void)
+void FadeScreenFromMapWarp(void)
 {
     u8 previousMapType = GetLastUsedWarpMapType();
     switch (GetMapPairFadeFromType(previousMapType, GetCurrentMapType()))
@@ -87,13 +87,13 @@ void pal_fill_for_maplights(void)
     }
 }
 
-static void sub_80AF08C(void)
+static void FadeScreenFromWhite(void)
 {
     palette_bg_faded_fill_white();
     FadeScreen(FADE_FROM_WHITE, 8);
 }
 
-void pal_fill_black(void)
+void FadeScreenFromBlack(void)
 {
     palette_bg_faded_fill_black();
     FadeScreen(FADE_FROM_BLACK, 0);
@@ -128,7 +128,7 @@ void sub_80AF128(void)
 {
     ScriptContext2_Enable();
     Overworld_PlaySpecialMapMusic();
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(task0A_nop_for_a_while, 10);
 }
 
@@ -145,22 +145,15 @@ void FieldCallback_ReturnToEventScript2(void)
 {
     ScriptContext2_Enable();
     Overworld_PlaySpecialMapMusic();
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(task0A_asap_script_env_2_enable_and_set_ctx_running, 10);
 }
 
 void sub_80AF188(void)
 {
     ScriptContext2_Enable();
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(task0A_asap_script_env_2_enable_and_set_ctx_running, 10);
-}
-
-void FieldCallback_ReturnToEventScriptNoFade(void)
-{
-    ScriptContext2_Enable();
-    pal_fill_black();
-    EnableBothScriptContexts();
 }
 
 static void task_mpl_807DD60(u8 taskId)
@@ -176,7 +169,7 @@ static void task_mpl_807DD60(u8 taskId)
     case 1:
         if (gTasks[task->data[1]].isActive != TRUE)
         {
-            pal_fill_for_maplights();
+            FadeScreenFromMapWarp();
             task->data[0]++;
         }
         break;
@@ -216,7 +209,7 @@ static void sub_80AF234(u8 taskId)
         }
         else
         {
-            pal_fill_for_maplights();
+            FadeScreenFromMapWarp();
             task->data[0]++;
         }
         break;
@@ -284,7 +277,7 @@ static void sub_80AF334(void)
 void mapldr_default(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
+    FadeScreenFromMapWarp();
     sub_80AF334();
     ScriptContext2_Enable();
 }
@@ -292,7 +285,7 @@ void mapldr_default(void)
 void sub_80AF3B0(void)
 {
     Overworld_PlaySpecialMapMusic();
-    sub_80AF08C();
+    FadeScreenFromWhite();
     sub_80AF334();
     ScriptContext2_Enable();
 }
@@ -301,7 +294,7 @@ void sub_80AF3C8(void)
 {
     if (!sub_81D6534())
         Overworld_PlaySpecialMapMusic();
-    pal_fill_black();
+    FadeScreenFromBlack();
     sub_80AF334();
     ScriptContext2_Enable();
 }
@@ -309,7 +302,7 @@ void sub_80AF3C8(void)
 void sub_80AF3E8(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
+    FadeScreenFromMapWarp();
     PlaySE(SE_TK_WARPOUT);
     CreateTask(task0A_mpl_807E31C, 10);
     ScriptContext2_Enable();
@@ -318,7 +311,7 @@ void sub_80AF3E8(void)
 void sub_80AF40C(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
+    FadeScreenFromMapWarp();
     PlaySE(SE_TK_WARPOUT);
     CreateTask(task_map_chg_seq_0807E2CC, 10);
     ScriptContext2_Enable();
@@ -443,7 +436,7 @@ static void sub_80AF660(u8 taskId)
 
 void sub_80AF688(void)
 {
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(sub_80AF660, 0x50);
     ScriptContext2_Enable();
 }
@@ -467,7 +460,7 @@ static void task_mpl_807E3C8(u8 taskId)
 void sub_80AF6D4(void)
 {
     ScriptContext2_Enable();
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(task_mpl_807E3C8, 10);
 }
 
@@ -475,7 +468,7 @@ void sub_80AF6F0(void)
 {
     ScriptContext2_Enable();
     Overworld_PlaySpecialMapMusic();
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(task_mpl_807E3C8, 10);
 }
 

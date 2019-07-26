@@ -139,7 +139,7 @@ void SetUpItemUseOnFieldCallback(u8 taskId)
 
 void MapPostLoadHook_UseItem(void)
 {
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(Task_CallItemUseOnFieldCallback, 8);
 }
 

@@ -16,6 +16,7 @@
 #include "task.h"
 #include "trig.h"
 #include "gpu_regs.h"
+#include "event_data.h"
 
 #define DROUGHT_COLOR_INDEX(color) ((((color) >> 1) & 0xF) | (((color) >> 2) & 0xF0) | (((color) >> 3) & 0xF00))
 
@@ -763,6 +764,8 @@ void FadeScreen(u8 mode, s8 delay)
     u32 fadeColor;
     bool8 fadeOut;
     bool8 useWeatherPal;
+    
+    if (FlagGet(FLAG_DISABLE_FADE_INIT)) return;
 
     switch (mode)
     {

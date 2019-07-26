@@ -456,7 +456,7 @@ static void EnterNewlyCreatedSecretBase_StartFadeIn(void)
     y += 7;
     MapGridSetMetatileIdAt(x, y, 0x220 | METATILE_COLLISION_MASK);
     CurrentMapDrawMetatileAt(x, y);
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(EnterNewlyCreatedSecretBase_WaitFadeIn, 0);
 }
 

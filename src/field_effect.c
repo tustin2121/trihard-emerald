@@ -1375,7 +1375,7 @@ void sub_80B69DC(void)
 
 static void mapldr_080842E8(void)
 {
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(task00_8084310, 0);
     ScriptContext2_Enable();
     FreezeEventObjects();
@@ -1413,7 +1413,7 @@ static void task00_8084310(u8 taskId)
 static void mapldr_08084390(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(c3_080843F8, 0);
     gEventObjects[gPlayerAvatar.eventObjectId].invisible = TRUE;
     if (gPlayerAvatar.flags & 0x08)
@@ -1449,7 +1449,7 @@ static void c3_080843F8(u8 taskId)
 void sub_80B6B68(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
+    FadeScreenFromMapWarp();
     ScriptContext2_Enable();
     FreezeEventObjects();
     CreateTask(sub_80B6B94, 0);
@@ -1705,7 +1705,7 @@ static void sub_80B7060(void)
 static void sub_80B70B4(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
+    FadeScreenFromMapWarp();
     ScriptContext2_Enable();
     CreateTask(sub_80B70DC, 0);
     gFieldCallback = NULL;
@@ -2065,7 +2065,7 @@ static bool8 sub_80B7814(struct Task *task, struct EventObject *eventObject, str
 static void mapldr_080851BC(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
+    FadeScreenFromMapWarp();
     ScriptContext2_Enable();
     gFieldCallback = NULL;
     CreateTask(sub_80B7890, 0);
@@ -2296,7 +2296,7 @@ void (*const gUnknown_0855C484[])(struct Task *) = {
 static void mapldr_080859D4(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
+    FadeScreenFromMapWarp();
     ScriptContext2_Enable();
     FreezeEventObjects();
     gFieldCallback = NULL;
@@ -2444,7 +2444,7 @@ static void TeleportFieldEffectTask4(struct Task *task)
 static void mapldr_08085D88(void)
 {
     Overworld_PlaySpecialMapMusic();
-    pal_fill_for_maplights();
+    FadeScreenFromMapWarp();
     ScriptContext2_Enable();
     FreezeEventObjects();
     gFieldCallback = NULL;

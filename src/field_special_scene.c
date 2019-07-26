@@ -165,7 +165,7 @@ void Task_HandleTruckSequence(u8 taskId)
         data[1]++;
         if (data[1] == SECONDS(2.5))
         {
-            pal_fill_black();
+            FadeScreenFromBlack();
             data[1] = 0;
             data[0] = 2;
         }
@@ -329,7 +329,7 @@ void sub_80FB768(void)
 {
     sub_80FB6EC();
     gEventObjects[gPlayerAvatar.eventObjectId].invisible = TRUE;
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(Task_HandlePorthole, 80);
     ScriptContext2_Enable();
 }

@@ -869,6 +869,7 @@ void SaveGame(void) // Called from cable_club.s
 void ForceSaveGame(void) // Called from scripts
 {
     InitSave();
+    
     sSaveDialogCallback = SaveForceSavingMessageCallback;
     CreateTask(ForceSaveGameTask, 0x50);
 }
@@ -1350,6 +1351,7 @@ static void ShowSaveInfoWindow(void)
     }
 
     sSaveInfoWindowId = AddWindow(&saveInfoWindow);
+    LoadStdWindowFrame();
     DrawStdWindowFrame(sSaveInfoWindowId, FALSE);
 
     gender = GetPlayerGender();

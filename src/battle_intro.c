@@ -581,37 +581,37 @@ static void BattleIntroSlidePartner(u8 taskId)
     }
 }
 
-void sub_8118FBC(int bgId, u8 arg1, u8 arg2, u8 battlerPosition, u8 arg4, u8 *arg5, u16 *arg6, u16 tilesOffset)
+void sub_8118FBC(int bgId, u8 x, u8 y, u8 battlerPosition, u8 palId, u8 *bgTiles, u16 *bgTileMap, u16 tilesOffset)
 {
     int i, j;
     u8 battler = GetBattlerAtPosition(battlerPosition);
     int offset = tilesOffset;
-    CpuCopy16(gMonSpritesGfxPtr->sprites[battlerPosition] + BG_SCREEN_SIZE * gBattleMonForms[battler], arg5, BG_SCREEN_SIZE);
-    LoadBgTiles(bgId, arg5, 0x1000, tilesOffset);
-    for (i = arg2; i < arg2 + 8; i++)
+    CpuCopy16(gMonSpritesGfxPtr->sprites[battlerPosition] + BG_SCREEN_SIZE * gBattleMonForms[battler], bgTiles, BG_SCREEN_SIZE);
+    LoadBgTiles(bgId, bgTiles, 0x1000, tilesOffset);
+    for (i = y; i < y + 8; i++)
     {
-        for (j = arg1; j < arg1 + 8; j++)
+        for (j = x; j < x + 8; j++)
         {
-            arg6[i * 32 + j] = offset | (arg4 << 12);
+            bgTileMap[i * 32 + j] = offset | (palId << 12);
             offset++;
         }
     }
 
-    LoadBgTilemap(bgId, arg6, BG_SCREEN_SIZE, 0);
+    LoadBgTilemap(bgId, bgTileMap, BG_SCREEN_SIZE, 0);
 }
 
 #ifdef NONMATCHING
-void unref_sub_8119094(u8 arg0, u8 arg1, u8 battlerPosition, u8 arg3, u8 arg4, u16 arg5, u8 arg6, u8 arg7)
+void unref_sub_8119094(u8 x, u8 y, u8 battlerPosition, u8 arg3, u8 palId, u16 bgTiles, u8 bgTileMap, u8 tileOffset)
 {
     int i, j;
     int offset;
-    DmaCopy16(3, gMonSpritesGfxPtr->sprites[battlerPosition] + BG_SCREEN_SIZE * arg3, (void *)BG_SCREEN_ADDR(0) + arg5, BG_SCREEN_SIZE);
-    offset = (arg5 >> 5) - (arg7 << 9);
-    for (i = arg1; i < arg1 + 8; i++)
+    DmaCopy16(3, gMonSpritesGfxPtr->sprites[battlerPosition] + BG_SCREEN_SIZE * arg3, (void *)BG_SCREEN_ADDR(0) + bgTiles, BG_SCREEN_SIZE);
+    offset = (bgTiles >> 5) - (tileOffset << 9);
+    for (i = y; i < y + 8; i++)
     {
-        for (j = arg0; j < arg0 + 8; j++)
+        for (j = x; j < x + 8; j++)
         {
-            ((u16 *)BG_VRAM)[i * 32 + j + (arg6 * 0x400) + arg0] = offset | (arg4 << 12);
+            ((u16 *)BG_VRAM)[i * 32 + j + (bgTileMap * 0x400) + x] = offset | (palId << 12);
             offset++;
         }
     }

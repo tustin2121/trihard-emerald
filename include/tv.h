@@ -30,7 +30,7 @@ void AlertTVThatPlayerPlayedSlotMachine(u16 nCoinsSpent);
 void AlertTVThatPlayerPlayedRoulette(u16 nCoinsSpent);
 void AlertTVOfNewCoinTotal(u16 nCoinsPaidOut);
 void sub_80EEA70(void);
-void sub_80EDB44(void);
+void DetermineTVShowOnContinue(void);
 void sub_80EDC60(const u16 *words);
 void sub_80EDA80(void);
 void ReceivePokeNewsData(void *src, u32 size, u8 masterIdx);
