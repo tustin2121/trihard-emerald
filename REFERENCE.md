@@ -1,5 +1,13 @@
 For future person reference:
 * If the game ever crashes in such a way where the screen goes all one color and the music halts, you have triggered an unbounded write of EWRAM, and your memory is now filled with the same value all throughout RAM. Congrats and go check your loop bounds.
+* VRAM
+	* VRAM is not just another part of memory. It has special write access limitations. For one thing, it doesn't like you trying to write u8s to it. When you do, it tends to duplicate the u8's bits into a u16.
+		* This limitation is the reason there's a LZ77UnCompWRAM and a LZ77UnCompVRAM.
+		* Consider using the gDecompressionBuffer to decompress things before pushing them straight to VRAM via a DMA transfer request.
+		* no$GBA does not seem to emulate the VRAM write restrictions, so what looks perfectly fine on no$GBA might cause problems on another emulator or real hardware.
+	* Backgrounds have Tile data and Tilemap data. The latter references the former. Tile data is the actual pixels that make up a graphic. Tilemap data is which blocks of Tile data make up the background map.
+		* BG_CHAR_ADDR() resolves a pointer to the Tile data.
+		* BG_SCREEN_ADDR() resolves a pointer to the Tilemap data.
 * Animated door warps: 
 	* The warp tile should be on the door, the metatile should be marked as an MB_ANIMATED_DOOR, and the tile should have collision ON. If the tile does NOT have collision, then it is possible for the player to approach the door from the side and turn quickly into it, and the door will not animate. The door needs to be bumped into for it to animate.
 	* Furthermore, events placed on top of doors do not block door warps. To disable a door warp, you will need to change the metatile to a non-warpable tile, ie, one not marked as MB_ANIMATED_DOOR.

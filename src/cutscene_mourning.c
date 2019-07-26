@@ -298,10 +298,9 @@ static void InitMourningSceneGraphics()
 static void LoadMournedMonGfx(u16 species, u32 personality, u32 otId)
 {
     LoadCompressedPalette(GetMonSpritePalStructFromOtIdPersonality(species, otId, personality)->data, 0x10, 0x20);
-    // LZ77UnCompWram(gMonFrontPicTable[species].data, bgTilemap);
     LoadSpecialPokePic_DontHandleDeoxys(
         &gMonFrontPicTable[species],
-        gDecompressionBuffer, // (void *)(BG_CHAR_ADDR(0)),
+        gDecompressionBuffer,
         species,
         personality,
         TRUE);
