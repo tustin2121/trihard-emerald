@@ -18,6 +18,7 @@
 #include "gpu_regs.h"
 #include "window.h"
 #include "palette.h"
+#include "pokemon.h"
 #include "text.h"
 #include "text_window.h"
 #include "string_util.h"
@@ -72,6 +73,7 @@ static void DebugHandle_GiveDebugParty();
 static void DebugHandle_TestScript1();
 static void DebugHandle_SwapGenders();
 static void DebugHandle_RenamePlayer();
+static void DebugHandle_UnmarkBoxMon();
 static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
@@ -104,6 +106,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_TestScript1,
 	DebugHandle_SwapGenders,
 	DebugHandle_RenamePlayer,
+	DebugHandle_UnmarkBoxMon,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -407,6 +410,27 @@ void DebugHandle_RenamePlayer()
 	ScriptContext1_SetupScript(DebugScript_ShowDebugScreen);
 }
 
+// arguments: none
+// returns: none
+void DebugHandle_UnmarkBoxMon()
+{
+	int i, j;
+	u8 hasMourned = 0;
+	for (i = 0; i < TOTAL_BOXES_COUNT; i++)
+    {
+        for (j = 0; j < IN_BOX_COUNT; j++)
+        {
+            struct BoxPokemon *mon = &gPokemonStoragePtr->boxes[i][j];
+            if (GetBoxMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE 
+             && !GetBoxMonData(mon, MON_DATA_IS_EGG)
+             && GetBoxMonData(mon, MON_DATA_HAS_MOURNED))
+            {
+                SetBoxMonData(mon, MON_DATA_HAS_MOURNED, &hasMourned);
+            }
+        }
+    }
+	DebugSetCallbackSuccess();
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////

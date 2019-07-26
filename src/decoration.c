@@ -1330,7 +1330,7 @@ void sub_8128060(u8 taskId)
             ConfigureCameraObjectForPlacingDecoration(&sPlaceDecorationGraphicsDataBuffer, gCurDecorationItems[gCurDecorationIndex]);
             sub_812826C(taskId);
             SetUpPlacingDecorationPlayerAvatar(taskId, &sPlaceDecorationGraphicsDataBuffer);
-            pal_fill_black();
+            FadeScreenFromBlack();
             gPaletteFade.bufferTransferDisabled = FALSE;
             gTasks[taskId].data[2] = 2;
             break;
@@ -1737,7 +1737,7 @@ void sub_8128CD4(void)
     u8 taskId;
 
     ScriptContext2_Enable();
-    pal_fill_black();
+    FadeScreenFromBlack();
     taskId = CreateTask(sub_8128C64, 8);
     sub_8127580(taskId);
     gTasks[taskId].data[2] = 0;
@@ -2214,7 +2214,7 @@ void sub_81298EC(u8 taskId)
     case 2:
         ScriptContext2_Enable();
         IdentifyOwnedDecorationsCurrentlyInUseInternal(taskId);
-        pal_fill_black();
+        FadeScreenFromBlack();
         gTasks[taskId].data[2] = 3;
         break;
     case 3:
@@ -2278,7 +2278,7 @@ void sub_8129ABC(u8 taskId)
         break;
     case 1:
         SetUpPuttingAwayDecorationPlayerAvatar();
-        pal_fill_black();
+        FadeScreenFromBlack();
         data[2] = 2;
         break;
     case 2:
@@ -2623,7 +2623,7 @@ void sub_812A334(void)
 {
     u8 taskId;
 
-    pal_fill_black();
+    FadeScreenFromBlack();
     DrawDialogueFrame(0, 1);
     InitDecorationActionsWindow();
     taskId = CreateTask(sub_812A2C4, 8);

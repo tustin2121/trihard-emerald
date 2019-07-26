@@ -4842,7 +4842,7 @@ static void sub_81B56D8(u8 taskId)
 
 bool8 FieldCallback_PrepareFadeInFromMenu(void)
 {
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(task_launch_hm_phase_2, 8);
     return TRUE;
 }
@@ -7199,7 +7199,7 @@ static void sub_81B9390(void)
 
 bool8 hm_add_c3_without_phase_2(void) // might not be bool
 {
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(task_hm_without_phase_2, 10);
     return TRUE;
 }

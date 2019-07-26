@@ -1,11 +1,14 @@
 #include "global.h"
 #include "alloc.h"
 #include "battle.h"
+#include "battle_anim.h"
 #include "bg.h"
 #include "cutscene_mourning.h"
 #include "data.h"
+#include "dma3.h"
 #include "decompress.h"
 #include "evolution_scene.h"
+#include "event_data.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "gpu_regs.h"
@@ -30,6 +33,7 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/rgb.h"
+#include "constants/flags.h"
 #include "constants/species.h"
 #include "constants/songs.h"
 
@@ -232,66 +236,89 @@ static void ResetGpuRegisters()
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
 }
 
-static void InitMourningSceneGraphics(void)
+static void InitMourningSceneGraphics()
 {
-    SetVBlankCallback(NULL);
-    ResetGpuRegisters();
-    ScanlineEffect_Stop();
-    ResetTasks();
-    DmaFillLarge16(3, 0, (void *)VRAM, VRAM_SIZE, 0x1000);
-    DmaFill32Defvars(3, 0, (void *)OAM, OAM_SIZE);
-    DmaFill16Defvars(3, 0, (void *)PLTT, PLTT_SIZE);
-    FillPalette(RGB_BLACK, 0, PLTT_SIZE);
+    switch (gMain.state)
+    {
+        default:
+            gMain.state++;
+            break;
+        case 0:
+            SetVBlankCallback(NULL);
+            ResetGpuRegisters();
+            ScanlineEffect_Stop();
+            ResetTasks();
+            gMain.state++;
+            break;
+        case 1:
+            DmaFillLarge16(3, 0, (void *)VRAM, VRAM_SIZE, 0x1000);
+            DmaFill32Defvars(3, 0, (void *)OAM, OAM_SIZE);
+            DmaFill16Defvars(3, 0, (void *)PLTT, PLTT_SIZE);
+            FillPalette(RGB_BLACK, 0, PLTT_SIZE);
+            gMain.state++;
+            break;
+        case 2:
+            ResetSpriteData();
+            FreeAllSpritePalettes();
+            ResetPaletteFade();
+            reset_temp_tile_data_buffers();
+            InitMapMusic();
+            ResetMapMusic();
+            ResetBgsAndClearDma3BusyFlags(0);
+            InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
+            sMourningScene->bgTilemapBuffer0 = AllocZeroed(BG_SCREEN_SIZE);
+            sMourningScene->bgTilemapBuffer1 = AllocZeroed(BG_SCREEN_SIZE);
+            sMourningScene->bgTilemapBuffer2 = AllocZeroed(BG_SCREEN_SIZE);
+            SetBgTilemapBuffer(BG_TEXT, sMourningScene->bgTilemapBuffer0);
+            SetBgTilemapBuffer(BG_MON, sMourningScene->bgTilemapBuffer1);
+            SetBgTilemapBuffer(BG_HEADSTONE, sMourningScene->bgTilemapBuffer2);
+            gMain.state++;
+            break;
+        case 3:
+            LZDecompressVram(sHeadstone_Gfx, (void *)(BG_CHAR_ADDR(1)));
+            LZDecompressVram(sHeadstone_Tilemap, (void*)(BG_SCREEN_ADDR(29)));
+            LoadPalette(sHeadstone_Palette, 0, sizeof(sHeadstone_Palette));
+            LZDecompressVram(sMonBgSprite_Tilemap, (void *)(BG_SCREEN_ADDR(28)));
+            gMain.state++;
+            break;
+        case 4:
+            ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 8, 2, 1, SCANLINE_EFFECT_REG_BG1HOFS, TRUE, &gBattle_BG1_Y);
 
-    ResetSpriteData();
-    FreeAllSpritePalettes();
-    ResetPaletteFade();
-    reset_temp_tile_data_buffers();
-    InitMapMusic();
-    ResetMapMusic();
-    ResetBgsAndClearDma3BusyFlags(0);
-    InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
-    sMourningScene->bgTilemapBuffer0 = AllocZeroed(BG_SCREEN_SIZE);
-    sMourningScene->bgTilemapBuffer1 = AllocZeroed(BG_SCREEN_SIZE);
-    sMourningScene->bgTilemapBuffer2 = AllocZeroed(BG_SCREEN_SIZE);
-    SetBgTilemapBuffer(BG_TEXT, sMourningScene->bgTilemapBuffer0);
-    SetBgTilemapBuffer(BG_MON, sMourningScene->bgTilemapBuffer1);
-    SetBgTilemapBuffer(BG_HEADSTONE, sMourningScene->bgTilemapBuffer2);
-
-    LZDecompressVram(sHeadstone_Gfx, (void *)(BG_CHAR_ADDR(1)));
-    LZDecompressVram(sHeadstone_Tilemap, (void*)(BG_SCREEN_ADDR(29)));
-    LoadPalette(sHeadstone_Palette, 0, sizeof(sHeadstone_Palette));
-    LZDecompressVram(sMonBgSprite_Tilemap, (void *)(BG_SCREEN_ADDR(28)));
-
-    ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 8, 2, 1, SCANLINE_EFFECT_REG_BG1HOFS, TRUE, &gBattle_BG1_Y);
-
-    InitWindows(sWindows);
-    LoadStdWindowFrame();
-    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
-    ShowBg(BG_TEXT);
-    ShowBg(BG_MON);
-    ShowBg(BG_HEADSTONE);
+            InitWindows(sWindows);
+            LoadStdWindowFrame();
+            SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
+            ShowBg(BG_TEXT);
+            ShowBg(BG_MON);
+            ShowBg(BG_HEADSTONE);
+            gMain.state++;
+            break;
+    }
 }
 
 static void LoadMournedMonGfx(u16 species, u32 personality, u32 otId)
 {
+    LoadCompressedPalette(GetMonSpritePalStructFromOtIdPersonality(species, otId, personality)->data, 0x10, 0x20);
+    // LZ77UnCompWram(gMonFrontPicTable[species].data, bgTilemap);
     LoadSpecialPokePic_DontHandleDeoxys(
         &gMonFrontPicTable[species],
-        (void *)(BG_CHAR_ADDR(0)),
+        gDecompressionBuffer, // (void *)(BG_CHAR_ADDR(0)),
         species,
         personality,
         TRUE);
-    LoadCompressedPalette(GetMonSpritePalStructFromOtIdPersonality(species, otId, personality)->data, 0x10, 0x20);
+    RequestDma3Copy(gDecompressionBuffer, (void *)(BG_CHAR_ADDR(0)), gMonFrontPicTable[species].size, 0);
 }
 
 static void CB2_MourningSetup(void)
 {
     InitMourningSceneGraphics();
-
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
-    SetVBlankCallback(VblankCallback_MourningScene);
-    SetMainCallback2(CB2_MourningMain);
-    CreateTask(Task_MourningMain, 0);
+    if (gMain.state >= 5)
+    {
+        PlayBGM(MUS_END);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        SetVBlankCallback(VblankCallback_MourningScene);
+        SetMainCallback2(CB2_MourningMain);
+        CreateTask(Task_MourningMain, 0);
+    }
 }
 
 static void CB2_MourningMain(void)
@@ -597,7 +624,8 @@ static void ExitMourningScene(void)
         DmaFill16Defvars(3, 0, (void *)PLTT, PLTT_SIZE);
 
         FREE_AND_SET_NULL(sMourningScene);
-        SetMainCallback2(CB2_ReturnToFieldContinueScriptNoFadeIn);
+        FlagSet(FLAG_DISABLE_FADE_INIT);
+        SetMainCallback2(CB2_ReturnToFieldContinueScript);
         // Overworld_PlaySpecialMapMusic();
     }
 }
@@ -843,22 +871,26 @@ static void Task_WaitReturnFromSummaryScreen(u8 taskId)
     }
 }
 
-static void ReturnFromSummaryScreen(void)
+static void CB2_ReturnFromSummaryScreen(void)
 {
-    u16 species = GetBoxMonData(sMourningScene->boxMon, MON_DATA_SPECIES);
-    u32 otId = GetBoxMonData(sMourningScene->boxMon, MON_DATA_OT_ID);
-    u32 personality = GetBoxMonData(sMourningScene->boxMon, MON_DATA_PERSONALITY);
     InitMourningSceneGraphics();
-    DrawStdWindowFrame(WIN_TEXT, TRUE);
-    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_BD);
-    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
-    LoadMournedMonGfx(species, personality, otId);
+    if (gMain.state >= 5)
+    {
+        u16 species = GetBoxMonData(sMourningScene->boxMon, MON_DATA_SPECIES);
+        u32 otId = GetBoxMonData(sMourningScene->boxMon, MON_DATA_OT_ID);
+        u32 personality = GetBoxMonData(sMourningScene->boxMon, MON_DATA_PERSONALITY);
+        
+        DrawStdWindowFrame(WIN_TEXT, TRUE);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_BD);
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
+        LoadMournedMonGfx(species, personality, otId);
 
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
-    CreateTask(Task_MourningMain, 0);
-    sMourningScene->expTaskId = CreateTask(Task_WaitReturnFromSummaryScreen, 3);
-    SetVBlankCallback(VblankCallback_MourningScene);
-    SetMainCallback2(CB2_MourningMain);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        CreateTask(Task_MourningMain, 0);
+        sMourningScene->expTaskId = CreateTask(Task_WaitReturnFromSummaryScreen, 3);
+        SetVBlankCallback(VblankCallback_MourningScene);
+        SetMainCallback2(CB2_MourningMain);
+    }
 }
 
 static void Task_Wait(u8 taskId)
@@ -885,7 +917,7 @@ static void Task_WaitLearnNewMoveFade(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        ShowSelectMovePokemonSummaryScreen(gPlayerParty, sMourningScene->curPartyIndex, gPlayerPartyCount - 1, ReturnFromSummaryScreen, gMoveToLearn);
+        ShowSelectMovePokemonSummaryScreen(gPlayerParty, sMourningScene->curPartyIndex, gPlayerPartyCount - 1, CB2_ReturnFromSummaryScreen, gMoveToLearn);
         FreeCutsceneResources();
         gTasks[taskId].func = Task_Wait;
     }
@@ -947,23 +979,27 @@ static void Task_WaitReturnFromEvolutionScene(u8 taskId)
         gTasks[taskId].func = Task_GiveExpToParty;
 }
 
-static void ReturnFromEvolutionScene(void)
+static void CB2_ReturnFromEvolutionScene(void)
 {
-    u16 species = GetBoxMonData(sMourningScene->boxMon, MON_DATA_SPECIES);
-    u32 otId = GetBoxMonData(sMourningScene->boxMon, MON_DATA_OT_ID);
-    u32 personality = GetBoxMonData(sMourningScene->boxMon, MON_DATA_PERSONALITY);
-    PlayBGM(MUS_END);
     InitMourningSceneGraphics();
-    DrawStdWindowFrame(WIN_TEXT, TRUE);
-    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_BD);
-    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
-    LoadMournedMonGfx(species, personality, otId);
+    if (gMain.state >= 5)
+    {
+        u16 species = GetBoxMonData(sMourningScene->boxMon, MON_DATA_SPECIES);
+        u32 otId = GetBoxMonData(sMourningScene->boxMon, MON_DATA_OT_ID);
+        u32 personality = GetBoxMonData(sMourningScene->boxMon, MON_DATA_PERSONALITY);
+        PlayBGM(MUS_END);
+        
+        DrawStdWindowFrame(WIN_TEXT, TRUE);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_BD);
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
+        LoadMournedMonGfx(species, personality, otId);
 
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
-    CreateTask(Task_MourningMain, 0);
-    sMourningScene->expTaskId = CreateTask(Task_WaitReturnFromEvolutionScene, 3);
-    SetVBlankCallback(VblankCallback_MourningScene);
-    SetMainCallback2(CB2_MourningMain);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        CreateTask(Task_MourningMain, 0);
+        sMourningScene->expTaskId = CreateTask(Task_WaitReturnFromEvolutionScene, 3);
+        SetVBlankCallback(VblankCallback_MourningScene);
+        SetMainCallback2(CB2_MourningMain);
+    }
 }
 
 static void Task_TryEvolve(u8 taskId)
@@ -974,7 +1010,7 @@ static void Task_TryEvolve(u8 taskId)
     if (targetSpecies != SPECIES_NONE)
     {
         FreeCutsceneResources();
-        gCB2_AfterEvolution = ReturnFromEvolutionScene;
+        gCB2_AfterEvolution = CB2_ReturnFromEvolutionScene;
         BeginEvolutionScene(mon, targetSpecies, 1, sMourningScene->curPartyIndex);
         gTasks[taskId].func = Task_Wait;
     }
@@ -998,13 +1034,15 @@ bool8 DoMourningCutscene(void)
 {
     if (GetMonToMourn())
     {
-        PlayBGM(MUS_END);
+        FlagSet(FLAG_DID_MOURNING_CUTSCENE);
+        FlagClear(FLAG_DISABLE_FADE_INIT);
         sMourningScene = AllocZeroed(sizeof(*sMourningScene));
         SetMainCallback2(CB2_MourningSetup);
         return TRUE;
     }
     else
     {
+        FlagClear(FLAG_DID_MOURNING_CUTSCENE);
         return FALSE;
     }
 }

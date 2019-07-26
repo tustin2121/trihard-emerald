@@ -397,7 +397,7 @@ static void Task_GoToBuyOrSellMenu(u8 taskId)
 
 static void MapPostLoadHook_ReturnToShopMenu(void)
 {
-    pal_fill_black();
+    FadeScreenFromBlack();
     CreateTask(Task_ReturnToShopMenu, 8);
 }
 
