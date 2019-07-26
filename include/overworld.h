@@ -145,6 +145,7 @@ void CB2_ReturnToFieldLink(void);
 void CB2_ReturnToFieldFromMultiplayer(void);
 void CB2_ReturnToFieldWithOpenMenu(void);
 void CB2_ReturnToFieldContinueScript(void);
+void CB2_ReturnToFieldContinueScriptNoFadeIn(void);
 void CB2_ReturnToFieldContinueScriptPlayMapMusic(void);
 void sub_80861E8(void);
 void CB2_ContinueSavedGame(void);

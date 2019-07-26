@@ -41,9 +41,10 @@ enum
     STATE_SHOW_MOURN_MESSAGE,
     STATE_WAIT_MOURN_MESSAGE,
     STATE_WAIT_SECONDARY_MOURN_MESSAGE,
+    STATE_TALLY_EXP,
+    STATE_FADE_OUT_MON,
     STATE_START_GRANT_EXP,
     STATE_WAIT_GRANT_EXP,
-    STATE_FADE_OUT_MON,
     STATE_START_EXIT,
     STATE_EXIT,
 };
@@ -72,6 +73,7 @@ struct MourningScene
     struct BoxPokemon *boxMon;
     int fadeMonPicCounter;
     u16 mournMessageDelayCounter;
+    u16 partyExpGain[PARTY_SIZE];
     u16 statsBeforeLevelUp[NUM_STATS];
     u16 statsAfterLevelUp[NUM_STATS];
     u16 *bgTilemapBuffer0;
@@ -87,6 +89,7 @@ static void FadeInMonPic(void);
 static void ShowMournMessage(void);
 static void WaitMournMessage(void);
 static void WaitSecondaryMournMessage(void);
+static void TallyExpGain(void);
 static void StartGrantExperience(void);
 static void Task_InitGiveExpToParty(u8 taskId);
 static void Task_GiveExpToParty(u8 taskId);
@@ -106,7 +109,6 @@ static void Task_LevelUp_WaitFinalMoveMessage(u8 taskId);
 static void Task_TryEvolve(u8 taskId);
 static void WaitGrantExperience(void);
 static void FadeOutMonPic(void);
-static void StartExitMourningScene(void);
 static void FreeCutsceneResources(void);
 static void ExitMourningScene(void);
 
@@ -195,8 +197,9 @@ static struct BoxPokemon *GetMonToMourn(void)
         for (j = 0; j < IN_BOX_COUNT; j++)
         {
             struct BoxPokemon *mon = &gPokemonStoragePtr->boxes[i][j];
-            if (GetBoxMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE && !GetBoxMonData(mon, MON_DATA_IS_EGG)
-             && GetBoxMonData(mon, MON_DATA_SHOULD_MOURN))
+            if (GetBoxMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE 
+             && !GetBoxMonData(mon, MON_DATA_IS_EGG)
+             && !GetBoxMonData(mon, MON_DATA_HAS_MOURNED))
             {
                 return mon;
             }
@@ -272,11 +275,12 @@ static void InitMourningSceneGraphics(void)
 
 static void LoadMournedMonGfx(u16 species, u32 personality, u32 otId)
 {
-    HandleLoadSpecialPokePic_DontHandleDeoxys(
+    LoadSpecialPokePic_DontHandleDeoxys(
         &gMonFrontPicTable[species],
         (void *)(BG_CHAR_ADDR(0)),
         species,
-        personality);
+        personality,
+        TRUE);
     LoadCompressedPalette(GetMonSpritePalStructFromOtIdPersonality(species, otId, personality)->data, 0x10, 0x20);
 }
 
@@ -344,17 +348,22 @@ static void Task_MourningMain(u8 taskId)
     case STATE_WAIT_SECONDARY_MOURN_MESSAGE:
         WaitSecondaryMournMessage();
         break;
+    case STATE_TALLY_EXP:
+        TallyExpGain();
+        break;
+    case STATE_FADE_OUT_MON:
+        FadeOutMonPic();
+        break;
     case STATE_START_GRANT_EXP:
+        BeginNormalPaletteFade(0xFFFF0FFF, 0, 0, 16, RGB_BLACK);
         StartGrantExperience();
         break;
     case STATE_WAIT_GRANT_EXP:
         WaitGrantExperience();
         break;
-    case STATE_FADE_OUT_MON:
-        FadeOutMonPic();
-        break;
     case STATE_START_EXIT:
-        StartExitMourningScene();
+        // BeginNormalPaletteFade(0xFFFF0FFF, 0, 0, 16, RGB_BLACK);
+        sMourningScene->state = STATE_EXIT;
         break;
     case STATE_EXIT:
         ExitMourningScene();
@@ -379,7 +388,8 @@ static void SelectNextMonToMourn(void)
     }
     else
     {
-        sMourningScene->state = STATE_START_EXIT;
+        // sMourningScene->state = STATE_START_EXIT;
+        sMourningScene->state = STATE_START_GRANT_EXP;
     }
 }
 static void FadeInMonPic(void)
@@ -413,14 +423,14 @@ static void WaitMournMessage(void)
     if (!IsTextPrinterActive(WIN_TEXT))
     {
 #if TPP_MODE
-        if (++sMourningScene->mournMessageDelayCounter == MOURN_MESSAGE_DELAY_FRAMES)
+        if (++sMourningScene->mournMessageDelayCounter >= MOURN_MESSAGE_DELAY_FRAMES)
 #else
         if (gMain.newKeys & (A_BUTTON | B_BUTTON))
 #endif
         {
             FillWindowPixelBuffer(WIN_TEXT, PIXEL_FILL(1));
             CopyWindowToVram(WIN_TEXT, 3);
-            if (TRUE || GetBoxMonAffectionLevel(sMourningScene->boxMon) >= AFFECTION_LEVEL_GRANT_MOURN_EXP)
+            if (GetBoxMonAffectionLevel(sMourningScene->boxMon) >= AFFECTION_LEVEL_GRANT_MOURN_EXP)
             {
                 GetBoxMonData(sMourningScene->boxMon, MON_DATA_NICKNAME, gStringVar1);
                 StringExpandPlaceholders(gStringVar4, sText_TeamRemembersBattles);
@@ -429,7 +439,8 @@ static void WaitMournMessage(void)
             }
             else
             {
-                sMourningScene->state = STATE_SELECT_MON;
+                sMourningScene->fadeMonPicCounter = 0;
+                sMourningScene->state = STATE_FADE_OUT_MON;
             }
         }
     }
@@ -444,25 +455,153 @@ static void WaitSecondaryMournMessage(void)
         FillWindowPixelBuffer(WIN_TEXT, PIXEL_FILL(1));
         CopyWindowToVram(WIN_TEXT, 3);
 
-        for (i = 0; i < PARTY_SIZE; i++)
-        {
-            struct BoxPokemon *mon = &gPlayerParty[i].box;
-            if (GetBoxMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE && !GetBoxMonData(mon, MON_DATA_IS_EGG)
-                && GetMonData(mon, MON_DATA_LEVEL) < MAX_LEVEL)
-            {
-                sMourningScene->state = STATE_START_GRANT_EXP;
-                return;
-            }
-        }
+        // for (i = 0; i < PARTY_SIZE; i++)
+        // {
+        //     struct BoxPokemon *mon = &gPlayerParty[i].box;
+        //     if (GetBoxMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE && !GetBoxMonData(mon, MON_DATA_IS_EGG)
+        //         && GetMonData(mon, MON_DATA_LEVEL) < MAX_LEVEL)
+        //     {
+        //         sMourningScene->state = STATE_START_GRANT_EXP;
+        //         return;
+        //     }
+        // }
 
-        sMourningScene->state = STATE_SELECT_MON;
+        // sMourningScene->state = STATE_SELECT_MON;
+        sMourningScene->state = STATE_TALLY_EXP;
     }
 }
 
 static u16 GetMourningExpToGrant(struct BoxPokemon *deadMon, struct Pokemon *mon)
 {
-    return 5000;
+    u8 level, affection;
+    u16 species;
+    u32 expGain, expMult;
+    
+    // Sanity check: Cannot give EXP to a nonexistant mon
+    species = GetMonData(mon, MON_DATA_SPECIES);
+    if (species == SPECIES_NONE || species == SPECIES_EGG) return 0;
+    
+    // Sanity check: Cannot get EXP from a nonexistant mon
+    species = GetMonData(deadMon, MON_DATA_SPECIES);
+    if (species == SPECIES_NONE || species == SPECIES_EGG) return 0;
+    
+    // Sanity check: Cannot get EXP from an invalid mon
+    level = GetMonData(deadMon, MON_DATA_LEVEL);
+    if (level > 100) return 0; //sanity check
+    
+    // If the dead mon did not get to affection level 1, no EXP
+    affection = GetBoxMonAffectionLevel(deadMon);
+    if (affection == 0) return 0; //no EXP gained
+    
+    // Calculate EXP to gain
+    expGain = gBaseStats[species].expYield * level / 7;
+    if (expGain == 0) return 0;
+    
+    // Determine boost
+    affection = GetMonAffectionLevel(mon);
+    switch (affection)
+    {
+        default:                expMult = 100; break;
+        case AFFECTION_LEVEL_1: expMult = 100; break;
+        case AFFECTION_LEVEL_2: expMult = 115; break;
+        case AFFECTION_LEVEL_3: expMult = 125; break;
+        case AFFECTION_LEVEL_4: expMult = 160; break;
+        case AFFECTION_LEVEL_5: expMult = 200; break;
+    }
+    expGain = (expGain * expMult) / 100;
+    
+    return expGain;
 }
+
+static void TallyExpGain(void)
+{
+    u8 i;
+    struct Pokemon *mon;
+    CalculatePlayerPartyCount();
+    for (i = 0; i < gPlayerPartyCount && i < PARTY_SIZE; i++)
+    {
+        u16 species = GetMonData(mon, MON_DATA_SPECIES);
+        if (species == SPECIES_NONE) continue;
+        if (species == SPECIES_EGG) continue;
+        if (GetBoxMonData(mon, MON_DATA_IS_EGG)) continue;
+        if (GetMonData(mon, MON_DATA_LEVEL) >= MAX_LEVEL) continue;
+        mon = &gPlayerParty[i];
+        
+        sMourningScene->partyExpGain[sMourningScene->curPartyIndex] += GetMourningExpToGrant(sMourningScene->boxMon, mon);
+    }
+    sMourningScene->fadeMonPicCounter = 0;
+    sMourningScene->state = STATE_FADE_OUT_MON;
+}
+
+static void FadeOutMonPic(void)
+{
+    if (sMourningScene->fadeMonPicCounter == 0) 
+    {
+        u8 hasMourned = 1;
+        SetBoxMonData(sMourningScene->boxMon, MON_DATA_HAS_MOURNED, &hasMourned);
+        GetBoxMonData(sMourningScene->boxMon, MON_DATA_NICKNAME, gStringVar1);
+        StringExpandPlaceholders(gStringVar4, sText_GoodbyeMon);
+        AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+        sMourningScene->fadeMonPicCounter++;
+    }
+    
+    if (!IsTextPrinterActive(WIN_TEXT))
+    {
+        if (++sMourningScene->fadeMonPicCounter > FADE_OUT_MON_PIC_FRAMES)
+        {
+            ClearStdWindowAndFrameToTransparent(WIN_TEXT, TRUE);
+            sMourningScene->state = STATE_SELECT_MON;
+            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
+        }
+        else
+        {
+            int blend = (sMourningScene->fadeMonPicCounter * 16) / FADE_OUT_MON_PIC_FRAMES;
+            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16 - blend, blend));
+        }
+    }
+}
+
+static void FreeCutsceneResources(void)
+{
+    FreeAllWindowBuffers();
+    ResetSpriteData();
+    FreeAllSpritePalettes();
+    FREE_AND_SET_NULL(sMourningScene->bgTilemapBuffer0);
+    FREE_AND_SET_NULL(sMourningScene->bgTilemapBuffer1);
+    FREE_AND_SET_NULL(sMourningScene->bgTilemapBuffer2);
+}
+
+static void ExitMourningScene(void)
+{
+    if (!gPaletteFade.active)
+    {
+        FreeCutsceneResources();
+
+        HideBg(0);
+        HideBg(1);
+        HideBg(2);
+        HideBg(3);
+        ResetGpuRegisters();
+        
+        ResetTasks();
+        ResetSpriteData();
+        ResetPaletteFade();
+        UnsetBgTilemapBuffer(0);
+        UnsetBgTilemapBuffer(1);
+        UnsetBgTilemapBuffer(2);
+        UnsetBgTilemapBuffer(3);
+        ResetBgsAndClearDma3BusyFlags(0);
+        
+        DmaFillLarge16(3, 0, (void *)VRAM, VRAM_SIZE, 0x1000);
+        DmaFill32Defvars(3, 0, (void *)OAM, OAM_SIZE);
+        DmaFill16Defvars(3, 0, (void *)PLTT, PLTT_SIZE);
+
+        FREE_AND_SET_NULL(sMourningScene);
+        SetMainCallback2(CB2_ReturnToFieldContinueScriptNoFadeIn);
+        // Overworld_PlaySpecialMapMusic();
+    }
+}
+
 
 static void StartGrantExperience(void)
 {
@@ -506,10 +645,17 @@ static void Task_InitGiveExpToParty(u8 taskId)
 
         mon = &gPlayerParty[sMourningScene->curPartyIndex];
     }
-
-    sMourningScene->expGain = GetMourningExpToGrant(sMourningScene->boxMon, mon);
-    sMourningScene->curExpGain = sMourningScene->expGain;
-    gTasks[taskId].func = Task_GiveExpToParty;
+    
+    sMourningScene->expGain = sMourningScene->partyExpGain[sMourningScene->curPartyIndex];
+    if (sMourningScene->expGain > 0)
+    {
+        sMourningScene->curExpGain = sMourningScene->expGain;
+        gTasks[taskId].func = Task_GiveExpToParty;
+    }
+    else
+    {
+        sMourningScene->curPartyIndex++;
+    }
 }
 
 static void Task_GiveExpToParty(u8 taskId)
@@ -842,80 +988,11 @@ static void WaitGrantExperience(void)
 {
     if (sMourningScene->expTaskId == 0xFF)
     {
-        u8 shouldMourn = 0;
-        SetBoxMonData(sMourningScene->boxMon, MON_DATA_SHOULD_MOURN, &shouldMourn);
-        GetBoxMonData(sMourningScene->boxMon, MON_DATA_NICKNAME, gStringVar1);
-        StringExpandPlaceholders(gStringVar4, sText_GoodbyeMon);
-        AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
-        sMourningScene->fadeMonPicCounter = 0;
-        sMourningScene->state = STATE_FADE_OUT_MON;
+        sMourningScene->state = STATE_START_EXIT;
     }
 }
 
-static void FadeOutMonPic(void)
-{
-    if (!IsTextPrinterActive(WIN_TEXT))
-    {
-        if (++sMourningScene->fadeMonPicCounter > FADE_OUT_MON_PIC_FRAMES)
-        {
-            ClearStdWindowAndFrameToTransparent(WIN_TEXT, TRUE);
-            sMourningScene->state = STATE_SELECT_MON;
-            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
-        }
-        else
-        {
-            int blend = (sMourningScene->fadeMonPicCounter * 16) / FADE_OUT_MON_PIC_FRAMES;
-            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16 - blend, blend));
-        }
-    }
-}
-
-static void StartExitMourningScene(void)
-{
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-    sMourningScene->state = STATE_EXIT;
-}
-
-static void FreeCutsceneResources(void)
-{
-    FreeAllWindowBuffers();
-    ResetSpriteData();
-    FreeAllSpritePalettes();
-    FREE_AND_SET_NULL(sMourningScene->bgTilemapBuffer0);
-    FREE_AND_SET_NULL(sMourningScene->bgTilemapBuffer1);
-    FREE_AND_SET_NULL(sMourningScene->bgTilemapBuffer2);
-}
-
-static void ExitMourningScene(void)
-{
-    if (!gPaletteFade.active)
-    {
-        FreeCutsceneResources();
-
-        HideBg(0);
-        HideBg(1);
-        HideBg(2);
-        HideBg(3);
-        ResetGpuRegisters();
-        
-        ResetTasks();
-        ResetSpriteData();
-        ResetPaletteFade();
-        UnsetBgTilemapBuffer(0);
-        UnsetBgTilemapBuffer(1);
-        UnsetBgTilemapBuffer(2);
-        UnsetBgTilemapBuffer(3);
-        ResetBgsAndClearDma3BusyFlags(0);
-        
-        DmaFillLarge16(3, 0, (void *)VRAM, VRAM_SIZE, 0x1000);
-        DmaFill32Defvars(3, 0, (void *)OAM, OAM_SIZE);
-        DmaFill16Defvars(3, 0, (void *)PLTT, PLTT_SIZE);
-
-        FREE_AND_SET_NULL(sMourningScene);
-        SetMainCallback2(CB2_ReturnToFieldContinueScript);
-        Overworld_PlaySpecialMapMusic();
-    }
-}
+///////////////////////////////////////////////////////////////////////////////
 
 bool8 DoMourningCutscene(void)
 {

@@ -14,7 +14,7 @@
 #define MON_DATA_OT_NAME            7
 #define MON_DATA_MARKINGS           8
 #define MON_DATA_CHECKSUM           9
-#define MON_DATA_SHOULD_MOURN      10
+#define MON_DATA_HAS_MOURNED      10
 #define MON_DATA_SPECIES           11
 #define MON_DATA_HELD_ITEM         12
 #define MON_DATA_MOVE1             13
@@ -241,12 +241,12 @@ struct BoxPokemon
     u8 isBadEgg:1;
     u8 hasSpecies:1;
     u8 isEgg:1;
-    u8 unused:5;
+    u8 hasMourned:1;
+    u8 unused:4;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
-    u8 shouldMourn:1;
-    // 15 free bits here
+    u16 unknown;
 
     union
     {
