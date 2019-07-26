@@ -156,6 +156,13 @@ void sub_80AF188(void)
     CreateTask(task0A_asap_script_env_2_enable_and_set_ctx_running, 10);
 }
 
+void FieldCallback_ReturnToEventScriptNoFade(void)
+{
+    ScriptContext2_Enable();
+    pal_fill_black();
+    EnableBothScriptContexts();
+}
+
 static void task_mpl_807DD60(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];

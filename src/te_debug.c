@@ -346,11 +346,15 @@ void DebugHandle_GiveDebugParty()
 	CreateMon(&gPlayerParty[2], SPECIES_SWELLOW, 30, 32, 0, 0, 0, 0);
 	CreateMon(&gPlayerParty[3], SPECIES_BRELOOM, 27, 32, 0, 0, 0, 0);
 	CreateMon(&gPlayerParty[4], SPECIES_RATTATA, 2, 32, 0, 0, 0, 0);
+	CreateMon(&gPlayerParty[5], SPECIES_RATTATA, 3, 32, 0, 0, 0, 0);
 	
 	val = ITEM_EVERSTONE;
 	SetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM, &val);
 	val = MAPSEC_STARTER_MARKER;
 	SetMonData(&gPlayerParty[0], MON_DATA_MET_LOCATION, &val);
+	val = 250;
+	SetMonData(&gPlayerParty[0], MON_DATA_FRIENDSHIP, &val);
+	SetMonData(&gPlayerParty[4], MON_DATA_FRIENDSHIP, &val);
 	ScriptContext1_SetupScript(DebugScript_GiveDebugPartyMessage);
 	
 	DebugSetCallbackSuccess();

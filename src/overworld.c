@@ -1710,6 +1710,13 @@ void CB2_ReturnToFieldContinueScript(void)
     CB2_ReturnToField();
 }
 
+void CB2_ReturnToFieldContinueScriptNoFadeIn(void)
+{
+    FieldClearVBlankHBlankCallbacks();
+    gFieldCallback = FieldCallback_ReturnToEventScriptNoFade;
+    CB2_ReturnToField();
+}
+
 void CB2_ReturnToFieldContinueScriptPlayMapMusic(void)
 {
     FieldClearVBlankHBlankCallbacks();
