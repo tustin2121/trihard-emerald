@@ -11,6 +11,8 @@ For future person reference:
 * Animated door warps: 
 	* The warp tile should be on the door, the metatile should be marked as an MB_ANIMATED_DOOR, and the tile should have collision ON. If the tile does NOT have collision, then it is possible for the player to approach the door from the side and turn quickly into it, and the door will not animate. The door needs to be bumped into for it to animate.
 	* Furthermore, events placed on top of doors do not block door warps. To disable a door warp, you will need to change the metatile to a non-warpable tile, ie, one not marked as MB_ANIMATED_DOOR.
+* Caves
+	* The southern warps do not work the way you think. The glowing cave exit tiles are not special. It's the nondescript floor tile underfoot that is the warp tile. No, you cannot tell them apart by sight.
 * Map Scripts:
 	* `ON_LOAD`: Script that runs when the map loads. Do metatile changes here.
 	* `ON_TRANSITION`: Script that runs when the map is transitioned into somehow. Do object xy positioning here.

@@ -254,6 +254,47 @@ function initMenuV1() {
 			.on('click', function(){
 				switchMenu(); 
 			});
+		$m.append('<hr/>');
+		$(`<li>Give Badge 1 (Cut)</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x67, 0x08], });
+				switchMenu(); 
+			});
+		$(`<li>Give Badge 2 (Flash)</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x68, 0x08], });
+				switchMenu(); 
+			});
+		$(`<li>Give Badge 3 (Rock Smash)</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x69, 0x08], });
+				switchMenu(); 
+			});
+		$(`<li>Give Badge 4 (Strength)</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6A, 0x08], });
+				switchMenu(); 
+			});
+		$(`<li>Give Badge 5 (Surf)</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6B, 0x08], });
+				switchMenu(); 
+			});
+		$(`<li>Give Badge 6 (Fly)</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6C, 0x08], });
+				switchMenu(); 
+			});
+		$(`<li>Give Badge 7 (Dive)</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6D, 0x08], });
+				switchMenu(); 
+			});
+		$(`<li>Give Badge 8 (Waterfall)</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6E, 0x08], });
+				switchMenu(); 
+			});
 	}{
 		let $m = $subMenus['setvar'] = $('<ul>').appendTo('body');
 		let $n = $(`<input type='text' value="0" />`)

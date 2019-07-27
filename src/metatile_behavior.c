@@ -56,8 +56,8 @@ static const u8 sTileBitAttributes[] =
     [MB_REFLECTION_UNDER_BRIDGE] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_UNUSED_2C] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_2D] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_2E] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_2F] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_STEPPING_STONE_NS] = TILE_ATTRIBUTES(FALSE, TRUE, FALSE),
+    [MB_STEPPING_STONE_EW] = TILE_ATTRIBUTES(FALSE, TRUE, FALSE),
     [MB_IMPASSABLE_EAST] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_IMPASSABLE_WEST] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
     [MB_IMPASSABLE_NORTH] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
@@ -267,7 +267,7 @@ bool8 MetatileBehavior_IsEncounterTile(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsJumpEast(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_JUMP_EAST)
+    if (metatileBehavior == MB_JUMP_EAST || metatileBehavior == MB_STEPPING_STONE_EW)
         return TRUE;
     else
         return FALSE;
@@ -275,7 +275,7 @@ bool8 MetatileBehavior_IsJumpEast(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsJumpWest(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_JUMP_WEST)
+    if (metatileBehavior == MB_JUMP_WEST || metatileBehavior  == MB_STEPPING_STONE_EW)
         return TRUE;
     else
         return FALSE;
@@ -283,7 +283,7 @@ bool8 MetatileBehavior_IsJumpWest(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsJumpNorth(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_JUMP_NORTH)
+    if (metatileBehavior == MB_JUMP_NORTH || metatileBehavior == MB_STEPPING_STONE_NS)
         return TRUE;
     else
         return FALSE;
@@ -291,7 +291,7 @@ bool8 MetatileBehavior_IsJumpNorth(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsJumpSouth(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_JUMP_SOUTH)
+    if (metatileBehavior == MB_JUMP_SOUTH || metatileBehavior == MB_STEPPING_STONE_NS)
         return TRUE;
     else
         return FALSE;
@@ -1270,12 +1270,23 @@ bool8 MetatileBehavior_IsMossdeepGymWarp(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsSurfableFishableWater(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_POND_WATER || metatileBehavior == MB_OCEAN_WATER || metatileBehavior == MB_SEMI_DEEP_WATER || metatileBehavior == MB_DEEP_WATER
-        || metatileBehavior == MB_SOOTOPOLIS_DEEP_WATER || (metatileBehavior == MB_EASTWARD_CURRENT || metatileBehavior == MB_WESTWARD_CURRENT
-        || metatileBehavior == MB_NORTHWARD_CURRENT || metatileBehavior == MB_SOUTHWARD_CURRENT))
-        return TRUE;
-    else
-        return FALSE;
+    switch (metatileBehavior)
+    {
+        case MB_POND_WATER:
+        case MB_OCEAN_WATER:
+        case MB_SEMI_DEEP_WATER:
+        case MB_DEEP_WATER:
+        case MB_SOOTOPOLIS_DEEP_WATER:
+        case MB_EASTWARD_CURRENT:
+        case MB_WESTWARD_CURRENT:
+        case MB_NORTHWARD_CURRENT:
+        case MB_SOUTHWARD_CURRENT:
+        case MB_STEPPING_STONE_EW:
+        case MB_STEPPING_STONE_NS:
+            return TRUE;
+        default:
+            return FALSE;
+    }
 }
 
 bool8 MetatileBehavior_IsMtPyreHole(u8 metatileBehavior)

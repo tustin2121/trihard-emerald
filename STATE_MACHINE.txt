@@ -23,7 +23,13 @@ VAR_AQUA_BOY_FRIENDSHIP :=
 	2 = 
 		(+1 in Slateport Museum)
 
+VAR_BRINEY_LOCATION :=
+	0 = Mr. Briney is nowhere
+	1 = Mr. Briney is in his house on Route 104
+	2 = Mr. Briney is on the docks in Dewford
+	3 = Mr. Briney is on the beach in Slateport
 
+---------------------------------------------------------------
 
 VAR_PETALBURG_STATE :=
 	0 = Looking for Logan

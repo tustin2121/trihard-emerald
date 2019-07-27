@@ -56,11 +56,11 @@ PokemonCenter_1F_NurseHealScript_Heal:
 	@ Do the mourning cutscene, if needed
 	domourning
 	@ TriHard Emerald: Force Save
-	@ Check for dream cutscenes
 	special ForceSaveGame
 	waitstate
 	closemessage
 	delay 1
+	@ Check for dream cutscenes
 	dodreams
 	clearflag FLAG_DISABLE_FADE_INIT
 	fadescreenspeed 4, 2 @ FADE_FROM_BLACK_NO_WINDOW

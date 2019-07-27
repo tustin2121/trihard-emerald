@@ -409,6 +409,13 @@
             "elevation": 0,
             "x": 51,
             "y": 36
+        },
+        {
+            "dest_map": "MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2",
+            "dest_warp_id": 1,
+            "elevation": 0,
+            "x": 11,
+            "y": 30
         }
     ],
     "weather": "WEATHER_SUNNY"
