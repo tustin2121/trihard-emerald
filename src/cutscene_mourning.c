@@ -40,6 +40,8 @@
 enum
 {
     STATE_WAIT_FADE_IN,
+    STATE_DELAY_1,
+    STATE_DELAY_2,
     STATE_SELECT_MON,
     STATE_FADE_IN_MON_PIC,
     STATE_SHOW_MOURN_MESSAGE,
@@ -47,6 +49,7 @@ enum
     STATE_WAIT_SECONDARY_MOURN_MESSAGE,
     STATE_TALLY_EXP,
     STATE_FADE_OUT_MON,
+    STATE_FADE_SCENE,
     STATE_START_GRANT_EXP,
     STATE_WAIT_GRANT_EXP,
     STATE_START_EXIT,
@@ -56,6 +59,7 @@ enum
 #define MOURN_MESSAGE_DELAY_FRAMES 180
 #define FADE_IN_MON_PIC_FRAMES 120
 #define FADE_OUT_MON_PIC_FRAMES 120
+#define MOURN_STONE_OFFSET_START (8*2*9)
 
 #define TAG_MON_PIC 3000
 
@@ -96,6 +100,7 @@ static void WaitSecondaryMournMessage(void);
 static void TallyExpGain(void);
 static void StartGrantExperience(void);
 static void Task_InitGiveExpToParty(u8 taskId);
+static void Task_ChoosePartyMember(u8 taskId);
 static void Task_GiveExpToParty(u8 taskId);
 static void Task_LevelUp(u8 taskId);
 static void Task_LevelUp_WaitMessage(u8 taskId);
@@ -116,7 +121,7 @@ static void FadeOutMonPic(void);
 static void FreeCutsceneResources(void);
 static void ExitMourningScene(void);
 
-static EWRAM_DATA struct MourningScene *sMourningScene = NULL;
+/*static*/ EWRAM_DATA struct MourningScene *sMourningScene = NULL;
 
 const struct BgTemplate sBgTemplates[] = {
     {
@@ -189,7 +194,7 @@ static const u16 sHeadstone_Palette[] = INCBIN_U16("graphics/cutscene_mourning/h
 static const u32 sHeadstone_Tilemap[] = INCBIN_U32("graphics/cutscene_mourning/headstone_bg_tilemap.bin.lz");
 static const u32 sMonBgSprite_Tilemap[] = INCBIN_U32("graphics/cutscene_mourning/mon_sprite_bg_tilemap.bin.lz");
 
-static const u8 sText_TeamRemembersBattles[] = _("Your team remembers their battles\nwith {STR_VAR_1}.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_TeamRemembersBattles[] = _("Your team remembers their battles\nwith {STR_VAR_1}.");
 static const u8 sText_GoodbyeMon[] = _("Goodbye, {STR_VAR_1}.");
 
 static struct BoxPokemon *GetMonToMourn(void)
@@ -307,16 +312,22 @@ static void LoadMournedMonGfx(u16 species, u32 personality, u32 otId)
     RequestDma3Copy(gDecompressionBuffer, (void *)(BG_CHAR_ADDR(0)), gMonFrontPicTable[species].size, 0);
 }
 
+#define tFrameCount data[0]
+#define tHeadstoneOffset data[1]
+
 static void CB2_MourningSetup(void)
 {
+    u8 taskId;
     InitMourningSceneGraphics();
     if (gMain.state >= 5)
     {
         PlayBGM(MUS_END);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 4, 16, 0, RGB_BLACK);
         SetVBlankCallback(VblankCallback_MourningScene);
         SetMainCallback2(CB2_MourningMain);
-        CreateTask(Task_MourningMain, 0);
+        taskId = CreateTask(Task_MourningMain, 0);
+        gTasks[taskId].tHeadstoneOffset = MOURN_STONE_OFFSET_START;
+        SetGpuReg(REG_OFFSET_BG2HOFS, -(gTasks[taskId].tHeadstoneOffset >> 1));
     }
 }
 
@@ -338,7 +349,6 @@ static void VblankCallback_MourningScene(void)
     SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
 }
 
-#define tFrameCount data[0]
 
 static void UpdateBackgroundVerticalScrolls(u8 taskId)
 {
@@ -352,12 +362,31 @@ static void UpdateBackgroundVerticalScrolls(u8 taskId)
 static void Task_MourningMain(u8 taskId)
 {
     UpdateBackgroundVerticalScrolls(taskId);
+    
+    if (sMourningScene->state > STATE_DELAY_1 && gTasks[taskId].tHeadstoneOffset > 0)
+    {
+        gTasks[taskId].tHeadstoneOffset--;
+        SetGpuReg(REG_OFFSET_BG2HOFS, -(gTasks[taskId].tHeadstoneOffset >> 1));
+    }
 
     switch (sMourningScene->state)
     {
     case STATE_WAIT_FADE_IN:
-        if (!gPaletteFade.active)
+        if (!gPaletteFade.active) {
+            sMourningScene->mournMessageDelayCounter = 0;
+            sMourningScene->state = STATE_DELAY_1;
+        }
+        break;
+    case STATE_DELAY_1:
+        if (++sMourningScene->mournMessageDelayCounter > 3*30) {
+            sMourningScene->mournMessageDelayCounter = 0;
+            sMourningScene->state = STATE_DELAY_2;
+        }
+        break;
+    case STATE_DELAY_2:
+        if (++sMourningScene->mournMessageDelayCounter > 2*30) {
             sMourningScene->state = STATE_SELECT_MON;
+        }
         break;
     case STATE_SELECT_MON:
         SelectNextMonToMourn();
@@ -380,12 +409,22 @@ static void Task_MourningMain(u8 taskId)
     case STATE_FADE_OUT_MON:
         FadeOutMonPic();
         break;
+    case STATE_FADE_SCENE:
+        BeginNormalPaletteFade(0xFFFF0FFF, 4, 0, 16, RGB_BLACK);
+        sMourningScene->state = STATE_START_GRANT_EXP;
+        break;
     case STATE_START_GRANT_EXP:
-        BeginNormalPaletteFade(0xFFFF0FFF, 0, 0, 16, RGB_BLACK);
-        StartGrantExperience();
+        if (!gPaletteFade.active)
+        {
+            sMourningScene->expTaskId = CreateTask(Task_InitGiveExpToParty, 3);
+            sMourningScene->state = STATE_WAIT_GRANT_EXP;
+        }
         break;
     case STATE_WAIT_GRANT_EXP:
-        WaitGrantExperience();
+        if (sMourningScene->expTaskId == 0xFF)
+        {
+            sMourningScene->state = STATE_START_EXIT;
+        }
         break;
     case STATE_START_EXIT:
         // BeginNormalPaletteFade(0xFFFF0FFF, 0, 0, 16, RGB_BLACK);
@@ -414,8 +453,7 @@ static void SelectNextMonToMourn(void)
     }
     else
     {
-        // sMourningScene->state = STATE_START_EXIT;
-        sMourningScene->state = STATE_START_GRANT_EXP;
+        sMourningScene->state = STATE_FADE_SCENE;
     }
 }
 static void FadeInMonPic(void)
@@ -461,6 +499,7 @@ static void WaitMournMessage(void)
                 GetBoxMonData(sMourningScene->boxMon, MON_DATA_NICKNAME, gStringVar1);
                 StringExpandPlaceholders(gStringVar4, sText_TeamRemembersBattles);
                 AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
+                sMourningScene->mournMessageDelayCounter = 0;
                 sMourningScene->state = STATE_WAIT_SECONDARY_MOURN_MESSAGE;
             }
             else
@@ -478,26 +517,20 @@ static void WaitSecondaryMournMessage(void)
 
     if (!IsTextPrinterActive(WIN_TEXT))
     {
-        FillWindowPixelBuffer(WIN_TEXT, PIXEL_FILL(1));
-        CopyWindowToVram(WIN_TEXT, 3);
-
-        // for (i = 0; i < PARTY_SIZE; i++)
-        // {
-        //     struct BoxPokemon *mon = &gPlayerParty[i].box;
-        //     if (GetBoxMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE && !GetBoxMonData(mon, MON_DATA_IS_EGG)
-        //         && GetMonData(mon, MON_DATA_LEVEL) < MAX_LEVEL)
-        //     {
-        //         sMourningScene->state = STATE_START_GRANT_EXP;
-        //         return;
-        //     }
-        // }
-
-        // sMourningScene->state = STATE_SELECT_MON;
-        sMourningScene->state = STATE_TALLY_EXP;
+#if TPP_MODE
+        if (++sMourningScene->mournMessageDelayCounter >= MOURN_MESSAGE_DELAY_FRAMES)
+#else
+        if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+#endif
+        {
+            FillWindowPixelBuffer(WIN_TEXT, PIXEL_FILL(1));
+            CopyWindowToVram(WIN_TEXT, 3);
+            sMourningScene->state = STATE_TALLY_EXP;
+        }
     }
 }
 
-static u16 GetMourningExpToGrant(struct BoxPokemon *deadMon, struct Pokemon *mon)
+static u16 GetMourningExpToGrant(struct BoxPokemon *deadMon, struct Pokemon *mon, u8 i)
 {
     u8 level, affection;
     u16 species;
@@ -508,16 +541,16 @@ static u16 GetMourningExpToGrant(struct BoxPokemon *deadMon, struct Pokemon *mon
     if (species == SPECIES_NONE || species == SPECIES_EGG) return 0;
     
     // Sanity check: Cannot get EXP from a nonexistant mon
-    species = GetMonData(deadMon, MON_DATA_SPECIES);
+    species = GetBoxMonData(deadMon, MON_DATA_SPECIES);
     if (species == SPECIES_NONE || species == SPECIES_EGG) return 0;
     
     // Sanity check: Cannot get EXP from an invalid mon
-    level = GetMonData(deadMon, MON_DATA_LEVEL);
-    if (level > 100) return 0; //sanity check
+    level = GetLevelFromBoxMonExp(deadMon);
+    if (level > 100 || level == 0) return 0;
     
     // If the dead mon did not get to affection level 1, no EXP
     affection = GetBoxMonAffectionLevel(deadMon);
-    if (affection == 0) return 0; //no EXP gained
+    if (affection == 0) return 0;
     
     // Calculate EXP to gain
     expGain = gBaseStats[species].expYield * level / 7;
@@ -535,25 +568,26 @@ static u16 GetMourningExpToGrant(struct BoxPokemon *deadMon, struct Pokemon *mon
         case AFFECTION_LEVEL_5: expMult = 200; break;
     }
     expGain = (expGain * expMult) / 100;
-    
     return expGain;
 }
 
 static void TallyExpGain(void)
 {
     u8 i;
+    u16 species;
     struct Pokemon *mon;
+    
     CalculatePlayerPartyCount();
     for (i = 0; i < gPlayerPartyCount && i < PARTY_SIZE; i++)
     {
-        u16 species = GetMonData(mon, MON_DATA_SPECIES);
+        mon = &gPlayerParty[i];
+        species = GetMonData(mon, MON_DATA_SPECIES);
         if (species == SPECIES_NONE) continue;
         if (species == SPECIES_EGG) continue;
         if (GetBoxMonData(mon, MON_DATA_IS_EGG)) continue;
         if (GetMonData(mon, MON_DATA_LEVEL) >= MAX_LEVEL) continue;
-        mon = &gPlayerParty[i];
         
-        sMourningScene->partyExpGain[sMourningScene->curPartyIndex] += GetMourningExpToGrant(sMourningScene->boxMon, mon);
+        sMourningScene->partyExpGain[i] += GetMourningExpToGrant(sMourningScene->boxMon, mon, i);
     }
     sMourningScene->fadeMonPicCounter = 0;
     sMourningScene->state = STATE_FADE_OUT_MON;
@@ -576,7 +610,8 @@ static void FadeOutMonPic(void)
         if (++sMourningScene->fadeMonPicCounter > FADE_OUT_MON_PIC_FRAMES)
         {
             ClearStdWindowAndFrameToTransparent(WIN_TEXT, TRUE);
-            sMourningScene->state = STATE_SELECT_MON;
+            sMourningScene->mournMessageDelayCounter = 0;
+            sMourningScene->state = STATE_DELAY_2;
             SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
         }
         else
@@ -629,13 +664,15 @@ static void ExitMourningScene(void)
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// EXP and Level gains
 
-static void StartGrantExperience(void)
-{
-    sMourningScene->curPartyIndex = 0;
-    sMourningScene->expTaskId = CreateTask(Task_InitGiveExpToParty, 3);
-    sMourningScene->state = STATE_WAIT_GRANT_EXP;
-}
+#define DEBUG_COLOR(color)
+// #define DEBUG_COLOR(color) CpuFill16(color, gPlttBufferFaded, 0x20)
+
+#define tCurPartyIndex sMourningScene->curPartyIndex
+#define tTotalExpToGain sMourningScene->expGain
+#define tExpLeftToGain sMourningScene->curExpGain
 
 static void CopyMonStats(struct Pokemon *mon, u16 *stats)
 {
@@ -649,39 +686,52 @@ static void CopyMonStats(struct Pokemon *mon, u16 *stats)
 
 static void Task_InitGiveExpToParty(u8 taskId)
 {
-    struct Pokemon *mon;
+    tCurPartyIndex = 0;
     CalculatePlayerPartyCount();
-    if (sMourningScene->curPartyIndex >= gPlayerPartyCount)
+    gTasks[taskId].func = Task_ChoosePartyMember;
+    DEBUG_COLOR(RGB_RED);
+}
+
+static void Task_ChoosePartyMember(u8 taskId)
+{
+    struct Pokemon *mon;
+    if (tCurPartyIndex >= gPlayerPartyCount)
     {
         DestroyTask(taskId);
         sMourningScene->expTaskId = 0xFF;
+        DEBUG_COLOR(RGB_BLACK);
         return;
     }
 
-    mon = &gPlayerParty[sMourningScene->curPartyIndex];
-    while (GetBoxMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE || GetBoxMonData(mon, MON_DATA_IS_EGG)
+    mon = &gPlayerParty[tCurPartyIndex];
+    
+    while (GetBoxMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE 
+        || GetBoxMonData(mon, MON_DATA_IS_EGG)
         || GetMonData(mon, MON_DATA_LEVEL) >= MAX_LEVEL)
     {
-        sMourningScene->curPartyIndex++;
-        if (sMourningScene->curPartyIndex >= gPlayerPartyCount)
+        tCurPartyIndex++;
+        if (tCurPartyIndex >= gPlayerPartyCount)
         {
             DestroyTask(taskId);
             sMourningScene->expTaskId = 0xFF;
+            DEBUG_COLOR(RGB_BLACK);
             return;
         }
 
-        mon = &gPlayerParty[sMourningScene->curPartyIndex];
+        mon = &gPlayerParty[tCurPartyIndex];
     }
     
-    sMourningScene->expGain = sMourningScene->partyExpGain[sMourningScene->curPartyIndex];
-    if (sMourningScene->expGain > 0)
+    tTotalExpToGain = sMourningScene->partyExpGain[tCurPartyIndex];
+    if (tTotalExpToGain > 0)
     {
-        sMourningScene->curExpGain = sMourningScene->expGain;
+        tExpLeftToGain = tTotalExpToGain;
         gTasks[taskId].func = Task_GiveExpToParty;
+        DEBUG_COLOR(RGB_BLUE);
     }
     else
     {
-        sMourningScene->curPartyIndex++;
+        tCurPartyIndex++;
+        DEBUG_COLOR(RGB_MAGENTA);
     }
 }
 
@@ -692,8 +742,9 @@ static void Task_GiveExpToParty(u8 taskId)
     u32 curExp;
     u32 nextLevelExp;
     u16 expGain;
-    struct Pokemon *mon = &gPlayerParty[sMourningScene->curPartyIndex];
-    expGain = sMourningScene->curExpGain;
+    struct Pokemon *mon = &gPlayerParty[tCurPartyIndex];
+    
+    expGain = tExpLeftToGain;
     species = GetMonData(mon, MON_DATA_SPECIES);
     level = GetMonData(mon, MON_DATA_LEVEL);
     curExp = GetMonData(mon, MON_DATA_EXP);
@@ -705,27 +756,31 @@ static void Task_GiveExpToParty(u8 taskId)
         SetMonData(mon, MON_DATA_EXP, &nextLevelExp);
         CalculateMonStats(mon);
         CopyMonStats(mon, sMourningScene->statsAfterLevelUp);
-        sMourningScene->curExpGain -= nextLevelExp - curExp;
+        tExpLeftToGain -= nextLevelExp - curExp;
         gTasks[taskId].func = Task_LevelUp;
+        DEBUG_COLOR(RGB_GREEN);
     }
     else
     {
         curExp += expGain;
         SetMonData(mon, MON_DATA_EXP, &curExp);
-        sMourningScene->curPartyIndex++;
-        gTasks[taskId].func = Task_InitGiveExpToParty;
+        tCurPartyIndex++;
+        gTasks[taskId].func = Task_ChoosePartyMember;
+        DEBUG_COLOR(RGB_YELLOW);
     }
 }
 
 static void Task_LevelUp(u8 taskId)
 {
-    struct Pokemon *mon = &gPlayerParty[sMourningScene->curPartyIndex];
+    struct Pokemon *mon = &gPlayerParty[tCurPartyIndex];
+    DrawStdWindowFrame(WIN_TEXT, TRUE);
     PlayFanfareByFanfareNum(0);
     GetMonNickname(mon, gStringVar1);
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(mon, MON_DATA_LEVEL), 0, 3);
     StringExpandPlaceholders(gStringVar4, gText_PkmnMournGrewLevel);
     AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
     gTasks[taskId].func = Task_LevelUp_WaitMessage;
+    DEBUG_COLOR(RGB_MAGENTA);
 }
 
 static void Task_LevelUp_WaitMessage(u8 taskId)
@@ -769,7 +824,7 @@ static void Task_LevelUp_WaitLevelupWindowPart2(u8 taskId)
 
 static void Task_TeachMove(u8 taskId)
 {
-    u16 result = MonTryLearningNewMove(&gPlayerParty[sMourningScene->curPartyIndex], sMourningScene->learningFirstMove);
+    u16 result = MonTryLearningNewMove(&gPlayerParty[tCurPartyIndex], sMourningScene->learningFirstMove);
     sMourningScene->learningFirstMove = 0;
     switch (result)
     {
@@ -779,7 +834,7 @@ static void Task_TeachMove(u8 taskId)
     case 0xFFFF:
         FillWindowPixelBuffer(WIN_TEXT, PIXEL_FILL(1));
         CopyWindowToVram(WIN_TEXT, 3);
-        GetMonNickname(&gPlayerParty[sMourningScene->curPartyIndex], gStringVar1);
+        GetMonNickname(&gPlayerParty[tCurPartyIndex], gStringVar1);
         StringCopy(gStringVar2, gMoveNames[gMoveToLearn]);
         StringExpandPlaceholders(gStringVar4, gText_PkmnNeedsToReplaceMove);
         AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
@@ -791,7 +846,7 @@ static void Task_TeachMove(u8 taskId)
     default:
         FillWindowPixelBuffer(WIN_TEXT, PIXEL_FILL(1));
         CopyWindowToVram(WIN_TEXT, 3);
-        GetMonNickname(&gPlayerParty[sMourningScene->curPartyIndex], gStringVar1);
+        GetMonNickname(&gPlayerParty[tCurPartyIndex], gStringVar1);
         StringCopy(gStringVar2, gMoveNames[result]);
         StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMovePause);
         AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar4, 0, 1, GetPlayerTextSpeedDelay(), NULL);
@@ -857,7 +912,7 @@ static void Task_WaitReturnFromSummaryScreen(u8 taskId)
         }
         else
         {
-            struct Pokemon *mon = &gPlayerParty[sMourningScene->curPartyIndex];
+            struct Pokemon *mon = &gPlayerParty[tCurPartyIndex];
             u16 move = GetMonData(mon, MON_DATA_MOVE1 + selectedMoveIndex);
             RemoveMonPPBonus(mon, selectedMoveIndex);
             SetMonMoveSlot(mon, gMoveToLearn, selectedMoveIndex);
@@ -900,7 +955,7 @@ static void Task_WaitSwappedMoveMessage(u8 taskId)
 {
     if (WaitFanfare(FALSE) && !IsTextPrinterActive(WIN_TEXT))
     {
-        struct Pokemon *mon = &gPlayerParty[sMourningScene->curPartyIndex];
+        struct Pokemon *mon = &gPlayerParty[tCurPartyIndex];
         FillWindowPixelBuffer(WIN_TEXT, PIXEL_FILL(1));
         CopyWindowToVram(WIN_TEXT, 3);
         GetMonNickname(mon, gStringVar1);
@@ -916,7 +971,7 @@ static void Task_WaitLearnNewMoveFade(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        ShowSelectMovePokemonSummaryScreen(gPlayerParty, sMourningScene->curPartyIndex, gPlayerPartyCount - 1, CB2_ReturnFromSummaryScreen, gMoveToLearn);
+        ShowSelectMovePokemonSummaryScreen(gPlayerParty, tCurPartyIndex, gPlayerPartyCount - 1, CB2_ReturnFromSummaryScreen, gMoveToLearn);
         FreeCutsceneResources();
         gTasks[taskId].func = Task_Wait;
     }
@@ -934,7 +989,7 @@ static void Task_WaitStopLearningMoveMessage(u8 taskId)
 
 static void Task_GetStopLearningMoveInput(u8 taskId)
 {
-    struct Pokemon *mon = &gPlayerParty[sMourningScene->curPartyIndex];
+    struct Pokemon *mon = &gPlayerParty[tCurPartyIndex];
 
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
@@ -1003,27 +1058,19 @@ static void CB2_ReturnFromEvolutionScene(void)
 
 static void Task_TryEvolve(u8 taskId)
 {
-    struct Pokemon *mon = &gPlayerParty[sMourningScene->curPartyIndex];
+    struct Pokemon *mon = &gPlayerParty[tCurPartyIndex];
     u16 targetSpecies = GetEvolutionTargetSpecies(mon, 0, 0);
 
     if (targetSpecies != SPECIES_NONE)
     {
         FreeCutsceneResources();
         gCB2_AfterEvolution = CB2_ReturnFromEvolutionScene;
-        BeginEvolutionScene(mon, targetSpecies, 1, sMourningScene->curPartyIndex);
+        BeginEvolutionScene(mon, targetSpecies, 1, tCurPartyIndex);
         gTasks[taskId].func = Task_Wait;
     }
     else
     {
         gTasks[taskId].func = Task_GiveExpToParty;
-    }
-}
-
-static void WaitGrantExperience(void)
-{
-    if (sMourningScene->expTaskId == 0xFF)
-    {
-        sMourningScene->state = STATE_START_EXIT;
     }
 }
 
