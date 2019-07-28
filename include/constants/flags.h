@@ -115,7 +115,7 @@
 #define FLAG_MOSSDEEP_GYM_SWITCH_2                            0x65
 #define FLAG_MOSSDEEP_GYM_SWITCH_3                            0x66
 #define FLAG_MOSSDEEP_GYM_SWITCH_4                            0x67
-#define FLAG_UNUSED_0x068                                     0x68  // Unused Flag
+#define FLAG_TEAM_AQUA_STOLE_SUBMARINE                        0x68  // Unused Flag
 #define FLAG_OCEANIC_MUSEUM_MET_REPORTER                      0x69
 #define FLAG_RECEIVED_TM54                                    0x6A
 #define FLAG_RECEIVED_TM56                                    0x6B
@@ -771,8 +771,8 @@
 #define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL           0x332
 #define FLAG_HIDE_ROUTE_112_TEAM_MAGMA                              0x333
 #define FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE                        0x334
-#define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE         0x335
-#define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE         0x336
+#define FLAG_UNUSED_0x335                                           0x335
+#define FLAG_UNUSED_0x336                                           0x336
 #define FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA                          0x337
 #define FLAG_HIDE_PETALBURG_GYM_OLD_LEADER                          0x338
 #define FLAG_HIDE_OLDALE_ROADBLOCK_AFTERMATCH						0x339
@@ -893,7 +893,7 @@
 #define FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN                      0x3AC
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT               0x3AD
 #define FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO                          0x3AE
-#define FLAG_HIDE_AQUA_HIDEOUT_B2F_SUBMARINE_SHADOW                 0x3AF
+#define FLAG_UNUSED_0x3AF                                           0x3AF // TriHard
 #define FLAG_HIDE_ROUTE_128_ARCHIE                                  0x3B0
 #define FLAG_HIDE_ROUTE_128_MAXIE                                   0x3B1
 #define FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS                       0x3B2

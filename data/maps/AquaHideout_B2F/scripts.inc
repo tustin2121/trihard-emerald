@@ -1,8 +1,13 @@
 AquaHideout_B2F_MapScripts:: @ 8233DCF
 	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B2F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, AquaHideout_B2F_OnLoad
 	.byte 0
 
+@ -----------------------------------------------------
+
 AquaHideout_B2F_OnTransition: @ 8233DD5
+	setflag FLAG_DEATH_PREVENT
+	setflag FLAG_DEATH_PREVENT_1HP
 	call_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, AquaHideout_B2F_EventScript_233DDF
 	end
 
@@ -10,13 +15,108 @@ AquaHideout_B2F_EventScript_233DDF:: @ 8233DDF
 	setvar VAR_TEMP_1, 1
 	return
 
-AquaHideout_B2F_EventScript_233DE5:: @ 8233DE5
+@ -----------------------------------------------------
+
+AquaHideout_B2F_OnLoad:
+	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, AquaHideout_B2F_OnLoad_CompleteSubmarineDeparture
+	goto_if_unset FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_B2F_OnLoad_DisableSubmarineArrival
+	clearflag FLAG_TEMP_5 @FLAG_HIDE_AQUA_HIDEOUT_B2F_SUBMARINE_SHADOW
+	end
+
+AquaHideout_B2F_OnLoad_DisableSubmarineArrival:
+	setobjectxyperm 1, 45, 19
+	setvar VAR_TEMP_1, 1
+	setflag FLAG_TEMP_5
+	end
+
+AquaHideout_B2F_OnLoad_CompleteSubmarineDeparture:
+	setobjectxyperm 1, 45, 19
+	setvar VAR_TEMP_1, 1
+	setflag FLAG_TEMP_5
+	end
+
+@ -----------------------------------------------------
+@ Items
+
+AquaHideout_B2F_EventScript_ItemNestBall:: @ 829137F
+	giveitem_std ITEM_NEST_BALL, 1, 1
+	end
+
+AquaHideout_B2F_EventScript_ItemMasterBall:: @ 829138C
+	giveitem_std ITEM_MASTER_BALL, 1, 1      // Unused
+	end
+
+@ -----------------------------------------------------
+@ Trainers
+
+AquaHideout_B2F_EventScript_Scrappy22:: @ 8233EAF
+	trainerbattle_single TRAINER_GRUNT_22, AquaHideout_B2F_Text_23412D, AquaHideout_B2F_Text_2341CE
+	msgbox AquaHideout_B2F_Text_2341FE, MSGBOX_AUTOCLOSE
+	end
+AquaHideout_B2F_Text_23412D: @ 823412D
+	.string "Don't you think these new warp panels\n"
+	.string "are awesome?\p"
+	.string "Fluster and tire out the enemy, then\n"
+	.string "lower the boom!\p"
+	.string "Let's scrap and see how good it works!$"
+AquaHideout_B2F_Text_2341CE: @ 82341CE
+	.string "I think I'm the one confused by\n"
+	.string "the warp panels after all!$"
+AquaHideout_B2F_Text_2341FE: @ 82341FE
+	.string "That reminds me… I can't remember\n"
+	.string "where I put the Master Ball.\p"
+	.string "If I fail to guard it, boss will\n"
+	.string "chew me out…$"
+
+
+AquaHideout_B2F_EventScript_Scrappy26:: @ 8233EC6
+	trainerbattle_single TRAINER_GRUNT_26, AquaHideout_B2F_Text_23426F, AquaHideout_B2F_Text_2342CC
+	msgbox AquaHideout_B2F_Text_2342FF, MSGBOX_AUTOCLOSE
+	end
+AquaHideout_B2F_Text_23426F: @ 823426F
+	.string "Hey, uh, do you have a cheat sheet \n"
+	.string "that lays out these warp panels?\l"
+	.string "I'm so confused by them…\p"
+	.string "I'll battle you for that sheet.$"
+AquaHideout_B2F_Text_2342CC: @ 82342CC
+	.string "I was too occupied thinking about\n"
+	.string "the warp panels…$"
+AquaHideout_B2F_Text_2342FF: @ 82342FF
+	.string "I'm new here, so I have no idea what's\n"
+	.string "going on with these panels.\p"
+	.string "How do you cope with them?$"
+
+
+AquaHideout_B2F_EventScript_Scrappy4:: @ 8233E8A
+	trainerbattle_single TRAINER_GRUNT_4, AquaHideout_B2F_Text_2340B4, AquaHideout_B2F_Text_2340F0, AquaHideout_B2F_EventScript_233EA5
+	msgbox AquaHideout_B2F_Text_234112, MSGBOX_AUTOCLOSE
+	end
+AquaHideout_B2F_EventScript_233EA5:: @ 8233EA5
+	msgbox AquaHideout_B2F_Text_234112, MSGBOX_DEFAULT
+	release
+	end
+AquaHideout_B2F_Text_2340B4: @ 82340B4
+	.string "Wahahah, I grow weary of waiting!\n"
+	.string "You owe me a scrap!$"
+AquaHideout_B2F_Text_2340F0: @ 82340F0
+	.string "Tired of waiting…\n"
+	.string "Lost and dazed…$"
+AquaHideout_B2F_Text_234112: @ 8234112
+	.string "Boss…\n"
+	.string "Is this good enough?\p"
+	.string "I think I'm going crazy down here!$"
+
+
+@ -----------------------------------------------------
+
+#define LID_MATT 1
+
+AquaHideout_B2F_TriggerScript_Arrival:: @ 8233DE5
 	lockall
-	setvar VAR_0x8008, 1
 	playse SE_PIN
-	applymovement VAR_0x8008, Common_Movement_ExclamationMark
+	applymovement LID_MATT, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement VAR_0x8008, Common_Movement_FacePlayer
+	applymovement LID_MATT, Common_Movement_FacePlayer
 	waitmovement 0
 	setvar VAR_TEMP_1, 1
 	releaseall
@@ -24,135 +124,51 @@ AquaHideout_B2F_EventScript_233DE5:: @ 8233DE5
 
 AquaHideout_B2F_EventScript_233E09:: @ 8233E09
 	trainerbattle_single TRAINER_MATT, AquaHideout_B2F_Text_233EDD, AquaHideout_B2F_Text_233F8D, AquaHideout_B2F_EventScript_233E25
-	msgbox AquaHideout_B2F_Text_233FF2, MSGBOX_DEFAULT
+	msgbox AquaHideout_B2F_Text_233FF2a, MSGBOX_DEFAULT
 	release
 	end
-
-AquaHideout_B2F_EventScript_233E25:: @ 8233E25
-	setvar VAR_0x8008, 1
-	setvar VAR_0x8009, 4
-	applymovement VAR_0x8008, Common_Movement_WalkInPlaceLeft
-	waitmovement 0
-	delay 20
-	applymovement VAR_0x8008, Common_Movement_FacePlayer
-	waitmovement 0
-	msgbox AquaHideout_B2F_Text_233FA6, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_0x8008, Common_Movement_WalkInPlaceLeft
-	applymovement VAR_0x8009, AquaHideout_B2F_Movement_233E80
-	waitmovement 0
-	removeobject VAR_0x8009
-	delay 20
-	applymovement VAR_0x8008, Common_Movement_FacePlayer
-	waitmovement 0
-	msgbox AquaHideout_B2F_Text_233FF2, MSGBOX_DEFAULT
-	setflag FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE
-	setflag FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
-	release
-	end
-
-AquaHideout_B2F_Movement_233E80: @ 8233E80
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	step_end
-
-AquaHideout_B2F_Movement_233E85: @ 8233E85
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-AquaHideout_B2F_EventScript_233E8A:: @ 8233E8A
-	trainerbattle_single TRAINER_GRUNT_4, AquaHideout_B2F_Text_2340B4, AquaHideout_B2F_Text_2340F0, AquaHideout_B2F_EventScript_233EA5
-	msgbox AquaHideout_B2F_Text_234112, MSGBOX_AUTOCLOSE
-	end
-
-AquaHideout_B2F_EventScript_233EA5:: @ 8233EA5
-	msgbox AquaHideout_B2F_Text_234112, MSGBOX_DEFAULT
-	release
-	end
-
-AquaHideout_B2F_EventScript_233EAF:: @ 8233EAF
-	trainerbattle_single TRAINER_GRUNT_22, AquaHideout_B2F_Text_23412D, AquaHideout_B2F_Text_2341CE
-	msgbox AquaHideout_B2F_Text_2341FE, MSGBOX_AUTOCLOSE
-	end
-
-AquaHideout_B2F_EventScript_233EC6:: @ 8233EC6
-	trainerbattle_single TRAINER_GRUNT_26, AquaHideout_B2F_Text_23426F, AquaHideout_B2F_Text_2342CC
-	msgbox AquaHideout_B2F_Text_2342FF, MSGBOX_AUTOCLOSE
-	end
-
 AquaHideout_B2F_Text_233EDD: @ 8233EDD
-	.string "Hehehe…\p"
-	.string "Got here already, did you?\n"
-	.string "We underestimated you!\p"
-	.string "But this is it!\p"
-	.string "I'm a cut above the GRUNTS you've seen\n"
-	.string "so far.\p"
-	.string "I'm not stalling for time.\n"
-	.string "I'm going to pulverize you!$"
-
+	.string "Oh, hey. You're that new kid, huh?\p"
+	.string "We just got back from the submarine\n"
+	.string "hijacking.\p"
+	.string "They're in there installing the Devon\n"
+	.string "Goods so we can give deeper than ever\n"
+	.string "before.\p"
+	.string "How are you liking the hideout?\p"
+	.string "Oh, you wanna scrap? You sure?\p"
+	.string "I'm a mite tougher than the others.\p"
+	.string "Oh you beat the others already, huh?\n"
+	.string "Don't get a swollen head now.\l"
+	.string "Let's go!$"
 AquaHideout_B2F_Text_233F8D: @ 8233F8D
-	.string "Hehehe…\n"
 	.string "So, I lost, too…$"
-
+AquaHideout_B2F_EventScript_233E25:: @ 8233E25
+	markasdialog
+	msgbox AquaHideout_B2F_Text_233FA6
+	applymovement LID_MATT, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	playse SE_PIN
+	applymovement LID_MATT, Common_Movement_ExclamationMarkAndWait
+	waitmovement 0
+	delay 20
+	applymovement LID_MATT, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox AquaHideout_B2F_Text_233FF2
+	setvar VAR_AQUA_HIDEOUT_STATE, 1
+	release
+	end
 AquaHideout_B2F_Text_233FA6: @ 8233FA6
-	.string "Hehehe!\p"
-	.string "While I was toying with you, our BOSS\n"
-	.string "got through his preparations!$"
+	.string "Wow, you are pretty strong.\p"
+	.string "Maybe the boss'll promote you to my\n"
+	.string "rank if you keep up that performance.$"
+AquaHideout_B2F_Text_233FF2:
+	.string "Uh, and maybe you'll get to prove\n"
+	.string "yourself sooner than you think!\p"
+AquaHideout_B2F_Text_233FF2a:
+	.string "There's an intruder in the base.\n"
+	.string "Some kid wearing a visor all wrong.\p"
+	.string "Hold him off long enough for us to\n"
+	.string "get out of here, will ya?$"
 
-AquaHideout_B2F_Text_233FF2: @ 8233FF2
-	.string "Hehehe!\p"
-	.string "Our BOSS has already gone on his way to\n"
-	.string "some cave under the sea!\p"
-	.string "If you're going to give chase, you'd\n"
-	.string "better search the big, wide sea beyond\l"
-	.string "LILYCOVE.\p"
-	.string "But will you find it then?\n"
-	.string "Hehehe!$"
+#undef LID_MATT
 
-AquaHideout_B2F_Text_2340B4: @ 82340B4
-	.string "Wahahah, I grew weary of waiting!\n"
-	.string "You owe me a battle, too!$"
-
-AquaHideout_B2F_Text_2340F0: @ 82340F0
-	.string "Tired of waiting…\n"
-	.string "Lost and dazed…$"
-
-AquaHideout_B2F_Text_234112: @ 8234112
-	.string "BOSS…\n"
-	.string "Is this good enough?$"
-
-AquaHideout_B2F_Text_23412D: @ 823412D
-	.string "Warp panels, the HIDEOUT's pride\n"
-	.string "and joy!\p"
-	.string "You're clueless about where you are,\n"
-	.string "aren't you?\p"
-	.string "Fluster and tire out the enemy, then\n"
-	.string "lower the boom! That's our plan!$"
-
-AquaHideout_B2F_Text_2341CE: @ 82341CE
-	.string "What's wrong with you?\n"
-	.string "You're not tired at all!$"
-
-AquaHideout_B2F_Text_2341FE: @ 82341FE
-	.string "That reminds me… I can't remember\n"
-	.string "where I put the MASTER BALL.\p"
-	.string "If I fail to guard it, our BOSS will\n"
-	.string "chew me out…$"
-
-AquaHideout_B2F_Text_23426F: @ 823426F
-	.string "When I joined Team Aqua, the first\n"
-	.string "thing I had to learn was how these\l"
-	.string "warp panels connected.$"
-
-AquaHideout_B2F_Text_2342CC: @ 82342CC
-	.string "I was too occupied thinking about\n"
-	.string "the warp panels…$"
-
-AquaHideout_B2F_Text_2342FF: @ 82342FF
-	.string "I'll have to learn about how I can\n"
-	.string "battle more effectively…$"

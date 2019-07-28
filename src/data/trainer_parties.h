@@ -215,24 +215,6 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Grunt13[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Logan_SternMugging[] = {
-    {
-        .iv = 0,
-        .lvl = 14,
-        .species = SPECIES_POOCHYENA,
-    },
-    {
-        .iv = 0,
-        .lvl = 14,
-        .species = SPECIES_WINGULL,
-    },
-    {
-        .iv = 0,
-        .lvl = 15,
-        .species = SPECIES_SEEDOT,
-    }
-};
-
 static const struct TrainerMonNoItemDefaultMoves sParty_Grunt14[] = {
     {
         .iv = 0,
@@ -12452,3 +12434,49 @@ static const struct TrainerMonNoItemDefaultMoves sParty_May16[] = {
     .species = SPECIES_KYOGRE,
     }
 };
+
+// Trihard Emerald
+
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Logan_SternMugging[] = {
+    {
+        .iv = 0,
+        .lvl = 14,
+        .species = SPECIES_POOCHYENA,
+    },
+    {
+        .iv = 0,
+        .lvl = 14,
+        .species = SPECIES_WINGULL,
+    },
+    {
+        .iv = 0,
+        .lvl = 15,
+        .species = SPECIES_SEEDOT,
+    }
+};
+
+
+static const struct TrainerMonNoItemDefaultMoves sParty_Logan_Hideout[] = {
+    {
+        .iv = 0,
+        .lvl = 30,
+        .species = SPECIES_WAILMER,
+    },
+    {
+        .iv = 50,
+        .lvl = 33,
+        .species = SPECIES_LINOONE,
+    },
+    {
+        .iv = 50,
+        .lvl = 34,
+        .species = SPECIES_NUMEL,
+    },
+    {
+        .iv = 50,
+        .lvl = 35,
+        .species = SPECIES_NUZLEAF,
+    }
+};
+

@@ -7,7 +7,7 @@
 #define TRAINER_GRUNT_2           3
 #define TRAINER_GRUNT_3           4
 #define TRAINER_GRUNT_4           5
-#define TRAINER_GRUNT_5           6
+#define TRAINER_LOGAN_HIDEOUT           6
 #define TRAINER_GRUNT_6           7
 #define TRAINER_GRUNT_7           8
 #define TRAINER_GABRIELLE_1       9

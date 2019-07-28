@@ -75,8 +75,8 @@ SlateportCity_Harbor_EventScript_20C9F5:: @ 820C9F5
 	call_if_eq SlateportCity_Harbor_EventScript_20CAB3
 	msgbox SlateportCity_Harbor_Text_20D35A, MSGBOX_DEFAULT
 	closemessage
-	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
-	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
+	setflag FLAG_TEAM_AQUA_STOLE_SUBMARINE
+	@ setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
 	moveobjectoffscreen 4
 	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_RIGHT
 	releaseall

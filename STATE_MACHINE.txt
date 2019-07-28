@@ -89,3 +89,7 @@ VAR_SKY_PILLAR_STATE :=
 	3 = Post Legendary Battle
 	10 = Initial State, Post Legendary Battle (won by player)
 
+VAR_AQUA_HIDEOUT_STATE :=
+	0 = Initial State
+	1 = Meet Logan on way up
+	2 = After Logan

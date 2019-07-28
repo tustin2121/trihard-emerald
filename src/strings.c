@@ -47,6 +47,7 @@ const u8 gYN_ERROR[] =          _("ERROR");
 const u8 gYN_Yes[] =            _("Yes");
 const u8 gYN_No[] =             _("No");
 const u8 gYN_NoQuestion[] =     _("No?");
+const u8 gYN_Later[] =          _("Later");
 const u8 gYN_Yeah[] =           _("Yeah");
 const u8 gYN_YeahBang[] =       _("Yeah!");
 const u8 gYN_YeahStutter[] =    _("Y-Yeah…");

@@ -371,3 +371,8 @@ Common_EventScript_FailTheftNoRoom::
 Common_Text_FailTheftNoRoom:
 	.string "But then, you don't have the space\n"
 	.string "available anyway…$"
+
+
+Common_Text_DummiedOut:
+	.string "This event is dummied out.\n"
+	.string "If you see this message, it's a bug.$"

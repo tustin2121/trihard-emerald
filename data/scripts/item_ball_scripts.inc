@@ -428,26 +428,6 @@ MtPyre_Exterior_EventScript_ItemTM48:: @ 829134B
 	giveitem_std ITEM_TM48, 1, 1
 	end
 
-AquaHideout_B1F_EventScript_ItemMasterBall:: @ 8291358
-	giveitem_std ITEM_MASTER_BALL, 1, 1
-	end
-
-AquaHideout_B1F_EventScript_ItemNugget:: @ 8291365
-	giveitem_std ITEM_NUGGET, 1, 1
-	end
-
-AquaHideout_B1F_EventScript_ItemMaxElixir:: @ 8291372
-	giveitem_std ITEM_MAX_ELIXIR, 1, 1
-	end
-
-AquaHideout_B2F_EventScript_ItemNestBall:: @ 829137F
-	giveitem_std ITEM_NEST_BALL, 1, 1
-	end
-
-AquaHideout_B2F_EventScript_ItemMasterBall:: @ 829138C
-	giveitem_std ITEM_MASTER_BALL, 1, 1      // Unused
-	end
-
 Route119_EventScript_ItemNugget:: @ 8291399
 	giveitem_std ITEM_NUGGET, 1, 1
 	end
