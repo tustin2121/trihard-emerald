@@ -249,6 +249,7 @@ AquaHideout_B1F_TriggerScript_LoganFight::
 	setvar VAR_AQUA_HIDEOUT_STATE, 2
 	setflag FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE
 	setflag FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
+	call Common_EventScript_ClearSceneFlags
 	releaseall
 	end
 AquaHideout_B1F_Text_LoganFight1:

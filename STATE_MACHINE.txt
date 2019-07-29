@@ -8,20 +8,20 @@ VAR_LOGAN_STATE :=
 	6 = 
 
 VAR_AQUA_GIRL_FRIENDSHIP :=
-	0 = No relationship 
-		(+1 in Rustboro Heist)
-	1 = Names have been exchanged
-		(+1 in Slateport)
-	2 = 
-		(+1 in Slateport Museum)
+	0 = No relationship  			(+1 in Rustboro Heist)
+	1 = Names have been exchanged 	(+1 in Slateport)
+	2 =  							(+1 in Slateport Museum)
 
 VAR_AQUA_BOY_FRIENDSHIP :=
-	0 = No relationship 
-		(+1 in Rustboro Heist)
-	1 = Names have been exchanged
-		(+1 in Slateport)
-	2 = 
-		(+1 in Slateport Museum)
+	0 = No relationship  			(+1 in Rustboro Heist)
+	1 = Names have been exchanged 	(+1 in Slateport)
+	2 =  							(+1 in Slateport Museum [forced])
+	? = 							(+1 in Aqua Hideout - Before Mt. Pyre)
+	? = 							(+1 in Aqua Hideout - After Mt. Pyre)
+	? = 							(+1 in Aqua Hideout - After Magma Base)
+	? = 							(+1 in Aqua Hideout - After Slateport Hijacking)
+	? = 							(+1 in Aqua Hideout - After Sub Escape)
+		
 
 VAR_BRINEY_LOCATION :=
 	0 = Mr. Briney is nowhere

@@ -27,54 +27,158 @@ AquaHideout_1F_OnTransition:
 AquaHideout_1F_EventScript_Bailey:: @ 8233494
 	lock
 	faceplayer
-	goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_1F_EventScript_2334BC
-	goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB, AquaHideout_1F_EventScript_2334B2
-	msgbox AquaHideout_1F_Text_23351D, MSGBOX_DEFAULT
+	markasdialog
+	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, AquaHideout_1F_EventScript_Bailey_PostEscape1
+	goto_if_set FLAG_TEAM_AQUA_STOLE_SUBMARINE, AquaHideout_1F_EventScript_Bailey_PostHijack1
+	goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_1F_EventScript_Bailey_PostMagma1
+	goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB, AquaHideout_1F_EventScript_Bailey_PostPyre1
+	goto AquaHideout_1F_EventScript_Bailey_Initial1
+	end
+
+@ Before Mt. Pyre
+AquaHideout_1F_EventScript_Bailey_Initial1:
+	goto_if_set FLAG_SCENE_0, AquaHideout_1F_EventScript_Bailey_Initial2
+	msgbox AquaHideout_1F_Text_Bailey_Initial1
+	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
+	setflag FLAG_SCENE_0
 	release
 	end
-AquaHideout_1F_Text_23351D: @ 823351D
-	.string "What? What? What do you want with \n"
-	.string "Team Aqua?\p"
-	.string "Our BOSS isn't here! He's gone off to\n"
-	.string "snatch something important!\p"
-	.string "… …\n"
-	.string "Where did he go?\p"
-	.string "Wahaha! Do you really think I'd tell\n"
-	.string "you something that crucial?$"
-
-AquaHideout_1F_EventScript_2334B2:: @ 82334B2
-	msgbox AquaHideout_1F_Text_2335E3, MSGBOX_DEFAULT
+AquaHideout_1F_Text_Bailey_Initial1:
+	.string "{AQUA_BOY}: Hey, {PLAYER}!\n"
+	.string "Good to see you found the place.\p"
+	.string "If you're looking for some action,\n"
+	.string "the boss said he was heading to nab\l"
+	.string "something from Mt. Pyre's summit.\p"
+	.string "He could always use the backup.$"
+AquaHideout_1F_EventScript_Bailey_Initial2:
+	msgbox AquaHideout_1F_Text_Bailey_Initial2
 	release
 	end
-AquaHideout_1F_Text_2335E3: @ 82335E3
-	.string "What? What?\n"
-	.string "Are you a Team Magma grunt?\p"
-	.string "I hear that Team Magma is trying to\n"
-	.string "awaken an awesome Pokémon at their\l"
-	.string "HIDEOUT.\p"
-	.string "But where might their HIDEOUT be?$"
+AquaHideout_1F_Text_Bailey_Initial2:
+	.string "{AQUA_BOY}: I don't know what it is\n"
+	.string "that the boss might want from Mt. Pyre.\p"
+	.string "But it's not unusual for him to keep\n"
+	.string "us in the dark about his bigger plans.$"
 
-AquaHideout_1F_EventScript_2334BC:: @ 82334BC
-	msgbox AquaHideout_1F_Text_23367D, MSGBOX_DEFAULT
+@ After Mt. Pyre, go to Magma
+AquaHideout_1F_EventScript_Bailey_PostPyre1:
+	goto_if_set FLAG_SCENE_0, AquaHideout_1F_EventScript_Bailey_PostPyre2
+	msgbox AquaHideout_1F_Text_Bailey_PostPyre1
+	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
+	setflag FLAG_SCENE_0
 	release
 	end
-AquaHideout_1F_Text_23367D: @ 823367D
-	.string "What? What? What do you want with \n"
-	.string "Team Aqua?\p"
-	.string "Our BOSS isn't here!\n"
-	.string "He's gone off to jack a submarine!\p"
-	.string "… …\n"
-	.string "Where did he go?\p"
-	.string "Wahaha! Do you really think I'd tell\n"
-	.string "you something that crucial?$"
+AquaHideout_1F_Text_Bailey_PostPyre1:
+	.string "{AQUA_BOY}: Hey, {PLAYER}.\n"
+	.string "… … … … … … …\p"
+	.string "Woah, slow down, slow down!\p"
+	.string "You and {AQUA_GIRL} got personally\n"
+	.string "assigned a mission by the boss?!\p"
+	.string "That's sweet! I think I saw {AQUA_GIRL}\n"
+	.string "head downstairs a while ago.\p"
+	.string "Head down there if you wanna find her.\n"
+	.string "But, eh heh… A word of caution.\p"
+	.string "There's a lot of guys itching for a\n"
+	.string "scrap downstairs.\p"
+	.string "Don't worry, no one's aiming to kill\n"
+	.string "your Pokémon, but you know, don't\l"
+	.string "get complacent.$"
+AquaHideout_1F_EventScript_Bailey_PostPyre2:
+	msgbox AquaHideout_1F_Text_Bailey_PostPyre2
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostPyre2:
+	.string "{AQUA_BOY}: {AQUA_GIRL} should be\n"
+	.string "downstairs.\p"
+	.string "Watch our for guys looking for a\n"
+	.string "friendly battle, a “scrap” fight.$"
+
+@ After Magma, Before Slateport Hijacking
+AquaHideout_1F_EventScript_Bailey_PostMagma1:
+	goto_if_set FLAG_SCENE_0, AquaHideout_1F_EventScript_Bailey_PostMagma2
+	msgbox AquaHideout_1F_Text_Bailey_PostMagma1
+	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
+	setflag FLAG_SCENE_0
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostMagma1:
+	.string "{AQUA_BOY}: Woah, {PLAYER}!\n"
+	.string "You alright? You look a bit pale.\p"
+	.string "… … … … … … …\n"
+	.string "Magma did WHAT?!\n"
+	.string "What's a Groudon?!\p"
+	.string "No, I never heard of it either!\p"
+	.string "Don't worry. Just tell the boss if you\n"
+	.string "see him next. I will too.\p"
+	.string "Last I heard, he was off to Slateport.\p"
+	.string "But you might also wanna just leave a\n"
+	.string "note on his desk downstairs.\p"
+	.string "If you can find his office downstairs…\n"
+	.string "It's a literal maze down there.$"
+AquaHideout_1F_EventScript_Bailey_PostMagma2:
+	msgbox AquaHideout_1F_Text_Bailey_PostMagma2
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostMagma2:
+	.string "{AQUA_BOY}: Don't worry, {PLAYER}.\n"
+	.string "I'm sure things are going to plan.\p"
+	.string "The boss is off in Slateport, but\n"
+	.string "he should be back soon.$"
+
+@ After Slateport Hijacking
+AquaHideout_1F_EventScript_Bailey_PostHijack1:
+	goto_if_set FLAG_SCENE_0, AquaHideout_1F_EventScript_Bailey_PostHijack2
+	msgbox AquaHideout_1F_Text_Bailey_PostHijack1
+	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
+	setflag FLAG_SCENE_0
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostHijack1:
+	.string "{AQUA_BOY}: The boss is back, {PLAYER}.\p"
+	.string "He should be downstairs in the underwater\n"
+	.string "docks area. You should go tell him\l"
+	.string "about this Groudon Pokémon.$"
+AquaHideout_1F_EventScript_Bailey_PostHijack2:
+	msgbox AquaHideout_1F_Text_Bailey_PostHijack2
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostHijack2:
+	.string "{AQUA_BOY}: Still didn't find him?\p"
+	.string "Did you check the docks? They're on\n"
+	.string "the bottommost level.$"
 
 
-AquaHideout_1F_Text_23367D:
+@ After Sub Escape
+AquaHideout_1F_EventScript_Bailey_PostEscape1:
+	goto_if_set FLAG_SCENE_0, AquaHideout_1F_EventScript_Bailey_PostEscape2
+	msgbox AquaHideout_1F_Text_Bailey_PostEscape1
+	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
+	setflag FLAG_SCENE_0
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostEscape1:
+	.string "{AQUA_BOY}: Hey, {PLAYER}.\p"
 	.string "I just saw that visor kid run out of\n"
 	.string "here really fast. Did you do that?\p"
 	.string "Good job. You held him off long enough\n"
 	.string "for the boss to get the preperations\l"
-	.string "done and head out to sea.$"
+	.string "done and head out to sea.\p"
+	.string "You… didn't get the chance to tell him\n"
+	.string "about Groudon, did you?\p"
+	.string "It's probably alright.\n"
+	.string "He likely knows already anyway.\p"
+	.string "Next stop is Mossdeep. You might be able\n"
+	.string "to contact the boss from there.\p"
+	.string "We've got a radio relay to him there.$"
+AquaHideout_1F_EventScript_Bailey_PostEscape2:
+	msgbox AquaHideout_1F_Text_Bailey_PostEscape2
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostEscape2:
+	.string "{AQUA_BOY}: It's alright, {PLAYER}."
+	.string "You should head to Mossdeep. The boss\n"
+	.string "directed us there to be part of his\l"
+	.string "radio relay.$"
 
 
 @ -----------------------------------------------------

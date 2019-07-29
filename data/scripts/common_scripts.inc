@@ -277,6 +277,41 @@ Common_EventScript_FadeMusicToMapMusic::
 	fadedefaultbgm
 	return
 
+@ Map Header Scripts
+
+GraniteCave_B1F_MapScript2_2A8327: @ 82A8327
+MirageTower_2F_MapScript2_2A8327: @ 82A8327
+MirageTower_3F_MapScript2_2A8327: @ 82A8327
+MtPyre_2F_MapScript2_2A8327: @ 82A8327
+SkyPillar_2F_MapScript2_2A8327: @ 82A8327
+SkyPillar_4F_MapScript2_2A8327: @ 82A8327
+Common_EventScript_FrameTable_IceStep_FallDownHole:
+	map_script_2 VAR_ICE_STEP_COUNT, 0, EventScript_FallDownHole
+	.2byte 0
+
+EventScript_FallDownHole:: @ 82A8337
+	lockall
+	delay 20
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_SetInvisible
+	waitmovement 0
+	playse SE_RU_HYUU
+	delay 60
+	warphole MAP_UNDEFINED
+	waitstate
+	end
+Common_Movement_SetInvisible: @ 82A8369
+	set_invisible
+	step_end
+
+
+GraniteCave_B1F_MapScript1_2A8331: @ 82A8331
+MirageTower_2F_MapScript1_2A8331: @ 82A8331
+MirageTower_3F_MapScript1_2A8331: @ 82A8331
+MtPyre_2F_MapScript1_2A8331: @ 82A8331
+Common_EventScript_OnTransition_IceStep:
+	copyvar VAR_ICE_STEP_COUNT, 0x1
+	end
+
 @ Scripts
 
 Common_EventScript_HideMapNamePopup:: @ 8273D13
