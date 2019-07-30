@@ -1303,7 +1303,8 @@ u8 unref_GetRivalAvatarGenderByGraphicsId(u16 gfxId)
 u8 GetPlayerAvatarGenderByGraphicsId(u16 gfxId)
 {
     // female graphics are from 0x8 to 0xF, for each set of 16, until 0x50
-    return (gfxId & 0x8) != 0;
+    // return (gfxId & 0x8) != 0;
+    return (gfxId / 0x08);
 }
 
 bool8 PartyHasMonWithSurf(void)

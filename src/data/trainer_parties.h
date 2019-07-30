@@ -248,15 +248,25 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Grunt17[] = {
     {
     .iv = 0,
     .lvl = 32,
-    .species = SPECIES_ZUBAT,
+    .species = SPECIES_NUMEL,
     }
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Grunt18[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_CARVANHA,
+    .lvl = 30,
+    .species = SPECIES_ZUBAT,
+    },
+    {
+    .iv = 0,
+    .lvl = 30,
+    .species = SPECIES_ZUBAT,
+    },
+    {
+    .iv = 0,
+    .lvl = 30,
+    .species = SPECIES_ZUBAT,
     }
 };
 
@@ -7624,7 +7634,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Grunt29[] = {
     {
     .iv = 0,
     .lvl = 30,
-    .species = SPECIES_WAILMER,
+    .species = SPECIES_NUMEL,
     },
     {
     .iv = 0,

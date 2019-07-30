@@ -4,6 +4,13 @@ MtPyre_Summit_MapScripts:: @ 8231FF7
 
 @ -----------------------------------------------------
 
+#define LID_ARCHIE 2
+#define LID_MAXIE 8
+#define LID_AQUAGIRL 9
+#define LID_AQUAGUY 10
+#define LID_OLDWOMAN 3
+#define LID_OLDMAN 1
+
 MtPyre_Summit_OnTransition: @ 8231FFD
 	compare VAR_MT_PYRE_STATE, 0
 	call_if_eq MtPyre_Summit_OnTransition_SetSceneForTheft
@@ -12,17 +19,18 @@ MtPyre_Summit_OnTransition: @ 8231FFD
 	end
 
 MtPyre_Summit_OnTransition_SetSceneForTheft:
-	setobjectxyperm 1, 21, 3
-	setobjectxyperm 3, 25, 3
-	setobjectxyperm 8, 23, 5
-	setobjectxyperm 2, 24, 5
+	setobjectxyperm LID_OLDMAN, 21, 3
+	setobjectxyperm LID_OLDWOMAN, 25, 3
+	setobjectxyperm LID_MAXIE, 24, 5
+	setobjectxyperm LID_ARCHIE, 22, 5
+	clearflag FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
 	end
 
 MtPyre_Summit_OnTransition_SetSceneForReturn: @ 8232009
-	setobjectxyperm 8, 23, 6
-	setobjectxyperm 2, 22, 6
-	setobjectmovementtype 8, MOVEMENT_TYPE_FACE_UP
-	setobjectmovementtype 2, MOVEMENT_TYPE_FACE_UP
+	setobjectxyperm LID_MAXIE, 23, 6
+	setobjectxyperm LID_ARCHIE, 22, 6
+	setobjectmovementtype LID_MAXIE, MOVEMENT_TYPE_FACE_UP
+	setobjectmovementtype LID_ARCHIE, MOVEMENT_TYPE_FACE_UP
 	end
 
 @ -----------------------------------------------------
@@ -121,6 +129,7 @@ MtPyre_Summit_Text_233162: @ 8233162
 MtPyre_Summit_EventScript_OldWoman:: @ 82321A2
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RETURNED_RED_OR_BLUE_ORB, MtPyre_Summit_EventScript_2321E2
 	compare VAR_MT_PYRE_STATE, 3
 	call_if_ge MtPyre_Summit_EventScript_2321CB
@@ -283,11 +292,6 @@ MtPyre_Summit_Text_2327D8: @ 82327D8
 @ -----------------------------------------------------
 @ Cutscene: Stealing the Orbs
 
-#define LID_ARCHIE 2
-#define LID_MAXIE 8
-#define LID_AQUAGIRL 9
-#define LID_AQUAGUY 10
-#define LID_OLDWOMAN 3
 
 MtPyre_Summit_EventScript_OrbTheft::
 	lockall
@@ -304,17 +308,17 @@ MtPyre_Summit_EventScript_OrbTheft::
 	@ Others run up
 	setobjectxyperm LID_AQUAGIRL, 22, 11
 	addobject LID_AQUAGIRL
-	applymovement LID_AQUAGIRL, Common_Movement_WalkUp2
+	applymovement LID_AQUAGIRL, Common_Movement_WalkUp3
 	delay 16
 	setobjectxyperm LID_AQUAGUY, 24, 11
 	addobject LID_AQUAGUY
-	applymovement LID_AQUAGUY, Common_Movement_WalkUp2
+	applymovement LID_AQUAGUY, Common_Movement_WalkUp3
 	waitmovement LID_AQUAGUY
 	waitmovement LID_AQUAGIRL
 	@ "so the calvary arrived"
 	applymovement LID_MAXIE, Common_Movement_WalkInPlaceDown
 	waitmovement 0
-	markasdialog -12
+	markasdialog -10
 	msgbox MtPyre_Summit_Text_OrbTheft3
 	closemessage
 	@ Magma Vanishes
@@ -330,6 +334,7 @@ MtPyre_Summit_EventScript_OrbTheft::
 	delay 2
 	fadescreen 0
 	@ "He's gone!"
+	applymovement EVENT_OBJ_ID_CAMERA, Common_Movement_WalkDown2
 	applymovement LID_AQUAGUY, MtPyre_Summit_Movement_OrbTheft4_Guy
 	applymovement LID_AQUAGIRL, MtPyre_Summit_Movement_OrbTheft4_Girl
 	waitmovement 0
@@ -341,13 +346,21 @@ MtPyre_Summit_EventScript_OrbTheft::
 	@
 	markasdialog 6
 	applymovement LID_ARCHIE, MtPyre_Summit_Movement_OrbTheft5
-	msgbox MtPyre_Summit_Text_OrbTheft6
+	message MtPyre_Summit_Text_OrbTheft6
 	waitmovement 0
+	applymovement LID_AQUAGIRL, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	waitmessage
+	waitbuttonpress
 	@
-	markasdialog -8
+	markasdialog -12
 	applymovement LID_OLDWOMAN, MtPyre_Summit_Movement_OrbTheft6
-	msgbox MtPyre_Summit_Text_OrbTheft7
+	message MtPyre_Summit_Text_OrbTheft7
 	waitmovement 0
+	applymovement LID_ARCHIE, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	waitmessage
+	waitbuttonpress
 	@
 	markasdialog 6
 	msgbox MtPyre_Summit_Text_OrbTheft8
@@ -365,7 +378,7 @@ MtPyre_Summit_EventScript_OrbTheft::
 	waitmovement LID_AQUAGIRL
 	waitmovement EVENT_OBJ_ID_PLAYER
 	waitmovement EVENT_OBJ_ID_CAMERA
-	special RemoveCameraObject
+	removeobject LID_AQUAGUY
 	@
 	giveitem_std ITEM_MAGMA_EMBLEM
 	@
@@ -377,17 +390,25 @@ MtPyre_Summit_EventScript_OrbTheft::
 	message 0
 	waitmessage
 	@
+	markasdialog -8
 	msgbox MtPyre_Summit_Text_OrbTheft11
 	closemessage
 	applymovement LID_ARCHIE, MtPyre_Summit_Movement_OrbTheft8_AquaGuy
 	delay 16
 	applymovement LID_AQUAGIRL, Common_Movement_WalkInPlaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+	applymovement EVENT_OBJ_ID_CAMERA, Common_Movement_WalkLeft1
 	waitmovement LID_ARCHIE
+	removeobject LID_ARCHIE
+	waitmovement EVENT_OBJ_ID_CAMERA
+	special RemoveCameraObject
 	@ Clean up
+	setvar VAR_MT_PYRE_STATE, 1
 	setflag FLAG_RECEIVED_RED_OR_BLUE_ORB
 	setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
 	call Common_EventScript_ClearSceneFlags
+	setobjectxyperm LID_OLDMAN, 22, 5
+	setobjectxyperm LID_OLDWOMAN, 23, 5
 	releaseall
 	end
 
@@ -429,7 +450,7 @@ MtPyre_Summit_Text_OrbTheft10:
 	.string "focus on our next move.\p"
 	.string "Can you two handle this?$"
 MtPyre_Summit_Text_OrbTheft10a:
-	.string "$"
+	.string "{AQUA_GIRL}: I'll have {PLAYER_their} back, sir!\p$"
 MtPyre_Summit_Text_OrbTheft10b:
 	.string "{AQUA_GIRL}: Y-Yes sir!\p$"
 MtPyre_Summit_Text_OrbTheft11:
@@ -456,14 +477,17 @@ MtPyre_Summit_Movement_OrbTheft1_Player0:
 	walk_up
 	walk_right
 	walk_up
+	walk_up
 	step_end
 MtPyre_Summit_Movement_OrbTheft1_Player1:
+	walk_up
 	walk_up
 	walk_up
 	step_end
 MtPyre_Summit_Movement_OrbTheft1_Player2:
 	walk_up
 	walk_left
+	walk_up
 	walk_up
 	step_end
 
@@ -544,12 +568,14 @@ MtPyre_Summit_Movement_OrbTheft8_Player:
 	walk_down
 	walk_down
 	walk_down
+	walk_down
+	walk_down
 	walk_in_place_right
 	step_end
 MtPyre_Summit_Movement_OrbTheft8_AquaGirl:
 	delay_16
 	delay_16
-	walk_down
+	delay_16
 	walk_down
 	walk_down
 	walk_down
@@ -575,8 +601,6 @@ MtPyre_Summit_Movement_OrbTheft8_Camera:
 	walk_down
 	walk_down
 	walk_down
-	walk_down
-	walk_left
 	step_end
 
 @ -----------------------------------------------------
@@ -820,4 +844,9 @@ MtPyre_Summit_Text_233183: @ 8233183
 	.string "… … … … … …$"
 
 
+#undef LID_ARCHIE
+#undef LID_MAXIE
+#undef LID_AQUAGIRL
+#undef LID_AQUAGUY
+#undef LID_OLDWOMAN
 

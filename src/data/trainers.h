@@ -345,7 +345,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = 1,
+        .partySize = 3,
         .party = {.NoItemDefaultMoves = sParty_Grunt18 }
     },
 
