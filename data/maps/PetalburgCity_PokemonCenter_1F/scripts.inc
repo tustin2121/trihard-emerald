@@ -115,7 +115,7 @@ PetalburgCity_PokemonCenter_1F_EventScript_207A0B:
 	end
 PetalburgCity_PokemonCenter_1F_Text_207A77:
 	.string "That Malaqui is off his rocker!\n"
-	.string "He should be disciplined for some of\n"
+	.string "He should be disciplined for some of\l"
 	.string "the stuff he puts trainers through!$"
 	
 

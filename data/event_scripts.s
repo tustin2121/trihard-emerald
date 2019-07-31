@@ -2034,7 +2034,6 @@ EverGrandeCity_SidneysRoom_EventScript_27255F:: @ 827255F
 	return
 
 BattleFrontier_BattleDomeBattleRoom_Movement_2725B4: @ 82725B4
-MeteorFalls_1F_1R_Movement_2725B4: @ 82725B4
 	walk_in_place_down
 	step_end
 

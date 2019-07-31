@@ -226,14 +226,14 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Grunt14[] = {
 static const struct TrainerMonNoItemDefaultMoves sParty_Grunt15[] = {
     {
         .iv = 0,
-        .lvl = 14,
-        .species = SPECIES_ZUBAT,
+        .lvl = 16,
+        .species = SPECIES_POOCHYENA,
     },
     {
         .iv = 0,
-        .lvl = 14,
-        .species = SPECIES_CARVANHA,
-}
+        .lvl = 16,
+        .species = SPECIES_ZUBAT,
+    }
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Grunt16[] = {

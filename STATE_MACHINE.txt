@@ -11,6 +11,7 @@ VAR_AQUA_GIRL_FRIENDSHIP :=
 	0 = No relationship  			(+1 in Rustboro Heist)
 	1 = Names have been exchanged 	(+1 in Slateport)
 	2 =  							(+1 in Slateport Museum)
+	3 =  							(+1 in Meteor Falls [forced])
 
 VAR_AQUA_BOY_FRIENDSHIP :=
 	0 = No relationship  			(+1 in Rustboro Heist)
