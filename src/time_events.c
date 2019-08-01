@@ -116,3 +116,16 @@ void UpdateBirchState(u16 days)
     *state += days;
     *state %= 7;
 }
+
+void UpdateDailyEggGuy(u16 days)
+{
+    u16 *state = GetVarPointer(VAR_EGGMAN_BROTHER_COUNTER);
+    if (*state > 0)
+    {
+        *state -= days;
+    }
+    if (*state > 2)
+    {
+        *state = 0;
+    }
+}

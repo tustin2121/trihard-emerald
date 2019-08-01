@@ -45,6 +45,7 @@ const u8 gText_The[] = _("the");
 
 const u8 gYN_ERROR[] =          _("ERROR");
 const u8 gYN_Yes[] =            _("Yes");
+const u8 gYN_YesCaps[] =        _("YES!");
 const u8 gYN_YesSir[] =         _("Yes Sir!");
 const u8 gYN_No[] =             _("No");
 const u8 gYN_NoQuestion[] =     _("No?");

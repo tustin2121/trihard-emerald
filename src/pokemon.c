@@ -4376,13 +4376,18 @@ bool8 CanMonDie(int partySlot)
         else
             gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_0HP;
     }
+    // Shedinja can never die. Further, if we revive to 1HP, it now has full health.
+    // For this reason Shedinja cannot benefit from 1HP death prevention.
+    if (GetMonData(&gPlayerParty[partySlot], MON_DATA_SPECIES2, NULL) == SPECIES_SHEDINJA)
+    {
+        gPlayerDeathPreventions[partySlot] = DEATH_PREVENT_0HP;
+    }
     return gPlayerDeathPreventions[partySlot] == DEATH_PREVENT_NONE;
 }
 
 // Sends a pokemon to the PC and removes it from the party.
-void KillMon(int partySlot)
+void KillMon(int partySlot, u8 hasMourned)
 {
-    u8 hasMourned = 0;
     struct Pokemon* mon = &gPlayerParty[partySlot];
     
     // sanity check, don't kill "pokemon" beyond our party count
@@ -4390,6 +4395,8 @@ void KillMon(int partySlot)
     // sanity check, can't kill null pokemon or eggs
     if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_NONE) return;
     if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_EGG) return;
+    // Cannot kill a Shedinja
+    if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_SHEDINJA) return;
     
     // If the global death prevention flag is on, don't kill it.
     if (FlagGet(FLAG_DEATH_PREVENT)) return;
@@ -4453,7 +4460,7 @@ void RemoveDeadMonFromParty(bool8 endOfBattle)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_STATUS, NULL) == STATUS1_DEAD)
         {
-            KillMon(i);
+            KillMon(i, 0);
         }
     }
     CompactPartySlots();
@@ -7099,7 +7106,6 @@ void ScrSpecial_CanAnyPartyMonsBeHealed(void)
     gSpecialVar_Result = CanAnyPartyMonsBeHealed();
 }
 
-
 void CheckIfStarterAlive(void)
 {
     u8 i;
@@ -7127,4 +7133,67 @@ void CheckIfStarterAlive(void)
         //     gSpecialVar_Result = TRUE;
         // }
     }
+}
+
+// Results 0 = no bad members
+// Results 1 = 1 bad egg
+// Results 2 = 2+ bad eggs
+// Results 3 = Shedinja
+void CheckPartyBadMons(void)
+{
+    u8 i, shedinja = 0;
+    gSpecialVar_Result = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE) continue;
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG, NULL))
+        {
+            gSpecialVar_Result++;
+        }
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL) == SPECIES_SHEDINJA)
+        {
+            shedinja = 1;
+        }
+    }
+    if (gSpecialVar_Result > 0)
+    {
+        if (gSpecialVar_Result > 1) gSpecialVar_Result = 2;
+        return;
+    }
+    if (shedinja)
+    {
+        gSpecialVar_Result = 3;
+        return;
+    }
+}
+
+void RemovePartyBadEggs(void)
+{
+    u8 i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE) continue;
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG, NULL))
+        {
+            KillMon(i, 1);
+        }
+    }
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
+}
+
+void RemovePartyShedinja(void)
+{
+    u8 i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE) continue;
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL) == SPECIES_SHEDINJA)
+        {
+            GetMonData(&gPlayerParty[i], MON_DATA_NICKNAME, gStringVar1);
+            KillMon(i, 1);
+        }
+    }
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
 }

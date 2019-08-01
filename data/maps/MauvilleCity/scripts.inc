@@ -56,6 +56,13 @@ MauvilleCity_Text_1E053C: @ 81E053C
 	.string "“The play spot for all!”\n"
 	.string "{PLACE}Mauville Game Corner{END}$"
 
+MauvilleCity_EventScript_BadEggHouse::
+	msgbox MauvilleCity_Text_BadEggHouse, MSGBOX_SIGN
+	end
+MauvilleCity_Text_BadEggHouse: @ 81E053C
+	.string "{PLACE}Chester's Home for Problematic Pokémon{END}\n"
+	.string "“Their quirk is our work!”$"
+
 @ -----------------------------------------------------
 @ People
 

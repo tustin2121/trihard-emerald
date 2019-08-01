@@ -50,6 +50,7 @@ static void UpdatePerDay(struct Time *localTime)
         UpdateBirchState(daysSince);
         UpdateFrontierManiac(daysSince);
         UpdateFrontierGambler(daysSince);
+        UpdateDailyEggGuy(daysSince);
         SetShoalItemFlag(daysSince);
         SetRandomLotteryNumber(daysSince);
         *days = localTime->days;
