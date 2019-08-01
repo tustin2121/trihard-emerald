@@ -82,8 +82,8 @@
             "script": "PetalburgCity_PokemonCenter_1F_EventScript_MysteryClubBoy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 3,
-            "y": 6
+            "x": 25,
+            "y": 33
         },
         {
             "elevation": 13,

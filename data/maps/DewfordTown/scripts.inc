@@ -85,7 +85,7 @@ Route104_Movement_1ED35C: @ 81ED35C
 	step_end
 
 Route104_EventScript_1ED1B4:: @ 81ED1B4
-	msgbox Route104_Text_1E9AAF, MSGBOX_DEFAULT
+	msgbox Route104_Text_1E9AAF, MSGBOX_DIALOG
 	releaseall
 	end
 Route104_Text_1E9AAF: @ 81E9AAF
@@ -95,7 +95,7 @@ Route104_Text_1E9AAF: @ 81E9AAF
 	.string "LETTER to, who was it now, STEVEN!$"
 
 Route104_EventScript_1ED1BE:: @ 81ED1BE
-	msgbox Route104_Text_1E9C1D, MSGBOX_DEFAULT
+	msgbox Route104_Text_1E9C1D, MSGBOX_DIALOG
 	releaseall
 	end
 Route104_Text_1E9C1D: @ 81E9C1D
@@ -116,6 +116,7 @@ Route109_Text_1E9C1D: @ 81E9C1D
 DewfordTown_EventScript_BrineyTalk:: @ 81E9511
 	lock
 	faceplayer
+	markasdialog
 	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, DewfordTown_EventScript_1E9585
 	message DewfordTown_Text_1E9C8A
 	waitmessage
@@ -255,11 +256,10 @@ DewfordTown_Text_1E99A8: @ 81E99A8
 
 
 
-
-
 DewfordTown_EventScript_1E95D5:: @ 81E95D5
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_OLD_ROD, DewfordTown_EventScript_1E962A
 	setyesnotext gYN_Uhhh, gYN_PftNo
 	msgbox DewfordTown_Text_1E9DD1, MSGBOX_YESNO
@@ -375,6 +375,7 @@ DewfordTown_Movement_1E991F: @ 81E991F
 DewfordTown_EventScript_1E9922:: @ 81E9922
 	lock
 	faceplayer
+	markasdialog
 	call DewfordTown_EventScript_271E8B
 	msgbox DewfordTown_Text_1EA136, MSGBOX_YESNO
 	compare VAR_RESULT, 1

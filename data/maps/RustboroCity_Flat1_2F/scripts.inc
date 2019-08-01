@@ -165,5 +165,5 @@ RustboroCity_Flat1_2F_EventScript_215246:: @ 8215246
 	msgbox RustboroCity_Flat1_2F_Text_215923, MSGBOX_DESCRIBE
 	end
 RustboroCity_Flat1_2F_Text_215923: @ 8215923
-	.string "It's a Pokémon plush DOLL!$"
+	.string "It's a Pokémon plush doll!$"
 

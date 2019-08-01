@@ -64,6 +64,7 @@ Route116_EventScript_ItemPotion:: @ 8290EAC
 Route116_EventScript_1F2C70:: @ 81F2C70
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_1F2C8E
 	goto_if_set FLAG_DEVON_GOODS_STOLEN, Route116_EventScript_1F2C98
 	msgbox Route116_Text_1F3140, MSGBOX_DEFAULT
@@ -204,6 +205,7 @@ Route116_EventScript_1F2CA2:: @ 81F2CA2
 Route116_EventScript_Briney:: @ 81F2D84
 	lock
 	faceplayer
+	markasdialog
 	msgbox Route116_Text_1F309D, MSGBOX_DEFAULT
 	setvar VAR_ROUTE116_STATE, 2
 	release
@@ -213,6 +215,7 @@ Route116_TriggerScript_BrineyTrigger:: @ 81F2D95
 	applymovement 11, Common_Movement_WalkInPlaceRight
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
+	markasdialog
 	msgbox Route116_Text_1F309D, MSGBOX_DEFAULT
 	setvar VAR_ROUTE116_STATE, 2
 	releaseall
@@ -230,6 +233,7 @@ Route116_Text_1F309D: @ 81F309D
 Route116_EventScript_1F2DB6:: @ 81F2DB6
 	lock
 	faceplayer
+	markasdialog
 	checkitem ITEM_BLACK_GLASSES, 1
 	compare VAR_RESULT, 1
 	goto_if_eq Route116_EventScript_1F2DF1
@@ -352,7 +356,7 @@ Route116_Text_1F380F: @ 81F380F
 
 
 Route116_EventScript_1F2D72:: @ 81F2D72
-	msgbox Route116_Text_1F3825, MSGBOX_SIGN
+	msgbox Route116_Text_1F3825, MSGBOX_DESCRIBE
 	end
 Route116_Text_1F3825: @ 81F3825
 	.string "{TIPS} TRAINER TIPS {END}\p"
@@ -364,7 +368,7 @@ Route116_Text_1F3825: @ 81F3825
 
 
 Route116_EventScript_1F2D7B:: @ 81F2D7B
-	msgbox Route116_Text_1F38D4, MSGBOX_SIGN
+	msgbox Route116_Text_1F38D4, MSGBOX_DESCRIBE
 	end
 Route116_Text_1F38D4: @ 81F38D4
 	.string "{TIPS} TRAINER TIPS {END}\p"

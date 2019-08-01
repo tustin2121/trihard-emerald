@@ -158,6 +158,7 @@ RustboroCity_PokemonSchool_Text_2147A2: @ 82147A2
 RustboroCity_PokemonSchool_EventScript_213F95:: @ 8213F95
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_213FFB
 	compare VAR_FACING, 4
 	call_if_eq RustboroCity_PokemonSchool_EventScript_213FE5

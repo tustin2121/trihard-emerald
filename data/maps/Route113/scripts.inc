@@ -45,7 +45,7 @@ Route113_EventScript_1F21AE:: @ 81F21AE
 	end
 
 Route113_EventScript_1F21B7:: @ 81F21B7
-	msgbox Route113_Text_1F2471, MSGBOX_SIGN
+	msgbox Route113_Text_1F2471, MSGBOX_DESCRIBE
 	end
 
 Route113_EventScript_1F21C0:: @ 81F21C0

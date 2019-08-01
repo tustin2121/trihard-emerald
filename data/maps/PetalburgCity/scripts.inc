@@ -81,7 +81,7 @@ PetalburgCity_EventScript_1DC491:: @ 81DC491
 	msgbox PetalburgCity_Text_1DCB23, MSGBOX_SIGN
 	end
 PetalburgCity_Text_1DCB23: @ 81DCB23
-	.string "{PLACE}Wally's House{END}$"
+	.string "{PLACE}{RIVAL_HERO}'s House{END}$"
 
 
 PetalburgCity_EventScript_GymSign:: @ 81DC476

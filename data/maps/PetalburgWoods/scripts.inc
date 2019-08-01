@@ -55,6 +55,7 @@ PetalburgWoods_Text_22EA8B: @ 822EA8B
 PetalburgWoods_EventScript_SeedGirl:: @ 822E222
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_MIRACLE_SEED, PetalburgWoods_EventScript_22E251
 	msgbox PetalburgWoods_Text_22EAFE, MSGBOX_DEFAULT
 	giveitem_std ITEM_MIRACLE_SEED
@@ -65,18 +66,18 @@ PetalburgWoods_EventScript_SeedGirl:: @ 822E222
 	end
 PetalburgWoods_Text_22EAFE: @ 822EAFE
 	.string "Oh, neat!\n"
-	.string "That's the BADGE from RUSTBORO GYM!\p"
-	.string "You must be a TRAINER.\n"
+	.string "That's the badge from Rustboro Gym!\p"
+	.string "You must be a trainer.\n"
 	.string "You should try using this item.$"
 PetalburgWoods_EventScript_22E251:: @ 822E251
 	msgbox PetalburgWoods_Text_22EB63, MSGBOX_DEFAULT
 	release
 	end
 PetalburgWoods_Text_22EB63: @ 822EB63
-	.string "It's a MIRACLE SEED.\n"
+	.string "It's a Miracle Seed.\n"
 	.string "If a Pokémon holds that item, its\l"
 	.string "GRASS-type moves become stronger.\p"
-	.string "Besides MIRACLE SEED, I think there are\n"
+	.string "Besides Miracle Seed, I think there are\n"
 	.string "other convenient items for Pokémon\l"
 	.string "to hold.$"
 

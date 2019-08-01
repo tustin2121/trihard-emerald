@@ -4,6 +4,7 @@ RustboroCity_CuttersHouse_MapScripts:: @ 8215BD3
 RustboroCity_CuttersHouse_EventScript_215BD4:: @ 8215BD4
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_TM51, RustboroCity_CuttersHouse_EventScript_215C00
 	msgbox RustboroCity_CuttersHouse_Text_215C13, MSGBOX_DEFAULT
 	giveitem_std ITEM_TM51

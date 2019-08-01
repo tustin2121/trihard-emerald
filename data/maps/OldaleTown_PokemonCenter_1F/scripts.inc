@@ -88,6 +88,7 @@ OldaleTown_PokemonCenter_1F_Text_1FC0CD: @ 81FC0CD
 OldaleTown_PokemonCenter_1F_EventScript_1FC03A:: @ 81FC03A
 	lock
 	faceplayer
+	markasdialog
 	msgbox OldaleTown_PokemonCenter_1F_Text_1FC148, MSGBOX_DEFAULT
 	release
 	end
@@ -101,6 +102,7 @@ OldaleTown_PokemonCenter_1F_Text_1FC148: @ 81FC148
 OldaleTown_Mart_EventScript_1FC28A:: @ 81FC28A
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_EventScript_1FC29F
 	msgbox OldaleTown_Mart_Text_1FC2B2, MSGBOX_DEFAULT
 	release

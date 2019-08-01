@@ -397,7 +397,7 @@ Route111_EventScript_1F1177:: @ 81F1177
 	end
 
 Route111_EventScript_1F1180:: @ 81F1180
-	msgbox Route111_Text_1F1987, MSGBOX_SIGN
+	msgbox Route111_Text_1F1987, MSGBOX_DESCRIBE
 	end
 
 Route111_EventScript_1F1189:: @ 81F1189

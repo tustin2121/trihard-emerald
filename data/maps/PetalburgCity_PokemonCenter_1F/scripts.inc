@@ -80,6 +80,7 @@ PetalburgCity_Mart_Pokemart_207DB8: @ 8207DB8
 
 PetalburgCity_PokemonCenter_1F_PCGirl::
 	lock
+	markasdialog
 	msgbox PetalburgCity_PokemonCenter_1F_Text_PCGirl_Part1, MSGBOX_DEFAULT
 	playse SE_PIN
 	applymovement THIS_EVENT, Common_Movement_ExclamationMark
@@ -180,6 +181,7 @@ PetalburgCity_Mart_Text_LoganCousin: @ 8207EB0
 PetalburgCity_PokemonCenter_1F_EventScript_StarterLady:: @ 8207A1C
 	lock
 	faceplayer
+	markasdialog
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207B09, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, IsStarterInParty
 	compare VAR_RESULT, 1

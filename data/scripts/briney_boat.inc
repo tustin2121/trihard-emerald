@@ -23,16 +23,16 @@ Briney_EventScript_Route104_Dewford:: @ 81ED0D9
 	end
 
 Briney_EventScript_Route104_Dewford_GiveOldRod:
-	msgbox Briney_Text_Route104_Dewford_GiveOldRod1, MSGBOX_DEFAULT
+	msgbox Briney_Text_Route104_Dewford_GiveOldRod1, MSGBOX_DIALOG
 	giveitem_std ITEM_OLD_ROD
 	setflag FLAG_RECEIVED_OLD_ROD
-	msgbox Briney_Text_Route104_Dewford_GiveOldRod2, MSGBOX_DEFAULT
+	msgbox Briney_Text_Route104_Dewford_GiveOldRod2, MSGBOX_DIALOG
 	closemessage
 	fadescreen 1
 	@ advancertc 5
 	delay 120
 	fadescreen 0
-	msgbox Briney_Text_Route104_Dewford_GiveOldRod3, MSGBOX_DEFAULT
+	msgbox Briney_Text_Route104_Dewford_GiveOldRod3, MSGBOX_DIALOG
 	closemessage
 	return
 Briney_Text_Route104_Dewford_GiveOldRod1:

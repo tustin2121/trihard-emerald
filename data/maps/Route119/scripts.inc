@@ -483,7 +483,7 @@ Route119_EventScript_1F49DA:: @ 81F49DA
 	end
 
 Route119_EventScript_1F49E3:: @ 81F49E3
-	msgbox Route119_Text_1F5339, MSGBOX_SIGN
+	msgbox Route119_Text_1F5339, MSGBOX_DESCRIBE
 	end
 
 Route119_EventScript_1F49EC:: @ 81F49EC
