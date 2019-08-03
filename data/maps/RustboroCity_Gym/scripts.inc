@@ -131,7 +131,7 @@ RustboroCity_Gym_EventScript_Roxanne:: @ 8212F31
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
 	goto_if_eq RustboroCity_Gym_EventScript_212FC8
-	goto_if_unset FLAG_RECEIVED_TM39, RustboroCity_Gym_EventScript_GiveTM
+	goto_if_unset FLAG_RECEIVED_TM39, RustboroCity_Gym_EventScript_GiveTMEnd
 	msgbox RustboroCity_Gym_Text_2139A7, MSGBOX_DEFAULT
 	release
 	end
@@ -169,7 +169,16 @@ RustboroCity_Gym_EventScript_212F66:: @ 8212F66
 	setvar VAR_RUSTBORO_STATE, 1
 	call RustboroCity_Gym_ClearGymTrainers
 	call Common_EventScript_IncrementBadgeCount
-	goto RustboroCity_Gym_EventScript_GiveTM
+	call RustboroCity_Gym_EventScript_GiveTM
+	closemessage
+	delay 30
+	playfanfare MUS_ME_TORE_EYE
+	msgbox RustboroCity_Gym_Text_213C01, MSGBOX_DESCRIBE
+	waitfanfare
+	closemessage
+	delay 30
+	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
+	release
 	end
 RustboroCity_Gym_Text_2137EC: @ 82137EC
 	.string "{PLAYER} received the {ITEM}Stone Badge{END}\n"
@@ -184,14 +193,16 @@ RustboroCity_Gym_Text_213816: @ 8213816
 	.string "the posession of a badge. It's just\l"
 	.string "how it's always been.\p"
 	.string "Oh, please take this with you, too.$"
-RustboroCity_Gym_EventScript_GiveTM:: @ 8212FA4
+RustboroCity_Gym_Text_213C01: @ 8213C01
+	.string "Registered Gym Leader Roxanne\n"
+	.string "in the PokéNav.$"
+RustboroCity_Gym_EventScript_GiveTM: @ 8212FA4
 	giveitem_std ITEM_TM39
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_TM39
 	msgbox RustboroCity_Gym_Text_2138B1, MSGBOX_DEFAULT
-	release
-	end
+	setflag FLAG_RECEIVED_TM39
+	return
 RustboroCity_Gym_Text_2138B1: @ 82138B1
 	.string "That Technical Machine, TM39,\n"
 	.string "contains Rock Tomb.\p"
@@ -201,6 +212,10 @@ RustboroCity_Gym_Text_2138B1: @ 82138B1
 	.string "the move to a Pokémon.\p"
 	.string "Remember, a TM can be used as many\n"
 	.string "times as you like, so don't hesitate.$"
+RustboroCity_Gym_EventScript_GiveTMEnd:
+	call RustboroCity_Gym_EventScript_GiveTM
+	release
+	end
 RustboroCity_Gym_EventScript_212FC8:: @ 8212FC8
 	trainerbattle_rematch_double TRAINER_ROXANNE_1, RustboroCity_Gym_Text_213C2F, RustboroCity_Gym_Text_213CF9, RustboroCity_Gym_Text_213D93
 	msgbox RustboroCity_Gym_Text_213D12, MSGBOX_AUTOCLOSE
@@ -234,37 +249,35 @@ RustboroCity_Gym_Text_213D12: @ 8213D12
 
 
 
-RustboroCity_Gym_EventScript_21307B:: @ 821307B
-	lockall
-	pokenavcall RustboroCity_Gym_Text_213A76
-	waitmessage
-	delay 30
-	playfanfare MUS_ME_TORE_EYE
-	msgbox RustboroCity_Gym_Text_213C01, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
-	clearflag FLAG_ENABLE_ROXANNE_FIRST_CALL
-	releaseall
-	end
-RustboroCity_Gym_Text_213A76: @ 8213A76
-	.string "… … … … … …\n"
-	.string "… … … … … Beep!\p"
-	.string "Roxanne: Oh, hello, {PLAYER}?\n"
-	.string "This is Roxanne of Rustboro City.\p"
-	.string "I heard from BRAWLY that you're\n"
-	.string "moving up through the ranks of\l"
-	.string "TRAINERS at an incredible clip.\p"
-	.string "Well, I'd rather not think that\n"
-	.string "I can't beat you.\p"
-	.string "I promise, I will shape up my GYM\n"
-	.string "so that you may challenge us again.\p"
-	.string "I hope you'll be looking forward to\n"
-	.string "that occasion as much as me!\p"
-	.string "… … … … … …\n"
-	.string "… … … … … Click!$"
-RustboroCity_Gym_Text_213C01: @ 8213C01
-	.string "Registered Gym Leader Roxanne\n"
-	.string "in the PokéNav.$"
+@ RustboroCity_Gym_EventScript_21307B:: @ 821307B
+@ 	lockall
+@ 	pokenavcall RustboroCity_Gym_Text_213A76
+@ 	waitmessage
+@ 	delay 30
+@ 	playfanfare MUS_ME_TORE_EYE
+@ 	msgbox RustboroCity_Gym_Text_213C01, MSGBOX_DEFAULT
+@ 	waitfanfare
+@ 	closemessage
+@ 	delay 30
+@ 	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
+@ 	clearflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+@ 	releaseall
+@ 	end
+@ RustboroCity_Gym_Text_213A76: @ 8213A76
+@ 	.string "… … … … … …\n"
+@ 	.string "… … … … … Beep!\p"
+@ 	.string "Roxanne: Oh, hello, {PLAYER}?\n"
+@ 	.string "This is Roxanne of Rustboro City.\p"
+@ 	.string "I heard from BRAWLY that you're\n"
+@ 	.string "moving up through the ranks of\l"
+@ 	.string "TRAINERS at an incredible clip.\p"
+@ 	.string "Well, I'd rather not think that\n"
+@ 	.string "I can't beat you.\p"
+@ 	.string "I promise, I will shape up my GYM\n"
+@ 	.string "so that you may challenge us again.\p"
+@ 	.string "I hope you'll be looking forward to\n"
+@ 	.string "that occasion as much as me!\p"
+@ 	.string "… … … … … …\n"
+@ 	.string "… … … … … Click!$"
+
 

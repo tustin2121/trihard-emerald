@@ -151,7 +151,7 @@ RustboroCity_DevonCorp_3F_MapScripts:: @ 821242D
 @ 	lock
 @ 	faceplayer
 @ 	goto_if_set FLAG_RECEIVED_EXP_SHARE, RustboroCity_DevonCorp_3F_EventScript_2125CC
-@ 	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, RustboroCity_DevonCorp_3F_EventScript_212595
+@ 	goto_if_set FLAG_UNUSED_0x0BD, RustboroCity_DevonCorp_3F_EventScript_212595
 @ 	msgbox RustboroCity_DevonCorp_3F_Text_212A09, MSGBOX_DEFAULT
 @ 	closemessage
 @ 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection

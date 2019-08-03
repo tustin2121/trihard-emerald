@@ -200,7 +200,7 @@
 #define FLAG_DECORATION_13                                    0xBA
 #define FLAG_DECORATION_14                                    0xBB
 #define FLAG_RECEIVED_POKENAV                                 0xBC
-#define FLAG_DELIVERED_STEVEN_LETTER                          0xBD
+#define FLAG_UNUSED_0x0BD                                     0xBD //TE: Unused, previous steven's letter
 #define FLAG_DEFEATED_WALLY_MAUVILLE                          0xBE
 #define FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F                   0xBF
 #define FLAG_RECEIVED_SUN_STONE_MOSSDEEP                      0xC0

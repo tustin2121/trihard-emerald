@@ -68,8 +68,7 @@ DewfordTown_EventScript_BrineyArriveFromRoute104:: @ 81ED139
 	resetobjectpriority 2, MAP_DEWFORD_TOWN
 	moveobjectoffscreen 2
 	setvar VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 0
-	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_1ED1B4
-	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_1ED1BE
+	goto Route104_EventScript_1ED1BE
 	end
 Route104_Movement_1ED353: @ 81ED353
 	walk_down
@@ -84,16 +83,6 @@ Route104_Movement_1ED35C: @ 81ED35C
 	walk_in_place_fastest_left
 	step_end
 
-Route104_EventScript_1ED1B4:: @ 81ED1B4
-	msgbox Route104_Text_1E9AAF, MSGBOX_DIALOG
-	releaseall
-	end
-Route104_Text_1E9AAF: @ 81E9AAF
-	.string "Mr. Briney: Ahoy!\n"
-	.string "We've hit land in Dewford.\p"
-	.string "I suppose you're off to deliver that\n"
-	.string "LETTER to, who was it now, STEVEN!$"
-
 Route104_EventScript_1ED1BE:: @ 81ED1BE
 	msgbox Route104_Text_1E9C1D, MSGBOX_DIALOG
 	releaseall
@@ -106,18 +95,10 @@ Route109_Text_1E9C1D: @ 81E9C1D
 	.string "you want to set sail again!$"
 
 
-
-
-
-
-
-
-
 DewfordTown_EventScript_BrineyTalk:: @ 81E9511
 	lock
 	faceplayer
 	markasdialog
-	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, DewfordTown_EventScript_1E9585
 	message DewfordTown_Text_1E9C8A
 	waitmessage
 	multichoicedefault 21, 6, 0, 2, 0
@@ -163,22 +144,6 @@ DewfordTown_Text_1E9D8F: @ 81E9D8F
 	.string "Mr. Briney: You just tell me whenever\n"
 	.string "you need to set sail again!$"
 
-DewfordTown_EventScript_1E9585:: @ 81E9585
-	msgbox DewfordTown_Text_1E9B24, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq DewfordTown_EventScript_1E95A2
-	msgbox DewfordTown_Text_1E9BD9, MSGBOX_DEFAULT
-	release
-	end
-DewfordTown_Text_1E9B24: @ 81E9B24
-	.string "Mr. Briney: Have you delivered your\n"
-	.string "LETTER?\p"
-	.string "Or were you meaning to sail back to\n"
-	.string "{PLACE}Petalburg{END}?$"
-DewfordTown_Text_1E9BD9: @ 81E9BD9
-	.string "Mr. Briney: Then you go on and deliver\n"
-	.string "the LETTER. I'll be waiting.$"
-
 DewfordTown_EventScript_1E95A2:: @ 81E95A2
 	msgbox DewfordTown_Text_1E9B7F, MSGBOX_DEFAULT
 	closemessage
@@ -214,6 +179,34 @@ DewfordTown_EventScript_BrineyDepartForSlateport:: @ 81E96E7
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
 	goto Briney_EventScript_Dewford_Slateport
 	end
+
+DewfordTown_Movement_1E9911: @ 81E9911
+	walk_right
+	walk_up
+	step_end
+
+DewfordTown_Movement_1E9914: @ 81E9914
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+DewfordTown_Movement_1E9918: @ 81E9918
+	walk_up
+	walk_up
+	walk_up
+	walk_in_place_fastest_down
+	step_end
+
+DewfordTown_Movement_1E991D: @ 81E991D
+	walk_up
+	step_end
+
+DewfordTown_Movement_1E991F: @ 81E991F
+	walk_up
+	walk_up
+	step_end
+
 
 @ -----------------------------------------------------
 @ Signs
@@ -271,7 +264,6 @@ DewfordTown_EventScript_1E95D5:: @ 81E95D5
 DewfordTown_Text_1E9DD1: @ 81E9DD1
 	.string "This is a renowned fishing spot.\n"
 	.string "Are you getting the itch to fish?$"
-
 DewfordTown_EventScript_1E95FF:: @ 81E95FF
 	msgbox DewfordTown_Text_1E9E14, MSGBOX_DEFAULT
 	giveitem_std ITEM_OLD_ROD
@@ -282,19 +274,18 @@ DewfordTown_EventScript_1E95FF:: @ 81E95FF
 DewfordTown_Text_1E9E14: @ 81E9E14
 	.string "I hear you, and I like what\n"
 	.string "you're saying!\p"
-	.string "I'll give you one of my fishing RODS.$"
+	.string "I'll give you one of my fishing rods.$"
 DewfordTown_Text_1E9E65: @ 81E9E65
 	.string "And, as an added bonus, I'll even throw\n"
 	.string "in a little fishing advice!\p"
 	.string "First, you want to face the water,\n"
-	.string "then use the ROD.\p"
+	.string "then use the rod.\p"
 	.string "Focus your mind…\n"
-	.string "If you get a bite, pull on the ROD.\p"
+	.string "If you get a bite, pull on the rod.\p"
 	.string "Sometimes you can snag something\n"
 	.string "immediately, but with bigger catches,\l"
-	.string "you need to time the pulls on your ROD\l"
+	.string "you need to time the pulls on your rod\l"
 	.string "to haul them in.$"
-
 DewfordTown_EventScript_1E9620:: @ 81E9620
 	msgbox DewfordTown_Text_1E9F92, MSGBOX_DEFAULT
 	release
@@ -302,7 +293,6 @@ DewfordTown_EventScript_1E9620:: @ 81E9620
 DewfordTown_Text_1E9F92: @ 81E9F92
 	.string "Oh, is that so?\n"
 	.string "That's too bad, then.$"
-
 DewfordTown_EventScript_1E962A:: @ 81E962A
 	message DewfordTown_Text_1E9FB8
 	waitmessage
@@ -315,7 +305,6 @@ DewfordTown_EventScript_1E962A:: @ 81E962A
 DewfordTown_Text_1E9FB8: @ 81E9FB8
 	.string "Yo!\n"
 	.string "How's your fishing?$"
-
 DewfordTown_EventScript_1E964C:: @ 81E964C
 	msgbox DewfordTown_Text_1E9FD0, MSGBOX_DEFAULT
 	release
@@ -323,7 +312,6 @@ DewfordTown_EventScript_1E964C:: @ 81E964C
 DewfordTown_Text_1E9FD0: @ 81E9FD0
 	.string "Is that right! That's great!\n"
 	.string "Haul in some big ones!$"
-
 DewfordTown_EventScript_1E9656:: @ 81E9656
 	msgbox DewfordTown_Text_1EA004, MSGBOX_DEFAULT
 	release
@@ -332,45 +320,16 @@ DewfordTown_Text_1EA004: @ 81EA004
 	.string "Oh, hey, don't get down on yourself!\n"
 	.string "I'll give you a little fishing advice.\p"
 	.string "First, you want to face the water,\n"
-	.string "then use the ROD.\p"
+	.string "then use the rod.\p"
 	.string "Focus your mind…\n"
-	.string "If you get a bite, pull the ROD.\p"
+	.string "If you get a bite, pull the rod.\p"
 	.string "Sometimes you can snag something\n"
 	.string "immediately, but with bigger catches,\l"
-	.string "you need to time the pulls on your ROD\l"
+	.string "you need to time the pulls on your rod\l"
 	.string "to haul them in.$"
 
 
 
-
-
-
-DewfordTown_Movement_1E9911: @ 81E9911
-	walk_right
-	walk_up
-	step_end
-
-DewfordTown_Movement_1E9914: @ 81E9914
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-DewfordTown_Movement_1E9918: @ 81E9918
-	walk_up
-	walk_up
-	walk_up
-	walk_in_place_fastest_down
-	step_end
-
-DewfordTown_Movement_1E991D: @ 81E991D
-	walk_up
-	step_end
-
-DewfordTown_Movement_1E991F: @ 81E991F
-	walk_up
-	walk_up
-	step_end
 
 DewfordTown_EventScript_1E9922:: @ 81E9922
 	lock
@@ -396,7 +355,6 @@ DewfordTown_Text_1EA136: @ 81EA136
 	.string "Wherever you're from,\n"
 	.string "“{STR_VAR_1}”\l"
 	.string "is the biggest happening thing, right?$"
-
 DewfordTown_EventScript_1E9948:: @ 81E9948
 	msgbox DewfordTown_Text_1EA491, MSGBOX_DEFAULT
 	release
@@ -405,7 +363,6 @@ DewfordTown_Text_1EA491: @ 81EA491
 	.string "Yeah, absolutely right!\p"
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
-
 DewfordTown_EventScript_1E9952:: @ 81E9952
 	msgbox DewfordTown_Text_1EA242, MSGBOX_DEFAULT
 	setvar VAR_0x8004, EASY_CHAT_TYPE_TRENDY_PHRASE
@@ -422,8 +379,6 @@ DewfordTown_Text_1EA242: @ 81EA242
 	.string "It's not the hip and happening thing?\p"
 	.string "Well, hey, you have to tell me,\n"
 	.string "what's new and what's “in”?$"
-
-
 DewfordTown_EventScript_1E997D:: @ 81E997D
 	incrementgamestat 2
 	compare VAR_0x8004, 0
@@ -448,8 +403,6 @@ DewfordTown_Text_1EA2AA: @ 81EA2AA
 	.string "It's, like, so five minutes ago.\p"
 	.string "Now, “{STR_VAR_2}” is\n"
 	.string "what's vital and in tune with the times!$"
-
-
 DewfordTown_EventScript_1E9994:: @ 81E9994
 	msgbox DewfordTown_Text_1EA443, MSGBOX_DEFAULT
 	release
@@ -457,7 +410,6 @@ DewfordTown_EventScript_1E9994:: @ 81E9994
 DewfordTown_Text_1EA443: @ 81EA443
 	.string "Well, if you hear of any happening new\n"
 	.string "trends, come share them with me, okay?$"
-
 DewfordTown_EventScript_1E999E:: @ 81E999E
 	msgbox DewfordTown_Text_1EA3FE, MSGBOX_DEFAULT
 	release
@@ -468,5 +420,4 @@ DewfordTown_Text_1EA3FE: @ 81EA3FE
 	.string "But personally, I think\n"
 	.string "“{STR_VAR_1}”\l"
 	.string "is what's real in cool.$"
-
 

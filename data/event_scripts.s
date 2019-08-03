@@ -1517,7 +1517,6 @@ EventScript_271F3D:: @ 8271F3D
 	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
 	return
 
-DewfordTown_Gym_EventScript_271F43:: @ 8271F43
 FortreeCity_Gym_EventScript_271F43:: @ 8271F43
 LavaridgeTown_Gym_1F_EventScript_271F43:: @ 8271F43
 MauvilleCity_Gym_EventScript_271F43:: @ 8271F43
@@ -1543,12 +1542,12 @@ DewfordTown_Gym_EventScript_271FA1:: @ 8271FA1
 	return
 
 DewfordTown_Gym_EventScript_271FAB:: @ 8271FAB
-	settrainerflag TRAINER_TAKAO
-	settrainerflag TRAINER_JOCELYN
-	settrainerflag TRAINER_LAURA
-	settrainerflag TRAINER_BRENDEN
-	settrainerflag TRAINER_CRISTIAN
-	settrainerflag TRAINER_LILITH
+	@ settrainerflag TRAINER_TAKAO
+	@ settrainerflag TRAINER_JOCELYN
+	@ settrainerflag TRAINER_LAURA
+	@ settrainerflag TRAINER_BRENDEN
+	@ settrainerflag TRAINER_CRISTIAN
+	@ settrainerflag TRAINER_LILITH
 	return
 
 DewfordTown_Gym_EventScript_271FBE:: @ 8271FBE

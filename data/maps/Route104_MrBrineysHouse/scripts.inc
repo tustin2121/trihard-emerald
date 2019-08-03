@@ -29,7 +29,7 @@ Route104_MrBrineysHouse_EventScript_229D67:: @ 8229D67
 	lock
 	faceplayer
 	call_if_unset FLAG_MR_BRINEY_SAILING_INTRO, Route104_MrBrineysHouse_EventScript_229D8A
-	@ goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, Route104_MrBrineysHouse_EventScript_229DE1
+	@ goto_if_unset FLAG_UNUSED_0x0BD, Route104_MrBrineysHouse_EventScript_229DE1
 	@ goto_if_unset FLAG_DELIVERED_DEVON_GOODS, Route104_MrBrineysHouse_EventScript_229DFA
 	goto Route104_MrBrineysHouse_EventScript_229DAE
 	end
