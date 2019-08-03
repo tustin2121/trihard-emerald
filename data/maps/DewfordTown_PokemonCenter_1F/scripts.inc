@@ -37,11 +37,16 @@ DewfordTown_PokemonCenter_1F_Text_1FC557: @ 81FC557
 	.string "there.$"
 
 
-DewfordTown_PokemonCenter_1F_EventScript_1FC54E:: @ 81FC54E
-	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE, MSGBOX_NPC
+DewfordTown_PokemonCenter_1F_EventScript_GuyWithHeadphones
+	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE, MSGBOX_DIALOG
+	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC, MSGBOX_DESCRIBE
 	end
-DewfordTown_PokemonCenter_1F_Text_1FC5AE: @ 81FC5AE
-	.string "Even if a Pokémon faints and can't\n"
-	.string "battle, it can still use a move learned\l"
-	.string "from a Hidden Machine (HM).$"
+DewfordTown_PokemonCenter_1F_Text_1FC5AE
+	.string "So we back in the gym,\n"
+	.string "got our Pokémon dodging from\p"
+	.string "side to side.\n"
+	.string "Side, side to side…$"
 
+DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC
+	.string "He seems to be totally absorbed\n
+	.string "in a strange music video.$

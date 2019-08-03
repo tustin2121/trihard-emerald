@@ -36,7 +36,7 @@ GraniteCave_1F_Text_22DA94: @ 822DA94
 	.string "Flash lights up even the inky\n"
 	.string "darkness of caves.\p"		
 	.string "But, to use it, you need the Gym Badge\n"
-	.string "from Dewford's Pokémon Gym.p"
+	.string "from Dewford's Pokémon Gym.\p"
 	.string "Here, I'll pass this on to you as well.$"
 GraniteCave_1F_Text_22DBB7: @ 822DBB7
 	.string "That TM teaches the move Flash to a\n"

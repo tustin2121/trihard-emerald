@@ -436,7 +436,7 @@ DewfordTown_Gym_Text_1FD008: @ 81FD008
 	.string "Take this Gym Badge!$"
 
 DewfordTown_Gym_Text_1FD07D: @ 81FD07D
-	.string "{PLAYER} received the Knuckle Badge\n"
+	.string "{PLAYER} received the {ITEM}Knuckle Badge{END}\n"
 	.string "from Brawly.$"
 
 DewfordTown_Gym_Text_1FD0A8: @ 81FD0A8
