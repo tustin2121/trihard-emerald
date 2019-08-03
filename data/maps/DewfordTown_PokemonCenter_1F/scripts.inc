@@ -37,17 +37,16 @@ DewfordTown_PokemonCenter_1F_Text_1FC557: @ 81FC557
 	.string "there.$"
 
 
-DewfordTown_PokemonCenter_1F_EventScript_GuyWithHeadphones
+DewfordTown_PokemonCenter_1F_EventScript_GuyWithHeadphones::
 	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE, MSGBOX_DIALOG
 	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC, MSGBOX_DESCRIBE
 	end
-DewfordTown_PokemonCenter_1F_Text_1FC5AE
+DewfordTown_PokemonCenter_1F_Text_1FC5AE:
 	.string "So we back in the gym,\n"
-	.string "got our Pokémon dodging from\p"
-	.string "side to side.\n"
+	.string "got our Pokémon dodging from\l"
+	.string "side to side.\p"
 	.string "Side, side to side…$"
-
-DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC
-	.string "He seems to be totally absorbed\n
+DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC:
+	.string "He seems to be totally absorbed\n"
 	.string "in a strange music video.$"
 
