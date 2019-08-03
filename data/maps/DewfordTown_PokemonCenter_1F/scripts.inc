@@ -50,3 +50,4 @@ DewfordTown_PokemonCenter_1F_Text_1FC5AE
 DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC
 	.string "He seems to be totally absorbed\n
 	.string "in a strange music video.$"
+
