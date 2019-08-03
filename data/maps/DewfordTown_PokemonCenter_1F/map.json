@@ -67,11 +67,11 @@
             "graphics_id": "EVENT_OBJ_GFX_MAN_3",
             "movement_range_x": 2,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "DewfordTown_PokemonCenter_1F_EventScript_1FC54E",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 5,
+            "x": 3,
             "y": 4
         }
     ],
