@@ -585,7 +585,7 @@ RustboroCity_TriggerScript_AquasTask1::
 	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask_PlayerCreepForward
 	waitmovement 0
 	delay 40
-	@ 
+	@
 	applymovement LID_AQUA_GIRL, Common_Movement_FacePlayer
 	waitmovement 0
 	playse SE_PIN
@@ -601,7 +601,7 @@ RustboroCity_TriggerScript_AquasTask1::
 	playse SE_SELECT
 	waitmovement 0
 	closemessage
-	@ 
+	@
 	special RemoveCameraObject
 	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask8_PlayerTalk
 	waitmovement 0
@@ -981,7 +981,7 @@ RustboroCity_TriggerScript_AquaTaskReturn::
 	applymovement LID_AQUA_3, RustboroCity_Movement_AquaTaskReturn5_AquaThree
 	msgbox RustboroCity_Text_AquaTaskReturn5
 	closemessage
-	@ 
+	@
 	special SpawnCameraObject
 	playse SE_PIN
 	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquaTaskReturn6_Player
@@ -1073,7 +1073,7 @@ RustboroCity_TriggerScript_AquaTaskReturn_FriendNone:
 	@
 	goto RustboroCity_TriggerScript_AquaTaskReturn_Finish
 	end
-	
+
 RustboroCity_TriggerScript_AquaTaskReturn_Finish:
 	msgbox RustboroCity_Text_AquaTaskReturn9
 	closemessage
@@ -1105,7 +1105,7 @@ RustboroCity_Text_AquaTaskReturn3:
 	.string "So, did you get it?$"
 RustboroCity_Text_AquaTaskReturn4:
 	.string "{PLAYER} handed over the\n"
-	.string "{ITEM}Devon Goods{END}$"
+	.string "{ITEM}Devon Goods{END}.$"
 RustboroCity_Text_AquaTaskReturn5:
 	.string "Oh, wow, {PLAYER_they} actually got it!\n"
 	.string "The boss'll be so pleased!\p"
@@ -2121,27 +2121,3 @@ RustboroCity_Text_1E2002: @ 81E2002
 	.string "I bet you didn't know this, since you\n"
 	.string "just moved here, {PLAYER}, but\l"
 	.string "MR. BRINEY was once a great sailor.$"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

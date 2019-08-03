@@ -596,7 +596,7 @@ Route104_EventScript_MeetLogan_Main3:
 Route104_Text_MeetLogan1:
 	.string "Hey! Hey, uh, {PLAYER}? {PLAYER}!$"
 Route104_Text_MeetLogan2:
-	.string "Hey! You're the {PLAYER_guy} that saved\n"
+	.string "Hey! You're the {PLAYER_guy} who saved\n"
 	.string "me, right?\p"
 	.string "I'm {RIVAL_HERO}. I don't know how to\n"
 	.string "thank you enough.\p"
