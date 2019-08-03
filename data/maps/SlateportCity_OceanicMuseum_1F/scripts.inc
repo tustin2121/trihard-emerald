@@ -114,8 +114,8 @@ SlateportCity_OceanicMuseum_1F_Text_20B5CA: @ 820B5CA
 	.string "{CENTER}{ITEM}Soil Sample from the Ocean Floor{END}\n"
 	.string "{CENTER}Over many years, the remains of life-\n"
 	.string "{CENTER}forms settle at the bottom of the sea,\n"
-	.string "{CENTER}making sedimentary layers. By analyzing \n"
-	.string "{CENTER}these layers, the ancient past is revealed.$"
+	.string "{CENTER}making sedimentary layers. By analyzing\n"
+	.string "{CENTER}them, our ancient past is revealed.$"
 
 
 SlateportCity_OceanicMuseum_1F_EventScript_20AE9E:: @ 820AE9E
@@ -123,10 +123,10 @@ SlateportCity_OceanicMuseum_1F_EventScript_20AE9E:: @ 820AE9E
 	end
 SlateportCity_OceanicMuseum_1F_Text_20B699: @ 820B699
 	.string "{CENTER}{ITEM}Sample of Beach Sand{END}\n"
-	.string "{CENTER}Stones from mountains are washed down by\n"
-	.string "{CENTER}rivers where they are chipped and ground\l"
-	.string "{CENTER}down. They are reduced to grains and\n"
-	.string "{CENTER}end up as sand on beaches.$"
+	.string "{CENTER}Stones from mountains are washed down\n"
+	.string "{CENTER}by rivers where they are chipped and\l"
+	.string "{CENTER}ground down. They are reduced to grains\n"
+	.string "{CENTER}and end up as sand on beaches.$"
 
 
 SlateportCity_OceanicMuseum_1F_EventScript_20AEA7:: @ 820AEA7
@@ -135,8 +135,8 @@ SlateportCity_OceanicMuseum_1F_EventScript_20AEA7:: @ 820AEA7
 SlateportCity_OceanicMuseum_1F_Text_20B74B: @ 820B74B
 	.string "{CENTER}{TIPS}OCEANIC MINIFACT 1{END}\n"
 	.string "{CENTER}Why is seawater blue? Light is composed\p"
-	.string "{CENTER}of many colors. When light passes through\p"
-	.string "{CENTER}water, most kinds of light lose color.\n"
+	.string "{CENTER}of many colors. When light passes\p"
+	.string "{CENTER}through the water, it loses color.\n"
 	.string "{CENTER}However, blue light retains its\n"
 	.string "{CENTER}color, making the sea appear blue.$"
 
@@ -159,9 +159,9 @@ SlateportCity_OceanicMuseum_1F_EventScript_20AEB9:: @ 820AEB9
 	end
 SlateportCity_OceanicMuseum_1F_Text_20B912: @ 820B912
 	.string "{CENTER}{TIPS}OCEANIC MINIFACT 3{END}\n"
-	.string "{CENTER}Which is bigger? The sea or land?\p"
-	.string "{CENTER}The sea covers about 70% of the planet,\n"
-	.string "{CENTER}and the rest is land. The sea is therefore\p"
+	.string "{CENTER}Which is bigger? Sea or land? The sea\p"
+	.string "{CENTER}covers about 70% of the planet, while\n"
+	.string "{CENTER}the rest is land. The sea is therefore\p"
 	.string "{CENTER}more than twice the size of land.$"
 
 
