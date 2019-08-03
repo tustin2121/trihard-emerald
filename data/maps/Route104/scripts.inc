@@ -596,11 +596,11 @@ Route104_EventScript_MeetLogan_Main3:
 Route104_Text_MeetLogan1:
 	.string "Hey! Hey, uh, {PLAYER}? {PLAYER}!$"
 Route104_Text_MeetLogan2:
-	.string "Hey! You're the {PLAYER_guy} that saved\n"
+	.string "Hey! You're the {PLAYER_guy} who saved\n"
 	.string "me, right?\p"
 	.string "I'm {RIVAL_HERO}. I don't know how to\n"
 	.string "thank you enough.\p"
-	.string "I was trying to get a Pokemon of my\n"
+	.string "I was trying to get a Pokémon of my\n"
 	.string "own so I could run away from home.\p"
 	.string "I can't stand my family. They're too\n"
 	.string "nosey and never let me do anything.\p"
@@ -879,7 +879,7 @@ Route104_Text_RivalMain1_Female: @ 81EDF04
 	.string "I was just visiting Mr. Briney.\n"
 	.string "He told me you saved his Peeko.\p"
 	.string "I… honestly didn't think you were\n"
-	.string "capable of compa- erm… Compass! Skills!\p"
+	.string "capable of compa- erm… compass! Skills!\p"
 	.string "Anyway, swap numbers? Ha! Haaa…$"
 Route104_Text_RivalMain2_Male: @ 81EDC8F
 	.string "{PLAYER} registered May\n"
@@ -996,7 +996,7 @@ Route104_EventScript_1ECF73:: @ 81ECF73
 	end
 Route104_Text_1EE107: @ 81EE107
 	.string "Sheesh!\n"
-	.string "You're worse then I thought!$"
+	.string "You're worse than I thought!$"
 
 Route104_EventScript_PostRivalBattle:: @ 81ECF38
 	selectpointer_ongender Route104_Text_1EDE3E, Route104_Text_1EE120
