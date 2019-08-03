@@ -332,7 +332,7 @@ SlateportCity_OceanicMuseum_2F_Text_SternMugging2:
 	.string "submarine when it goes that deep!$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging4:
 	.string "Capt. Stern: Oh, hello, young {PLAYER_man}.\n"
-	.string "Can I… … help you?$"
+	.string "Can I… help you?$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging5:
 	.string "{RIVAL_HERO}: Hey, {PLAYER}!\n"
 	.string "Fancy meeting you here!$"
@@ -350,7 +350,7 @@ SlateportCity_OceanicMuseum_2F_Text_SternMugging8:
 SlateportCity_OceanicMuseum_2F_Text_SternMugging9:
 	.string "{AQUA_BOY}: Alright, Stern.\n"
 	.string "This is a stick up.\p"
-	.string "Just hand over those documents,\n"
+	.string "Just hand over those documents\n"
 	.string "and no one will get hurt.$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging10:
 	.string "{RIVAL_HERO}: You're not WITH these\n"
@@ -365,10 +365,11 @@ SlateportCity_OceanicMuseum_2F_Text_SternMugging11:
 SlateportCity_OceanicMuseum_2F_Text_SternMugging_LoganLose:
 	.string "Oh, crud, you're really tough…$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging12:
-	.string "{RIVAL_HERO}: Seedot?! Are you alright?!$"
+	.string "{RIVAL_HERO}: Seedot? Are you alright?!$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging13:
 	.string "Capt. Stern: Ah, fellas…\p"
-	.string "Perhaps we can, um… negotiate something?$"
+	.string "Perhaps we can, um…\n"
+	.string "negotiate something?$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging15:
 	.string "{AQUA_BOY}: Back off, guys.\n"
 	.string "I got the docs right here.\p"
@@ -389,8 +390,8 @@ SlateportCity_OceanicMuseum_2F_Text_SternMugging20:
 	.string "and we love the sea!\p"
 	.string "And I am Team Aqua's leader,\n"
 	.string "{REF}Archie{END}!\p"
-	.string "Pokémon, people… All life depends on\n"
-	.string "the sea.\p"
+	.string "Pokémon, people…\n"
+	.string "All life depends on the sea.\p"
 	.string "So, Team Aqua is dedicated to\n"
 	.string "the expansion of the sea.\p"
 	.string "What we are doing is a magnificent\n"
