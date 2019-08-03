@@ -164,6 +164,41 @@ PetalburgCity_Gym_EventScript_204995:: @ 8204995
 @ -----------------------------------------------------
 @ Gym Entrance
 
+PetalburgCity_Gym_EventScript_GymGreeter:: @ 820574F
+	lock
+	faceplayer
+	markasdialog
+	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, PetalburgCity_Gym_EventScript_205764
+	msgbox PetalburgCity_Gym_Text_206542, MSGBOX_DEFAULT
+	release
+	end
+PetalburgCity_Gym_Text_206542: @ 8206542
+	.string "Ah, hello, {PLAYER_sir}.\n"
+	.string "Here to challenge the Gym Leader?\p"
+	.string "The doors in this gym open when you\n"
+	.string "beat the awaiting trainers.\p"
+	.string "Whoops! The doors in this room are\n"
+	.string "already open, so don't attack me!\p"
+	.string "The trainers of Petalburg Gym\n"
+	.string "use all kinds of items.\p"
+	.string "The door at the left leads to\n"
+	.string "the Speed Room.\p"
+	.string "The door at the right leads to\n"
+	.string "the Accuracy Room.\p"
+	.string "The room's name will be on\n"
+	.string "the door, so choose carefully.\p"
+	.string "Once you've chosen the door…\n"
+	.string "Well, hey, go for it!$"
+PetalburgCity_Gym_EventScript_205764:: @ 8205764
+	msgbox PetalburgCity_Gym_Text_2066F3, MSGBOX_DEFAULT
+	release
+	end
+PetalburgCity_Gym_Text_2066F3: @ 82066F3
+	.string "Congratulations on your victory!\n"
+	.string "What a stunning battle!$"
+
+
+
 PetalburgCity_Gym_GymSignage::
 	lockall
 	goto_if_unset FLAG_BADGE01_GET, PetalburgCity_Gym_GymSignage_OldLeader
@@ -208,40 +243,6 @@ PetalburgCity_Gym_Text_GymSignageNameList_Old:
 	.string "Connor, Holly, Alexis, Flannery,\n"
 	.string "Ethan, {RIVAL_BIRCH}$"
 
-
-
-PetalburgCity_Gym_EventScript_GymGreeter:: @ 820574F
-	lock
-	faceplayer
-	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, PetalburgCity_Gym_EventScript_205764
-	msgbox PetalburgCity_Gym_Text_206542, MSGBOX_DEFAULT
-	release
-	end
-PetalburgCity_Gym_Text_206542: @ 8206542
-	.string "Ah, hello, {PLAYER_sir}.\n"
-	.string "Here to challenge the Gym Leader?\p"
-	.string "The doors in this gym open when you\n"
-	.string "beat the awaiting trainers.\p"
-	.string "Whoops! The doors in this room are\n"
-	.string "already open, so don't attack me!\p"
-	.string "The trainers of Petalburg Gym\n"
-	.string "use all kinds of items.\p"
-	.string "The door at the left leads to\n"
-	.string "the Speed Room.\p"
-	.string "The door at the right leads to\n"
-	.string "the Accuracy Room.\p"
-	.string "The room's name will be on\n"
-	.string "the door, so choose carefully.\p"
-	.string "Once you've chosen the door…\n"
-	.string "Well, hey, go for it!$"
-
-PetalburgCity_Gym_EventScript_205764:: @ 8205764
-	msgbox PetalburgCity_Gym_Text_2066F3, MSGBOX_DEFAULT
-	release
-	end
-PetalburgCity_Gym_Text_2066F3: @ 82066F3
-	.string "Congratulations on your victory!\n"
-	.string "What a stunning battle!$"
 
 
 PetalburgCity_Gym_EventScript_OldLeader::
@@ -913,8 +914,8 @@ PetalburgCity_Gym_Text_206107: @ 8206107
 	.string "But, rules are rules!\n"
 	.string "Here, take this.$"
 PetalburgCity_Gym_Text_206162: @ 8206162
-	.string "{PLAYER} received the\n"
-	.string "{ITEM}Balance Badge{END}!$"
+	.string "{PLAYER} received the {ITEM}Balance Badge{END}\n"
+	.string "from Norman.$"
 PetalburgCity_Gym_Text_20618A: @ 820618A
 	.string "Norman: With that badge, the defense\n"
 	.string "of all your Pokémon will increase.\p"

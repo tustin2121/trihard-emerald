@@ -7,11 +7,12 @@ DewfordTown_Gym_OnTransition: @ 81FC642
 	end
 
 @ -----------------------------------------------------
-@ Front of Gym
+@ Gym Entrance
 
 DewfordTown_Gym_EventScript_1FC983:: @ 81FC983
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_DEFEATED_DEWFORD_GYM, DewfordTown_Gym_EventScript_1FC998
 	msgbox DewfordTown_Gym_Text_1FC9D6, MSGBOX_DEFAULT
 	release

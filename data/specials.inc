@@ -150,12 +150,12 @@ gSpecials:: @ 81DBA64
 	def_special sub_80F8864
 	def_special CountPlayerContestPaintings
 	def_special ShowContestWinner
-	def_special MauvilleGymSpecial2
-	def_special MauvilleGymSpecial1
+	def_special MauvilleGym_ToggleLightningGates
+	def_special MauvilleGym_DepressButton
 	def_special ShowFieldMessageStringVar4
 	def_special DrawWholeMapView
 	def_special StorePlayerCoordsInVars
-	def_special MauvilleGymSpecial3
+	def_special MauvilleGym_ShutOffPuzzle
 	def_special PetalburgGymSpecial1
 	def_special PetalburgGymSpecial2
 	def_special GetPlayerTrainerIdOnesDigit
