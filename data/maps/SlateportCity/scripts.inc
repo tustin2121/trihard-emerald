@@ -398,7 +398,7 @@ SlateportCity_EventScript_MuseumWoman:: @ 81DCF17
 	lock
 	faceplayer
 	markasdialog
-	goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS, SlateportCity_EventScript_1DCF2C
+	goto_if_set FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA, SlateportCity_EventScript_1DCF2C
 	msgbox SlateportCity_Text_1DDBAC, MSGBOX_DEFAULT
 	release
 	end
