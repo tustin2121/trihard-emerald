@@ -19,40 +19,161 @@
 #include "constants/day_night.h"
 #include "constants/rgb.h"
 
-#define TINT_MORNING Q_8_8(0.8), Q_8_8(0.7), Q_8_8(0.9)
-#define TINT_DAY Q_8_8(1.0), Q_8_8(1.0), Q_8_8(1.0)
-#define TINT_NIGHT Q_8_8(0.6), Q_8_8(0.55), Q_8_8(1.0)
+#define GET_TIME_PERIOD() (gLocalTime.hours * 6 + gLocalTime.minutes / 10);
+#define TINT(r,g,b)      {r, g, b}
+#define TINT_DAY         TINT(256, 256, 256)
+#define TINT_NIGHT       TINT(153, 140, 256)
 
 EWRAM_DATA u16 gPlttBufferPreDN[PLTT_BUFFER_SIZE] = {0};
-static EWRAM_DATA s8 sOldHour = 0;
+static EWRAM_DATA u8 sOldTimePeriod = 0;
 static EWRAM_DATA bool8 sRetintPhase = FALSE;
 EWRAM_DATA struct PaletteOverride *gPaletteOverrides[4] = {NULL};
 
 static const u16 sTimeOfDayTints[][3] = {
-    {TINT_NIGHT},       // Midnight
-    {TINT_NIGHT},       // 1 AM
-    {TINT_NIGHT},       // 2 AM
-    {TINT_NIGHT},       // 3 AM
-    {Q_8_8(0.6), Q_8_8(0.6), Q_8_8(1.0)},     // 4 AM
-    {TINT_MORNING},     // 5 AM
-    {TINT_MORNING},     // 6 AM
-    {TINT_MORNING},     // 7 AM
-    {Q_8_8(0.9), Q_8_8(0.8), Q_8_8(1.0)},     // 8 AM
-    {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(1.0)},     // 9 AM
-    {TINT_DAY},         // 10 AM
-    {TINT_DAY},         // 11 AM
-    {TINT_DAY},         // 12 PM
-    {TINT_DAY},         // 1 PM
-    {TINT_DAY},         // 2 PM
-    {TINT_DAY},         // 3 PM
-    {TINT_DAY},         // 4 PM
-    {Q_8_8(1.0), Q_8_8(0.9), Q_8_8(0.8)},   // 5 PM
-    {Q_8_8(0.9), Q_8_8(0.6), Q_8_8(0.67)},       // 6 PM
-    {Q_8_8(0.7), Q_8_8(0.6), Q_8_8(0.9)},       // 7 PM
-    {TINT_NIGHT},       // 8 PM
-    {TINT_NIGHT},       // 9 PM
-    {TINT_NIGHT},       // 10 PM
-    {TINT_NIGHT},       // 11 PM
+    TINT_NIGHT,    // Midnight
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    // 1 AM
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    // 2 AM
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    // 3 AM
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT_NIGHT,    
+    TINT(153, 140, 255),     // 4 AM
+    TINT(155, 142, 254),     
+    TINT(158, 144, 252),     
+    TINT(162, 147, 250),     
+    TINT(165, 149, 248),     
+    TINT(169, 152, 245),     
+    TINT(173, 155, 243),     // 5 AM - Morning
+    TINT(177, 158, 240),     
+    TINT(182, 162, 237),     
+    TINT(187, 165, 235),     
+    TINT(191, 169, 233),     
+    TINT(196, 172, 231),     
+    TINT(201, 176, 230),     // 6 AM
+    TINT(204, 180, 230),     
+    TINT(207, 181, 230),     
+    TINT(210, 184, 231),     
+    TINT(213, 187, 231),     
+    TINT(216, 190, 232),     
+    TINT(219, 193, 234),     // 7 AM
+    TINT(222, 195, 235),     
+    TINT(226, 199, 237),     
+    TINT(229, 201, 238),     
+    TINT(232, 205, 241),     
+    TINT(235, 207, 242),     
+    TINT(237, 210, 244),     // 8 AM
+    TINT(240, 213, 246),     
+    TINT(243, 216, 248),     
+    TINT(245, 219, 249),     
+    TINT(249, 221, 251),     
+    TINT(250, 224, 253),     
+    TINT(252, 226, 253),     // 9 AM
+    TINT(254, 229, 254),     
+    TINT(255, 232, 255),     
+    TINT(256, 238, 256),     
+    TINT(256, 244, 256),     
+    TINT(256, 248, 256),     
+    TINT(256, 252, 256),         // 10 AM - Daytime
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         // 11 AM
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         // 12 PM
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         // 1 PM
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         // 2 PM
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         // 3 PM
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT_DAY,         
+    TINT(256, 255, 255), // 4 PM
+    TINT(256, 253, 252),         
+    TINT(256, 252, 248),         
+    TINT(256, 251, 245),         
+    TINT(256, 250, 240),         
+    TINT(256, 248, 234),         
+    TINT(256, 247, 229),   // 5 PM - Evening
+    TINT(256, 244, 224),   
+    TINT(256, 241, 219),   
+    TINT(256, 238, 213),   
+    TINT(256, 234, 209),   
+    TINT(255, 230, 205),   
+    TINT(254, 223, 198),  // 6 PM
+    TINT(251, 211, 192),  
+    TINT(248, 199, 185),  
+    TINT(245, 187, 179),  
+    TINT(241, 174, 174),  
+    TINT(237, 163, 171),  
+    TINT(232, 155, 171),   // 7 PM
+    TINT(219, 153, 180),   
+    TINT(199, 153, 204),   
+    TINT(181, 153, 228),   
+    TINT(168, 150, 241),   
+    TINT(159, 144, 250),   
+    TINT_NIGHT,   // 8 PM - Night
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   // 9 PM
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   // 10 PM
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   
+    TINT_NIGHT,   // 11 PM
+    TINT_NIGHT,       
+    TINT_NIGHT,       
+    TINT_NIGHT,       
+    TINT_NIGHT,       
+    TINT_NIGHT,       
 };
 
 const u8 *const gDayOfWeekTable[] = 
@@ -146,10 +267,10 @@ static void TintPaletteForDayNight(u16 offset, u16 size)
 {
     if (ShouldTintOverworld())
     {
-        s8 hour;
+        u8 tp;
         RtcCalcLocalTimeFast();
-        hour = gLocalTime.hours;
-        TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, sTimeOfDayTints[hour][0], sTimeOfDayTints[hour][1], sTimeOfDayTints[hour][2], FALSE);
+        tp = GET_TIME_PERIOD();
+        TintPalette_CustomToneWithCopy(gPlttBufferPreDN + offset, gPlttBufferUnfaded + offset, size / 2, sTimeOfDayTints[tp][0], sTimeOfDayTints[tp][1], sTimeOfDayTints[tp][2], FALSE);
     }
     else
     {
@@ -181,24 +302,24 @@ void CheckClockForImmediateTimeEvents(void)
 
 void ProcessImmediateTimeEvents(void)
 {
-    s8 hour;
+    u8 tp;
 
     if (ShouldTintOverworld())
     {
         if (!sRetintPhase)
         {
-            hour = gLocalTime.hours;
-            if (hour != sOldHour)
+            tp = GET_TIME_PERIOD();
+            if (tp != sOldTimePeriod)
             {
-                sOldHour = hour;
+                sOldTimePeriod = tp;
                 sRetintPhase = 1;
-                TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, BG_PLTT_SIZE / 2, sTimeOfDayTints[hour][0], sTimeOfDayTints[hour][1], sTimeOfDayTints[hour][2], TRUE);
+                TintPalette_CustomToneWithCopy(gPlttBufferPreDN, gPlttBufferUnfaded, BG_PLTT_SIZE / 2, sTimeOfDayTints[tp][0], sTimeOfDayTints[tp][1], sTimeOfDayTints[tp][2], TRUE);
             }
         }
         else
         {
             sRetintPhase = 0;
-            TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sTimeOfDayTints[sOldHour][0], sTimeOfDayTints[sOldHour][1], sTimeOfDayTints[sOldHour][2], TRUE);
+            TintPalette_CustomToneWithCopy(gPlttBufferPreDN + (BG_PLTT_SIZE / 2), gPlttBufferUnfaded + (BG_PLTT_SIZE / 2), OBJ_PLTT_SIZE / 2, sTimeOfDayTints[sOldTimePeriod][0], sTimeOfDayTints[sOldTimePeriod][1], sTimeOfDayTints[sOldTimePeriod][2], TRUE);
             LoadPaletteOverrides();
             
             if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_IN &&

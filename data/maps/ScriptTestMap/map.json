@@ -21,7 +21,18 @@
             "y": 12
         }
     ],
-    "connections": null,
+    "connections": [
+        {
+            "direction": "left",
+            "map": "MAP_SCRIPT_TEST_MAP",
+            "offset": 0
+        },
+        {
+            "direction": "right",
+            "map": "MAP_SCRIPT_TEST_MAP",
+            "offset": 0
+        }
+    ],
     "coord_events": [
         {
             "elevation": 0,
@@ -31,11 +42,191 @@
             "var_value": "0",
             "x": 16,
             "y": 14
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 0,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 1,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 2,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 3,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 4,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 5,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 6,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 7,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 8,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 9,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 10,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 11,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 12,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 13,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 14,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 15,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 16,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 17,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 18,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "ScriptTestMap_TriggerScript_AdvanceTime",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 19,
+            "y": 18
         }
     ],
     "id": "MAP_SCRIPT_TEST_MAP",
     "layout": "LAYOUT_SCRIPT_TEST_MAP",
-    "map_type": "MAP_TYPE_UNUSED_1",
+    "map_type": "MAP_TYPE_ROUTE",
     "music": "MUS_DUMMY",
     "name": "ScriptTestMap",
     "object_events": [
@@ -68,20 +259,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_WALLY",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_PLAYER",
-            "script": "NULL",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 16,
-            "y": 8
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_KYOGRE_2",
+            "graphics_id": "EVENT_OBJ_GFX_KYOGRE_3",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -94,7 +272,7 @@
         {
             "elevation": 3,
             "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_GROUDON_2",
+            "graphics_id": "EVENT_OBJ_GFX_GROUDON_3",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",

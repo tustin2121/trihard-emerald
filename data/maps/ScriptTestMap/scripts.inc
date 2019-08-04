@@ -74,6 +74,11 @@ ScriptTestMap_Movement_RunAround:
 	step_end
 
 
+ScriptTestMap_TriggerScript_AdvanceTime::
+	advancetime 0, 5
+	release
+	end
+
 
 
 
