@@ -331,7 +331,7 @@ DewfordTown_Gym_Text_1FCF44: @ 81FCF44
 	.string "of these parts, and I've grown tough\l"
 	.string "in the pitch-black cave!\p"
 	.string "Then I discovered the secret of true\n"
-	.string "power by staring at a Helix Fossill"
+	.string "power by staring at a Helix Fossil\l"
 	.string "for days and days.\p"
 	.string "So you wanted to challenge me?\n"
 	.string "Let me see what you're made of!$"
