@@ -61,7 +61,7 @@ SlateportCity_PokemonCenter_1F_PCMan::
 SlateportCity_PokemonCenter_1F_Text_PCMan:
 	.string "Just five more minutes!\p"
 	.string "Someone is wrong on the internet and I\n"
-	.string "need to correct them.$"
+	.string "have to correct them.$"
 
 
 SlateportCity_PokemonCenter_1F_EventScript_BattleTipSailor:: @ 820DAE1
