@@ -656,7 +656,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_292A94:: @ 8292A94
 LittlerootTown_BrendansHouse_1F_EventScript_292A9E:: @ 8292A9E
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
-	incrementgamestat 16
+	incrementgamestat GAME_STAT_RESTED_AT_HOME
 	msgbox LittlerootTown_PlayersHouse_1F_Text_1F7D5C, MSGBOX_DEFAULT
 	release
 	end

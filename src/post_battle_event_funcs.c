@@ -9,6 +9,7 @@
 #include "tv.h"
 #include "constants/heal_locations.h"
 #include "constants/flags.h"
+#include "remembered_dreams.h"
 
 int GameClear(void)
 {
@@ -33,6 +34,7 @@ int GameClear(void)
 
     if (GetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME) == 0)
         SetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME, (gSaveBlock2Ptr->playTimeHours << 16) | (gSaveBlock2Ptr->playTimeMinutes << 8) | gSaveBlock2Ptr->playTimeSeconds);
+    RememberStat(GAME_STAT_FIRST_HOF_PLAY_TIME, GetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME));
 
     SetContinueGameWarpStatus();
 

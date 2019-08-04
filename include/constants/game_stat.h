@@ -23,7 +23,7 @@
 #define GAME_STAT_USED_ROCK_SMASH           19
 #define GAME_STAT_MOVED_SECRET_BASE         20
 #define GAME_STAT_POKEMON_TRADES            21
-#define GAME_STAT_UNKNOWN_22                22
+#define GAME_STAT_NUM_WHITEOUTS             22 // Originally Unused?
 #define GAME_STAT_LINK_BATTLE_WINS          23
 #define GAME_STAT_LINK_BATTLE_LOSSES        24
 #define GAME_STAT_LINK_BATTLE_DRAWS         25
@@ -32,7 +32,7 @@
 #define GAME_STAT_SLOT_JACKPOTS             28
 #define GAME_STAT_CONSECUTIVE_ROULETTE_WINS 29
 #define GAME_STAT_ENTERED_BATTLE_TOWER      30
-#define GAME_STAT_UNKNOWN_31                31
+#define GAME_STAT_UNKNOWN_31                31  // Unused?
 #define GAME_STAT_BATTLE_TOWER_BEST_STREAK  32
 #define GAME_STAT_POKEBLOCKS                33
 #define GAME_STAT_POKEBLOCKS_WITH_FRIENDS   34
@@ -52,7 +52,7 @@
 #define GAME_STAT_RODE_CABLE_CAR            48
 #define GAME_STAT_ENTERED_HOT_SPRINGS       49
 #define GAME_STAT_NUM_UNION_ROOM_BATTLES    50
-#define GAME_STAT_51                        51
+#define GAME_STAT_51                        51 //Related to berry crush
 #define GAME_STAT_NUM_NPCS_HARRASSED		52
 #define GAME_STAT_NUM_OPPO_CASUALTIES		53
 #define GAME_STAT_NUM_PARTY_CASUALTIES		54

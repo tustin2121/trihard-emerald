@@ -42,6 +42,7 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/vars.h"
+#include "constants/game_stat.h"
 #include "event_obj_lock.h"
 
 extern u8 BerryTree_EventScript_274482[];
@@ -290,7 +291,7 @@ void ItemUseOnFieldCB_Rod(u8 taskId)
 
 void ItemUseOutOfBattle_Itemfinder(u8 var)
 {
-    IncrementGameStat(0x27);
+    IncrementGameStat(GAME_STAT_USED_ITEMFINDER);
     gUnknown_0203A0F4 = ItemUseOnFieldCB_Itemfinder;
     SetUpItemUseOnFieldCallback(var);
 }

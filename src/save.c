@@ -13,7 +13,7 @@
 #include "link.h"
 #include "constants/game_stat.h"
 
-static u16 CalculateChecksum(void *data, u16 size);
+u16 CalculateChecksum(void *data, u16 size);
 static u8 DoReadFlashWholeSection(u8 sector, struct SaveSection *section);
 static u8 GetSaveValidStatus(const struct SaveSectionLocation *location);
 static u8 sub_8152E10(u16 a1, const struct SaveSectionLocation *location);
@@ -620,7 +620,7 @@ static u8 DoReadFlashWholeSection(u8 sector, struct SaveSection *section)
     return 1;
 }
 
-static u16 CalculateChecksum(void *data, u16 size)
+u16 CalculateChecksum(void *data, u16 size)
 {
     u16 i;
     u32 checksum = 0;

@@ -1516,6 +1516,11 @@
 #define FLAG_SPECIAL_FLAG_0x4004                                   0x4004
 #define FLAG_DID_MOURNING_CUTSCENE                                 0x4005 // TriHard
 #define FLAG_DISABLE_FADE_INIT                                     0x4006 // TriHard
+#define FLAG_LOADING_AFTER_WHITEOUT                                0x4007 // TriHard
+#define FLAG_SHOULD_PLAY_LOSER_MUSIC                               0x4008 // TriHard
+#define FLAG_SHOULD_DO_DREAM_CUTSCENE                              0x4009 // TriHard
+#define FLAG_ERROR_READING_DREAMS                                  0x400A // TriHard
+#define FLAG_ERROR_WRITING_DREAMS                                  0x400B // TriHard
 
 #define NUM_SPECIAL_FLAGS                                          16*8
 

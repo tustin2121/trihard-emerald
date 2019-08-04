@@ -3216,7 +3216,7 @@ LilycoveCity_ContestLobby_EventScript_28C7E9:: @ 828C7E9
 SlateportCity_OceanicMuseum_1F_EventScript_28C7E9:: @ 828C7E9
 SlateportCity_PokemonFanClub_EventScript_28C7E9:: @ 828C7E9
 	special InterviewAfter
-	incrementgamestat 6
+	incrementgamestat GAME_STAT_GOT_INTERVIEWED
 	release
 	end
 

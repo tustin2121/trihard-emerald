@@ -55,6 +55,7 @@
 #include "trainer_hill.h"
 #include "trainer_pokemon_sprites.h"
 #include "tv.h"
+#include "remembered_dreams.h"
 #include "scanline_effect.h"
 #include "wild_encounter.h"
 #include "frontier_util.h"
@@ -475,6 +476,7 @@ void IncrementGameStat(u8 index)
             statVal = 0xFFFFFF;
 
         SetGameStat(index, statVal);
+        RememberStat(index, statVal);
     }
 }
 
@@ -489,6 +491,7 @@ void IncrementGameStatBy(u8 index, u8 value)
             statVal = 0xFFFFFF;
 
         SetGameStat(index, statVal);
+        RememberStat(index, statVal);
     }
 }
 
@@ -1117,6 +1120,52 @@ static bool16 IsInflitratedSpaceCenter(struct WarpData *warp)
     return FALSE;
 }
 
+static bool16 IsWakingUpInCenterAfterWhiteout(struct WarpData *warp)
+{
+    if (!FlagGet(FLAG_SHOULD_PLAY_LOSER_MUSIC)) return FALSE;
+    #define CHECK_MAP(map) (warp->mapGroup == (map >> 8) && warp->mapNum == (map & 0xFF))
+    
+    if (CHECK_MAP(MAP_OLDALE_TOWN_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_OLDALE_TOWN_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_DEWFORD_TOWN_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_DEWFORD_TOWN_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_LAVARIDGE_TOWN_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_LAVARIDGE_TOWN_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_FALLARBOR_TOWN_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_VERDANTURF_TOWN_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_VERDANTURF_TOWN_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_PETALBURG_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_PETALBURG_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_SLATEPORT_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_SLATEPORT_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_MAUVILLE_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_MAUVILLE_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_RUSTBORO_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_RUSTBORO_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_FORTREE_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_FORTREE_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_LILYCOVE_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_LILYCOVE_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_MOSSDEEP_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_SOOTOPOLIS_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_SOOTOPOLIS_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_EVER_GRANDE_CITY_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_EVER_GRANDE_CITY_POKEMON_CENTER_2F)) return TRUE;
+    if (CHECK_MAP(MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F)) return TRUE;
+    if (CHECK_MAP(MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F)) return TRUE;
+    if (CHECK_MAP(MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F)) return TRUE;
+    if (CHECK_MAP(MAP_BATTLE_FRONTIER_POKEMON_CENTER_2F)) return TRUE;
+    
+    FlagClear(FLAG_SHOULD_PLAY_LOSER_MUSIC);
+    return FALSE;
+    
+    #undef CHECK_MAP
+}
+
 u16 GetLocationMusic(struct WarpData *warp)
 {
     if (NoMusicInSotopolisWithLegendaries(warp) == TRUE)
@@ -1127,6 +1176,8 @@ u16 GetLocationMusic(struct WarpData *warp)
         return MUS_MGM0;
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE)
         return MUS_TOZAN;
+    else if (IsWakingUpInCenterAfterWhiteout(warp) == TRUE)
+        return MUS_BORNLOSE;
     else
         return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
 }
@@ -1565,6 +1616,7 @@ void CB2_NewGame(void)
     StopMapMusic();
     ResetSafariZoneFlag_();
     NewGameInitData();
+    InitRememberedDreams();
     ResetInitialPlayerAvatarState();
     PlayTimeCounter_Start();
     ScriptContext1_Init();
@@ -1580,8 +1632,16 @@ void CB2_NewGame(void)
 void CB2_WhiteOut(void)
 {
     u8 val;
+    gMain.state++;
+    
+    if (gMain.state == 2)
+    {
+        RememberWhiteout();
+        SaveRememberedDreams();
+    }
+    
 
-    if (++gMain.state >= 120)
+    if (gMain.state >= 120)
     {
         FieldClearVBlankHBlankCallbacks();
         StopMapMusic();
@@ -1742,6 +1802,7 @@ void CB2_ContinueSavedGame(void)
     if (gSaveFileStatus == 0xFF)
         sub_81A3908();
 
+    LoadAndProcessRememberedDreams();
     LoadSaveblockMapHeader();
     ClearDiveAndHoleWarps();
     trainerHillMapId = GetCurrentTrainerHillMapId();
@@ -2102,6 +2163,7 @@ static void do_load_map_stuff_loop(u8 *state)
 
 static void sub_80867C8(void)
 {
+    SaveRememberedDreams();
     ClearMirageTowerPulseBlend();
     MoveSaveBlocks_ResetHeap();
 }

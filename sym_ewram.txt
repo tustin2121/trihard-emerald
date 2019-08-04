@@ -176,3 +176,4 @@ gUnknown_02022D00: @ 2022D00
 	.include "src/trainer_hill.o"
 	.include "src/rayquaza_scene.o"
 	.include "src/day_night.o"
+	.include "src/remembered_dreams.o"

@@ -327,6 +327,7 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/day_night.o(.text);
         src/te_debug.o(.text);
+        src/remembered_dreams.o(.text);
     } =0
 
     script_data :
@@ -655,6 +656,7 @@ SECTIONS {
         data/sound_data.o(.rodata);
         src/day_night.o(.rodata);
         src/te_debug.o(.rodata);
+        src/remembered_dreams.o(.rodata);
     } =0
 
     song_data :

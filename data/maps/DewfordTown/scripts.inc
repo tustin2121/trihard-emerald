@@ -380,7 +380,7 @@ DewfordTown_Text_1EA242: @ 81EA242
 	.string "Well, hey, you have to tell me,\n"
 	.string "what's new and what's “in”?$"
 DewfordTown_EventScript_1E997D:: @ 81E997D
-	incrementgamestat 2
+	incrementgamestat GAME_STAT_STARTED_TRENDS
 	compare VAR_0x8004, 0
 	goto_if_eq DewfordTown_EventScript_1E999E
 	msgbox DewfordTown_Text_1EA2AA, MSGBOX_DEFAULT
