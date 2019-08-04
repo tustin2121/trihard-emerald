@@ -26,7 +26,7 @@ DewfordTown_House1_EventScript_1FC3E0:: @ 81FC3E0
 	faceplayer
 	waitse
 	playmoncry SPECIES_ZIGZAGOON, 0
-	msgbox DewfordTown_House1_Text_1FC510, MSGBOX_DIALOG
+	msgbox DewfordTown_House1_Text_1FC510, MSGBOX_CDIALOG
 	waitmoncry
 	release
 	end

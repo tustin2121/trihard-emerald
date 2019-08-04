@@ -27,7 +27,7 @@ EverGrandeCity_HallOfFame_EventScript_229850:: @ 8229850
 	applymovement 1, Common_Movement_WalkInPlaceRight
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox EverGrandeCity_HallOfFame_Text_22990E, MSGBOX_DIALOG
+	msgbox EverGrandeCity_HallOfFame_Text_22990E, MSGBOX_CDIALOG
 	closemessage
 	applymovement 1, EverGrandeCity_HallOfFame_Movement_229908
 	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_HallOfFame_Movement_229908
@@ -36,7 +36,7 @@ EverGrandeCity_HallOfFame_EventScript_229850:: @ 8229850
 	applymovement 1, Common_Movement_WalkInPlaceRight
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox EverGrandeCity_HallOfFame_Text_2299A3, MSGBOX_DIALOG
+	msgbox EverGrandeCity_HallOfFame_Text_2299A3, MSGBOX_CDIALOG
 	closemessage
 	applymovement 1, Common_Movement_WalkInPlaceUp
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp

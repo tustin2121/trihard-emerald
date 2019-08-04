@@ -343,7 +343,7 @@ SootopolisCity_PokemonCenter_1F_EventScript_MoveTutor2:
 	call SootopolisCity_PokemonCenter_1F_EventScript_2C832D
 	compare VAR_RESULT, 0
 	goto_if_eq SootopolisCity_PokemonCenter_1F_EventScript_2C82AA
-	msgbox SootopolisCity_PokemonCenter_1F_Text_2C7C98, MSGBOX_DIALOG
+	msgbox SootopolisCity_PokemonCenter_1F_Text_2C7C98, MSGBOX_CDIALOG
 	setvar VAR_0x8005, 4
 	call EventScript_ShowPartyMenu
 	compare VAR_RESULT, 0

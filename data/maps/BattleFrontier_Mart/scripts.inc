@@ -8,7 +8,7 @@ BattleFrontier_Mart_EventScript_267ACC:: @ 8267ACC
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart BattleFrontier_Mart_Pokemart_267AE4
-	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
+	msgbox gText_Mart_Goodbye, MSGBOX_CDIALOG
 	release
 	end
 

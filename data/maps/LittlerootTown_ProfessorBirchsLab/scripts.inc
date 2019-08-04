@@ -107,7 +107,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9DDB:: @ 81F9DDB
 	bufferleadmonspeciesname 0
 	message LittlerootTown_ProfessorBirchsLab_Text_1FA74D
 	waitmessage
-	message LittlerootTown_ProfessorBirchsLab_Text_1FA74E, MSGTYPE_DESCRIBE
+	message LittlerootTown_ProfessorBirchsLab_Text_1FA74E, MSGTYPE_CDESCRIBE
 	waitmessage
 	playfanfare MUS_FANFA4
 	waitfanfare
@@ -293,7 +293,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FAE40:
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex:: @ 81FA3AC
 	playfanfare MUS_FANFA4
-	message LittlerootTown_ProfessorBirchsLab_Text_1FAC32, MSGTYPE_DESCRIBE
+	message LittlerootTown_ProfessorBirchsLab_Text_1FAC32, MSGTYPE_CDESCRIBE
 	waitfanfare
 	setflag FLAG_SYS_POKEDEX_GET
 	special sub_81AFDA0
@@ -340,7 +340,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_1F9E80:: @ 81F9E80
 	waitmovement 0
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB419
 	playfanfare MUS_FANFA4
-	message LittlerootTown_ProfessorBirchsLab_Text_1FB436, MSGTYPE_DESCRIBE
+	message LittlerootTown_ProfessorBirchsLab_Text_1FB436, MSGTYPE_CDESCRIBE
 	waitmessage
 	waitfanfare
 	setflag FLAG_SYS_NATIONAL_DEX
@@ -461,7 +461,7 @@ LittlerootTown_ProfessorBirchsLab_Movement_1F9F7C: @ 81F9F7C
 
 LittlerootTown_ProfessorBirchsLab_EventScript_1FA24F:: @ 81FA24F
 	playfanfare MUS_FANFA4
-	message LittlerootTown_ProfessorBirchsLab_Text_1FB9D7, MSGBOX_DESCRIBE
+	message LittlerootTown_ProfessorBirchsLab_Text_1FB9D7, MSGTYPE_DESCRIBE
 	waitmessage
 	waitfanfare
 	return
@@ -778,7 +778,7 @@ Route101_EventScript_1FA2D2:: @ 81FA2D2
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox Route101_Text_2B603A, MSGBOX_DESCRIBE
+	msgbox Route101_Text_2B603A, MSGBOX_CDESCRIBE
 	waitfanfare
 	closemessage
 	delay 30

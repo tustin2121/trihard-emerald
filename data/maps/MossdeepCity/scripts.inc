@@ -1119,7 +1119,7 @@ MossdeepCity_EventScript_LoganCenter::
 	removeobject LID_LOGAN
 	moveobjectoffscreen LID_LOGAN
 	waitfieldeffect FLDEFF_NPCFLY_OUT
-	msgbox MossdeepCity_Text_LoganCenter3, MSGBOX_DESCRIBE
+	msgbox MossdeepCity_Text_LoganCenter3, MSGBOX_CDESCRIBE
 	giveitem_std ITEM_TM58
 	setflag FLAG_RECEIVED_TM58
 	setvar VAR_MOSSDEEP_STATE, 13

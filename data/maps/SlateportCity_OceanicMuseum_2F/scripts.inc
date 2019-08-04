@@ -302,7 +302,7 @@ SlateportCity_OceanicMuseum_2F_TriggerScript_SternMugging::
 	@ removeobject LID_DOCS
 	setvar VAR_0x8000, 1
 	callnative SetPlayerOutfit
-	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging24, MSGBOX_DESCRIBE
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging24, MSGBOX_CDESCRIBE
 	closemessage
 	@ clean up
 	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA

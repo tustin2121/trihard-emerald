@@ -283,9 +283,7 @@ MossdeepCity_SpaceCenter_1F_Text_2237B5: @ 82237B5
 
 
 MossdeepCity_SpaceCenter_1F_EventScript_Notice:: @ 82231CF
-	lockall
 	msgbox MossdeepCity_SpaceCenter_1F_Text_Notice, MSGBOX_DESCRIBE
-	releaseall
 	end
 MossdeepCity_SpaceCenter_1F_Text_Notice: @ 8223C2C
 	.string "This is…\n"

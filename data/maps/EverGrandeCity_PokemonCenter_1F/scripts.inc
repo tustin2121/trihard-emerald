@@ -30,7 +30,7 @@ EverGrandeCity_PokemonCenter_1F_EventScript_MartScript:: @ 81FC240
 	message gText_Mart_Welcome
 	waitmessage
 	pokemart EverGrandeCity_PokemonCenter_1F_Pokemart_1FC260
-	msgbox gText_Mart_Goodbye, MSGBOX_DIALOG
+	msgbox gText_Mart_Goodbye, MSGBOX_CDIALOG
 	release
 	end
 .align 2

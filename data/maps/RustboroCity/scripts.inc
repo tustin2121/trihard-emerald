@@ -63,7 +63,7 @@ RustboroCity_EventScript_1E08E3:: @ 81E08E3
 	message RustboroCity_Text_1E20A6, MSGTYPE_SIGN
 	waitmessage
 	waitbuttonpress
-	message RustboroCity_Text_1E20A7, MSGBOX_DESCRIBE
+	message RustboroCity_Text_1E20A7, MSGTYPE_DESCRIBE
 	waitmessage
 	waitbuttonpress
 	release
@@ -390,10 +390,10 @@ RustboroCity_TriggerScript_HeistCutscene1::
 	addobject LID_AQUA_3
 	@ Yelling ensues
 	markasdialog -26
-	msgbox RustboroCity_Text_Heist1, MSGBOX_DIALOG
+	msgbox RustboroCity_Text_Heist1, MSGBOX_CDIALOG
 	playbgm MUS_MGM0, 0
 	markasdialog -26
-	msgbox RustboroCity_Text_Heist2, MSGBOX_DIALOG
+	msgbox RustboroCity_Text_Heist2, MSGBOX_CDIALOG
 	closemessage
 	@ They rush past
 	applymovement LID_MAGMA, RustboroCity_Movement_Heist3_Magma
@@ -974,7 +974,7 @@ RustboroCity_TriggerScript_AquaTaskReturn::
 	msgbox RustboroCity_Text_AquaTaskReturn3
 	playse SE_SELECT
 	@
-	msgbox RustboroCity_Text_AquaTaskReturn4, MSGBOX_DESCRIBE
+	msgbox RustboroCity_Text_AquaTaskReturn4, MSGBOX_CDESCRIBE
 	playse SE_SELECT
 	takeitem ITEM_DEVON_GOODS, 1
 	@

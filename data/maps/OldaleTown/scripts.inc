@@ -66,7 +66,7 @@ OldaleTown_Text_BlockadeBoy1:
 OldaleTown_EventScript_BlockadeBoy2::
 	lock
 	applymovement THIS_EVENT, Common_Movement_FaceDown
-	msgbox OldaleTown_Text_BlockadeBoy2, MSGBOX_DIALOG
+	msgbox OldaleTown_Text_BlockadeBoy2, MSGBOX_CDIALOG
 	applymovement THIS_EVENT, Common_Movement_FaceLeft
 	waitmovement 0
 	release
@@ -78,7 +78,7 @@ OldaleTown_Text_BlockadeBoy2:
 
 OldaleTown_TriggerScript_Policeman::
 	lock
-	msgbox OldaleTown_Text_1E91G4, MSGBOX_DIALOG
+	msgbox OldaleTown_Text_1E91G4, MSGBOX_CDIALOG
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
 	waitmovement 0
 	release

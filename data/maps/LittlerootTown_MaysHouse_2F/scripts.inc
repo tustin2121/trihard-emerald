@@ -64,7 +64,7 @@ LittlerootTown_MaysHouse_2F_EventScript_1F9334:: @ 81F9334
 	lockall
 	compare VAR_LITTLEROOT_RIVAL_STATE, 2
 	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_1F934A
-	msgbox LittlerootTown_RivalsHouse_2F_Text_1F9962, MSGBOX_DESCRIBE
+	msgbox LittlerootTown_RivalsHouse_2F_Text_1F9962, MSGBOX_CDESCRIBE
 	releaseall
 	end
 

@@ -65,7 +65,7 @@ LittlerootTown_MaysHouse_1F_EventScript_1F898C:: @ 81F898C
 
 LittlerootTown_MaysHouse_1F_EventScript_1F8964:: @ 81F8964
 	lockall
-	msgbox LittlerootTown_PlayersHouse_1F_Text_DadStayInRoom, MSGBOX_DIALOG
+	msgbox LittlerootTown_PlayersHouse_1F_Text_DadStayInRoom, MSGBOX_CDIALOG
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp1
 	applymovement 1, Common_Movement_WalkUp1

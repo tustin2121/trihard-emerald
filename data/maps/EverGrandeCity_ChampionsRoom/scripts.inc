@@ -207,7 +207,7 @@ EverGrandeCity_ChampionsRoom_EventScript_AfterMath:: @ 8228A61
 	applymovement 1, Common_Movement_WalkDown1
 	waitmovement 0
 	special RemoveCameraObject
-	msgbox EverGrandeCity_ChampionsRoom_Text_228F66, MSGBOX_DIALOG
+	msgbox EverGrandeCity_ChampionsRoom_Text_228F66, MSGBOX_CDIALOG
 	@ TODO either walk up to the cheering crowds, or walk down right away
 	@ Walk down to cheering, meet up with Dad at the bottom of the walk
 	@ Dad congratulates you.

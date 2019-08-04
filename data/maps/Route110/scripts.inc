@@ -1013,7 +1013,7 @@ Route110_EventScript_1EF9F7:: @ 81EF9F7
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox Route110_Text_1F0C0C, MSGBOX_DESCRIBE
+	msgbox Route110_Text_1F0C0C, MSGBOX_CDESCRIBE
 	waitfanfare
 	closemessage
 	delay 30

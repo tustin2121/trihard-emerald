@@ -38,8 +38,10 @@ DewfordTown_PokemonCenter_1F_Text_1FC557: @ 81FC557
 
 
 DewfordTown_PokemonCenter_1F_EventScript_GuyWithHeadphones::
-	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE, MSGBOX_DIALOG
-	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC, MSGBOX_DESCRIBE
+	lockall
+	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE, MSGBOX_CDIALOG
+	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC, MSGBOX_CDESCRIBE
+	releaseall
 	end
 DewfordTown_PokemonCenter_1F_Text_1FC5AE:
 	.string "So we back in the gym,\n"

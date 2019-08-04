@@ -397,7 +397,7 @@ LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoStarter:
 	message LittlerootTown_PlayerHouse_1F_Text_LetterStarter1, MSGTYPE_SIGN
 	waitmessage
 	removeobject THIS_EVENT
-	msgbox LittlerootTown_PlayerHouse_1F_Text_LetterStarter2, MSGBOX_DESCRIBE
+	msgbox LittlerootTown_PlayerHouse_1F_Text_LetterStarter2, MSGBOX_CDESCRIBE
 	giveitem_std ITEM_FOCUS_BAND, 1
 	setflag FLAG_DAILY_DADS_LETTER_REMOVED
 	setflag FLAG_DAD_LETTER_STARTER_ITEM
