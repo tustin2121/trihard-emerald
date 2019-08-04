@@ -75,6 +75,8 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_10
 	.4byte Std_MsgboxDescribe
 	.4byte Std_MsgboxDialogue
+	.4byte Std_MsgboxCutsceneDescribe
+	.4byte Std_MsgboxCutsceneDialogue
 gStdScripts_End:: @ 81DC2CC
 
 	.include "data/maps/PetalburgCity/scripts.inc"
@@ -797,6 +799,12 @@ Std_MsgboxDialogue:: @ 8271315
 	release
 	return
 
+Std_MsgboxCutsceneDialogue:: @ 8271315
+	message 0x0, MSGTYPE_DIALOG
+	waitmessage
+	waitbuttonpress
+	return
+
 Std_MsgboxSign:: @ 8271320
 	lockall
 	messagesign 0x0
@@ -812,6 +820,12 @@ Std_MsgboxDescribe:: @ 8271320
 	waitmessage
 	waitbuttonpress
 	releaseall
+	return
+
+Std_MsgboxCutsceneDescribe:: @ 8271320
+	message 0x0, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
 	return
 
 Std_MsgboxDefault:: @ 827132A

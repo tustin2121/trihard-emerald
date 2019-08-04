@@ -173,7 +173,7 @@ RustboroCity_Gym_EventScript_212F66:: @ 8212F66
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox RustboroCity_Gym_Text_213C01, MSGBOX_DESCRIBE
+	msgbox RustboroCity_Gym_Text_213C01, MSGBOX_CDESCRIBE
 	waitfanfare
 	closemessage
 	delay 30

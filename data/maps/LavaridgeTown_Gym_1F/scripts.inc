@@ -2,10 +2,14 @@ LavaridgeTown_Gym_1F_MapScripts:: @ 81FE6F4
 	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_Gym_1F_OnTransition
 	.byte 0
 
+@ -----------------------------------------------------
+
 LavaridgeTown_Gym_1F_OnTransition: @ 81FE6FA
 	call LavaridgeTown_Gym_1F_EventScript_1FE705
 	call LavaridgeTown_Gym_1F_EventScript_1FE757
 	end
+
+@ -----------------------------------------------------
 
 LavaridgeTown_Gym_1F_EventScript_1FE705:: @ 81FE705
 	setvar VAR_TEMP_B, 0
@@ -14,51 +18,47 @@ LavaridgeTown_Gym_1F_EventScript_1FE705:: @ 81FE705
 	setvar VAR_TEMP_E, 0
 	setvar VAR_TEMP_F, 0
 	checktrainerflag TRAINER_COLE
-	goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE72C
+	goto_if_eq _LavaridgeTown_Gym_1F_EventScript_1FE72C
 	setvar VAR_TEMP_B, 1
-
-LavaridgeTown_Gym_1F_EventScript_1FE72C:: @ 81FE72C
+_LavaridgeTown_Gym_1F_EventScript_1FE72C:: @ 81FE72C
 	checktrainerflag TRAINER_GERALD
-	goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE73A
+	goto_if_eq _LavaridgeTown_Gym_1F_EventScript_1FE73A
 	setvar VAR_TEMP_C, 1
-
-LavaridgeTown_Gym_1F_EventScript_1FE73A:: @ 81FE73A
+_LavaridgeTown_Gym_1F_EventScript_1FE73A:: @ 81FE73A
 	checktrainerflag TRAINER_AXLE
-	goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE748
+	goto_if_eq _LavaridgeTown_Gym_1F_EventScript_1FE748
 	setvar VAR_TEMP_D, 1
-
-LavaridgeTown_Gym_1F_EventScript_1FE748:: @ 81FE748
+_LavaridgeTown_Gym_1F_EventScript_1FE748:: @ 81FE748
 	checktrainerflag TRAINER_DANIELLE
-	goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE756
+	goto_if_eq _LavaridgeTown_Gym_1F_EventScript_1FE756
 	setvar VAR_TEMP_E, 1
-
-LavaridgeTown_Gym_1F_EventScript_1FE756:: @ 81FE756
+_LavaridgeTown_Gym_1F_EventScript_1FE756:: @ 81FE756
 	return
+
 
 LavaridgeTown_Gym_1F_EventScript_1FE757:: @ 81FE757
 	checktrainerflag TRAINER_COLE
-	goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE764
+	goto_if_eq _LavaridgeTown_Gym_1F_EventScript_1FE764
 	setobjectmovementtype 2, MOVEMENT_TYPE_HIDDEN
-
-LavaridgeTown_Gym_1F_EventScript_1FE764:: @ 81FE764
+_LavaridgeTown_Gym_1F_EventScript_1FE764:: @ 81FE764
 	checktrainerflag TRAINER_GERALD
-	goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE771
+	goto_if_eq _LavaridgeTown_Gym_1F_EventScript_1FE771
 	setobjectmovementtype 3, MOVEMENT_TYPE_HIDDEN
-
-LavaridgeTown_Gym_1F_EventScript_1FE771:: @ 81FE771
+_LavaridgeTown_Gym_1F_EventScript_1FE771:: @ 81FE771
 	checktrainerflag TRAINER_AXLE
-	goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE77E
+	goto_if_eq _LavaridgeTown_Gym_1F_EventScript_1FE77E
 	setobjectmovementtype 4, MOVEMENT_TYPE_HIDDEN
-
-LavaridgeTown_Gym_1F_EventScript_1FE77E:: @ 81FE77E
+_LavaridgeTown_Gym_1F_EventScript_1FE77E:: @ 81FE77E
 	checktrainerflag TRAINER_DANIELLE
-	goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE78B
+	goto_if_eq _LavaridgeTown_Gym_1F_EventScript_1FE78B
 	setobjectmovementtype 5, MOVEMENT_TYPE_HIDDEN
-
-LavaridgeTown_Gym_1F_EventScript_1FE78B:: @ 81FE78B
+_LavaridgeTown_Gym_1F_EventScript_1FE78B:: @ 81FE78B
 	return
 
-LavaridgeTown_Gym_1F_EventScript_1FE78C:: @ 81FE78C
+@ -----------------------------------------------------
+@ Flannery
+
+LavaridgeTown_Gym_1F_EventScript_Flannery:: @ 81FE78C
 	trainerbattle_single TRAINER_FLANNERY_1, LavaridgeTown_Gym_1F_Text_1FF0DC, LavaridgeTown_Gym_1F_Text_1FF233, LavaridgeTown_Gym_1F_EventScript_1FE7C1, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
@@ -67,9 +67,37 @@ LavaridgeTown_Gym_1F_EventScript_1FE78C:: @ 81FE78C
 	msgbox LavaridgeTown_Gym_1F_Text_1FF546, MSGBOX_DEFAULT
 	release
 	end
-
+LavaridgeTown_Gym_1F_Text_1FF0DC: @ 81FF0DC
+	.string "Welcome… No, wait.\p"
+	.string "Puny trainer, how good to see you've\n"
+	.string "made it here!\p"
+	.string "I have been entrusted with the…\n"
+	.string "No, wait.\p"
+	.string "I am FLANNERY, and I'm the GYM\n"
+	.string "LEADER here!\p"
+	.string "Uh…\n"
+	.string "Dare not underestimate me, though\l"
+	.string "I have been LEADER only a short time!\p"
+	.string "With skills inherited from my grand-\n"
+	.string "father, I shall, uh…demonstrate the\l"
+	.string "hot moves we have honed on this land!$"
+LavaridgeTown_Gym_1F_Text_1FF233: @ 81FF233
+	.string "Oh…\n"
+	.string "I guess I was trying too hard…\p"
+	.string "I… I've only recently become\n"
+	.string "a Gym Leader.\p"
+	.string "I tried too hard to be someone\n"
+	.string "I'm not.\p"
+	.string "I have to do things my natural way. If\n"
+	.string "I don't, my Pokémon will be confused.\p"
+	.string "Thanks for teaching me that.\n"
+	.string "For that, you deserve this.$"
+LavaridgeTown_Gym_1F_Text_1FF546: @ 81FF546
+	.string "Your power reminds me of someone…\p"
+	.string "Oh! I know! You battle like NORMAN,\n"
+	.string "the Gym Leader of PETALBURG.$"
 LavaridgeTown_Gym_1F_EventScript_1FE7C1:: @ 81FE7C1
-	message LavaridgeTown_Gym_1F_Text_1FF32F
+	message LavaridgeTown_Gym_1F_Text_1FF32F, MSGTYPE_DESCRIBE
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox LavaridgeTown_Gym_1F_Text_1FF359, MSGBOX_DEFAULT
@@ -81,28 +109,37 @@ LavaridgeTown_Gym_1F_EventScript_1FE7C1:: @ 81FE7C1
 	call LavaridgeTown_Gym_1F_EventScript_271F43
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
 	setvar VAR_LAVARIDGE_RIVAL_STATE, 1
-	call LavaridgeTown_Gym_1F_EventScript_1FE841
+	call LavaridgeTown_Gym_1F_EventScript_GiveTM
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox LavaridgeTown_Gym_1F_Text_1FF517, MSGBOX_DEFAULT
+	msgbox LavaridgeTown_Gym_1F_Text_1FF517, MSGBOX_CDESCRIBE
 	waitfanfare
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
 	release
 	end
-
+LavaridgeTown_Gym_1F_Text_1FF32F: @ 81FF32F
+	.string "{PLAYER} received the {ITEM}Heat Badge{END}\n"
+	.string "from Flannery.$"
+LavaridgeTown_Gym_1F_Text_1FF359: @ 81FF359
+	.string "If you have a Heat Badge, all Pokémon\n"
+	.string "up to Level 50, even those you get in\l"
+	.string "trades from other people, will obey\l"
+	.string "you completely.\p"
+	.string "And, it lets Pokémon use the HM move\n"
+	.string "STRENGTH outside of battle.\p"
+	.string "This is a token of my appreciation.\n"
+	.string "Don't be shy about taking it!$"
+LavaridgeTown_Gym_1F_Text_1FF517: @ 81FF517
+	.string "Registered Gym Leader Flannery\n"
+	.string "in the PokéNav.$"
 LavaridgeTown_Gym_1F_EventScript_1FE81D:: @ 81FE81D
-	giveitem_std ITEM_TM50
-	compare VAR_RESULT, 0
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	msgbox LavaridgeTown_Gym_1F_Text_1FF45C, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM50
+	call LavaridgeTown_Gym_1F_EventScript_GiveTM
 	release
 	end
-
-LavaridgeTown_Gym_1F_EventScript_1FE841:: @ 81FE841
+LavaridgeTown_Gym_1F_EventScript_GiveTM:: @ 81FE841
 	giveitem_std ITEM_TM50
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_BagIsFull
@@ -317,46 +354,9 @@ LavaridgeTown_Gym_B1F_Text_1FF09A: @ 81FF09A
 	.string "of FLANNERY's power.\p"
 	.string "Hehehehe.$"
 
-LavaridgeTown_Gym_1F_Text_1FF0DC: @ 81FF0DC
-	.string "Welcome… No, wait.\p"
-	.string "Puny TRAINER, how good to see you've\n"
-	.string "made it here!\p"
-	.string "I have been entrusted with the…\n"
-	.string "No, wait.\p"
-	.string "I am FLANNERY, and I'm the GYM\n"
-	.string "LEADER here!\p"
-	.string "Uh…\n"
-	.string "Dare not underestimate me, though\l"
-	.string "I have been LEADER only a short time!\p"
-	.string "With skills inherited from my grand-\n"
-	.string "father, I shall, uh…demonstrate the\l"
-	.string "hot moves we have honed on this land!$"
 
-LavaridgeTown_Gym_1F_Text_1FF233: @ 81FF233
-	.string "Oh…\n"
-	.string "I guess I was trying too hard…\p"
-	.string "I… I've only recently become\n"
-	.string "a Gym Leader.\p"
-	.string "I tried too hard to be someone\n"
-	.string "I'm not.\p"
-	.string "I have to do things my natural way. If\n"
-	.string "I don't, my Pokémon will be confused.\p"
-	.string "Thanks for teaching me that.\n"
-	.string "For that, you deserve this.$"
 
-LavaridgeTown_Gym_1F_Text_1FF32F: @ 81FF32F
-	.string "{PLAYER} received the HEAT BADGE\n"
-	.string "from FLANNERY.$"
 
-LavaridgeTown_Gym_1F_Text_1FF359: @ 81FF359
-	.string "If you have a HEAT BADGE, all Pokémon\n"
-	.string "up to Level 50, even those you get in\l"
-	.string "trades from other people, will obey\l"
-	.string "you completely.\p"
-	.string "And, it lets Pokémon use the HM move\n"
-	.string "STRENGTH outside of battle.\p"
-	.string "This is a token of my appreciation.\n"
-	.string "Don't be shy about taking it!$"
 
 LavaridgeTown_Gym_1F_Text_1FF45C: @ 81FF45C
 	.string "That TM50 contains OVERHEAT.\p"
@@ -366,14 +366,7 @@ LavaridgeTown_Gym_1F_Text_1FF45C: @ 81FF45C
 	.string "of the Pokémon using it. It might not\l"
 	.string "be suitable for longer battles.$"
 
-LavaridgeTown_Gym_1F_Text_1FF517: @ 81FF517
-	.string "Registered Gym Leader FLANNERY\n"
-	.string "in the PokéNav.$"
 
-LavaridgeTown_Gym_1F_Text_1FF546: @ 81FF546
-	.string "Your power reminds me of someone…\p"
-	.string "Oh! I know! You battle like NORMAN,\n"
-	.string "the Gym Leader of PETALBURG.$"
 
 LavaridgeTown_Gym_1F_Text_1FF5A9: @ 81FF5A9
 	.string "Lavaridge Town Pokémon Gym$"

@@ -324,7 +324,7 @@ MauvilleCity_Gym_Text_20E8E3: @ 820E8E3
 	.string "I swell with optimism, seeing a promising\n"
 	.string "young trainer like you!$"
 MauvilleCity_Gym_EventScript_20DF2B:: @ 820DF2B
-	message MauvilleCity_Gym_Text_20E77F
+	message MauvilleCity_Gym_Text_20E77F, MSGTYPE_DESCRIBE
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MauvilleCity_Gym_Text_20E7AA, MSGBOX_DEFAULT
@@ -341,7 +341,7 @@ MauvilleCity_Gym_EventScript_20DF2B:: @ 820DF2B
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox MauvilleCity_Gym_Text_20E8B5, MSGBOX_DESCRIBE
+	msgbox MauvilleCity_Gym_Text_20E8B5, MSGBOX_CDESCRIBE
 	waitfanfare
 	closemessage
 	delay 30

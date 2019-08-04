@@ -205,7 +205,7 @@ PetalburgCity_Gym_GymSignage::
 	msgbox PetalburgCity_Gym_Text_GymSignageTitle, MSGBOX_SIGN
 	goto_if_set FLAG_BADGE05_GET, PetalburgCity_Gym_GymSignage_AfterBadge5
 	goto_if_set FLAG_BADGE06_GET, PetalburgCity_Gym_GymSignage_AfterBadge6
-	msgbox PetalburgCity_Gym_Text_GymSignageNameList1, MSGBOX_DESCRIBE
+	msgbox PetalburgCity_Gym_Text_GymSignageNameList1, MSGBOX_CDESCRIBE
 	releaseall
 	end
 PetalburgCity_Gym_Text_GymSignageTitle: @ 820744C
