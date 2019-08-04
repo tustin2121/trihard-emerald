@@ -590,10 +590,10 @@ SlateportCity_EventScript_DenyEntryResidential::
 	end
 SlateportCity_Text_DenyEntryResidential:
 	.string "I'm sorry for blocking the way. There's\n"
-	.string "so much stuff to move...\p"
-	.string "You're not missing anything anyway. Down\n"
-	.string "this street is just a residential section\l"
-	.string "of the city.$"
+	.string "so much stuff to move…\p"
+	.string "You're not missing anything anyway.\n"
+	.string "Down this street there's just a\l"
+	.string "residential section of the city.$"
 
 
 
