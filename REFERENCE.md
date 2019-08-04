@@ -72,6 +72,8 @@ For future person reference:
 * Trainers
 	* Trainers with line of sight to anything other than 0 must have as their first script command a trainer battle. The engine depends on the data being set up in this manner.
 	* Trainers with "no_intro" battle commands must not have line of sight of more than 0. The game will crash. This is a corollary to the above point.
+* Sprites
+	* Sprite callbacks cannot be NULL. If they are, the game will crash. Instead set them to `SpriteCallbackDummy`.
 * Default Palette Setup:
 	* Object Palettes 2-5 are standard object palettes. All event objects share these palettes.
 	* Object palettes 6-9 are standard object reflection palettes. These are so all objects can have a water reflection.
