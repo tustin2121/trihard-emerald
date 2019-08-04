@@ -21,6 +21,7 @@
 #include "constants/weather.h"
 #include "constants/trainer_hill.h"
 #include "constants/battle.h"
+#include "constants/day_night.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.include "constants/constants.inc"

@@ -1921,3 +1921,11 @@ const u8 gText_Num2[] = _("two");
 const u8 gText_Num3[] = _("three");
 const u8 gText_Num4[] = _("four");
 const u8 gText_Num5[] = _("five");
+
+const u8 gText_Sunday[] = _("SUNDAY");
+const u8 gText_Monday[] = _("MONDAY");
+const u8 gText_Tuesday[] = _("TUESDAY");
+const u8 gText_Wednesday[] = _("WEDNESDAY");
+const u8 gText_Thursday[] = _("THURSDAY");
+const u8 gText_Friday[] = _("FRIDAY");
+const u8 gText_Saturday[] = _("SATURDAY");
