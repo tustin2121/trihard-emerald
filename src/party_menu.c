@@ -1514,7 +1514,7 @@ static const u8 *const gUnknown_08616028[] =
     gText_Speed2
 };
 
-const u16 gTMHMMoves[] =
+static const u16 gTMHMMoves[] =
 {
     MOVE_FOCUS_PUNCH,
     MOVE_DRAGON_CLAW,
