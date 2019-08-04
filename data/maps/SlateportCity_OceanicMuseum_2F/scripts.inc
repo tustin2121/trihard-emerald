@@ -395,7 +395,7 @@ SlateportCity_OceanicMuseum_2F_Text_SternMugging20:
 	.string "So, Team Aqua is dedicated to\n"
 	.string "the expansion of the sea.\p"
 	.string "What we are doing is a magnificent\n"
-	.string "undertaking. Don't you agree?\p"
+	.string "undertaking, don't you agree?\p"
 	.string "… … … … … …\n"
 	.string "Ah, it's fine… Perhaps you are still\l"
 	.string "too young to understand our noble\l"

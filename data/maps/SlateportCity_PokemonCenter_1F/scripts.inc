@@ -60,7 +60,7 @@ SlateportCity_PokemonCenter_1F_PCMan::
 
 SlateportCity_PokemonCenter_1F_Text_PCMan:
 	.string "Just five more minutes!\p"
-	.string "Someone is wrong on the internet, and I\n"
+	.string "Someone is wrong on the internet and I\n"
 	.string "need to correct them.$"
 
 
