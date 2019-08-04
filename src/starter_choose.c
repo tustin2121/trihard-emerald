@@ -124,7 +124,7 @@ static const u8 gStarterChoose_LabelCoords[][2] =
     {0x08, 0x04},
 };
 
-static const u16 sStarterMon[STARTER_MON_COUNT] =
+const u16 sStarterMon[STARTER_MON_COUNT] =
 {
     SPECIES_TREECKO,
     SPECIES_TORCHIC,
