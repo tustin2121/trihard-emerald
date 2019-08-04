@@ -512,8 +512,10 @@ DewfordTown_EventScript_1E9790:: @ 81E9790
 DewfordTown_Text_1EEC1D: @ 81EEC1D
 	.string "Mr. Briney: Ahoy!\n"
 	.string "We've made land in Slateport!\p"
-	.string "I suppose you're going to visit Capt.\n"
-	.string "Stern and deliver the DEVON GOODS?$"
+	.string "I heard about a museum exhibition\n"
+	.string "going on right now.\p"
+	.string "Why don't you take this\n"
+	.string "opportunity and attend it?$"
 
 DewfordTown_EventScript_1E9799:: @ 81E9799
 	msgbox DewfordTown_Text_1EEDA7, MSGBOX_DEFAULT
