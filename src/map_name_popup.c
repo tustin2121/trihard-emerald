@@ -34,6 +34,7 @@ static void LoadMapNamePopUpWindowBg(void);
 
 // EWRAM
 static EWRAM_DATA u8 sPopupTaskId = 0;
+EWRAM_DATA u8* gMapNameOverride = NULL;
 
 // .rodata
 static const u8 gMapPopUp_Table[][960] =
@@ -85,7 +86,7 @@ static const u8 gRegionMapSectionId_To_PopUpThemeIdMapping[] =
     [MAPSEC_LILYCOVE_CITY] = MAPPOPUP_THEME_MARBLE,
     [MAPSEC_MOSSDEEP_CITY] = MAPPOPUP_THEME_BRICK,
     [MAPSEC_SOOTOPOLIS_CITY] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_EVER_GRANDE_CITY] = MAPPOPUP_THEME_BRICK,
+    [MAPSEC_EVER_GRANDE_CITY] = MAPPOPUP_THEME_MARBLE,
     [MAPSEC_ROUTE_101] = MAPPOPUP_THEME_WOOD,
     [MAPSEC_ROUTE_102] = MAPPOPUP_THEME_WOOD,
     [MAPSEC_ROUTE_103] = MAPPOPUP_THEME_WOOD,
@@ -317,6 +318,13 @@ static void ShowMapNamePopUpWindow(void)
             mapDisplayHeaderSource = gBattlePyramid_MapHeaderStrings[gSaveBlock2Ptr->frontier.curChallengeBattleNum];
         }
         StringCopy(withoutPrefixPtr, mapDisplayHeaderSource);
+    }
+    else if (gMapNameOverride != NULL)
+    {
+        withoutPrefixPtr = &(mapDisplayHeader[3]);
+        StringCopyN(withoutPrefixPtr, gMapNameOverride, 20);
+        mapDisplayHeader[23] = EOS; //ensure end-of-string
+        gMapNameOverride = NULL;
     }
     else
     {

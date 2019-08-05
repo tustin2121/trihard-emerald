@@ -873,14 +873,11 @@
 	.2byte \deviation
 	.endm
 
-	@ Nopped in Emerald, but still consumes parameters.
-	@ .macro drawboxtext byte1:req, byte2:req, byte3:req, byte4:req
-	@ .byte 0x74
-	@ .byte \byte1
-	@ .byte \byte2
-	@ .byte \byte3
-	@ .byte \byte4
-	@ .endm
+	@ Overrides the string that appears in the map name popup. This override happens only once.
+	.macro overridemapname nameStr:req
+	.byte 0x74
+	.4byte \nameStr
+	.endm
 
 	@ Displays a box containing the front sprite for the specified (species) Pokemon species.
 	.macro drawmonpic species:req, x:req, y:req

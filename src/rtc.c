@@ -348,7 +348,7 @@ void RtcSetDayOfWeek(s8 dayOfWeek)
 {
     // calc local time so we have an up-to-date time offset before recalculating offset
     RtcCalcLocalTime();
-    gLocalTime.dayOfWeek = dayOfWeek;;
+    gLocalTime.dayOfWeek = dayOfWeek;
     RtcGetInfo(&sRtc);
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
 }
@@ -455,6 +455,65 @@ void AdvanceRealtimeClock(int hours, int minutes)
         gLocalTime.hours -= 24;
         ++gLocalTime.days;
     }
+    
+    // Set the offset back to the save block
+    RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
+}
+
+void AdvanceTimeToNextMorning()
+{
+    int hours, minutes;
+    
+    // Calculate local time
+    RtcGetInfo(&sRtc);
+    RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
+    
+    if (gLocalTime.hours < 10)
+    {
+        hours = 10 - gLocalTime.hours;
+    }
+    else
+    {
+        hours = 34 - gLocalTime.hours;
+    }
+    gLocalTime.hours += hours;
+    gLocalTime.minutes = 0;
+    
+    while (gLocalTime.hours >= 24)
+    {
+        gLocalTime.hours -= 24;
+        ++gLocalTime.days;
+    }
+    
+    // Set the offset back to the save block
+    RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
+}
+
+void AdvanceTimeToNextMondayMorning()
+{
+    int hours, minutes;
+    
+    // Calculate local time
+    RtcGetInfo(&sRtc);
+    RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
+    
+    if (gLocalTime.hours < 10)
+    {
+        hours = 10 - gLocalTime.hours;
+    }
+    else
+    {
+        hours = 34 - gLocalTime.hours;
+    }
+    gLocalTime.hours += hours;
+    gLocalTime.minutes = 0;
+    
+    while (gLocalTime.hours >= 24)
+    {
+        gLocalTime.hours -= 24;
+        ++gLocalTime.days;
+    }
+    gLocalTime.dayOfWeek = 1;
     
     // Set the offset back to the save block
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);

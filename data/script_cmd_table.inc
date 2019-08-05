@@ -116,7 +116,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_multichoicegrid
 	.4byte ScrCmd_warpcustom
 	.4byte ScrCmd_advancetime
-	.4byte ScrCmd_drawboxtext
+	.4byte ScrCmd_overridemapname
 	.4byte ScrCmd_showmonpic
 	.4byte ScrCmd_hidemonpic
 	.4byte ScrCmd_showcontestwinner

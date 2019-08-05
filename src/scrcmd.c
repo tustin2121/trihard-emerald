@@ -1584,18 +1584,11 @@ bool8 ScrCmd_advancetime(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_drawboxtext(struct ScriptContext *ctx)
+extern u8* gMapNameOverride;
+bool8 ScrCmd_overridemapname(struct ScriptContext *ctx)
 {
-    u8 left = ScriptReadByte(ctx);
-    u8 top = ScriptReadByte(ctx);
-    u8 multichoiceId = ScriptReadByte(ctx);
-    u8 ignoreBPress = ScriptReadByte(ctx);
-
-    /*if (Multichoice(left, top, multichoiceId, ignoreBPress) == TRUE)
-    {
-        ScriptContext1_Stop();
-        return TRUE;
-    }*/
+    u8* str = (u8*)ScriptReadWord(ctx);
+    gMapNameOverride = str;
     return FALSE;
 }
 
@@ -2234,11 +2227,16 @@ bool8 ScrCmd_setmetatile(struct ScriptContext *ctx)
 {
     u16 x = VarGet(ScriptReadHalfword(ctx));
     u16 y = VarGet(ScriptReadHalfword(ctx));
-    u16 tileId = VarGet(ScriptReadHalfword(ctx));
+    u16 tileId = ScriptReadHalfword(ctx);
     u16 isImpassable = VarGet(ScriptReadHalfword(ctx));
-
+    
     x += 7;
     y += 7;
+    
+    if (tileId == 0xFFFF)
+        tileId = MapGridGetMetatileIdAt(x, y);
+    tileId = VarGet(tileId);
+    
     if (!isImpassable)
         MapGridSetMetatileIdAt(x, y, tileId);
     else
