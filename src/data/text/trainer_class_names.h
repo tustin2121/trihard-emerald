@@ -47,6 +47,7 @@ const u8 gTrainerClassNames[][13] = {
     [TRAINER_CLASS_SWIMMER_F] = _("Swimmer♀"),
     [TRAINER_CLASS_TWINS] = _("Twins"),
     [TRAINER_CLASS_SAILOR] = _("Sailor"),
+    [TRAINER_CLASS_SCIENTIST] = _("Scientist"),
     [TRAINER_CLASS_COOLTRAINER_UNUSED] = _("Cooltrainer"),
     [TRAINER_CLASS_MAGMA_ADMIN] = _("Magma Admin"),
     [TRAINER_CLASS_PKMN_TRAINER_3] = _("{PKMN} Trainer"),

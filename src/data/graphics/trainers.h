@@ -205,6 +205,9 @@ const u32 gTrainerPalette_Twins[] = INCBIN_U32("graphics/trainers/palettes/twins
 const u32 gTrainerFrontPic_Sailor[] = INCBIN_U32("graphics/trainers/front_pics/sailor_front_pic.4bpp.lz");
 const u32 gTrainerPalette_Sailor[] = INCBIN_U32("graphics/trainers/palettes/sailor.gbapal.lz");
 
+const u32 gTrainerFrontPic_Scientist[] = INCBIN_U32("graphics/trainers/front_pics/scientist_front_pic.4bpp.lz");
+const u32 gTrainerPalette_Scientist[] = INCBIN_U32("graphics/trainers/palettes/scientist.gbapal.lz");
+
 const u32 gTrainerFrontPic_MagmaAdmin[] = INCBIN_U32("graphics/trainers/front_pics/magma_admin_front_pic.4bpp.lz");
 const u32 gTrainerPalette_MagmaAdmin[] = INCBIN_U32("graphics/trainers/palettes/magma_admin.gbapal.lz");
 
@@ -297,6 +300,14 @@ const u8 gTrainerBackPic_RubySapphireBrendan[] = INCBIN_U8("graphics/trainers/ba
 const u8 gTrainerBackPic_RubySapphireMay[] = INCBIN_U8("graphics/trainers/back_pics/rs_may_back_pic.4bpp");
 const u8 gTrainerBackPic_Wally[] = INCBIN_U8("graphics/trainers/back_pics/wally_back_pic.4bpp");
 const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steven_back_pic.4bpp");
+const u8 gTrainerBackPic_ProtagMale1[] = INCBIN_U8("graphics/trainers/back_pics/protag_male_1.4bpp");
+const u8 gTrainerBackPic_ProtagMale2[] = INCBIN_U8("graphics/trainers/back_pics/protag_male_2.4bpp");
+const u8 gTrainerBackPic_ProtagMale3[] = INCBIN_U8("graphics/trainers/back_pics/protag_male_3.4bpp");
+const u8 gTrainerBackPic_ProtagMale4[] = INCBIN_U8("graphics/trainers/back_pics/protag_male_4.4bpp");
+const u8 gTrainerBackPic_ProtagFemale1[] = INCBIN_U8("graphics/trainers/back_pics/protag_female_1.4bpp");
+const u8 gTrainerBackPic_ProtagFemale2[] = INCBIN_U8("graphics/trainers/back_pics/protag_female_2.4bpp");
+const u8 gTrainerBackPic_ProtagFemale3[] = INCBIN_U8("graphics/trainers/back_pics/protag_female_3.4bpp");
+const u8 gTrainerBackPic_ProtagFemale4[] = INCBIN_U8("graphics/trainers/back_pics/protag_female_4.4bpp");
 
 const u32 gTrainerBackPicPalette_Red[] = INCBIN_U32("graphics/trainers/palettes/red_back_pic.gbapal.lz");
 const u32 gTrainerBackPicPalette_Leaf[] = INCBIN_U32("graphics/trainers/palettes/leaf_back_pic.gbapal.lz");

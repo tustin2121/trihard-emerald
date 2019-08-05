@@ -18,7 +18,7 @@
 #define TRAINER_GRUNT_9          14
 #define TRAINER_DECLAN           15
 #define TRAINER_GRUNT_10         16
-#define TRAINER_GRUNT_11         17
+#define TRAINER_RODRIGO         17
 #define TRAINER_GRUNT_12         18
 #define TRAINER_GRUNT_13         19
 #define TRAINER_LOGAN_STERNCUTSCENE         20
@@ -27,7 +27,7 @@
 #define TRAINER_GRUNT_17         23
 #define TRAINER_GRUNT_18         24
 #define TRAINER_GRUNT_19         25
-#define TRAINER_GRUNT_20         26
+#define TRAINER_IZZY         26
 #define TRAINER_GRUNT_21         27
 #define TRAINER_GRUNT_22         28
 #define TRAINER_FREDRICK         29

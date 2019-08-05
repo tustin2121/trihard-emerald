@@ -420,7 +420,7 @@ Common_EventScript_ClearSceneFlags::
 	clearflag FLAG_SCENE_C
 	clearflag FLAG_SCENE_D
 	clearflag FLAG_SCENE_E
-	clearflag FLAG_SCENE_F
+	clearflag FLAG_SCENE_FORCE_AQUA_THEME
 	return
 
 Common_EventScript_FailTheftNoRoom::

@@ -221,6 +221,7 @@ SlateportCity_OceanicMuseum_2F_TriggerScript_SternMugging::
 	markasdialog 14
 	msgbox SlateportCity_OceanicMuseum_2F_Text_SternMugging11
 	@ FIGHT
+	setflag FLAG_SCENE_FORCE_AQUA_THEME
 	trainerbattle_no_intro TRAINER_LOGAN_STERNCUTSCENE, SlateportCity_OceanicMuseum_2F_Text_SternMugging_LoganLose
 	@
 	applymovement LID_LOGAN, Common_Movement_WalkInPlaceUp

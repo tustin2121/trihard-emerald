@@ -54,7 +54,7 @@
 #define FLAG_SCENE_C    0x2C // TE: Scene Flag
 #define FLAG_SCENE_D    0x2D // TE: Scene Flag
 #define FLAG_SCENE_E    0x2E // TE: Scene Flag
-#define FLAG_SCENE_F    0x2F // TE: Scene Flag
+#define FLAG_SCENE_FORCE_AQUA_THEME    0x2F // TE: Scene Flag
 
 
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag

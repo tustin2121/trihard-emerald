@@ -6368,6 +6368,9 @@ u16 GetBattleBGM(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         u8 trainerClass;
+        
+        if (FlagGet(FLAG_SCENE_FORCE_AQUA_THEME))
+            return MUS_BATTLE31;
 
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
             trainerClass = GetFrontierOpponentClass(gTrainerBattleOpponent_A);

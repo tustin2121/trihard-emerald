@@ -115,6 +115,7 @@
 #define TRAINER_PIC_PROTAG_FEMALE_3       98
 #define TRAINER_PIC_PROTAG_MALE_4         99
 #define TRAINER_PIC_PROTAG_FEMALE_4      100
+#define TRAINER_PIC_SCIENTIST            101
 
 //TODO: MULTIFORM PLAYER
 #define TRAINER_BACK_PIC_BRENDAN                0
@@ -125,6 +126,14 @@
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      5
 #define TRAINER_BACK_PIC_WALLY                  6
 #define TRAINER_BACK_PIC_STEVEN                 7
+#define TRAINER_BACK_PIC_PROTAG_MALE_1          8
+#define TRAINER_BACK_PIC_PROTAG_FEMALE_1        9
+#define TRAINER_BACK_PIC_PROTAG_MALE_2          10
+#define TRAINER_BACK_PIC_PROTAG_FEMALE_2        11
+#define TRAINER_BACK_PIC_PROTAG_MALE_3          12
+#define TRAINER_BACK_PIC_PROTAG_FEMALE_3        13
+#define TRAINER_BACK_PIC_PROTAG_MALE_4          14
+#define TRAINER_BACK_PIC_PROTAG_FEMALE_4        15
 
 #define FACILITY_CLASS_HIKER                 0x0
 #define FACILITY_CLASS_AQUA_GRUNT_M          0x1
@@ -208,8 +217,9 @@
 #define FACILITY_CLASS_LEAF                  0x4f
 #define FACILITY_CLASS_RS_BRENDAN            0x50
 #define FACILITY_CLASS_RS_MAY                0x51
+#define FACILITY_CLASS_SCIENTIST             0x52
 
-#define FACILITY_CLASSES_COUNT               0x52
+#define FACILITY_CLASSES_COUNT               0x53
 
 #define TRAINER_CLASS_PKMN_TRAINER_1 0x0
 #define TRAINER_CLASS_PKMN_TRAINER_2 0x1
@@ -277,6 +287,7 @@
 #define TRAINER_CLASS_PIKE_QUEEN     0x3f
 #define TRAINER_CLASS_PYRAMID_KING   0x40
 #define TRAINER_CLASS_PKMN_TRAINER_4 0x41
+#define TRAINER_CLASS_SCIENTIST      0x42
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music

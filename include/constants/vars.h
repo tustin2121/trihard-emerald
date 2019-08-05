@@ -142,7 +142,7 @@
 #define VAR_UNUSED_0x407D                    0x407D // Unused Var
 #define VAR_UNUSED_0x407E                    0x407E // Unused Var
 #define VAR_UNUSED_0x407F                    0x407F // Unused Var
-#define VAR_UNUSED_0x4080                    0x4080 // Unused Var
+#define VAR_SLEPT_DURING_WI_HEIST            0x4080 // TriHard
 #define VAR_AQUA_HIDEOUT_STATE               0x4081 // TriHard Emerald
 #define VAR_LITTLEROOT_HOUSES_STATE          0x4082
 #define VAR_UNUSED_0x4083                    0x4083 // Unused Var

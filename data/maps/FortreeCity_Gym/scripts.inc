@@ -43,8 +43,8 @@ FortreeCity_Gym_EventScript_2165FD:: @ 82165FD
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_WINONA_MATCH_CALL
-	setvar VAR_WINONA_CALL_STEP_COUNTER, 0
-	setflag FLAG_REGISTER_WINONA_POKENAV
+	@ setvar VAR_WINONA_CALL_STEP_COUNTER, 0
+	@ setflag FLAG_REGISTER_WINONA_POKENAV
 	release
 	end
 

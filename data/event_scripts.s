@@ -2219,8 +2219,6 @@ gText_PkmnBoxSomeonesPCFull:: @ 8273296
 gText_PkmnBoxLanettesPCFull:: @ 82732D9
 	.string "BOX “{STR_VAR_3}” on\nLANETTE'S PC was full.\p{STR_VAR_2} was transferred to\nBOX “{STR_VAR_1}.”$"
 
-gUnknown_0827331C:: @ 827331C
-	.string "There's no more room for Pokémon!\pYour party is full!$"
 
 gText_NicknameThisPokemon:: @ 8273374
 	.string "Do you want to give a nickname to\nthis {STR_VAR_1}?$"
@@ -2417,11 +2415,13 @@ LittlerootTown_ProfessorBirchsLab_EventScript_2737FF:: @ 82737FF
 
 LittlerootTown_ProfessorBirchsLab_EventScript_273811:: @ 8273811
 MossdeepCity_StevensHouse_EventScript_273811:: @ 8273811
-Route119_WeatherInstitute_2F_EventScript_273811:: @ 8273811
 RustboroCity_DevonCorp_2F_EventScript_273811:: @ 8273811
+Common_EventScript_NoRoomForGiftPokemon::
 	msgbox gUnknown_0827331C, MSGBOX_DEFAULT
 	release
 	end
+gUnknown_0827331C:: @ 827331C
+	.string "There's no more room for Pokémon!\pYour party is full!$"
 
 EventScript_Questionnaire:: @ 827381B
 	lockall

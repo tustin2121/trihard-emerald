@@ -571,21 +571,21 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(IslandCave_EventScript_238EAF);
             return TRUE;
         }
-        if (ShouldDoWallyCall() == TRUE)
-        {
-            ScriptContext1_SetupScript(MauvilleCity_EventScript_1DF7BA);
-            return TRUE;
-        }
-        if (ShouldDoWinonaCall() == TRUE)
-        {
-            ScriptContext1_SetupScript(Route119_EventScript_1F49EC);
-            return TRUE;
-        }
-        if (ShouldDoScottCall() == TRUE)
-        {
-            ScriptContext1_SetupScript(LittlerootTown_ProfessorBirchsLab_EventScript_1FA4D6);
-            return TRUE;
-        }
+        // if (ShouldDoWallyCall() == TRUE)
+        // {
+        //     ScriptContext1_SetupScript(MauvilleCity_EventScript_1DF7BA);
+        //     return TRUE;
+        // }
+        // if (ShouldDoWinonaCall() == TRUE)
+        // {
+        //     ScriptContext1_SetupScript(Route119_EventScript_1F49EC);
+        //     return TRUE;
+        // }
+        // if (ShouldDoScottCall() == TRUE)
+        // {
+        //     ScriptContext1_SetupScript(LittlerootTown_ProfessorBirchsLab_EventScript_1FA4D6);
+        //     return TRUE;
+        // }
         // if (ShouldDoRoxanneCall() == TRUE)
         // {
         //     ScriptContext1_SetupScript(RustboroCity_Gym_EventScript_21307B);

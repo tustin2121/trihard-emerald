@@ -174,8 +174,8 @@
             "script": "MauvilleCity_EventScript_1DF452",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 8,
-            "y": 6
+            "x": 0,
+            "y": 25
         },
         {
             "elevation": 3,
@@ -187,8 +187,8 @@
             "script": "MauvilleCity_EventScript_1DF41D",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 9,
-            "y": 6
+            "x": 1,
+            "y": 25
         },
         {
             "elevation": 3,

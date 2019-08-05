@@ -94,3 +94,9 @@ VAR_AQUA_HIDEOUT_STATE :=
 	0 = Initial State
 	1 = Meet Logan on way up
 	2 = After Logan
+
+VAR_WEATHER_INSTITUTE_STATE :=
+	0 = Initial State, heist getting
+	1 = Heist Underway
+	2 = Heist Cleared
+	3 = Heist Cleared, everyone back to normal hidden levels
