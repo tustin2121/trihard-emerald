@@ -1976,9 +1976,8 @@ SlateportCity_OceanicMuseum_2F_EventScript_2723E4:: @ 82723E4
 EverGrandeCity_DrakesRoom_EventScript_2723F8:: @ 82723F8
 EverGrandeCity_GlaciasRoom_EventScript_2723F8:: @ 82723F8
 EverGrandeCity_PhoebesRoom_EventScript_2723F8:: @ 82723F8
-EverGrandeCity_SidneysRoom_EventScript_2723F8:: @ 82723F8
-	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_SidneysRoom_Movement_2725C6
-	waitmovement 0
+EverGrandeCity_E4Room_UnlockNextDoorTurnOffLights:: @ 82723F8
+	delay 32
 	playse SE_DOOR
 	setmetatile 6, 1, 836, 0
 	setmetatile 6, 2, 837, 0
@@ -1995,11 +1994,8 @@ EverGrandeCity_SidneysRoom_EventScript_2723F8:: @ 82723F8
 	special DrawWholeMapView
 	return
 
-EverGrandeCity_DrakesRoom_EventScript_272475:: @ 8272475
-EverGrandeCity_GlaciasRoom_EventScript_272475:: @ 8272475
-EverGrandeCity_PhoebesRoom_EventScript_272475:: @ 8272475
-EverGrandeCity_SidneysRoom_EventScript_272475:: @ 8272475
-	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_SidneysRoom_Movement_2725BA
+EverGrandeCity_E4Room_WalkUpAndCloseDoorBehind:: @ 8272475
+	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_E4Room_Movement_2725BA
 	waitmovement 0
 	playse SE_TRACK_DOOR
 	setmetatile 5, 12, 518, 1
@@ -2010,11 +2006,16 @@ EverGrandeCity_SidneysRoom_EventScript_272475:: @ 8272475
 	setmetatile 7, 13, 526, 1
 	special DrawWholeMapView
 	return
+EverGrandeCity_E4Room_Movement_2725BA: @ 82725BA
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
 
-EverGrandeCity_DrakesRoom_EventScript_2724BC:: @ 82724BC
-EverGrandeCity_GlaciasRoom_EventScript_2724BC:: @ 82724BC
-EverGrandeCity_PhoebesRoom_EventScript_2724BC:: @ 82724BC
-EverGrandeCity_SidneysRoom_EventScript_2724BC:: @ 82724BC
+EverGrandeCity_E4Room_SetRoomPostBattle:: @ 82724BC
 	setmetatile 6, 1, 836, 0
 	setmetatile 6, 2, 837, 0
 	setmetatile 5, 12, 518, 1
@@ -2035,10 +2036,7 @@ EverGrandeCity_SidneysRoom_EventScript_2724BC:: @ 82724BC
 	setmetatile 12, 2, 733, 1
 	return
 
-EverGrandeCity_DrakesRoom_EventScript_27255F:: @ 827255F
-EverGrandeCity_GlaciasRoom_EventScript_27255F:: @ 827255F
-EverGrandeCity_PhoebesRoom_EventScript_27255F:: @ 827255F
-EverGrandeCity_SidneysRoom_EventScript_27255F:: @ 827255F
+EverGrandeCity_E4Room_SetRoomClosedDoorBehind:: @ 827255F
 	setmetatile 5, 12, 518, 1
 	setmetatile 6, 12, 518, 1
 	setmetatile 7, 12, 518, 1
@@ -2060,19 +2058,6 @@ Route121_Movement_2725B8: @ 82725B8
 	walk_in_place_right
 	step_end
 
-EverGrandeCity_SidneysRoom_Movement_2725BA: @ 82725BA
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-EverGrandeCity_SidneysRoom_Movement_2725C6: @ 82725C6
-	delay_16
-	delay_16
-	step_end
 
 Movement_2725CB:: @ 82725CB
 	walk_up

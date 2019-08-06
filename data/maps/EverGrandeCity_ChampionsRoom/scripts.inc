@@ -134,7 +134,7 @@ EverGrandeCity_ChampionsRoom_Text_ChampTalk1:
 	.string "I don't know how true these rumors are,\n"
 	.string "but they make for facinating TV.\p"
 	.string "You did manage to make it this far\n"
-	.string "in the Championship Competition.\p"
+	.string "in the Elite Four Conference.\p"
 	.string "Tell me. What drives you so?\p"
 	.string "Why do you push your Pokémon to the\n"
 	.string "edge for this title?\p"
@@ -165,7 +165,7 @@ EverGrandeCity_ChampionsRoom_Text_ChampTalk2: @ 8228C4C
 	.string "by working as one with your Pokémon.\p"
 	.string "After that showing, frankly it's no\n"
 	.string "surprise that you made it this far in\l"
-	.string "the Championship Competition.\p"
+	.string "the Elite Four Conference.\p"
 	.string "Tell me. What drives you so?\p"
 	.string "Why do you push your Pokémon to the\n"
 	.string "edge for this title?\p"
@@ -216,7 +216,6 @@ EverGrandeCity_ChampionsRoom_EventScript_AfterMath:: @ 8228A61
 	waitstate
 	releaseall
 	end
-
 EverGrandeCity_ChampionsRoom_Text_228F66: @ 8228F66
 	.string "Wallace: The Pokémon you sent into\n"
 	.string "battle…\p"

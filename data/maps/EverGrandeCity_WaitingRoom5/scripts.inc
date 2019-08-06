@@ -38,13 +38,25 @@ EverGrandeCity_WaitingRoom5_SignScript_TVs::
 	setflag FLAG_TEMP_2
 	end
 EverGrandeCity_WaitingRoom5_Text_TVs:
-	.string "Reporter: (Placeholder).$"
+	.string "Reporter: This is it, folks!\p"
+	.string "Day FIVE of the Elite Four Conference!\p"
+	.string "And we have a potential challenger to\n"
+	.string "the Champion's crown!\p"
+	.string "Thousands have turned out for this\n"
+	.string "battle, which is gearing up to be a\l"
+	.string "knock-down, blow out hit!\p"
+	.string "Any moment now, {PLAYER}, also known as\n"
+	.string "the “Lightning from Littleroot”, should\l"
+	.string "be making {PLAYER_their} way to the\l"
+	.string "Champion's Plinth!$"
 EverGrandeCity_WaitingRoom5_SignScript_TVs2:
 	bufferpartymonnick 0, 0
 	msgbox EverGrandeCity_WaitingRoom5_Text_TVs2, MSGBOX_DESCRIBE
 	end
 EverGrandeCity_WaitingRoom5_Text_TVs2:
-	.string "with a red marker to help illustrate.$"
+	.string "The cameras scan across a huge crowd\n"
+	.string "of people.\p"
+	.string "Wait, was that Dad??$"
 
 @ -----------------------------------------------------
 @ People: None

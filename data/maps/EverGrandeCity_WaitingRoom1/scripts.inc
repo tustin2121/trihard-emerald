@@ -23,11 +23,13 @@ EverGrandeCity_WaitingRoom1_SlowFade:
 	setvar VAR_TEMP_0, 1
 	incrementgamestat GAME_STAT_NUM_E4_ATTEMPTS
 	callnative AdvanceTimeToNextMondayMorning
+	call Common_EventScript_ClearSceneFlags
 	advancetime 4, 10, 35
 	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
 	delay 50
 	callnative ShowMapNamePopup
 	delay 80
+	call EverGrandeCity_WaitingRoom1_CreateVirtualObjects
 	clearflag FLAG_DISABLE_FADE_INIT
 	fadescreenspeed 4, 6
 	end
@@ -35,20 +37,21 @@ EverGrandeCity_WaitingRoom1_SlowFade:
 @ -----------------------------------------------------
 
 EverGrandeCity_WaitingRoom1_OnResume:
-	call EverGrandeCity_WaitingRoom1_CreateVirtualObjects
+	compare VAR_TEMP_0, 1
+	call_if_eq EverGrandeCity_WaitingRoom1_CreateVirtualObjects
 	end
 EverGrandeCity_WaitingRoom1_CreateVirtualObjects:
 	createvobject EVENT_OBJ_GFX_YOUNGSTER,     50, 10, 3,  3, DIR_WEST
 	setmetatile                                    10, 3, -1, TRUE
-	createvobject EVENT_OBJ_GFX_BLACK_BELT,    50, 10, 5,  3, DIR_WEST
+	createvobject EVENT_OBJ_GFX_BLACK_BELT,    51, 10, 5,  3, DIR_WEST
 	setmetatile                                    10, 5, -1, TRUE
-	createvobject EVENT_OBJ_GFX_GENTLEMAN,     50, 10, 8,  3, DIR_WEST
+	createvobject EVENT_OBJ_GFX_GENTLEMAN,     52, 10, 8,  3, DIR_WEST
 	setmetatile                                    10, 8, -1, TRUE
-	createvobject EVENT_OBJ_GFX_BUG_CATCHER,   50,  0, 6,  3, DIR_EAST
-	setmetatile                                     0, 6, -1, TRUE
-	createvobject EVENT_OBJ_GFX_HIKER,         50,  0, 4,  3, DIR_EAST
+	createvobject EVENT_OBJ_GFX_BUG_CATCHER,   53,  0, 7,  3, DIR_EAST
+	setmetatile                                     0, 7, -1, TRUE
+	createvobject EVENT_OBJ_GFX_HIKER,         54,  0, 4,  3, DIR_EAST
 	setmetatile                                     0, 4, -1, TRUE
-	createvobject EVENT_OBJ_GFX_BEAUTY,        50,  0, 3,  3, DIR_EAST
+	createvobject EVENT_OBJ_GFX_BEAUTY,        55,  0, 3,  3, DIR_EAST
 	setmetatile                                     0, 3, -1, TRUE
 	return
 

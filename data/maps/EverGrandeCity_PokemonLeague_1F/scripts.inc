@@ -12,8 +12,8 @@ EverGrandeCity_PokemonLeague_1F_OnTransition: @ 82295DD
 	end
 
 EverGrandeCity_PokemonLeague_1F_EventScript_2295ED:: @ 82295ED
-	setobjectxyperm 3, 9, 2
-	setobjectxyperm 4, 10, 2
+	setobjectxyperm 3, 12, 5
+	setobjectxyperm 4, 13, 5
 	return
 
 @ -----------------------------------------------------
@@ -52,15 +52,22 @@ EverGrandeCity_PokemonLeague_1F_Pokemart_229624: @ 8229624
 EverGrandeCity_PokemonLeague_1F_EventScript_229636:: @ 8229636
 	lockall
 	goto_if_set FLAG_ENTERED_ELITE_FOUR, EverGrandeCity_PokemonLeague_1F_EventScript_2296BB
-	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	compare VAR_TEMP_0, 11
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	compare VAR_INTERACT_X, 14
 	call_if_ge EverGrandeCity_PokemonLeague_1F_EventScript_229698
-	compare VAR_TEMP_0, 8
+	compare VAR_INTERACT_X, 11
 	call_if_le EverGrandeCity_PokemonLeague_1F_EventScript_2296A3
 	message EverGrandeCity_PokemonLeague_1F_Text_2296E8
 	waitmessage
 	delay 120
-	goto_if_unset FLAG_BADGE06_GET, EverGrandeCity_PokemonLeague_1F_EventScript_2296AE
+	goto_if_unset FLAG_BADGE01_GET, EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry
+	goto_if_unset FLAG_BADGE02_GET, EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry
+	goto_if_unset FLAG_BADGE03_GET, EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry
+	goto_if_unset FLAG_BADGE04_GET, EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry
+	goto_if_unset FLAG_BADGE05_GET, EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry
+	goto_if_unset FLAG_BADGE06_GET, EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry
+	goto_if_unset FLAG_BADGE07_GET, EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry
+	goto_if_unset FLAG_BADGE08_GET, EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry
 	closemessage
 	applymovement 3, EverGrandeCity_PokemonLeague_1F_Movement_2296E2
 	applymovement 4, EverGrandeCity_PokemonLeague_1F_Movement_2296E5
@@ -76,22 +83,45 @@ EverGrandeCity_PokemonLeague_1F_EventScript_229636:: @ 8229636
 	setflag FLAG_ENTERED_ELITE_FOUR
 	releaseall
 	end
+EverGrandeCity_PokemonLeague_1F_Text_2296E8: @ 82296E8
+	.string "Beyond this point, only those trainers\n"
+	.string "who have collected all the Gym Badges\l"
+	.string "are permitted to enter.\p"
+	.string "Trainer, let us confirm that you have\n"
+	.string "all the Gym Badges.$"
+EverGrandeCity_PokemonLeague_1F_Text_2297EF: @ 82297EF
+	.string "Trainer! Believe in yourself and your\n"
+	.string "Pokémon, and go forth!$"
 
 EverGrandeCity_PokemonLeague_1F_EventScript_229698:: @ 8229698
 	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_PokemonLeague_1F_Movement_2296DA
 	waitmovement 0
 	return
+EverGrandeCity_PokemonLeague_1F_Movement_2296DA: @ 82296DA
+	walk_down
+	walk_left
+	walk_in_place_fastest_up
+	step_end
 
 EverGrandeCity_PokemonLeague_1F_EventScript_2296A3:: @ 82296A3
 	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_PokemonLeague_1F_Movement_2296DE
 	waitmovement 0
 	return
+EverGrandeCity_PokemonLeague_1F_Movement_2296DE: @ 82296DE
+	walk_down
+	walk_right
+	walk_in_place_fastest_up
+	step_end
 
-EverGrandeCity_PokemonLeague_1F_EventScript_2296AE:: @ 82296AE
+EverGrandeCity_PokemonLeague_1F_EventScript_RejectEntry:: @ 82296AE
 	playse SE_HAZURE
 	msgbox EverGrandeCity_PokemonLeague_1F_Text_229787, MSGBOX_DEFAULT
 	releaseall
 	end
+EverGrandeCity_PokemonLeague_1F_Text_229787: @ 8229787
+	.string "You haven't obtained all the Badges.\p"
+	.string "If you're bound for the Pokémon\n"
+	.string "League, you must return with them.$"
 
 EverGrandeCity_PokemonLeague_1F_EventScript_2296BB:: @ 82296BB
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
@@ -103,17 +133,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_2296BB:: @ 82296BB
 	releaseall
 	end
 
-EverGrandeCity_PokemonLeague_1F_Movement_2296DA: @ 82296DA
-	walk_down
-	walk_left
-	walk_in_place_fastest_up
-	step_end
 
-EverGrandeCity_PokemonLeague_1F_Movement_2296DE: @ 82296DE
-	walk_down
-	walk_right
-	walk_in_place_fastest_up
-	step_end
 
 EverGrandeCity_PokemonLeague_1F_Movement_2296E2: @ 82296E2
 	walk_left
@@ -125,19 +145,6 @@ EverGrandeCity_PokemonLeague_1F_Movement_2296E5: @ 82296E5
 	walk_in_place_fastest_down
 	step_end
 
-EverGrandeCity_PokemonLeague_1F_Text_2296E8: @ 82296E8
-	.string "Beyond this point, only those trainers\n"
-	.string "who have collected all the Gym Badges\l"
-	.string "are permitted to enter.\p"
-	.string "Trainer, let us confirm that you have\n"
-	.string "all the Gym Badges.$"
 
-EverGrandeCity_PokemonLeague_1F_Text_229787: @ 8229787
-	.string "You haven't obtained all the Badges.\p"
-	.string "If you're bound for the Pokémon\n"
-	.string "League, you must return with them.$"
 
-EverGrandeCity_PokemonLeague_1F_Text_2297EF: @ 82297EF
-	.string "Trainer! Believe in yourself and your\n"
-	.string "Pokémon, and go forth!$"
 

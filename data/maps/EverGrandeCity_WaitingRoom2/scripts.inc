@@ -25,6 +25,7 @@ EverGrandeCity_WaitingRoom2_SlowFade:
 	advancetime 22, 0, 35
 	callnative ShowMapNamePopup
 	delay 80
+	call EverGrandeCity_WaitingRoom2_CreateVirtualObjects
 	clearflag FLAG_DISABLE_FADE_INIT
 	fadescreenspeed 4, 6
 	end
@@ -32,16 +33,17 @@ EverGrandeCity_WaitingRoom2_SlowFade:
 @ -----------------------------------------------------
 
 EverGrandeCity_WaitingRoom2_OnResume:
-	call EverGrandeCity_WaitingRoom2_CreateVirtualObjects
+	compare VAR_TEMP_0, 1
+	call_if_eq EverGrandeCity_WaitingRoom2_CreateVirtualObjects
 	end
 EverGrandeCity_WaitingRoom2_CreateVirtualObjects:
 	createvobject EVENT_OBJ_GFX_YOUNGSTER,     50, 10, 7,  3, DIR_WEST
 	setmetatile                                    10, 7, -1, TRUE
-	createvobject EVENT_OBJ_GFX_GENTLEMAN,     50, 10, 4,  3, DIR_WEST
+	createvobject EVENT_OBJ_GFX_GENTLEMAN,     51, 10, 4,  3, DIR_WEST
 	setmetatile                                    10, 4, -1, TRUE
-	createvobject EVENT_OBJ_GFX_BUG_CATCHER,   50,  0, 7,  3, DIR_EAST
+	createvobject EVENT_OBJ_GFX_BUG_CATCHER,   52,  0, 7,  3, DIR_EAST
 	setmetatile                                     0, 7, -1, TRUE
-	createvobject EVENT_OBJ_GFX_BEAUTY,        50,  0, 3,  3, DIR_EAST
+	createvobject EVENT_OBJ_GFX_BEAUTY,        53,  0, 3,  3, DIR_EAST
 	setmetatile                                     0, 3, -1, TRUE
 	return
 
@@ -57,11 +59,11 @@ EverGrandeCity_WaitingRoom2_Text_TVs:
 	.string "Reporter: It's day two of the Elite\n"
 	.string "Four Conference, ladies and gents!\p"
 	.string "We're looking forward to the eighth\n"
-	.string "combatant of the day, ready to face off\l"
-	.string "against Phoebe and her Ghost-type Pokémon!\p"
+	.string "combatant of the day, ready to face\l"
+	.string "off against Phoebe!\p"
 	.string "{PLAYER} from Littleroot will be battling\n"
-	.string "her in a short moment. {PLAYER_They} proved\l"
-	.string "{PLAYER_them}self yesterday against\l"
+	.string "her Ghost Pokémon in a short moment.\p"
+	.string "{PLAYER_They} proved {PLAYER_them}self yesterday against\n"
 	.string "Sidney, but who knows if that luck will\l"
 	.string "continue today.$"
 EverGrandeCity_WaitingRoom2_SignScript_TVs2:
@@ -125,7 +127,7 @@ EverGrandeCity_WaitingRoom2_EventScript_Person4::
 	msgbox EverGrandeCity_WaitingRoom2_Text_Person4, MSGBOX_DESCRIBE
 	end
 EverGrandeCity_WaitingRoom2_Text_Person4::
-	.string "She seems to be quietly sobbing…$"
+	.string "She seems to be praying to herself…$"
 
 
 EverGrandeCity_WaitingRoom2_EventScript_Person5::
@@ -137,28 +139,55 @@ EverGrandeCity_WaitingRoom2_Text_Person5::
 
 
 EverGrandeCity_WaitingRoom2_EventScript_Person6::
-	msgbox EverGrandeCity_WaitingRoom2_Text_Person6, MSGBOX_NPC
+	lock
+	faceplayer
+	markasdialog
+	goto_if_set FLAG_TEMP_5, EverGrandeCity_WaitingRoom2_EventScript_Person6B
+	goto_if_set FLAG_SCENE_0, EverGrandeCity_WaitingRoom2_EventScript_Person6A
+	setyesnotext gYN_YeahBang, gYN_Uhhh
+	msgbox EverGrandeCity_WaitingRoom2_Text_Person6, MSGBOX_YESNO
+	switch VAR_RESULT
+	case YES, EverGrandeCity_WaitingRoom2_EventScript_Person6A
+	case NO, EverGrandeCity_WaitingRoom2_EventScript_Person6B
+	release
 	end
-EverGrandeCity_WaitingRoom2_Text_Person6::
+EverGrandeCity_WaitingRoom2_Text_Person6:
 	.string "I don't know which is making me more\n"
 	.string "nervous: the Conference, or that pretty\l"
 	.string "girl standing over there…\p"
-	.string "I… I wanna ask her out…$"
-
+	.string "Should… I ask her out…?$"
+EverGrandeCity_WaitingRoom2_EventScript_Person6A:
+	msgbox EverGrandeCity_WaitingRoom2_Text_Person6A
+	setflag FLAG_SCENE_0
+	release
+	end
+EverGrandeCity_WaitingRoom2_Text_Person6A:
+	.string "Yeah, you're right, I should go ask\n"
+	.string "her out!\p"
+	.string "J-Just not yet…$"
+EverGrandeCity_WaitingRoom2_EventScript_Person6B:
+	msgbox EverGrandeCity_WaitingRoom2_Text_Person6B
+	setflag FLAG_TEMP_5
+	release
+	end
+EverGrandeCity_WaitingRoom2_Text_Person6B:
+	.string "No, y-you're right. I-I'll just make a\n"
+	.string "fool of myself…$"
+	
 
 EverGrandeCity_WaitingRoom2_EventScript_Person7::
 	msgbox EverGrandeCity_WaitingRoom2_Text_Person7, MSGBOX_DESCRIBE
 	end
-EverGrandeCity_WaitingRoom2_Text_Person7::
+EverGrandeCity_WaitingRoom2_Text_Person7:
 	.string "His gaze is fixed on the lady's Pikachu.\p"
 	.string "He seems to be muttering about items\n"
 	.string "to himself.$"
 
 
 EverGrandeCity_WaitingRoom2_EventScript_Person8::
-	msgbox EverGrandeCity_WaitingRoom2_Text_Person8, MSGBOX_DESCRIBE
+	msgbox EverGrandeCity_WaitingRoom2_Text_Person8, MSGBOX_NPC
 	end
-EverGrandeCity_WaitingRoom2_Text_Person8::
+EverGrandeCity_WaitingRoom2_Text_Person8:
 	.string "Each one of us is fighting a different\n"
 	.string "Elite Member, so that the Elite Four\l"
 	.string "can rest between fights.\p"
