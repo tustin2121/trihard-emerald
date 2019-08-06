@@ -20,6 +20,7 @@
 #define WEATHER_ALTERNATING    16
 #define WEATHER_ROUTE119_CYCLE 20
 #define WEATHER_ROUTE123_CYCLE 21
+#define WEATHER_CONFETTI       7  // Alias for ASH. TODO: Change to its own weather?
 
 // These are used in maps' coord_weather_event entries.
 // They are not a one-to-one mapping with the engine's

@@ -39,6 +39,7 @@ EverGrandeCity_GlaciasRoom_EventScript_228469:: @ 8228469
 	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_228490
 	playbgm MUS_SITENNOU, 0
 	msgbox EverGrandeCity_GlaciasRoom_Text_2284AC, MSGBOX_CDIALOG
+	setflag FLAG_DEATH_PREVENT
 	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_2285B4
 	goto EverGrandeCity_GlaciasRoom_EventScript_22849A
 	end

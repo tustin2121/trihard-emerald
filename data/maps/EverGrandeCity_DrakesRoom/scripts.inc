@@ -39,6 +39,7 @@ EverGrandeCity_DrakesRoom_EventScript_2286F3:: @ 82286F3
 	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_22871A
 	playbgm MUS_SITENNOU, 0
 	msgbox EverGrandeCity_DrakesRoom_Text_22873E, MSGBOX_CDIALOG
+	setflag FLAG_DEATH_PREVENT
 	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_228895
 	goto EverGrandeCity_DrakesRoom_EventScript_228724
 	end

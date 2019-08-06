@@ -39,6 +39,7 @@ EverGrandeCity_PhoebesRoom_EventScript_2281CB:: @ 82281CB
 	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_2281F2
 	playbgm MUS_SITENNOU, 0
 	msgbox EverGrandeCity_PhoebesRoom_Text_22820E, MSGBOX_CDIALOG
+	setflag FLAG_DEATH_PREVENT
 	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_228325
 	goto EverGrandeCity_PhoebesRoom_EventScript_2281FC
 	end

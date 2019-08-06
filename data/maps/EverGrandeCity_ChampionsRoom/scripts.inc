@@ -53,16 +53,19 @@ EverGrandeCity_ChampionsRoom_TriggerScript_GoChampion::
 	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
 	subvar VAR_INTERACT_X, 8
 	special SpawnCameraObject
+	@ Walk to plinth
 	selectpointer EverGrandeCity_ChampionsRoom_MovementTable_Player, VAR_INTERACT_X
 	applymovement EVENT_OBJ_ID_PLAYER, 0
 	selectpointer EverGrandeCity_ChampionsRoom_MovementTable_Camera, VAR_INTERACT_X
 	applymovement EVENT_OBJ_ID_CAMERA, 0
 	waitmovement 0
+	@ Play music, jump to speech
 	setvar VAR_TEMP_1, 1
 	setvar VAR_TEMP_0, 2
 	playbgm MUS_DAIGO, 0
 	call_if_unset FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, EverGrandeCity_ChampionsRoom_EventScript_ChampTalk1
 	call_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, EverGrandeCity_ChampionsRoom_EventScript_ChampTalk2
+	@ to battle!
 	goto EverGrandeCity_ChampionsRoom_EventScript_Battle
 	end
 
@@ -186,7 +189,7 @@ EverGrandeCity_ChampionsRoom_Text_ChampTalk2: @ 8228C4C
 
 EverGrandeCity_ChampionsRoom_EventScript_Battle:: @ 8228A45
 	setflag FLAG_DEATH_PREVENT
-	savebgm MUS_KACHI5
+	savebgm MUS_KACHI5 @ save victory music for after battle
 	special RemoveCameraObject
 	trainerbattle_no_intro TRAINER_WALLACE, EverGrandeCity_ChampionsRoom_Text_228EAC
 	goto EverGrandeCity_ChampionsRoom_EventScript_AfterMath
@@ -200,14 +203,111 @@ EverGrandeCity_ChampionsRoom_Text_228EAC: @ 8228EAC
 	.string "You are a truly noble Pokémon\n"
 	.string "Trainer!$"
 
+#define LID_CHAMP 1
+#define LID_DAD 3
+#define LID_AQUA_GIRL 4
+#define LID_AQUA_BOY 5
+
+EverGrandeCity_ChampionsRoom_DetermineFriendCount:
+	setvar VAR_TEMP_A, 0
+	@ If the player has reached the friendship threshold with the boy, add 1
+	compare VAR_AQUA_BOY_FRIENDSHIP, 4
+	addvar_if 4, VAR_TEMP_A, 1 @ "addvar_if_ge"
+	@ If the player has reached the friendship threshold with the girl, add 2
+	compare VAR_AQUA_GIRL_FRIENDSHIP, 4
+	addvar_if 4, VAR_TEMP_A, 2 @ "addvar_if_ge"
+	@ if VAR_TEMP_A == 0 => No friends
+	@ if VAR_TEMP_A == 1 => Only boy
+	@ if VAR_TEMP_A == 2 => Only girl
+	@ if VAR_TEMP_A == 3 => Both
+	selectpointer EverGrandeCity_ChampionsRoom_PointerTable_SetupFriendCount, VAR_TEMP_A
+	call 0
+	return
+
+.align 2
+EverGrandeCity_ChampionsRoom_PointerTable_SetupFriendCount:
+	.4byte EverGrandeCity_ChampionsRoom_SetupFriendCount0
+	.4byte EverGrandeCity_ChampionsRoom_SetupFriendCount1
+	.4byte EverGrandeCity_ChampionsRoom_SetupFriendCount2
+	.4byte EverGrandeCity_ChampionsRoom_SetupFriendCount3
+	.4byte 0
+EverGrandeCity_ChampionsRoom_SetupFriendCount0:
+	return
+EverGrandeCity_ChampionsRoom_SetupFriendCount1:
+	setobjectxyperm LID_AQUA_BOY, 8, 32
+	return 
+EverGrandeCity_ChampionsRoom_SetupFriendCount2:
+	setobjectxyperm LID_AQUA_GIRL, 8, 32
+	return 
+EverGrandeCity_ChampionsRoom_SetupFriendCount3:
+	setobjectxyperm LID_AQUA_BOY, 8, 32
+	setobjectxyperm LID_AQUA_GIRL, 10, 32
+	return
+
+
 EverGrandeCity_ChampionsRoom_EventScript_AfterMath:: @ 8228A61
 	special SpawnCameraObject
+	setflag FLAG_TEMP_1E @ Trigger crowd cheering tileset animation
+	playse SE_DENDOU
+	@ Walk towards each other
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkUp1
 	applymovement EVENT_OBJ_ID_CAMERA, Common_Movement_WalkDown1
-	applymovement 1, Common_Movement_WalkDown1
+	applymovement LID_CHAMP, Common_Movement_WalkDown1
 	waitmovement 0
 	special RemoveCameraObject
-	msgbox EverGrandeCity_ChampionsRoom_Text_228F66, MSGBOX_CDIALOG
+	msgbox EverGrandeCity_ChampionsRoom_Text_AfterMath1, MSGBOX_CDIALOG
+	closemessage
+	@ 
+	applymovement LID_CHAMP, EverGrandeCity_ChampionsRoom_Movement_AfterMath2_Champ
+	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_AfterMath2_Player
+	playse SE_DENDOU
+	waitmovement 0
+	@ Initiate "confetti"
+	setweather WEATHER_CONFETTI
+	doweather
+	delay 100
+	@ Walking down
+	applymovement LID_CHAMP, EverGrandeCity_ChampionsRoom_Movement_AfterMath3
+	delay 8
+	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_AfterMath3
+	waitmovement LID_CHAMP
+	@
+	markasdialog -29
+	msgbox EverGrandeCity_ChampionsRoom_Text_AfterMath4
+	closemessage
+	@ 
+	addobject LID_DAD
+	applymovement LID_DAD, EverGrandeCity_ChampionsRoom_Movement_AfterMath5
+	waitmovement 0
+	applymovement LID_CHAMP, Common_Movement_WalkInPlaceRight
+	msgbox EverGrandeCity_ChampionsRoom_Text_AfterMath5, MSGBOX_CDESCRIBE
+	waitmovement 0
+	@
+	markasdialog 12
+	msgbox EverGrandeCity_ChampionsRoom_Text_AfterMath6
+	closemessage
+	@
+	call EverGrandeCity_ChampionsRoom_DetermineFriendCount
+	
+	@ Dad steps aside to let the champ walk continue
+	applymovement LID_DAD, Common_Movement_FaceLeft
+	waitmovement 0
+	applymovement LID_DAD, Common_Movement_BackOffRight1
+	waitmovement 0
+	delay 20
+	@ Player leads the way back across the walkway
+	resetweather
+	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_AfterMath8
+	delay 20
+	applymovement LID_CHAMP, EverGrandeCity_ChampionsRoom_Movement_AfterMath8
+	delay 8
+	applymovement LID_DAD, EverGrandeCity_ChampionsRoom_Movement_AfterMath8a
+	delay 30
+	doweather
+	waitmovement EVENT_OBJ_ID_PLAYER
+	selectpointer EverGrandeCity_ChampionsRoom_PointerTable_DoFriendScene, VAR_TEMP_A
+	call 0
+	
 	@ TODO either walk up to the cheering crowds, or walk down right away
 	@ Walk down to cheering, meet up with Dad at the bottom of the walk
 	@ Dad congratulates you.
@@ -216,7 +316,8 @@ EverGrandeCity_ChampionsRoom_EventScript_AfterMath:: @ 8228A61
 	waitstate
 	releaseall
 	end
-EverGrandeCity_ChampionsRoom_Text_228F66: @ 8228F66
+
+EverGrandeCity_ChampionsRoom_Text_AfterMath1: @ 8228F66
 	.string "Wallace: The Pokémon you sent into\n"
 	.string "battle…\p"
 	.string "At times they danced like a spring\n"
@@ -230,263 +331,234 @@ EverGrandeCity_ChampionsRoom_Text_228F66: @ 8228F66
 	.string "of the Pokémon League.\p"
 	.string "I now proclaim you to be the new\n"
 	.string "Hoenn region Champion!$"
+EverGrandeCity_ChampionsRoom_Text_AfterMath4:
+	.string "Dad: {PLAYER}!$"
+EverGrandeCity_ChampionsRoom_Text_AfterMath5:
+	.string "Dad hugged {PLAYER} tightly.$"
+EverGrandeCity_ChampionsRoom_Text_AfterMath6:
+	.string "Dad: {PLAYER}! You did it!\n"
+	.string "My little {PLAYER_boy} is all grown up now!\p"
+	.string "Your mother and your friend {RIVAL_ALOLA}!\n"
+	.string "They're back in Alola, watching you too!\p"
+	.string "I… {PAUSE 40}I'm so proud of you…$"
+EverGrandeCity_ChampionsRoom_Text_AfterMath7a:
+	.string "Wallace: If you'll all excuse us.\p"
+	.string "We need to enter {PLAYER} into the\n"
+	.string "records of history.$"
+EverGrandeCity_ChampionsRoom_Text_AfterMath7b:
+	.string "Wallace: If you'll excuse us, sir.\p"
+	.string "We need to enter {PLAYER} into the\n"
+	.string "records of history.$"
 
 
+.align 2
+EverGrandeCity_ChampionsRoom_PointerTable_DoFriendScene:
+	.4byte EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene0
+	.4byte EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene1
+	.4byte EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene2
+	.4byte EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene3
+	.4byte 0
 
-	playse SE_DOOR
-	setmetatile 6, 1, 838, 0
-	setmetatile 6, 2, 839, 0
-	special DrawWholeMapView
-	
+EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene0:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown2
+	waitmovement EVENT_OBJ_ID_PLAYER
+	waitmovement LID_CHAMP
+	applymovement LID_CHAMP, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	applymovement LID_DAD, Common_Movement_WalkInPlaceLeft
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	@
+	markasdialog 6
+	msgbox EverGrandeCity_ChampionsRoom_Text_AfterMath7b
+	@
+	markasdialog -6
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend0A
 	closemessage
-	playse SE_DOOR
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_228ABC
-	compare VAR_RESULT, FEMALE
-	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_228AC1
-	addobject 2
-	call EverGrandeCity_ChampionsRoom_EventScript_228BFD
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_228AC6
-	compare VAR_RESULT, FEMALE
-	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_228AFB
-	end
-
-EverGrandeCity_ChampionsRoom_EventScript_228ABC:: @ 8228ABC
-	playbgm MUS_GIRL_SUP, 0
+	@
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown1
+	applymovement LID_CHAMP, Common_Movement_WalkDown1
+	waitmovement 0
 	return
+EverGrandeCity_ChampionsRoom_Text_Friend0A:
+	.string "Dad: Of course! I'll see you after,\n"
+	.string "{PLAYER}. We'll get dinner somewhere.$"
 
-EverGrandeCity_ChampionsRoom_EventScript_228AC1:: @ 8228AC1
-	playbgm MUS_BOY_SUP, 0
-	return
-
-EverGrandeCity_ChampionsRoom_EventScript_228AC6:: @ 8228AC6
-	msgbox EverGrandeCity_ChampionsRoom_Text_2290CA, MSGBOX_DEFAULT
-	delay 40
-	playse SE_PIN
-	applymovement 2, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 2, Common_Movement_Delay48
-	waitmovement 0
-	call EverGrandeCity_ChampionsRoom_EventScript_228C12
-	msgbox EverGrandeCity_ChampionsRoom_Text_22910B, MSGBOX_DEFAULT
-	goto EverGrandeCity_ChampionsRoom_EventScript_228B30
-	end
-
-EverGrandeCity_ChampionsRoom_EventScript_228AFB:: @ 8228AFB
-	msgbox EverGrandeCity_ChampionsRoom_Text_229152, MSGBOX_DEFAULT
-	delay 40
-	playse SE_PIN
-	applymovement 2, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement 2, Common_Movement_Delay48
-	waitmovement 0
-	call EverGrandeCity_ChampionsRoom_EventScript_228C12
-	msgbox EverGrandeCity_ChampionsRoom_Text_2291A2, MSGBOX_DEFAULT
-	goto EverGrandeCity_ChampionsRoom_EventScript_228B30
-	end
-
-EverGrandeCity_ChampionsRoom_EventScript_228B30:: @ 8228B30
-	closemessage
-	addobject 3
-	applymovement 3, EverGrandeCity_ChampionsRoom_Movement_228C43
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
-	waitmovement 0
-	msgbox EverGrandeCity_ChampionsRoom_Text_2291E6, MSGBOX_DEFAULT
-	call EverGrandeCity_ChampionsRoom_EventScript_272184
-	msgbox EverGrandeCity_ChampionsRoom_Text_22934D, MSGBOX_DEFAULT
-	applymovement 1, Common_Movement_WalkInPlaceUp
-	waitmovement 0
-	delay 20
-	applymovement 1, Common_Movement_WalkInPlaceDown
-	waitmovement 0
-	msgbox EverGrandeCity_ChampionsRoom_Text_229399, MSGBOX_DEFAULT
-	closemessage
-	delay 30
-	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_228C3B
-	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_228C1D
-	applymovement 3, Common_Movement_WalkInPlaceUp
-	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_228C38
-	waitmovement 0
-	delay 20
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
-	waitmovement 0
-	msgbox EverGrandeCity_ChampionsRoom_Text_2293EB, MSGBOX_DEFAULT
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_228BEB
-	compare VAR_RESULT, FEMALE
-	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_228BF4
-	closemessage
-	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_228C3F
-	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_228C20
-	waitmovement 0
-	setflag FLAG_HIDE_PETALBURG_GYM_GREETER
-	warp MAP_EVER_GRANDE_CITY_HALL_OF_FAME, 255, 7, 16
-	waitstate
-	releaseall
-	end
-
-EverGrandeCity_ChampionsRoom_EventScript_228BEB:: @ 8228BEB
-	msgbox EverGrandeCity_ChampionsRoom_Text_229479, MSGBOX_DEFAULT
-	return
-
-EverGrandeCity_ChampionsRoom_EventScript_228BF4:: @ 8228BF4
-	msgbox EverGrandeCity_ChampionsRoom_Text_2294F5, MSGBOX_DEFAULT
-	return
-
-EverGrandeCity_ChampionsRoom_EventScript_228BFD:: @ 8228BFD
-	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_228C26
-	waitmovement 0
+EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene1:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown2
+	waitmovement EVENT_OBJ_ID_PLAYER
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	@
+	markasdialog 8
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend1A
+	@
+	applymovement LID_DAD, Common_Movement_WalkInPlaceLeft
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	@
+	markasdialog 4
+	msgbox EverGrandeCity_ChampionsRoom_Text_AfterMath7a
+	@
+	markasdialog -6
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend1B
+	closemessage
+	@
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown1
+	applymovement LID_CHAMP, Common_Movement_WalkDown1
+	waitmovement 0
+	return 
+EverGrandeCity_ChampionsRoom_Text_Friend1A:
+	.string "{AQUA_BOY}: Congratulations, {PLAYER}!\n"
+	.string "I knew you could do it!\p"
+	.string "Even with all that roumor stuff,\n"
+	.string "you still came out on top!\p"
+	.string "You beat them! You beat them all!$"
+EverGrandeCity_ChampionsRoom_Text_Friend1B:
+	.string "Dad: Of course! We'll see you after,\n"
+	.string "{PLAYER}. We'll get dinner somewhere.$"
+
+EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene2:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown2
+	waitmovement EVENT_OBJ_ID_PLAYER
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	applymovement LID_AQUA_GIRL, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	@
+	markasdialog 8
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend2A
+	@
+	applymovement LID_DAD, Common_Movement_WalkInPlaceLeft
+	applymovement LID_AQUA_GIRL, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	@
+	markasdialog 4
+	msgbox EverGrandeCity_ChampionsRoom_Text_AfterMath7a
+	@
+	markasdialog -6
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend1B
+	closemessage
+	@
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown1
+	applymovement LID_CHAMP, Common_Movement_WalkDown1
+	waitmovement 0
+	return 
+EverGrandeCity_ChampionsRoom_Text_Friend2A:
+	.string "{AQUA_GIRL}: Congrats, {PLAYER_gurl}!\n"
+	.string "You made it! You won!\p"
+	.string "I'll admit I was a little worried at\n"
+	.string "after the first couple battles, but\l"
+	.string "you pulled through!\p"
+	.string "No one can defeat you!$"
+
+EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene3:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown2
+	waitmovement EVENT_OBJ_ID_PLAYER
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceRight
+	applymovement LID_AQUA_GIRL, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	@
+	markasdialog 8
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend3A
+	@
+	markasdialog -8
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend3B
+	@
+	markasdialog 8
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend3C
+	@
+	applymovement LID_DAD, Common_Movement_WalkInPlaceLeft
+	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceUp
+	applymovement LID_AQUA_GIRL, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	waitmovement 0
+	@
+	markasdialog 6
+	msgbox EverGrandeCity_ChampionsRoom_Text_AfterMath7a
+	@
+	markasdialog -6
+	msgbox EverGrandeCity_ChampionsRoom_Text_Friend1B
+	closemessage
+	@
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown1
+	applymovement LID_CHAMP, Common_Movement_WalkRight1
 	waitmovement 0
 	return
+EverGrandeCity_ChampionsRoom_Text_Friend3A:
+	.string "{AQUA_BOY}: Congratulations, {PLAYER}!\n"
+	.string "I knew you could do it!$"
+EverGrandeCity_ChampionsRoom_Text_Friend3B:
+	.string "{AQUA_GIRL}: Yes, we were cheering for\n"
+	.string "you the whole time!$"
+EverGrandeCity_ChampionsRoom_Text_Friend3C:
+	.string "{AQUA_BOY}: I think {AQUA_GIRL} may\n"
+	.string "have blown out my eardrum with\l"
+	.string "all her cheering and screaming!$"
 
-EverGrandeCity_ChampionsRoom_EventScript_228C12:: @ 8228C12
-	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_228C2F
-	waitmovement 0
-	return
 
-EverGrandeCity_ChampionsRoom_Movement_228C1D: @ 8228C1D
-	walk_up
-	walk_up
+EverGrandeCity_ChampionsRoom_Movement_AfterMath2_Player:
+	walk_down
+	walk_down
 	step_end
-
-EverGrandeCity_ChampionsRoom_Movement_228C20: @ 8228C20
-	walk_up
-	delay_16
-	walk_up
-	delay_8
-	set_invisible
-	step_end
-
-EverGrandeCity_ChampionsRoom_Movement_228C26: @ 8228C26
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
+EverGrandeCity_ChampionsRoom_Movement_AfterMath2_Champ:
 	walk_left
-	walk_up
-	walk_in_place_fastest_right
+	walk_down
+	walk_down
+	walk_down
 	step_end
 
-EverGrandeCity_ChampionsRoom_Movement_228C2F: @ 8228C2F
-	walk_in_place_fastest_up
-	delay_16
-	walk_in_place_fastest_right
-	delay_16
-	walk_in_place_fastest_up
-	delay_8
-	walk_in_place_fastest_right
-	delay_16
+EverGrandeCity_ChampionsRoom_Movement_AfterMath3:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+EverGrandeCity_ChampionsRoom_Movement_AfterMath5:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
 	step_end
 
-EverGrandeCity_ChampionsRoom_Movement_228C38: @ 8228C38
-	walk_right
-	walk_up
+EverGrandeCity_ChampionsRoom_Movement_AfterMath8:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+EverGrandeCity_ChampionsRoom_Movement_AfterMath8a:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
 	step_end
 
-EverGrandeCity_ChampionsRoom_Movement_228C3B: @ 8228C3B
-	walk_up
-	walk_up
-	walk_in_place_fastest_down
-	step_end
-
-EverGrandeCity_ChampionsRoom_Movement_228C3F: @ 8228C3F
-	walk_up
-	delay_8
-	set_invisible
-	step_end
-
-EverGrandeCity_ChampionsRoom_Movement_228C43: @ 8228C43
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_right
-	walk_up
-	walk_in_place_fastest_left
-	step_end
-
-
-
-
-EverGrandeCity_ChampionsRoom_Text_2290CA: @ 82290CA
-	.string "May: {PLAYER}!\p"
-	.string "Here's some advice before you challenge\n"
-	.string "the CHAMPION…$"
-
-EverGrandeCity_ChampionsRoom_Text_22910B: @ 822910B
-	.string "May: Huh?\n"
-	.string "What, what, what?\p"
-	.string "{PLAYER}…\n"
-	.string "Could it be that…\l"
-	.string "It's already over?$"
-
-EverGrandeCity_ChampionsRoom_Text_229152: @ 8229152
-	.string "Brendan: {PLAYER}!\p"
-	.string "How would you like some advice before\n"
-	.string "you challenge the CHAMPION?…$"
-
-EverGrandeCity_ChampionsRoom_Text_2291A2: @ 82291A2
-	.string "Brendan: {PLAYER}…\p"
-	.string "Are you trying to tell me…\n"
-	.string "You've beaten the CHAMPION?$"
-
-EverGrandeCity_ChampionsRoom_Text_2291E6: @ 82291E6
-	.string "Prof. Birch: See?\n"
-	.string "What did I tell you, {RIVAL}?\p"
-	.string "Didn't I tell you that you don't need\n"
-	.string "to worry about {PLAYER}?\p"
-	.string "… … … … … … … …\n"
-	.string "{PLAYER}, you've finally done it.\p"
-	.string "When I heard that you defeated your\n"
-	.string "own father at the PETALBURG GYM,\l"
-	.string "I thought perhaps you had a chance…\p"
-	.string "But to think you've actually become\n"
-	.string "the CHAMPION!\p"
-	.string "Ah, yes!\p"
-	.string "What became of your Pokédex?\n"
-	.string "Here, let me see.$"
-
-EverGrandeCity_ChampionsRoom_Text_22934D: @ 822934D
-	.string "Prof. Birch: Anyways,\n"
-	.string "congratulations!\p"
-	.string "Now, go proudly into the final room!$"
-
-EverGrandeCity_ChampionsRoom_Text_229399: @ 8229399
-	.string "WALLACE: {PLAYER}…\p"
-	.string "No, let me rephrase that properly.\p"
-	.string "The new CHAMPION!\p"
-	.string "Come with me.$"
-
-EverGrandeCity_ChampionsRoom_Text_2293EB: @ 82293EB
-	.string "WALLACE: I'm sorry, but…\p"
-	.string "From here on, only those TRAINERS who\n"
-	.string "have become CHAMPIONS may enter.\p"
-	.string "You'll have to wait outside with\n"
-	.string "Prof. Birch.$"
-
-EverGrandeCity_ChampionsRoom_Text_229479: @ 8229479
-	.string "May: Groan…\p"
-	.string "… … … … … … … …\n"
-	.string "… … … … … … … …\p"
-	.string "I'm just joking! That's okay!\n"
-	.string "That's the rule!\p"
-	.string "{PLAYER}!\n"
-	.string "Honestly, congratulations!$"
-
-EverGrandeCity_ChampionsRoom_Text_2294F5: @ 82294F5
-	.string "Brendan: Whaaaat?! … … … … …\n"
-	.string "… … … … … … … …\p"
-	.string "It can't be helped if that's the rule.\p"
-	.string "{PLAYER}, way to go!\n"
-	.string "Congratulations!$"
-
-
+#undef LID_CHAMP
+#undef LID_DAD
 
