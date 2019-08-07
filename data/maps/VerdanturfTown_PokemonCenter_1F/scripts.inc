@@ -66,7 +66,7 @@ VerdanturfTown_PokemonCenter_1F_EventScript_202751:: @ 8202751
 VerdanturfTown_PokemonCenter_1F_Text_20280B: @ 820280B
 	.string "The reason why anyone would visit\n"
 	.string "Verdanturf…\p"
-	.string "It's the Battle Tent. It goes without\n"
+	.string "It's the Contest Hall. It goes without\n"
 	.string "saying.\p"
 	.string "Or is there somebody here that you\n"
 	.string "came to see?$"
@@ -87,13 +87,15 @@ VerdanturfTown_Mart_EventScript_2025C3:: @ 82025C3
 	end
 VerdanturfTown_Mart_Text_20264C: @ 820264C
 	.string "They don't seem to sell any winning\n"
-	.string "strategy guides for the BATTLE TENT…\p"
+	.string "strategy guides for the CONTEST HALL…\p"
 	.string "It seems one must rely on one's\n"
 	.string "own wits after all…$"
 
 
 VerdanturfTown_Mart_EventScript_NestBallFan:: @ 82025CC
 	msgbox VerdanturfTown_Mart_Text_2026C9, MSGBOX_NPC
+	
+
 	end
 VerdanturfTown_Mart_Text_2026C9: @ 82026C9
 	.string "The {ITEM}Nest Ball{END} works better on\n"
@@ -102,4 +104,16 @@ VerdanturfTown_Mart_Text_2026C9: @ 82026C9
 	.string "buy it.$"
 
 
+VerdanturfTown_PokemonCenter_1F_SleepingOldMan::
+	msgbox VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text, MSGBOX_CDIALOG
+	msgbox VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text_DESC, MSGBOX_CDESCRIBE
+	releaseall
+	end
+	
+VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text::
+	.string "Zzz…\p"
+	.string "Show you how to catch…!$"
+VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text_DESC::
+	.string "He fell asleep while he\n"
+	.string "was watching some ASMR…$"
 

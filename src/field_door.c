@@ -405,7 +405,7 @@ const u8 DoorAnimTiles_42[][0x100] =
     INCBIN_U8("graphics/door_anims/42/0.4bpp"),
     INCBIN_U8("graphics/door_anims/42/1.4bpp"),
     INCBIN_U8("graphics/door_anims/42/2.4bpp"),
-    INCBIN_U8("graphics/door_anims/42/3.4bpp"),
+    // INCBIN_U8("graphics/door_anims/42/3.4bpp"),
 };
 
 asm(".space 32");
