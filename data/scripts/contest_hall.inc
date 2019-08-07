@@ -384,7 +384,7 @@ LinkContestRoom1_EventScript_27A1D2:: @ 827A1D2
 	applymovement VAR_0x800B, LinkContestRoom1_Movement_27AD20
 	waitmovement 0
 	releaseall
-	addvar VAR_0x8006, 65535
+	subvar VAR_0x8006, 1
 	playse SE_BOWA2
 	special ShowContestEntryMonPic
 	call LinkContestRoom1_EventScript_27A217
@@ -676,7 +676,7 @@ LinkContestRoom1_EventScript_27A65A:: @ 827A65A
 	playse SE_PIN
 	delay 14
 	setvar VAR_TEMP_1, 1
-	addvar VAR_TEMP_0, 65535
+	subvar VAR_TEMP_0, 1
 	return
 
 LinkContestRoom1_EventScript_27A67D:: @ 827A67D
@@ -689,7 +689,7 @@ LinkContestRoom1_EventScript_27A67E:: @ 827A67E
 	playse SE_PIN
 	delay 14
 	setvar VAR_TEMP_2, 1
-	addvar VAR_TEMP_0, 65535
+	subvar VAR_TEMP_0, 1
 	return
 
 LinkContestRoom1_EventScript_27A6A1:: @ 827A6A1
@@ -702,7 +702,7 @@ LinkContestRoom1_EventScript_27A6A2:: @ 827A6A2
 	playse SE_PIN
 	delay 14
 	setvar VAR_TEMP_3, 1
-	addvar VAR_TEMP_0, 65535
+	subvar VAR_TEMP_0, 1
 	return
 
 LinkContestRoom1_EventScript_27A6C5:: @ 827A6C5
@@ -715,7 +715,7 @@ LinkContestRoom1_EventScript_27A6C6:: @ 827A6C6
 	playse SE_PIN
 	delay 14
 	setvar VAR_TEMP_4, 1
-	addvar VAR_TEMP_0, 65535
+	subvar VAR_TEMP_0, 1
 	return
 
 LinkContestRoom1_EventScript_27A6E9:: @ 827A6E9
@@ -728,7 +728,7 @@ LinkContestRoom1_EventScript_27A6EA:: @ 827A6EA
 	playse SE_PIN
 	delay 14
 	setvar VAR_TEMP_5, 1
-	addvar VAR_TEMP_0, 65535
+	subvar VAR_TEMP_0, 1
 	return
 
 LinkContestRoom1_EventScript_27A70D:: @ 827A70D
@@ -741,7 +741,7 @@ LinkContestRoom1_EventScript_27A70E:: @ 827A70E
 	playse SE_PIN
 	delay 14
 	setvar VAR_TEMP_6, 1
-	addvar VAR_TEMP_0, 65535
+	subvar VAR_TEMP_0, 1
 	return
 
 LinkContestRoom1_EventScript_27A731:: @ 827A731
@@ -754,7 +754,7 @@ LinkContestRoom1_EventScript_27A732:: @ 827A732
 	playse SE_PIN
 	delay 14
 	setvar VAR_TEMP_7, 1
-	addvar VAR_TEMP_0, 65535
+	subvar VAR_TEMP_0, 1
 	return
 
 LinkContestRoom1_EventScript_27A755:: @ 827A755
@@ -767,7 +767,7 @@ LinkContestRoom1_EventScript_27A756:: @ 827A756
 	playse SE_PIN
 	delay 14
 	setvar VAR_TEMP_8, 1
-	addvar VAR_TEMP_0, 65535
+	subvar VAR_TEMP_0, 1
 	return
 
 LinkContestRoom1_EventScript_27A779:: @ 827A779
@@ -974,7 +974,7 @@ LinkContestRoom1_EventScript_27A9D4:: @ 827A9D4
 	special sub_80F8390
 	addvar VAR_0x8005, 1
 	buffernumberstring 1, VAR_0x8005
-	addvar VAR_0x8005, 65535
+	subvar VAR_0x8005, 1
 	call LinkContestRoom1_EventScript_27AA00
 	applymovement VAR_TEMP_3, LinkContestRoom1_Movement_27AD1D
 	waitmovement 0
