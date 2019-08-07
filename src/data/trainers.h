@@ -97,19 +97,19 @@ const struct Trainer gTrainers[] = {
     //     .party = {.NoItemDefaultMoves = sParty_Grunt5 }
     // },
 
-    [TRAINER_GRUNT_6] =
-    {
-        .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("Grunt"), //_("Grunt"),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = 1,
-        .party = {.NoItemDefaultMoves = sParty_Grunt6 }
-    },
+    // [TRAINER_GRUNT_6] =
+    // {
+    //     .partyFlags = 0,
+    //     .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+    //     .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
+    //     .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
+    //     .trainerName = _("Grunt"), //_("Grunt"),
+    //     .items = {},
+    //     .doubleBattle = FALSE,
+    //     .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+    //     .partySize = 1,
+    //     .party = {.NoItemDefaultMoves = sParty_Grunt6 }
+    // },
 
     [TRAINER_GRUNT_7] =
     {
@@ -251,13 +251,13 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Grunt11 }
     },
 
-    [TRAINER_GRUNT_12] =
+    [TRAINER_SEAN] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("Grunt"),
+        .trainerClass = TRAINER_CLASS_PKMN_RANGER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_POKEMON_RANGER_M,
+        .trainerName = _("Sean"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -265,13 +265,13 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Grunt12 }
     },
 
-    [TRAINER_GRUNT_13] =
+    [TRAINER_WALKER] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
-        .trainerName = _("Grunt"),
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
+        .trainerPic = TRAINER_PIC_SCIENTIST,
+        .trainerName = _("Walker"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -457,8 +457,11 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = 2,
-        .party = {.NoItemDefaultMoves = sParty_Shelly1 }
+        .partySize = 1,
+        .extraSize = 5,
+        .party = {.NoItemDefaultMoves = sParty_ShellyCastform }
+        // .partySize = 2,
+        // .party = {.NoItemDefaultMoves = sParty_Shelly1 }
     },
 
     [TRAINER_SHELLY_2] =
@@ -8343,13 +8346,13 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Isabella }
     },
 
-    [TRAINER_GRUNT_37] =
+    [TRAINER_BECKETT] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
-        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_AQUA_GRUNT_F,
-        .trainerName = _("Grunt"),
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
+        .trainerPic = TRAINER_PIC_SCIENTIST,
+        .trainerName = _("Beckett"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11984,6 +11987,21 @@ const struct Trainer gTrainers[] = {
         .partySize = 3,
         .extraSize = 0,
         .party = {.NoItemDefaultMoves = sParty_Logan_SternMugging }
+    },
+    
+    [TRAINER_LOGAN_INSTITUTE] = 
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
+        .trainerPic = TRAINER_PIC_WALLY,
+        .trainerName = _("Logan"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = 3,
+        .extraSize = 0,
+        .party = {.NoItemDefaultMoves = sParty_Logan_Institute }
     },
     
     [TRAINER_LOGAN_HIDEOUT] =

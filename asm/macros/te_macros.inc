@@ -85,3 +85,4 @@
 	applymovement THIS_EVENT, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	.endm
+
