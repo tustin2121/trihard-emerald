@@ -1,20 +1,26 @@
 Route119_WeatherInstitute_1F_MapScripts:: @ 826FA86
+	map_script MAP_SCRIPT_ON_LOAD, Route119_WeatherInstitute_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, Route119_WeatherInstitute_1F_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route119_WeatherInstitute_1F_FrameTable
 	.byte 0
 
 @ -----------------------------------------------------
 
-Route119_WeatherInstitute_1F_OnTransition: @ 826FA8C
+Route119_WeatherInstitute_1F_OnLoad:
 	compare VAR_WEATHER_INSTITUTE_STATE, 0
 	call_if_eq Route119_WeatherInstitute_1F_EventScript_26FA98
-	compare VAR_WEATHER_INSTITUTE_STATE, 1
-	call_if_le Route119_WeatherInstitute_1F_EventScript_26FA98
 	end
 
 Route119_WeatherInstitute_1F_EventScript_26FA9J:
 	setobjectxyperm 8, 8, 10
 	return
+
+@ -----------------------------------------------------
+
+Route119_WeatherInstitute_1F_OnTransition: @ 826FA8C
+	compare VAR_WEATHER_INSTITUTE_STATE, 1
+	call_if_le Route119_WeatherInstitute_1F_EventScript_26FA98
+	end
 
 Route119_WeatherInstitute_1F_EventScript_26FA98: @ 826FA98
 	setobjectxyperm 5, 0, 5
@@ -80,15 +86,26 @@ Route119_WeatherInstitute_1F_EventScript_26FAA4:: @ 826FAA4
 	markasdialog
 	compare VAR_WEATHER_INSTITUTE_STATE, 1
 	goto_if_eq Route119_WeatherInstitute_1F_EventScript_26FABE
-	msgbox Route119_WeatherInstitute_1F_Text_26FCE5, MSGBOX_DEFAULT
+	compare VAR_SLEPT_DURING_WI_HEIST, 1
+	goto_if_gt Route119_WeatherInstitute_1F_EventScript_26FCE5
+	msgbox Route119_WeatherInstitute_1F_Text_26FCE5
 	release
 	end
-Route119_WeatherInstitute_1F_Text_26FCE5: @ 826FCE5
+Route119_WeatherInstitute_1F_Text_26FCE5:
 	.string "Wow, you're really strong!\p"
 	.string "I wish I could be a Pokémon Trainer\n"
 	.string "like you!$"
+Route119_WeatherInstitute_1F_EventScript_26FCE5:: @ 826FABE
+	buffernumberstring 0, VAR_SLEPT_DURING_WI_HEIST
+	msgbox Route119_WeatherInstitute_1F_Text_26FCEX
+	release
+	end
+Route119_WeatherInstitute_1F_Text_26FCEX: @ 826FCE5
+	.string "Hehehe… You're funny. You slept in\n"
+	.string "the bed {STR_VAR_1} times.\p"
+	.string "That babysitter lady was so mad.$"
 Route119_WeatherInstitute_1F_EventScript_26FABE:: @ 826FABE
-	msgbox Route119_WeatherInstitute_1F_Text_26FCB7, MSGBOX_DEFAULT
+	msgbox Route119_WeatherInstitute_1F_Text_26FCB7
 	release
 	end
 Route119_WeatherInstitute_1F_Text_26FCB7: @ 826FCB7
@@ -155,7 +172,7 @@ Route119_WeatherInstitute_1F_Text_26FE9R: @ 826FE94
 
 Route119_WeatherInstitute_1F_EventScript_AquaBabySitter::
 	lock
-	compare VAR_TEMP_2, 0
+	compare VAR_TEMP_2, 1
 	goto_if_eq Route119_WeatherInstitute_1F_EventScript_AquaBabySitter2
 	msgbox Route119_WeatherInstitute_1F_Text_AquaBabySitter, MSGBOX_NPC
 	release
@@ -170,11 +187,12 @@ Route119_WeatherInstitute_1F_Text_AquaBabySitter2:
 	.string "Seriously??$"
 
 
-Route119_WeatherInstitute_1F_EventScript_AquaBoy::
-	msgbox Route119_WeatherInstitute_1F_Text_AquaBoy, MSGBOX_NPC
+Route119_WeatherInstitute_1F_EventScript_BlockingWorker::
+	msgbox Route119_WeatherInstitute_1F_Text_BlockingWorker, MSGBOX_NPC
 	end
-Route119_WeatherInstitute_1F_Text_AquaBoy:
-	.string "Go and back Shelly up upstairs.$"
+Route119_WeatherInstitute_1F_Text_BlockingWorker:
+	.string "No. You are not allowed upstairs again.\n"
+	.string "Go raid someplace else, jerk.$" @ It's so tempting to put a highly offenseive word in here...
 
 
 Route119_WeatherInstitute_1F_EventScript_Aqua3::
@@ -188,7 +206,7 @@ Route119_WeatherInstitute_1F_Text_Aqua3:
 
 Route119_WeatherInstitute_1F_EventScript_Man3::
 	compare VAR_WEATHER_INSTITUTE_STATE, 1
-	goto_if_eq Route119_WeatherInstitute_1F_EventScript_BedDuring
+	goto_if_gt Route119_WeatherInstitute_1F_EventScript_Man3A
 	msgbox Route119_WeatherInstitute_1F_Text_Man3, MSGBOX_DIALOG
 	end
 Route119_WeatherInstitute_1F_Text_Man3:
@@ -206,6 +224,32 @@ Route119_WeatherInstitute_1F_Text_Man3A:
 	.string "drop all this Aqua nonsense and come\l"
 	.string "work for us!$"
 			
+@ -----------------------------------------------------
+
+Route119_WeatherInstitute_1F_EventScript_AquaBoy::
+	goto_if_set FLAG_SCENE_0, Route119_WeatherInstitute_1F_EventScript_AquaBoyA
+	msgbox Route119_WeatherInstitute_1F_Text_AquaBoy, MSGBOX_NPC
+	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
+	setflag FLAG_SCENE_0
+	end
+Route119_WeatherInstitute_1F_Text_AquaBoy:
+	.string "{AQUA_BOY}: For once, I don't know much\n"
+	.string "other information.\p"
+	.string "Shelly said she heard they made Pokémon\n"
+	.string "here that could control the weather?\p"
+	.string "I don't know how that's any more\n"
+	.string "powerful than some of the moves other\l"
+	.string "Pokémon can do to control local weather.\p"
+	.string "It's… her idea and she's an admin, so…\n"
+	.string "Just go give her backup upstairs.$"
+Route119_WeatherInstitute_1F_EventScript_AquaBoyA:
+	msgbox Route119_WeatherInstitute_1F_Text_AquaBoyA, MSGBOX_NPC
+	end
+Route119_WeatherInstitute_1F_Text_AquaBoyA:
+	.string "{AQUA_BOY}: Go give Shelly some backup\n"
+	.string "upstairs.\p"
+	.string "The sooner you do,\n"
+	.string "the sooner we can leave.$"
 
 
 @ -----------------------------------------------------
@@ -215,7 +259,7 @@ Route119_WeatherInstitute_1F_Text_Man3A:
 
 Route119_WeatherInstitute_1F_EventScript_Bed:: @ 826FB18
 	lockall
-	compare VAR_TEMP_2, 0
+	compare VAR_TEMP_2, 1
 	goto_if_eq Route119_WeatherInstitute_1F_EventScript_BedNope
 	compare VAR_WEATHER_INSTITUTE_STATE, 1
 	goto_if_eq Route119_WeatherInstitute_1F_EventScript_BedDuring
@@ -243,7 +287,7 @@ Route119_WeatherInstitute_1F_EventScript_BedDuring:
 	waitmovement 0
 	@ "Oh, sure, just sleep on us!"
 	selectpointer_clamp Route119_WeatherInstitute_1F_TextArray_BedDuring, VAR_SLEPT_DURING_WI_HEIST
-	msgbox Route119_WeatherInstitute_1F_Text_BedDuring1, MSGBOX_CDIALOG
+	msgbox_selected MSGBOX_CDIALOG
 	@ Player does just that
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0

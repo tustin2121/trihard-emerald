@@ -165,7 +165,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 0,
+            "x": 30,
             "y": 0
         },
         {
@@ -175,7 +175,7 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "NULL",
+            "script": "Route119_WeatherInstitute_1F_EventScript_Aqua3",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 18,
@@ -188,11 +188,24 @@
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-            "script": "NULL",
+            "script": "Route119_WeatherInstitute_1F_EventScript_Man3",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 18,
             "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS",
+            "graphics_id": "EVENT_OBJ_GFX_MAN_4",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "Route119_WeatherInstitute_1F_EventScript_BlockingWorker",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 17,
+            "y": 2
         }
     ],
     "region_map_section": "MAPSEC_ROUTE_119",

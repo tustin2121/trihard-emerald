@@ -561,4 +561,5 @@ EverGrandeCity_ChampionsRoom_Movement_AfterMath8a:
 
 #undef LID_CHAMP
 #undef LID_DAD
-
+#undef LID_AQUA_GIRL
+#undef LID_AQUA_BOY

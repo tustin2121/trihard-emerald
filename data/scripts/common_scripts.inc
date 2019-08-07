@@ -439,3 +439,4 @@ Common_Text_FailTheftNoRoom:
 Common_Text_DummiedOut:
 	.string "This event is dummied out.\n"
 	.string "If you see this message, it's a bug.$"
+

@@ -16,6 +16,7 @@
 #include "item.h"
 #include "link.h"
 #include "main.h"
+#include "mail.h"
 #include "overworld.h"
 #include "m4a.h"
 #include "party_menu.h"
@@ -4389,6 +4390,7 @@ bool8 CanMonDie(int partySlot)
 void KillMon(int partySlot, u8 hasMourned)
 {
     struct Pokemon* mon = &gPlayerParty[partySlot];
+    u16 item;
     
     // sanity check, don't kill "pokemon" beyond our party count
     if (partySlot >= gPlayerPartyCount) return;
@@ -4419,6 +4421,17 @@ void KillMon(int partySlot, u8 hasMourned)
     //     daycareMon->mail.message = gSaveBlock1Ptr->mail[mailId];
     //     TakeMailFromMon(mon);
     // }
+    
+    // Return items to bag
+    item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+    if (item != ITEM_NONE && !ItemIsMail(item))
+    {
+        if (AddBagItem(item, 1))
+        {
+            item = ITEM_NONE;
+            SetMonData(mon, MON_DATA_HELD_ITEM, &item);
+        }
+    }
     
     SetMonData(mon, MON_DATA_HAS_MOURNED, &hasMourned);
     SendMonToPC(mon);
@@ -7200,3 +7213,47 @@ void RemovePartyShedinja(void)
     CompactPartySlots();
     CalculatePlayerPartyCount();
 }
+
+// THE: Used in the Weather Institute
+void Castform_CheckAfterBattle(void)
+{
+    u8 i = VarGet(VAR_TEMP_6);
+    u32 exp;
+    struct Pokemon *mon;
+    //TEMP_6 = index of the new mon
+    
+    gSpecialVar_Result = 0; //Castform dead
+    if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) != SPECIES_CASTFORM)
+        return;
+    
+    mon = &gPlayerParty[i];
+    
+    gSpecialVar_Result = 1; //Castform unused
+    exp = GetMonData(mon, MON_DATA_EXP, NULL);
+    if (exp == gExperienceTables[gBaseStats[SPECIES_CASTFORM].growthRate][25])
+        return;
+    
+    gSpecialVar_Result = 2; //Castform used
+    
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 moveId = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
+        u8 pp = GetMonData(mon, MON_DATA_PP1 + i, NULL);
+        
+        switch (moveId) {
+            case MOVE_RAIN_DANCE:
+            case MOVE_SUNNY_DAY:
+            case MOVE_HAIL:
+                break;
+            default:
+                continue;
+        }
+        
+        if (pp != CalculatePPWithBonus(moveId, GetMonData(mon, MON_DATA_PP_BONUSES, NULL), i))
+        {
+            gSpecialVar_Result = 3; //Castform used move
+        }
+    }
+}
+
+

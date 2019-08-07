@@ -8,7 +8,7 @@
 #define TRAINER_GRUNT_3           4
 #define TRAINER_GRUNT_4           5
 #define TRAINER_LOGAN_HIDEOUT           6
-#define TRAINER_GRUNT_6           7
+#define TRAINER_LOGAN_INSTITUTE           7
 #define TRAINER_GRUNT_7           8
 #define TRAINER_GABRIELLE_1       9
 #define TRAINER_GRUNT_8          10
@@ -19,8 +19,8 @@
 #define TRAINER_DECLAN           15
 #define TRAINER_GRUNT_10         16
 #define TRAINER_RODRIGO         17
-#define TRAINER_GRUNT_12         18
-#define TRAINER_GRUNT_13         19
+#define TRAINER_SEAN         18
+#define TRAINER_WALKER         19
 #define TRAINER_LOGAN_STERNCUTSCENE         20
 #define TRAINER_GRUNT_15         21
 #define TRAINER_GRUNT_16         22
@@ -597,7 +597,7 @@
 #define TRAINER_BRENDAN_11      593
 #define TRAINER_PAXTON          594
 #define TRAINER_ISABELLA        595
-#define TRAINER_GRUNT_37        596
+#define TRAINER_BECKETT        596
 #define TRAINER_TABITHA_2       597
 #define TRAINER_JONATHAN        598
 #define TRAINER_BRENDAN_12      599
