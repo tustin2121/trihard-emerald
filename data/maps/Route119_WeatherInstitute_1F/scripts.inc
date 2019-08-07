@@ -223,7 +223,36 @@ Route119_WeatherInstitute_1F_Text_Man3A:
 	.string "If he knew what was good for him, he'd\n"
 	.string "drop all this Aqua nonsense and come\l"
 	.string "work for us!$"
-			
+
+
+Route119_WeatherInstitute_1F_FreePokeballBox::
+	lock
+	goto_if_set FLAG_TEMP_1D, Route119_WeatherInstitute_1F_FreePokeballBoxFlagged
+	setyesnotext gYN_Sure, gYN_Nah
+	msgbox Route119_WeatherInstitute_1F_FreePokeballBox_Text, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Common_EventScript_ReleaseEnd
+	giveitem_std ITEM_POKE_BALL, 10
+	compare VAR_RESULT, 0
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, 10
+	setflag FLAG_TEMP_1D
+	release
+	end
+Route119_WeatherInstitute_1F_FreePokeballBox_Text:
+	.string "Looks like a week's supply of\n"
+	.string "Poké Balls for the Institute.\p"
+	.string "Take a few?$"
+Route119_WeatherInstitute_1F_FreePokeballBoxFlagged:
+	msgbox Route119_WeatherInstitute_1F_FreePokeballBox_Text2
+	release
+	end
+Route119_WeatherInstitute_1F_FreePokeballBox_Text2:
+	.string "Looks like a week's supply of\n"
+	.string "Poké Balls for the Institute.$"
+
+
+
 @ -----------------------------------------------------
 
 Route119_WeatherInstitute_1F_EventScript_AquaBoy::
