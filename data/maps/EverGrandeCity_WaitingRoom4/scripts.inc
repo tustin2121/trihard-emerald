@@ -67,6 +67,7 @@ EverGrandeCity_WaitingRoom4_EventScript_Logan::
 	msgbox EverGrandeCity_WaitingRoom4_Text_Logan, MSGBOX_NPC
 	applymovement THIS_EVENT, Common_Movement_FaceDown
 	waitmovement 0
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
 	setflag FLAG_TEMP_1
 	end
 EverGrandeCity_WaitingRoom4_Text_Logan:

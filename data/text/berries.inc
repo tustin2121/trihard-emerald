@@ -35,29 +35,6 @@ Route114_Text_2A706E: @ 82A706E
 	.string "Should you use or hoard BERRIES?\p"
 	.string "It's fun to think about.$"
 
-Route120_Text_2A70C7: @ 82A70C7
-	.string "BERRIES grow by soaking up sunlight.\p"
-	.string "We help the BERRIES grow by watering\n"
-	.string "them regularly.\p"
-	.string "It's an expression of love, isn't it?$"
-
-Route120_Text_2A7147: @ 82A7147
-	.string "Yes, yes.\n"
-	.string "You understand what I mean.\p"
-	.string "You should take this.$"
-
-Route120_Text_2A7183: @ 82A7183
-	.string "Oh… But it is important to make your\n"
-	.string "own impressions, I guess…\p"
-	.string "You can have this.$"
-
-Route120_Text_2A71D5: @ 82A71D5
-	.string "I think that BERRY is rare.\n"
-	.string "I hope you raise it with loving care.$"
-
-Route120_Text_2A7217: @ 82A7217
-	.string "I'll get more BERRIES from\n"
-	.string "the BERRY MASTER.$"
 
 Route123_BerryMastersHouse_Text_2A7386: @ 82A7386
 	.string "You may call me the BERRY MASTER.\p"

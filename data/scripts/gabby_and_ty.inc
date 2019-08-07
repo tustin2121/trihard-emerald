@@ -10,9 +10,7 @@ EventScript_28CCAA:: @ 828CCAA
 EventScript_28CCC6:: @ 828CCC6
 	return
 
-Route111_EventScript_28CCC7:: @ 828CCC7
-Route118_EventScript_28CCC7:: @ 828CCC7
-Route120_EventScript_28CCC7:: @ 828CCC7
+Common_EventScript_SetupGabbyAndTy:: @ 828CCC7
 	cleartrainerflag TRAINER_GABBY_AND_TY_6
 	specialvar VAR_RESULT, GabbyAndTyGetBattleNum
 	switch VAR_RESULT

@@ -1868,70 +1868,112 @@ CaveOfOrigin_UnusedRubySapphireMap3_EventScript_2722C1:: @ 82722C1
 	setvar VAR_TEMP_5, 1
 	return
 
+@ Kecleon Scripts
+
 Route120_EventScript_2722DB:: @ 82722DB
 	lock
 	faceplayer
 	setvar VAR_0x8009, 1
-	goto Route120_EventScript_272336
+	goto Common_EventScript_KecleonFight
 	end
 
 Route120_EventScript_2722E8:: @ 82722E8
 	lock
 	faceplayer
 	setvar VAR_0x8009, 2
-	goto Route120_EventScript_272336
+	goto Common_EventScript_KecleonFight
 	end
 
 Route120_EventScript_2722F5:: @ 82722F5
 	lock
 	faceplayer
 	setvar VAR_0x8009, 3
-	goto Route120_EventScript_272336
+	goto Common_EventScript_KecleonFight
 	end
 
 Route120_EventScript_272302:: @ 8272302
 	lock
 	faceplayer
 	setvar VAR_0x8009, 4
-	goto Route120_EventScript_272336
+	goto Common_EventScript_KecleonFight
 	end
 
 Route120_EventScript_27230F:: @ 827230F
 	lock
 	faceplayer
 	setvar VAR_0x8009, 5
-	goto Route120_EventScript_272336
+	goto Common_EventScript_KecleonFight
 	end
 
 Route119_EventScript_27231C:: @ 827231C
 	lock
 	faceplayer
 	setvar VAR_0x8009, 6
-	goto Route119_EventScript_272336
+	goto Common_EventScript_KecleonFight
 	end
 
 Route119_EventScript_272329:: @ 8272329
 	lock
 	faceplayer
 	setvar VAR_0x8009, 7
-	goto Route119_EventScript_272336
+	goto Common_EventScript_KecleonFight
 	end
 
-Route119_EventScript_272336:: @ 8272336
-Route120_EventScript_272336:: @ 8272336
-	checkitem ITEM_DEVON_SCOPE, 1
-	compare VAR_RESULT, 1
-	goto_if_eq Route119_EventScript_272350
-	msgbox Route119_Text_1F5D00, MSGBOX_DEFAULT
-	release
-	end
+@ Common_EventScript_KecleonFight:: @ 8272336
+@ 	checkitem ITEM_DEVON_SCOPE, 1
+@ 	compare VAR_RESULT, 1
+@ 	goto_if_eq Route119_EventScript_272350
+@ 	msgbox Common_Text_KecleonUnseeable, MSGBOX_DEFAULT
+@ 	release
+@ 	end
+Common_Text_KecleonUnseeable: @ 81F5D00
+	.string "Something unseeable is in the way.$"
 
-Route119_EventScript_272350:: @ 8272350
-	msgbox Route119_Text_1F5D23, MSGBOX_YESNO
-	compare VAR_RESULT, 1
+
+
+
+@ Route119_EventScript_272350:: @ 8272350
+Common_EventScript_KecleonFight:: @ 8272336
+	gettime
+	selectpointer_wrap Common_TextArray_KecleonFightQuery, VAR_0x8000
+	msgbox_selected MSGBOX_YESNO
+	compare VAR_RESULT, YES
 	goto_if_eq Route119_EventScript_272365
 	release
 	end
+.align 2
+Common_TextArray_KecleonFightQuery:
+	.4byte Common_Text_KecleonFightQuery2 // midnight
+	.4byte Common_Text_KecleonFightQuery2
+	.4byte Common_Text_KecleonFightQuery2
+	.4byte Common_Text_KecleonFightQuery2
+	.4byte Common_Text_KecleonFightQuery2 //4am
+	.4byte Common_Text_KecleonFightQuery2
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1 //8am
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1 //noon
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1 //4pm
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery1
+	.4byte Common_Text_KecleonFightQuery2
+	.4byte Common_Text_KecleonFightQuery2 //8pm
+	.4byte Common_Text_KecleonFightQuery2
+	.4byte Common_Text_KecleonFightQuery2
+	.4byte Common_Text_KecleonFightQuery2
+	.4byte 0
+Common_Text_KecleonFightQuery1: @ 81F5D23
+	.string "Something unseeable is in the way.\p"
+	.string "Do you want to attack the thick air?$"
+Common_Text_KecleonFightQuery2:
+	.string "Something unseeable is in the way.\p"
+	.string "Do you want to attack the darkness?$"
 
 Route119_EventScript_272365:: @ 8272365
 	msgbox Route119_Text_1F5D63, MSGBOX_DEFAULT
@@ -1950,17 +1992,18 @@ Route119_EventScript_272365:: @ 8272365
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, 1
-	goto_if_eq Route119_EventScript_2723C1
+	goto_if_eq Common_EventScript_FadeAndRemoveTalkedObject
 	compare VAR_RESULT, 4
-	goto_if_eq Route119_EventScript_2723C1
+	goto_if_eq Common_EventScript_FadeAndRemoveTalkedObject
 	compare VAR_RESULT, 5
-	goto_if_eq Route119_EventScript_2723C1
+	goto_if_eq Common_EventScript_FadeAndRemoveTalkedObject
 	release
 	end
-
-Route119_EventScript_2723C1:: @ 82723C1
-	goto Route119_EventScript_27376D
-	end
+Route119_Text_1F5D63: @ 81F5D63
+	.string "{PLAYER} used the DEVON SCOPE.\p"
+	.string "An invisible Pokémon became completely\n"
+	.string "visible!\p"
+	.string "The startled Pokémon attacked!$"
 
 FallarborTown_House1_EventScript_2723E4:: @ 82723E4
 GraniteCave_StevensRoom_EventScript_2723E4:: @ 82723E4
@@ -2316,8 +2359,8 @@ DesertRuins_EventScript_27376D:: @ 827376D
 IslandCave_EventScript_27376D:: @ 827376D
 MarineCave_End_EventScript_27376D:: @ 827376D
 NewMauville_Inside_EventScript_27376D:: @ 827376D
-Route119_EventScript_27376D:: @ 827376D
 TerraCave_End_EventScript_27376D:: @ 827376D
+Common_EventScript_FadeAndRemoveTalkedObject:: @ 827376D
 	fadescreenswapbuffers 1
 	removeobject VAR_LAST_TALKED
 	fadescreenswapbuffers 0

@@ -5,7 +5,7 @@ Route118_MapScripts:: @ 81F3DBC
 	.byte 0
 
 Route118_OnTransition: @ 81F3DCC
-	call Route118_EventScript_28CCC7
+	call Common_EventScript_SetupGabbyAndTy
 	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
 	call_if_eq Common_EventScript_HideMapNamePopup
 	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_118_EAST
