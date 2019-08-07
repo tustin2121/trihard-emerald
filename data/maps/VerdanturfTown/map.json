@@ -74,7 +74,7 @@
             "script": "Common_EventScript_BattleTentClosed",
             "type": "sign",
             "x": 3,
-            "y": 7
+            "y": 6
         }
     ],
     "connections": [
