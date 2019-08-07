@@ -486,6 +486,15 @@ const u8 DoorAnimTiles_50[][0x100] =
 
 asm(".space 32");
 
+const u8 DoorAnimTiles_51[][0x200] =
+{
+    INCBIN_U8("graphics/door_anims/fortree/0.4bpp"),
+    INCBIN_U8("graphics/door_anims/fortree/1.4bpp"),
+    INCBIN_U8("graphics/door_anims/fortree/2.4bpp"),
+};
+
+asm(".space 32");
+
 static const struct DoorAnimFrame gDoorOpenAnimFrames[] =
 {
     {4, -1},
@@ -573,6 +582,7 @@ const u8 DoorAnimPalettes_8497154[] = {9, 9, 7, 7, 7, 7, 7, 7}; // door 49
 const u8 DoorAnimPalettes_849715C[] = {9, 9, 9, 9, 9, 9, 9, 9}; // door 50
 const u8 DoorAnimPalettes_8497164[] = {7, 7, 7, 7, 7, 7, 7, 7}; // door 51
 const u8 DoorAnimPalettes_849716C[] = {9, 9, 7, 7, 7, 7, 7, 7}; // door 52
+const u8 DoorAnimPalettes_849716G[] = {5, 5, 5, 5, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5}; // door 53
 
 static const struct DoorGraphics gDoorAnimGraphicsTable[] =
 {
@@ -629,12 +639,13 @@ static const struct DoorGraphics gDoorAnimGraphicsTable[] =
     {0x26B, 1, 1, DoorAnimTiles_48, DoorAnimPalettes_849715C}, // door 50
     {0x32C, 1, 1, DoorAnimTiles_49, DoorAnimPalettes_8497164}, // door 51
     {0x383, 1, 1, DoorAnimTiles_50, DoorAnimPalettes_849716C}, // door 52
+    {0x312, 1, 3, DoorAnimTiles_51, DoorAnimPalettes_849716G}, // door 53
     {0, 0, 0, NULL, NULL},
 };
 
 static void CopyDoorTilesToVram(const struct DoorGraphics *gfx, const struct DoorAnimFrame *frame)
 {
-    if (gfx->size == 2)
+    if (gfx->size == 2 || gfx->size == 3)
         CpuFastSet(gfx->tiles + frame->offset, (void *)(VRAM + 0x7E00), 0x80);
     else
         CpuFastSet(gfx->tiles + frame->offset, (void *)(VRAM + 0x7F00), 0x40);
@@ -657,11 +668,30 @@ static void door_build_blockdef(u16 *a, u16 b, const u8 *c)
     }
 }
 
+static void door_build_blockdef2(u16 *a, u16 b, const u8 *c)
+{
+    a[0] = (c[0] << 12) | (b + 0);
+    a[1] = (c[1] << 12) | (b + 1);
+    a[4] = (c[4] << 12) | (b + 2);
+    a[5] = (c[5] << 12) | (b + 3);
+    a[2] = (c[2] << 12) | (b + 4);
+    a[3] = (c[3] << 12) | (b + 5);
+    a[6] = (c[6] << 12) | (b + 6);
+    a[7] = (c[7] << 12) | (b + 7);
+}
+
 static void DrawCurrentDoorAnimFrame(const struct DoorGraphics *gfx, u32 x, u32 y, const u8 *pal)
 {
     u16 arr[24];
     
-    if (gfx->size == 2)
+    if (gfx->size == 3)
+    {
+        door_build_blockdef2(&arr[0], 0x3F0, pal);
+        DrawDoorMetatileAt(x, y - 1, &arr[0]);
+        door_build_blockdef2(&arr[0], 0x3F8, pal + 8);
+        DrawDoorMetatileAt(x, y, &arr[0]);
+    }
+    else if (gfx->size == 2)
     {
         door_build_blockdef(&arr[8], 0x3F0, pal);
         DrawDoorMetatileAt(x, y - 1, &arr[8]);
@@ -808,7 +838,7 @@ static s8 StartDoorOpenAnimation(const struct DoorGraphics *gfx, u32 x, u32 y)
     }
     else
     {
-        if (gfx->size == 2)
+        if (gfx->size == 2 || gfx->size == 3)
             return StartDoorAnimationTask(gfx, gBigDoorOpenAnimFrames, x, y);
         else
             return StartDoorAnimationTask(gfx, gDoorOpenAnimFrames, x, y);
@@ -821,7 +851,12 @@ static s8 StartDoorCloseAnimation(const struct DoorGraphics *gfx, u32 x, u32 y)
     if (gfx == NULL)
         return -1;
     else
-        return StartDoorAnimationTask(gfx, gDoorCloseAnimFrames, x, y);
+    {
+        if (gfx->size == 3)
+            return StartDoorAnimationTask(gfx, gBigDoorCloseAnimFrames, x, y);
+        else
+            return StartDoorAnimationTask(gfx, gDoorCloseAnimFrames, x, y);
+    }
 }
 
 static s8 cur_mapdata_get_door_x2_at(const struct DoorGraphics *gfx, u32 x, u32 y)

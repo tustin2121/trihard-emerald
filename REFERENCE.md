@@ -11,6 +11,9 @@ For future person reference:
 * Animated door warps: 
 	* The warp tile should be on the door, the metatile should be marked as an MB_ANIMATED_DOOR, and the tile should have collision ON. If the tile does NOT have collision, then it is possible for the player to approach the door from the side and turn quickly into it, and the door will not animate. The door needs to be bumped into for it to animate.
 	* Furthermore, events placed on top of doors do not block door warps. To disable a door warp, you will need to change the metatile to a non-warpable tile, ie, one not marked as MB_ANIMATED_DOOR.
+	* Which door animation to use is determined by the lower tile's metatile id. This id is used as an "index" into the array named `gDoorAnimGraphicsTable`. This use as an index is global across the game, so if you put a new MB_ANIMATED_DOOR tile on an already existing id, the game will use the existing animation already.
+	* In vanilla emerald, these door animations must not rely on two layers of tiles like the map does already. However individual tiles can have different palettes.
+		* It's possible to mod it so that they can support multi-layered door animations, see TriHard Emerald's `fortree` door animation, and `gfx->size == 3`.
 * Caves
 	* The southern warps do not work the way you think. The glowing cave exit tiles are not special. It's the nondescript floor tile underfoot that is the warp tile. No, you cannot tell them apart by sight.
 * Map Scripts:

@@ -26,7 +26,7 @@
             "script": "Common_EventScript_ShowPokemartSign",
             "type": "sign",
             "x": 4,
-            "y": 33
+            "y": 35
         },
         {
             "elevation": 0,
@@ -50,7 +50,7 @@
             "script": "Common_EventScript_ShowPokemartSign",
             "type": "sign",
             "x": 5,
-            "y": 33
+            "y": 36
         }
     ],
     "connections": [
@@ -109,7 +109,7 @@
             "script": "FortreeCity_EventScript_1E25BF",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 20,
+            "x": 24,
             "y": 8
         },
         {
@@ -161,8 +161,8 @@
             "script": "FortreeCity_EventScript_1E2614",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 24,
-            "y": 27
+            "x": 29,
+            "y": 34
         }
     ],
     "region_map_section": "MAPSEC_FORTREE_CITY",
@@ -195,7 +195,7 @@
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 3,
-            "y": 33
+            "y": 35
         },
         {
             "dest_map": "MAP_FORTREE_CITY_HOUSE2",
