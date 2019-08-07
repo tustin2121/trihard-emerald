@@ -1,5 +1,82 @@
-VerdanturfTown_ContestLobby_MapScripts::
+VerdanturfTown_ContestLobby_MapScripts:: @ 821A211
+	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_ContestLobby_OnTransition
 	.byte 0
+
+VerdanturfTown_ContestLobby_OnTransition: @ 821A21C
+	call LilycoveCity_ContestLobby_EventScript_28CB2B
+	call LilycoveCity_ContestLobby_EventScript_21A227
+	end
+
+VerdanturfTown_ContestLobby_EventScript_JoinContestNPC::
+	special sub_80F9154
+	specialvar VAR_RESULT, sub_80F8D24
+	compare VAR_RESULT, 1
+	goto_if_eq VerdanturfTown_ContestLobby_EventScript_21A5CF
+	call LilycoveCity_ContestLobby_EventScript_279CC5
+	call VerdanturfTown_ContestLobby_EventScript_21A670
+	special SetContestTrainerGfxIds
+	call LilycoveCity_ContestLobby_EventScript_23BEB6
+	call LilycoveCity_ContestLobby_EventScript_21A585
+	call LilycoveCity_ContestLobby_EventScript_21A5EF
+	waitstate
+	end
+	
+VerdanturfTown_ContestLobby_EventScript_21A5CF::
+	setflag FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR
+	copyvar VAR_LILYCOVE_MUSEUM_2F_STATE, 0x1
+	giveitem ITEM_CONTEST_PASS, 1
+	setvar VAR_0x800B, 8
+	setvar VAR_CONTEST_RANK, 3
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 1
+	setflag FLAG_SYS_RIBBON_GET
+	end
+	
+VerdanturfTown_ContestLobby_EventScript_21A670::
+	lockall
+	applymovement 1, VerdanturfTown_ContestLobby_Movement_21A6F5
+	waitmovement 0
+	playse SE_HASHI
+	setmetatile 4, 2, 545, 1
+	setmetatile 4, 3, 609, 1
+	special DrawWholeMapView
+	applymovement 1, LilycoveCity_ContestLobby_Movement_21A6F9
+	waitmovement 0
+	playse SE_HASHI
+	setmetatile 4, 2, 721, 1
+	setmetatile 4, 3, 729, 1
+	special DrawWholeMapView
+	delay 20
+	applymovement 1, LilycoveCity_ContestLobby_Movement_21A706
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, VerdanturfTown_ContestLobby_Movement_21A6F2_Player
+	waitmovement 0
+	msgbox LilycoveCity_ContestLobby_Text_27B653, MSGBOX_DEFAULT
+	closemessage
+	applymovement 1, VerdanturfTown_ContestLobby_Movement_21A6FD
+	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6E8
+	waitmovement 0
+	releaseall
+	return
+	
+VerdanturfTown_ContestLobby_Movement_21A6F5::
+	walk_left
+	walk_in_place_fastest_down
+	step_end
+	
+VerdanturfTown_ContestLobby_Movement_21A6FD::
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	delay_8
+	set_invisible
+	step_end
+	
+VerdanturfTown_ContestLobby_Movement_21A6F2_Player::
+	walk_in_place_fastest_left
+	step_end
 
 VerdanturfTown_ContestLobby_JustAPlant::
 	msgbox VerdanturfTown_ContestLobby_Text_JustAPlant, MSGBOX_DEFAULT
