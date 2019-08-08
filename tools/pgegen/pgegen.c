@@ -84,33 +84,36 @@ int main(int argc, char ** argv)
     fprintf(outFile, "ROMName = %s\n", romName);
 
 #define config_set(name, value) (fprintf(outFile, "%s = %X\n", (name), (value)))
+#define config_set_dec(name, value) (fprintf(outFile, "%s = %i\n", (name), (value)))
 #define sym_get(name) (GetSymbolByName((name))->st_value)
+#define rom_sym_get(name) (GetSymbolByName((name))->st_value - 0x8000000)
 
     Elf32_Sym * gItems = GetSymbolByName("gItems");
     config_set("ItemData", gItems->st_value);
     Elf32_Sym * gMoveNames = GetSymbolByName("gMoveNames");
-    config_set("AttackNames", gMoveNames->st_value);
+    config_set("AttackNames", gMoveNames->st_value - 0x8000000);
     Elf32_Sym * TMHMMoves = GetSymbolByName("gTMHMMoves");
-    config_set("TMData", TMHMMoves->st_value);
-    config_set("TotalTMsPlusHMs", TMHMMoves->st_size / 2);
-    config_set("TotalTMs", TMHMMoves->st_size / 2);
-    config_set("NumberOfItems", gItems->st_size / 44);
-    config_set("NumberOfAttacks", gMoveNames->st_size / 13);
+    config_set("TMData", TMHMMoves->st_value - 0x8000000);
+    config_set_dec("TotalTMsPlusHMs", TMHMMoves->st_size / 2);
+    config_set_dec("TotalTMs", TMHMMoves->st_size / 2);
+    config_set("ItemIMGData", rom_sym_get("gItemIcon_MasterBall"));
+    config_set_dec("NumberOfItems", gItems->st_size / 44);
+    config_set_dec("NumberOfAttacks", gMoveNames->st_size / 13);
     Elf32_Sym * gSpeciesNames = GetSymbolByName("gSpeciesNames");
-    config_set("PokemonNames", gSpeciesNames->st_value);
+    config_set("PokemonNames", gSpeciesNames->st_value - 0x8000000);
     uint16_t npokes = gSpeciesNames->st_size / 11;
-    config_set("NumberOfPokemon", npokes);
-    config_set("NationalDexTable", sym_get("gSpeciesToNationalPokedexNum"));
-    config_set("SecondDexTable", sym_get("gSpeciesToHoennPokedexNum"));
+    config_set_dec("NumberOfPokemon", npokes);
+    config_set("NationalDexTable", rom_sym_get("gSpeciesToNationalPokedexNum"));
+    config_set("SecondDexTable", rom_sym_get("gSpeciesToHoennPokedexNum"));
     Elf32_Sym * gPokedexEntries = GetSymbolByName("gPokedexEntries");
-    config_set("PokedexData", gPokedexEntries->st_value);
-    config_set("NumberOfDexEntries", gPokedexEntries->st_size / 36);
-    config_set("PokemonData", sym_get("gBaseStats"));
+    config_set("PokedexData", gPokedexEntries->st_value - 0x8000000);
+    config_set_dec("NumberOfDexEntries", gPokedexEntries->st_size / 36);
+    config_set("PokemonData", rom_sym_get("gBaseStats"));
     Elf32_Sym * gAbilityNames = GetSymbolByName("gAbilityNames");
-    config_set("AbilityNames", gAbilityNames->st_value);
-    config_set("NumberOfAbilities", gAbilityNames->st_size / 13);
+    config_set("AbilityNames", gAbilityNames->st_value - 0x8000000);
+    config_set_dec("NumberOfAbilities", gAbilityNames->st_size / 13);
     Elf32_Sym * gMapGroups = GetSymbolByName("gMapGroups");
-    config_set("gMapGroups", gMapGroups->st_value);
+    config_set("Pointer2PointersToMapBanks", gMapGroups->st_value - 0x8000000);
     vector_u32 * ptrs = malloc(sizeof(vector_u32));
     ptrs->nitems = 0;
     char buffer[256];
@@ -119,7 +122,7 @@ int main(int argc, char ** argv)
         Elf32_Sym * grp = GetSymbolOrNullByName(buffer);
         if (grp == NULL) break;
         sprintf(buffer, "OriginalBankPointer%lu", ptrs->nitems);
-        config_set(buffer, grp->st_value);
+        config_set(buffer, grp->st_value - 0x8000000);
         ptrs = push_back(ptrs, grp->st_value);
     }
     ptrs = push_back(ptrs, gMapGroups->st_value);
@@ -131,7 +134,7 @@ int main(int argc, char ** argv)
         for (j = 0; j < sorted_ptrs->nitems; j++) {
             if (ptrs->data[i] == sorted_ptrs->data[j]) {
                 sprintf(buffer, "NumberOfMapsInBank%d", i);
-                config_set(buffer, (sorted_ptrs->data[j + 1] - ptrs->data[i] - 4) / 4);
+                config_set_dec(buffer, (sorted_ptrs->data[j + 1] - ptrs->data[i] - 4) / 4);
                 break;
             }
         }
@@ -139,34 +142,38 @@ int main(int argc, char ** argv)
     free(ptrs);
     free(sorted_ptrs);
     Elf32_Sym * gRegionMapEntries = GetSymbolByName("gRegionMapEntries");
-    config_set("MapLabelData", gRegionMapEntries->st_value);
-    config_set("NumberOfMapLabels", gRegionMapEntries->st_size / 8);
-    config_set("PokemonFrontSprites", sym_get("gMonFrontPicTable"));
-    config_set("PokemonBackSprites", sym_get("gMonBackPicTable"));
-    config_set("PokemonNormalPal", sym_get("gMonPaletteTable"));
-    config_set("PokemonShinyPal", sym_get("gMonShinyPaletteTable"));
-    config_set("IconPointerTable", sym_get("gMonIconTable"));
-    config_set("IconPalTable", sym_get("gMonIconPaletteIndices"));
-    config_set("CryTable", sym_get("gCryTable"));
-    config_set("CryTable2", sym_get("gCryTable2"));
-    config_set("FootPrintTable", sym_get("gMonFootprintTable"));
-    config_set("PokemonAttackTable", sym_get("gLevelUpLearnsets"));
+    config_set("MapLabelData", gRegionMapEntries->st_value - 0x8000000);
+    config_set_dec("NumberOfMapLabels", gRegionMapEntries->st_size / 8);
+    config_set("PokemonFrontSprites", rom_sym_get("gMonFrontPicTable"));
+    config_set("PokemonBackSprites", rom_sym_get("gMonBackPicTable"));
+    config_set("PokemonNormalPal", rom_sym_get("gMonPaletteTable"));
+    config_set("PokemonShinyPal", rom_sym_get("gMonShinyPaletteTable"));
+    config_set("PokemonAnimations", rom_sym_get("gMonFrontPicTable"));
+    config_set("FrontAnimationTable", rom_sym_get("gTrainerFrontAnimsPtrTable"));
+    config_set("BackAnimTable", rom_sym_get("gTrainerBackAnimsPtrTable"));
+    //config_set("AnimDelayTable", rom_sym_get(""));
+    config_set("IconPointerTable", rom_sym_get("gMonIconTable"));
+    config_set("IconPalTable", rom_sym_get("gMonIconPaletteIndices"));
+    config_set("CryTable", rom_sym_get("gCryTable"));
+    config_set("CryTable2", rom_sym_get("gCryTable2"));
+    config_set("FootPrintTable", rom_sym_get("gMonFootprintTable"));
+    config_set("PokemonAttackTable", rom_sym_get("gLevelUpLearnsets"));
     Elf32_Sym * gEvolutionTable = GetSymbolByName("gEvolutionTable");
-    config_set("PokemonEvolutions", gEvolutionTable->st_value);
+    config_set("PokemonEvolutions", gEvolutionTable->st_value - 0x8000000);
     Elf32_Sym * gTMHMLearnsets = GetSymbolByName("gTMHMLearnsets");
-    config_set("TMHMCompatibility", gTMHMLearnsets->st_value);
-    config_set("TMHMLenPerPoke", gTMHMLearnsets->st_size / npokes);
-    config_set("EnemyYTable", sym_get("gMonFrontPicCoords"));
-    config_set("PlayerYTable", sym_get("gMonBackPicCoords"));
-    config_set("EnemyAltitudeTable", sym_get("gEnemyMonElevation"));
-    config_set("AttackData", sym_get("gBattleMoves"));
-    config_set("ContestMoveData", sym_get("gContestMoves"));
-    config_set("ContestMoveEffectData", sym_get("gContestEffects"));
-    config_set("AttackDescriptionTable", sym_get("gMoveDescriptionPointers"));
-    config_set("AbilityDescriptionTable", sym_get("gAbilityDescriptionPointers"));
+    config_set("TMHMCompatibility", gTMHMLearnsets->st_value - 0x8000000);
+    config_set_dec("TMHMLenPerPoke", gTMHMLearnsets->st_size / npokes);
+    config_set("EnemyYTable", rom_sym_get("gMonFrontPicCoords"));
+    config_set("PlayerYTable", rom_sym_get("gMonBackPicCoords"));
+    config_set("EnemyAltitudeTable", rom_sym_get("gEnemyMonElevation"));
+    config_set("AttackData", rom_sym_get("gBattleMoves"));
+    config_set("ContestMoveData", rom_sym_get("gContestMoves"));
+    config_set("ContestMoveEffectData", rom_sym_get("gContestEffects"));
+    config_set("AttackDescriptionTable", rom_sym_get("gMoveDescriptionPointers"));
+    config_set("AbilityDescriptionTable", rom_sym_get("gAbilityDescriptionPointers"));
     Elf32_Sym * StarterMons = GetSymbolByName("sStarterMon");
     if (StarterMons != NULL) {
-        config_set("StarterPokemon", StarterMons->st_value);
+        config_set("StarterPokemon", StarterMons->st_value - 0x8000000);
     } else {
         fputs("StarterPokemon = \n", outFile);
     }
@@ -178,7 +185,7 @@ int main(int argc, char ** argv)
     // TODO: Tilests
 
 
-    config_set("IconPals", sym_get("gMonIconPalettes"));
+    config_set("IconPals", rom_sym_get("gMonIconPalettes"));
     config_set("JamboLearnableMovesTerm", 0x0000FF);  // ??????????????
     config_set("StartSearchingForSpaceOffset", 0x800000);  // ??????????????
     config_set("FreeSpaceSearchInterval", 0x100);  // ???????????????
@@ -220,26 +227,26 @@ int main(int argc, char ** argv)
 
 
     config_set("MoveTutorAttacks", 0);
-    config_set("CryConversionTable", sym_get("gSpeciesIdToCryId"));
+    config_set("CryConversionTable", rom_sym_get("gSpeciesIdToCryId"));
     config_set("MoveTutorCompatibility", 0);
-    config_set("EggMoveTable", sym_get("gEggMoves"));
-    config_set("EggMoveTableLimiter", sym_get("GetEggMoves")); // static function
+    config_set("EggMoveTable", rom_sym_get("gEggMoves"));
+    config_set("EggMoveTableLimiter", rom_sym_get("GetEggMoves")); // static function
     Elf32_Sym * gTrainers = GetSymbolByName("gTrainers");
-    config_set("TrainerTable", gTrainers->st_value);
-    config_set("NumberOfTrainers", gTrainers->st_size / 40 - 1);
+    config_set("TrainerTable", gTrainers->st_value - 0x8000000);
+    config_set_dec("NumberOfTrainers", gTrainers->st_size / 40 - 1);
     Elf32_Sym * gTrainerClassNames = GetSymbolByName("gTrainerClassNames");
-    config_set("TrainerClasses", gTrainerClassNames->st_value);
-    config_set("NumberOfTrainerClasses", gTrainerClassNames->st_size / 13);
+    config_set("TrainerClasses", gTrainerClassNames->st_value - 0x8000000);
+    config_set_dec("NumberOfTrainerClasses", gTrainerClassNames->st_size / 13);
     Elf32_Sym * gTrainerFrontPicTable = GetSymbolByName("gTrainerFrontPicTable");
     Elf32_Sym * gTrainerFrontPicPaletteTable = GetSymbolByName("gTrainerFrontPicPaletteTable");
-    config_set("TrainerImageTable", gTrainerFrontPicTable->st_value);
+    config_set("TrainerImageTable", gTrainerFrontPicTable->st_value - 0x8000000);
     unsigned size = gTrainerFrontPicPaletteTable->st_value - gTrainerFrontPicTable->st_value;
     config_set("NumberOfTrainerImages", size / 8);
-    config_set("TrainerPaletteTable", gTrainerFrontPicPaletteTable->st_value);
+    config_set("TrainerPaletteTable", gTrainerFrontPicPaletteTable->st_value - 0x8000000);
     config_set("DexSizeTrainerSprite", 0);
     Elf32_Sym * gIngameTrades = GetSymbolByName("gIngameTrades");
-    config_set("TradeData", gIngameTrades->st_value);
-    config_set("NumberOfTrades", gIngameTrades->st_size / 60);
+    config_set("TradeData", gIngameTrades->st_value - 0x8000000);
+    config_set_dec("NumberOfTrades", gIngameTrades->st_size / 60);
 
 
 // RAM locations
@@ -292,13 +299,18 @@ int main(int argc, char ** argv)
 // Skip rival name
     } else {
 // Assume Emerald for now
+        config_set("FlagsOffset", 0x1270);
+        config_set("FlagsBytes", 0x12C);
+        config_set("VarsOffset", 0x139C);
+        config_set("GameStatsOffset", 0x159C);
+        config_set("GameStatsBytes", 0x100);
         config_set("DaycareOffset", 0x3030);
         config_set("MoneyOffset", 0x490);
         config_set("EncryptionKeyOffset", 0xAC);
         config_set("ItemPCOffset", 0x498);
-        config_set("ItemPCCount", 0x32);
-        config_set("ItemPocketOffset", 0x560);
-        config_set("ItemPocketCount", 0x1E);
+        config_set("ItemPCCount", 1); //TriHard
+        config_set("ItemPocketOffset", 0x49C); //TriHard
+        config_set("ItemPocketCount", 79); //TriHard
         config_set("ItemKeyOffset", 0x5D8);
         config_set("ItemKeyCount", 0x1E);
         config_set("ItemBallOffset", 0x650);
@@ -307,8 +319,8 @@ int main(int argc, char ** argv)
         config_set("ItemTMCount", 0x40);
         config_set("ItemBerriesOffset", 0x790);
         config_set("ItemBerriesCount", 0x2E);
-        config_set("FlagsOffset", 0x1270);
-        config_set("BadgeFlag", 0x867);
+        config_set("BadgesOffset", 0x10C);
+        config_set("IwramClockAddr", sym_get("gLocalTime"));
         config_set("IwramMusicAddr", sym_get("sCurrentMapMusic"));
         fputs("EvolutionMusicIds = 178 179\n", outFile);
 // Skip rival name
