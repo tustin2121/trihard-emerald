@@ -5585,3 +5585,5 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/EverGrandeCity_WaitingRoom5/scripts.inc"
 
 	.include "data/maps/VerdanturfTown_ContestLobby/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_ContestHall/scripts.inc"

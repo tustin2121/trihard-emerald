@@ -83,8 +83,19 @@ VerdanturfTown_ContestLobby_JustAPlant::
 	release
 	end
 	
+VerdanturfTown_ContestLobby_ContestFan::
+	faceplayer
+	msgbox VerdanturfTown_ContestLobby_Text_ContestFan, MSGBOX_CDIALOG
+	release
+	end
+	
 VerdanturfTown_ContestLobby_Text_JustAPlant::
 	.string "It's just a plant.\p"
 	.string "What did you expect,\n"
 	.string "a hidden PC behind it?$"
+	
+VerdanturfTown_ContestLobby_Text_ContestFan::
+	.string "I'm a huge fan of SYDNEY\n"
+	.string "and her WHIRIS.\p"
+	.string "They are totally the best together!$"
 

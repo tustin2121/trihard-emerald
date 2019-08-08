@@ -4449,6 +4449,16 @@
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_Contest",
             "width": 15
+        },
+        {
+            "blockdata_filepath": "data/layouts/VerdanturfTown_ContestHall/map.bin",
+            "border_filepath": "data/layouts/VerdanturfTown_ContestHall/border.bin",
+            "height": 18,
+            "id": "LAYOUT_VERDANTURF_TOWN_CONTEST_HALL",
+            "name": "VerdanturfTown_ContestHall_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 21
         }
     ],
     "layouts_table_label": "gMapLayouts"
