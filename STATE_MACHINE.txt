@@ -12,7 +12,10 @@ VAR_AQUA_GIRL_FRIENDSHIP :=
 	1 = Names have been exchanged 	(+1 in Slateport)
 	2 =  							(+1 in Slateport Museum)
 	3 =  							(+1 in Meteor Falls [forced])
-	4 = 							(+1 in Weather Institute)
+	4 = 							(+1 in Mt Chimney - During)
+	5 = 							(+1 in Mt Chimney - Afterwards)
+	6 = 							(+1 in Weather Institute)
+	7 = 							(+1 in Mt. Pyre)
 	
 
 VAR_AQUA_BOY_FRIENDSHIP :=
@@ -20,11 +23,11 @@ VAR_AQUA_BOY_FRIENDSHIP :=
 	1 = Names have been exchanged 	(+1 in Slateport)
 	2 =  							(+1 in Slateport Museum [forced])
 	3 = 							(+1 in Weather Institute)
-	? = 							(+1 in Aqua Hideout - Before Mt. Pyre)
-	? = 							(+1 in Aqua Hideout - After Mt. Pyre)
-	? = 							(+1 in Aqua Hideout - After Magma Base)
-	? = 							(+1 in Aqua Hideout - After Slateport Hijacking)
-	? = 							(+1 in Aqua Hideout - After Sub Escape)
+	4 = 							(+1 in Aqua Hideout - Before Mt. Pyre)
+	5 = 							(+1 in Aqua Hideout - After Mt. Pyre)
+	6 = 							(+1 in Aqua Hideout - After Magma Base)
+	7 = 							(+1 in Aqua Hideout - After Slateport Hijacking)
+	8 = 							(+1 in Aqua Hideout - After Sub Escape)
 		
 
 VAR_BRINEY_LOCATION :=

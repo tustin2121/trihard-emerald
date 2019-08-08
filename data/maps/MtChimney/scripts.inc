@@ -1,18 +1,27 @@
 MtChimney_MapScripts:: @ 822EDC1
-	map_script MAP_SCRIPT_ON_RESUME, MtChimney_MapScript1_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, MtChimney_OnLoad
+	map_script MAP_SCRIPT_ON_RESUME, MtChimney_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, MtChimney_OnTransition
 	.byte 0
 
 @ -----------------------------------------------------
 
-MtChimney_OnTransition: @ 822EDCC
-	setvar VAR_JAGGED_PASS_ASH_WEATHER, 1
+MtChimney_OnLoad:
+	goto_if_unset FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA, Common_EventScript_NopEnd
+	goto_if_set FLAG_HIDE_MT_CHIMNEY_TRAINERS, Common_EventScript_NopEnd
+	setflag VAR_TEMP_A @ Hide Aqua Girl
 	end
 
 @ -----------------------------------------------------
 
-MtChimney_MapScript1_OnResume: @ 822EDD2
+MtChimney_OnResume: @ 822EDD2
 	setstepcallback 1
+	end
+
+@ -----------------------------------------------------
+
+MtChimney_OnTransition: @ 822EDCC
+	setvar VAR_JAGGED_PASS_ASH_WEATHER, 1
 	end
 
 @ -----------------------------------------------------
@@ -296,6 +305,63 @@ MtChimney_Text_22FDA1: @ 822FDA1
 	.string "It burns me up that they'd use such\n"
 	.string "a confusing name!$"
 
+
+MtChimney_EventScript_AquaGirl:: @ 822F065
+	goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, MtChimney_EventScript_AquaGirl3
+	goto_if_set FLAG_SCENE_1, MtChimney_EventScript_AquaGirl2
+	msgbox MtChimney_Text_AquaGirl, MSGBOX_NPC
+	addvar VAR_AQUA_GIRL_FRIENDSHIP, 1
+	setflag FLAG_SCENE_1
+	end
+MtChimney_Text_AquaGirl: @ 822FDA1
+	.string "{AQUA_GIRL}: {PLAYER}! You're here!\n"
+	.string "In just the nick of time!\p"
+	.string "There's too many of them!\n"
+	.string "We're outnumbered three to one!\p"
+	.string "You've done some amazing work against\n"
+	.string "these guys before, right?\p"
+	.string "You gotta get in there and\n"
+	.string "even the odds for us!$"
+MtChimney_EventScript_AquaGirl2:
+	msgbox MtChimney_Text_AquaGirl2, MSGBOX_NPC
+	end
+MtChimney_Text_AquaGirl2:
+	.string "Quickly! The boss can only hold out\n"
+	.string "for so long!$"
+MtChimney_EventScript_AquaGirl4:
+	msgbox MtChimney_Text_AquaGirl4, MSGBOX_NPC
+	end
+MtChimney_Text_AquaGirl4:
+	.string "{AQUA_GIRL}: See you later, {PLAYER}."
+MtChimney_EventScript_AquaGirl3:
+	goto_if_set FLAG_SCENE_A, MtChimney_EventScript_AquaGirl4
+	selectpointer_clamp MtChimney_TextArray_AquaGirl3, VAR_AQUA_GIRL_FRIENDSHIP
+	msgbox_selected MSGBOX_NPC
+	addvar VAR_AQUA_GIRL_FRIENDSHIP, 1
+	setflag FLAG_SCENE_A
+	end
+.align 2
+MtChimney_TextArray_AquaGirl3:
+	.4byte MtChimney_Text_AquaGirl3a
+	.4byte MtChimney_Text_AquaGirl3a
+	.4byte MtChimney_Text_AquaGirl3a
+	.4byte MtChimney_Text_AquaGirl3b
+	.4byte 0
+MtChimney_Text_AquaGirl3a:
+	.string "{AQUA_GIRL}: That was some fancy battling,\n"
+	.string "{PLAYER}! Nice job!\p"
+	.string "I look forward to the next time\n"
+	.string "you can help us out.\p"
+	.string "You seem to have a knack for it.$"
+MtChimney_Text_AquaGirl3b:
+	.string "{AQUA_GIRL}: That was amazing, {PLAYER}!\n"
+	.string "Welcome to the Team, full time!\p"
+	.string "I hope we have some downtime for a bit.\n"
+	.string "All this running around Hoenn is tirind.\p"
+	.string "I just wanna chill in front of some TV\n"
+	.string "for a while or something. Phew!$"
+	
+
 @ -----------------------------------------------------
 @ Team Magma
 
@@ -522,8 +588,8 @@ MtChimney_EventScript_Maxie:: @ 822EE0B
 	@ Clean up
 	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
 	setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
-	clearflag FLAG_HIDE_FALLARBOR_HOUSE_1_PROF_COZMO
 	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	clearflag FLAG_HIDE_FALLARBOR_HOUSE_1_PROF_COZMO
 	clearflag FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY
 	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
 	call Common_EventScript_ClearSceneFlags
