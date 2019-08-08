@@ -86,7 +86,7 @@ VerdanturfTown_ContestLobby_JustAPlant::
 	release
 	end
 
-VerdanturfTown_ContestLobby_JustAPlant_ItemFind:
+VerdanturfTown_ContestLobby_JustAPlant_ItemFind::
 	msgbox VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text, MSGBOX_DEFAULT
 	giveitem_std ITEM_LEAF_STONE
 	setflag FLAG_PLANT_POT
@@ -104,7 +104,7 @@ VerdanturfTown_ContestLobby_JustAPlant_Text::
 	.string "a hidden PC behind it?$"
 
 
-VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text:
+VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text::
 	.string "There's something in the pot, though…$"
 
 VerdanturfTown_ContestLobby_Text_ContestFan::
