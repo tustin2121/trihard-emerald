@@ -20,7 +20,7 @@ VerdanturfTown_ContestLobby_EventScript_JoinContestNPC::
 	call LilycoveCity_ContestLobby_EventScript_21A5EF
 	waitstate
 	end
-	
+
 VerdanturfTown_ContestLobby_EventScript_21A5CF::
 	setflag FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR
 	copyvar VAR_LILYCOVE_MUSEUM_2F_STATE, 0x1
@@ -30,7 +30,7 @@ VerdanturfTown_ContestLobby_EventScript_21A5CF::
 	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 1
 	setflag FLAG_SYS_RIBBON_GET
 	end
-	
+
 VerdanturfTown_ContestLobby_EventScript_21A670::
 	lockall
 	applymovement 1, VerdanturfTown_ContestLobby_Movement_21A6F5
@@ -59,12 +59,12 @@ VerdanturfTown_ContestLobby_EventScript_21A670::
 	@ setvar VAR_CONTEST_LOCATION, 1
 	releaseall
 	return
-	
+
 VerdanturfTown_ContestLobby_Movement_21A6F5::
 	walk_left
 	walk_in_place_fastest_down
 	step_end
-	
+
 VerdanturfTown_ContestLobby_Movement_21A6FD::
 	walk_left
 	walk_left
@@ -75,29 +75,39 @@ VerdanturfTown_ContestLobby_Movement_21A6FD::
 	delay_8
 	set_invisible
 	step_end
-	
+
 VerdanturfTown_ContestLobby_Movement_21A6F2_Player::
 	walk_in_place_fastest_left
 	step_end
 
 VerdanturfTown_ContestLobby_JustAPlant::
-	msgbox VerdanturfTown_ContestLobby_Text_JustAPlant, MSGBOX_DEFAULT
+	msgbox VerdanturfTown_ContestLobby_JustAPlant_Text, MSGBOX_DEFAULT
+	call_if_unset FLAG_PLANT_POT, VerdanturfTown_ContestLobby_JustAPlant_ItemFind
 	release
 	end
-	
+
+VerdanturfTown_ContestLobby_JustAPlant_ItemFind:
+	msgbox VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text, MSGBOX_DEFAULT
+	giveitem_std ITEM_LEAF_STONE
+	setflag FLAG_PLANT_POT
+	return
+
 VerdanturfTown_ContestLobby_ContestFan::
 	faceplayer
 	msgbox VerdanturfTown_ContestLobby_Text_ContestFan, MSGBOX_CDIALOG
 	release
 	end
-	
-VerdanturfTown_ContestLobby_Text_JustAPlant::
+
+VerdanturfTown_ContestLobby_JustAPlant_Text::
 	.string "It's just a plant.\p"
 	.string "What did you expect,\n"
 	.string "a hidden PC behind it?$"
-	
+
+
+VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text:
+	.string "There's something in the pot, though…$"
+
 VerdanturfTown_ContestLobby_Text_ContestFan::
 	.string "I'm a huge fan of SYDNEY\n"
 	.string "and her WHIRIS.\p"
 	.string "They are totally the best together!$"
-

@@ -428,6 +428,7 @@ LilycoveCity_ContestLobby_EventScript_21A670:: @ 821A670
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6E8
 	waitmovement 0
 	setvar VAR_CONTEST_LOCATION, 5
+	setdynamicwarp MAP_FALLARBOR_TOWN_CONTEST_LOBBY, 0xFF, 14, 4
 	releaseall
 	return
 
@@ -1116,4 +1117,3 @@ LilycoveCity_ContestLobby_Text_21B3FC: @ 821B3FC
 	.string "Big Sister. They turned out great!\p"
 	.string "I bet you can make smoother, better\n"
 	.string "{POKEBLOCK}S if you have more people.$"
-
