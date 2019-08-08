@@ -72,7 +72,7 @@ DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery1:
 	.string "You have a letter for me?$"
 
 DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery2:
-	.string "{PLAYER} hands over the letter.$"
+	.string "{PLAYER} handed over the letter.$"
 
 DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery3:
 	.string "Oh, it's from that girl who always\n"
