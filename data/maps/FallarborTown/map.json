@@ -73,8 +73,8 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "Common_EventScript_BattleTentClosed",
             "type": "sign",
-            "x": 8,
-            "y": 7
+            "x": 9,
+            "y": 6
         }
     ],
     "connections": [
@@ -166,7 +166,7 @@
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 8,
-            "y": 6
+            "y": 7
         },
         {
             "dest_map": "MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F",
