@@ -14,9 +14,8 @@ u16 CalculateChecksum(void *data, u16 size);
 
 struct RememberedDreamsV1
 {
-	/*0x0000*/ u32 encryptionKey;
-	/*0x0004*/ u32 gameStats[NUM_GAME_STATS];
-	/*0x0104*/
+	/*0x0000*/ u32 gameStats[NUM_GAME_STATS];
+	/*0x0100*/
 };
 
 struct RememberedDreams
@@ -41,13 +40,13 @@ EWRAM_DATA struct RememberedDreams gRememberedDreams = {0};
 u32 GetRememberedStat(u8 index)
 {
 	if (index >= NUM_USED_GAME_STATS) return 0;
-	return gRememberedDreams.data.v1.gameStats[index] ^ gRememberedDreams.data.v1.encryptionKey;
+	return gRememberedDreams.data.v1.gameStats[index];
 }
 
 void RememberStat(u8 index, u32 value)
 {
 	if (index < NUM_USED_GAME_STATS)
-        gRememberedDreams.data.v1.gameStats[index] = value ^ gRememberedDreams.data.v1.encryptionKey;
+        gRememberedDreams.data.v1.gameStats[index] = value;
 }
 
 void RememberWhiteout()
@@ -59,17 +58,21 @@ void RememberWhiteout()
 
 void InitRememberedDreams()
 {
+	u8 i;
 	memset(&gRememberedDreams, 0, sizeof(gRememberedDreams));
 	gRememberedDreams.sentinal = SENTINAL;
 	gRememberedDreams.version = VERSION;
-	gRememberedDreams.data.v1.encryptionKey = gSaveBlock2Ptr->encryptionKey;
-	memcpy(gRememberedDreams.data.v1.gameStats, gSaveBlock1Ptr->gameStats, sizeof(gRememberedDreams.data.v1.gameStats));
+	for (i = 0; i < NUM_GAME_STATS; i++)
+	{
+		RememberStat(i, GetGameStat(i));
+	}
 }
 
 void LoadAndProcessRememberedDreams()
 {
 #if EMULATOR_ONLY
 	u16 checksum;
+	u8 i;
 	// Attempt to read in the dream section
 	if (TryReadSpecialSaveSection(SECTOR_ID_RECORDED_BATTLE, (void*)&gRememberedDreams) == 0xFF) goto badDreams;
 	// Ensure this is an expected dream section
@@ -90,7 +93,10 @@ void LoadAndProcessRememberedDreams()
 	//TODO: set flag is a dream is due, and do remembered dream
 	
 	// Copy over the more up-to-date stats into the game
-	memcpy(gSaveBlock1Ptr->gameStats, gRememberedDreams.data.v1.gameStats, sizeof(gSaveBlock1Ptr->gameStats));
+	for (i = 0; i < NUM_GAME_STATS; i++)
+	{
+		SetGameStat(i, GetRememberedStat(i));
+	}
 	return;
 badDreams:
 	FlagSet(FLAG_ERROR_READING_DREAMS);

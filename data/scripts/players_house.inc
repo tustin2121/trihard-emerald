@@ -489,6 +489,11 @@ LittlerootTown_PlayersHouse_2F_TriggerScript_SleepInBed::
 	@ TODO: Walk player out of bed?
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceLeft
 	waitmovement 0
+	@ Do the mourning cutscene, if needed
+	domourning
+	call Common_EventScript_PartyHealSave_Save
+	@ Check for dream cutscenes
+	dodreams
 	call Common_EventScript_PartyHealSave_Complete
 	release
 	end

@@ -1648,6 +1648,7 @@ Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 
 Common_EventScript_PartyHealSave_Setup::
 	fadescreen 5 @ FADE_TO_BLACK_NO_WINDOW
+	setflag FLAG_DISABLE_FADE_INIT
 	playfanfare MUS_ME_ASA
 	waitfanfare
 	special HealPlayerParty
@@ -1661,6 +1662,7 @@ Common_EventScript_PartyHealSave_Save::
 	delay 1 @ delay 1 frame to allow the save game window to actually close
 	return
 Common_EventScript_PartyHealSave_Complete::
+	setflag FLAG_DISABLE_FADE_INIT
 	fadescreen 4 @ FADE_FROM_BLACK_NO_WINDOW
 	return
 

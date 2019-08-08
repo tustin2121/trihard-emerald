@@ -53,6 +53,7 @@ PokemonCenter_1F_NurseHealScript_Heal:
 	waitfanfare
 	waitmovement 0
 	special HealPlayerParty
+	advancetime 6, 45, 30
 	@ Do the mourning cutscene, if needed
 	domourning
 	@ TriHard Emerald: Force Save
