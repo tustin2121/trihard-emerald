@@ -56,8 +56,7 @@
         "Underwater4",
         "Underwater5",
         "Underwater6",
-        "Underwater7",
-        "VerdanturfTown_ContestHall"
+        "Underwater7"
     ],
     "gMapGroup1": [
         "LittlerootTown_BrendansHouse_1F",
@@ -559,7 +558,8 @@
         "VerdanturfTown_WandasHouse",
         "VerdanturfTown_FriendshipRatersHouse",
         "VerdanturfTown_House",
-        "VerdanturfTown_ContestLobby"
+        "VerdanturfTown_ContestLobby",
+        "VerdanturfTown_ContestHall"
     ],
     "gMapGroup7": [
         "PacifidlogTown_PokemonCenter_1F",

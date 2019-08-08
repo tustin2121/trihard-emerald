@@ -39,16 +39,48 @@ DewfordTown_PokemonCenter_1F_Text_1FC557: @ 81FC557
 
 DewfordTown_PokemonCenter_1F_EventScript_GuyWithHeadphones::
 	lockall
-	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE, MSGBOX_CDIALOG
-	msgbox DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC, MSGBOX_CDESCRIBE
+	msgbox DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text, MSGBOX_CDIALOG
+	msgbox DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_DESC, MSGBOX_CDESCRIBE
+	compare VAR_LETTER_INTERNETMUSIC_LOVERS, 1
+	call_if_eq DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Delivery
 	releaseall
 	end
-DewfordTown_PokemonCenter_1F_Text_1FC5AE:
+
+DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Delivery:
+	faceplayer
+	msgbox DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery1, MSGBOX_CDIALOG
+	setvar VAR_LETTER_INTERNETMUSIC_LOVERS, 2
+	takeitem ITEM_LETTER, 1
+	msgbox DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery2, MSGBOX_CDESCRIBE
+	msgbox DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery3, MSGBOX_CDIALOG
+	applymovement 4, Common_Movement_FaceOriginalDirection
+	waitmovement 4
+	return
+
+DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text:
 	.string "So we back in the gym,\n"
 	.string "got our Pokémon dodging from\l"
 	.string "side to side.\p"
 	.string "Side, side to side…$"
-DewfordTown_PokemonCenter_1F_Text_1FC5AE_DESC:
+
+DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_DESC:
 	.string "He seems to be totally absorbed\n"
 	.string "in a strange music video.$"
 
+DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery1:
+	.string "Huh? Did you call me?\p"
+	.string "You have a letter for me?$"
+
+DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery2:
+	.string "{PLAYER} hands over the letter.$"
+
+DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery3:
+	.string "Oh, it's from that girl who always\n"
+	.string "writes me in the comment section…\p"
+	.string "… … … … … …\n"
+	.string "… … … … … …\p"
+	.string "Oh, wow, this seems to be hot stuff!\p"
+	.string "Ha ha, thank you so much for delivering\n"
+	.string "this to me.\p"
+	.string "I'm really glad that she wrote me\n"
+	.string "this letter.$"

@@ -11,14 +11,28 @@
     "id": "MAP_FALLARBOR_TOWN_CONTEST_HALL",
     "layout": "LAYOUT_FALLARBOR_TOWN_CONTEST_HALL",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_DAN02",
+    "music": "MUS_CONLOBBY",
     "name": "FallarborTown_ContestHall",
     "object_events": [
     ],
     "region_map_section": "MAPSEC_FALLARBOR_TOWN",
     "requires_flash": false,
-    "show_map_name": true,
+    "show_map_name": false,
     "warp_events": [
+        {
+            "dest_map": "MAP_FALLARBOR_TOWN_CONTEST_LOBBY",
+            "dest_warp_id": 2,
+            "elevation": 0,
+            "x": 10,
+            "y": 17
+        },
+        {
+            "dest_map": "MAP_FALLARBOR_TOWN_CONTEST_LOBBY",
+            "dest_warp_id": 2,
+            "elevation": 0,
+            "x": 11,
+            "y": 17
+        }
     ],
     "weather": "WEATHER_SUNNY"
 }

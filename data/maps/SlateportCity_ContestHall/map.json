@@ -17,20 +17,20 @@
     ],
     "region_map_section": "MAPSEC_SLATEPORT_CITY",
     "requires_flash": false,
-    "show_map_name": true,
+    "show_map_name": false,
     "warp_events": [
         {
             "dest_map": "MAP_SLATEPORT_CITY_CONTEST_LOBBY",
             "dest_warp_id": 2,
             "elevation": 0,
-            "x": 11,
+            "x": 10,
             "y": 17
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_CONTEST_LOBBY",
             "dest_warp_id": 2,
             "elevation": 0,
-            "x": 12,
+            "x": 11,
             "y": 17
         }
     ],

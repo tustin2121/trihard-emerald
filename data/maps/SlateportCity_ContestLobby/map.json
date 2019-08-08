@@ -93,7 +93,7 @@
     ],
     "region_map_section": "MAPSEC_SLATEPORT_CITY",
     "requires_flash": false,
-    "show_map_name": true,
+    "show_map_name": false,
     "warp_events": [
         {
             "dest_map": "MAP_SLATEPORT_CITY",

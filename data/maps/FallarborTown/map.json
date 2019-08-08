@@ -162,7 +162,7 @@
             "y": 15
         },
         {
-            "dest_map": "MAP_FALLARBOR_TOWN_BATTLE_TENT_LOBBY",
+            "dest_map": "MAP_FALLARBOR_TOWN_CONTEST_LOBBY",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 8,
