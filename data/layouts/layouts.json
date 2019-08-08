@@ -4459,6 +4459,26 @@
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_Contest",
             "width": 21
+        },
+        {
+            "blockdata_filepath": "data/layouts/SlateportCity_ContestLobby/map.bin",
+            "border_filepath": "data/layouts/SlateportCity_ContestLobby/border.bin",
+            "height": 7,
+            "id": "LAYOUT_SLATEPORT_CITY_CONTEST_LOBBY",
+            "name": "SlateportCity_ContestLobby_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 15
+        },
+        {
+            "blockdata_filepath": "data/layouts/SlateportCity_ContestHall/map.bin",
+            "border_filepath": "data/layouts/SlateportCity_ContestHall/border.bin",
+            "height": 18,
+            "id": "LAYOUT_SLATEPORT_CITY_CONTEST_HALL",
+            "name": "SlateportCity_ContestHall_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 21
         }
     ],
     "layouts_table_label": "gMapLayouts"

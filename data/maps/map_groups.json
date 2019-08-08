@@ -591,7 +591,9 @@
         "SlateportCity_House2",
         "SlateportCity_PokemonCenter_1F",
         "SlateportCity_PokemonCenter_2F",
-        "SlateportCity_Mart"
+        "SlateportCity_Mart",
+        "SlateportCity_ContestLobby",
+        "SlateportCity_ContestHall"
     ],
     "group_order": [
         "gMapGroup0",

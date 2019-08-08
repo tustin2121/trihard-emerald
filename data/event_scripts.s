@@ -5630,3 +5630,7 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/VerdanturfTown_ContestLobby/scripts.inc"
 
 	.include "data/maps/VerdanturfTown_ContestHall/scripts.inc"
+
+	.include "data/maps/SlateportCity_ContestLobby/scripts.inc"
+
+	.include "data/maps/SlateportCity_ContestHall/scripts.inc"
