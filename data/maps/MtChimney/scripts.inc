@@ -332,7 +332,7 @@ MtChimney_EventScript_AquaGirl4:
 	msgbox MtChimney_Text_AquaGirl4, MSGBOX_NPC
 	end
 MtChimney_Text_AquaGirl4:
-	.string "{AQUA_GIRL}: See you later, {PLAYER}."
+	.string "{AQUA_GIRL}: See you later, {PLAYER}.$"
 MtChimney_EventScript_AquaGirl3:
 	goto_if_set FLAG_SCENE_A, MtChimney_EventScript_AquaGirl4
 	selectpointer_clamp MtChimney_TextArray_AquaGirl3, VAR_AQUA_GIRL_FRIENDSHIP
