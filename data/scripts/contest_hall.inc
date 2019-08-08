@@ -205,6 +205,7 @@ LinkContestRoom1_EventScript_279F97:: @ 8279F97
 	call LinkContestRoom1_EventScript_27AA1B
 	call LinkContestRoom1_EventScript_27AB36
 	setvar VAR_LINK_CONTEST_ROOM_STATE, 2
+	warptodynamic
 	return
 
 LinkContestRoom1_EventScript_279FF2:: @ 8279FF2

@@ -416,7 +416,7 @@ LinkContestRoom1_EventScript_23BE44:: @ 823BE44
 	return
 
 LinkContestRoom1_EventScript_23BE84:: @ 823BE84
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 255, 14, 4
+	warp MAP_VERDANTURF_TOWN_CONTEST_LOBBY, 255, 5, 4
 	waitstate
 	end
 

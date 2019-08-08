@@ -338,19 +338,19 @@ LilycoveCity_ContestLobby_EventScript_21A585:: @ 821A585
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5B7:: @ 821A5B7
-	setvar VAR_CONTEST_LOCATION, 1
+	@ setvar VAR_CONTEST_LOCATION, 1
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5BD:: @ 821A5BD
-	setvar VAR_CONTEST_LOCATION, 2
+	@ setvar VAR_CONTEST_LOCATION, 2
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5C3:: @ 821A5C3
-	setvar VAR_CONTEST_LOCATION, 3
+	@ setvar VAR_CONTEST_LOCATION, 3
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5C9:: @ 821A5C9
-	setvar VAR_CONTEST_LOCATION, 4
+	@ setvar VAR_CONTEST_LOCATION, 4
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5CF:: @ 821A5CF
@@ -427,6 +427,7 @@ LilycoveCity_ContestLobby_EventScript_21A670:: @ 821A670
 	applymovement 1, LilycoveCity_ContestLobby_Movement_21A6FD
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6E8
 	waitmovement 0
+	setvar VAR_CONTEST_LOCATION, 5
 	releaseall
 	return
 
@@ -835,7 +836,7 @@ LilycoveCity_ContestLobby_EventScript_21AB17:: @ 821AB17
 	call LilycoveCity_ContestLobby_EventScript_21AC49
 	setvar VAR_LINK_CONTEST_ROOM_STATE, 1
 	special sub_80F8AFC
-	setvar VAR_CONTEST_LOCATION, 5
+	@ setvar VAR_CONTEST_LOCATION, 5
 	setvar VAR_CONTEST_RANK, 3
 	call LilycoveCity_ContestLobby_EventScript_21A5EF
 	end

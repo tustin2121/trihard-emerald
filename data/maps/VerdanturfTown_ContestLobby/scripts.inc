@@ -55,6 +55,8 @@ VerdanturfTown_ContestLobby_EventScript_21A670::
 	applymovement 1, VerdanturfTown_ContestLobby_Movement_21A6FD
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6E8
 	waitmovement 0
+	setdynamicwarp MAP_VERDANTURF_TOWN_CONTEST_LOBBY, 0xFF, 5, 4
+	@ setvar VAR_CONTEST_LOCATION, 1
 	releaseall
 	return
 	
