@@ -11,14 +11,14 @@
     "id": "MAP_FALLARBOR_TOWN_CONTEST_HALL",
     "layout": "LAYOUT_FALLARBOR_TOWN_CONTEST_HALL",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_CONLOBBY",
+    "music": "MUS_DAN02",
     "name": "FallarborTown_ContestHall",
     "object_events": [
     ],
     "region_map_section": "MAPSEC_FALLARBOR_TOWN",
     "requires_flash": false,
-    "show_map_name": false,
+    "show_map_name": true,
     "warp_events": [
     ],
-    "weather": "WEATHER_NONE"
+    "weather": "WEATHER_SUNNY"
 }

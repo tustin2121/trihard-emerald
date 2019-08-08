@@ -5634,3 +5634,7 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/SlateportCity_ContestLobby/scripts.inc"
 
 	.include "data/maps/SlateportCity_ContestHall/scripts.inc"
+
+	.include "data/maps/FallarborTown_ContestLobby/scripts.inc"
+
+	.include "data/maps/FallarborTown_ContestHall/scripts.inc"

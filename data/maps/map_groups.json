@@ -545,7 +545,9 @@
         "FallarborTown_PokemonCenter_1F",
         "FallarborTown_PokemonCenter_2F",
         "FallarborTown_House1",
-        "FallarborTown_House2"
+        "FallarborTown_House2",
+        "FallarborTown_ContestLobby",
+        "FallarborTown_ContestHall"
     ],
     "gMapGroup6": [
         "VerdanturfTown_BattleTentLobby",
