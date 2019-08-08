@@ -92,6 +92,7 @@ SlateportCity_ContestLobby_IdolGirlPC::
 	end
 
 SlateportCity_ContestLobby_IdolGirlPC_FirstTime:
+	playse SE_PIN
 	applymovement 4, SlateportCity_ContestLobby_IdolGirlPC_Faceplayer
 	waitmovement 4
 	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_Letter1, MSGBOX_CDIALOG
@@ -141,7 +142,7 @@ SlateportCity_ContestLobby_IdolGirlPC_Text_Letter2::
 	.string "It's not that I'm embarassed…$"
 
 SlateportCity_ContestLobby_IdolGirlPC_Faceplayer:
-	emote_question_mark
+	emote_exclamation_mark
 	face_player
 	step_end
 

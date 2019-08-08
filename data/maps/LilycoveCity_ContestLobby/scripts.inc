@@ -427,8 +427,7 @@ LilycoveCity_ContestLobby_EventScript_21A670:: @ 821A670
 	applymovement 1, LilycoveCity_ContestLobby_Movement_21A6FD
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6E8
 	waitmovement 0
-	setvar VAR_CONTEST_LOCATION, 5
-	setdynamicwarp MAP_FALLARBOR_TOWN_CONTEST_LOBBY, 0xFF, 14, 4
+	setdynamicwarp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 0xFF, 14, 4
 	releaseall
 	return
 
