@@ -132,7 +132,9 @@ SlateportCity_ContestLobby_IdolGirlPC_Text_Letter1::
 	.string "Listen, I have a favor to ask.\p"
 	.string "There's a guy in Dewford who really\n"
 	.string "likes music videos.\p"
-	.string "Can you please bring this to him?$"
+	.string "Can you please bring this to him?\p"
+	.string "I will give you something good\n"
+	.string "in exchange, I promise!$"
 
 SlateportCity_ContestLobby_IdolGirlPC_Text_Letter2::
 	.string "I would LOVE to do it myself,\n"
