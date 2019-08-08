@@ -22,8 +22,8 @@ MtChimney_EventScript_22F141:: @ 822F141
 	msgbox MtChimney_Text_22FFFA, MSGBOX_SIGN
 	end
 MtChimney_Text_22FFFA: @ 822FFFA
-	.string "{DOWN_ARROW} JAGGED PATH\n"
-	.string "Lavaridge Town AHEAD$"
+	.string "{DOWN_ARROW} Jagged Path\n"
+	.string "Lavaridge Town Ahead$"
 
 
 MtChimney_EventScript_22F0E4:: @ 822F0E4
@@ -269,9 +269,9 @@ MtChimney_Text_230614: @ 8230614
 
 
 @ -----------------------------------------------------
-@ Team Magma and Aqua
+@ Team Aqua
 
-MtChimney_EventScript_22F053:: @ 822F053
+MtChimney_EventScript_Aqua1:: @ 822F053
 	msgbox MtChimney_Text_22FD1F, MSGBOX_DIALOG
 	end
 MtChimney_Text_22FD1F: @ 822FD1F
@@ -279,7 +279,7 @@ MtChimney_Text_22FD1F: @ 822FD1F
 	.string "We can't keep up with them!$"
 
 
-MtChimney_EventScript_22F05C:: @ 822F05C
+MtChimney_EventScript_Aqua2:: @ 822F05C
 	msgbox MtChimney_Text_22FD5B, MSGBOX_DIALOG
 	end
 MtChimney_Text_22FD5B: @ 822FD5B
@@ -287,7 +287,7 @@ MtChimney_Text_22FD5B: @ 822FD5B
 	.string "less habitats for Water Pokémon!$"
 
 
-MtChimney_EventScript_22F065:: @ 822F065
+MtChimney_EventScript_Aqua3:: @ 822F065
 	msgbox MtChimney_Text_22FDA1, MSGBOX_DIALOG
 	end
 MtChimney_Text_22FDA1: @ 822FDA1
@@ -296,8 +296,10 @@ MtChimney_Text_22FDA1: @ 822FDA1
 	.string "It burns me up that they'd use such\n"
 	.string "a confusing name!$"
 
+@ -----------------------------------------------------
+@ Team Magma
 
-MtChimney_EventScript_22F09C:: @ 822F09C
+MtChimney_EventScript_Magma1:: @ 822F09C
 	msgbox MtChimney_Text_22F978, MSGBOX_DIALOG
 	end
 MtChimney_Text_22F978: @ 822F978
@@ -305,14 +307,14 @@ MtChimney_Text_22F978: @ 822F978
 	.string "They always mess with our plans!$"
 
 
-MtChimney_EventScript_22F0A5:: @ 822F0A5
+MtChimney_EventScript_Magma2:: @ 822F0A5
 	msgbox MtChimney_Text_22F9B2, MSGBOX_DIALOG
 	end
 MtChimney_Text_22F9B2: @ 822F9B2
 	.string "Meteorites pack amazing power!$"
 
 
-MtChimney_EventScript_22F0AE:: @ 822F0AE
+MtChimney_EventScript_Magma3:: @ 822F0AE
 	msgbox MtChimney_Text_22F9D1, MSGBOX_DIALOG
 	end
 MtChimney_Text_22F9D1: @ 822F9D1
@@ -321,7 +323,7 @@ MtChimney_Text_22F9D1: @ 822F9D1
 	.string "for the benefit of everyone!$"
 
 
-MtChimney_EventScript_22F0B7:: @ 822F0B7
+MtChimney_EventScript_Magma4:: @ 822F0B7
 	msgbox MtChimney_Text_22FA2F, MSGBOX_DIALOG
 	end
 MtChimney_Text_22FA2F: @ 822FA2F
@@ -331,7 +333,7 @@ MtChimney_Text_22FA2F: @ 822FA2F
 	.string "use a name like ours!$"
 
 
-MtChimney_EventScript_22F0C0:: @ 822F0C0
+MtChimney_EventScript_Magma5:: @ 822F0C0
 	msgbox MtChimney_Text_22FA8B, MSGBOX_DIALOG
 	end
 MtChimney_Text_22FA8B: @ 822FA8B
@@ -339,28 +341,28 @@ MtChimney_Text_22FA8B: @ 822FA8B
 	.string "Douse them in fire!$"
 
 
-MtChimney_EventScript_22F0C9:: @ 822F0C9
+MtChimney_EventScript_Magma6:: @ 822F0C9
 	msgbox MtChimney_Text_22FAA5, MSGBOX_DIALOG
 	end
 MtChimney_Text_22FAA5: @ 822FAA5
 	.string "We're going to keep making more land!$"
 
 
-MtChimney_EventScript_22F0D2:: @ 822F0D2
+MtChimney_EventScript_Pooch1:: @ 822F0D2
 	msgbox MtChimney_Text_22FACB, MSGBOX_DIALOG
 	end
 MtChimney_Text_22FACB: @ 822FACB
 	.string "Bufoh!$"
 
 
-MtChimney_EventScript_22F0DB:: @ 822F0DB
+MtChimney_EventScript_Pooch2:: @ 822F0DB
 	msgbox MtChimney_Text_22FDFC, MSGBOX_DIALOG
 	end
 MtChimney_Text_22FDFC: @ 822FDFC
 	.string "Bushaa!$"
 
 
-MtChimney_EventScript_22F06E:: @ 822F06E
+MtChimney_TrainerScript_Tabitha:: @ 822F06E
 	trainerbattle_single TRAINER_TABITHA_2, MtChimney_Text_22F6AA, MtChimney_Text_22F72C
 	msgbox MtChimney_Text_22F76D, MSGBOX_AUTOCLOSE
 	end
@@ -369,7 +371,7 @@ MtChimney_Text_22F6AA: @ 822F6AA
 	.string "So you've come all the way here!\p"
 	.string "But you're too late!\n"
 	.string "I've already delivered the meteorite\l"
-	.string "from Meteor Falls to the BOSS!$"
+	.string "from Meteor Falls to the boss!$"
 MtChimney_Text_22F72C: @ 822F72C
 	.string "Hehehe…\p"
 	.string "Even though I've lost, if our leader\n"
@@ -407,12 +409,14 @@ MtChimney_EventScript_22F1F1:: @ 822F1F1
 MtChimney_Text_22F8B6: @ 822F8B6
 	.string "If there were more land, I'd be able\n"
 	.string "to get a big house of my own!\p"
-	.string "I'm going to build it on hardened lava!$"
+	.string "I'm going to build it on hardened lava!\p"
+	.string "Team Aqua is depriving me of my house!$"
 MtChimney_Text_22F921: @ 822F921
 	.string "My dream of a big house…$"
 MtChimney_Text_22F93A: @ 822F93A
-	.string "A kid like you, you ought to be\n"
-	.string "splashing about in the waves!$"
+	.string "Why do you Team Aqua grunts always\n"
+	.string "ruin everything!? Go back to\l"
+	.string "splashing in the waves!$"
 
 
 MtChimney_EventScript_Archie:: @ 822EDD5
@@ -448,55 +452,88 @@ MtChimney_Text_22FBC7: @ 822FBC7
 	.string "Not when I have my hands full battling\n"
 	.string "three opponents at once!$"
 
+@ -----------------------------------------------------
+
+#define LID_MAXIE 2
 
 MtChimney_EventScript_Maxie:: @ 822EE0B
 	lockall
-	markasdialog
 	playbgm MUS_MGM0, 0
-	msgbox MtChimney_Text_22F26A, MSGBOX_DEFAULT
-	applymovement 2, Common_Movement_FacePlayer
+	@
+	markasdialog -8
+	msgbox MtChimney_Text_Maxie1
+	@ Notices player
+	applymovement LID_MAXIE, Common_Movement_FacePlayer
 	waitmovement 0
 	playse SE_PIN
-	applymovement 2, Common_Movement_ExclamationMark
+	applymovement LID_MAXIE, Common_Movement_ExclamationMarkAndWait
 	waitmovement 0
-	applymovement 2, Common_Movement_Delay48
-	waitmovement 0
-	msgbox MtChimney_Text_22F32E, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_MAXIE_2, MtChimney_Text_22F5CF
-	msgbox MtChimney_Text_22F5F7, MSGBOX_DEFAULT
+	@ 
+	setyesnotext gYN_PftNo, gYN_FOff
+	msgbox MtChimney_Text_Maxie2, MSGBOX_YESNO
+	@
+	msgbox MtChimney_Text_Maxie3
+	@ BATTLE!
+	trainerbattle_no_intro TRAINER_MAXIE_2, MtChimney_Text_Maxie4
+	@ 
+	markasdialog -8
+	msgbox MtChimney_Text_Maxie5
 	closemessage
 	delay 30
+	@ Screen fades, and magma vanishes.
 	fadescreen 1
-	removeobject 2
+	removeobject LID_MAXIE
 	removeobject 29
 	removeobject 3
 	removeobject 22
 	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
 	fadescreen 0
+	@ Archie walks up
 	setobjectxyperm 1, 10, 12
 	addobject 1
 	compare VAR_FACING, 4
 	call_if_eq MtChimney_EventScript_22EEC7
 	compare VAR_FACING, 2
 	call_if_eq MtChimney_EventScript_22EED2
+	@ 
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox MtChimney_Text_22FC3D, MSGBOX_DEFAULT
+	markasdialog 6
+	msgbox MtChimney_Text_Maxie6
+	playse SE_SELECT
+	@ Uniform get!
+	playfanfare MUS_ME_BACHI
+	message MtChimney_Text_Maxie7, MSGTYPE_DESCRIBE
+	waitfanfare
+	@
+	msgbox MtChimney_Text_Maxie8
 	closemessage
+	@ Archie leaves again
 	compare VAR_FACING, 4
 	call_if_eq MtChimney_EventScript_22EEDD
 	compare VAR_FACING, 2
 	call_if_eq MtChimney_EventScript_22EEE8
 	removeobject 1
+	@ Player changes clothes
+	fadescreen 5 @ FADE_TO_BLACK_NO_WINDOW
+	setvar VAR_0x8000, 2
+	callnative SetPlayerOutfit
+	msgbox MtChimney_Text_Maxie9, MSGBOX_CDESCRIBE
+	@ Clean up
 	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
 	setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
 	clearflag FLAG_HIDE_FALLARBOR_HOUSE_1_PROF_COZMO
 	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
 	clearflag FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
 	call Common_EventScript_ClearSceneFlags
+	@ reload map
+	@ setflag FLAG_HIDE_MAP_NAME_POPUP
+	warpcustom MAP_MT_CHIMNEY, 255, VAR_INTERACT_X, VAR_INTERACT_Y
+	waitstate
 	releaseall
 	end
-MtChimney_Text_22F26A: @ 822F26A
+MtChimney_Text_Maxie1: @ 822F26A
 	.string "The power contained in the meteorite…\p"
 	.string "By amplifying its power with this\n"
 	.string "machine, Mt. Chimney's volcanic\l"
@@ -504,17 +541,13 @@ MtChimney_Text_22F26A: @ 822F26A
 	.string "Its energy will grow deep inside\n"
 	.string "the crater and…\l"
 	.string "Fufufu…$"
-MtChimney_Text_22F32E: @ 822F32E
-	.string "MAXIE: Hm?\n"
-	.string "Who are you?\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
-	.string "I'd heard ARCHIE bemoaning a child\n"
-	.string "who's been meddling in Team Aqua's\l"
-	.string "affairs.\p"
-	.string "It must be you he meant.\p"
-	.string "Humph! So you're thinking of\n"
-	.string "interfering with us, Team Magma?\p"
+MtChimney_Text_Maxie2: @ 822F32E
+	.string "Maxie: Hm?\n"
+	.string "Team Aqua! How did you break through?!\p"
+	.string "Oh, but you are not a full member,\n"
+	.string "are you? You have no uniform.\p"
+	.string "Perhaps, then, you can be persuaded\n"
+	.string "to our cause?\p"
 	.string "Now you listen.\n"
 	.string "Long ago, living things used the\l"
 	.string "land to live and grow.\p"
@@ -526,33 +559,43 @@ MtChimney_Text_22F32E: @ 822F32E
 	.string "humankind and Pokémon!\p"
 	.string "And for that, we need the power of\n"
 	.string "what sleeps within this mountain…\p"
-	.string "Oh! There was no need for you to\n"
-	.string "learn that much.\p"
-	.string "But, no matter!\n"
+	.string "Join us, and you will see that we\n"
+	.string "know what's best for everyone!$"
+MtChimney_Text_Maxie3:
+	.string "Tsk, no matter!\n"
 	.string "I'll teach you the consequences of\l"
 	.string "meddling in our grand design!$"
-MtChimney_Text_22F5CF: @ 822F5CF
+MtChimney_Text_Maxie4: @ 822F5CF
 	.string "What?!\p"
-	.string "I, MAXIE, was caught off guard?!$"
-MtChimney_Text_22F5F7: @ 822F5F7
-	.string "MAXIE: But, enough.\n"
+	.string "I, Maxie, was caught off guard?!$"
+MtChimney_Text_Maxie5: @ 822F5F7
+	.string "Maxie: But, enough.\n"
 	.string "I will back off this time.\p"
 	.string "But don't think that this is the last\n"
 	.string "you've seen of Team Magma.\p"
 	.string "Fufufu…\p"
 	.string "Even without the meteorite, if we\n"
-	.string "obtain that ORB… Fufufu…$"
-MtChimney_Text_22FC3D: @ 822FC3D
-	.string "ARCHIE: {PLAYER}!\n"
+	.string "obtain that orb… Fufufu…$"
+MtChimney_Text_Maxie6: @ 822FC3D
+	.string "Archie: {PLAYER}!\n"
 	.string "Thank you!\p"
-	.string "With your help, we thwarted TEAM\n"
-	.string "MAGMA's destructive plan!\p"
-	.string "But… You…\n"
-	.string "Whose side are you on?\p"
-	.string "Ah, it doesn't matter.\p"
-	.string "We will remain vigilant and keep up\n"
-	.string "our pursuit of Team Magma.\p"
+	.string "With your help, we thwarted Team\n"
+	.string "Magma's destructive plan!\p"
+	.string "I regret not being able to give you\n"
+	.string "this uniform before. This time I was\l"
+	.string "unexpectedly prepared.\p"
+	.string "You certainly earned your keep today.$"
+MtChimney_Text_Maxie7:
+	.string "Recieved the Team Aqua Striped Shirt!$"
+MtChimney_Text_Maxie8:
+	.string "Archie: We will remain vigilant and\n"
+	.string "keep up our pursuit of Team Magma.\p"
+	.string "I suggest you visit our hideout in\n"
+	.string "Lilycove, so you can stay in touch.\p"
 	.string "{PLAYER}, we shall meet again!$"
+MtChimney_Text_Maxie9:
+	.string "{PLAYER} put on the blue-striped shirt.$"
+
 MtChimney_EventScript_22EEC7:: @ 822EEC7
 	applymovement 1, MtChimney_Movement_22EF83
 	waitmovement 0
@@ -610,4 +653,6 @@ MtChimney_Movement_22EF9C: @ 822EF9C
 	walk_down
 	walk_down
 	step_end
+
+#undef LID_MAXIE
 

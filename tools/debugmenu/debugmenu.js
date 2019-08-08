@@ -359,6 +359,14 @@ function initMenuV1() {
 				});
 				switchMenu();
 			});
+		$(`<li>Warp to Slateport</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ 
+					funcId: DebugHandle_WarpRequest,
+					args: [0, 1, 0, 0xFF, 0xFF],
+				});
+				switchMenu();
+			});
 	}
 	switchMenu();
 }

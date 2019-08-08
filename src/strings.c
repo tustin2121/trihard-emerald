@@ -62,6 +62,7 @@ const u8 gYN_UgNo[] =           _("Ug… No");
 const u8 gYN_Uhhh[] =           _("Uhhh…");
 const u8 gYN_OfCourse[] =       _("'Course");
 const u8 gYN_PftNo[] =          _("Pft… No");
+const u8 gYN_FOff[] =           _("Screw You!");
 const u8 gYN_Duh[] =            _("Duh");
 const u8 gYN_Sure[] =           _("Sure");
 const u8 gYN_Fine1[] =          _("Fine…");
