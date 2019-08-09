@@ -337,7 +337,7 @@ NewMauville_Inside_EventScript_ItemParalyzeHeal:: @ 8291220
 	end
 
 AbandonedShip_Rooms_1F_EventScript_ItemHarborMail:: @ 829122D
-	giveitem_std ITEM_HARBOR_MAIL, 1, 1
+	giveitem_std ITEM_ELIXIR, 1, 1
 	end
 
 AbandonedShip_Rooms_B1F_EventScript_ItemEscapeRope:: @ 829123A
@@ -465,39 +465,39 @@ SeafloorCavern_Room9_EventScript_ItemTM26:: @ 8291401
 	end
 
 Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail:: @ 829140E
-	giveitem_std ITEM_ORANGE_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 Route110_TrickHousePuzzle2_EventScript_ItemHarborMail:: @ 829141B
-	giveitem_std ITEM_HARBOR_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 Route110_TrickHousePuzzle2_EventScript_ItemWaveMail:: @ 8291428
-	giveitem_std ITEM_WAVE_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 Route110_TrickHousePuzzle3_EventScript_ItemShadowMail:: @ 8291435
-	giveitem_std ITEM_SHADOW_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 Route110_TrickHousePuzzle3_EventScript_ItemWoodMail:: @ 8291442
-	giveitem_std ITEM_WOOD_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 Route110_TrickHousePuzzle4_EventScript_ItemMechMail:: @ 829144F
-	giveitem_std ITEM_MECH_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 Route110_TrickHousePuzzle6_EventScript_ItemGlitterMail:: @ 829145C
-	giveitem_std ITEM_GLITTER_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 Route110_TrickHousePuzzle7_EventScript_ItemTropicMail:: @ 8291469
-	giveitem_std ITEM_TROPIC_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 Route110_TrickHousePuzzle8_EventScript_ItemBeadMail:: @ 8291476
-	giveitem_std ITEM_BEAD_MAIL, 1, 1
+	giveitem_std ITEM_RARE_CANDY, 1, 1
 	end
 
 VictoryRoad_1F_EventScript_ItemMaxElixir:: @ 8291483

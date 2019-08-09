@@ -38,11 +38,11 @@ SlateportCity_Mart_Pokemart_20DC60: @ 820DC60
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ETHER
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_REPEL
-	.2byte ITEM_HARBOR_MAIL
 	.2byte ITEM_NONE
 	release
 	end
@@ -108,5 +108,3 @@ SlateportCity_Mart_Text_20DCF8: @ 820DCF8
 	.string "at catching Pokémon.\p"
 	.string "With this, I should be able to get that\n"
 	.string "elusive Pokémon…$"
-
-

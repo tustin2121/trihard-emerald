@@ -41,6 +41,8 @@ EverGrandeCity_PokemonLeague_1F_Pokemart_229624: @ 8229624
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_FULL_RESTORE
 	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_MAX_ETHER
+	.2byte ITEM_MAX_ELIXIR
 	@ .2byte ITEM_REVIVE
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_NONE
@@ -144,7 +146,3 @@ EverGrandeCity_PokemonLeague_1F_Movement_2296E5: @ 82296E5
 	walk_right
 	walk_in_place_fastest_down
 	step_end
-
-
-
-
