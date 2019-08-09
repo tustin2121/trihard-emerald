@@ -46,6 +46,70 @@ const struct SpriteFrameImage gUnknown_082FF408[] =
     gHeap + 0xF800, 0x800,
 };
 
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale1[] =
+{
+    gTrainerBackPic_ProtagMale1, 0x0800,
+    gTrainerBackPic_ProtagMale1 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagMale1 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagMale1 + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale2[] =
+{
+    gTrainerBackPic_ProtagMale2, 0x0800,
+    gTrainerBackPic_ProtagMale2 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagMale2 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagMale2 + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale3[] =
+{
+    gTrainerBackPic_ProtagMale3, 0x0800,
+    gTrainerBackPic_ProtagMale3 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagMale3 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagMale3 + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale4[] =
+{
+    gTrainerBackPic_ProtagMale4, 0x0800,
+    gTrainerBackPic_ProtagMale4 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagMale4 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagMale4 + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale1[] =
+{
+    gTrainerBackPic_ProtagFemale1, 0x0800,
+    gTrainerBackPic_ProtagFemale1 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagFemale1 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagFemale1 + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale2[] =
+{
+    gTrainerBackPic_ProtagFemale2, 0x0800,
+    gTrainerBackPic_ProtagFemale2 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagFemale2 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagFemale2 + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale3[] =
+{
+    gTrainerBackPic_ProtagFemale3, 0x0800,
+    gTrainerBackPic_ProtagFemale3 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagFemale3 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagFemale3 + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale4[] =
+{
+    gTrainerBackPic_ProtagFemale4, 0x0800,
+    gTrainerBackPic_ProtagFemale4 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagFemale4 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagFemale4 + 0x1800, 0x0800,
+};
+
 const struct SpriteFrameImage gTrainerBackPicTable_Brendan[] =
 {
     gTrainerBackPic_Brendan, 0x0800,

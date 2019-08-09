@@ -311,3 +311,5 @@ const u8 gTrainerBackPic_ProtagFemale4[] = INCBIN_U8("graphics/trainers/back_pic
 
 const u32 gTrainerBackPicPalette_Red[] = INCBIN_U32("graphics/trainers/palettes/red_back_pic.gbapal.lz");
 const u32 gTrainerBackPicPalette_Leaf[] = INCBIN_U32("graphics/trainers/palettes/leaf_back_pic.gbapal.lz");
+const u32 gTrainerBackPicPalette_ProtagMale[] = INCBIN_U32("graphics/trainers/back_pics/protag_male.gbapal.lz");
+const u32 gTrainerBackPicPalette_ProtagFemale[] = INCBIN_U32("graphics/trainers/back_pics/protag_female.gbapal.lz");

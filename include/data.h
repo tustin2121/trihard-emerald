@@ -86,6 +86,14 @@ extern const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireBrendan[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Wally[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Steven[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale1[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale2[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale3[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale4[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale1[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale2[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale3[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale4[];
 
 extern const union AffineAnimCmd *const gUnknown_082FF618[];
 extern const union AffineAnimCmd *const gUnknown_082FF694[];

@@ -105,12 +105,45 @@ static const u32 sRegionMapCursorLargeGfxLZ[] = INCBIN_U32("graphics/pokenav/cur
 static const u16 sRegionMapBkgnd_Pal[] = INCBIN_U16("graphics/pokenav/region_map.gbapal");
 static const u32 sRegionMapBkgnd_GfxLZ[] = INCBIN_U32("graphics/pokenav/region_map.8bpp.lz");
 static const u32 sRegionMapBkgnd_TilemapLZ[] = INCBIN_U32("graphics/pokenav/region_map_map.bin.lz");
+
 static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/pokenav/brendan_icon.gbapal");
 static const u8 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U8("graphics/pokenav/brendan_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_MayPal[] = INCBIN_U16("graphics/pokenav/may_icon.gbapal");
 static const u8 sRegionMapPlayerIcon_MayGfx[] = INCBIN_U8("graphics/pokenav/may_icon.4bpp");
 
+static const u8 sRegionMapPlayerIconGfx_ProtagMale1[] = INCBIN_U8("graphics/event_objects/pics/people/protagboy1/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagMale2[] = INCBIN_U8("graphics/event_objects/pics/people/protagboy2/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagMale3[] = INCBIN_U8("graphics/event_objects/pics/people/protagboy3/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagMale4[] = INCBIN_U8("graphics/event_objects/pics/people/protagboy4/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagFemale1[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl1/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagFemale2[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl2/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagFemale3[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl3/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagFemale4[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl4/map_head.4bpp");
+static const u16 sRegionMapPlayerIconPal_ProtagMale[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag_m1.gbapal");
+static const u16 sRegionMapPlayerIconPal_ProtagFemale[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag_f1.gbapal");
+
 static const u8 sRegionMap_MapSectionLayout[] = INCBIN_U8("graphics/pokenav/region_map_section_layout.bin");
+
+static const u8* const sRegionMapPlayerIcon_Gfx[] = {
+    sRegionMapPlayerIconGfx_ProtagMale1,
+    sRegionMapPlayerIconGfx_ProtagFemale1,
+    sRegionMapPlayerIconGfx_ProtagMale2,
+    sRegionMapPlayerIconGfx_ProtagFemale2,
+    sRegionMapPlayerIconGfx_ProtagMale3,
+    sRegionMapPlayerIconGfx_ProtagFemale3,
+    sRegionMapPlayerIconGfx_ProtagMale4,
+    sRegionMapPlayerIconGfx_ProtagFemale4,
+};
+static const u16* const sRegionMapPlayerIcon_Pal[] = {
+    sRegionMapPlayerIconPal_ProtagMale,
+    sRegionMapPlayerIconPal_ProtagFemale,
+    sRegionMapPlayerIconPal_ProtagMale,
+    sRegionMapPlayerIconPal_ProtagFemale,
+    sRegionMapPlayerIconPal_ProtagMale,
+    sRegionMapPlayerIconPal_ProtagFemale,
+    sRegionMapPlayerIconPal_ProtagMale,
+    sRegionMapPlayerIconPal_ProtagFemale,
+};
 
 #include "data/region_map/region_map_entries.h"
 
@@ -1464,12 +1497,8 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
         gRegionMap->playerIconSprite = NULL;
         return;
     }
-    //TODO: MULTIFORM PLAYER
-    if (GetPlayerGender() == FEMALE)
-    {
-        sheet.data = sRegionMapPlayerIcon_MayGfx;
-        palette.data = sRegionMapPlayerIcon_MayPal;
-    }
+    sheet.data = sRegionMapPlayerIcon_Gfx[gSaveBlock2Ptr->playerForm];
+    palette.data = sRegionMapPlayerIcon_Pal[gSaveBlock2Ptr->playerForm];
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&palette);
     spriteId = CreateSprite(&template, 0, 0, 1);

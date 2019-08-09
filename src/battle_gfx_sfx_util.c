@@ -645,6 +645,16 @@ void DecompressTrainerBackPic(u16 backPicId, u8 battlerId)
                           0x100 + 16 * battlerId, 0x20);
 }
 
+void DecompressTrainerBackPalette(u16 backPicId, u8 battlerId)
+{
+    u8 position = GetBattlerPosition(battlerId);
+    // DecompressPicFromTable_2(&gTrainerBackPicTable[backPicId],
+    //                          gMonSpritesGfxPtr->sprites[position],
+    //                          SPECIES_NONE);
+    LoadCompressedPalette(gTrainerBackPicPaletteTable[backPicId].data,
+                          0x100 + 16 * battlerId, 0x20);
+}
+
 void nullsub_25(u8 arg0)
 {
 }

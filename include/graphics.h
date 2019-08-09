@@ -3090,6 +3090,8 @@ extern const u8 gTrainerBackPic_ProtagFemale4[];
 
 extern const u32 gTrainerBackPicPalette_Red[];
 extern const u32 gTrainerBackPicPalette_Leaf[];
+extern const u32 gTrainerBackPicPalette_ProtagMale[];
+extern const u32 gTrainerBackPicPalette_ProtagFemale[];
 
 // pokeblock
 extern const u32 gMenuPokeblock_Gfx[];
