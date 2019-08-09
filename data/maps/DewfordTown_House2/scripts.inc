@@ -4,6 +4,7 @@ DewfordTown_House2_MapScripts:: @ 81FE22D
 DewfordTown_House2_EventScript_1FE22E:: @ 81FE22E
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_SILK_SCARF, DewfordTown_House2_EventScript_1FE267
 	msgbox DewfordTown_House2_Text_1FE27A, MSGBOX_DEFAULT
 	giveitem_std ITEM_SILK_SCARF
@@ -55,4 +56,3 @@ DewfordTown_House2_Text_1FE444: @ 81FE444
 	.string "heard about BRAWLY?\p"
 	.string "He's so cool…\n"
 	.string "Everyone idolizes him.$"
-

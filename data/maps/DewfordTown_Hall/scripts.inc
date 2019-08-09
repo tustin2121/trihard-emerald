@@ -4,6 +4,7 @@ DewfordTown_Hall_MapScripts:: @ 81FD4CF
 DewfordTown_Hall_EventScript_1FD4D0:: @ 81FD4D0
 	lock
 	faceplayer
+	markasdialog
 	call DewfordTown_Hall_EventScript_271E8B
 	special TrendyPhraseIsOld
 	compare VAR_RESULT, 1
@@ -20,6 +21,7 @@ DewfordTown_Hall_EventScript_1FD4EF:: @ 81FD4EF
 DewfordTown_Hall_EventScript_1FD4F9:: @ 81FD4F9
 	lock
 	faceplayer
+	markasdialog
 	call DewfordTown_Hall_EventScript_271E8B
 	msgbox DewfordTown_Hall_Text_1FD8ED, MSGBOX_DEFAULT
 	release
@@ -28,6 +30,7 @@ DewfordTown_Hall_EventScript_1FD4F9:: @ 81FD4F9
 DewfordTown_Hall_EventScript_1FD50A:: @ 81FD50A
 	lock
 	faceplayer
+	markasdialog
 	call DewfordTown_Hall_EventScript_271E8B
 	special sub_811EF6C
 	msgbox DewfordTown_Hall_Text_1FD948, MSGBOX_YESNO
@@ -50,6 +53,7 @@ DewfordTown_Hall_EventScript_1FD53D:: @ 81FD53D
 DewfordTown_Hall_EventScript_1FD547:: @ 81FD547
 	lock
 	faceplayer
+	markasdialog
 	call DewfordTown_Hall_EventScript_271E8B
 	msgbox DewfordTown_Hall_Text_1FDA5C, MSGBOX_DEFAULT
 	closemessage
@@ -61,6 +65,7 @@ DewfordTown_Hall_EventScript_1FD547:: @ 81FD547
 DewfordTown_Hall_EventScript_1FD563:: @ 81FD563
 	lock
 	faceplayer
+	markasdialog
 	call DewfordTown_Hall_EventScript_271E8B
 	msgbox DewfordTown_Hall_Text_1FDA99, MSGBOX_DEFAULT
 	closemessage
@@ -72,6 +77,7 @@ DewfordTown_Hall_EventScript_1FD563:: @ 81FD563
 DewfordTown_Hall_EventScript_1FD57F:: @ 81FD57F
 	lock
 	faceplayer
+	markasdialog
 	call DewfordTown_Hall_EventScript_271E8B
 	msgbox DewfordTown_Hall_Text_1FDAC4, MSGBOX_DEFAULT
 	release
@@ -163,9 +169,9 @@ DewfordTown_Hall_EventScript_1FD6C9:: @ 81FD6C9
 
 DewfordTown_Hall_EventScript_1FD6E5:: @ 81FD6E5
 	call DewfordTown_Hall_EventScript_1FD73A
-	msgbox DewfordTown_Hall_Text_1FDE77, MSGBOX_DEFAULT
+	msgbox DewfordTown_Hall_Text_1FDE77, MSGBOX_CDIALOG
 	call DewfordTown_Hall_EventScript_1FD772
-	msgbox DewfordTown_Hall_Text_1FDED8, MSGBOX_DEFAULT
+	msgbox DewfordTown_Hall_Text_1FDED8, MSGBOX_CDIALOG
 	releaseall
 	end
 
@@ -251,6 +257,7 @@ DewfordTown_Hall_Movement_1FD7D8: @ 81FD7D8
 DewfordTown_Hall_EventScript_1FD7DA:: @ 81FD7DA
 	lock
 	faceplayer
+	markasdialog
 	call DewfordTown_Hall_EventScript_271E8B
 	goto_if_set FLAG_RECEIVED_TM36, DewfordTown_Hall_EventScript_1FD80E
 	msgbox DewfordTown_Hall_Text_1FE142, MSGBOX_DEFAULT
@@ -449,4 +456,3 @@ DewfordTown_Hall_Text_1FE1ED: @ 81FE1ED
 	.string "But Pokémon with the move\n"
 	.string "“{STR_VAR_1}”\l"
 	.string "are in, too.$"
-
