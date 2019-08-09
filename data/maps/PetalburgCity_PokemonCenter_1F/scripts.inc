@@ -46,7 +46,6 @@ PetalburgCity_Mart_Pokemart_207D8C: @ 8207D8C
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFEND
-	.2byte ITEM_ORANGE_MAIL
 	.2byte ITEM_NONE
 	release
 	end
@@ -118,7 +117,7 @@ PetalburgCity_PokemonCenter_1F_Text_207A77:
 	.string "That Malaqui is off his rocker!\n"
 	.string "He should be disciplined for some of\l"
 	.string "the stuff he puts trainers through!$"
-	
+
 
 
 PetalburgCity_PokemonCenter_1F_EventScript_OranBoy:: @ 8207A13
@@ -173,8 +172,8 @@ PetalburgCity_Mart_Text_LoganCousin: @ 8207EB0
 	.string "boyfriend on the way back, without\l"
 	.string "having to lie to Aunt Gretchen about\l"
 	.string "who he is again.$"
-			
-			
+
+
 
 @ -----------------------------------------------------
 

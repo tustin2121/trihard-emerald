@@ -34,6 +34,7 @@ VerdanturfTown_Mart_Pokemart_2025A0: @ 82025A0
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_NEST_BALL
 	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ELIXIR
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
@@ -94,7 +95,7 @@ VerdanturfTown_Mart_Text_20264C: @ 820264C
 
 VerdanturfTown_Mart_EventScript_NestBallFan:: @ 82025CC
 	msgbox VerdanturfTown_Mart_Text_2026C9, MSGBOX_NPC
-	
+
 
 	end
 VerdanturfTown_Mart_Text_2026C9: @ 82026C9
@@ -109,11 +110,10 @@ VerdanturfTown_PokemonCenter_1F_SleepingOldMan::
 	msgbox VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text_DESC, MSGBOX_CDESCRIBE
 	releaseall
 	end
-	
+
 VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text::
 	.string "Zzz…\p"
 	.string "Show you how to catch…!$"
 VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text_DESC::
 	.string "He fell asleep while he\n"
 	.string "was watching some ASMR…$"
-
