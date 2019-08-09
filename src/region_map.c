@@ -119,8 +119,8 @@ static const u8 sRegionMapPlayerIconGfx_ProtagFemale1[] = INCBIN_U8("graphics/ev
 static const u8 sRegionMapPlayerIconGfx_ProtagFemale2[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl2/map_head.4bpp");
 static const u8 sRegionMapPlayerIconGfx_ProtagFemale3[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl3/map_head.4bpp");
 static const u8 sRegionMapPlayerIconGfx_ProtagFemale4[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl4/map_head.4bpp");
-static const u16 sRegionMapPlayerIconPal_ProtagMale[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag_m1.gbapal");
-static const u16 sRegionMapPlayerIconPal_ProtagFemale[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag_f1.gbapal");
+static const u16 sRegionMapPlayerIconPal_ProtagMale[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag.gbapal");
+static const u16 sRegionMapPlayerIconPal_ProtagFemale[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag.gbapal");
 
 static const u8 sRegionMap_MapSectionLayout[] = INCBIN_U8("graphics/pokenav/region_map_section_layout.bin");
 

@@ -3,6 +3,18 @@ BattleFrontier_PokemonCenter_1F_MapScripts:: @ 82678F9
 	map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
+
+DewfordTown_PokemonCenter_1F_PC::
+	lockall
+	msgbox DewfordTown_PokemonCenter_1F_PC_Text, MSGBOX_DEFAULT
+	releaseall
+	end
+DewfordTown_PokemonCenter_1F_PC_Text:
+	.string "{PLAYER} tries to turn on the PC, but it\n"
+	.string "seems to be unplugged.$"
+
+
+
 BattleFrontier_PokemonCenter_1F_MapScript1_267904: @ 8267904
 	setrespawn HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST
 	end

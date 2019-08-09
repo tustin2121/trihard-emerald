@@ -23,7 +23,7 @@ PetalburgCity_House2_Text_207906:
 
 PetalburgCity_House2_EventScript_2078FC:: @ 82078FC
 	compare VAR_PETALBURG_STATE, 10
-	goto_if_lt PetalburgCity_House2_EventScript_2078F4
+	goto_if_lt PetalburgCity_House2_EventScript_2078FD
 	msgbox PetalburgCity_House2_Text_207969, MSGBOX_NPC
 	end
 PetalburgCity_House2_Text_207969: @ 8207969
