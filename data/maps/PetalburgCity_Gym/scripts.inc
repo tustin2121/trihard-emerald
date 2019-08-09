@@ -14,6 +14,7 @@ PetalburgCity_Gym_EventScript_OpenGym::
 	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
 	setvar VAR_PETALBURG_STATE, 10
 	setflag FLAG_PETALBURG_MART_EXPANDED_ITEMS
+	setflag FLAG_HIDE_PETALBURG_CITY_GYM_LOCK
 	return
 
 @ -----------------------------------------------------
