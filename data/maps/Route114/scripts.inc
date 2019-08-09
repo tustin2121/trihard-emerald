@@ -27,6 +27,7 @@ Route114_MapScript2_1F2578: @ 81F2578
 Route114_EventScript_1F2582:: @ 81F2582
 	lock
 	faceplayer
+	markasdialog
 	dotimebasedevents
 	goto_if_set FLAG_DAILY_ROUTE_114_RECEIVED_BERRY, Route114_EventScript_1F25C7
 	msgbox Route114_Text_2A6FCB, MSGBOX_DEFAULT
@@ -49,13 +50,14 @@ Route114_EventScript_1F25C7:: @ 81F25C7
 Route114_EventScript_1F25D1:: @ 81F25D1
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_TM05, Route114_EventScript_1F2608
-	msgbox Route114_Text_1F2809, MSGBOX_DEFAULT
+	msgbox Route114_Text_1F2809
 	giveitem_std ITEM_TM05
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM05
-	msgbox Route114_Text_1F2872, MSGBOX_DEFAULT
+	msgbox Route114_Text_1F2872
 	release
 	end
 
@@ -67,6 +69,7 @@ Route114_EventScript_1F2608:: @ 81F2608
 Route114_EventScript_1F2612:: @ 81F2612
 	lock
 	faceplayer
+	markasdialog
 	waitse
 	playmoncry SPECIES_POOCHYENA, 2
 	msgbox Route114_Text_1F28A6, MSGBOX_DEFAULT
@@ -208,4 +211,3 @@ Route114_Text_1F28DB: @ 81F28DB
 
 Route114_Text_1F2910: @ 81F2910
 	.string "{PLACE}Lanette's House{END}$"
-
