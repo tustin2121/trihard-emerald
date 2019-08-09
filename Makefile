@@ -20,6 +20,7 @@ endif
 
 TITLE       := TRIHARD EMER #POKEMON EMER
 GAME_CODE   := BPEE #THEE
+GAME_NAME	:= TriHard Emerald (English)
 MAKER_CODE  := 01
 REVISION    := 0
 
@@ -31,6 +32,7 @@ OBJ_DIR := build/emerald
 ELF = $(ROM:.gba=.elf)
 MAP = $(ROM:.gba=.map)
 SYM = $(ROM:.gba=.sym)
+PGEINI := $(ROM:%.gba=%.pge.ini)
 
 C_SUBDIR = src
 ASM_SUBDIR = asm
@@ -63,6 +65,7 @@ RAMSCRGEN := tools/ramscrgen/ramscrgen$(EXE)
 FIX := tools/gbafix/gbafix$(EXE)
 MAPJSON := tools/mapjson/mapjson$(EXE)
 COPYSTAMP := tools/copystamp/copystamp$(EXE)
+PGEGEN    := tools/pgegen/pgegen$(EXE)
 
 # Clear the default suffixes
 .SUFFIXES:
@@ -108,8 +111,9 @@ else
 NODEP := 1
 endif
 
-
 rom: $(ROM)
+
+ini: $(PGEINI)
 
 tools:
 	@$(MAKE) -C tools/gbagfx
@@ -123,6 +127,7 @@ tools:
 	@$(MAKE) -C tools/gbafix
 	@$(MAKE) -C tools/mapjson
 	@$(MAKE) -C tools/copystamp
+	@$(MAKE) -C tools/pgegen
 
 clean: tidy cleanmaps
 	rm -f sound/direct_sound_samples/*.bin
@@ -140,6 +145,7 @@ clean: tidy cleanmaps
 	@$(MAKE) clean -C tools/gbafix
 	@$(MAKE) clean -C tools/mapjson
 	@$(MAKE) clean -C tools/copystamp
+	@$(MAKE) clean -C tools/pgegen	
 
 cleanmaps:
 	rm -f $(DATA_ASM_BUILDDIR)/maps.o $(DATA_ASM_BUILDDIR)/map_events.o
@@ -247,3 +253,6 @@ $(ROM): $(ELF)
 	$(OBJCOPY) -O binary $< $@
 	$(FIX) $@ -p -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(REVISION) --silent
 	$(NM) -SBgn $< > $(SYM)
+
+$(PGEINI): %.pge.ini: $(ELF)
+	$(PGEGEN) $< $@ --code $(GAME_CODE) --name "$(GAME_NAME)"
