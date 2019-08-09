@@ -13,6 +13,7 @@ GraniteCave_1F_EventScript_ItemEscapeRope:: @ 8291150
 GraniteCave_1F_EventScript_22DA5E:: @ 822DA5E
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_TM55, GraniteCave_1F_EventScript_22DA8A
 	msgbox GraniteCave_1F_Text_22DA94, MSGBOX_DEFAULT
 	giveitem_std ITEM_TM55
@@ -34,7 +35,7 @@ GraniteCave_1F_Text_22DA94: @ 822DA94
 	.string "Some of your Pokémon should be able to\n"
 	.string "do something called “Flash”.\p"
 	.string "Flash lights up even the inky\n"
-	.string "darkness of caves.\p"		
+	.string "darkness of caves.\p"
 	.string "But, to use it, you need the Gym Badge\n"
 	.string "from Dewford's Pokémon Gym.\p"
 	.string "Here, I'll pass this on to you as well.$"
@@ -46,8 +47,6 @@ GraniteCave_1F_Text_22DBB7: @ 822DBB7
 	.string "the capability outside of battle.$"
 GraniteCave_1F_Text_22DBB8:
 	.string "Flash lights up even the inky\n"
-	.string "darkness of caves.\p"		
+	.string "darkness of caves.\p"
 	.string "But, to use it, you need the Gym Badge\n"
 	.string "from Dewford's Pokémon Gym.$"
-	
-

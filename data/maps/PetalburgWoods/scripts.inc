@@ -479,4 +479,3 @@ PetalburgWoods_Movement_22E1E0: @ 822E1E0
 	delay_16
 	walk_in_place_fastest_up
 	step_end
-

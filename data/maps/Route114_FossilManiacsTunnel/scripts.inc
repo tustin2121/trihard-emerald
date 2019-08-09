@@ -26,6 +26,7 @@ Route114_FossilManiacsTunnel_EventScript_22AF66:: @ 822AF66
 	applymovement 1, Common_Movement_WalkInPlaceUp
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
+	markasdialog
 	msgbox Route114_FossilManiacsTunnel_Text_22B1F7, MSGBOX_DEFAULT
 	setvar VAR_FOSSIL_MANIAC_STATE, 2
 	releaseall
@@ -34,6 +35,7 @@ Route114_FossilManiacsTunnel_EventScript_22AF66:: @ 822AF66
 Route114_FossilManiacsTunnel_EventScript_22AF87:: @ 822AF87
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_REVIVED_FOSSIL_MON, Route114_FossilManiacsTunnel_EventScript_22AFC6
 	checkitem ITEM_ROOT_FOSSIL, 1
 	compare VAR_RESULT, 1
@@ -90,4 +92,3 @@ Route114_FossilManiacsTunnel_Text_22B1F7: @ 822B1F7
 	.string "underneath now…\p"
 	.string "But I've left it alone because I don't\n"
 	.string "think there are any FOSSILS there…$"
-

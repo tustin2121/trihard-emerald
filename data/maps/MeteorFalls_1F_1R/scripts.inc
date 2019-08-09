@@ -29,7 +29,7 @@ MeteorFalls_1F_1R_EventScript_Cosmo:: @ 822BF25
 MeteorFalls_1F_1R_Text_22C342: @ 822C342
 	.string "Augh! Don't hurt me!!\p"
 	.string "Oh, everyone else is gone…\p"
-	.string "M-My name is Prof. Cozmo…\n"
+	.string "M-My name is Prof. Cozmo…\p"
 	.string "Team Magma asked me to guide them\n"
 	.string "to Meteor Falls…\p"
 	.string "But they tricked me.\n"
@@ -82,7 +82,7 @@ MeteorFalls_1F_1R_TriggerScript_FindingRocks::
 	special SpawnCameraObject
 	applymovement EVENT_OBJ_ID_CAMERA, MeteorFalls_1F_1R_Movement_FindingRocks2_Camera
 	waitmovement 0
-	@ 
+	@
 	markasdialog 10
 	msgbox MeteorFalls_1F_1R_Text_FindingRocks3
 	closemessage
@@ -212,7 +212,7 @@ MeteorFalls_1F_1R_Text_FindingRocks3:
 MeteorFalls_1F_1R_Text_FindingRocks4:
 	.string "Oh ho! What is this?\p"
 	.string "That's quite a prominent Team Aqua\n"
-	.string "sign you go there!$"
+	.string "sign you got there!$"
 MeteorFalls_1F_1R_Text_FindingRocks5:
 	.string "Take the rock and get out of here,\n"
 	.string "Jared!\p"
@@ -228,7 +228,7 @@ MeteorFalls_1F_1R_Text_FindingRocks9:
 MeteorFalls_1F_1R_Text_FindingRocks10:
 	.string "{STR_VAR_1}{PLAYER}, you alright?\p"
 	.string "We saw a Magma goon run out and\n"
-	.string "and came to investigate.$"
+	.string "we came to investigate.$"
 MeteorFalls_1F_1R_Text_FindingRocks11:
 	.string "Archie: Ah yes, I remember you.\p"
 	.string "You were that eager {PLAYER_boy} who helped\n"
@@ -488,7 +488,7 @@ MeteorFalls_1F_1R_Movement_FindingRocks12_AquaGirl:
 @ 	applymovement LID_AQUA1, MeteorFalls_1F_1R_Movement_FindingRocks6_Aqua1
 @ 	applymovement LID_AQUA2, MeteorFalls_1F_1R_Movement_FindingRocks6_Aqua2
 @ 	waitmovement 0
-@ 	@ 
+@ 	@
 @ 	applymovement LID_MAGMA1, Common_Movement_WalkInPlaceLeft
 @ 	applymovement LID_MAGMA2, Common_Movement_WalkInPlaceLeft
 @ 	waitmovement 0
@@ -708,4 +708,3 @@ MeteorFalls_1F_1R_Movement_FindingRocks12_AquaGirl:
 @ 	walk_right
 @ 	walk_right
 @ 	step_end
-
