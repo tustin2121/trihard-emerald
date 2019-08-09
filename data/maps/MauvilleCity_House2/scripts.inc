@@ -74,6 +74,7 @@ MauvilleCity_House2_Text_210DE7: @ 8210DE7
 	.string "at the Game Corner.$"
 
 MauvilleCity_House2_Text_210E16: @ 8210E16
+	.string "You don't have any either?\n"
 	.string "Oh, that's so disappointing.$"
 
 MauvilleCity_House2_EventScript_Rosa_Text::
