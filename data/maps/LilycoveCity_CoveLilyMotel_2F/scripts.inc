@@ -126,7 +126,7 @@ LilycoveCity_CoveLilyMotel_2F_Text_218ACF: @ 8218ACF
 	.string "battles and tough TRAINERS.\p"
 	.string "But that's just me.\p"
 	.string "{PLAYER}, I hope you'll enjoy everything\n"
-	.string "like the GYMS, CONTESTS, BATTLE TENT,\l"
+	.string "like the GYMS, CONTESTS,\l"
 	.string "the whole works!$"
 
 LilycoveCity_CoveLilyMotel_2F_Text_218C33: @ 8218C33
@@ -134,4 +134,3 @@ LilycoveCity_CoveLilyMotel_2F_Text_218C33: @ 8218C33
 	.string "to win a CONTEST.\p"
 	.string "Devising CONTEST strategies is one way\n"
 	.string "of becoming a better TRAINER, I'd say.$"
-

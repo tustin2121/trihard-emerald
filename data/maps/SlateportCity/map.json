@@ -113,8 +113,8 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "Common_EventScript_BattleTentClosed",
             "type": "sign",
-            "x": 18,
-            "y": 12
+            "x": 19,
+            "y": 11
         }
     ],
     "connections": [
@@ -668,11 +668,11 @@
             "y": 38
         },
         {
-            "dest_map": "MAP_SLATEPORT_CITY_BATTLE_TENT_LOBBY",
+            "dest_map": "MAP_SLATEPORT_CITY_CONTEST_LOBBY",
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 18,
-            "y": 11
+            "y": 12
         },
         {
             "dest_map": "MAP_SLATEPORT_CITY_POKEMON_FAN_CLUB",

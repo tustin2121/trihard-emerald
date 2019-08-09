@@ -157,7 +157,7 @@
 #define VAR_LITTLEROOT_HOUSES_STATE_2        0x408C
 #define VAR_LITTLEROOT_RIVAL_STATE           0x408D
 #define VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE 0x408E
-#define VAR_DEVON_CORP_3F_STATE              0x408F
+#define VAR_LETTER_INTERNETMUSIC_LOVERS      0x408F // TriHard Emerald
 #define VAR_BRINEY_HOUSE_STATE               0x4090
 #define VAR_UNUSED_0x4091                    0x4091 // Unused Var
 #define VAR_LITTLEROOT_INTRO_STATE           0x4092

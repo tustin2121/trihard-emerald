@@ -4439,6 +4439,66 @@
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_BattleFrontier",
             "width": 11
+        },
+        {
+            "blockdata_filepath": "data/layouts/VerdanturfTown_ContestLobby/map.bin",
+            "border_filepath": "data/layouts/VerdanturfTown_ContestLobby/border.bin",
+            "height": 7,
+            "id": "LAYOUT_VERDANTURF_TOWN_CONTEST_LOBBY",
+            "name": "VerdanturfTown_ContestLobby_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 15
+        },
+        {
+            "blockdata_filepath": "data/layouts/VerdanturfTown_ContestHall/map.bin",
+            "border_filepath": "data/layouts/VerdanturfTown_ContestHall/border.bin",
+            "height": 18,
+            "id": "LAYOUT_VERDANTURF_TOWN_CONTEST_HALL",
+            "name": "VerdanturfTown_ContestHall_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 21
+        },
+        {
+            "blockdata_filepath": "data/layouts/SlateportCity_ContestLobby/map.bin",
+            "border_filepath": "data/layouts/SlateportCity_ContestLobby/border.bin",
+            "height": 7,
+            "id": "LAYOUT_SLATEPORT_CITY_CONTEST_LOBBY",
+            "name": "SlateportCity_ContestLobby_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 15
+        },
+        {
+            "blockdata_filepath": "data/layouts/SlateportCity_ContestHall/map.bin",
+            "border_filepath": "data/layouts/SlateportCity_ContestHall/border.bin",
+            "height": 18,
+            "id": "LAYOUT_SLATEPORT_CITY_CONTEST_HALL",
+            "name": "SlateportCity_ContestHall_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 21
+        },
+        {
+            "blockdata_filepath": "data/layouts/FallarborTown_ContestLobby/map.bin",
+            "border_filepath": "data/layouts/FallarborTown_ContestLobby/border.bin",
+            "height": 7,
+            "id": "LAYOUT_FALLARBOR_TOWN_CONTEST_LOBBY",
+            "name": "FallarborTown_ContestLobby_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 15
+        },
+        {
+            "blockdata_filepath": "data/layouts/FallarborTown_ContestHall/map.bin",
+            "border_filepath": "data/layouts/FallarborTown_ContestHall/border.bin",
+            "height": 18,
+            "id": "LAYOUT_FALLARBOR_TOWN_CONTEST_HALL",
+            "name": "FallarborTown_ContestHall_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Contest",
+            "width": 21
         }
     ],
     "layouts_table_label": "gMapLayouts"

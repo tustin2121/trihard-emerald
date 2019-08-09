@@ -4389,14 +4389,9 @@ BattleFrontier_BattlePikeThreePathRoom_Movement_2C427A: @ 82C427A
 	set_invisible
 	step_end
 
-LilycoveCity_ContestLobby_Text_2C427C: @ 82C427C
-	.string "BLEND MASTER: Indeed I am!\n"
-	.string "The BLEND MASTER am I!\p"
-	.string "Blend with me, and you shall witness\n"
-	.string "the mastery I bring to blending!$"
 
 LilycoveCity_ContestLobby_Text_2C42F4: @ 82C42F4
-	.string "BLEND MASTER: Hmmm! So, you wish to\n"
+	.string "Blend Master: Hmmm! So, you wish to\n"
 	.string "see my mastery in action?$"
 
 LilycoveCity_ContestLobby_Text_2C4332: @ 82C4332
@@ -5628,3 +5623,15 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/EverGrandeCity_WaitingRoom4/scripts.inc"
 
 	.include "data/maps/EverGrandeCity_WaitingRoom5/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_ContestLobby/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_ContestHall/scripts.inc"
+
+	.include "data/maps/SlateportCity_ContestLobby/scripts.inc"
+
+	.include "data/maps/SlateportCity_ContestHall/scripts.inc"
+
+	.include "data/maps/FallarborTown_ContestLobby/scripts.inc"
+
+	.include "data/maps/FallarborTown_ContestHall/scripts.inc"

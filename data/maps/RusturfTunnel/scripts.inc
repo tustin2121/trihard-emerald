@@ -27,6 +27,7 @@ RusturfTunnel_MapScript2_FrameTable: @ 822CE32
 
 RusturfTunnel_EventScript_RockSmashReact:: @ 822CEAE
 	lockall
+	markasdialog
 	selectpointer RusturfTunnel_ScriptTable_RockSmashReact_Step1, VAR_TEMP_1
 	call 0
 	call RusturfTunnel_EventScript_RockSmashReact_Step2
@@ -241,6 +242,7 @@ RusturfTunnel_EventScript_22D07D:: @ 822D07D
 RusturfTunnel_EventScript_TurfMan:: @ 822CE5F
 	lock
 	faceplayer
+	markasdialog
 	msgbox RusturfTunnel_Text_22D7A3, MSGBOX_DEFAULT
 	closemessage
 	faceoriginaldir
@@ -258,6 +260,7 @@ RusturfTunnel_Text_22D7A3: @ 822D7A3
 RusturfTunnel_EventScript_RustMan:: @ 822CE76
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_TEMP_1, RusturfTunnel_EventScript_22CE99
 	setflag FLAG_TEMP_1
 	msgbox RusturfTunnel_Text_22D510, MSGBOX_DEFAULT

@@ -6,6 +6,8 @@ Route114_LanettesHouse_OnTransition: @ 822B2CE
 	setflag FLAG_LANDMARK_LANETTES_HOUSE
 	end
 
+@ -----------------------------------------------------
+
 Route114_LanettesHouse_EventScript_22B2D2:: @ 822B2D2
 	lock
 	faceplayer

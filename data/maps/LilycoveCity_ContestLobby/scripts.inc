@@ -1,7 +1,9 @@
 LilycoveCity_ContestLobby_MapScripts:: @ 821A211
 	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_ContestLobby_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, LilycoveCity_ContestLobby_MapScript2_21A243
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LilycoveCity_ContestLobby_FrameTable
 	.byte 0
+
+@ -----------------------------------------------------
 
 LilycoveCity_ContestLobby_OnTransition: @ 821A21C
 	call LilycoveCity_ContestLobby_EventScript_28CB2B
@@ -21,7 +23,9 @@ LilycoveCity_ContestLobby_EventScript_21A23C:: @ 821A23C
 	clearflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_ONLOOKERS
 	return
 
-LilycoveCity_ContestLobby_MapScript2_21A243: @ 821A243
+@ -----------------------------------------------------
+
+LilycoveCity_ContestLobby_FrameTable: @ 821A243
 	map_script_2 VAR_LILYCOVE_CONTEST_LOBBY_STATE, 1, LilycoveCity_ContestLobby_EventScript_21A255
 	map_script_2 VAR_LILYCOVE_CONTEST_LOBBY_STATE, 2, LilycoveCity_ContestLobby_EventScript_21A427
 	.2byte 0
@@ -30,7 +34,6 @@ LilycoveCity_ContestLobby_EventScript_21A255:: @ 821A255
 	goto_if_set FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR, LilycoveCity_ContestLobby_EventScript_21A264
 	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	end
-
 LilycoveCity_ContestLobby_EventScript_21A264:: @ 821A264
 	lockall
 	addobject 4
@@ -200,6 +203,8 @@ LilycoveCity_ContestLobby_Movement_21A41E: @ 821A41E
 	walk_in_place_fastest_right
 	step_end
 
+@ -----------------------------------------------------
+
 LilycoveCity_ContestLobby_EventScript_21A427:: @ 821A427
 	goto_if_set FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR, LilycoveCity_ContestLobby_EventScript_21A436
 	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
@@ -315,6 +320,8 @@ LilycoveCity_ContestLobby_Movement_21A54B: @ 821A54B
 	walk_in_place_fastest_left
 	step_end
 
+@ -----------------------------------------------------
+
 LilycoveCity_ContestLobby_EventScript_21A554:: @ 821A554
 	special sub_80F9154
 	specialvar VAR_RESULT, sub_80F8D24
@@ -338,19 +345,19 @@ LilycoveCity_ContestLobby_EventScript_21A585:: @ 821A585
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5B7:: @ 821A5B7
-	setvar VAR_CONTEST_LOCATION, 1
+	@ setvar VAR_CONTEST_LOCATION, 1
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5BD:: @ 821A5BD
-	setvar VAR_CONTEST_LOCATION, 2
+	@ setvar VAR_CONTEST_LOCATION, 2
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5C3:: @ 821A5C3
-	setvar VAR_CONTEST_LOCATION, 3
+	@ setvar VAR_CONTEST_LOCATION, 3
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5C9:: @ 821A5C9
-	setvar VAR_CONTEST_LOCATION, 4
+	@ setvar VAR_CONTEST_LOCATION, 4
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5CF:: @ 821A5CF
@@ -418,7 +425,7 @@ LilycoveCity_ContestLobby_EventScript_21A670:: @ 821A670
 	setmetatile 12, 3, 729, 1
 	special DrawWholeMapView
 	delay 20
-	applymovement 1, LilycoveCity_ContestLobby_Movement_21A706
+	applymovement 1, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6F2
 	waitmovement 0
@@ -427,6 +434,7 @@ LilycoveCity_ContestLobby_EventScript_21A670:: @ 821A670
 	applymovement 1, LilycoveCity_ContestLobby_Movement_21A6FD
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6E8
 	waitmovement 0
+	setdynamicwarp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 0xFF, 14, 4
 	releaseall
 	return
 
@@ -470,33 +478,69 @@ LilycoveCity_ContestLobby_Movement_21A6FD: @ 821A6FD
 	set_invisible
 	step_end
 
-LilycoveCity_ContestLobby_Movement_21A706: @ 821A706
-	walk_in_place_fastest_right
-	step_end
+@ -----------------------------------------------------
 
 LilycoveCity_ContestLobby_EventScript_21A708:: @ 821A708
 	msgbox LilycoveCity_ContestLobby_Text_21B1B1, MSGBOX_NPC
 	end
+LilycoveCity_ContestLobby_Text_21B1B1: @ 821B1B1
+	.string "Hoo, boy… Master Rank Contests,\n"
+	.string "here I come.\p"
+	.string "The world will know that my dearest\n"
+	.string "Pokémon is the cutest being in all\l"
+	.string "existence. The time has come!\l"
+	.string "Uheheheh.$"
+
 
 LilycoveCity_ContestLobby_EventScript_21A711:: @ 821A711
 	msgbox LilycoveCity_ContestLobby_Text_21B24D, MSGBOX_NPC
 	end
+LilycoveCity_ContestLobby_Text_21B24D: @ 821B24D
+	.string "You can see a whole variety of\n"
+	.string "Pokémon here.\p"
+	.string "That's why I make this place a regular\n"
+	.string "part of my daily stroll.$"
+
 
 LilycoveCity_ContestLobby_EventScript_21A71A:: @ 821A71A
 	msgbox LilycoveCity_ContestLobby_Text_21B2BA, MSGBOX_NPC
 	end
+LilycoveCity_ContestLobby_Text_21B2BA: @ 821B2BA
+	.string "Wow, coming out to a contest is\n"
+	.string "a feast for these eyes!\p"
+	.string "Would you look at all the Pokémon\n"
+	.string "that just scream to be painted?$"
+
 
 LilycoveCity_ContestLobby_EventScript_21A723:: @ 821A723
 	msgbox LilycoveCity_ContestLobby_Text_21B334, MSGBOX_NPC
 	end
+LilycoveCity_ContestLobby_Text_21B334: @ 821B334
+	.string "The Toughness Contest is like\n"
+	.string "extreme, man!\p"
+	.string "Those muscular appeals…\n"
+	.string "Cascading sweat… I swoon!$"
+
 
 LilycoveCity_ContestLobby_EventScript_21A72C:: @ 821A72C
 	msgbox LilycoveCity_ContestLobby_Text_21B392, MSGBOX_NPC
 	end
+LilycoveCity_ContestLobby_Text_21B392: @ 821B392
+	.string "Day in and day out, I lavished my care\n"
+	.string "on this Pokémon.\p"
+	.string "Its condition is peaking.\n"
+	.string "Today, victory is mine!$"
+
 
 LilycoveCity_ContestLobby_EventScript_21A735:: @ 821A735
 	msgbox LilycoveCity_ContestLobby_Text_21B3FC, MSGBOX_NPC
 	end
+LilycoveCity_ContestLobby_Text_21B3FC: @ 821B3FC
+	.string "I made {POKEBLOCK}s with Mom, Dad, and\n"
+	.string "Big Sister. They turned out great!\p"
+	.string "I bet you can make smoother, better\n"
+	.string "{POKEBLOCK}s if you have more people.$"
+
 
 LilycoveCity_ContestLobby_EventScript_21A73E:: @ 821A73E
 	lockall
@@ -569,9 +613,15 @@ LilycoveCity_ContestLobby_EventScript_21A784:: @ 821A784
 LilycoveCity_ContestLobby_EventScript_21A798:: @ 821A798
 	lock
 	faceplayer
+	markasdialog
 	msgbox LilycoveCity_ContestLobby_Text_2C427C, MSGBOX_DEFAULT
 	goto LilycoveCity_ContestLobby_EventScript_21A7F9
 	end
+LilycoveCity_ContestLobby_Text_2C427C: @ 82C427C
+	.string "Blend Master: Indeed I am!\n"
+	.string "The Blend Master am I!\p"
+	.string "Blend with me, and you shall witness\n"
+	.string "the mastery I bring to blending!$"
 
 LilycoveCity_ContestLobby_EventScript_21A7A8:: @ 821A7A8
 	lock
@@ -835,7 +885,7 @@ LilycoveCity_ContestLobby_EventScript_21AB17:: @ 821AB17
 	call LilycoveCity_ContestLobby_EventScript_21AC49
 	setvar VAR_LINK_CONTEST_ROOM_STATE, 1
 	special sub_80F8AFC
-	setvar VAR_CONTEST_LOCATION, 5
+	@ setvar VAR_CONTEST_LOCATION, 5
 	setvar VAR_CONTEST_RANK, 3
 	call LilycoveCity_ContestLobby_EventScript_21A5EF
 	end
@@ -1017,12 +1067,12 @@ LilycoveCity_ContestLobby_EventScript_21AD06:: @ 821AD06
 LilycoveCity_ContestLobby_Text_21AD10: @ 821AD10
 	.string "Yippee!\p"
 	.string "The lady at the reception counter\n"
-	.string "gave me a case for {POKEBLOCK}S!$"
+	.string "gave me a case for {POKEBLOCK}s!$"
 
 LilycoveCity_ContestLobby_Text_21AD55: @ 821AD55
-	.string "Make {POKEBLOCK}S and put them in there.\p"
+	.string "Make {POKEBLOCK}s and put them in there.\p"
 	.string "When you make a {POKEBLOCK}, everyone\n"
-	.string "has to put in a different BERRY.$"
+	.string "has to put in a different berry.$"
 
 LilycoveCity_ContestLobby_Text_21ADB9: @ 821ADB9
 	.string "Congratulations!\p"
@@ -1057,10 +1107,10 @@ LilycoveCity_ContestLobby_Text_21B030: @ 821B030
 	.string "Pokémon, please take this.$"
 
 LilycoveCity_ContestLobby_Text_21B07E: @ 821B07E
-	.string "{PLAYER} received a RIBBON.$"
+	.string "{PLAYER} received a Ribbon.$"
 
 LilycoveCity_ContestLobby_Text_21B094: @ 821B094
-	.string "{PLAYER} put the RIBBON on\n"
+	.string "{PLAYER} put the Ribbon on\n"
 	.string "{STR_VAR_1}.$"
 
 LilycoveCity_ContestLobby_Text_21B0AD: @ 821B0AD
@@ -1078,41 +1128,8 @@ LilycoveCity_ContestLobby_Text_21B132: @ 821B132
 	.string "I'll just have to try harder next time.\n"
 	.string "Well, be seeing you.$"
 
-LilycoveCity_ContestLobby_Text_21B1B1: @ 821B1B1
-	.string "Hoo, boy… Master Rank CONTESTS,\n"
-	.string "here I come.\p"
-	.string "The world will know that my dearest\n"
-	.string "Pokémon is the cutest being in all\l"
-	.string "existence. The time has come!\l"
-	.string "Uheheheh.$"
 
-LilycoveCity_ContestLobby_Text_21B24D: @ 821B24D
-	.string "You can see a whole variety of\n"
-	.string "Pokémon here.\p"
-	.string "That's why I make this place a regular\n"
-	.string "part of my daily stroll.$"
 
-LilycoveCity_ContestLobby_Text_21B2BA: @ 821B2BA
-	.string "Wow, coming out to a CONTEST is\n"
-	.string "a feast for these eyes!\p"
-	.string "Would you look at all the Pokémon\n"
-	.string "that just scream to be painted?$"
 
-LilycoveCity_ContestLobby_Text_21B334: @ 821B334
-	.string "The TOUGHNESS CONTEST is like\n"
-	.string "extreme, man!\p"
-	.string "Those muscular appeals…\n"
-	.string "Cascading sweat… I swoon!$"
 
-LilycoveCity_ContestLobby_Text_21B392: @ 821B392
-	.string "Day in and day out, I lavished my care\n"
-	.string "on this Pokémon.\p"
-	.string "Its condition is peaking.\n"
-	.string "Today, victory is mine!$"
-
-LilycoveCity_ContestLobby_Text_21B3FC: @ 821B3FC
-	.string "I made {POKEBLOCK}S with Mom, Dad, and\n"
-	.string "Big Sister. They turned out great!\p"
-	.string "I bet you can make smoother, better\n"
-	.string "{POKEBLOCK}S if you have more people.$"
 

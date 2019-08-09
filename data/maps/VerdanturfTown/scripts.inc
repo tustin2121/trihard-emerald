@@ -30,8 +30,8 @@ VerdanturfTown_EventScript_1EB5EB:: @ 81EB5EB
 	msgbox VerdanturfTown_Text_1EBA1F, MSGBOX_SIGN
 	end
 VerdanturfTown_Text_1EBA1F: @ 81EBA1F
-	.string "{PLACE}Battle Tent Verdanturf Site{END}\n"
-	.string "“Feast Your Eyes on Battles!”$"
+	.string "{PLACE}Pokémon Contest{END}\n"
+	.string "“Gather here, all ye Pokémon Trainers!”$"
 
 VerdanturfTown_EventScript_1EB5F4:: @ 81EB5F4
 	msgbox VerdanturfTown_Text_1EBA59, MSGBOX_SIGN
