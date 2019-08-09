@@ -396,6 +396,9 @@ static void SetLoweredForetreeBridgeMetatile(s16 x, s16 y)
             case 0x256:
                 MapGridSetMetatileIdAt(x, y, 0x257);
                 break;
+            case 0x25E:
+                MapGridSetMetatileIdAt(x, y, 0x25F);
+                break;
         }
     }
 }
@@ -412,6 +415,9 @@ static void SetNormalFortreeBridgeMetatile(s16 x, s16 y)
                 break;
             case 0x257:
                 MapGridSetMetatileIdAt(x, y, 0x256);
+                break;
+            case 0x25F:
+                MapGridSetMetatileIdAt(x, y, 0x25E);
                 break;
         }
     }

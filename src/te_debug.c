@@ -358,6 +358,13 @@ void DebugHandle_GiveDebugParty()
 	val = 250;
 	SetMonData(&gPlayerParty[0], MON_DATA_FRIENDSHIP, &val);
 	SetMonData(&gPlayerParty[4], MON_DATA_FRIENDSHIP, &val);
+	val = 255;
+	SetMonData(&gPlayerParty[0], MON_DATA_COOL, &val);
+	SetMonData(&gPlayerParty[0], MON_DATA_BEAUTY, &val);
+	SetMonData(&gPlayerParty[0], MON_DATA_CUTE, &val);
+	SetMonData(&gPlayerParty[0], MON_DATA_SMART, &val);
+	SetMonData(&gPlayerParty[0], MON_DATA_TOUGH, &val);
+	SetMonData(&gPlayerParty[0], MON_DATA_SHEEN, &val);
 	ScriptContext1_SetupScript(DebugScript_GiveDebugPartyMessage);
 	
 	DebugSetCallbackSuccess();

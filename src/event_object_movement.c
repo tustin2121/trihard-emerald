@@ -486,7 +486,6 @@ const struct SpritePalette sEventObjectSpritePalettes[] = {
     {gEventObjectPalette34, EVENT_OBJ_PAL_TAG_34},
     {gEventObjectPaletteProtagM1, EVENT_OBJ_PAL_TAG_PROTAG_M1},
     {gEventObjectPaletteProtagF1, EVENT_OBJ_PAL_TAG_PROTAG_F1},
-    {gEventObjectPaletteProtagF2, EVENT_OBJ_PAL_TAG_PROTAG_F2},
     {NULL,                  0x0000},
 };
 

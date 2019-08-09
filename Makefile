@@ -10,7 +10,7 @@ TPP_MODE		?= 1
 EMULATOR_ONLY	?= 1
 
 # Version branch
-VERSION	:= 0.8.0
+VERSION	:= 0.9.0
 
 ifeq ($(OS),Windows_NT)
 EXE := .exe

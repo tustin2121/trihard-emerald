@@ -18,6 +18,7 @@ void nullsub_23(void);
 void nullsub_24(u16 species);
 void DecompressTrainerFrontPic(u16 frontPicId, u8 battlerId);
 void DecompressTrainerBackPic(u16 backPicId, u8 battlerId);
+void DecompressTrainerBackPalette(u16 backPicId, u8 battlerId);
 void nullsub_25(u8 arg0);
 void FreeTrainerFrontPicPalette(u16 frontPicId);
 void sub_805DFFC(void);
