@@ -93,8 +93,9 @@ LavaridgeTown_Gym_GymSignage:: @ 81FC9A2
 	releaseall
 	end
 LavaridgeTown_Gym_Text_GymSignageTitle: @ 820744C
-	.string "{GYM}Dewford Town Pokémon Gym{END}\n"
-	.string "Brawly's Certified Trainers:$"
+	.string "{GYM}Lavaridge Town Pokémon Gym{END}\n"
+	.string "Flannery's Certified Trainers:$"
+.align 2
 LavaridgeTown_Gym_TextArray_GymSignageNames:
 	.4byte LavaridgeTown_Gym_Text_GymSignageNameList1
 	.4byte LavaridgeTown_Gym_Text_GymSignageNameList2
@@ -104,6 +105,7 @@ LavaridgeTown_Gym_Text_GymSignageNameList1:
 LavaridgeTown_Gym_Text_GymSignageNameList2:
 	.string "Alexis, {RIVAL_BIRCH}, Ethan, Logan,\n"
 	.string "{PLAYER}$"
+
 
 @ -----------------------------------------------------
 @ Trainers
@@ -275,7 +277,7 @@ LavaridgeTown_Gym_1F_Text_1FF0DC: @ 81FF0DC
 	.string "made it here!\p"
 	.string "I have been entrusted with the…\n"
 	.string "No, wait.\p"
-	.string "I am FLANNERY! And I'm the Gym\n"
+	.string "I am FLANNERY! And I'm the Gym\n" @ All caps intended
 	.string "Leader here!\p"
 	.string "Uh…\n"
 	.string "Dare not underestimate me, though\l"
@@ -395,61 +397,4 @@ LavaridgeTown_Gym_1F_Text_1FF75E: @ 81FF75E
 	.string "that can battle?\p"
 	.string "I hate to say this, but when you come\n"
 	.string "see me, bring at least two Pokémon.$"
-
-
-
-
-
-
-
-
-
-
-LavaridgeTown_Gym_1F_EventScript_1FE98B:: @ 81FE98B
-	lockall
-	goto_if_set FLAG_BADGE04_GET, LavaridgeTown_Gym_1F_EventScript_1FE9AB
-	goto LavaridgeTown_Gym_1F_EventScript_1FE9B5
-	end
-
-LavaridgeTown_Gym_1F_EventScript_1FE99B:: @ 81FE99B
-	lockall
-	goto_if_set FLAG_BADGE04_GET, LavaridgeTown_Gym_1F_EventScript_1FE9AB
-	goto LavaridgeTown_Gym_1F_EventScript_1FE9B5
-	end
-
-LavaridgeTown_Gym_1F_EventScript_1FE9AB:: @ 81FE9AB
-	msgbox LavaridgeTown_Gym_1F_Text_1FF5C4, MSGBOX_DEFAULT
-	releaseall
-	end
-
-LavaridgeTown_Gym_1F_EventScript_1FE9B5:: @ 81FE9B5
-	msgbox LavaridgeTown_Gym_1F_Text_1FF5A9, MSGBOX_DEFAULT
-	releaseall
-	end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-LavaridgeTown_Gym_1F_Text_1FF5A9: @ 81FF5A9
-	.string "Lavaridge Town Pokémon Gym$"
-
-LavaridgeTown_Gym_1F_Text_1FF5C4: @ 81FF5C4
-	.string "Lavaridge Town Pokémon Gym\p"
-	.string "FLANNERY'S CERTIFIED TRAINERS:\n"
-	.string "{PLAYER}$"
-
 

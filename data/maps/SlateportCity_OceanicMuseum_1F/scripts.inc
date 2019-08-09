@@ -278,8 +278,8 @@ SlateportCity_OceanicMuseum_1F_Text_20B1D4: @ 820B1D4
 	.string "I got something for ya. It suits you\n"
 	.string "more than it suits {AQUA_BOY} and 'em!$"
 SlateportCity_OceanicMuseum_1F_Text_20B449:
-	.string "That's TM teaches Theif!\p"
-	.string "Theif! Get it! Gwahahahaha!$"
+	.string "That TM teaches Thief!\p"
+	.string "Thief! Get it! Gwahahahaha!$"
 SlateportCity_OceanicMuseum_1F_EventScript_20AFB5:: @ 820AFB5
 	msgbox SlateportCity_OceanicMuseum_1F_Text_20B49B
 	release

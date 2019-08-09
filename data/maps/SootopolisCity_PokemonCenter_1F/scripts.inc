@@ -66,7 +66,7 @@ SootopolisCity_PokemonCenter_1F_OnLoad_NoEscape:
 @ 	.2byte 0
 
 @ SootopolisCity_PokemonCenter_1F_StartRain:
-	
+
 @ 	setvar VAR_TEMP_1F, 1
 @ 	end
 
@@ -150,11 +150,11 @@ SootopolisCity_Mart_Pokemart_2267AC: @ 82267AC
 	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_MAX_ELIXIR
 	@ .2byte ITEM_REVIVE
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFEND
-	.2byte ITEM_SHADOW_MAIL
 	.2byte ITEM_NONE
 	release
 	end
@@ -317,7 +317,7 @@ SootopolisCity_PokemonCenter_1F_EventScript_LittleGirlAfter:
 	end
 SootopolisCity_PokemonCenter_1F_Text_LittleGirlAfter:
 	.string "Johnny…? Is… Is it over…?$"
-	
+
 
 
 @ -----------------------------------------------------
@@ -334,7 +334,7 @@ SootopolisCity_PokemonCenter_1F_Text_MoveTutorScared:
 	.string "AAAHHH!!\p"
 	.string "I hope Wallace is alright in this\n"
 	.string "terrible weather!$"
-	
+
 SootopolisCity_PokemonCenter_1F_EventScript_MoveTutor2:
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_DOUBLE_EDGE, SootopolisCity_PokemonCenter_1F_EventScript_2C82B4
 	msgbox SootopolisCity_PokemonCenter_1F_Text_2C7B8E, MSGBOX_YESNO
@@ -380,6 +380,3 @@ SootopolisCity_PokemonCenter_1F_EventScript_2C82B4:: @ 82C82B4
 SootopolisCity_PokemonCenter_1F_Text_2C7CC8: @ 82C7CC8
 	.string "I won't live for love anymore!\n"
 	.string "I'll become tough!$"
-
-
-

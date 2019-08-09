@@ -128,6 +128,7 @@ PetalburgCity_WallysHouse_Text_MotherState3no2:
 @ Dad
 
 PetalburgCity_WallysHouse_EventScript_Father::
+	@ TODO
 	end
 
 @ -----------------------------------------------------

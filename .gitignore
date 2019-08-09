@@ -33,3 +33,6 @@ porymap.*
 porymap.project.cfg
 .vscode/
 tools/binutils
+*.pyc
+tools/pgegen/pgegen
+*.ini

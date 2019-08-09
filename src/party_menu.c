@@ -1039,27 +1039,20 @@ enum
 
 enum
 {
-#if !TPP_MODE
-    FIELD_MOVE_FLY,
-    FIELD_MOVE_TELEPORT,
-    FIELD_MOVE_DIG,
-#endif
-    FIELD_MOVE_SWEET_SCENT,
+    FIELD_MOVE_CUT,
     FIELD_MOVE_FLASH,
-    FIELD_MOVE_MILK_DRINK,
-    FIELD_MOVE_SOFT_BOILED,
     FIELD_MOVE_ROCK_SMASH,
     FIELD_MOVE_STRENGTH,
     FIELD_MOVE_SURF,
-    FIELD_MOVE_DIVE,
-    FIELD_MOVE_CUT,
-    FIELD_MOVE_WATERFALL,
-    FIELD_MOVE_SECRET_POWER,
-#if TPP_MODE
     FIELD_MOVE_FLY,
+    FIELD_MOVE_DIVE,
+    FIELD_MOVE_WATERFALL,
     FIELD_MOVE_TELEPORT,
     FIELD_MOVE_DIG,
-#endif
+    FIELD_MOVE_SECRET_POWER,
+    FIELD_MOVE_MILK_DRINK,
+    FIELD_MOVE_SOFT_BOILED,
+    FIELD_MOVE_SWEET_SCENT,
 };
 
 // What a weird choice of table termination;
@@ -1143,12 +1136,33 @@ static const u8 *const sMonSelectedMenuTypes[] =
 
 static const u8 sMonSelectedMenuTypeSizes[] = {0, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 1};
 
-// static const u16 sFieldMoves[] =
-// {
-//     MOVE_CUT, MOVE_FLASH, MOVE_ROCK_SMASH, MOVE_STRENGTH, MOVE_SURF, MOVE_FLY, MOVE_DIVE, MOVE_WATERFALL, MOVE_TELEPORT,
-//     MOVE_DIG, MOVE_SECRET_POWER, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, FIELD_MOVE_TERMINATOR
-// };
-static const u16 sFieldMoves[] =
+static const u8 sFieldMoves[] =
+{
+#if !TPP_MODE
+    FIELD_MOVE_FLY,
+    FIELD_MOVE_TELEPORT,
+    FIELD_MOVE_DIG,
+#endif
+    FIELD_MOVE_SWEET_SCENT,
+    FIELD_MOVE_FLASH,
+    FIELD_MOVE_MILK_DRINK,
+    FIELD_MOVE_SOFT_BOILED,
+    FIELD_MOVE_ROCK_SMASH,
+    FIELD_MOVE_STRENGTH,
+    FIELD_MOVE_SURF,
+    FIELD_MOVE_DIVE,
+    FIELD_MOVE_CUT,
+    FIELD_MOVE_WATERFALL,
+    FIELD_MOVE_SECRET_POWER,
+#if TPP_MODE
+    FIELD_MOVE_FLY,
+    FIELD_MOVE_TELEPORT,
+    FIELD_MOVE_DIG,
+#endif
+    FIELD_MOVE_TERMINATOR,
+};
+
+static const u16 sFieldCapabilities[] =
 {
 #if !TPP_MODE 
     CAPABILITY_FLY, 
@@ -3737,9 +3751,9 @@ static void DetermineFieldMovesForFieldMons(struct Pokemon *mons, u8 a)
     sSelectedMonMenuPtr->numMenuItems = 0;
     for (i = 0; sFieldMoves[i] != FIELD_MOVE_TERMINATOR; i++) 
     {
-        if (IsMonCapable(&mons[a], sFieldMoves[i]))
+        if (IsMonCapable(&mons[a], sFieldCapabilities[i]))
         {
-            AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, i + MENU_FIELD_MOVES);
+            AppendToList(sSelectedMonMenuPtr->menuItems, &sSelectedMonMenuPtr->numMenuItems, sFieldMoves[i] + MENU_FIELD_MOVES);
         }
     }
     

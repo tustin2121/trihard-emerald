@@ -37,6 +37,7 @@ FallarborTown_Mart_MartScript:: @ 81FFCBF
 FallarborTown_Mart_Pokemart_1FFCD8: @ 81FFCD8
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ELIXIR
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_ESCAPE_ROPE

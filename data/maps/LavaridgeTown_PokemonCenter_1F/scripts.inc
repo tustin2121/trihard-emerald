@@ -37,6 +37,7 @@ LavaridgeTown_Mart_MartScript:: @ 81FF9CE
 LavaridgeTown_Mart_Pokemart_1FF9E8: @ 81FF9E8
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ELIXIR
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
@@ -108,4 +109,3 @@ LavaridgeTown_Mart_Text_1FFA83: @ 81FFA83
 	.string "On Mt. Chimney's peak, there's a local\n"
 	.string "specialty that you can buy only there.\p"
 	.string "Give it to a Pokémon--it will be elated.$"
-

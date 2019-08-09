@@ -36,6 +36,7 @@ RustboroCity_Mart_Pokemart_214F30: @ 8214F30
 	@ .2byte ITEM_POKE_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ETHER
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_ESCAPE_ROPE
@@ -153,4 +154,3 @@ RustboroCity_Mart_Text_21505C: @ 821505C
 	.string "case I get lost in a cave.\p"
 	.string "I just need to use it to get back to\n"
 	.string "the entrance.$"
-

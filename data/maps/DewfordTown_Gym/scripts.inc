@@ -51,6 +51,7 @@ DewfordTown_Gym_GymSignage:: @ 81FC9A2
 DewfordTown_Gym_Text_GymSignageTitle: @ 820744C
 	.string "{GYM}Dewford Town Pokémon Gym{END}\n"
 	.string "Brawly's Certified Trainers:$"
+.align 2
 DewfordTown_Gym_TextArray_GymSignageNames:
 	.4byte DewfordTown_Gym_Text_GymSignageNameList1
 	.4byte DewfordTown_Gym_Text_GymSignageNameList2
