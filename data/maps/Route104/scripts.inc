@@ -5,11 +5,23 @@
 Route104_MapScripts:: @ 81ECC32
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route104_MapScript2_FrameTable
 	map_script MAP_SCRIPT_ON_TRANSITION, Route104_OnTransition
+	map_script MAP_SCRIPT_ON_SURF_CANCEL, Route104_SurfCancelTable
 	.byte 0
 
 Route104_MapScript2_FrameTable: @ 81ECC3D
 	map_script_2 VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE, 1, Route104_EventScript_BrineyDepartForDewford
 	.2byte 0
+
+@ -----------------------------------------------------
+
+Route104_SurfCancelTable:
+	map_script_surf 0, 34, 40, 80, Route104_SurfCancel_Sea
+
+Route104_SurfCancel_Sea:
+	call Common_EventScript_SurfCancel_WashedAway
+	warpcustom MAP_ROUTE104, 18, 71
+	waitstate
+	end
 
 @ -----------------------------------------------------
 

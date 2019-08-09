@@ -1316,6 +1316,8 @@ bool8 PartyHasMonWithSurf(void)
         {
             if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE)
                 break;
+            if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) == TRUE)
+                continue;
             if (IsMonCapable(&gPlayerParty[i], CAPABILITY_SURF))
                 return TRUE;
         }

@@ -288,6 +288,15 @@ enum
     T_TILE_CENTER, // player is on a frame in which they are centered on a tile during which the player either stops or keeps their momentum and keeps going, changing direction if necessary.
 };
 
+// Trainer see types
+enum
+{
+    TRAINER_TYPE_NONE,
+    TRAINER_TYPE_NORMAL,
+    TRAINER_TYPE_UNUSED,
+    TRAINER_TYPE_SEE_ALL_DIRECTIONS,
+};
+
 struct PlayerAvatar
 {
     /*0x00*/ u8 flags;

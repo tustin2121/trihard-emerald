@@ -14,6 +14,26 @@
 	.4byte \address
 	.endm
 
+	.macro map_script_surf xmin, ymin, xmax, ymax, address
+	.2byte \xmin
+	.2byte \ymin
+	.2byte \xmax
+	.2byte \ymax
+	.4byte \address
+	.endm
+
+	.macro map_script_surf_default address
+	.2byte 0
+	.2byte 0
+	.2byte 0
+	.2byte 0
+	.4byte \address
+	.endm
+
+	.macro map_script_surf_end
+	.2byte 0xFF
+	.endm
+
 	.macro object_event index:req, gfx:req, x:req, y:req, elevation:req, movement_type:req, x_radius:req, y_radius:req, trainer_type:req, sight_radius_tree_etc:req, script:req, event_flag:req
 	.byte \index, 0
 	.2byte \gfx

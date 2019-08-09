@@ -1,5 +1,14 @@
 
 @ -----------------------------------------------------
+@ Wingulls in the Sea
+
+Briney_WingullAtSea::
+	msgbox Briney_WingullAtSea_Text
+	end
+Briney_WingullAtSea_Text:
+	.string "It's a wild Wingull.$"
+
+@ -----------------------------------------------------
 @ Route 104 to Dewford
 
 Briney_EventScript_Route104_Dewford:: @ 81ED0D9

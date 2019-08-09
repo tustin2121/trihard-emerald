@@ -427,6 +427,27 @@ Common_EventScript_ClearSceneFlags::
 	clearflag FLAG_SCENE_FORCE_AQUA_THEME
 	return
 
+Common_EventScript_SurfCancel_WashedAway::
+	lock
+	message Common_Text_SurfCancel_WashedAway1
+	waitmessage
+	@ fadescreen 5
+	message Common_Text_SurfCancel_WashedAway2
+	waitmessage
+	waitbuttonpress
+	playse SE_W291
+	closemessage
+	fadeoutbgm 0
+	delay 20
+	release
+	return
+Common_Text_SurfCancel_WashedAway1:
+	.string "Oh no! You're out of Pokémon that\n"
+	.string "can surf! And you can't swim!\p$"
+Common_Text_SurfCancel_WashedAway2:
+	.string "You get washed away…$"
+
+
 Common_EventScript_FailTheftNoRoom::
 	msgbox Common_Text_FailTheftNoRoom, MSGBOX_DEFAULT
 	release

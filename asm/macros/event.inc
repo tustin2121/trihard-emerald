@@ -857,7 +857,7 @@
 	.endm
 	
 	@ Clone of warp that does not play a sound effect nor fade the screen.
-	.macro warpcustom map:req, warp:req, X:req, Y:req
+	.macro warpcustom map:req, warp:req, X=255, Y=255
 	.byte 0x72
 	map \map
 	.byte \warp

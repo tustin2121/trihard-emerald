@@ -185,6 +185,7 @@ static void sub_8085810(void);
 static u8 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *playerStruct, u16 a2, u8 a3);
 static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStruct, u8 a2, u16 a3, u8 a4);
 static u16 GetCenterScreenMetatileBehavior(void);
+static void CheckIfPlayerSurfingWithNoMon();
 
 // IWRAM bss vars
 IWRAM_DATA static void *sUnusedOverworldCallback;
@@ -195,7 +196,7 @@ IWRAM_DATA static u8 sPlayerTradingStates[4];
 IWRAM_DATA static u16 (*sPlayerKeyInterceptCallback)(u32);
 IWRAM_DATA static bool8 sUnknown_03000E18;
 IWRAM_DATA static u8 sRfuKeepAliveTimer;
-IWRAM_DATA static u32 sUnusedVar;
+IWRAM_DATA static bool8 sSurfKickDue; //If the player is surfing/diving without a pokemon
 
 // IWRAM common
 u16 *gBGTilemapBuffers1;
@@ -865,6 +866,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     DoCurrentWeather();
     ResetFieldTasksArgs();
     RunOnResumeMapScript();
+    CheckIfPlayerSurfingWithNoMon();
 
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER || gMapHeader.regionMapSectionId != sLastMapSectionId)
         ShowMapNamePopup();
@@ -2243,6 +2245,7 @@ static void sub_8086988(u32 a1)
     if (!a1)
         SetUpFieldTasks();
     RunOnResumeMapScript();
+    CheckIfPlayerSurfingWithNoMon();
     TryStartMirageTowerPulseBlendEffect();
 }
 
@@ -3314,3 +3317,38 @@ static void SpriteCB_LinkPlayer(struct Sprite *sprite)
         sprite->data[7]++;
     }
 }
+
+static void CheckIfPlayerSurfingWithNoMon()
+{
+    u8 i;
+    sSurfKickDue = FALSE;
+    if (!TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING)) return;
+    sSurfKickDue = TRUE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE) continue;
+        if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG)) continue;
+        if (IsMonCapable(&gPlayerParty[i], CAPABILITY_SURF))
+        {
+            sSurfKickDue = FALSE;
+            break;
+        }
+    }
+}
+
+bool8 TryKickPlayerFromSurfing()
+{
+    if (!sSurfKickDue) return FALSE;
+    if (TryRunOnSurfCancelMapScript()) 
+    {
+        sSurfKickDue = FALSE;
+        return TRUE;
+    }
+    // Default: warp to last heal spot
+    sSurfKickDue = FALSE;
+    SetWarpDestinationToLastHealLocation();
+    DoDiveWarp();
+    ResetInitialPlayerAvatarState();
+    return TRUE;
+}
+

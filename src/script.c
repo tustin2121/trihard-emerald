@@ -319,6 +319,42 @@ void RunOnDiveWarpMapScript(void)
     MapHeaderRunScriptType(MAP_SCRIPT_ON_DIVE_WARP);
 }
 
+bool8 TryRunOnSurfCancelMapScript(void)
+{
+    u8 *ptr = MapHeaderGetScriptTable(MAP_SCRIPT_ON_SURF_CANCEL);
+    if (!ptr) return FALSE;
+    
+    while (1)
+    {
+        u16 xmin, ymin, xmax, ymax;
+        u8* script;
+        xmin = ptr[0] | (ptr[1] << 8);
+        if (xmin == 0xFF) return FALSE;
+        ptr += 2;
+        ymin = ptr[0] | (ptr[1] << 8);
+        ptr += 2;
+        xmax = ptr[0] | (ptr[1] << 8);
+        ptr += 2;
+        ymax = ptr[0] | (ptr[1] << 8);
+        ptr += 2;
+        script = (u8 *)(ptr[0] + (ptr[1] << 8) + (ptr[2] << 16) + (ptr[3] << 24));
+        ptr += 4;
+        if (xmin == 0 && xmin == xmax && ymin == ymax && xmin == ymin)
+        {
+            ptr = script;
+            break;
+        }
+        if (gSaveBlock1Ptr->pos.x >= xmin && gSaveBlock1Ptr->pos.x <= xmax && gSaveBlock1Ptr->pos.y >= ymin && gSaveBlock1Ptr->pos.y <= ymax)
+        {
+            ptr = script;
+            break;
+        }
+    }
+    if (!ptr) return FALSE;
+    ScriptContext1_SetupScript(ptr);
+    return TRUE;
+}
+
 bool8 TryRunOnFrameMapScript(void)
 {
     u8 *ptr = MapHeaderCheckScriptTable(MAP_SCRIPT_ON_FRAME_TABLE);

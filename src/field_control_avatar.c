@@ -147,6 +147,9 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     GetPlayerPosition(&position);
     metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
 
+    if (TryKickPlayerFromSurfing() == TRUE)
+        return TRUE;
+    
     if (CheckForTrainersWantingBattle() == TRUE)
         return TRUE;
 
