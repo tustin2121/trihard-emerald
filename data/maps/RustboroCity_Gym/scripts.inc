@@ -51,6 +51,7 @@ RustboroCity_Gym_GymSignage:: @ 8213047
 RustboroCity_Gym_Text_GymSignageTitle: @ 820744C
 	.string "{GYM}Rustboro City Pokémon Gym{END}\n"
 	.string "Roxanne's Certified Trainers:$"
+.align 2
 RustboroCity_Gym_TextArray_GymSignageNames:
 	.4byte RustboroCity_Gym_Text_GymSignageNameList1
 	.4byte RustboroCity_Gym_Text_GymSignageNameList2

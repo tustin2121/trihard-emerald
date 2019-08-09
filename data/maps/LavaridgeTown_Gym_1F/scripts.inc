@@ -93,8 +93,9 @@ LavaridgeTown_Gym_GymSignage:: @ 81FC9A2
 	releaseall
 	end
 LavaridgeTown_Gym_Text_GymSignageTitle: @ 820744C
-	.string "{GYM}Dewford Town Pokémon Gym{END}\n"
-	.string "Brawly's Certified Trainers:$"
+	.string "{GYM}Lavaridge Town Pokémon Gym{END}\n"
+	.string "Flannery's Certified Trainers:$"
+.align 2
 LavaridgeTown_Gym_TextArray_GymSignageNames:
 	.4byte LavaridgeTown_Gym_Text_GymSignageNameList1
 	.4byte LavaridgeTown_Gym_Text_GymSignageNameList2
@@ -104,6 +105,7 @@ LavaridgeTown_Gym_Text_GymSignageNameList1:
 LavaridgeTown_Gym_Text_GymSignageNameList2:
 	.string "Alexis, {RIVAL_BIRCH}, Ethan, Logan,\n"
 	.string "{PLAYER}$"
+
 
 @ -----------------------------------------------------
 @ Trainers
@@ -429,27 +431,5 @@ LavaridgeTown_Gym_1F_EventScript_1FE9B5:: @ 81FE9B5
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-LavaridgeTown_Gym_1F_Text_1FF5A9: @ 81FF5A9
-	.string "Lavaridge Town Pokémon Gym$"
-
-LavaridgeTown_Gym_1F_Text_1FF5C4: @ 81FF5C4
-	.string "Lavaridge Town Pokémon Gym\p"
-	.string "FLANNERY'S CERTIFIED TRAINERS:\n"
-	.string "{PLAYER}$"
 
 

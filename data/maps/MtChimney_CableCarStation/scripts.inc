@@ -3,15 +3,18 @@ MtChimney_CableCarStation_MapScripts:: @ 822ABFA
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, MtChimney_CableCarStation_MapScript2_22AC1D
 	.byte 0
 
+@ -----------------------------------------------------
+
 MtChimney_CableCarStation_OnTransition: @ 822AC05
 	compare VAR_CABLE_CAR_STATION_STATE, 1
 	call_if_eq MtChimney_CableCarStation_EventScript_22AC11
 	end
-
 MtChimney_CableCarStation_EventScript_22AC11:: @ 822AC11
 	setobjectxyperm 1, 5, 4
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_RIGHT
 	return
+
+@ -----------------------------------------------------
 
 MtChimney_CableCarStation_MapScript2_22AC1D: @ 822AC1D
 	map_script_2 VAR_CABLE_CAR_STATION_STATE, 1, MtChimney_CableCarStation_EventScript_22AC27
@@ -28,16 +31,21 @@ MtChimney_CableCarStation_EventScript_22AC27:: @ 822AC27
 	releaseall
 	end
 
+@ -----------------------------------------------------
+
 MtChimney_CableCarStation_EventScript_22AC4B:: @ 822AC4B
 	lock
 	faceplayer
+	markasdialog
 	msgbox MtChimney_CableCarStation_Text_22ACB9, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq MtChimney_CableCarStation_EventScript_22AC6C
 	compare VAR_RESULT, 0
 	goto_if_eq MtChimney_CableCarStation_EventScript_22AC9B
 	end
-
+MtChimney_CableCarStation_Text_22ACB9: @ 822ACB9
+	.string "The Cable Car is ready to go down.\n"
+	.string "Would you like to be on it?$"
 MtChimney_CableCarStation_EventScript_22AC6C:: @ 822AC6C
 	msgbox MtChimney_CableCarStation_Text_22ACF8, MSGBOX_DEFAULT
 	closemessage
@@ -52,11 +60,14 @@ MtChimney_CableCarStation_EventScript_22AC6C:: @ 822AC6C
 	waitstate
 	release
 	end
-
+MtChimney_CableCarStation_Text_22ACF8: @ 822ACF8
+	.string "Please step this way.$"
 MtChimney_CableCarStation_EventScript_22AC9B:: @ 822AC9B
 	msgbox MtChimney_CableCarStation_Text_22AD0E, MSGBOX_DEFAULT
 	release
 	end
+MtChimney_CableCarStation_Text_22AD0E: @ 822AD0E
+	.string "Please ride with us another time.$"
 
 MtChimney_CableCarStation_Movement_22ACA5: @ 822ACA5
 	walk_up
@@ -85,14 +96,4 @@ MtChimney_CableCarStation_Movement_22ACB4: @ 822ACB4
 	walk_down
 	delay_16
 	step_end
-
-MtChimney_CableCarStation_Text_22ACB9: @ 822ACB9
-	.string "The CABLE CAR is ready to go down.\n"
-	.string "Would you like to be on it?$"
-
-MtChimney_CableCarStation_Text_22ACF8: @ 822ACF8
-	.string "Please step this way.$"
-
-MtChimney_CableCarStation_Text_22AD0E: @ 822AD0E
-	.string "Please ride with us another time.$"
 

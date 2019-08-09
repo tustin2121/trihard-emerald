@@ -170,7 +170,6 @@ SlateportCity_EventScript_EnergyGuru:: @ 81DCDBD
 	lock
 	faceplayer
 	markasdialog
-	markasdialog
 	message SlateportCity_Text_1DD64A
 	waitmessage
 	pokemart SlateportCity_Pokemart_1DCDD4
@@ -1251,11 +1250,12 @@ SlateportCity_Movement_1DD344: @ 81DD344
 SlateportCity_EventScript_PowderJarLady:: @ 81DD36E
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_POWDER_JAR, SlateportCity_EventScript_1DD39A
-	msgbox SlateportCity_Text_1DEBCE, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DEBCE
 	giveitem_std ITEM_POWDER_JAR
 	setflag FLAG_RECEIVED_POWDER_JAR
-	msgbox SlateportCity_Text_1DED27, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DED27
 	release
 	end
 SlateportCity_Text_1DEBCE: @ 81DEBCE
@@ -1278,7 +1278,7 @@ SlateportCity_EventScript_1DD39A:: @ 81DD39A
 	specialvar VAR_RESULT, HasEnoughBerryPowder
 	compare VAR_RESULT, 0
 	goto_if_eq SlateportCity_EventScript_1DD3C0
-	msgbox SlateportCity_Text_1DEE40, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DEE40
 	special DisplayBerryPowderVendorMenu
 	goto SlateportCity_EventScript_1DD3CA
 	end
@@ -1287,7 +1287,7 @@ SlateportCity_Text_1DEE40: @ 81DEE40
 	.string "Berry Powder?$"
 
 SlateportCity_EventScript_1DD3C0:: @ 81DD3C0
-	msgbox SlateportCity_Text_1DED27, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_1DED27
 	release
 	end
 SlateportCity_Text_1DED27: @ 81DED27

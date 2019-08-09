@@ -181,9 +181,11 @@ MeteorFalls_1F_1R_TriggerScript_FindingRocks::
 	waitmovement 0
 	applymovement LID_AQUAGIRL, Common_Movement_WalkInPlaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+	@
 	msgbox MeteorFalls_1F_1R_Text_FindingRocks14
 	waitmovement 0
 	closemessage
+	fadedefaultbgm
 	applymovement LID_AQUAGIRL, MeteorFalls_1F_1R_Movement_FindingRocks12_AquaGirl
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement LID_AQUAGIRL

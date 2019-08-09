@@ -182,6 +182,7 @@ MauvilleCity_Gym_GymSignage:: @ 81FC9A2
 MauvilleCity_Gym_Text_GymSignageTitle: @ 820744C
 	.string "{GYM}Mauville City Pokémon Gym{END}\n"
 	.string "Wattson's Certified Trainers:$"
+.align 2
 MauvilleCity_Gym_TextArray_GymSignageNames:
 	.4byte MauvilleCity_Gym_Text_GymSignageNameList1
 	.4byte MauvilleCity_Gym_Text_GymSignageNameList2
