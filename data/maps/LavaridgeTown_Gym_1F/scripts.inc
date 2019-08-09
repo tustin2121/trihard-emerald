@@ -398,38 +398,3 @@ LavaridgeTown_Gym_1F_Text_1FF75E: @ 81FF75E
 	.string "I hate to say this, but when you come\n"
 	.string "see me, bring at least two Pokémon.$"
 
-
-
-
-
-
-
-
-
-
-LavaridgeTown_Gym_1F_EventScript_1FE98B:: @ 81FE98B
-	lockall
-	goto_if_set FLAG_BADGE04_GET, LavaridgeTown_Gym_1F_EventScript_1FE9AB
-	goto LavaridgeTown_Gym_1F_EventScript_1FE9B5
-	end
-
-LavaridgeTown_Gym_1F_EventScript_1FE99B:: @ 81FE99B
-	lockall
-	goto_if_set FLAG_BADGE04_GET, LavaridgeTown_Gym_1F_EventScript_1FE9AB
-	goto LavaridgeTown_Gym_1F_EventScript_1FE9B5
-	end
-
-LavaridgeTown_Gym_1F_EventScript_1FE9AB:: @ 81FE9AB
-	msgbox LavaridgeTown_Gym_1F_Text_1FF5C4, MSGBOX_DEFAULT
-	releaseall
-	end
-
-LavaridgeTown_Gym_1F_EventScript_1FE9B5:: @ 81FE9B5
-	msgbox LavaridgeTown_Gym_1F_Text_1FF5A9, MSGBOX_DEFAULT
-	releaseall
-	end
-
-
-
-
-
