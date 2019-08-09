@@ -277,7 +277,7 @@ LavaridgeTown_Gym_1F_Text_1FF0DC: @ 81FF0DC
 	.string "made it here!\p"
 	.string "I have been entrusted with the…\n"
 	.string "No, wait.\p"
-	.string "I am FLANNERY! And I'm the Gym\n"
+	.string "I am FLANNERY! And I'm the Gym\n" @ All caps intended
 	.string "Leader here!\p"
 	.string "Uh…\n"
 	.string "Dare not underestimate me, though\l"
