@@ -89,7 +89,7 @@ int main(int argc, char ** argv)
 #define rom_sym_get(name) (GetSymbolByName((name))->st_value - 0x8000000)
 
     Elf32_Sym * gItems = GetSymbolByName("gItems");
-    config_set("ItemData", gItems->st_value);
+    config_set("ItemData", gItems->st_value - 0x8000000);
     Elf32_Sym * gMoveNames = GetSymbolByName("gMoveNames");
     config_set("AttackNames", gMoveNames->st_value - 0x8000000);
     Elf32_Sym * TMHMMoves = GetSymbolByName("gTMHMMoves");
