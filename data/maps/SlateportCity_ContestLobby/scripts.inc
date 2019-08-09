@@ -46,9 +46,9 @@ SlateportCity_ContestLobby_EventScript_21A670::
 	setmetatile 4, 3, 729, 1
 	special DrawWholeMapView
 	delay 20
-	applymovement 1, LilycoveCity_ContestLobby_Movement_21A706
+	applymovement 1, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_ContestLobby_Movement_21A6F2_Player
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	msgbox LilycoveCity_ContestLobby_Text_27B653, MSGBOX_DEFAULT
 	closemessage
@@ -75,56 +75,41 @@ SlateportCity_ContestLobby_Movement_21A6FD::
 	set_invisible
 	step_end
 
-SlateportCity_ContestLobby_Movement_21A6F2_Player::
-	walk_in_place_fastest_left
-	step_end
+@ -----------------------------------------------------
 
 SlateportCity_ContestLobby_IdolGirlPC::
-	lockall
+	lock
 	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text, MSGBOX_CDIALOG
-	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_DESC, MSGBOX_DEFAULT
+	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_DESC, MSGBOX_CDESCRIBE
 	compare VAR_LETTER_INTERNETMUSIC_LOVERS, 0
-	call_if_eq SlateportCity_ContestLobby_IdolGirlPC_FirstTime
-	releaseall
+	call_if_eq SlateportCity_ContestLobby_IdolGirlPC_LetterGive1
 	compare VAR_LETTER_INTERNETMUSIC_LOVERS, 2
 	call_if_eq SlateportCity_ContestLobby_IdolGirlPC_AfterDelivery
-	releaseall
+	release
 	end
-
-SlateportCity_ContestLobby_IdolGirlPC_FirstTime:
-	playse SE_PIN
-	applymovement 4, SlateportCity_ContestLobby_IdolGirlPC_Faceplayer
-	waitmovement 4
-	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_Letter1, MSGBOX_CDIALOG
-	playfanfare MUS_FANFA4
-	giveitem_std ITEM_LETTER
-	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_Letter2, MSGBOX_CDIALOG
-	setvar VAR_LETTER_INTERNETMUSIC_LOVERS, 1
-	applymovement 4, Common_Movement_FaceOriginalDirection
-	waitmovement 4
-	return
-
-SlateportCity_ContestLobby_IdolGirlPC_AfterDelivery:
-	faceplayer
-	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_AfterDelivery1, MSGBOX_CDIALOG
-	giveitem_std ITEM_BRIGHT_POWDER
-	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_AfterDelivery2, MSGBOX_CDIALOG
-	setvar VAR_LETTER_INTERNETMUSIC_LOVERS, 3
-	applymovement 4, Common_Movement_FaceOriginalDirection
-	waitmovement 4
-	return
-
 SlateportCity_ContestLobby_IdolGirlPC_Text:
 	.string "Booy mo giirl mo nai sekai,\n"
 	.string "Lovelove to ka kankei ne!\p"
 	.string "Saitan kiroku de, omae wa kuzureochi\n"
 	.string "Watashi ni sugaritsuku!$"
-
 SlateportCity_ContestLobby_IdolGirlPC_Text_DESC:
-	.string "She's singing along a Japanese video\n"
-	.string "with an idol dressed as a battle woman.$"
+	.string "She's singing along to some Japanese\n"
+	.string "video with a lady dressed for battle.$"
 
-SlateportCity_ContestLobby_IdolGirlPC_Text_Letter1::
+SlateportCity_ContestLobby_IdolGirlPC_LetterGive1:
+	closemessage
+	playse SE_PIN
+	faceplayer
+	markasdialog
+	applymovement THIS_EVENT, Common_Movement_ExclamationMarkAndWait
+	waitmovement THIS_EVENT
+	setyesnotext gYN_UhOk, gYN_PftNo
+	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_Letter1, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq SlateportCity_ContestLobby_IdolGirlPC_LetterGive3
+	goto SlateportCity_ContestLobby_IdolGirlPC_LetterGive2
+	end
+SlateportCity_ContestLobby_IdolGirlPC_Text_Letter1:
 	.string "Your smell!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
@@ -132,40 +117,63 @@ SlateportCity_ContestLobby_IdolGirlPC_Text_Letter1::
 	.string "Listen, I have a favor to ask.\p"
 	.string "There's a guy in Dewford who really\n"
 	.string "likes music videos.\p"
-	.string "Can you please bring this to him?\p"
-
-SlateportCity_ContestLobby_IdolGirlPC_Text_Letter2::
+	.string "Can you please bring this to him?$"
+SlateportCity_ContestLobby_IdolGirlPC_LetterGive2:
+	setyesnotext gYN_Fine1, gYN_NoBang
+	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_Letter2, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq SlateportCity_ContestLobby_IdolGirlPC_LetterGive3
+	goto SlateportCity_ContestLobby_IdolGirlPC_LetterGive4
+	end 
+SlateportCity_ContestLobby_IdolGirlPC_Text_Letter2:
 	.string "I will give you something good\n"
 	.string "in exchange, I promise!$"
+SlateportCity_ContestLobby_IdolGirlPC_LetterGive3:
+	giveitem_std ITEM_LETTER
+	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_Letter3, MSGBOX_CDIALOG
+	setvar VAR_LETTER_INTERNETMUSIC_LOVERS, 1
+	faceoriginaldir
+	return
+SlateportCity_ContestLobby_IdolGirlPC_Text_Letter3:
+	.string "Thank you!\p"
 	.string "I would LOVE to do it myself,\n"
 	.string "but I'm very busy at the moment.\p"
 	.string "… … … … … …\p"
 	.string "What's with that look?!\n"
 	.string "It's not that I'm embarassed…$"
+SlateportCity_ContestLobby_IdolGirlPC_LetterGive4:
+	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_Letter4, MSGBOX_CDIALOG
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	faceoriginaldir
+	release
+	end
+SlateportCity_ContestLobby_IdolGirlPC_Text_Letter4:
+	.string "You're no fun…$"
 
-SlateportCity_ContestLobby_IdolGirlPC_Faceplayer:
-	emote_exclamation_mark
-	face_player
-	step_end
-
+SlateportCity_ContestLobby_IdolGirlPC_AfterDelivery:
+	faceplayer
+	markasdialog
+	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_AfterDelivery1
+	giveitem_std ITEM_BRIGHT_POWDER
+	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_AfterDelivery2
+	setvar VAR_LETTER_INTERNETMUSIC_LOVERS, 3
+	faceoriginaldir
+	return
 SlateportCity_ContestLobby_IdolGirlPC_Text_AfterDelivery1::
 	.string "What is it?\p"
 	.string "I cannot believe it,\n"
 	.string "you actually did it!\p"
 	.string "I don't know how to thank you.\p"
 	.string "I hope this will be enough!$"
-
 SlateportCity_ContestLobby_IdolGirlPC_Text_AfterDelivery2::
 	.string "I really hope he appreciated\n"
 	.string "my letter…$"
 
-SlateportCity_ContestLobby_ContestFan::
-	faceplayer
-	lock
-	msgbox SlateportCity_ContestLobby_Text_ContestFan, MSGBOX_CDIALOG
-	release
-	end
+@ -----------------------------------------------------
 
+SlateportCity_ContestLobby_ContestFan::
+	msgbox SlateportCity_ContestLobby_Text_ContestFan, MSGBOX_NPC
+	end
 SlateportCity_ContestLobby_Text_ContestFan:
 	.string "What's my favourite type of contests?\n"
 	.string "Well, coolness contests, of course.\p"

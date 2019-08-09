@@ -445,10 +445,8 @@
 #define FLAG_REMATCH_GLACIA                                   0x1A7
 #define FLAG_REMATCH_DRAKE                                    0x1A8
 #define FLAG_REMATCH_WALLACE                                  0x1A9
-
-#define FLAG_PLANT_POT                                        0x1AA // TriHard Emerald
+#define FLAG_UNUSED_0x1AA                                     0x1AA // Unused Flag
 #define FLAG_UNUSED_0x1AB                                     0x1AB // Unused Flag
-
 #define FLAG_DEFEATED_DEOXYS                                  0x1AC
 #define FLAG_BATTLED_DEOXYS                                   0x1AD
 #define FLAG_HAS_EON_TICKET                                   0x1AE
@@ -1078,7 +1076,7 @@
 #define FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL                        0x463
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL                      0x464
 #define FLAG_ITEM_STOLEN_RUSTBORO_MART                              0x465 // Trihard
-#define FLAG_UNUSED_0x466                                           0x466 // Unused Flag
+#define FLAG_ITEM_CONTEST_HALL_LEAF_STONE                           0x466 // Trihard
 #define FLAG_UNUSED_0x467                                           0x467 // Unused Flag
 #define FLAG_UNUSED_0x468                                           0x468 // Unused Flag
 #define FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL                             0x469

@@ -1,6 +1,7 @@
 FallarborTown_ContestLobby_MapScripts::
 	.byte 0
 
+@ -----------------------------------------------------
 
 FallarborTown_ContestLobby_OnTransition: @ 821A21C
 	call LilycoveCity_ContestLobby_EventScript_28CB2B
@@ -46,9 +47,9 @@ FallarborTown_ContestLobby_EventScript_21A670::
 	setmetatile 4, 3, 729, 1
 	special DrawWholeMapView
 	delay 20
-	applymovement 1, LilycoveCity_ContestLobby_Movement_21A706
+	applymovement 1, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, FallarborTown_ContestLobby_Movement_21A6F2_Player
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	msgbox LilycoveCity_ContestLobby_Text_27B653, MSGBOX_DEFAULT
 	closemessage
@@ -74,34 +75,27 @@ FallarborTown_ContestLobby_Movement_21A6FD::
 	delay_8
 	set_invisible
 	step_end
-	
-FallarborTown_ContestLobby_Movement_21A6F2_Player::
-	walk_in_place_fastest_left
-	step_end
+
+@ -----------------------------------------------------
 
 FallarborTown_ContestLobby_PokeDudeFan::
 	lock
 	faceplayer
 	msgbox FallarborTown_ContestLobby_Text_PokeDudeFan, MSGBOX_CDIALOG
-	applymovement 5, Common_Movement_FaceUp
-	waitmovement 5
+	applymovement THIS_EVENT, Common_Movement_FaceUp
+	waitmovement THIS_EVENT
 	release
 	end
-	
-FallarborTown_ContestLobby_ContestFan::
-	lock
-	faceplayer
-	msgbox FallarborTown_ContestLobby_Text_ContestFan, MSGBOX_CDIALOG
-	release
-	end
-	
 FallarborTown_ContestLobby_Text_PokeDudeFan::
 	.string "Poké Dude is a great teacher, I'm so\n"
 	.string "glad he made an internet channel.\p"
 	.string "Now I can watch his show from the PC,\n"
 	.string "without the need of a Teachy TV!$"
 
-	
+
+FallarborTown_ContestLobby_ContestFan::
+	msgbox FallarborTown_ContestLobby_Text_ContestFan, MSGBOX_NPC
+	end
 FallarborTown_ContestLobby_Text_ContestFan::
 	.string "The reason I like contests?\p"
 	.string "They allow our Pokémon to express\n"

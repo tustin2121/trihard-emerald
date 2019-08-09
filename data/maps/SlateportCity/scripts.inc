@@ -60,8 +60,8 @@ SlateportCity_SignScript_BattleTent:: @ 81DCF36
 	msgbox SlateportCity_Text_1DE8BC, MSGBOX_SIGN
 	end
 SlateportCity_Text_1DE8BC: @ 81DE8BC
-	.string "{PLACE}Battle Tent Slateport Site{END}\n"
-	.string "“Find it! The ultimate Pokémon!”$"
+	.string "{PLACE}Pokémon Contest{END}\n"
+	.string "“Find it! The most fabulous Pokémon!”$"
 
 
 SlateportCity_SignScript_SternsShipyard:: @ 81DCF3F

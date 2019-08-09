@@ -4387,14 +4387,9 @@ BattleFrontier_BattlePikeThreePathRoom_Movement_2C427A: @ 82C427A
 	set_invisible
 	step_end
 
-LilycoveCity_ContestLobby_Text_2C427C: @ 82C427C
-	.string "BLEND MASTER: Indeed I am!\n"
-	.string "The BLEND MASTER am I!\p"
-	.string "Blend with me, and you shall witness\n"
-	.string "the mastery I bring to blending!$"
 
 LilycoveCity_ContestLobby_Text_2C42F4: @ 82C42F4
-	.string "BLEND MASTER: Hmmm! So, you wish to\n"
+	.string "Blend Master: Hmmm! So, you wish to\n"
 	.string "see my mastery in action?$"
 
 LilycoveCity_ContestLobby_Text_2C4332: @ 82C4332

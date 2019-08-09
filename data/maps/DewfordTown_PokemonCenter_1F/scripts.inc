@@ -37,14 +37,24 @@ DewfordTown_PokemonCenter_1F_Text_1FC557: @ 81FC557
 	.string "there.$"
 
 
+
 DewfordTown_PokemonCenter_1F_EventScript_GuyWithHeadphones::
-	lockall
-	msgbox DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text, MSGBOX_CDIALOG
+	lock
+	markasdialog
+	msgbox DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text
 	msgbox DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_DESC, MSGBOX_CDESCRIBE
 	compare VAR_LETTER_INTERNETMUSIC_LOVERS, 1
 	call_if_eq DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Delivery
-	releaseall
+	release
 	end
+DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text:
+	.string "So we back in the gym,\n"
+	.string "got our Pokémon dodging from\l"
+	.string "side to side.\p"
+	.string "Side, side to side…$"
+DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_DESC:
+	.string "He seems to be totally absorbed\n"
+	.string "in a strange music video.$"
 
 DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Delivery:
 	faceplayer
@@ -56,20 +66,9 @@ DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Delivery:
 	applymovement 4, Common_Movement_FaceOriginalDirection
 	waitmovement 4
 	return
-
-DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text:
-	.string "So we back in the gym,\n"
-	.string "got our Pokémon dodging from\l"
-	.string "side to side.\p"
-	.string "Side, side to side…$"
-
-DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_DESC:
-	.string "He seems to be totally absorbed\n"
-	.string "in a strange music video.$"
-
 DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery1:
-	.string "Huh? Did you call me?\p"
-	.string "You have a letter for me?$"
+	.string "Huh? What are you staring at?!\p"
+	.string "What? You have a letter for me??$"
 
 DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery2:
 	.string "{PLAYER} handed over the letter.$"

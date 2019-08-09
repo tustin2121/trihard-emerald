@@ -2,10 +2,14 @@ VerdanturfTown_ContestLobby_MapScripts:: @ 821A211
 	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_ContestLobby_OnTransition
 	.byte 0
 
+@ -----------------------------------------------------
+
 VerdanturfTown_ContestLobby_OnTransition: @ 821A21C
 	call LilycoveCity_ContestLobby_EventScript_28CB2B
 	call LilycoveCity_ContestLobby_EventScript_21A227
 	end
+
+@ -----------------------------------------------------
 
 VerdanturfTown_ContestLobby_EventScript_JoinContestNPC::
 	special sub_80F9154
@@ -46,9 +50,9 @@ VerdanturfTown_ContestLobby_EventScript_21A670::
 	setmetatile 4, 3, 729, 1
 	special DrawWholeMapView
 	delay 20
-	applymovement 1, LilycoveCity_ContestLobby_Movement_21A706
+	applymovement 1, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, VerdanturfTown_ContestLobby_Movement_21A6F2_Player
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	msgbox LilycoveCity_ContestLobby_Text_27B653, MSGBOX_DEFAULT
 	closemessage
@@ -76,38 +80,37 @@ VerdanturfTown_ContestLobby_Movement_21A6FD::
 	set_invisible
 	step_end
 
-VerdanturfTown_ContestLobby_Movement_21A6F2_Player::
-	walk_in_place_fastest_left
-	step_end
+@ -----------------------------------------------------
 
 VerdanturfTown_ContestLobby_JustAPlant::
-	msgbox VerdanturfTown_ContestLobby_JustAPlant_Text, MSGBOX_DEFAULT
-	call_if_unset FLAG_PLANT_POT, VerdanturfTown_ContestLobby_JustAPlant_ItemFind
+	goto_if_unset FLAG_ITEM_CONTEST_HALL_LEAF_STONE, VerdanturfTown_ContestLobby_JustAPlant_ItemFind
+	msgbox VerdanturfTown_ContestLobby_JustAPlant_Text, MSGBOX_DESCRIBE
 	release
 	end
-
+VerdanturfTown_ContestLobby_JustAPlant_Text::
+	.string "It's just a plant.\p"
+	.string "What did you expect,\n"
+	.string "a hidden PC behind it?$"
 VerdanturfTown_ContestLobby_JustAPlant_ItemFind::
-	msgbox VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text, MSGBOX_DEFAULT
+	msgbox VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text, MSGBOX_DESCRIBE
 	giveitem_std ITEM_LEAF_STONE
-	setflag FLAG_PLANT_POT
-	return
+	setflag FLAG_ITEM_CONTEST_HALL_LEAF_STONE
+	release
+	end
+VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text::
+	.string "It's just a plant.\p"
+	.string "What did you expect,\n"
+	.string "a hidden PC behind it?\p"
+	.string "There's something in the pot, though…$"
+
 
 VerdanturfTown_ContestLobby_ContestFan::
 	faceplayer
 	msgbox VerdanturfTown_ContestLobby_Text_ContestFan, MSGBOX_CDIALOG
 	release
 	end
-
-VerdanturfTown_ContestLobby_JustAPlant_Text::
-	.string "It's just a plant.\p"
-	.string "What did you expect,\n"
-	.string "a hidden PC behind it?$"
-
-
-VerdanturfTown_ContestLobby_JustAPlant_ItemFind_Text::
-	.string "There's something in the pot, though…$"
-
 VerdanturfTown_ContestLobby_Text_ContestFan::
-	.string "I'm a huge fan of SYDNEY\n"
-	.string "and her WHIRIS.\p"
+	.string "I'm a huge fan of Sydney\n"
+	.string "and her Whiris.\p"
 	.string "They are totally the best together!$"
+
