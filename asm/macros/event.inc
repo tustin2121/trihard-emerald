@@ -424,7 +424,7 @@
 	.endm
 
 	@ Sets the warp destination to be used later.
-	.macro setwarp map:req, warp:req, X:req, Y:req
+	.macro setwarp map:req, warp:req, X=255, Y=255
 	.byte 0x3e
 	map \map
 	.byte \warp

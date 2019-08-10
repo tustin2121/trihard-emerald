@@ -31,6 +31,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/items.h"
+#include "constants/moves.h"
 #include "constants/region_map_sections.h"
 
 // Reference to an assembly defined constant, the start of the ROM
@@ -345,7 +346,7 @@ void DebugHandle_GiveDebugParty()
 	
 	ZeroPlayerPartyMons();
 	CreateMon(&gPlayerParty[0], SPECIES_QUILAVA, 60, 31, 0, 0, 0, 0);
-	CreateMon(&gPlayerParty[1], SPECIES_WAILMER, 30, 32, 0, 0, 0, 0);
+	CreateMon(&gPlayerParty[1], SPECIES_WAILMER, 3, 32, 0, 0, 0, 0);
 	CreateMon(&gPlayerParty[2], SPECIES_SWELLOW, 30, 32, 0, 0, 0, 0);
 	CreateMon(&gPlayerParty[3], SPECIES_BRELOOM, 27, 32, 0, 0, 0, 0);
 	CreateMon(&gPlayerParty[4], SPECIES_RATTATA, 2, 32, 0, 0, 0, 0);
@@ -366,6 +367,7 @@ void DebugHandle_GiveDebugParty()
 	SetMonData(&gPlayerParty[0], MON_DATA_TOUGH, &val);
 	SetMonData(&gPlayerParty[0], MON_DATA_SHEEN, &val);
 	ScriptContext1_SetupScript(DebugScript_GiveDebugPartyMessage);
+	SetMonMoveSlot(&gPlayerParty[1], MOVE_TAUNT, 2);
 	
 	DebugSetCallbackSuccess();
 }

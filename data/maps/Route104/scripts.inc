@@ -19,7 +19,7 @@ Route104_SurfCancelTable:
 
 Route104_SurfCancel_Sea:
 	call Common_EventScript_SurfCancel_WashedAway
-	warpcustom MAP_ROUTE104, 18, 71
+	warpdive MAP_ROUTE104, 18, 71
 	waitstate
 	end
 
