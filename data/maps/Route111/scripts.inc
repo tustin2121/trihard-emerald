@@ -16,6 +16,11 @@ Route111_EventScript_1F0CD1:: @ 81F0CD1
 	setmetatile 29, 87, 145, 1
 	return
 
+Route111_EventScript_HiddenPowerMan::
+	markasdialog
+	goto Route111_EventScript_2765FF
+	end
+
 Route111_EventScript_1F0CE4:: @ 81F0CE4
 	setmetatile 18, 53, 984, 0
 	setmetatile 19, 53, 985, 0
@@ -159,6 +164,7 @@ Route111_Movement_1F0EB1:: @ 81F0EB1
 Route111_EventScript_1F0EB9:: @ 81F0EB9
 	lock
 	faceplayer
+	markasdialog
 	dotimebasedevents
 	goto_if_set FLAG_DAILY_ROUTE_111_RECEIVED_BERRY, Route111_EventScript_1F0EF4
 	msgbox Route111_Text_2A6EBD, MSGBOX_DEFAULT
@@ -274,6 +280,7 @@ Route111_EventScript_1F0FBD:: @ 81F0FBD
 Route111_EventScript_1F0FC5:: @ 81F0FC5
 	lock
 	faceplayer
+	markasdialog
 	setflag FLAG_LANDMARK_WINSTRATE_FAMILY
 	msgbox Route111_Text_1F1475, MSGBOX_YESNO
 	compare VAR_RESULT, 1
@@ -437,6 +444,7 @@ Route111_EventScript_1F11DA:: @ 81F11DA
 
 Route111_EventScript_1F11E4:: @ 81F11E4
 	lockall
+	markasdialog
 	applymovement 46, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox Route111_Text_1F1CCA, MSGBOX_DEFAULT
@@ -739,4 +747,3 @@ Route111_Text_1F1D61: @ 81F1D61
 	.string "{RIGHT_ARROW} TRAINER HILL ENTRANCE\p"
 	.string "“Scale the heights, you hot-blooded\n"
 	.string "trainers!”$"
-

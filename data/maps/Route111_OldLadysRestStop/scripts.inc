@@ -9,6 +9,7 @@ Route111_OldLadysRestStop_OnTransition: @ 822A91C
 Route111_OldLadysRestStop_EventScript_22A920:: @ 822A920
 	lock
 	faceplayer
+	markasdialog
 	msgbox Route111_OldLadysRestStop_Text_22A978, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq Route111_OldLadysRestStop_EventScript_22A941
@@ -51,4 +52,3 @@ Route111_OldLadysRestStop_Text_22AA16: @ 822AA16
 Route111_OldLadysRestStop_Text_22AA8F: @ 822AA8F
 	.string "Is that so?\n"
 	.string "You don't need to be shy about it.$"
-
