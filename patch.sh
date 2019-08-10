@@ -46,15 +46,15 @@ function checkhash {
 }
 
 function buildemerald {
-  updaterepo agbcc https://github.com/pret/agbcc.git
-  updaterepo pokeemerald https://github.com/pret/pokeemerald.git
-  pushd agbcc
-  checkfail ./build.sh
-  checkfail ./install.sh ../pokeemerald
-  cd ../pokeemerald
-  checkfail make
-  checkfail cp pokeemerald.gba ..
-  popd
+	updaterepo agbcc https://github.com/pret/agbcc.git
+	updaterepo pokeemerald https://github.com/pret/pokeemerald.git
+	pushd agbcc
+	checkfail ./build.sh
+	checkfail ./install.sh ../pokeemerald
+	cd ../pokeemerald
+	checkfail make
+	checkfail cp pokeemerald.gba ..
+	popd
 }
 
 # make sure the patch directory exists
