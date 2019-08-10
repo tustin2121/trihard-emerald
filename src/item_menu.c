@@ -2432,7 +2432,7 @@ void PrintTMHMMoveData(u16 itemId)
     }
 }
 
-#define SELECT_START_COUNT 200
+#define SELECT_START_COUNT 100
 
 void DetermineSelectMessage()
 {

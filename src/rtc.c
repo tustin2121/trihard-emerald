@@ -454,6 +454,12 @@ void AdvanceRealtimeClock(int hours, int minutes)
     {
         gLocalTime.hours -= 24;
         ++gLocalTime.days;
+        ++gLocalTime.dayOfWeek;
+    }
+    
+    if (gLocalTime.dayOfWeek >= 7)
+    {
+        gLocalTime.dayOfWeek -= 7;
     }
     
     // Set the offset back to the save block
@@ -483,7 +489,13 @@ void AdvanceTimeToNextMorning()
     {
         gLocalTime.hours -= 24;
         ++gLocalTime.days;
+        ++gLocalTime.dayOfWeek;
     }
+    
+    if (gLocalTime.dayOfWeek >= 7)
+    {
+        gLocalTime.dayOfWeek -= 7;
+    } 
     
     // Set the offset back to the save block
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
