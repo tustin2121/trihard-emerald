@@ -3,6 +3,7 @@
 *.i
 *.elf
 *.gba
+*.bsp
 *.sgm
 *.sa1
 *.sg1
