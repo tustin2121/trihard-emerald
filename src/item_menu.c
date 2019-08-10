@@ -1923,7 +1923,7 @@ void display_sell_item_ask_str(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
-    if (ItemId_GetImportance(gSpecialVar_ItemId))
+    if (ItemId_GetImportance(gSpecialVar_ItemId) || ItemId_GetShouldHideQuantity(gSpecialVar_ItemId))
     {
         CopyItemName(gSpecialVar_ItemId, gStringVar2);
         StringExpandPlaceholders(gStringVar4, gText_CantBuyKeyItem);
