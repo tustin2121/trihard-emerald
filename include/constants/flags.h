@@ -1077,18 +1077,18 @@
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL                      0x464
 #define FLAG_ITEM_STOLEN_RUSTBORO_MART                              0x465 // Trihard
 #define FLAG_ITEM_CONTEST_HALL_LEAF_STONE                           0x466 // Trihard
-#define FLAG_UNUSED_0x467                                           0x467 // Unused Flag
-#define FLAG_UNUSED_0x468                                           0x468 // Unused Flag
+#define FLAG_ITEM_STOLEN_TIMER_BALLS                                0x467 // Trihard
+#define FLAG_ITEM_STOLEN_MUDKIP_DOLL                                0x468 // Trihard
 #define FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL                             0x469
 #define FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE                            0x46A
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_WEST_MAX_REVIVE                 0x46B
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_NUGGET                           0x46C
-#define FLAG_UNUSED_0x46D                                           0x46D // Unused Flag
+#define FLAG_ITEM_STOLEN_SHOAL_SHELL                                0x46D // Trihard
 #define FLAG_ITEM_ROUTE_119_NUGGET                                  0x46E
 #define FLAG_ITEM_ROUTE_104_POTION                                  0x46F
-#define FLAG_UNUSED_0x470                                           0x470 // Unused Flag
+#define FLAG_ITEM_STOLEN_THUNDER_STONE                              0x470 // Trihard
 #define FLAG_ITEM_ROUTE_103_PP_UP                                   0x471
-#define FLAG_UNUSED_0x472                                           0x472 // Unused Flag
+#define FLAG_ITEM_STOLEN_SODA_POP                                   0x472 // Trihard
 #define FLAG_ITEM_ROUTE_108_STAR_PIECE                              0x473
 #define FLAG_ITEM_ROUTE_109_POTION                                  0x474
 #define FLAG_ITEM_ROUTE_110_ELIXIR                                  0x475

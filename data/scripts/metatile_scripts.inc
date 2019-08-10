@@ -33,7 +33,7 @@ MetatileText_PokemonCenterSleepSign: @ 82A8232
 	.string "our facilities.\p"
 	.string "“Please remember to lock your door\n"
 	.string "before going to sleep. We ask that\l"
-	.string "you respect other's personal space.”$"
+	.string "you respect others' personal space.”$"
 
 
 MetatileScript_PokemonCenterClock::

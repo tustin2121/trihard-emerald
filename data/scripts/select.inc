@@ -8,9 +8,11 @@ EventScript_SelectWithoutRegisteredItem:: @ 82736B3
 	switch VAR_0x800B
 	case 0, EventScript_SelectWithoutRegisteredItem_Normal
 	case 1, EventScript_SelectWithoutRegisteredItem_Talk
+	case 2, EventScript_SelectWithoutRegisteredItem_Count
 	case 3, EventScript_SelectWithoutRegisteredItem_CountWoo
 	case 4, EventScript_SelectWithoutRegisteredItem_Maxed
-	goto EventScript_SelectWithoutRegisteredItem_Count
+	case 5, EventScript_SelectWithoutRegisteredItem_Ending
+	releaseall
 	end
 gText_SelectWithoutRegisteredItem: @ 8272C98
 	.string "An item in the bag can be\n"
@@ -27,6 +29,15 @@ EventScript_SelectWithoutRegisteredItem_Normal:
 
 EventScript_SelectWithoutRegisteredItem_Talk:
 	selectpointer_clamp EventScript_SelectWithoutRegisteredItem_TalkTable, VAR_RESULT
+	buffernumberstring 0, VAR_0x800A
+	message 0, MSGTYPE_STANDARD
+	waitmessage
+	delay SELECT_DELAY_TIME
+	releaseall
+	end
+
+EventScript_SelectWithoutRegisteredItem_Ending:
+	selectpointer_clamp EventScript_SelectWithoutRegisteredItem_EndingTable, VAR_RESULT
 	buffernumberstring 0, VAR_0x800A
 	message 0, MSGTYPE_STANDARD
 	waitmessage
@@ -251,7 +262,7 @@ gText_SelectWRI_TheTalk23:
 gText_SelectWRI_TheTalk24:
 	.string "SELECT!!!!!$"
 gText_SelectWRI_TheTalk25:
-	.string "You're giving me a migrane with all\n"
+	.string "You're giving me a migraine with all\n"
 	.string "that SELECT!$"
 gText_SelectWRI_TheTalk26:
 	.string "And to what end?$"
@@ -309,6 +320,43 @@ gText_SelectWRI_TheTalk48:
 	.string "Oh, sorry… SELECT {STR_VAR_1}$"
 @ gText_SelectWRI_TheTalk49:
 @ 	.string "SELECT {STR_VAR_1}$"
+
+
+EventScript_SelectWithoutRegisteredItem_EndingTable:
+	.4byte gText_SelectWRI_Ending01
+	.4byte gText_SelectWRI_Ending02
+	.4byte gText_SelectWRI_Ending03
+	.4byte gText_SelectWRI_Ending04
+	.4byte gText_SelectWRI_Ending05
+	.4byte gText_SelectWRI_Ending06
+	.4byte gText_SelectWRI_Ending07
+	.4byte gText_SelectWRI_Ending08
+	.4byte gText_SelectWRI_Ending09
+	.4byte gText_SelectWRI_Ending10
+	.4byte gText_SelectWRI_Ending09
+	.4byte 0
+gText_SelectWRI_Ending01:
+	.string "SELECT {STR_VAR_1}…$"
+gText_SelectWRI_Ending02:
+	.string "SELECT {STR_VAR_1}… …$"
+gText_SelectWRI_Ending03:
+	.string "SELECT {STR_VAR_1}… … …$"
+gText_SelectWRI_Ending04:
+	.string "Okay, guys… This is getting boring now.$"
+gText_SelectWRI_Ending05:
+	.string "I… I think I'm gonna stop.$"
+gText_SelectWRI_Ending06:
+	.string "Like this was fun but…$"
+gText_SelectWRI_Ending07:
+	.string "That's enough…$"
+gText_SelectWRI_Ending08:
+	.string "Thanks for all the memes…$"
+gText_SelectWRI_Ending09:
+	.string "…$"
+gText_SelectWRI_Ending10:
+	.string "SELECT will always be there\n"
+	.string "in your heart…$"
+
 
 
 #undef SELECT_DELAY_TIME
