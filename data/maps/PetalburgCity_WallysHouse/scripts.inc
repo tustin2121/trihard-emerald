@@ -90,7 +90,12 @@ PetalburgCity_WallysHouse_Text_MotherState3:
 PetalburgCity_WallysHouse_EventScript_MotherState3yes:
 	setflag FLAG_TATTLED_ON_LOGAN
 	msgbox PetalburgCity_WallysHouse_Text_MotherState3yes
-	
+	closemessage
+	fadescreen 1
+	playse SE_KAIDAN
+	removeobject THIS_EVENT
+	fadescreen 0
+	release
 	end
 PetalburgCity_WallysHouse_Text_MotherState3yes:
 	.string "Oh Lord Arceus above, you have?!\p"
@@ -128,8 +133,12 @@ PetalburgCity_WallysHouse_Text_MotherState3no2:
 @ Dad
 
 PetalburgCity_WallysHouse_EventScript_Father::
-	@ TODO
+	msgbox PetalburgCity_WallysHouse_Text_Father, MSGBOX_DESCRIBE
 	end
+PetalburgCity_WallysHouse_Text_Father:
+	.string "{RIVAL_HERO}'s father seems to be\n"
+	.string "trying to manage a migrane.$"
+	@TODO more in-depth about what's going on
 
 @ -----------------------------------------------------
 @ Dad
