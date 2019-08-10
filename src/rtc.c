@@ -457,7 +457,7 @@ void AdvanceRealtimeClock(int hours, int minutes)
         ++gLocalTime.dayOfWeek;
     }
     
-    if (gLocalTime.dayOfWeek >= 7)
+    while (gLocalTime.dayOfWeek >= 7)
     {
         gLocalTime.dayOfWeek -= 7;
     }
@@ -492,7 +492,7 @@ void AdvanceTimeToNextMorning()
         ++gLocalTime.dayOfWeek;
     }
     
-    if (gLocalTime.dayOfWeek >= 7)
+    while (gLocalTime.dayOfWeek >= 7)
     {
         gLocalTime.dayOfWeek -= 7;
     } 
