@@ -2431,3 +2431,52 @@ void PrintTMHMMoveData(u16 itemId)
         CopyWindowToVram(4, 2);
     }
 }
+
+#define SELECT_START_COUNT 1
+
+void DetermineSelectMessage()
+{
+    gSpecialVar_0x800A = GetGameStat(GAME_STAT_SELECT_PRESSES);
+    gSpecialVar_0x800B = 0;
+    gSpecialVar_Result = 0;
+    if (gSpecialVar_0x800A < SELECT_START_COUNT) return; //do nothing special if under 100 presses
+    if (gSpecialVar_0x800A < SELECT_START_COUNT + 100) //from 101 to 200, subtily vary the messages
+    {
+        gSpecialVar_Result = 1 + (gSpecialVar_0x800A - SELECT_START_COUNT) / 10;
+        return;
+    }
+    if (gSpecialVar_0x800A < SELECT_START_COUNT + 200) //from 201 to 300, vary the messages more for longer
+    {
+        gSpecialVar_Result = 11 + (gSpecialVar_0x800A - (SELECT_START_COUNT+100)) / 20;
+        return;
+    }
+    if (gSpecialVar_0x800A < SELECT_START_COUNT + 250) //from 301 to 350, ask chat why
+    {
+        gSpecialVar_Result = 16;
+        return;
+    }
+    if (gSpecialVar_0x800A < SELECT_START_COUNT + 300) //from 351 to 400, ask chat please
+    {
+        gSpecialVar_Result = 17;
+        return;
+    }
+    if (gSpecialVar_0x800A < SELECT_START_COUNT + 350) //from 401 to 450, do "the talk"
+    {
+        gSpecialVar_Result = gSpecialVar_0x800A - (SELECT_START_COUNT + 300);
+        gSpecialVar_0x800B = 1;
+        return;
+    }
+    if (gSpecialVar_0x800A % 1000 == 0)
+    {
+        gSpecialVar_0x800B = 3;
+        return;
+    }
+    if (gSpecialVar_0x800A == 65535)
+    {
+        gSpecialVar_0x800B = 4;
+    }
+    gSpecialVar_0x800B = 2;
+    return;
+}
+
+#undef SELECT_START_COUNT

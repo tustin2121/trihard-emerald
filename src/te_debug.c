@@ -74,6 +74,7 @@ static void DebugHandle_TestScript1();
 static void DebugHandle_SwapGenders();
 static void DebugHandle_RenamePlayer();
 static void DebugHandle_UnmarkBoxMon();
+static void DebugHandle_ClearStats();
 static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
@@ -107,6 +108,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_SwapGenders,
 	DebugHandle_RenamePlayer,
 	DebugHandle_UnmarkBoxMon,
+	DebugHandle_ClearStats,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -436,6 +438,14 @@ void DebugHandle_UnmarkBoxMon()
             }
         }
     }
+	DebugSetCallbackSuccess();
+}
+
+// arguments: none
+// returns: none
+void DebugHandle_ClearStats()
+{
+	ResetGameStats();
 	DebugSetCallbackSuccess();
 }
 
