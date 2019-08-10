@@ -5192,7 +5192,10 @@ static void HandleEndTurn_FinishBattle(void)
         sub_8186444();
         Restore1HPDeathPreventedMons();
         RemoveDeadMonFromParty(TRUE);
-        BeginFastPaletteFade(3);
+        if (gBattleOutcome == B_OUTCOME_LOST || gBattleOutcome == B_OUTCOME_DREW)
+            BeginFastPaletteFade(1);
+        else
+            BeginFastPaletteFade(3);
         FadeOutMapMusic(5);
         gBattleMainFunc = FreeResetData_ReturnToOvOrDoEvolutions;
         gCB2_AfterEvolution = BattleMainCB2;

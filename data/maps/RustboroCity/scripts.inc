@@ -348,10 +348,10 @@ RustboroCity_Text_AquaGirl_Boy:
 	.string "Do it again, and I deck ya one.$"
 RustboroCity_Text_AquaGirl_Girl:
 	.string "Gotta say, girl. I was ready to turn\n"
-	.string "around a deck a guy wanting to get\l"
+	.string "around and deck a guy wanting to get\l"
 	.string "handsey with me.\p"
 	.string "Yeah, you know what I mean. That\n"
-	.string "face your making is mood.$"
+	.string "face you're making is mood.$"
 RustboroCity_EventScript_AquaGirlB:
 	msgbox RustboroCity_Text_AquaGirlB, MSGBOX_NPC
 	end

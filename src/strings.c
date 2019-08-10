@@ -1919,6 +1919,18 @@ const u8 gText_PokeBalls[] = _("POKé BALLS");
 const u8 gText_Berry[] = _("BERRY");
 const u8 gText_Berries[] = _("BERRIES");
 
+const u8 gText_Whiteout_WildMon[] = _("The wild Pokémon lunged for {PLAYER}!");
+const u8 gText_Whiteout_GoodTrainer[] = _("Good battle!\pHey, are you alright?");
+const u8 gText_Whiteout_YoungTrainer[] = _("Yay I won! You lost! Ha ha!\p{PLAYER} curled up into a ball in embarrassment.");
+const u8 gText_Whiteout_NinjaTrainer[] = _("You fell to the ninja! Whacha!");
+const u8 gText_Whiteout_Interview[] = _("Gabby: Do you have any final words before\nthis goes to air to millions?\p{PLAYER} curled up into a ball in embarrassment.");
+const u8 gText_Whiteout_Embarrasment[] = _("The crowds go wild.\p{PLAYER} curled up into a ball in embarrassment.");
+const u8 gText_Whiteout_BadTrainer[] = _("Now, finish {PLAYER_them} off!\pThe foe Pokémon lunged for {PLAYER}!");
+const u8 gText_Whiteout_AquaTrainer[] = _("I guess I won this scrap!\pYou alright? You don't look so good.");
+const u8 gText_Whiteout_AquaAdmin[] = _("As usual for one of our grunts…");
+const u8 gText_Whiteout_RivalHero[] = _("{RIVAL_HERO}: Serves you right…");
+const u8 gText_Whiteout_RivalBirch[] = _("{RIVAL_BIRCH}: Ah, good…\nSee how it feels for once?");
+
 const u8 gText_Num1[] = _("one");
 const u8 gText_Num2[] = _("two");
 const u8 gText_Num3[] = _("three");

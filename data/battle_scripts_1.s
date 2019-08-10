@@ -3013,7 +3013,15 @@ BattleScript_LocalBattleLost::
 	jumpifhalfword CMP_EQUAL, gTrainerBattleOpponent_A, 0x400, BattleScript_LocalBattleLostEnd
 BattleScript_LocalBattleLostPrintWhiteOut::
 	printstring STRINGID_PLAYERWHITEOUT
-	waitmessage 0x40
+	@ waitmessage 0x40
+	@ Trihard Emerald
+	jumpifnotbattletype BATTLE_TYPE_TRAINER, BattleScript_LocalNormalBattleLostPrintWhiteOut
+	trainerslidein BS_ATTACKER
+	waitstate
+BattleScript_LocalNormalBattleLostPrintWhiteOut:
+	printstring STRINGID_TRAINER1WINTEXT
+	@ waitmessage 0x40
+	@ TriHard End
 	printstring STRINGID_PLAYERWHITEOUT2
 	waitmessage 0x40
 BattleScript_LocalBattleLostEnd::
@@ -3039,6 +3047,20 @@ BattleScript_LocalBattleLostDoTrainer2WinText::
 	printstring STRINGID_TRAINER2WINTEXT
 BattleScript_LocalBattleLostEnd_::
 	end2
+
+BattleScript_LocalNormalBattleLostPrintTrainersWinText::
+	printstring STRINGID_PLAYERWHITEOUT
+	waitmessage 0x40
+	jumpifnotbattletype BATTLE_TYPE_TRAINER, BattleScript_LocalBattleLostPrintWhiteOut
+	trainerslidein BS_ATTACKER
+	waitstate
+	printstring STRINGID_TRAINER1WINTEXT
+	waitmessage 0x40
+BattleScript_LocalNormalBattleLostEnd_::
+	printstring STRINGID_PLAYERWHITEOUT2
+	waitmessage 0x40
+	end2
+
 
 BattleScript_82DAA0B::
 	returnopponentmon1toball BS_ATTACKER
