@@ -4,6 +4,7 @@ MauvilleCity_GameCorner_MapScripts:: @ 820FBB8
 MauvilleCity_GameCorner_EventScript_20FBB9:: @ 820FBB9
 	lock
 	faceplayer
+	markasdialog
 	msgbox MauvilleCity_GameCorner_Text_210460, MSGBOX_DEFAULT
 	checkitem ITEM_COIN_CASE, 1
 	compare VAR_RESULT, 0
@@ -107,6 +108,7 @@ MauvilleCity_GameCorner_EventScript_20FCE1:: @ 820FCE1
 MauvilleCity_GameCorner_EventScript_20FCF1:: @ 820FCF1
 	lock
 	faceplayer
+	markasdialog
 	msgbox MauvilleCity_GameCorner_Text_2105D7, MSGBOX_DEFAULT
 	checkitem ITEM_COIN_CASE, 1
 	compare VAR_RESULT, 1
@@ -228,6 +230,7 @@ MauvilleCity_GameCorner_EventScript_20FE92:: @ 820FE92
 MauvilleCity_GameCorner_EventScript_20FE9F:: @ 820FE9F
 	lock
 	faceplayer
+	markasdialog
 	msgbox MauvilleCity_GameCorner_Text_2105D7, MSGBOX_DEFAULT
 	checkitem ITEM_COIN_CASE, 1
 	compare VAR_RESULT, 1
@@ -404,6 +407,7 @@ MauvilleCity_GameCorner_EventScript_21012E:: @ 821012E
 MauvilleCity_GameCorner_EventScript_210137:: @ 8210137
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_STARTER_DOLL, MauvilleCity_GameCorner_EventScript_210213
 	msgbox MauvilleCity_GameCorner_Text_210750, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -466,6 +470,7 @@ MauvilleCity_GameCorner_EventScript_210213:: @ 8210213
 MauvilleCity_GameCorner_EventScript_21021D:: @ 821021D
 	lock
 	faceplayer
+	markasdialog
 	checkitem ITEM_COIN_CASE, 1
 	compare VAR_RESULT, 1
 	goto_if_eq MauvilleCity_GameCorner_EventScript_21023D
@@ -493,6 +498,7 @@ MauvilleCity_GameCorner_EventScript_21026B:: @ 821026B
 MauvilleCity_GameCorner_EventScript_210279:: @ 8210279
 	lock
 	faceplayer
+	markasdialog
 	msgbox MauvilleCity_GameCorner_Text_210932, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_2102A9
 	end
@@ -500,6 +506,7 @@ MauvilleCity_GameCorner_EventScript_210279:: @ 8210279
 MauvilleCity_GameCorner_EventScript_210289:: @ 8210289
 	lock
 	faceplayer
+	markasdialog
 	msgbox MauvilleCity_GameCorner_Text_21098E, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_2102A9
 	end
@@ -507,6 +514,7 @@ MauvilleCity_GameCorner_EventScript_210289:: @ 8210289
 MauvilleCity_GameCorner_EventScript_210299:: @ 8210299
 	lock
 	faceplayer
+	markasdialog
 	msgbox MauvilleCity_GameCorner_Text_210A51, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_2102A9
 	end
@@ -521,6 +529,7 @@ MauvilleCity_GameCorner_EventScript_2102A9:: @ 82102A9
 MauvilleCity_GameCorner_EventScript_2102B6:: @ 82102B6
 	lock
 	faceplayer
+	markasdialog
 	msgbox MauvilleCity_GameCorner_Text_210A82, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_2102A9
 	end
@@ -528,6 +537,7 @@ MauvilleCity_GameCorner_EventScript_2102B6:: @ 82102B6
 MauvilleCity_GameCorner_EventScript_2102C6:: @ 82102C6
 	lock
 	faceplayer
+	markasdialog
 	msgbox MauvilleCity_GameCorner_Text_210B04, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_2102A9
 	end
@@ -816,4 +826,3 @@ MauvilleCity_GameCorner_Text_210B04: @ 8210B04
 MauvilleCity_GameCorner_Text_210C2E: @ 8210C2E
 	.string "You can't play if you don't have\n"
 	.string "a COIN CASE.$"
-
