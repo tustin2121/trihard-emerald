@@ -104,7 +104,7 @@ MtChimney_EventScript_LavaCookieLady:: @ 822EEF3
 	release
 	end
 MtChimney_Text_22FE04: @ 822FE04
-	.string "LAVA COOKIES are Mt. Chimney's local\n"
+	.string "Lava Cookies are Mt. Chimney's local\n"
 	.string "specialty.\p"
 	.string "Try one. It's just ¥200.$"
 MtChimney_Text_22FE4D: @ 822FE4D
