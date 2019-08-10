@@ -2741,6 +2741,18 @@ extern const u8 gText_TrainerCloseBy[];
 
 extern const u8 gText_The[];
 
+extern const u8 gText_Whiteout_WildMon[];
+extern const u8 gText_Whiteout_GoodTrainer[];
+extern const u8 gText_Whiteout_YoungTrainer[];
+extern const u8 gText_Whiteout_NinjaTrainer[];
+extern const u8 gText_Whiteout_Interview[];
+extern const u8 gText_Whiteout_Embarrasment[];
+extern const u8 gText_Whiteout_BadTrainer[];
+extern const u8 gText_Whiteout_AquaTrainer[];
+extern const u8 gText_Whiteout_AquaAdmin[];
+extern const u8 gText_Whiteout_RivalHero[];
+extern const u8 gText_Whiteout_RivalBirch[];
+
 extern const u8 gText_Sunday[];
 extern const u8 gText_Monday[];
 extern const u8 gText_Tuesday[];

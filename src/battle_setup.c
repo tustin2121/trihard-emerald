@@ -368,6 +368,55 @@ static void CreateBattleStartTask(u8 transition, u16 song)
 #undef tState
 #undef tTransition
 
+void BattleSetup_SetupVictoryLines(void)
+{
+    if (gTrainerBattleOpponent_A == TRAINER_NONE) return;
+    switch (gTrainers[gTrainerBattleOpponent_A].trainerClass)
+    {
+        case TRAINER_CLASS_MAGMA_ADMIN:
+        case TRAINER_CLASS_MAGMA_LEADER:
+        case TRAINER_CLASS_TEAM_MAGMA:
+            sTrainerVictorySpeech = (u8*)gText_Whiteout_BadTrainer;
+            break;
+        case TRAINER_CLASS_TEAM_AQUA:
+            sTrainerVictorySpeech = (u8*)gText_Whiteout_AquaTrainer;
+            break;
+        case TRAINER_CLASS_AQUA_ADMIN:
+            sTrainerVictorySpeech = (u8*)gText_Whiteout_AquaAdmin;
+            break;
+        case TRAINER_CLASS_CHAMPION:
+        case TRAINER_CLASS_ELITE_FOUR:
+            sTrainerVictorySpeech = (u8*)gText_Whiteout_Embarrasment;
+            break;
+        case TRAINER_CLASS_YOUNGSTER:
+        case TRAINER_CLASS_SCHOOL_KID:
+        case TRAINER_CLASS_TWINS:
+        case TRAINER_CLASS_TUBER_F:
+        case TRAINER_CLASS_TUBER_M:
+            sTrainerVictorySpeech = (u8*)gText_Whiteout_YoungTrainer;
+            break;
+        case TRAINER_CLASS_NINJA_BOY:
+            sTrainerVictorySpeech = (u8*)gText_Whiteout_NinjaTrainer;
+            break;
+        case TRAINER_CLASS_INTERVIEWER:
+            sTrainerVictorySpeech = (u8*)gText_Whiteout_Interview;
+            break;
+        case TRAINER_CLASS_PKMN_TRAINER_3:
+            if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_WALLY)
+            {
+                sTrainerVictorySpeech = (u8*)gText_Whiteout_RivalHero;
+            }
+            else
+            {
+                sTrainerVictorySpeech = (u8*)gText_Whiteout_RivalBirch;
+            }
+            break;
+        default:
+            sTrainerVictorySpeech = (u8*)gText_Whiteout_GoodTrainer;
+            break;
+    }
+}
+
 void BattleSetup_StartWildBattle(void)
 {
     if (GetSafariZoneFlag())
@@ -1312,6 +1361,8 @@ void BattleSetup_StartTrainerBattle(void)
 
         SetHillTrainerFlag();
     }
+    
+    BattleSetup_SetupVictoryLines();
 
     sNoOfPossibleTrainerRetScripts = gNoOfApproachingTrainers;
     gNoOfApproachingTrainers = 0;
@@ -1374,6 +1425,7 @@ void BattleSetup_StartRematchBattle(void)
 {
     gBattleTypeFlags = BATTLE_TYPE_TRAINER;
     gMain.savedCallback = CB2_EndRematchBattle;
+    BattleSetup_SetupVictoryLines();
     DoTrainerBattle();
     ScriptContext1_Stop();
 }
@@ -1521,7 +1573,7 @@ static const u8 *GetIntroSpeechOfApproachingTrainer(void)
 const u8 *GetTrainerALoseText(void)
 {
     const u8 *string;
-
+    
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         string = GetSecretBaseTrainerLoseText();
     else
@@ -1539,7 +1591,15 @@ const u8 *GetTrainerBLoseText(void)
 
 const u8 *GetTrainerWonSpeech(void)
 {
-    return ReturnEmptyStringIfNull(sTrainerVictorySpeech);
+    const u8 *string;
+    
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) == 0)
+        string = gText_Whiteout_WildMon;
+    else
+        string = sTrainerVictorySpeech;
+        
+    StringExpandPlaceholders(gStringVar4, ReturnEmptyStringIfNull(string));
+    return gStringVar4;
 }
 
 static const u8 *GetTrainerCantBattleSpeech(void)

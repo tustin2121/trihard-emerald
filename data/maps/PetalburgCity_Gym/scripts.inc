@@ -15,14 +15,15 @@ PetalburgCity_Gym_EventScript_OpenGym::
 	setvar VAR_PETALBURG_STATE, 10
 	setflag FLAG_PETALBURG_MART_EXPANDED_ITEMS
 	setflag FLAG_HIDE_PETALBURG_CITY_GYM_LOCK
+	setflag FLAG_HIDE_PETALBURG_GYM_OLD_LEADER
 	return
 
 @ -----------------------------------------------------
 
 PetalburgCity_Gym_OnLoad: @ 820489E
-	compare VAR_NUM_BADGES, 6
+	compare VAR_NUM_BADGES, 4
 	goto_if_eq PetalburgCity_Gym_EventScript_2048B5
-	compare VAR_NUM_BADGES, 7
+	compare VAR_NUM_BADGES, 5
 	call_if_ge PetalburgCity_Gym_RunAllGymSpecials
 	end
 
@@ -277,7 +278,7 @@ PetalburgCity_Gym_EventScript_EnterDoor:: @ 820516C
 
 PetalburgCity_Gym_EventScript_205187:: @ 8205187
 	lockall
-	compare VAR_NUM_BADGES, 6
+	compare VAR_NUM_BADGES, 4
 	goto_if_lt PetalburgCity_Gym_EventScript_LockedDoor
 	setvar VAR_0x8008, 1
 	setvar VAR_0x8009, 98
@@ -294,7 +295,7 @@ PetalburgCity_Gym_Text_207280: @ 8207280
 
 PetalburgCity_Gym_EventScript_205137:: @ 8205137
 	lockall
-	compare VAR_NUM_BADGES, 6
+	compare VAR_NUM_BADGES, 4
 	goto_if_lt PetalburgCity_Gym_EventScript_LockedDoor
 	setvar VAR_0x8008, 7
 	setvar VAR_0x8009, 85
@@ -839,57 +840,12 @@ PetalburgCity_Gym_EventScript_205733:: @ 8205733
 @ -----------------------------------------------------
 @ Norman:
 
-.align 2
-PetalburgCity_Gym_PointerTable_Norman:
-	.4byte PetalburgCity_Gym_EventScript_NormanDummied @ 0
-	.4byte PetalburgCity_Gym_EventScript_NormanDummied
-	.4byte PetalburgCity_Gym_EventScript_NormanDummied
-	.4byte PetalburgCity_Gym_EventScript_NormanDummied
-	.4byte PetalburgCity_Gym_EventScript_NormanDummied @ 4
-	.4byte PetalburgCity_Gym_EventScript_NormanDummied
-	.4byte PetalburgCity_Gym_EventScript_NormanFight
-	.4byte PetalburgCity_Gym_EventScript_NormanDummied
-	.4byte PetalburgCity_Gym_EventScript_NormanDummied @ 8
-	.4byte 0
-
-PetalburgCity_Gym_EventScript_Norman:: @ 82049F1
-	lock
-	markasdialog
-	faceplayer
-	selectpointer_clamp PetalburgCity_Gym_PointerTable_Norman, VAR_NUM_BADGES
-	goto 0 @ Goto the select script
-	end
-
-PetalburgCity_Gym_EventScript_NormanDummied:
-	msgbox PetalburgCity_Gym_Text_205DB4, MSGBOX_DEFAULT
-	release
-	end
-PetalburgCity_Gym_Text_205DB4:
-	.string "This dialog has been removed.$"
-
-
-PetalburgCity_Gym_EventScript_NormanFight:: @ 8204E3B
-	msgbox PetalburgCity_Gym_Text_205FE5, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_NORMAN_1, PetalburgCity_Gym_Text_206107
-	message PetalburgCity_Gym_Text_206162
-	waitmessage
-	call Common_EventScript_PlayGymBadgeFanfare
-	msgbox PetalburgCity_Gym_Text_20618A, MSGBOX_DEFAULT
-	setflag FLAG_DEFEATED_PETALBURG_GYM
-	setvar VAR_NUM_BADGES, 7
-	setflag FLAG_BADGE05_GET
-	special PreventDewfordHealSoftlock
-	call PetalburgCity_Gym_DisableMrBriney
-	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
-	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
-	@ setvar VAR_0x8008, 5
-	@ call PetalburgCity_Gym_EventScript_271F43 @PetalburgCity_Gym_ClearGymTrainers
-	call PetalburgCity_Gym_ClearGymTrainers
-	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
-	call PetalburgCity_Gym_RunAllGymSpecials
-	special DrawWholeMapView
-	call PetalburgCity_Gym_EventScript_GiveTM
-	delay 30
+PetalburgCity_Gym_EventScript_Norman::
+	trainerbattle_single TRAINER_NORMAN_1, PetalburgCity_Gym_Text_205FE5, PetalburgCity_Gym_Text_206107, PetalburgCity_Gym_EventScript_1FE7C1, NO_MUSIC
+	@ specialvar VAR_RESULT, ShouldTryRematchBattle
+	@ compare VAR_RESULT, 1
+	@ goto_if_eq LavaridgeTown_Gym_1F_EventScript_1FE864
+	goto_if_unset FLAG_RECEIVED_TM42, PetalburgCity_Gym_EventScript_GiveTM
 	msgbox PetalburgCity_Gym_Text_2062FB, MSGBOX_DEFAULT
 	release
 	end
@@ -914,6 +870,34 @@ PetalburgCity_Gym_Text_206107: @ 8206107
 	.string "My very first challenger?\p"
 	.string "But, rules are rules!\n"
 	.string "Here, take this.$"
+PetalburgCity_Gym_Text_2062FB: @ 82062FB
+	.string "Norman: My wife and my {PLAYER_son} will be\n"
+	.string "moving here in a month or two.\p"
+	.string "Clearly, I will need to train harder\n"
+	.string "if I want to face them with dignity.$"
+PetalburgCity_Gym_EventScript_1FE7C1:
+	message PetalburgCity_Gym_Text_206162
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
+	msgbox PetalburgCity_Gym_Text_20618A, MSGBOX_DEFAULT
+	setflag FLAG_DEFEATED_PETALBURG_GYM
+	setflag FLAG_BADGE05_GET
+	special PreventDewfordHealSoftlock
+	@ call PetalburgCity_Gym_DisableMrBriney
+	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
+	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
+	@ setvar VAR_0x8008, 5
+	@ call PetalburgCity_Gym_EventScript_271F43 @PetalburgCity_Gym_ClearGymTrainers
+	call PetalburgCity_Gym_ClearGymTrainers
+	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
+	call PetalburgCity_Gym_RunAllGymSpecials
+	special DrawWholeMapView
+	call PetalburgCity_Gym_EventScript_GiveTM
+	closemessage
+	delay 30
+	msgbox PetalburgCity_Gym_Text_1FF517
+	release
+	end
 PetalburgCity_Gym_Text_206162: @ 8206162
 	.string "{PLAYER} received the {ITEM}Balance Badge{END}\n"
 	.string "from Norman.$"
@@ -924,12 +908,9 @@ PetalburgCity_Gym_Text_20618A: @ 820618A
 	.string "water will do so at your command.\p"
 	.string "This is my gift to you. {PLAYER}, I'm\n"
 	.string "sure you can use it correctly.$"
-PetalburgCity_Gym_Text_2062FB: @ 82062FB
-	.string "Norman: My wife and my {PLAYER_son} will be\n"
-	.string "moving here in a month or two.\p"
-	.string "Clearly, I will need to train harder\n"
-	.string "if I want to face them with dignity.$"
-
+PetalburgCity_Gym_Text_1FF517: @ 81FF517
+	.string "Oh, um, I don't have a phone number yet,\n"
+	.string "sorry.$"
 
 PetalburgCity_Gym_EventScript_GiveTM:: @ 8204ED2
 	giveitem_std ITEM_TM42

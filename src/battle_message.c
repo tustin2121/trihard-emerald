@@ -2618,6 +2618,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     CopyTrainerHillTrainerText(3, gTrainerBattleOpponent_A);
                     toCpy = gStringVar4;
                 }
+                else
+                {
+                    toCpy = GetTrainerWonSpeech();
+                }
                 break;
             case B_TXT_26: // ?
                 HANDLE_NICKNAME_STRING_CASE(gBattleScripting.battler, *(&gBattleStruct->field_52))

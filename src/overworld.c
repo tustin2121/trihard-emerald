@@ -462,7 +462,10 @@ void ResetGameStats(void)
     s32 i;
 
     for (i = 0; i < NUM_GAME_STATS; i++)
+    {
         SetGameStat(i, 0);
+        RememberStat(i, 0);
+    }
 }
 
 void IncrementGameStat(u8 index)

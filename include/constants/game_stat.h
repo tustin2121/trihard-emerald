@@ -58,8 +58,9 @@
 #define GAME_STAT_NUM_PARTY_CASUALTIES		54
 #define GAME_STAT_NUM_THINGS_STOLEN			55
 #define GAME_STAT_NUM_E4_ATTEMPTS			56
+#define GAME_STAT_SELECT_PRESSES			57
 
-#define NUM_USED_GAME_STATS                 57
+#define NUM_USED_GAME_STATS                 58
 #define NUM_GAME_STATS                      64
 
 #endif // GUARD_CONSTANTS_GAME_STAT_H

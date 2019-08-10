@@ -22,6 +22,7 @@ const DebugHandle_TestScript1 = 14;
 const DebugHandle_SwapGenders = 15;
 const DebugHandle_RenamePlayer = 16;
 const DebugHandle_UnmarkBoxMon = 17;
+const DebugHandle_ClearStats = 18;
 
 // Menu Functions
 function initMenuV1() {
@@ -85,6 +86,11 @@ function initMenuV1() {
 		$(`<li>Unset Mourn Flag on All Boxed Mons</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_UnmarkBoxMon });
+				switchMenu();
+			});
+		$(`<li>Reset Game Stats</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_ClearStats });
 				switchMenu();
 			});
 		$(`<li>Run Test Script 1</li>`).appendTo($m)
