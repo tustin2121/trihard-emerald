@@ -5635,3 +5635,5 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/FallarborTown_ContestLobby/scripts.inc"
 
 	.include "data/maps/FallarborTown_ContestHall/scripts.inc"
+
+	.include "data/maps/MirageTowerLayout/scripts.inc"
