@@ -730,7 +730,7 @@ Route111_Text_1F1C9F: @ 81F1C9F
 Route111_Text_1F1CCA: @ 81F1CCA
 	.string "Oh, no!\p"
 	.string "My uncle in Mauville told me to take\n"
-	.string "ROCK SMASH with me if I was going to\l"
+	.string "Rock Smash with me if I was going to\l"
 	.string "Route 111!\p"
 	.string "My uncle? He lives across from\n"
 	.string "the bike shop in Mauville.$"
