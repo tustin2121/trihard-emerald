@@ -28,7 +28,8 @@ MauvilleCity_Mart_EventScript_Chester::
 	end
 MauvilleCity_Mart_Text_Chester1:
 	.string "Hello there! I'm Chester!\n"
-	.string "This is my Home for Problematic Pokémon!\p"
+	.string "This is my Home for\l"
+	.string "Problematic Pokémon!\p"
 	.string "If you need me to take a problematic\n"
 	.string "Pokémon off your hands, that's what\l"
 	.string "I'm here for.\p"
@@ -261,4 +262,3 @@ MauvilleCity_Mart_EventScript_BrotherNoShed:
 MauvilleCity_Mart_Text_BrotherNoShed:
 	.string "Hi! Were you the one with the Shedinja?\p"
 	.string "Where is it?$"
-

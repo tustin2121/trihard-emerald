@@ -36,6 +36,10 @@ MauvilleCity_PokemonCenter_1F_NurseScript:: @ 8210E78
 	goto PokemonCenter_1F_NurseHealScript
 	end
 
+MauvilleCity_PokemonCenter_1F_Hipster::
+	markasdialog
+	goto MauvilleCity_PokemonCenter_1F_EventScript_28E066
+	end
 
 MauvilleCity_Mart_MartScript:: @ 82110E6
 	lock
@@ -135,4 +139,3 @@ MauvilleCity_Mart_Text_2111D8: @ 82111D8
 	.string "instead…\p"
 	.string "The Trainer's decisions determine how\n"
 	.string "battles turn out, I think.$"
-

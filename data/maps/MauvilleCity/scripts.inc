@@ -19,6 +19,11 @@ MauvilleCity_EventScript_1DF3A9:: @ 81DF3A9
 	setflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
 	setflag FLAG_WATTSON_REMATCH_AVAILABLE
 	return
+	
+MauvilleCity_EventScript_DirectionGuy::
+	markasdialog
+	goto MauvilleCity_EventScript_2C7F7E
+	end
 
 @ -----------------------------------------------------
 @ Signs
@@ -693,10 +698,3 @@ MauvilleCity_Text_1E02AA: @ 81E02AA
 	.string "Wattson: Wahahahaha!\p"
 	.string "It pleases me to no end to see\n"
 	.string "the young step up and take charge!$"
-
-
-
-
-
-
-
