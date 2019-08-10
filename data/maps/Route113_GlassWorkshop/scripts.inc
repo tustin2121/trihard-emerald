@@ -15,6 +15,7 @@ Route113_GlassWorkshop_EventScript_26ED18:: @ 826ED18
 Route113_GlassWorkshop_EventScript_26ED1E:: @ 826ED1E
 	lock
 	faceplayer
+	markasdialog
 	compare VAR_GLASS_WORKSHOP_STATE, 10
 	goto_if_ge Route113_GlassWorkshop_EventScript_26F090
 	compare VAR_GLASS_WORKSHOP_STATE, 2
@@ -394,4 +395,3 @@ Route113_GlassWorkshop_Text_26F7EC: @ 826F7EC
 	.string "It's fun to blow a glass flute while\n"
 	.string "my boss is talking.\p"
 	.string "Huff-huff! Puff-puff!$"
-

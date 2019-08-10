@@ -4,6 +4,7 @@ Route111_WinstrateFamilysHouse_MapScripts:: @ 822A48C
 Route111_WinstrateFamilysHouse_EventScript_22A48D:: @ 822A48D
 	lock
 	faceplayer
+	markasdialog
 	setvar VAR_0x8008, 2
 	msgbox Route111_WinstrateFamilysHouse_Text_22A539, MSGBOX_DEFAULT
 	goto Route111_WinstrateFamilysHouse_EventScript_22A52C
@@ -12,6 +13,7 @@ Route111_WinstrateFamilysHouse_EventScript_22A48D:: @ 822A48D
 Route111_WinstrateFamilysHouse_EventScript_22A4A2:: @ 822A4A2
 	lock
 	faceplayer
+	markasdialog
 	setvar VAR_0x8008, 3
 	goto_if_set FLAG_RECEIVED_MACHO_BRACE, Route111_WinstrateFamilysHouse_EventScript_22A4DA
 	msgbox Route111_WinstrateFamilysHouse_Text_22A5F4, MSGBOX_DEFAULT
@@ -30,6 +32,7 @@ Route111_WinstrateFamilysHouse_EventScript_22A4DA:: @ 822A4DA
 Route111_WinstrateFamilysHouse_EventScript_22A4E8:: @ 822A4E8
 	lock
 	faceplayer
+	markasdialog
 	setvar VAR_0x8008, 1
 	msgbox Route111_WinstrateFamilysHouse_Text_22A6F7, MSGBOX_DEFAULT
 	goto Route111_WinstrateFamilysHouse_EventScript_22A52C
@@ -38,6 +41,7 @@ Route111_WinstrateFamilysHouse_EventScript_22A4E8:: @ 822A4E8
 Route111_WinstrateFamilysHouse_EventScript_22A4FD:: @ 822A4FD
 	lock
 	faceplayer
+	markasdialog
 	setvar VAR_0x8008, 4
 	goto_if_set FLAG_TEMP_4, Route111_WinstrateFamilysHouse_EventScript_22A51E
 	msgbox Route111_WinstrateFamilysHouse_Text_22A780, MSGBOX_DEFAULT
@@ -100,4 +104,3 @@ Route111_WinstrateFamilysHouse_Text_22A89B: @ 822A89B
 	.string "Pokémon League CHAMPION by now.\p"
 	.string "Knowing my grandson, he could be the\n"
 	.string "CHAMPION already!$"
-
