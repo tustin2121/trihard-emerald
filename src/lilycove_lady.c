@@ -18,6 +18,7 @@
 #include "text.h"
 #include "easy_chat.h"
 #include "lilycove_lady.h"
+#include "constants/event_objects.h"
 
 static void SetLilycoveQuizLady(void);
 static void SetLilycoveFavourLady(void);
@@ -32,10 +33,16 @@ static u8 sub_818E258(const u8 *);
 extern const u8 gText_Lady2[];
 
 static const u16 sUnknown_0860B074[] = {
-        0x62, 0xcb, 0xdc, 0xcc, 0xd1
+    EVENT_OBJ_GFX_ZIGZAGOON_1,
+    EVENT_OBJ_GFX_SKITTY,
+    EVENT_OBJ_GFX_POOCHYENA,
+    EVENT_OBJ_GFX_KECLEON_1,
+    EVENT_OBJ_GFX_PIKACHU
 };
 static const u16 sUnknown_0860B07E[] = {
-        0x1a, 0x14, 0x0a
+    EVENT_OBJ_GFX_WOMAN_4,
+    EVENT_OBJ_GFX_WOMAN_2,
+    EVENT_OBJ_GFX_GIRL_2
 };
 
 static const u16 Unknown_0860B084[] = {

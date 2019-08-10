@@ -965,6 +965,13 @@ static void sub_807FAC8(void)
     switch (sBerryBlenderData->mainState)
     {
     case 0:
+        // ScanlineEffect_Stop();
+        DmaFillLarge16(3, 0, (void *)VRAM, VRAM_SIZE, 0x1000);
+        DmaFill32Defvars(3, 0, (void *)OAM, OAM_SIZE);
+        DmaFill16Defvars(3, 0, (void *)PLTT, PLTT_SIZE);
+        sBerryBlenderData->mainState++;
+        break;
+    case 1:
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
         ResetSpriteData();
         FreeAllSpritePalettes();
@@ -987,7 +994,7 @@ static void sub_807FAC8(void)
 
         sub_8082D28();
         break;
-    case 1:
+    case 2:
         if (LoadBerryBlenderGfx())
         {
             for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
@@ -1004,25 +1011,25 @@ static void sub_807FAC8(void)
             sBerryBlenderData->mainState++;
         }
         break;
-    case 2:
+    case 3:
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
         sub_8082D28();
         sBerryBlenderData->mainState++;
         break;
-    case 3:
+    case 4:
         sub_807F9D0();
         if (!gPaletteFade.active)
             sBerryBlenderData->mainState++;
         break;
-    case 4:
+    case 5:
         if (Blender_PrintText(&sBerryBlenderData->textState, sText_BerryBlenderStart, GetPlayerTextSpeedDelay()))
             sBerryBlenderData->mainState++;
         break;
-    case 5:
+    case 6:
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         sBerryBlenderData->mainState++;
         break;
-    case 6:
+    case 7:
         if (!gPaletteFade.active)
         {
             FreeAllWindowBuffers();

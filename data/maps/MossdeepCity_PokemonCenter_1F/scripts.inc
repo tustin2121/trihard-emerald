@@ -38,7 +38,7 @@ MossdeepCity_Mart_Pokemart_2223E0: @ 82223E0
 	.2byte ITEM_NET_BALL
 	.2byte ITEM_DIVE_BALL
 	.2byte ITEM_HYPER_POTION
-	.byte ITEM_ELIXIR
+	.2byte ITEM_ELIXIR
 	.2byte ITEM_MAX_ETHER
 	.2byte ITEM_FULL_HEAL
 	@ .2byte ITEM_REVIVE
