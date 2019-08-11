@@ -127,6 +127,11 @@ enum
     TDE_0 = 0,
     TDE_1 = 1,
     TDE_TASK_A_ID = 2,
+    
+    TDF_0 = 0,
+    TDF_SCROLL = 1,
+    TDF_SCROLL_DELAY = 2,
+    TDF_NEXT_LINE = 3,
 };
 
 struct Unk201C000
@@ -233,6 +238,15 @@ static const struct WindowTemplate gUnknown_085E6F6C[] =
         .tilemapTop = 9,
         .width = 30,
         .height = 12,
+        .paletteNum = 8,
+        .baseBlock = 1
+    },
+    {
+        .bg = 1,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 30,
+        .height = 32,
         .paletteNum = 8,
         .baseBlock = 1
     },
@@ -393,8 +407,10 @@ static void Task_CreditsTheEnd3(u8 taskIdA);
 static void Task_CreditsTheEnd4(u8 taskIdA);
 static void Task_CreditsTheEnd5(u8 taskIdA);
 static void Task_CreditsTheEnd6(u8 taskIdA);
+static void Task_CreditsTheEnd7(u8 taskIdA);
+static void Task_CreditsTheEnd8(u8 taskIdA);
 static void Task_CreditsSoftReset(u8 taskIdA);
-static void sub_8175CE4(void);
+static void ResetGpuAndVram(void);
 static void sub_8175DA0(u8 taskIdB);
 static u8 CheckChangeScene(u8 page, u8 taskIdA);
 static void sub_81760FC(u8 taskIdA);
@@ -402,7 +418,7 @@ static void sub_817651C(u8 taskIdA);
 static void sub_817624C(u8 taskIdA);
 static bool8 sub_8176AB0(u8 data, u8 taskIdA);
 static void ResetCreditsTasks(u8 taskIdA);
-static void sub_8176D1C(u16, u16, u16);
+static void LoadTheEndScreen(u16, u16, u16);
 static void sub_8176E40(u16 arg0, u16 palette);
 static void sub_8176EE8(struct Sprite *sprite);
 static void sub_8176F90(struct Sprite *sprite);
@@ -518,7 +534,7 @@ void CB2_StartCreditsSequence(void)
     s16 taskIdC;
     u8 taskIdB;
 
-    sub_8175CE4();
+    ResetGpuAndVram();
     SetVBlankCallback(NULL);
     InitHeap(gHeap, HEAP_SIZE);
     ResetPaletteFade();
@@ -728,9 +744,9 @@ static void Task_CreditsTheEnd2(u8 taskIdA)
 
 static void Task_CreditsTheEnd3(u8 taskIdA)
 {
-    sub_8175CE4();
+    ResetGpuAndVram();
     ResetPaletteFade();
-    sub_8176D1C(0, 0x3800, 0);
+    LoadTheEndScreen(0, 0x3800, 0);
     ResetSpriteData();
     FreeAllSpritePalettes();
     BeginNormalPaletteFade(0xFFFFFFFF, 8, 16, 0, RGB_BLACK);
@@ -738,6 +754,11 @@ static void Task_CreditsTheEnd3(u8 taskIdA)
     SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0)
                                | BGCNT_CHARBASE(0)
                                | BGCNT_SCREENBASE(7)
+                               | BGCNT_16COLOR
+                               | BGCNT_TXT256x256);
+    SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1)
+                               | BGCNT_CHARBASE(0)
+                               | BGCNT_SCREENBASE(0)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
     EnableInterrupts(INTR_FLAG_VBLANK);
@@ -789,12 +810,85 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
             FadeOutBGM(8);
 
         if (gTasks[taskIdA].data[TDA_0] == 6840)
+        {
             m4aSongNumStart(MUS_END);
+            gTasks[taskIdA].func = Task_CreditsTheEnd7;
+        }
         
         if (gTasks[taskIdA].data[TDA_0] > 10) //do not allow auto-reset
             gTasks[taskIdA].data[TDA_0] -= 1;
     }
 }
+
+#define scroll gTasks[taskIdA].data[TDF_SCROLL]
+#define scrollDelay gTasks[taskIdA].data[TDF_SCROLL_DELAY]
+#define nextLine gTasks[taskIdA].data[TDF_NEXT_LINE]
+#define windowId 1
+
+static const u8 sText_ClearLine[] = _("{CLEAR 240}");
+static const u8 sText_HelloWorld[] = _("Hello World{CLEAR_TO 160}00");
+
+static void ClearLine(u8 line)
+{
+    AddTextPrinterParameterized(windowId, 1, sText_ClearLine, 0, line*16, -1, NULL);
+}
+
+static void PrintStringVar4(const u8* string, u8 line)
+{
+    u8 color[3];
+    color[0] = 0;
+    color[1] = 1;
+    color[2] = 2;
+    StringExpandPlaceholders(gStringVar4, string);
+    AddTextPrinterParameterized4(windowId, 1, 32, line*16, 1, 0, color, -1, gStringVar4);
+}
+
+static void Task_CreditsTheEnd7(u8 taskIdA)
+{
+    gTasks[taskIdA].data[TDF_SCROLL] = 0;
+    gTasks[taskIdA].data[TDF_SCROLL_DELAY] = 0;
+    gTasks[taskIdA].data[TDF_NEXT_LINE] = 0;
+    
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+    
+    gTasks[taskIdA].func = Task_CreditsTheEnd8;
+}
+
+static void Task_CreditsTheEnd8(u8 taskIdA)
+{
+    if (gTasks[taskIdA].data[TDA_0] == 0 || gMain.newKeys)
+    {
+        FadeOutBGM(4);
+        BeginNormalPaletteFade(0xFFFFFFFF, 8, 0, 16, RGB_WHITEALPHA);
+        gTasks[taskIdA].func = Task_CreditsSoftReset;
+        return;
+    }
+    
+    if (scrollDelay > 0)
+    {
+        scrollDelay--;
+    }
+    else
+    {
+        scrollDelay = 4;
+        scroll++;
+        SetGpuReg(REG_OFFSET_BG0VOFS, scroll);
+    }
+    
+    if (scroll % 16 == 0 && (scroll >> 4) > nextLine)
+    {
+        int line = nextLine;// + 10;
+        // ClearLine(line);
+        PrintStringVar4(sText_HelloWorld, line);
+        CopyWindowToVram(windowId, 2);
+    }
+}
+
+#undef scroll
+#undef scrollDelay
+#undef nextLine
+#undef windowId
 
 static void Task_CreditsSoftReset(u8 taskIdA)
 {
@@ -802,7 +896,7 @@ static void Task_CreditsSoftReset(u8 taskIdA)
         SoftReset(0xFF);
 }
 
-static void sub_8175CE4(void)
+static void ResetGpuAndVram(void)
 {
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
 
@@ -831,6 +925,7 @@ static void sub_8175DA0(u8 taskIdB)
     switch (gTasks[taskIdB].data[TDB_0])
     {
     case 0:
+        gTasks[taskIdB].data[TDB_0] = 10; return; //TESTING HACK DO NOT COMMIT
     case 6:
     case 7:
     case 8:
@@ -1374,18 +1469,18 @@ static void ResetCreditsTasks(u8 taskIdA)
     gUnknown_0203BD28 = 1;
 }
 
-static void sub_8176D1C(u16 arg0, u16 arg1, u16 arg2)
+static void LoadTheEndScreen(u16 arg0, u16 baseAddress, u16 palOff)
 {
     u16 baseTile;
     u16 i;
 
     LZ77UnCompVram(gCreditsCopyrightEnd_Gfx, (void *)(VRAM + arg0));
-    LoadPalette(gIntroCopyright_Pal, arg2, sizeof(gIntroCopyright_Pal));
+    LoadPalette(gIntroCopyright_Pal, palOff, sizeof(gIntroCopyright_Pal));
 
-    baseTile = (arg2 / 16) << 12;
+    baseTile = (palOff / 16) << 12;
 
     for (i = 0; i < 32 * 32; i++)
-        ((u16 *) (VRAM + arg1))[i] = baseTile + 1;
+        ((u16 *) (VRAM + baseAddress))[i] = baseTile + 1;
 }
 
 static u16 sub_8176D78(u8 arg0)
