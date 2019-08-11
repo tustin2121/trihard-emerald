@@ -486,6 +486,7 @@ Route119_EventScript_1F4488:: @ 81F4488
 	removeobject LID_RIVAL_BIKE
 	addobject LID_RIVAL_WALK
 	delay 30
+	markasdialog
 	checkplayergender
 	compare VAR_RESULT, MALE
 	goto_if_eq Route119_EventScript_1F450B
@@ -519,11 +520,10 @@ Route119_EventScript_1F450B:: @ 81F450B
 	end
 Route119_Text_1F49FD: @ 81F49FD
 	.string "May: {PLAYER}!\n"
-	.string "Where were you? I was looking for you!\p"
-	.string "How much stronger have you gotten?\n"
-	.string "Let me check for you!\p"
-	.string "Ready with your Pokémon?\n"
-	.string "Of course you are! Go!$"
+	.string "Oh! I didn't expect to see you still\l"
+	.string "out and about.\p"
+	.string "Uh, hey! Wanna quick battle?\n"
+	.string "Ready? Of course you are! Go!$"
 Route119_EventScript_1F453A:: @ 81F453A
 	trainerbattle_no_intro TRAINER_MAY_6, Route119_Text_1F4A98
 	goto Route119_EventScript_1F456A
@@ -539,30 +539,30 @@ Route119_EventScript_1F455A:: @ 81F455A
 Route119_Text_1F4A98: @ 81F4A98
 	.string "Achah!\n"
 	.string "{PLAYER}, you're strong!\p"
-	.string "I was worried that you might be\n"
-	.string "struggling with your training.$"
+	.string "No wonder they can't catch you…\n"
+	.string "uh, I mean, heh…$"
 Route119_EventScript_1F456A:: @ 81F456A
+	markasdialog
 	msgbox Route119_Text_1F4AF3, MSGBOX_DEFAULT
-	call Route119_EventScript_RivalGiveFlyTM
-	msgbox Route119_Text_1F4B56, MSGBOX_DEFAULT
+	@ call Route119_EventScript_RivalGiveFlyTM
+	@ msgbox Route119_Text_1F4B56, MSGBOX_DEFAULT
 	goto Route119_EventScript_1F460F
 	end
 Route119_Text_1F4AF3: @ 81F4AF3
-	.string "May: But I had absolutely nothing to\n"
-	.string "worry about! Keep it up!\p"
-	.string "And, here! I have a present for you.$"
-Route119_Text_1F4B56: @ 81F4B56
-	.string "May: Use FLY, and your Pokémon will\n"
-	.string "instantly carry you to any town you've\l"
-	.string "already visited.\p"
-	.string "But, to use FLY, you have to get\n"
-	.string "the Gym Badge from Fortree City.\l"
-	.string "That's important, so don't forget.\p"
-	.string "You should FLY home and visit\n"
-	.string "LITTLEROOT for a change.\p"
-	.string "I bet your mom's worried about you,\n"
-	.string "{PLAYER}.\p"
-	.string "Well, let's meet again somewhere!$"
+	.string "May: I had absolutely nothing to\n"
+	.string "worry about! Heh… Keep it up!$"
+@ Route119_Text_1F4B56: @ 81F4B56
+@ 	.string "May: Use FLY, and your Pokémon will\n"
+@ 	.string "instantly carry you to any town you've\l"
+@ 	.string "already visited.\p"
+@ 	.string "But, to use FLY, you have to get\n"
+@ 	.string "the Gym Badge from Fortree City.\l"
+@ 	.string "That's important, so don't forget.\p"
+@ 	.string "You should FLY home and visit\n"
+@ 	.string "LITTLEROOT for a change.\p"
+@ 	.string "I bet your mom's worried about you,\n"
+@ 	.string "{PLAYER}.\p"
+@ 	.string "Well, let's meet again somewhere!$"
 
 Route119_EventScript_1F4585:: @ 81F4585
 	msgbox Route119_Text_1F4C9A, MSGBOX_DEFAULT
@@ -572,11 +572,11 @@ Route119_EventScript_1F4585:: @ 81F4585
 	case 2, Route119_EventScript_1F45D4
 	end
 Route119_Text_1F4C9A: @ 81F4C9A
-	.string "Brendan: {PLAYER}! So this is where\n"
-	.string "you've been looking for Pokémon?\p"
-	.string "Let me see how good you got.\n"
-	.string "I'll test you!\p"
-	.string "Now!\n"
+	.string "Brendan: {PLAYER}!\p"
+	.string "So this is where you've been hiding\n"
+	.string "from the la{PAUSE 10}a{PAUSE 12}a{PAUSE 16}a{PAUSE 6}oud Pokémon!\l" 
+	.string "Those Loudred are booming today!\p"
+	.string "Say! Our eyes met, right?!\n"
 	.string "It's a battle, so battle!$"
 
 Route119_EventScript_1F45B4:: @ 81F45B4
@@ -592,27 +592,27 @@ Route119_EventScript_1F45D4:: @ 81F45D4
 	goto Route119_EventScript_1F45E4
 	end
 Route119_Text_1F4D24: @ 81F4D24
-	.string "Hmm…\n"
-	.string "You've gotten pretty darn decent.$"
+	.string "Darn…\n"
+	.string "You've gotten pretty tough.$"
 
 Route119_EventScript_1F45E4:: @ 81F45E4
+	markasdialog
 	msgbox Route119_Text_1F4D4B, MSGBOX_DEFAULT
-	call Route119_EventScript_RivalGiveFlyTM
-	msgbox Route119_Text_1F4DB5, MSGBOX_DEFAULT
+	@ call Route119_EventScript_RivalGiveFlyTM
+	@ msgbox Route119_Text_1F4DB5, MSGBOX_DEFAULT
 	goto Route119_EventScript_1F460F
 	end
 Route119_Text_1F4D4B: @ 81F4D4B
 	.string "Brendan: I'd say you're good enough\n"
-	.string "to search for Pokémon anywhere.\p"
-	.string "Here, I'll give you this.\n"
-	.string "Try it out.$"
-Route119_Text_1F4DB5: @ 81F4DB5
-	.string "Brendan: Use FLY, and your Pokémon\n"
-	.string "instantly carries you to any town\l"
-	.string "you've already visited.\p"
-	.string "But you need the FORTREE Gym Badge \n"
-	.string "to do that.\p"
-	.string "Anyway, I have to move along.$"
+	.string "to run from… Pokémon… anywhere!\p"
+	.string "Like me right now bye!$"
+@ Route119_Text_1F4DB5: @ 81F4DB5
+@ 	.string "Brendan: Use FLY, and your Pokémon\n"
+@ 	.string "instantly carries you to any town\l"
+@ 	.string "you've already visited.\p"
+@ 	.string "But you need the FORTREE Gym Badge \n"
+@ 	.string "to do that.\p"
+@ 	.string "Anyway, I have to move along.$"
 
 Route119_EventScript_RivalGiveFlyTM:: @ 81F45FF
 	giveitem_std ITEM_TM52
@@ -633,12 +633,16 @@ Route119_EventScript_1F460F:: @ 81F460F
 	compare VAR_TEMP_1, 2
 	call_if_eq Route119_EventScript_1F46EE
 	removeobject LID_RIVAL_BIKE
+	msgbox Route119_Text_1F4DB5, MSGBOX_CDESCRIBE
+	call Route119_EventScript_RivalGiveFlyTM
+	@ clean up
 	setvar VAR_ROUTE119_STATE, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall
 	end
-
+Route119_Text_1F4DB5:
+	.string "Looks like {RIVAL_they} dropped something…$"
 
 Route119_EventScript_1F46DC:: @ 81F46DC
 	applymovement EVENT_OBJ_ID_PLAYER, Route119_Movement_1F471E

@@ -171,6 +171,10 @@ extern const u8 gMatchCallName_ProfBirch[];
 extern const u8 gText_Dad_Pokenav_NoAnswer[];
 extern const u8 gText_Dad_Pokenav_AreYouHurt[];
 extern const u8 gText_Dad_Pokenav_TeamWarn[];
+extern const u8 gText_Dad_Pokenav_LegendaryWarn[];
+extern const u8 gText_Dad_Pokenav_CallYouBack[];
+extern const u8 gText_Dad_Pokenav_Singlehanded[];
+extern const u8 gText_Dad_Pokenav_EverGrande[];
 extern const u8 gMatchCallDesc_Dad[];
 extern const u8 gMatchCallName_Dad[];
 
@@ -334,10 +338,14 @@ static const struct MatchCallStruct3 sProfBirchMatchCallHeader =
 };
 
 static const match_call_text_data_t sDadTextScripts[] = {
-    { gText_Dad_Pokenav_AreYouHurt, 0xffff, FLAG_DAILY_DAD_CALL },
-    { gText_Dad_Pokenav_NoAnswer,   FLAG_DAILY_DAD_CALL, 0xffff },
-    { gText_Dad_Pokenav_TeamWarn,   FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, 0xffff },
+    { gText_Dad_Pokenav_AreYouHurt,     0xffff, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_CallYouBack,    FLAG_BADGE01_GET, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_TeamWarn,       FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FLAG_DAILY_DAD_CALL },
     //TODO more text for various items
+    { gText_Dad_Pokenav_LegendaryWarn,  FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_Singlehanded,   FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_EverGrande,     FLAG_VISITED_EVER_GRANDE_CITY, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_NoAnswer,       FLAG_DAILY_DAD_CALL, 0xffff },
     
     // { gText_Mom_Pokenav_2B227B, 0xffff,              0xffff },
     // { gText_Mom_Pokenav_2B2310, FLAG_DEFEATED_PETALBURG_GYM,          0xffff },
