@@ -4,15 +4,10 @@ FortreeCity_House3_MapScripts:: @ 8217AE7
 FortreeCity_House3_EventScript_217AE8:: @ 8217AE8
 	msgbox FortreeCity_House3_Text_217AFA, MSGBOX_NPC
 	end
-
-FortreeCity_House3_EventScript_217AF1:: @ 8217AF1
-	msgbox FortreeCity_House3_Text_217C22, MSGBOX_NPC
-	end
-
 FortreeCity_House3_Text_217AFA: @ 8217AFA
-	.string "While speaking about PokédexES,\n"
+	.string "While speaking about Pokédexes,\n"
 	.string "I remembered something.\p"
-	.string "I met this TRAINER, STEVEN, when\n"
+	.string "I met this trainer, Steven, when\n"
 	.string "I was searching for rare stones.\p"
 	.string "Hoo, boy, he had some amazing Pokémon\n"
 	.string "with him.\p"
@@ -21,6 +16,10 @@ FortreeCity_House3_Text_217AFA: @ 8217AFA
 	.string "He might even be stronger than the\n"
 	.string "Gym Leader in this town…$"
 
+
+FortreeCity_House3_EventScript_217AF1:: @ 8217AF1
+	msgbox FortreeCity_House3_Text_217C22, MSGBOX_NPC
+	end
 FortreeCity_House3_Text_217C22: @ 8217C22
 	.string "What's that thing you have there?\p"
 	.string "… … … … … …\p"

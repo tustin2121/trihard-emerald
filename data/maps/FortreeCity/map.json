@@ -231,6 +231,27 @@
             "elevation": 0,
             "x": 36,
             "y": 30
+        },
+        {
+            "dest_map": "MAP_FORTREE_CITY_HOUSE6",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 12,
+            "y": 8
+        },
+        {
+            "dest_map": "MAP_FORTREE_CITY_HOUSE7",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 25,
+            "y": 14
+        },
+        {
+            "dest_map": "MAP_FORTREE_CITY_HOUSE8",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 30,
+            "y": 9
         }
     ],
     "weather": "WEATHER_SUNNY"

@@ -5633,3 +5633,9 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/FallarborTown_ContestHall/scripts.inc"
 
 	.include "data/maps/MirageTowerLayout/scripts.inc"
+
+	.include "data/maps/FortreeCity_House6/scripts.inc"
+
+	.include "data/maps/FortreeCity_House7/scripts.inc"
+
+	.include "data/maps/FortreeCity_House8/scripts.inc"
