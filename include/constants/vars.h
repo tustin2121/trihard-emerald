@@ -233,7 +233,7 @@
 #define VAR_SOOTOPOLIS_STATE                 0x40D8
 #define VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 0x40D9
 #define VAR_0x40DA                           0x40DA
-#define VAR_UNUSED_0x40DB                    0x40DB // Unused Var
+#define VAR_BANNED_SLATEPORT_MART            0x40DB // Trihard
 #define VAR_UNUSED_0x40DC                    0x40DC // Unused Var
 #define VAR_EVENT_PICHU_SLOT                 0x40DD
 #define VAR_NEVER_READ_0x40DE                0x40DE // Var is written to, but never read

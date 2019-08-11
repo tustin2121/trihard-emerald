@@ -244,9 +244,7 @@
 #define FLAG_RECEIVED_TM36                                    0xE6
 #define FLAG_RECEIVED_TM05                                    0xE7
 #define FLAG_RECEIVED_TM19                                    0xE8
-
 #define FLAG_UNUSED_0x0E9                                     0xE9 // Unused Flag
-
 #define FLAG_RECEIVED_TM44                                    0xEA
 #define FLAG_RECEIVED_TM45                                    0xEB
 #define FLAG_RECEIVED_GLASS_ORNAMENT                          0xEC
@@ -1095,7 +1093,7 @@
 #define FLAG_ITEM_ROUTE_111_ELIXIR                                  0x476
 #define FLAG_ITEM_ROUTE_113_HYPER_POTION                            0x477
 #define FLAG_ITEM_ROUTE_115_HEAL_POWDER                             0x478
-#define FLAG_UNUSED_0x479                                           0x479 // Unused Flag
+#define FLAG_ITEM_STOLEN_FALLARBOR_MART                             0x479 // Trihard
 #define FLAG_ITEM_ROUTE_116_POTION                                  0x47A
 #define FLAG_ITEM_ROUTE_119_ELIXIR_2                                0x47B
 #define FLAG_ITEM_ROUTE_120_REVIVE                                  0x47C
