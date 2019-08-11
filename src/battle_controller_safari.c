@@ -23,6 +23,7 @@
 #include "constants/battle_anim.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "constants/trainers.h"
 
 // this file's functions
 static void SafariHandleGetMonData(void);
@@ -351,12 +352,13 @@ static void SafariHandleReturnMonToBall(void)
 
 static void SafariHandleDrawTrainerPic(void)
 {
-    DecompressTrainerBackPic(gSaveBlock2Ptr->playerForm, gActiveBattler);
-    SetMultiuseSpriteTemplateToTrainerBack(gSaveBlock2Ptr->playerForm, GetBattlerPosition(gActiveBattler));
+    // DecompressTrainerBackPic(gSaveBlock2Ptr->playerForm + TRAINER_BACK_PIC_PROTAG_MALE_1, gActiveBattler);
+    DecompressTrainerBackPalette(gSaveBlock2Ptr->playerForm + TRAINER_BACK_PIC_PROTAG_MALE_1, gActiveBattler);
+    SetMultiuseSpriteTemplateToTrainerBack(gSaveBlock2Ptr->playerForm + TRAINER_BACK_PIC_PROTAG_MALE_1, GetBattlerPosition(gActiveBattler));
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(
       &gMultiuseSpriteTemplate,
       80,
-      (8 - gTrainerBackPicCoords[gSaveBlock2Ptr->playerForm].size) * 4 + 80,
+      (8 - gTrainerBackPicCoords[gSaveBlock2Ptr->playerForm + TRAINER_BACK_PIC_PROTAG_MALE_1].size) * 4 + 80,
       30);
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = 240;

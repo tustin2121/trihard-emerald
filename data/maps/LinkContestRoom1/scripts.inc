@@ -441,18 +441,19 @@ LinkContestRoom1_EventScript_23BEAC:: @ 823BEAC
 	end
 
 LilycoveCity_ContestLobby_EventScript_23BEB6:: @ 823BEB6
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_23BECE
-	compare VAR_RESULT, FEMALE
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_23BED4
+	@ checkplayergender
+	@ compare VAR_RESULT, MALE
+	@ goto_if_eq LilycoveCity_ContestLobby_EventScript_23BECE
+	@ compare VAR_RESULT, FEMALE
+	@ goto_if_eq LilycoveCity_ContestLobby_EventScript_23BED4
+	callnative SetupPlayerSprite
 	return
 
-LilycoveCity_ContestLobby_EventScript_23BECE:: @ 823BECE
-	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
-	return
+@ LilycoveCity_ContestLobby_EventScript_23BECE:: @ 823BECE
+@ 	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
+@ 	return
 
-LilycoveCity_ContestLobby_EventScript_23BED4:: @ 823BED4
-	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
-	return
+@ LilycoveCity_ContestLobby_EventScript_23BED4:: @ 823BED4
+@ 	setvar VAR_OBJ_GFX_ID_3, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
+@ 	return
 
