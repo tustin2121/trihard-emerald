@@ -65,17 +65,17 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_219808:: @ 8219808
 	applymovement 1, Common_Movement_FacePlayer
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_LilycoveMuseum_2F_Movement_219861
 	waitmovement 0
-	msgbox LilycoveCity_LilycoveMuseum_2F_Text_2199EB, MSGBOX_SIGN
+	msgbox LilycoveCity_LilycoveMuseum_2F_Text_2199EB, MSGBOX_CDIALOG
 	applymovement 1, LilycoveCity_LilycoveMuseum_2F_Movement_219863
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_LilycoveMuseum_2F_Movement_219863
 	waitmovement 0
-	msgbox LilycoveCity_LilycoveMuseum_2F_Text_219A0D, MSGBOX_SIGN
+	msgbox LilycoveCity_LilycoveMuseum_2F_Text_219A0D, MSGBOX_CDIALOG
 	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_LilycoveMuseum_2F_Movement_219861
 	waitmovement 0
-	msgbox LilycoveCity_LilycoveMuseum_2F_Text_219BC4, MSGBOX_SIGN
+	msgbox LilycoveCity_LilycoveMuseum_2F_Text_219BC4, MSGBOX_CDIALOG
 	copyvar VAR_LILYCOVE_MUSEUM_2F_STATE, 0x1
 	releaseall
 	end
@@ -326,4 +326,3 @@ LilycoveCity_LilycoveMuseum_2F_Text_21A1A8: @ 821A1A8
 	.string "These paintings are of your Pokémon.\p"
 	.string "Isn't that just the ultimate joy for\n"
 	.string "a TRAINER?$"
-

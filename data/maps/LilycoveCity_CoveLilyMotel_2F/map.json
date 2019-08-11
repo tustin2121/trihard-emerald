@@ -91,19 +91,6 @@
             "trainer_type": "0",
             "x": 4,
             "y": 4
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_LILCOVE_MOTEL_SCOTT",
-            "graphics_id": "EVENT_OBJ_GFX_SCOTT",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-            "script": "LilycoveCity_CoveLilyMotel_2F_EventScript_21874D",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 1,
-            "y": 7
         }
     ],
     "region_map_section": "MAPSEC_LILYCOVE_CITY",

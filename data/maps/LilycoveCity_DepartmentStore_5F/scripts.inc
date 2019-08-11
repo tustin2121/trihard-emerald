@@ -16,6 +16,7 @@ LilycoveCity_DepartmentStore_5F_EventScript_21FF9A:: @ 821FF9A
 LilycoveCity_DepartmentStore_5F_EventScript_21FFA6:: @ 821FFA6
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Dolls
@@ -29,7 +30,7 @@ LilycoveCity_DepartmentStore_5F_Pokemart_Dolls: @ 821FFC0
 	.2byte DECOR_PIKACHU_DOLL
 	.2byte DECOR_MARILL_DOLL
 	.2byte DECOR_JIGGLYPUFF_DOLL
-	.2byte DECOR_DUSKULL_DOLL 
+	.2byte DECOR_DUSKULL_DOLL
 	.2byte DECOR_WYNAUT_DOLL
 	.2byte DECOR_BALTOY_DOLL
 	.2byte DECOR_KECLEON_DOLL
@@ -44,6 +45,7 @@ LilycoveCity_DepartmentStore_5F_Pokemart_Dolls: @ 821FFC0
 LilycoveCity_DepartmentStore_5F_EventScript_21FFDC:: @ 821FFDC
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Cushions
@@ -69,6 +71,7 @@ LilycoveCity_DepartmentStore_5F_Pokemart_Cushions: @ 821FFF4
 LilycoveCity_DepartmentStore_5F_EventScript_22000A:: @ 822000A
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Posters
@@ -94,6 +97,7 @@ LilycoveCity_DepartmentStore_5F_Pokemart_Posters: @ 8220024
 LilycoveCity_DepartmentStore_5F_EventScript_22003A:: @ 822003A
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration2 LilycoveCity_DepartmentStore_5F_Pokemart_Mats
@@ -133,6 +137,7 @@ LilycoveCity_DepartmentStore_5F_EventScript_220075:: @ 8220075
 	end
 
 LilycoveCity_DepartmentStore_5F_EventScript_22009C:: @ 822009C
+	markasdialog
 	msgbox LilycoveCity_DepartmentStore_5F_Text_22016B, MSGBOX_DEFAULT
 	closemessage
 	releaseall
@@ -160,7 +165,7 @@ LilycoveCity_DepartmentStore_5F_Text_220122: @ 8220122
 	.string "so I'm getting a cute DOLL instead.$"
 
 LilycoveCity_DepartmentStore_5F_Text_22016B: @ 822016B
-	.string "They sell many cute MATS here.\p"
+	.string "They sell many cute mats here.\p"
 	.string "I wonder which one I should get?\n"
 	.string "Maybe I'll buy them all…$"
 

@@ -614,7 +614,7 @@ LilycoveCity_ContestLobby_EventScript_21A798:: @ 821A798
 	lock
 	faceplayer
 	markasdialog
-	msgbox LilycoveCity_ContestLobby_Text_2C427C, MSGBOX_DEFAULT
+	msgbox LilycoveCity_ContestLobby_Text_2C427C, MSGBOX_NPC
 	goto LilycoveCity_ContestLobby_EventScript_21A7F9
 	end
 LilycoveCity_ContestLobby_Text_2C427C: @ 82C427C
@@ -1055,7 +1055,7 @@ LilycoveCity_ContestLobby_EventScript_21ACF1:: @ 821ACF1
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_21AD06
-	msgbox LilycoveCity_ContestLobby_Text_21AD10, MSGBOX_DEFAULT
+	msgbox LilycoveCity_ContestLobby_Text_21AD10, MSGBOX_NPC
 	release
 	end
 
@@ -1127,9 +1127,3 @@ LilycoveCity_ContestLobby_Text_21B132: @ 821B132
 	.string "I will hang this in my own house.\p"
 	.string "I'll just have to try harder next time.\n"
 	.string "Well, be seeing you.$"
-
-
-
-
-
-
