@@ -21,6 +21,7 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_22022B:: @ 822022B
 LilycoveCity_DepartmentStoreRooftop_EventScript_22022F:: @ 822022F
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration LilycoveCity_DepartmentStoreRooftop_PokemartDecor_220248
@@ -51,6 +52,7 @@ LilycoveCity_DepartmentStoreRooftop_PokemartDecor_220248: @ 8220248
 LilycoveCity_DepartmentStoreRooftop_EventScript_220268:: @ 8220268
 	lock
 	faceplayer
+	markasdialog
 	getpricereduction 3
 	compare VAR_RESULT, 1
 	call_if_eq LilycoveCity_DepartmentStoreRooftop_EventScript_220282
@@ -59,6 +61,7 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_220268:: @ 8220268
 	end
 
 LilycoveCity_DepartmentStoreRooftop_EventScript_220282:: @ 8220282
+	markasdialog
 	msgbox LilycoveCity_DepartmentStoreRooftop_Text_2204C9, MSGBOX_DEFAULT
 	release
 	end

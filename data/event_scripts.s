@@ -5292,9 +5292,10 @@ FortreeCity_House2_EventScript_2C817C:: @ 82C817C
 	release
 	end
 
-LilycoveCity_DepartmentStoreRooftop_EventScript_2C8186:: @ 82C8186
+LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteLady:: @ 82C8186
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE, LilycoveCity_DepartmentStoreRooftop_EventScript_2C81E4
 	msgbox LilycoveCity_DepartmentStoreRooftop_Text_2C77C6, MSGBOX_YESNO
 	compare VAR_RESULT, 0

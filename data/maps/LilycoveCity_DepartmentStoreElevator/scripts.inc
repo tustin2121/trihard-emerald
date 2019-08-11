@@ -4,6 +4,7 @@ LilycoveCity_DepartmentStoreElevator_MapScripts:: @ 8220623
 LilycoveCity_DepartmentStoreElevator_EventScript_220624:: @ 8220624
 	lock
 	faceplayer
+	markasdialog
 	setvar VAR_0x8004, 0
 	call_if_unset FLAG_TEMP_2, LilycoveCity_DepartmentStoreElevator_EventScript_2207FC
 	copyvar VAR_0x8005, VAR_DEPT_STORE_FLOOR

@@ -8,6 +8,7 @@ LilycoveCity_DepartmentStore_1F_EventScript_21F693:: @ 821F693
 LilycoveCity_DepartmentStore_1F_EventScript_21F69C:: @ 821F69C
 	lock
 	faceplayer
+	markasdialog
 	dotimebasedevents
 	compare VAR_POKELOT_PRIZE_ITEM, 0
 	goto_if_ne LilycoveCity_DepartmentStore_1F_EventScript_21F7F7
