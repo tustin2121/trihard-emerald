@@ -1122,7 +1122,7 @@
 
 #define FLAG_HIDE_PETALBURG_CENTER_LOGAN                            0x493 // Trihard
 #define FLAG_ITEM_STOLEN_MARILL_DOLL                                0x494 // Trihard
-#define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
+#define FLAG_ITEM_STOLEN_FROM_PHEOBE                                0x495 // Trihard
 #define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
 #define FLAG_UNUSED_0x498                                           0x498 // Unused Flag

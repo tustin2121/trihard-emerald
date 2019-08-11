@@ -1010,6 +1010,7 @@ SlateportCity_EventScript_LoganAfterMuseum:
 	waitmovement EVENT_OBJ_ID_PLAYER
 	waitmovement EVENT_OBJ_ID_CAMERA
 	special RemoveCameraObject
+	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_LoganAfterMuseum_PlayerWatch
 	applymovement LID_LOGAN, SlateportCity_Movement_LoganAfterMuseum_LoganRunOff
 	waitmovement 0
