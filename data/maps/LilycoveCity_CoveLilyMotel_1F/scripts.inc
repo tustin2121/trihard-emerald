@@ -3,6 +3,7 @@ LilycoveCity_CoveLilyMotel_1F_MapScripts:: @ 8218188
 
 LilycoveCity_CoveLilyMotel_1F_EventScript_218189:: @ 8218189
 	lockall
+	markasdialog
 	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_CoveLilyMotel_1F_EventScript_2181EA
 	goto_if_set FLAG_BADGE07_GET, LilycoveCity_CoveLilyMotel_1F_EventScript_2181C3
 	msgbox LilycoveCity_CoveLilyMotel_1F_Text_218264, MSGBOX_DEFAULT
@@ -16,6 +17,7 @@ LilycoveCity_CoveLilyMotel_1F_EventScript_218189:: @ 8218189
 	end
 
 LilycoveCity_CoveLilyMotel_1F_EventScript_2181C3:: @ 82181C3
+	markasdialog
 	msgbox LilycoveCity_CoveLilyMotel_1F_Text_2183C3, MSGBOX_DEFAULT
 	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
@@ -27,6 +29,7 @@ LilycoveCity_CoveLilyMotel_1F_EventScript_2181C3:: @ 82181C3
 	end
 
 LilycoveCity_CoveLilyMotel_1F_EventScript_2181EA:: @ 82181EA
+	markasdialog
 	msgbox LilycoveCity_CoveLilyMotel_1F_Text_218544, MSGBOX_DEFAULT
 	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
@@ -126,4 +129,3 @@ LilycoveCity_CoveLilyMotel_1F_Text_2185F4: @ 82185F4
 	.string "so I guess they must make games.\p"
 	.string "Uh-oh, I'd better get working on\n"
 	.string "their dinner!$"
-

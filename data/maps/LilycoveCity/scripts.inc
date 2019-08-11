@@ -141,6 +141,7 @@ LilycoveCity_Text_1E473D: @ 81E473D
 LilycoveCity_EventScript_1E2BD8:: @ 81E2BD8
 	lock
 	faceplayer
+	markasdialog
 	dotimebasedevents
 	goto_if_set FLAG_DAILY_LILYCOVE_RECEIVED_BERRY, LilycoveCity_EventScript_1E2C18
 	msgbox LilycoveCity_Text_2A7244, MSGBOX_DEFAULT
@@ -374,6 +375,7 @@ LilycoveCity_Text_1E49F4: @ 81E49F4
 LilycoveCity_EventScript_1E302D:: @ 81E302D
 	lock
 	faceplayer
+	markasdialog
 	msgbox LilycoveCity_Text_1E4774, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	call_if_eq LilycoveCity_EventScript_1E304F
@@ -713,7 +715,7 @@ LilycoveCity_EventScript_1E2FE2:: @ 81E2FE2
 	return
 LilycoveCity_Text_1E3876: @ 81E3876
 	.string "{PLAYER}, what are you going to do?\p"
-	.string "Collect all the Gym BadgeS and take\n"
+	.string "Collect all the Gym Badges and take\n"
 	.string "the Pokémon League challenge?\p"
 	.string "Maybe I'll do that, too…\p"
 	.string "Well, anyway, hang in there!$"
@@ -763,4 +765,3 @@ LilycoveCity_EventScript_1E3006:: @ 81E3006
 	setflag FLAG_MET_RIVAL_LILYCOVE
 	release
 	end
-

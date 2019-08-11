@@ -4,6 +4,7 @@ LilycoveCity_CoveLilyMotel_2F_MapScripts:: @ 82186D2
 LilycoveCity_CoveLilyMotel_2F_EventScript_2186D3:: @ 82186D3
 	lock
 	faceplayer
+	markasdialog
 	call_if_unset FLAG_TEMP_2, LilycoveCity_CoveLilyMotel_2F_EventScript_2186F9
 	call_if_set FLAG_TEMP_2, LilycoveCity_CoveLilyMotel_2F_EventScript_21870F
 	specialvar VAR_RESULT, HasAllHoennMons
@@ -55,6 +56,7 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_218744:: @ 8218744
 LilycoveCity_CoveLilyMotel_2F_EventScript_21874D:: @ 821874D
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MET_SCOTT_IN_LILYCOVE, LilycoveCity_CoveLilyMotel_2F_EventScript_21876A
 	msgbox LilycoveCity_CoveLilyMotel_2F_Text_218ACF, MSGBOX_DEFAULT
 	addvar VAR_SCOTT_STATE, 1

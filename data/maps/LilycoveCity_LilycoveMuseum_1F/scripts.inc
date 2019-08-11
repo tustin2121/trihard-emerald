@@ -8,6 +8,7 @@ LilycoveCity_LilycoveMuseum_1F_EventScript_218CB9:: @ 8218CB9
 LilycoveCity_LilycoveMuseum_1F_EventScript_218CC2:: @ 8218CC2
 	lockall
 	applymovement 2, Common_Movement_FacePlayer
+	markasdialog
 	message LilycoveCity_LilycoveMuseum_1F_Text_218EBC
 	waitmessage
 	multichoice 20, 8, 16, 1
@@ -293,4 +294,3 @@ LilycoveCity_LilycoveMuseum_1F_Text_21967A: @ 821967A
 	.string "No, great for the Hoenn region!\p"
 	.string "This is what I've heard--a lone TRAINER\n"
 	.string "procured all the paintings upstairs.$"
-
