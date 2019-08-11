@@ -1011,15 +1011,44 @@ const struct SpriteFrameImage gEventObjectPicTable_ProtagGirl4_Watering[] = {
     overworld_frame(gEventObjectPic_ProtagGirl4_Watering, 4, 4, 5),
 };
 
-
-
-
 const struct SpriteFrameImage gEventObjectPicTable_ProtagBoy_Decorating[] = {
     obj_frame_tiles(gEventObjectPic_ProtagBoy_Decorating),
 };
 
 const struct SpriteFrameImage gEventObjectPicTable_ProtagGirl_Decorating[] = {
     obj_frame_tiles(gEventObjectPic_ProtagGirl_Decorating),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ProtagBoy1_Decorating[] = {
+    obj_frame_tiles(gEventObjectPic_ProtagBoy1_Decorating),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ProtagGirl1_Decorating[] = {
+    obj_frame_tiles(gEventObjectPic_ProtagGirl1_Decorating),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ProtagBoy2_Decorating[] = {
+    obj_frame_tiles(gEventObjectPic_ProtagBoy2_Decorating),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ProtagGirl2_Decorating[] = {
+    obj_frame_tiles(gEventObjectPic_ProtagGirl2_Decorating),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ProtagBoy3_Decorating[] = {
+    obj_frame_tiles(gEventObjectPic_ProtagBoy3_Decorating),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ProtagGirl3_Decorating[] = {
+    obj_frame_tiles(gEventObjectPic_ProtagGirl3_Decorating),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ProtagBoy4_Decorating[] = {
+    obj_frame_tiles(gEventObjectPic_ProtagBoy4_Decorating),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_ProtagGirl4_Decorating[] = {
+    obj_frame_tiles(gEventObjectPic_ProtagGirl4_Decorating),
 };
 
 

@@ -73,6 +73,15 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl4_Wateri
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy_Decorating;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl_Decorating;
 
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy1_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl1_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy2_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl2_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy3_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl3_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy4_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl4_Decorating;
+
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_RivalBrendanNormal;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_RivalBrendanMachBike;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_RivalBrendanAcroBike;
@@ -412,14 +421,14 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     [EVENT_OBJ_GFX_LEAF]                    = &gEventObjectGraphicsInfo_Leaf,
     [EVENT_OBJ_GFX_LINK_RS_BRENDAN]         = &gEventObjectGraphicsInfo_RubySapphireBrendan,
     [EVENT_OBJ_GFX_LINK_RS_MAY]             = &gEventObjectGraphicsInfo_RubySapphireMay,
-    [EVENT_OBJ_GFX_RESERVED_MALE4]          = &gEventObjectGraphicsInfo_LinkBrendan,
-    [EVENT_OBJ_GFX_RESERVED_MALE5]          = &gEventObjectGraphicsInfo_LinkBrendan,
-    [EVENT_OBJ_GFX_RESERVED_MALE6]          = &gEventObjectGraphicsInfo_LinkBrendan,
-    [EVENT_OBJ_GFX_RESERVED_MALE7]          = &gEventObjectGraphicsInfo_LinkBrendan,
-    [EVENT_OBJ_GFX_RESERVED_FEMALE4]        = &gEventObjectGraphicsInfo_LinkMay,
-    [EVENT_OBJ_GFX_RESERVED_FEMALE5]        = &gEventObjectGraphicsInfo_LinkMay,
-    [EVENT_OBJ_GFX_RESERVED_FEMALE6]        = &gEventObjectGraphicsInfo_LinkMay,
-    [EVENT_OBJ_GFX_RESERVED_FEMALE7]        = &gEventObjectGraphicsInfo_LinkMay,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_BOY1]  = &gEventObjectGraphicsInfo_ProtagBoy1_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL1] = &gEventObjectGraphicsInfo_ProtagGirl1_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_BOY2]  = &gEventObjectGraphicsInfo_ProtagBoy2_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL2] = &gEventObjectGraphicsInfo_ProtagGirl2_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_BOY3]  = &gEventObjectGraphicsInfo_ProtagBoy3_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL3] = &gEventObjectGraphicsInfo_ProtagGirl3_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_BOY4]  = &gEventObjectGraphicsInfo_ProtagBoy4_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL4] = &gEventObjectGraphicsInfo_ProtagGirl4_Decorating,
     
     [EVENT_OBJ_GFX_NINJA_BOY]               = &gEventObjectGraphicsInfo_NinjaBoy,
     [EVENT_OBJ_GFX_TWIN]                    = &gEventObjectGraphicsInfo_Twin,

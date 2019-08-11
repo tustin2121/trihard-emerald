@@ -39,3 +39,17 @@ DewfordTown_PokemonCenter_2F_EventScript_SleepingBoysBag::
 	end
 DewfordTown_PokemonCenter_2F_Text_SleepingBoysBag:
 	.string "He's not gonna miss those…$"
+
+
+
+DewfordTown_PokemonCenter_2F_EventScript_MarillDoll::
+	lock
+	msgbox DewfordTown_PokemonCenter_2F_Text_MarillDoll, MSGBOX_CDESCRIBE
+	givedecoration_std DECOR_MARILL_DOLL
+	removeobject THIS_EVENT
+	release
+	end
+DewfordTown_PokemonCenter_2F_Text_MarillDoll:
+	.string "Someone left behind a Marill Doll?\p"
+	.string "…\p"
+	.string "Yoink.$"
