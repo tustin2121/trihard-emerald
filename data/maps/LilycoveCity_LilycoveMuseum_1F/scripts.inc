@@ -2,7 +2,9 @@ LilycoveCity_LilycoveMuseum_1F_MapScripts:: @ 8218CB8
 	.byte 0
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218CB9:: @ 8218CB9
-	msgbox LilycoveCity_LilycoveMuseum_1F_Text_218E4B, MSGBOX_SIGN
+	lock
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_218E4B, MSGBOX_CDIALOG
+	release
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218CC2:: @ 8218CC2
@@ -31,12 +33,13 @@ LilycoveCity_LilycoveMuseum_1F_EventScript_218CF5:: @ 8218CF5
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218D14:: @ 8218D14
-	msgbox LilycoveCity_LilycoveMuseum_1F_Text_218FF8, MSGBOX_SIGN
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_218FF8, MSGBOX_CDIALOG
 	releaseall
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218D1E:: @ 8218D1E
-	msgbox LilycoveCity_LilycoveMuseum_1F_Text_219035, MSGBOX_SIGN
+	lock
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_219035, MSGBOX_CDIALOG
 	applymovement 2, LilycoveCity_LilycoveMuseum_1F_Movement_218D99
 	waitmovement 0
 	removeobject 2
@@ -44,6 +47,7 @@ LilycoveCity_LilycoveMuseum_1F_EventScript_218D1E:: @ 8218D1E
 	case 2, LilycoveCity_LilycoveMuseum_1F_EventScript_218D5A
 	case 3, LilycoveCity_LilycoveMuseum_1F_EventScript_218D6F
 	case 4, LilycoveCity_LilycoveMuseum_1F_EventScript_218D84
+	release
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218D5A:: @ 8218D5A
@@ -135,11 +139,15 @@ LilycoveCity_LilycoveMuseum_1F_EventScript_218DFE:: @ 8218DFE
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218E07:: @ 8218E07
-	msgbox LilycoveCity_LilycoveMuseum_1F_Text_2194BA, MSGBOX_SIGN
+	lock
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_2194BA, MSGBOX_CDIALOG
+	release
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218E10:: @ 8218E10
-	msgbox LilycoveCity_LilycoveMuseum_1F_Text_2194E1, MSGBOX_SIGN
+	lock
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_2194E1, MSGBOX_CDIALOG
+	release
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218E19:: @ 8218E19

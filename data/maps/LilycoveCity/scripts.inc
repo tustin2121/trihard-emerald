@@ -215,7 +215,7 @@ LilycoveCity_Text_1E3F05: @ 81E3F05
 	.string "The Hoenn region is beautiful with\n"
 	.string "all its water and verdant nature.\p"
 	.string "And all the Pokémon! They're all\n"
-	.string "different from the ones we have!"
+	.string "different from the ones we have!$"
 
 
 LilycoveCity_EventScript_1E2C53:: @ 81E2C53
