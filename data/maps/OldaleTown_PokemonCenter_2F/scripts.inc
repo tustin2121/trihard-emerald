@@ -49,3 +49,4 @@ OldaleTown_PokemonCenter_2F_Text_MudkipDoll:
 	.string "Someone left behind a Mudkip Doll?\p"
 	.string "…\p"
 	.string "Yoink.$"
+

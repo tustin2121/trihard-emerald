@@ -74,5 +74,8 @@ DewfordTown_PokemonCenter_1F_GuyWithHeadphones_Text_Delivery3:
 	.string "Ha ha, thank you so much for delivering\n"
 	.string "this to me.\p"
 	.string "I'm really glad that she wrote me\n"
-	.string "this letter.$"
+	.string "this letter.\p"
+	.string "Hm? What's with that look?\p"
+	.string "Reward? Pfft, no. Go ask her.\n"
+	.string "I didn't promise you jack.$"
 
