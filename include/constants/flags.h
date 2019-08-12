@@ -443,7 +443,7 @@
 #define FLAG_REMATCH_GLACIA                                   0x1A7
 #define FLAG_REMATCH_DRAKE                                    0x1A8
 #define FLAG_REMATCH_WALLACE                                  0x1A9
-#define FLAG_UNUSED_0x1AA                                     0x1AA // Unused Flag
+#define FLAG_ITEM_STOLEN_LILYCOVE_FANCLUB                     0x1AA // TriHard Emerald
 #define FLAG_UNUSED_0x1AB                                     0x1AB // Unused Flag
 #define FLAG_DEFEATED_DEOXYS                                  0x1AC
 #define FLAG_BATTLED_DEOXYS                                   0x1AD
