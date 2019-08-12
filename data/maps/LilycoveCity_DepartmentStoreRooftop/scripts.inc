@@ -49,11 +49,6 @@ LilycoveCity_DepartmentStoreRooftop_PokemartDecor_220248: @ 8220248
 	release
 	end
 
-LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteLady::
-	markasdialog
-	goto LilycoveCity_DepartmentStoreRooftop_EventScript_2C8186
-	end
-
 LilycoveCity_DepartmentStoreRooftop_EventScript_220268:: @ 8220268
 	lock
 	faceplayer
