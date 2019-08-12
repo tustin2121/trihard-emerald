@@ -490,6 +490,7 @@ LilycoveCity_EventScript_Rival:: @ 81E2DDE
 
 LilycoveCity_EventScript_1E2DF8:: @ 81E2DF8
 	playbgm MUS_GIRL_SUP, 1
+	setyesnotext gYN_Fine2, gYN_UgNo
 	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_1E2E48
 	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_1E2E51
 	compare VAR_RESULT, 0
@@ -502,14 +503,14 @@ LilycoveCity_EventScript_1E2DF8:: @ 81E2DF8
 	end
 LilycoveCity_Text_1E3234: @ 81E3234
 	.string "May: The Pokémon I raised won't be\n"
-	.string "beaten by your Pokémon, {PLAYER}!$"
+	.string "beaten by you, {PLAYER}!$"
 
 LilycoveCity_EventScript_1E2E48:: @ 81E2E48
 	msgbox LilycoveCity_Text_1E31F5, MSGBOX_YESNO
 	return
 LilycoveCity_Text_1E31F5: @ 81E31F5
-	.string "May: Come on, battle with me, so I can\n"
-	.string "check out your Pokémon!$"
+	.string "May: Come on, battle with me, or\n"
+	.string "are you too scared?!$"
 
 LilycoveCity_EventScript_1E2E51:: @ 81E2E51
 	msgbox LilycoveCity_Text_1E3061, MSGBOX_YESNO
@@ -521,8 +522,8 @@ LilycoveCity_Text_1E3061: @ 81E3061
 	.string "posters.\p"
 	.string "Of course, I've also caught a lot of\n"
 	.string "Pokémon, and I'm raising them\l"
-	.string "properly, too.\p"
-	.string "Actually, I'm more worried if you're\n"
+	.string "{BOLD}properly{END} too, ya know.\p"
+	.string "I'm betting you're worried if you're\n"
 	.string "raising Pokémon properly, {PLAYER}.\p"
 	.string "I'll battle with you, so you can show\n"
 	.string "me your Pokémon, {PLAYER}.$"
@@ -536,13 +537,13 @@ LilycoveCity_EventScript_1E2E5A:: @ 81E2E5A
 	end
 LilycoveCity_Text_1E318D: @ 81E318D
 	.string "May: Oh, why? {PLAYER}, haven't you\n"
-	.string "been raising your Pokémon?\p"
-	.string "That's not a very good showing as a\n"
-	.string "trainer…$"
+	.string "been raising your Pokémon right?\p"
+	.string "Do you not know how…?$"
 
 
 LilycoveCity_EventScript_1E2E6B:: @ 81E2E6B
 	playbgm MUS_BOY_SUP, 1
+	setyesnotext gYN_FOff, gYN_UgNo
 	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_1E2EBB
 	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_1E2EC4
 	compare VAR_RESULT, 0
@@ -554,26 +555,25 @@ LilycoveCity_EventScript_1E2E6B:: @ 81E2E6B
 	case 2, LilycoveCity_EventScript_1E2F2E
 	end
 LilycoveCity_Text_1E373C: @ 81E373C
-	.string "Brendan: Aww, but you know I'm not\n"
-	.string "going to lose to no {PLAYER}.$"
+	.string "Brendan: Bring it!!$"
 
 LilycoveCity_EventScript_1E2EBB:: @ 81E2EBB
 	msgbox LilycoveCity_Text_1E36FA, MSGBOX_YESNO
 	return
 LilycoveCity_Text_1E36FA: @ 81E36FA
-	.string "Brendan: Want to battle to see who's\n"
-	.string "been raising Pokémon better?$"
+	.string "Brendan: I know I touched a nerve.\n"
+	.string "I know you wanna fight me!$"
 
 LilycoveCity_EventScript_1E2EC4:: @ 81E2EC4
 	msgbox LilycoveCity_Text_1E3608, MSGBOX_YESNO
 	return
 LilycoveCity_Text_1E3608: @ 81E3608
-	.string "Brendan: Oh, hey, it's {PLAYER}.\p"
-	.string "I'm running an errand for my dad.\n"
-	.string "No, I'm not buying any dolls.\p"
-	.string "Anyways, it's been a while.\p"
-	.string "Want to have a battle to see who's been\n"
-	.string "raising Pokémon better?$"
+	.string "Brendan: Oh, hey, it's {PLAYER}.\n"
+	.string "I'm running an errand for my dad.\p"
+	.string "Does your dad ever send you on\n"
+	.string "errands for him? Or is he never\l"
+	.string "around enough?\p"
+	.string "That's right, you wanna fight?!$"
 
 LilycoveCity_EventScript_1E2ECD:: @ 81E2ECD
 	setflag FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE
@@ -584,7 +584,7 @@ LilycoveCity_EventScript_1E2ECD:: @ 81E2ECD
 	end
 LilycoveCity_Text_1E36BF: @ 81E36BF
 	.string "Brendan: Oh, what's the matter?\n"
-	.string "Don't have the confidence?$"
+	.string "Don't have the confidence?!$"
 
 
 LilycoveCity_EventScript_1E2EDE:: @ 81E2EDE
@@ -603,8 +603,8 @@ LilycoveCity_Text_1E3275: @ 81E3275
 	.string "… … … … … … … …\p"
 	.string "I remember the battle I had with you,\n"
 	.string "{PLAYER}, on Route 103.\p"
-	.string "That battle helped you become this\n"
-	.string "strong, {PLAYER}, didn't it?$"
+	.string "That battle helped you become…\n"
+	.string "{BOLD}this{END}, {PLAYER}, didn't it?$"
 
 
 LilycoveCity_EventScript_1E2F0E:: @ 81E2F0E
@@ -621,134 +621,62 @@ LilycoveCity_EventScript_1E2F2E:: @ 81E2F2E
 	end
 LilycoveCity_Text_1E3777: @ 81E3777
 	.string "Humph…\n"
-	.string "You've done a lot of raising.\p"
-	.string "That stings a bit--I had a head start\n"
-	.string "on you as a TRAINER…$"
+	.string "You're no match for me.\p"
+	.string "That stings a bit for me to say…$"
 
 
 LilycoveCity_EventScript_1E2F3E:: @ 81E2F3E
-	msgbox LilycoveCity_Text_1E32FB, MSGBOX_DEFAULT
-	setvar VAR_RESULT, 0
-	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_1E2F76
-	compare VAR_RESULT, 0
-	call_if_eq LilycoveCity_EventScript_1E2F86
-	compare VAR_RESULT, 1
-	call_if_eq LilycoveCity_EventScript_1E2F8F
+	msgbox LilycoveCity_Text_1E32FB, MSGBOX_CDIALOG
+	@ setvar VAR_RESULT, 0
+	@ call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_1E2F76
+	@ compare VAR_RESULT, 0
+	@ call_if_eq LilycoveCity_EventScript_1E2F86
+	@ compare VAR_RESULT, 1
+	@ call_if_eq LilycoveCity_EventScript_1E2F8F
+	setflag FLAG_CAN_CONCEDE
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
 	goto LilycoveCity_EventScript_1E3006
 	end
 LilycoveCity_Text_1E32FB: @ 81E32FB
-	.string "May: I'm thinking of going back to\n"
-	.string "Littleroot soon.\p"
-	.string "I've caught a decent group of Pokémon,\n"
-	.string "and my Pokédex is coming along, so\l"
-	.string "I'm going home to show my dad.$"
-
-LilycoveCity_EventScript_1E2F76:: @ 81E2F76
-	goto_if_set FLAG_BADGE08_GET, LilycoveCity_EventScript_1E2F80
-	return
-LilycoveCity_EventScript_1E2F80:: @ 81E2F80
-	setvar VAR_RESULT, 1
-	return
-
-LilycoveCity_EventScript_1E2F86:: @ 81E2F86
-	msgbox LilycoveCity_Text_1E3398, MSGBOX_DEFAULT
-	return
-LilycoveCity_Text_1E3398: @ 81E3398
+	.string "May: {PLAYER}, I don't know if you're\n"
+	.string "aware, but you CAN forfiet a battle.\p"
+	.string "You don't have to fight every battle\l"
+	.string "tooth-and-nail. It's okay to lose.\p"
+	.string "… … … … …\p"
+	.string "I'm going back to Littleroot soon.\p"
+	.string "It's too dangerous out here with your\n"
+	.string "lot running about.\p"
 	.string "{PLAYER}, what are you going to do?\p"
-	.string "Collect all the Gym Badges and take\n"
-	.string "the Pokémon League challenge?\p"
-	.string "Well, while you're collecting badges,\n"
-	.string "{PLAYER}, I'm going to work on my\l"
-	.string "Pokédex. I'll complete it before you!\p"
-	.string "See you!$"
-
-LilycoveCity_EventScript_1E2F8F:: @ 81E2F8F
-	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_EventScript_1E2FA1
-	msgbox LilycoveCity_Text_1E346D, MSGBOX_DEFAULT
-	return
-LilycoveCity_Text_1E346D: @ 81E346D
-	.string "{PLAYER}, what are you going to do?\p"
-	.string "Are you taking the Pokémon League\n"
-	.string "challenge?\p"
-	.string "Or, are you going to complete your\n"
-	.string "Pokédex?\p"
-	.string "I might've lost to you in battling,\n"
-	.string "but I'll finish my Pokédex before you!\p"
-	.string "See you!$"
-
-LilycoveCity_EventScript_1E2FA1:: @ 81E2FA1
-	msgbox LilycoveCity_Text_1E353A, MSGBOX_DEFAULT
-	return
-LilycoveCity_Text_1E353A: @ 81E353A
-	.string "{PLAYER}, what are you going to do?\p"
-	.string "Are you taking the Battle Frontier\n"
-	.string "challenge?\p"
-	.string "Or, are you going to complete your\n"
-	.string "Pokédex?\p"
-	.string "I might've lost to you in battling,\n"
-	.string "but I'll finish my Pokédex before you!\p"
-	.string "See you!$"
+	.string "Because the life you've got isn't a\n"
+	.string "good one.$"
 
 LilycoveCity_EventScript_1E2FAA:: @ 81E2FAA
 	msgbox LilycoveCity_Text_1E37D7, MSGBOX_DEFAULT
-	setvar VAR_RESULT, 0
-	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_1E2F76
-	compare VAR_RESULT, 0
-	call_if_eq LilycoveCity_EventScript_1E2FE2
-	compare VAR_RESULT, 1
-	call_if_eq LilycoveCity_EventScript_1E2FEB
+	@ setvar VAR_RESULT, 0
+	@ call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_1E2F76
+	@ compare VAR_RESULT, 0
+	@ call_if_eq LilycoveCity_EventScript_1E2FE2
+	@ compare VAR_RESULT, 1
+	@ call_if_eq LilycoveCity_EventScript_1E2FEB
+	setflag FLAG_CAN_CONCEDE
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL
 	goto LilycoveCity_EventScript_1E3006
 	end
 LilycoveCity_Text_1E37D7: @ 81E37D7
-	.string "Brendan: I…\n"
+	.string "Brendan: {PLAYER}, no matter what I do\n"
+	.string "I can't get through to you, it seems.\p"
+	.string "You know you ARE allowed to concede\n"
+	.string "from a battle! You can stop before\l"
+	.string "things go too far…\p"
+	.string "… … … … …\p"
 	.string "I plan on going home to Littleroot.\p"
-	.string "You know I'm helping out my dad on his\n"
-	.string "Pokédex. It's coming together pretty\l"
-	.string "decently, so I should go show him.$"
-
-LilycoveCity_EventScript_1E2FE2:: @ 81E2FE2
-	msgbox LilycoveCity_Text_1E3876, MSGBOX_DEFAULT
-	return
-LilycoveCity_Text_1E3876: @ 81E3876
+	.string "It's too dangerous out here with you\n"
+	.string "and your gang running around.\p"
 	.string "{PLAYER}, what are you going to do?\p"
-	.string "Collect all the Gym Badges and take\n"
-	.string "the Pokémon League challenge?\p"
-	.string "Maybe I'll do that, too…\p"
-	.string "Well, anyway, hang in there!$"
-
-LilycoveCity_EventScript_1E2FEB:: @ 81E2FEB
-	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_EventScript_1E2FFD
-	msgbox LilycoveCity_Text_1E390C, MSGBOX_DEFAULT
-	return
-LilycoveCity_Text_1E390C: @ 81E390C
-	.string "{PLAYER}, what are you going to do?\p"
-	.string "Since you're that strong, are you\n"
-	.string "taking the Pokémon League challenge?\p"
-	.string "Heh, even me--if I trained my Pokémon\n"
-	.string "a bit more, I should be stronger than\l"
-	.string "you, {PLAYER}.\p"
-	.string "Well, anyway, hang in there!$"
-
-LilycoveCity_EventScript_1E2FFD:: @ 81E2FFD
-	msgbox LilycoveCity_Text_1E39E3, MSGBOX_DEFAULT
-	return
-LilycoveCity_Text_1E39E3: @ 81E39E3
-	.string "{PLAYER}, what are you going to do?\p"
-	.string "Are you taking the Battle Frontier\n"
-	.string "challenge?\p"
-	.string "Or, are you going to complete your\n"
-	.string "Pokédex?\p"
-	.string "Since you're that strong, you should\n"
-	.string "consider the Battle Frontier.\p"
-	.string "Heh, if I train my Pokémon a bit more,\n"
-	.string "I'll get stronger than you, {PLAYER}.\p"
-	.string "Maybe I should go to the BATTLE\n"
-	.string "FRONTIER.\p"
-	.string "Well, anyway, hang in there!$"
+	.string "Because the life you've got isn't a\n"
+	.string "good one.$"
 
 LilycoveCity_EventScript_1E3006:: @ 81E3006
 	closemessage
