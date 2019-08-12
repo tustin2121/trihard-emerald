@@ -1619,16 +1619,16 @@ DewfordTown_Gym_EventScript_272010:: @ 8272010
 	return
 
 DewfordTown_Gym_EventScript_272035:: @ 8272035
-	settrainerflag TRAINER_ANDREA
-	settrainerflag TRAINER_CRISSY
-	settrainerflag TRAINER_BRIANNA
-	settrainerflag TRAINER_CONNIE
-	settrainerflag TRAINER_BRIDGET
-	settrainerflag TRAINER_OLIVIA
-	settrainerflag TRAINER_TIFFANY
-	settrainerflag TRAINER_BETHANY
-	settrainerflag TRAINER_ANNIKA
-	settrainerflag TRAINER_DAPHNE
+	@ settrainerflag TRAINER_ANDREA
+	@ settrainerflag TRAINER_CRISSY
+	@ settrainerflag TRAINER_BRIANNA
+	@ settrainerflag TRAINER_CONNIE
+	@ settrainerflag TRAINER_BRIDGET
+	@ settrainerflag TRAINER_OLIVIA
+	@ settrainerflag TRAINER_TIFFANY
+	@ settrainerflag TRAINER_BETHANY
+	@ settrainerflag TRAINER_ANNIKA
+	@ settrainerflag TRAINER_DAPHNE
 	return
 
 Route114_LanettesHouse_EventScript_272067:: @ 8272067
