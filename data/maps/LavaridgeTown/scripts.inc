@@ -102,7 +102,7 @@ LavaridgeTown_Text_1EAE03: @ 81EAE03
 
 
 LavaridgeTown_EventScript_SandMan:: @ 81EA717
-	msgbox LavaridgeTown_Text_1EAEE1, MSGBOX_DESCRIBE
+	msgbox LavaridgeTown_Text_1EAEE1, MSGBOX_NPC
 	end
 LavaridgeTown_Text_1EAEE1: @ 81EAEE1
 	.string "Being buried in this hot sand is…\n"
@@ -156,6 +156,7 @@ LavaridgeTown_Text_1EAF4E: @ 81EAF4E
 LavaridgeTown_EventScript_EggWoman:: @ 81EA744
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_LAVARIDGE_EGG, LavaridgeTown_EventScript_1EA787
 	msgbox LavaridgeTown_Text_1EAB80, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -307,10 +308,13 @@ LavaridgeTown_Movement_1EA6ED: @ 81EA6ED
 	step_end
 
 LavaridgeTown_EventScript_1EA5B5:: @ 81EA5B5
+	markasdialog
 	msgbox LavaridgeTown_Text_1EA7C0, MSGBOX_DEFAULT
 	giveitem_std ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
 	msgbox LavaridgeTown_Text_1EA897, MSGBOX_DEFAULT
+	msgbox LavaridgeTown_BetterThanYou_Text, MSGBOX_DEFAULT
+	msgbox LavaridgeTown_GottaGo_Text, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_1EA5FF
 	end
 LavaridgeTown_Text_1EA7C0: @ 81EA7C0
@@ -330,15 +334,20 @@ LavaridgeTown_Text_1EA897: @ 81EA897
 	.string "Challenging Gyms…\p"
 	.string "You're trying hard because you don't\n"
 	.string "want to lose to me, I bet!\p"
-	.string "{PLAYER}, I think I should challenge\n"
-	.string "your dad in Petalburg Gym.\p"
-	.string "See you again!$"
+	.string "I heard that Petalburg City's\n"
+	.string "Gym is open again.\p"
+	.string "That's where I'm heading now.\p"
+	.string "I hope the new Gym Leader\n"
+	.string "will be a nicer person.$"
 
 LavaridgeTown_EventScript_1EA5DA:: @ 81EA5DA
+	markasdialog
 	msgbox LavaridgeTown_Text_1EA9A2, MSGBOX_DEFAULT
 	giveitem_std ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
 	msgbox LavaridgeTown_Text_1EAA2E, MSGBOX_DEFAULT
+	msgbox LavaridgeTown_BetterThanYou_Text, MSGBOX_DEFAULT
+	msgbox LavaridgeTown_GottaGo_Text, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_1EA5FF
 	end
 LavaridgeTown_Text_1EA9A2: @ 81EA9A2
@@ -355,12 +364,19 @@ LavaridgeTown_Text_1EAA2E: @ 81EAA2E
 	.string "There should be some Pokémon that\n"
 	.string "are exclusively desert-dwellers.\l"
 	.string "You might look around for those.\p"
-	.string "As for me…\n"
-	.string "I'm considering challenging Norman,\l"
-	.string "the Gym Leader of Petalburg.\p"
-	.string "Unlike you, {PLAYER}, your dad looks like\n"
-	.string "he really is tough.\p"
-	.string "See you around!$"
+	.string "As for me…\p"
+	.string "I heard that Petalburg City's\n"
+	.string "Gym is open again.\p"
+	.string "That's where I'm heading now.\p"
+	.string "I hope the new Gym Leader\n"
+	.string "will be a nicer person.$"
+
+LavaridgeTown_BetterThanYou_Text::
+	.string "{COLOR LIGHT_GREY}{SHADOW WHITE}"
+	.string "(Well, nicer than you, anyway…)$"
+
+LavaridgeTown_GottaGo_Text::
+	.string "OK, gotta go!$"
 
 LavaridgeTown_EventScript_1EA5FF:: @ 81EA5FF
 	closemessage
@@ -417,4 +433,3 @@ LavaridgeTown_Movement_1EA6D4: @ 81EA6D4
 	walk_fast_up
 	walk_fast_up
 	step_end
-

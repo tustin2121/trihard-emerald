@@ -61,6 +61,7 @@ _LavaridgeTown_Gym_1F_EventScript_1FE78B:: @ 81FE78B
 LavaridgeTown_Gym_1F_EventScript_1FE96C:: @ 81FE96C
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, LavaridgeTown_Gym_1F_EventScript_1FE981
 	msgbox LavaridgeTown_Gym_1F_Text_1FE9BF, MSGBOX_DEFAULT
 	release
@@ -397,4 +398,3 @@ LavaridgeTown_Gym_1F_Text_1FF75E: @ 81FF75E
 	.string "that can battle?\p"
 	.string "I hate to say this, but when you come\n"
 	.string "see me, bring at least two Pokémon.$"
-
