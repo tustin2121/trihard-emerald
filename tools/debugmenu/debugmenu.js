@@ -23,6 +23,7 @@ const DebugHandle_SwapGenders = 15;
 const DebugHandle_RenamePlayer = 16;
 const DebugHandle_UnmarkBoxMon = 17;
 const DebugHandle_ClearStats = 18;
+const DebugHandle_SetTimeOfDay = 19;
 
 // Menu Functions
 function initMenuV1() {
@@ -92,6 +93,10 @@ function initMenuV1() {
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_ClearStats });
 				switchMenu();
+			});
+		$(`<li>Set Time of Day…</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu('timeofday');
 			});
 		$(`<li>Run Test Script 1</li>`).appendTo($m)
 			.on('click', function(){
@@ -332,9 +337,9 @@ function initMenuV1() {
 			});
 	}{
 		let $m = $subMenus['gowarp'] = $('<ul>').appendTo('body');
-		let $group = $(`<input type='number' value="0" max="128" />`);
-		let $id    = $(`<input type='number' value="0" max="128" />`);
-		let $warp  = $(`<input type='number' value="0" max="128" />`);
+		let $group = $(`<input type='number' value="0" max="128" min="0" />`);
+		let $id    = $(`<input type='number' value="0" max="128" min="0" />`);
+		let $warp  = $(`<input type='number' value="0" max="128" min="0" />`);
 		$(`<p>`).appendTo($m)
 			.append(`Group: `).append($group).append('<br/>')
 			.append(`MapId: `).append($id).append('<br/>')
@@ -370,6 +375,37 @@ function initMenuV1() {
 				writeInterrupts({ 
 					funcId: DebugHandle_WarpRequest,
 					args: [0, 1, 0, 0xFF, 0xFF],
+				});
+				switchMenu();
+			});
+	}{
+		let $m = $subMenus['timeofday'] = $('<ul>').appendTo('body');
+		let $hour = $(`<input type='number' value="0" max="24" min="0" />`);
+		let $min  = $(`<input type='number' value="0" max="60" min="0" />`);
+		$(`<p>`).appendTo($m)
+			.append(`Hour: `).append($hour).append('<br/>')
+			.append(`Minute: `).append($min);
+		$(`<li>Warp</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ 
+					funcId: DebugHandle_SetTimeOfDay,
+					args: [
+						$hour.val(),
+						$min.val(),
+					],
+				});
+				switchMenu(); 
+			});
+		$(`<li>Cancel</li>`).appendTo($m)
+			.on('click', function(){
+				switchMenu(); 
+			});
+		$m.append(`<hr>`);
+		$(`<li>Set to Noon</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ 
+					funcId: DebugHandle_SetTimeOfDay,
+					args: [12, 0],
 				});
 				switchMenu();
 			});

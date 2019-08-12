@@ -7,7 +7,7 @@
 
 // iwram bss
 IWRAM_DATA static u16 sErrorStatus;
-IWRAM_DATA static struct SiiRtcInfo sRtc;
+IWRAM_DATA struct SiiRtcInfo sRtc;
 IWRAM_DATA static u8 sProbeResult;
 IWRAM_DATA static u16 sSavedIme;
 
