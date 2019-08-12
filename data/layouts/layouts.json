@@ -4499,36 +4499,6 @@
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_Contest",
             "width": 21
-        },
-        {
-            "blockdata_filepath": "data/layouts/FortreeCity_House6/map.bin",
-            "border_filepath": "data/layouts/FortreeCity_House6/border.bin",
-            "height": 20,
-            "id": "LAYOUT_FORTREE_CITY_HOUSE6",
-            "name": "FortreeCity_House6_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Petalburg",
-            "width": 20
-        },
-        {
-            "blockdata_filepath": "data/layouts/FortreeCity_House7/map.bin",
-            "border_filepath": "data/layouts/FortreeCity_House7/border.bin",
-            "height": 20,
-            "id": "LAYOUT_FORTREE_CITY_HOUSE7",
-            "name": "FortreeCity_House7_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Petalburg",
-            "width": 20
-        },
-        {
-            "blockdata_filepath": "data/layouts/FortreeCity_House8/map.bin",
-            "border_filepath": "data/layouts/FortreeCity_House8/border.bin",
-            "height": 20,
-            "id": "LAYOUT_FORTREE_CITY_HOUSE8",
-            "name": "FortreeCity_House8_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Petalburg",
-            "width": 20
         }
     ],
     "layouts_table_label": "gMapLayouts"

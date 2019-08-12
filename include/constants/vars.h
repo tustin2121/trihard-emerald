@@ -108,8 +108,8 @@
 #define VAR_UNUSED_0x405B                    0x405B // Unused Var
 #define VAR_UNUSED_0x405C                    0x405C // Unused Var
 #define VAR_MOSSDEEP_STATE                   0x405D
-#define VAR_RAYQUAZA_STATE                   0x405E
-#define VAR_UNUSED_0x405F                    0x405F // Unused Var
+#define VAR_RAYQUAZA_STATE                   0x405E // Actually "VAR_SOOTOPOLIS_STATE"
+#define VAR_EVERGRANDE_STATE                 0x405F // TriHard Emerald
 #define VAR_ROUTE101_STATE                   0x4060
 #define VAR_UNUSED_0x4061                    0x4061 // Unused Var
 #define VAR_UNUSED_0x4062                    0x4062 // Unused Var
