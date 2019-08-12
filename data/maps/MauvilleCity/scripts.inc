@@ -510,26 +510,95 @@ MauvilleCity_Movement_1DF72F: @ 81DF72F
 	walk_left
 	step_end
 
-MauvilleCity_EventScript_1DF73A:: @ 81DF73A
+@ -----------------------------------------------------
+@ Wattson's side quest
+
+MauvilleCity_EventScript_WattsonsQuest:: @ 81DF73A
 	lock
 	faceplayer
-	goto_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_1DF7B0
+	markasdialog
+	@ check if post-quest
+	goto_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_WattsonsQuest_After
+	@ Check if finished quest
 	compare VAR_NEW_MAUVILLE_STATE, 2
-	goto_if_eq MauvilleCity_EventScript_1DF784
-	goto_if_set FLAG_GOT_BASEMENT_KEY_FROM_WATTSON, MauvilleCity_EventScript_1DF77A
-	msgbox MauvilleCity_Text_1DFFE4, MSGBOX_DEFAULT
+	goto_if_eq MauvilleCity_EventScript_WattsonsQuest_Finished
+	@ Check if during quest
+	goto_if_set FLAG_GOT_BASEMENT_KEY_FROM_WATTSON, MauvilleCity_EventScript_WattsonsQuest_During
+	@
+	setyesnotext gYN_UhOk, gYN_NoQuestion
+	msgbox MauvilleCity_Text_WattsonsQuest1, MSGBOX_YESNO
+	@
+	compare VAR_RESULT, NO
+	goto_if_eq MauvilleCity_EventScript_WattsonsQuest_Decline
+	message MauvilleCity_Text_WattsonsQuest3a
+	waitmessage
+	goto MauvilleCity_EventScript_WattsonsQuest_Accept
+	end
+MauvilleCity_Text_WattsonsQuest1: @ 81DFFE4
+	.string "Wattson: Oh, {PLAYER}!\n"
+	.string "You look like you have a lot of zip!\l"
+	.string "That's a good thing, wahahahaha!\p"
+	.string "Could I ask you a favor, young one?\n"
+	.string "Ho, no, not without payment, of course.$"
+MauvilleCity_Text_WattsonsQuest3a:
+	.string "Excellent! Now listen here.\p$"
+MauvilleCity_EventScript_WattsonsQuest_Decline: @ 81DF77A
+	setyesnotext gYN_Wait, gYN_Elipsis2
+	msgbox MauvilleCity_Text_WattsonsQuest2, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq MauvilleCity_EventScript_WattsonsQuest_Fine
+	release
+	end
+MauvilleCity_Text_WattsonsQuest2:
+	.string "Oh, alright. I saw another young man\n"
+	.string "around. {RIVAL_HERO}, I think was his\l"
+	.string "name. I suppose I can ask him.$"
+MauvilleCity_EventScript_WattsonsQuest_Fine:
+	message MauvilleCity_Text_WattsonsQuest3b
+	waitmessage
+	goto MauvilleCity_EventScript_WattsonsQuest_Accept
+	end
+MauvilleCity_Text_WattsonsQuest3b:
+	.string "Oh, you will do it?\n"
+	.string "Excellent! Now listen here.\p$"
+MauvilleCity_EventScript_WattsonsQuest_Accept:
+	msgbox MauvilleCity_Text_WattsonsQuest4
 	giveitem_std ITEM_BASEMENT_KEY
 	setflag FLAG_GOT_BASEMENT_KEY_FROM_WATTSON
-	msgbox MauvilleCity_Text_1E0154, MSGBOX_DEFAULT
+	msgbox MauvilleCity_Text_WattsonsQuest5
 	release
 	end
-
-MauvilleCity_EventScript_1DF77A:: @ 81DF77A
-	msgbox MauvilleCity_Text_1E0154, MSGBOX_DEFAULT
+MauvilleCity_Text_WattsonsQuest4:
+	.string "Mauville City has an underground\n"
+	.string "sector called New Mauville.\p"
+	.string "{PLAYER}, I'd like you to go there and\n"
+	.string "switch off the generator.\p"
+	.string "The generator has been running a bit\n"
+	.string "haywire. It's getting unsafe.\p"
+	.string "Here, this is the key to get into\n"
+	.string "New Mauville.$"
+MauvilleCity_Text_WattsonsQuest5: @ 81E0154
+	.string "Wattson: Don't you worry about it.\n"
+	.string "It won't be a challenge to you.\p"
+	.string "The entrance to New Mauville is just\n"
+	.string "a short surf away from Route 110.\p"
+	.string "Oh, but do be careful of all the\n"
+	.string "exploding Pokémon down there.\l"
+	.string "Wahahahaha!\p"
+	.string "That's it, then, you have my trust!\p"
+	.string "{PAUSE_MUSIC}Don't{PAUSE 10} squander{PAUSE 10} it.{PAUSE 20}\n"
+	.string "{RESUME_MUSIC}Wahahahaha!$"
+MauvilleCity_EventScript_WattsonsQuest_During:: @ 81DF77A
+	msgbox MauvilleCity_Text_WattsonsQuest6, MSGBOX_DEFAULT
 	release
 	end
-
-MauvilleCity_EventScript_1DF784:: @ 81DF784
+MauvilleCity_Text_WattsonsQuest6:
+	.string "Wattson: Don't you worry about it.\n"
+	.string "It won't be a challenge to you.\p"
+	.string "The entrance to New Mauville is just\n"
+	.string "a short surf away from Route 110.\p"
+	.string "Wahahahaha!$"
+MauvilleCity_EventScript_WattsonsQuest_Finished:: @ 81DF784
 	msgbox MauvilleCity_Text_1E020E, MSGBOX_DEFAULT
 	giveitem_std ITEM_TM24
 	compare VAR_RESULT, 0
@@ -538,25 +607,44 @@ MauvilleCity_EventScript_1DF784:: @ 81DF784
 	msgbox MauvilleCity_Text_1E02AA, MSGBOX_DEFAULT
 	release
 	end
-
-MauvilleCity_EventScript_1DF7B0:: @ 81DF7B0
+MauvilleCity_Text_1E020E: @ 81E020E
+	.string "Wattson: Wahahahaha!\p"
+	.string "I knew it, {PLAYER}! I knew I'd made\n"
+	.string "the right choice asking you!\p"
+	.string "This is my thanks--a TM containing\n"
+	.string "Thunderbolt!\p"
+	.string "Go on, you've earned it!$"
+MauvilleCity_EventScript_WattsonsQuest_After:: @ 81DF7B0
 	msgbox MauvilleCity_Text_1E02AA, MSGBOX_DEFAULT
 	release
 	end
+MauvilleCity_Text_1E02AA: @ 81E02AA
+	.string "Wattson: Wahahahaha!\p"
+	.string "It pleases me to no end to see\n"
+	.string "the young step up and take charge!\p"
+	.string "You could do great things, you know,\n"
+	.string "with a little more of that spunk.\p"
+	.string "Like Steven! He became Hoenn Champion\n"
+	.string "and became renowned around the world!\p"
+	.string "And when he was just starting out,\n"
+	.string "he was just as much a punk as you, kid.\p"
+	.string "Wahahahaha! Good times!$"
+
+@ -----------------------------------------------------
 
 MauvilleCity_EventScript_1DF7BA:: @ 81DF7BA
-	lockall
-	pokenavcall MauvilleCity_Text_1DFDFB
-	waitmessage
-	delay 30
-	playfanfare MUS_ME_TORE_EYE
-	msgbox MauvilleCity_Text_1DFEB4, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_ENABLE_WALLY_MATCH_CALL
-	clearflag FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL
-	releaseall
+	@ lockall
+	@ pokenavcall MauvilleCity_Text_1DFDFB
+	@ waitmessage
+	@ delay 30
+	@ playfanfare MUS_ME_TORE_EYE
+	@ msgbox MauvilleCity_Text_1DFEB4, MSGBOX_DEFAULT
+	@ waitfanfare
+	@ closemessage
+	@ delay 30
+	@ setflag FLAG_ENABLE_WALLY_MATCH_CALL
+	@ clearflag FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL
+	@ releaseall
 	end
 
 
@@ -663,38 +751,6 @@ MauvilleCity_Text_1DFED5: @ 81DFED5
 	.string "… … … … … …\n"
 	.string "I'll be cheering for you!$"
 
-MauvilleCity_Text_1DFFE4: @ 81DFFE4
-	.string "Wattson: Oh, {PLAYER}!\n"
-	.string "You look like you have a lot of zip!\l"
-	.string "That's a good thing, wahahahaha!\p"
-	.string "Fine! I've decided!\n"
-	.string "I need a favor, {PLAYER}!\p"
-	.string "Mauville City has an underground\n"
-	.string "sector called New Mauville.\p"
-	.string "{PLAYER}, I'd like you to go there and\n"
-	.string "switch off the {REF}generator{END}.\p"
-	.string "The generator has been running a bit\n"
-	.string "haywire. It's getting unsafe.\p"
-	.string "Here, this is the {REF}key{END} to get into\n"
-	.string "New Mauville.$"
 
-MauvilleCity_Text_1E0154: @ 81E0154
-	.string "Wattson: Don't you worry about it.\n"
-	.string "It won't be a challenge to you.\p"
-	.string "The entrance to New Mauville is just\n"
-	.string "a short SURF away from Route 110.\p"
-	.string "That's it, then, you have my trust!\n"
-	.string "Wahahahaha!$"
 
-MauvilleCity_Text_1E020E: @ 81E020E
-	.string "Wattson: Wahahahaha!\p"
-	.string "I knew it, {PLAYER}! I knew I'd made\n"
-	.string "the right choice asking you!\p"
-	.string "This is my thanks--a TM containing\n"
-	.string "THUNDERBOLT!\p"
-	.string "Go on, you've earned it!$"
 
-MauvilleCity_Text_1E02AA: @ 81E02AA
-	.string "Wattson: Wahahahaha!\p"
-	.string "It pleases me to no end to see\n"
-	.string "the young step up and take charge!$"

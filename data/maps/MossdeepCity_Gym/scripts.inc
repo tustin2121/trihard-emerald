@@ -1,48 +1,34 @@
 MossdeepCity_Gym_MapScripts:: @ 8220800
-	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_Gym_MapScript1_220806
+	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_Gym_OnLoad
 	.byte 0
 
-MossdeepCity_Gym_MapScript1_220806: @ 8220806
-	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_1, MossdeepCity_Gym_EventScript_22083D
-	goto MossdeepCity_Gym_EventScript_220815
-	end
+@ -----------------------------------------------------
 
-MossdeepCity_Gym_EventScript_220815:: @ 8220815
-	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_2, MossdeepCity_Gym_EventScript_220855
-	goto MossdeepCity_Gym_EventScript_220824
-	end
-
-MossdeepCity_Gym_EventScript_220824:: @ 8220824
-	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_3, MossdeepCity_Gym_EventScript_22086D
-	goto MossdeepCity_Gym_EventScript_220833
-	end
-
-MossdeepCity_Gym_EventScript_220833:: @ 8220833
-	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_4, MossdeepCity_Gym_EventScript_220885
+MossdeepCity_Gym_OnLoad: @ 8220806
+	call_if_set FLAG_MOSSDEEP_GYM_SWITCH_1, MossdeepCity_Gym_EventScript_22083D
+	call_if_set FLAG_MOSSDEEP_GYM_SWITCH_2, MossdeepCity_Gym_EventScript_220855
+	call_if_set FLAG_MOSSDEEP_GYM_SWITCH_3, MossdeepCity_Gym_EventScript_22086D
+	call_if_set FLAG_MOSSDEEP_GYM_SWITCH_4, MossdeepCity_Gym_EventScript_220885
 	end
 
 MossdeepCity_Gym_EventScript_22083D:: @ 822083D
 	setmetatile 5, 5, 516, 0
 	setmetatile 2, 7, 569, 1
-	goto MossdeepCity_Gym_EventScript_220815
-	end
-
+	return
 MossdeepCity_Gym_EventScript_220855:: @ 8220855
 	setmetatile 8, 14, 516, 0
 	setmetatile 8, 10, 569, 1
-	goto MossdeepCity_Gym_EventScript_220824
-	end
-
+	return
 MossdeepCity_Gym_EventScript_22086D:: @ 822086D
 	setmetatile 15, 17, 524, 0
 	setmetatile 17, 15, 569, 1
-	goto MossdeepCity_Gym_EventScript_220833
-	end
-
+	return
 MossdeepCity_Gym_EventScript_220885:: @ 8220885
 	setmetatile 1, 23, 525, 0
 	setmetatile 5, 24, 569, 1
-	end
+	return
+
+@ -----------------------------------------------------
 
 MossdeepCity_Gym_EventScript_220898:: @ 8220898
 	trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_221783, MossdeepCity_Gym_Text_2218EC, MossdeepCity_Gym_Text_221BCE, MossdeepCity_Gym_EventScript_2208D1, NO_MUSIC
@@ -53,7 +39,32 @@ MossdeepCity_Gym_EventScript_220898:: @ 8220898
 	msgbox MossdeepCity_Gym_Text_221B1D, MSGBOX_DEFAULT
 	release
 	end
-
+MossdeepCity_Gym_Text_221783: @ 8221783
+	.string "Tate: Hehehe… Were you surprised?\p"
+	.string "Liza: Fufufu… Were you surprised?\p"
+	.string "Tate: That there are two Gym Leaders?\n"
+	.string "Liza: That there are two Gym Leaders?\p"
+	.string "Tate: We're twins!\n"
+	.string "Liza: We're twins!\p"
+	.string "Tate: We don't need to talk because…\n"
+	.string "Liza: We can each determine what…\p"
+	.string "Tate: The other is thinking…\n"
+	.string "Liza: All in our minds!\p"
+	.string "Tate: This combination of ours…\n"
+	.string "Liza: Can you beat it?$"
+MossdeepCity_Gym_Text_2218EC: @ 82218EC
+	.string "Tate: What?! Our combination…\n"
+	.string "Liza: Was shattered!\p"
+	.string "Tate: It can't be helped. You've won…\n"
+	.string "Liza: So, in recognition, take this.$"
+MossdeepCity_Gym_Text_221BCE: @ 8221BCE
+	.string "Tate: Hehehe… Were you surprised?\p"
+	.string "Liza: That there are two Gym Leaders?\p"
+	.string "Tate: Oops, you have only one…\n"
+	.string "Liza: Pokémon that can battle.\p"
+	.string "Tate: We can't battle that way!\p"
+	.string "Liza: If you want to challenge us,\n"
+	.string "bring some more Pokémon.$"
 MossdeepCity_Gym_EventScript_2208D1:: @ 82208D1
 	message MossdeepCity_Gym_Text_22196A
 	waitmessage
@@ -362,12 +373,11 @@ MossdeepCity_Gym_EventScript_220CBF:: @ 8220CBF
 	end
 
 MossdeepCity_Gym_Text_220CD5: @ 8220CD5
-	.string "Yo, how's it going, CHAMPION-bound\n"
-	.string "{PLAYER}?\p"
-	.string "The Gym LeaderS here use\n"
-	.string "PSYCHIC-type Pokémon.\p"
+	.string "Hey, how's it going, {PLAYER_sir}?\p"
+	.string "The Gym Leaders here use\n"
+	.string "Psychic-type Pokémon.\p"
 	.string "If you go up against them with\n"
-	.string "FIGHTING- or POISON-type Pokémon,\l"
+	.string "Fighting- or Poison-type Pokémon,\l"
 	.string "they'll inflict horrible damage!\p"
 	.string "Plus, they'll come at you with\n"
 	.string "outstanding combination attacks.\p"
@@ -377,7 +387,7 @@ MossdeepCity_Gym_Text_220CD5: @ 8220CD5
 
 MossdeepCity_Gym_Text_220E2A: @ 8220E2A
 	.string "Wow, you're astounding!\n"
-	.string "You're one great TRAINER!$"
+	.string "You're one tough trainer!$"
 
 MossdeepCity_Gym_Text_220E5C: @ 8220E5C
 	.string "Battles hinge on the strength of your\n"
@@ -399,7 +409,7 @@ MossdeepCity_Gym_Text_220F1A: @ 8220F1A
 
 MossdeepCity_Gym_Text_220F3A: @ 8220F3A
 	.string "If there are prodigies in the world,\n"
-	.string "then our Gym LeaderS are them!\p"
+	.string "then our Gym Leaders are them!\p"
 	.string "However, you may be even more talented\n"
 	.string "than them…$"
 
@@ -415,7 +425,7 @@ MossdeepCity_Gym_Text_221024: @ 8221024
 	.string "of sync, too!$"
 
 MossdeepCity_Gym_Text_221055: @ 8221055
-	.string "A POKé BALL was too heavy to lift\n"
+	.string "A Poké Ball was too heavy to lift\n"
 	.string "psychically. But this dust bunny…\p"
 	.string "Whoooooooooooooooh!\n"
 	.string "… … … … … …\p"
@@ -448,7 +458,7 @@ MossdeepCity_Gym_Text_221230: @ 8221230
 
 MossdeepCity_Gym_Text_22123D: @ 822123D
 	.string "You will wage a terrifically intense\n"
-	.string "battle with our Gym LeaderS…\p"
+	.string "battle with our Gym Leaders…\p"
 	.string "The result…\n"
 	.string "You won't hear it from me!$"
 
@@ -484,7 +494,7 @@ MossdeepCity_Gym_Text_221412: @ 8221412
 MossdeepCity_Gym_Text_221460: @ 8221460
 	.string "Hohoho.\p"
 	.string "You need me to show you how tenacious\n"
-	.string "the PSYCHIC type can be.$"
+	.string "the Psychic type can be.$"
 
 MossdeepCity_Gym_Text_2214A7: @ 82214A7
 	.string "Oh! My, my!\n"
@@ -527,7 +537,7 @@ MossdeepCity_Gym_Text_221658: @ 8221658
 
 MossdeepCity_Gym_Text_221680: @ 8221680
 	.string "Humph! You may be strong, but you're\n"
-	.string "not suitable for the PSYCHIC type!\p"
+	.string "not suitable for the Psychic type!\p"
 	.string "The way you battle is somehow brutal!$"
 
 MossdeepCity_Gym_Text_2216EE: @ 82216EE
@@ -542,104 +552,78 @@ MossdeepCity_Gym_Text_22173A: @ 822173A
 	.string "All right! I think I'll develop a special\n"
 	.string "invincible Pokémon power next.$"
 
-MossdeepCity_Gym_Text_221783: @ 8221783
-	.string "TATE: Hehehe… Were you surprised?\p"
-	.string "LIZA: Fufufu… Were you surprised?\p"
-	.string "TATE: That there are two Gym LeaderS?\n"
-	.string "LIZA: That there are two Gym LeaderS?\p"
-	.string "TATE: We're twins!\n"
-	.string "LIZA: We're twins!\p"
-	.string "TATE: We don't need to talk because…\n"
-	.string "LIZA: We can each determine what…\p"
-	.string "TATE: The other is thinking…\n"
-	.string "LIZA: All in our minds!\p"
-	.string "TATE: This combination of ours…\n"
-	.string "LIZA: Can you beat it?$"
 
-MossdeepCity_Gym_Text_2218EC: @ 82218EC
-	.string "TATE: What?! Our combination…\n"
-	.string "LIZA: Was shattered!\p"
-	.string "TATE: It can't be helped. You've won…\n"
-	.string "LIZA: So, in recognition, take this.$"
 
 MossdeepCity_Gym_Text_22196A: @ 822196A
-	.string "{PLAYER} received the MIND BADGE\n"
-	.string "from TATE and LIZA.$"
+	.string "{PLAYER} received the {ITEM}Mind Badge{END}\n"
+	.string "from Tate and Liza.$"
 
 MossdeepCity_Gym_Text_221999: @ 8221999
-	.string "TATE: The MIND BADGE enhances the\n"
-	.string "SP. ATK and SP. DEF of Pokémon.\p"
-	.string "LIZA: It also lets you use the HM move\n"
-	.string "DIVE outside of battle.\p"
-	.string "TATE: You should also take this, too.$"
+	.string "Tate: The Mind Badge enhances the\n"
+	.string "Sp. Atk and Sp. Def of Pokémon.\p"
+	.string "Liza: It also enables you to dive\n"
+	.string "underwater on the back of a Pokémon.\p"
+	.string "Tate: You should also take this, too.$"
 
 MossdeepCity_Gym_Text_221A40: @ 8221A40
-	.string "TATE: That TM04 contains…\n"
-	.string "LIZA: CALM MIND!\p"
-	.string "TATE: It raises SP. ATK and…\n"
-	.string "LIZA: It raises SP. DEF!\p"
-	.string "TATE: It's a move that's perfect…\n"
-	.string "LIZA: For PSYCHIC Pokémon!\p"
+	.string "Tate: That TM04 contains…\n"
+	.string "Liza: Calm Mind!\p"
+	.string "Tate: It raises Sp. Atk and…\n"
+	.string "Liza: It raises Sp. Def!\p"
+	.string "Tate: It's a move that's perfect…\n"
+	.string "Liza: For Psychic Pokémon!\p"
 	.string "… … … … … …$"
 
 MossdeepCity_Gym_Text_221AEA: @ 8221AEA
-	.string "Registered Gym LeaderS TATE & LIZA\n"
+	.string "Registered Gym Leaders Tate & Liza\n"
 	.string "in the PokéNav.$"
 
 MossdeepCity_Gym_Text_221B1D: @ 8221B1D
-	.string "TATE: Looks like the bond between you\n"
+	.string "Tate: Looks like the bond between you\n"
 	.string "and your Pokémon is far stronger than\l"
 	.string "the bond that we share as twins.\p"
-	.string "LIZA: You will become even stronger!\n"
+	.string "Liza: You will become even stronger!\n"
 	.string "We've battled you, so we know.$"
 
-MossdeepCity_Gym_Text_221BCE: @ 8221BCE
-	.string "TATE: Hehehe… Were you surprised?\p"
-	.string "LIZA: That there are two Gym LeaderS?\p"
-	.string "TATE: Oops, you have only one…\n"
-	.string "LIZA: Pokémon that can battle.\p"
-	.string "TATE: We can't battle that way!\p"
-	.string "LIZA: If you want to challenge us,\n"
-	.string "bring some more Pokémon.$"
 
 MossdeepCity_Gym_Text_221CB0: @ 8221CB0
 	.string "Mossdeep City Pokémon Gym$"
 
 MossdeepCity_Gym_Text_221CCA: @ 8221CCA
 	.string "Mossdeep City Pokémon Gym\p"
-	.string "LIZA AND TATE'S CERTIFIED TRAINERS:\n"
+	.string "Liza AND Tate'S CERTIFIED TRAINERS:\n"
 	.string "{PLAYER}$"
 
 MossdeepCity_Gym_Text_221D0B: @ 8221D0B
-	.string "TATE: Pokémon…\n"
-	.string "LIZA: Pokémon…\p"
-	.string "TATE: By changing the party's mix…\n"
-	.string "LIZA: The battle style changes.\p"
-	.string "TATE: But me…\n"
-	.string "LIZA: But me…\p"
-	.string "TATE: I'll always be with LIZA!\n"
-	.string "LIZA: I'll always be with TATE!\p"
-	.string "TATE: Our combination…\n"
-	.string "LIZA: We'll show you again and again!$"
+	.string "Tate: Pokémon…\n"
+	.string "Liza: Pokémon…\p"
+	.string "Tate: By changing the party's mix…\n"
+	.string "Liza: The battle style changes.\p"
+	.string "Tate: But me…\n"
+	.string "Liza: But me…\p"
+	.string "Tate: I'll always be with Liza!\n"
+	.string "Liza: I'll always be with Tate!\p"
+	.string "Tate: Our combination…\n"
+	.string "Liza: We'll show you again and again!$"
 
 MossdeepCity_Gym_Text_221E05: @ 8221E05
-	.string "TATE: You and your Pokémon…\n"
-	.string "LIZA: It's as if you were siblings!$"
+	.string "Tate: You and your Pokémon…\n"
+	.string "Liza: It's as if you were siblings!$"
 
 MossdeepCity_Gym_Text_221E45: @ 8221E45
-	.string "TATE: You can knock us down,\n"
+	.string "Tate: You can knock us down,\n"
 	.string "but we'll never stay down!\p"
-	.string "LIZA: Because the two of us,\n"
+	.string "Liza: Because the two of us,\n"
 	.string "we always support each other!$"
 
 MossdeepCity_Gym_Text_221EB8: @ 8221EB8
-	.string "TATE: You're back again…\n"
-	.string "LIZA: You're back again…\p"
-	.string "TATE: To give us a rematch.\n"
-	.string "LIZA: To give us a rematch.\p"
-	.string "TATE: But…\n"
-	.string "LIZA: For our match…\p"
-	.string "TATE: You brought just one Pokémon!\n"
-	.string "LIZA: You brought just one Pokémon!\p"
-	.string "TATE: We need you to bring at least…\n"
-	.string "LIZA: Two Pokémon when you come back.$"
+	.string "Tate: You're back again…\n"
+	.string "Liza: You're back again…\p"
+	.string "Tate: To give us a rematch.\n"
+	.string "Liza: To give us a rematch.\p"
+	.string "Tate: But…\n"
+	.string "Liza: For our match…\p"
+	.string "Tate: You brought just one Pokémon!\n"
+	.string "Liza: You brought just one Pokémon!\p"
+	.string "Tate: We need you to bring at least…\n"
+	.string "Liza: Two Pokémon when you come back.$"

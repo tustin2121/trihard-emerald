@@ -1642,7 +1642,9 @@ Common_EventScript_NoRoomLeftForAnother:: @ 8272071
 
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 	call Common_EventScript_PartyHealSave_Setup
+	domourning @ Do the mourning cutscene, if needed
 	call Common_EventScript_PartyHealSave_Save
+	dodreams @ Check for dream cutscenes
 	call Common_EventScript_PartyHealSave_Complete
 	return
 
