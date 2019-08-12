@@ -876,7 +876,7 @@ PetalburgCity_Gym_Text_2062FB: @ 82062FB
 	.string "Clearly, I will need to train harder\n"
 	.string "if I want to face them with dignity.$"
 PetalburgCity_Gym_EventScript_1FE7C1:
-	message PetalburgCity_Gym_Text_206162
+	message PetalburgCity_Gym_Text_206162, MSGTYPE_DESCRIBE
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PetalburgCity_Gym_Text_20618A, MSGBOX_DEFAULT

@@ -9,9 +9,8 @@ LilycoveCity_FanClub_Stealspot::
 		trysteal ITEM_LEMONADE, 2, FLAG_ITEM_STOLEN_LILYCOVE_FANCLUB
 		release
 		end
-
 LilycoveCity_FanClub_Stealspot_Text::
-		.string "An abandoned bag, how convenient…$"
+		.string "I wonder whose bag this is…?$"
 
 LilycoveCity_PokemonTrainerFanClub_MapScript2_21C790: @ 821C790
 	map_script_2 VAR_LILYCOVE_FAN_CLUB_STATE, 1, LilycoveCity_PokemonTrainerFanClub_EventScript_21C79A
@@ -636,11 +635,11 @@ LilycoveCity_PokemonTrainerFanClub_Text_21CF12: @ 821CF12
 	.string "I've heard the news!\n"
 	.string "You're really strong, aren't you?\p"
 	.string "We always argue about who is the\n"
-	.string "strongest of all Trainers here.\p"
+	.string "strongest of all trainers here.\p"
 	.string "So when I heard about you, I decided\n"
 	.string "to be your fan!\p"
 	.string "I hope you'll keep on battling other\n"
-	.string "tough Trainers.\p"
+	.string "tough trainers.\p"
 	.string "That way, we'll be able to see more\n"
 	.string "of your hot, hot battles.\p"
 	.string "That will make the others here see\n"
@@ -742,7 +741,7 @@ LilycoveCity_PokemonTrainerFanClub_Text_21D69C: @ 821D69C
 	.string "Everyone here, we're all huge fans\n"
 	.string "of Pokémon battles.\p"
 	.string "We discuss who we consider to be\n"
-	.string "the strongest of all Trainers.\p"
+	.string "the strongest of all trainers.\p"
 	.string "If you were to become famous,\n"
 	.string "we might even become your fans!$"
 
@@ -767,14 +766,14 @@ LilycoveCity_PokemonTrainerFanClub_Text_21D857: @ 821D857
 	.string "{STR_VAR_1} really is cool, don't\n"
 	.string "you think so?\p"
 	.string "Even if it's just me, I'm going to keep\n"
-	.string "cheering my favorite Trainer.$"
+	.string "cheering my favorite trainer.$"
 
 LilycoveCity_PokemonTrainerFanClub_Text_21D8C4: @ 821D8C4
-	.string "My favorite Trainer is…\p"
+	.string "My favorite trainer is…\p"
 	.string "Cool…\p"
 	.string "Strong…\p"
 	.string "And really nice…\p"
-	.string "I wish there was a Trainer like that…$"
+	.string "I wish there was a trainer like that…$"
 
 LilycoveCity_PokemonTrainerFanClub_Text_21D921: @ 821D921
 	.string "Whoa! It's {PLAYER}!\n"
@@ -813,7 +812,7 @@ LilycoveCity_PokemonTrainerFanClub_Text_21DAF5: @ 821DAF5
 	.string "out there and battle like always.$"
 
 LilycoveCity_PokemonTrainerFanClub_Text_21DB69: @ 821DB69
-	.string "You're a pretty decent Trainer,\n"
+	.string "You're a pretty decent trainer,\n"
 	.string "I think.\p"
 	.string "But I also think that {STR_VAR_1}\n"
 	.string "is number one right now.\p"
@@ -839,7 +838,7 @@ LilycoveCity_PokemonTrainerFanClub_Text_21DCD6: @ 821DCD6
 	.string "I can't wait for your next battle!$"
 
 LilycoveCity_PokemonTrainerFanClub_Text_21DD36: @ 821DD36
-	.string "Among the recently hot Trainers,\n"
+	.string "Among the recently hot trainers,\n"
 	.string "{STR_VAR_1} is the standout.\p"
 	.string "That toughness, it's simply not normal.\p"
 	.string "You're doing okay, but you're not in\n"

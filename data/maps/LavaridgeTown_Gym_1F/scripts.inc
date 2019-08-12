@@ -326,6 +326,9 @@ LavaridgeTown_Gym_1F_EventScript_1FE7C1:: @ 81FE7C1
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	msgbox LavaridgeTown_Gym_1F_Text_1FF546, MSGBOX_DEFAULT
 	release
 	end
 LavaridgeTown_Gym_1F_Text_1FF32F: @ 81FF32F
