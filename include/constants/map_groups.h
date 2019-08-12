@@ -192,6 +192,9 @@
 #define MAP_FORTREE_CITY_HOUSE4            (7 | (12 << 8))
 #define MAP_FORTREE_CITY_HOUSE5            (8 | (12 << 8))
 #define MAP_FORTREE_CITY_DECORATION_SHOP   (9 | (12 << 8))
+#define MAP_FORTREE_CITY_HOUSE6            (10 | (12 << 8))
+#define MAP_FORTREE_CITY_HOUSE7            (11 | (12 << 8))
+#define MAP_FORTREE_CITY_HOUSE8            (12 | (12 << 8))
 
 // Map Group 13
 #define MAP_LILYCOVE_CITY_COVE_LILY_MOTEL_1F        (0 | (13 << 8))

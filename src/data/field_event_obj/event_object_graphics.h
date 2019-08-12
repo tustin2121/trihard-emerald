@@ -36,6 +36,7 @@ const u16 gEventObjectPalette33[] = INCBIN_U16("graphics/event_objects/palettes/
 const u16 gEventObjectPalette34[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_34.gbapal");
 const u16 gEventObjectPaletteProtagM1[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag.gbapal");
 const u16 gEventObjectPaletteProtagF1[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag.gbapal");
+const u16 gEventObjectPaletteProtagRef[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag_reflect.gbapal");
 const u16 gUnusedEventObjectPalette[] = INCBIN_U16("graphics/event_objects/palettes/unused_palette.gbapal");
 const u16 gFieldEffectObjectPalette0[] = INCBIN_U16("graphics/event_objects/palettes/field_effect_object_palette_00.gbapal");
 const u16 gFieldEffectObjectPalette1[] = INCBIN_U16("graphics/event_objects/palettes/field_effect_object_palette_01.gbapal");
@@ -150,9 +151,17 @@ const u32 gEventObjectPic_RubySapphireBrendanRunning[] = INCBIN_U32("graphics/ev
 const u32 gEventObjectPic_RubySapphireMayNormal[] = INCBIN_U32("graphics/event_objects/pics/people/rs_may/walking.4bpp");
 const u32 gEventObjectPic_RubySapphireMayRunning[] = INCBIN_U32("graphics/event_objects/pics/people/rs_may/running.4bpp");
 
-//TODO remove these
 const u32 gEventObjectPic_ProtagBoy_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/decorating.4bpp");
 const u32 gEventObjectPic_ProtagGirl_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/may/decorating.4bpp");
+
+const u32 gEventObjectPic_ProtagBoy1_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy1/decorating.4bpp");
+const u32 gEventObjectPic_ProtagGirl1_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl1/decorating.4bpp");
+const u32 gEventObjectPic_ProtagBoy2_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy2/decorating.4bpp");
+const u32 gEventObjectPic_ProtagGirl2_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl2/decorating.4bpp");
+const u32 gEventObjectPic_ProtagBoy3_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy3/decorating.4bpp");
+const u32 gEventObjectPic_ProtagGirl3_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl3/decorating.4bpp");
+const u32 gEventObjectPic_ProtagBoy4_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/decorating.4bpp");
+const u32 gEventObjectPic_ProtagGirl4_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/decorating.4bpp");
 
 
 // const u16 NullPalette_8499A38[16] = {};

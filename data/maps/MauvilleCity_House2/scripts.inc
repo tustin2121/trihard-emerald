@@ -75,7 +75,11 @@ MauvilleCity_House2_Text_210DE7: @ 8210DE7
 
 MauvilleCity_House2_Text_210E16: @ 8210E16
 	.string "You don't have any either?\n"
-	.string "Oh, that's so disappointing.$"
+	.string "Oh, that's so disappointing.\p"
+	.string "It would have been awesome if\n"
+	.string "they were available as prizes at\l"
+	.string "the Casino, but they aren't, so\l"
+	.string "this Coin Case is useless to me…$"
 
 MauvilleCity_House2_EventScript_Rosa_Text::
 	.string "Rosa: Miao!$"

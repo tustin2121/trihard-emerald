@@ -54,6 +54,7 @@ LavaridgeTown_Mart_Pokemart_1FF9E8: @ 81FF9E8
 LavaridgeTown_PokemonCenter_1F_PC_Girl::
 	lock
 	faceplayer
+	markasdialog
 	msgbox LavaridgeTown_PokemonCenter_1F_PC_Girl_Text, MSGBOX_DEFAULT
 	applymovement THIS_EVENT, Common_Movement_FaceUp
 	waitmovement 0

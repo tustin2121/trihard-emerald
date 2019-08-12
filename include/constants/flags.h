@@ -244,9 +244,7 @@
 #define FLAG_RECEIVED_TM36                                    0xE6
 #define FLAG_RECEIVED_TM05                                    0xE7
 #define FLAG_RECEIVED_TM19                                    0xE8
-
-#define FLAG_UNUSED_0x0E9                                     0xE9 // Unused Flag
-
+#define FLAG_ITEM_STOLEN_FALLARBOR_CONTESTHALL                0xE9 // TriHard Emerald
 #define FLAG_RECEIVED_TM44                                    0xEA
 #define FLAG_RECEIVED_TM45                                    0xEB
 #define FLAG_RECEIVED_GLASS_ORNAMENT                          0xEC
@@ -445,7 +443,7 @@
 #define FLAG_REMATCH_GLACIA                                   0x1A7
 #define FLAG_REMATCH_DRAKE                                    0x1A8
 #define FLAG_REMATCH_WALLACE                                  0x1A9
-#define FLAG_UNUSED_0x1AA                                     0x1AA // Unused Flag
+#define FLAG_ITEM_STOLEN_LILYCOVE_FANCLUB                     0x1AA // TriHard Emerald
 #define FLAG_UNUSED_0x1AB                                     0x1AB // Unused Flag
 #define FLAG_DEFEATED_DEOXYS                                  0x1AC
 #define FLAG_BATTLED_DEOXYS                                   0x1AD
@@ -701,7 +699,7 @@
 #define FLAG_HIDE_ROUTE_101_ZIGZAGOON                               0x2EE
 #define FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY                           0x2EF
 #define FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE                       0x2F0
-#define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_AQUA_BOY              0x2F1
+#define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_AQUA_BOY            0x2F1
 #define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1          0x2F2
 #define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2          0x2F3
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA          0x2F4
@@ -769,7 +767,7 @@
 #define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL           0x332
 #define FLAG_HIDE_ROUTE_112_TEAM_MAGMA                              0x333
 #define FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE                        0x334
-#define FLAG_UNUSED_0x335                                           0x335
+#define FLAG_HIDE_VICTORY_ROAD_BLOCKER                              0x335 // Trihard
 #define FLAG_UNUSED_0x336                                           0x336
 #define FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA                          0x337
 #define FLAG_HIDE_PETALBURG_GYM_OLD_LEADER                          0x338
@@ -1077,25 +1075,25 @@
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL                      0x464
 #define FLAG_ITEM_STOLEN_RUSTBORO_MART                              0x465 // Trihard
 #define FLAG_ITEM_CONTEST_HALL_LEAF_STONE                           0x466 // Trihard
-#define FLAG_UNUSED_0x467                                           0x467 // Unused Flag
-#define FLAG_UNUSED_0x468                                           0x468 // Unused Flag
+#define FLAG_ITEM_STOLEN_TIMER_BALLS                                0x467 // Trihard
+#define FLAG_ITEM_STOLEN_MUDKIP_DOLL                                0x468 // Trihard
 #define FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL                             0x469
 #define FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE                            0x46A
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_WEST_MAX_REVIVE                 0x46B
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_NUGGET                           0x46C
-#define FLAG_UNUSED_0x46D                                           0x46D // Unused Flag
+#define FLAG_ITEM_STOLEN_SHOAL_SHELL                                0x46D // Trihard
 #define FLAG_ITEM_ROUTE_119_NUGGET                                  0x46E
 #define FLAG_ITEM_ROUTE_104_POTION                                  0x46F
-#define FLAG_UNUSED_0x470                                           0x470 // Unused Flag
+#define FLAG_ITEM_STOLEN_THUNDER_STONE                              0x470 // Trihard
 #define FLAG_ITEM_ROUTE_103_PP_UP                                   0x471
-#define FLAG_UNUSED_0x472                                           0x472 // Unused Flag
+#define FLAG_ITEM_STOLEN_SODA_POP                                   0x472 // Trihard
 #define FLAG_ITEM_ROUTE_108_STAR_PIECE                              0x473
 #define FLAG_ITEM_ROUTE_109_POTION                                  0x474
 #define FLAG_ITEM_ROUTE_110_ELIXIR                                  0x475
 #define FLAG_ITEM_ROUTE_111_ELIXIR                                  0x476
 #define FLAG_ITEM_ROUTE_113_HYPER_POTION                            0x477
 #define FLAG_ITEM_ROUTE_115_HEAL_POWDER                             0x478
-#define FLAG_UNUSED_0x479                                           0x479 // Unused Flag
+#define FLAG_ITEM_STOLEN_FALLARBOR_MART                             0x479 // Trihard
 #define FLAG_ITEM_ROUTE_116_POTION                                  0x47A
 #define FLAG_ITEM_ROUTE_119_ELIXIR_2                                0x47B
 #define FLAG_ITEM_ROUTE_120_REVIVE                                  0x47C
@@ -1123,8 +1121,8 @@
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
 #define FLAG_HIDE_PETALBURG_CENTER_LOGAN                            0x493 // Trihard
-#define FLAG_UNUSED_0x494                                           0x494 // Unused Flag
-#define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
+#define FLAG_ITEM_STOLEN_MARILL_DOLL                                0x494 // Trihard
+#define FLAG_ITEM_STOLEN_FROM_PHEOBE                                0x495 // Trihard
 #define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
 #define FLAG_UNUSED_0x498                                           0x498 // Unused Flag

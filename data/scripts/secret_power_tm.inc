@@ -36,6 +36,7 @@ Route111_Text_27659D: @ 827659D
 Route111_EventScript_2765FF:: @ 82765FF
 	lock
 	faceplayer
+	markasdialog
 	msgbox Route111_Text_2762C9, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq Route111_EventScript_27661E

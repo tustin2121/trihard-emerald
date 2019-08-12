@@ -42,4 +42,13 @@ EverGrandeCity_TriggerScript_SetVisited:: @ 81E7D46
 	setvar VAR_TEMP_1, 1
 	end
 
+EverGrandeCity_TriggerScript_RemoveVRRoadBlock::
+	setflag FLAG_HIDE_VICTORY_ROAD_BLOCKER
+	setvar VAR_EVERGRANDE_STATE, 1
+	end
+
+EverGrandeCity_TriggerScript_VRRoadBlock::
+	
+	end
+
 

@@ -4,6 +4,54 @@
     "allow_running": false,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 14,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 18,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 12,
+            "y": 3
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 16,
+            "y": 3
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 14,
+            "y": 3
+        },
+        {
+            "elevation": 3,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
+            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "type": "sign",
+            "x": 12,
+            "y": 6
+        }
     ],
     "connections": null,
     "coord_events": [
@@ -15,42 +63,16 @@
     "name": "EverGrandeCity_PokemonLeague_2F",
     "object_events": [
         {
-            "elevation": 0,
+            "elevation": 3,
             "flag": "0",
             "graphics_id": "EVENT_OBJ_GFX_TEALA",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "EverGrandeCity_PokemonLeague_2F_EventScript_27375B",
+            "script": "PokemonCenter_2F_EventScript_Teala",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 6,
-            "y": 2
-        },
-        {
-            "elevation": 0,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_TEALA",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "EverGrandeCity_PokemonLeague_2F_EventScript_273761",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 2,
-            "y": 2
-        },
-        {
-            "elevation": 0,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_TEALA",
-            "movement_range_x": 1,
-            "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "script": "EverGrandeCity_PokemonLeague_2F_EventScript_273767",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 10,
+            "x": 8,
             "y": 2
         },
         {
@@ -63,8 +85,34 @@
             "script": "PokemonCenter_MysteryGiftMan",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 1,
+            "x": 7,
             "y": 2
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_PHOEBE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "EverGrandeCity_PokemonLeague_2F_EventScript_SleepingGirl",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 2,
+            "y": 26
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_CHAIR_ITEMS_5",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "EverGrandeCity_PokemonLeague_2F_EventScript_SleepingGirlsBag",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 5,
+            "y": 26
         }
     ],
     "region_map_section": "MAPSEC_EVER_GRANDE_CITY",
@@ -76,21 +124,63 @@
             "dest_warp_id": 4,
             "elevation": 4,
             "x": 1,
-            "y": 6
+            "y": 4
         },
         {
-            "dest_map": "MAP_UNION_ROOM",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_NONE",
+            "dest_warp_id": 127,
             "elevation": 3,
-            "x": 5,
+            "x": 4,
+            "y": 18
+        },
+        {
+            "dest_map": "MAP_NONE",
+            "dest_warp_id": 127,
+            "elevation": 3,
+            "x": 14,
+            "y": 16
+        },
+        {
+            "dest_map": "MAP_NONE",
+            "dest_warp_id": 127,
+            "elevation": 3,
+            "x": 4,
+            "y": 25
+        },
+        {
+            "dest_map": "MAP_NONE",
+            "dest_warp_id": 127,
+            "elevation": 3,
+            "x": 14,
+            "y": 27
+        },
+        {
+            "dest_map": "MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F",
+            "dest_warp_id": 1,
+            "elevation": 3,
+            "x": 14,
             "y": 1
         },
         {
-            "dest_map": "MAP_TRADE_CENTER",
-            "dest_warp_id": 0,
+            "dest_map": "MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F",
+            "dest_warp_id": 4,
             "elevation": 3,
-            "x": 9,
-            "y": 1
+            "x": 18,
+            "y": 3
+        },
+        {
+            "dest_map": "MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F",
+            "dest_warp_id": 2,
+            "elevation": 3,
+            "x": 12,
+            "y": 7
+        },
+        {
+            "dest_map": "MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F",
+            "dest_warp_id": 3,
+            "elevation": 3,
+            "x": 16,
+            "y": 5
         }
     ],
     "weather": "WEATHER_NONE"

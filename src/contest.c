@@ -2631,15 +2631,14 @@ void sub_80DA8C8(u8 partyIndex)
     s16 smart;
     s16 tough;
     u16 playerGraphicsIds[8] = {
-        //TODO: MULTIFORM PLAYER
-        EVENT_OBJ_GFX_LINK_BRENDAN,
-        EVENT_OBJ_GFX_LINK_MAY,
-        EVENT_OBJ_GFX_LINK_BRENDAN,
-        EVENT_OBJ_GFX_LINK_MAY,
-        EVENT_OBJ_GFX_LINK_BRENDAN,
-        EVENT_OBJ_GFX_LINK_MAY,
-        EVENT_OBJ_GFX_LINK_BRENDAN,
-        EVENT_OBJ_GFX_LINK_MAY,
+        EVENT_OBJ_GFX_PROTAG_BOY1_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL1_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY2_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL2_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY3_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL3_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY4_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL4_NORMAL,
     };
 
     StringCopy(name, gSaveBlock2Ptr->playerName);
@@ -5881,4 +5880,18 @@ void sub_80DFA08(struct ContestPokemon *mon, s32 language)
     }
 }
 
+void SetupPlayerSprite()
+{
+    u16 playerGraphicsIds[8] = {
+        EVENT_OBJ_GFX_PROTAG_BOY1_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL1_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY2_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL2_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY3_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL3_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY4_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL4_NORMAL,
+    };
+    VarSet(VAR_OBJ_GFX_ID_3, playerGraphicsIds[gSaveBlock2Ptr->playerForm]);
+}
 

@@ -17,12 +17,36 @@ gText_Dad_Pokenav_AreYouHurt::
 
 gText_Dad_Pokenav_TeamWarn::
 	.string "Dad: Hey, {PLAYER}. How are you doing?\p"
-	.string "I heard there are these “teams” going\n"
-	.string "around causing trouble out there.\p"
+	.string "I heard there are these “teams”\n"
+	.string "going around causing trouble.\p"
 	.string "Try and avoid them, alright?\n"
-	.string "I don't want you getting into trouble.\p"
+	.string "I don't want you getting into\l"
+	.string "any trouble.$"
 	
+gText_Dad_Pokenav_CallYouBack::
+	.string "Dad: {PLAYER}, you caught me at a\n"
+	.string "bad time. Can I call you back?$"
+	
+gText_Dad_Pokenav_LegendaryWarn::
+	.string "Dad: {PLAYER}, be careful out there.\p"
+	.string "I heard on the news that there\n"
+	.string "was horrible weather warnings\l"
+	.string "in Eastern Hoenn.$"
+	
+gText_Dad_Pokenav_Singlehanded::
+	.string "Dad: {PLAYER}!\p"
+	.string "D-Did I hear the news right?!\p"
+	.string "You fought off {BOLD}two{END} ancient,\n"
+	.string "super-powerful Pokémon…\l"
+	.string "SINGLEHANDEDLY?!\p"
+	.string "I… what would your mother say…?!\n"
+	.string "Holy Miltank?!$"
 
+gText_Dad_Pokenav_EverGrande::
+	.string "Dad: {PLAYER}!\n"
+	.string "I heard you were at Ever Grande!\p"
+	.string "I'm going to be there for your\n"
+	.string "fights, vacation days or not!$"
 
 
 @ General Match Calls

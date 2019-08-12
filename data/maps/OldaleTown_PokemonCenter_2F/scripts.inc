@@ -36,3 +36,17 @@ OldaleTown_PokemonCenter_2F_Text_Mother:
 	.string "This woman looks like she's incredibly\n"
 	.string "distressed.$"
 
+@ -----------------------------------------------------
+
+OldaleTown_PokemonCenter_2F_EventScript_MudkipDoll::
+	lock
+	msgbox OldaleTown_PokemonCenter_2F_Text_MudkipDoll, MSGBOX_CDESCRIBE
+	givedecoration_std DECOR_MUDKIP_DOLL
+	removeobject THIS_EVENT
+	release
+	end
+OldaleTown_PokemonCenter_2F_Text_MudkipDoll:
+	.string "Someone left behind a Mudkip Doll?\p"
+	.string "…\p"
+	.string "Yoink.$"
+

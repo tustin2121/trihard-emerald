@@ -1361,12 +1361,34 @@ void SetUpPlacingDecorationPlayerAvatar(u8 taskId, struct PlaceDecorationGraphic
     x = 16 * (u8)gTasks[taskId].data[5] + sDecorationMovementInfo[data->decoration->shape].cameraX - 8 * ((u8)gTasks[taskId].data[5] - 1);
     if (data->decoration->shape == DECORSHAPE_3x1 || data->decoration->shape == DECORSHAPE_3x3 || data->decoration->shape == DECORSHAPE_3x2)
         x -= 8;
-
-    //TODO: MULTIFORM PLAYER
-    if (GetPlayerGender() == MALE)
-        sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_BRENDAN, SpriteCallbackDummy, x, 72, 0);
-    else
-        sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_MAY, SpriteCallbackDummy, x, 72, 0);
+    
+    switch (gSaveBlock2Ptr->playerForm)
+    {
+        case 0:
+            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY1, SpriteCallbackDummy, x, 72, 0);
+            break;
+        case 1:
+            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL1, SpriteCallbackDummy, x, 72, 0);
+            break;
+        case 2:
+            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY2, SpriteCallbackDummy, x, 72, 0);
+            break;
+        case 3:
+            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL2, SpriteCallbackDummy, x, 72, 0);
+            break;
+        case 4:
+            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY3, SpriteCallbackDummy, x, 72, 0);
+            break;
+        case 5:
+            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL3, SpriteCallbackDummy, x, 72, 0);
+            break;
+        case 6:
+            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY4, SpriteCallbackDummy, x, 72, 0);
+            break;
+        case 7:
+            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL4, SpriteCallbackDummy, x, 72, 0);
+            break;
+    }
 
     gSprites[sDecor_CameraSpriteObjectIdx2].oam.priority = 1;
     DestroySprite(&gSprites[sDecor_CameraSpriteObjectIdx1]);

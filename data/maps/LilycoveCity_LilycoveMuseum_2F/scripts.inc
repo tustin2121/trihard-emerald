@@ -62,27 +62,24 @@ LilycoveCity_LilycoveMuseum_2F_MapScript2_2197FE: @ 82197FE
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_219808:: @ 8219808
 	lockall
+	markasdialog
 	applymovement 1, Common_Movement_FacePlayer
-	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_LilycoveMuseum_2F_Movement_219861
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox LilycoveCity_LilycoveMuseum_2F_Text_2199EB, MSGBOX_CDIALOG
+	msgbox LilycoveCity_LilycoveMuseum_2F_Text_2199EB
 	applymovement 1, LilycoveCity_LilycoveMuseum_2F_Movement_219863
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_LilycoveMuseum_2F_Movement_219863
 	waitmovement 0
-	msgbox LilycoveCity_LilycoveMuseum_2F_Text_219A0D, MSGBOX_CDIALOG
+	msgbox LilycoveCity_LilycoveMuseum_2F_Text_219A0D
 	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_LilycoveMuseum_2F_Movement_219861
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	msgbox LilycoveCity_LilycoveMuseum_2F_Text_219BC4, MSGBOX_CDIALOG
+	msgbox LilycoveCity_LilycoveMuseum_2F_Text_219BC4
 	copyvar VAR_LILYCOVE_MUSEUM_2F_STATE, 0x1
 	releaseall
 	end
-
-LilycoveCity_LilycoveMuseum_2F_Movement_219861: @ 8219861
-	walk_in_place_fastest_left
-	step_end
 
 LilycoveCity_LilycoveMuseum_2F_Movement_219863: @ 8219863
 	face_up

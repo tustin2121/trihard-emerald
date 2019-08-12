@@ -1923,7 +1923,7 @@ void display_sell_item_ask_str(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
-    if (ItemId_GetImportance(gSpecialVar_ItemId))
+    if (ItemId_GetImportance(gSpecialVar_ItemId) || ItemId_GetShouldHideQuantity(gSpecialVar_ItemId))
     {
         CopyItemName(gSpecialVar_ItemId, gStringVar2);
         StringExpandPlaceholders(gStringVar4, gText_CantBuyKeyItem);
@@ -2440,6 +2440,17 @@ void DetermineSelectMessage()
     gSpecialVar_0x800B = 0;
     gSpecialVar_Result = 0;
     if (gSpecialVar_0x800A < SELECT_START_COUNT) return; //do nothing special if under 100 presses
+    if (gSpecialVar_0x800A > 1010)
+    {
+        gSpecialVar_0x800B = 8;
+        return;
+    }
+    if (gSpecialVar_0x800A > 1000)
+    {
+        gSpecialVar_Result = gSpecialVar_0x800A - 1000;
+        gSpecialVar_0x800B = 5;
+        return;
+    }
     if (gSpecialVar_0x800A < SELECT_START_COUNT + 100) //from 101 to 200, subtily vary the messages
     {
         gSpecialVar_Result = 1 + (gSpecialVar_0x800A - SELECT_START_COUNT) / 10;

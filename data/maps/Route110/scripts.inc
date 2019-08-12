@@ -745,11 +745,12 @@ Route110_EventScript_1EF7EB:: @ 81EF7EB
 	case 2, Route110_EventScript_1EF83A
 	end
 Route110_Text_1EFC48: @ 81EFC48
-	.string "May: Hi, {PLAYER}, long time no see!\p"
-	.string "While I was searching for other\n"
-	.string "Pokémon, my Pokémon grew stronger.\p"
-	.string "So…\n"
-	.string "How about a little battle?$"
+	.string "May: Oh! {PLAYER}! Ha, long time no see!\p"
+	.string "Wow! What's… what's that on your head?\n"
+	.string "That's a new look.\p"
+	.string "You running with some new friends or\n"
+	.string "something? That's… … … great!\p"
+	.string "H-How about a little battle?$"
 
 Route110_EventScript_1EF81A:: @ 81EF81A
 	trainerbattle_no_intro TRAINER_MAY_5, Route110_Text_1EFCCB
@@ -765,27 +766,29 @@ Route110_EventScript_1EF83A:: @ 81EF83A
 	end
 Route110_Text_1EFCCB: @ 81EFCCB
 	.string "Yikes!\n"
-	.string "You're better than I expected!$"
+	.string "You're worse than I expected!$"
 
 Route110_EventScript_1EF84A:: @ 81EF84A
+	markasdialog
 	msgbox Route110_Text_1EFCF1, MSGBOX_DEFAULT
 	call Route110_EventScript_1EF8DF
 	msgbox Route110_Text_1EFD58, MSGBOX_DEFAULT
 	goto Route110_EventScript_1EF8EC
 	end
 Route110_Text_1EFCF1: @ 81EFCF1
-	.string "May: {PLAYER}, you've been busy\n"
-	.string "training, too, haven't you?\p"
-	.string "I think you deserve a reward!\n"
-	.string "This is from me!$"
+	.string "May: {PLAYER}, you've uh… been training\n"
+	.string "new Pokémon, huh…\p"
+	.string "Hey, uh… I have this thing! That I'd\n"
+	.string "like you to have! Maybe make it your\l"
+	.string "new hobby or something!$"
 Route110_Text_1EFD58: @ 81EFD58
-	.string "May: That's an Itemfinder.\p"
+	.string "May: It's an Itemfinder!\p"
 	.string "Try it out. If there is an item that's\n"
 	.string "not visible, it emits a sound.\p"
-	.string "Okay, {PLAYER}, let's meet again!\p"
-	.string "I know it's a little silly coming from\n"
-	.string "me, but I think you should train a lot\l"
-	.string "harder for the next time.$"
+	.string "You could maybe spend some time doing\n"
+	.string "that instead of abus--TRAINING new\l"
+	.string "Pokémon, or hanging with hood--FRIENDS!\p"
+	.string "… … …$"
 
 Route110_EventScript_1EF865:: @ 81EF865
 	msgbox Route110_Text_1EFE3F, MSGBOX_DEFAULT
@@ -795,11 +798,13 @@ Route110_EventScript_1EF865:: @ 81EF865
 	case 2, Route110_EventScript_1EF8B4
 	end
 Route110_Text_1EFE3F: @ 81EFE3F
-	.string "Brendan: Hey, {PLAYER}.\n"
-	.string "So this is where you were.\l"
+	.string "Brendan: Hey! Uh… {PLAYER}!\n"
+	.string "Don't sneak up on me like that!\l"
 	.string "How's it going?\p"
-	.string "Have you been raising your Pokémon?\n"
-	.string "I'll check for you.$"
+	.string "That's uh… a cool bandanna you've got\n"
+	.string "there. New crowd, huh?\p"
+	.string "How've you been raising your Pokémon?\n"
+	.string "I'll, uh… check for you.$"
 
 Route110_EventScript_1EF894:: @ 81EF894
 	trainerbattle_no_intro TRAINER_BRENDAN_5, Route110_Text_1EFEB4
@@ -815,27 +820,29 @@ Route110_EventScript_1EF8B4:: @ 81EF8B4
 	end
 Route110_Text_1EFEB4: @ 81EFEB4
 	.string "Hmm…\n"
-	.string "You're pretty good.$"
+	.string "That's… that's not good…$"
 
 Route110_EventScript_1EF8C4:: @ 81EF8C4
+	markasdialog
 	msgbox Route110_Text_1EFECD, MSGBOX_DEFAULT
 	call Route110_EventScript_1EF8DF
 	msgbox Route110_Text_1EFF1C, MSGBOX_DEFAULT
 	goto Route110_EventScript_1EF8EC
 	end
 Route110_Text_1EFECD: @ 81EFECD
-	.string "Brendan: {PLAYER}, you've trained\n"
-	.string "without me noticing…\p"
-	.string "Good enough!\n"
-	.string "Here, take this.$"
+	.string "Brendan: {PLAYER}, you've trained some\n"
+	.string "new Pokémon, eh, without my knowing…?\p"
+	.string "Uh… Here! Take this!$"
 Route110_Text_1EFF1C: @ 81EFF1C
-	.string "Brendan: That's an Itemfinder.\p"
-	.string "Use it to root around for items that\n"
-	.string "aren't visible.\p"
+	.string "Brendan: This! This is… amazing!\p"
+	.string "It's an Itemfinder! Use it to root\n"
+	.string "around for items that aren't visible!\p"
 	.string "If it senses something, it emits\n"
 	.string "a sound.\p"
-	.string "Anyway, I'm off to look for new\n"
-	.string "Pokémon.$"
+	.string "Maybe you'll like it enough to take up\n"
+	.string "as a hobby. One that doesn't involve…\l"
+	.string "stealing things and… abusing Pokémon…\p"
+	.string "… … …$"
 
 Route110_EventScript_1EF8DF:: @ 81EF8DF
 	giveitem_std ITEM_ITEMFINDER

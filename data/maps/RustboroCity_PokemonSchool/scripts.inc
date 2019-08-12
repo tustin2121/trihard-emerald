@@ -38,9 +38,7 @@ RustboroCity_PokemonSchool_Text_21411A: @ 821411A
 	.string "steadily lose HP.\p"
 	.string "The effects of poison remain after\n"
 	.string "a battle.\p"
-	.string "A poisoned Pokémon's HP will drop\n"
-	.string "while it is traveling.\p"
-	.string "Heal a poisoning using an ANTIDOTE.$"
+	.string "Heal a poisoning using an Antidote.$"
 
 RustboroCity_PokemonSchool_EventScript_213F25:: @ 8213F25
 	msgbox RustboroCity_PokemonSchool_Text_2141D8, MSGBOX_DEFAULT
@@ -52,7 +50,7 @@ RustboroCity_PokemonSchool_Text_2141D8: @ 82141D8
 	.string "It may also not be able to move while\n"
 	.string "it is in battle.\p"
 	.string "Paralysis remains after battle.\n"
-	.string "Cure it using a PARLYZ HEAL.$"
+	.string "Cure it using a Parlyz Heal.$"
 
 RustboroCity_PokemonSchool_EventScript_213F33:: @ 8213F33
 	msgbox RustboroCity_PokemonSchool_Text_21427D, MSGBOX_DEFAULT
@@ -64,17 +62,17 @@ RustboroCity_PokemonSchool_Text_21427D: @ 821427D
 	.string "A Pokémon may wake up on its own,\n"
 	.string "but if a battle ends while it is\l"
 	.string "sleeping, it will stay asleep.\p"
-	.string "Wake it up using an AWAKENING.$"
+	.string "Wake it up using an Awakening.$"
 
 RustboroCity_PokemonSchool_EventScript_213F41:: @ 8213F41
 	msgbox RustboroCity_PokemonSchool_Text_214336, MSGBOX_DEFAULT
 	goto RustboroCity_PokemonSchool_EventScript_213EB8
 	end
 RustboroCity_PokemonSchool_Text_214336: @ 8214336
-	.string "A burn reduces ATTACK power, and it\n"
+	.string "A burn reduces attack power, and it\n"
 	.string "steadily reduces the victim's HP.\p"
 	.string "A burn lingers after battle.\n"
-	.string "Cure a burn using a BURN HEAL.$"
+	.string "Cure a burn using a Burn Heal.$"
 
 RustboroCity_PokemonSchool_EventScript_213F4F:: @ 8213F4F
 	msgbox RustboroCity_PokemonSchool_Text_2143B8, MSGBOX_DEFAULT
@@ -84,7 +82,7 @@ RustboroCity_PokemonSchool_Text_2143B8: @ 82143B8
 	.string "If a Pokémon is frozen, it becomes\n"
 	.string "completely helpless.\p"
 	.string "It will remain frozen after battle.\n"
-	.string "Thaw it out using an ICE HEAL.$"
+	.string "Thaw it out using an Ice Heal.$"
 
 @ -----------------------------------------------------
 @ People

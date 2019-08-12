@@ -1054,13 +1054,14 @@ LilycoveCity_ContestLobby_Movement_21ACEF: @ 821ACEF
 LilycoveCity_ContestLobby_EventScript_21ACF1:: @ 821ACF1
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_21AD06
 	msgbox LilycoveCity_ContestLobby_Text_21AD10, MSGBOX_NPC
 	release
 	end
 
 LilycoveCity_ContestLobby_EventScript_21AD06:: @ 821AD06
-	msgbox LilycoveCity_ContestLobby_Text_21AD55, MSGBOX_DEFAULT
+	msgbox LilycoveCity_ContestLobby_Text_21AD55
 	release
 	end
 

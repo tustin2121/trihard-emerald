@@ -14,7 +14,19 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [
-    
+    {
+      "elevation": 3,
+      "flag": "0",
+      "graphics_id": "EVENT_OBJ_GFX_MART_EMPLOYEE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "script": "RustboroCity_Store_MartScript",
+      "trainer_sight_or_berry_tree_id": "0",
+      "trainer_type": "0",
+      "x": 1,
+      "y": 3
+    }
   ],
   "warp_events": [
     {
@@ -33,5 +45,132 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [{
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Fridge",
+      "type": "sign",
+      "x": 3,
+      "y": 1
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Fridge",
+      "type": "sign",
+      "x": 4,
+      "y": 1
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Fridge",
+      "type": "sign",
+      "x": 5,
+      "y": 1
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 6,
+      "y": 1
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 7,
+      "y": 1
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 8,
+      "y": 1
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 9,
+      "y": 1
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 6,
+      "y": 4
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 7,
+      "y": 4
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 6,
+      "y": 5
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Stealable",
+      "type": "sign",
+      "x": 7,
+      "y": 5
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 6,
+      "y": 6
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Stealable",
+      "type": "sign",
+      "x": 7,
+      "y": 6
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 10,
+      "y": 4
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 10,
+      "y": 6
+    },
+    {
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RustboroCity_Store_EventScript_Shelves",
+      "type": "sign",
+      "x": 10,
+      "y": 5
+    }]
 }

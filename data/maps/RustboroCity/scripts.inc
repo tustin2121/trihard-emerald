@@ -543,11 +543,12 @@ RustboroCity_TriggerScript_AquasTask1::
 	selectpointer RustboroCity_MovementTable_AquasTask1_CamMovement1, VAR_TEMP_F
 	applymovement EVENT_OBJ_ID_CAMERA, 0
 	applymovement LID_AQUA_3, RustboroCity_Movement_AquasTask1_AquaGuy
-	waitmovement 0
+	waitmovement LID_AQUA_3
 	delay 2
 	applymovement LID_AQUA_BOY, Common_Movement_WalkInPlaceUp
 	applymovement LID_AQUA_3, Common_Movement_WalkInPlaceDown
 	waitmovement 0
+	waitmovement EVENT_OBJ_ID_CAMERA
 	@ "He went into the tunnel."
 	markasdialog -6
 	msgbox RustboroCity_Text_AquasTask2
@@ -572,6 +573,7 @@ RustboroCity_TriggerScript_AquasTask1::
 	msgbox RustboroCity_Text_AquasTask5
 	playse SE_SELECT
 	waitmovement 0
+	waitmovement EVENT_OBJ_ID_PLAYER
 	@ "Any suggestions"
 	selectpointer RustboroCity_MovementTable_AquasTask4_PlayerCreep2, VAR_TEMP_F
 	applymovement EVENT_OBJ_ID_PLAYER, 0
@@ -582,6 +584,7 @@ RustboroCity_TriggerScript_AquasTask1::
 	waitmovement 0
 	closemessage
 	@ Player sneaks up
+	waitmovement EVENT_OBJ_ID_PLAYER
 	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask_PlayerCreepForward
 	waitmovement 0
 	delay 40
@@ -599,8 +602,9 @@ RustboroCity_TriggerScript_AquasTask1::
 	applymovement EVENT_OBJ_ID_CAMERA, RustboroCity_Movement_AquasTask7_Camera
 	msgbox RustboroCity_Text_AquasTask7
 	playse SE_SELECT
-	waitmovement 0
+	waitmovement LID_AQUA_BOY
 	closemessage
+	waitmovement EVENT_OBJ_ID_CAMERA
 	@
 	special RemoveCameraObject
 	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_AquasTask8_PlayerTalk

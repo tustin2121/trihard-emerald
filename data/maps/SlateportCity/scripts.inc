@@ -971,6 +971,7 @@ SlateportCity_EventScript_AquaLineMove:
 	waitmovement 0
 	setvar VAR_SLATEPORT_MUSEUM_HEIST_STATE, 1
 	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
+	setflag FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
 	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
 	warp MAP_SLATEPORT_CITY_OCEANIC_MUSEUM_1F, 255, 10, 4
 	waitstate
@@ -1009,6 +1010,7 @@ SlateportCity_EventScript_LoganAfterMuseum:
 	waitmovement EVENT_OBJ_ID_PLAYER
 	waitmovement EVENT_OBJ_ID_CAMERA
 	special RemoveCameraObject
+	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_LoganAfterMuseum_PlayerWatch
 	applymovement LID_LOGAN, SlateportCity_Movement_LoganAfterMuseum_LoganRunOff
 	waitmovement 0

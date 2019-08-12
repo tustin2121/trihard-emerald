@@ -5,6 +5,9 @@ $(EVENTOBJGFXDIR)/people/protagboy1/walking.4bpp: %.4bpp: %.png
 
 $(EVENTOBJGFXDIR)/people/protagboy1/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/protagboy1/decorating.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protagboy1/field_move.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -32,6 +35,9 @@ $(EVENTOBJGFXDIR)/people/protaggirl1/walking.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protaggirl1/running.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/protaggirl1/decorating.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protaggirl1/field_move.4bpp: %.4bpp: %.png
@@ -61,6 +67,9 @@ $(EVENTOBJGFXDIR)/people/protagboy2/walking.4bpp: %.4bpp: %.png
 
 $(EVENTOBJGFXDIR)/people/protagboy2/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/protagboy2/decorating.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protagboy2/field_move.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -88,6 +97,9 @@ $(EVENTOBJGFXDIR)/people/protaggirl2/walking.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protaggirl2/running.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/protaggirl2/decorating.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protaggirl2/field_move.4bpp: %.4bpp: %.png
@@ -117,6 +129,9 @@ $(EVENTOBJGFXDIR)/people/protagboy3/walking.4bpp: %.4bpp: %.png
 
 $(EVENTOBJGFXDIR)/people/protagboy3/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/protagboy3/decorating.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protagboy3/field_move.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -144,6 +159,9 @@ $(EVENTOBJGFXDIR)/people/protaggirl3/walking.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protaggirl3/running.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/protaggirl3/decorating.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protaggirl3/field_move.4bpp: %.4bpp: %.png
@@ -173,6 +191,9 @@ $(EVENTOBJGFXDIR)/people/protagboy4/walking.4bpp: %.4bpp: %.png
 
 $(EVENTOBJGFXDIR)/people/protagboy4/running.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/protagboy4/decorating.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protagboy4/field_move.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -200,6 +221,9 @@ $(EVENTOBJGFXDIR)/people/protaggirl4/walking.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protaggirl4/running.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+$(EVENTOBJGFXDIR)/people/protaggirl4/decorating.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(EVENTOBJGFXDIR)/people/protaggirl4/field_move.4bpp: %.4bpp: %.png

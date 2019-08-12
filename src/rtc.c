@@ -7,7 +7,7 @@
 
 // iwram bss
 IWRAM_DATA static u16 sErrorStatus;
-IWRAM_DATA static struct SiiRtcInfo sRtc;
+IWRAM_DATA struct SiiRtcInfo sRtc;
 IWRAM_DATA static u8 sProbeResult;
 IWRAM_DATA static u16 sSavedIme;
 
@@ -454,6 +454,12 @@ void AdvanceRealtimeClock(int hours, int minutes)
     {
         gLocalTime.hours -= 24;
         ++gLocalTime.days;
+        ++gLocalTime.dayOfWeek;
+    }
+    
+    while (gLocalTime.dayOfWeek >= 7)
+    {
+        gLocalTime.dayOfWeek -= 7;
     }
     
     // Set the offset back to the save block
@@ -483,7 +489,13 @@ void AdvanceTimeToNextMorning()
     {
         gLocalTime.hours -= 24;
         ++gLocalTime.days;
+        ++gLocalTime.dayOfWeek;
     }
+    
+    while (gLocalTime.dayOfWeek >= 7)
+    {
+        gLocalTime.dayOfWeek -= 7;
+    } 
     
     // Set the offset back to the save block
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);

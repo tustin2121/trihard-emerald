@@ -244,7 +244,8 @@ MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle::
 	applymovement EVENT_OBJ_ID_PLAYER, 0
 	selectpointer SpaceCenter_MovementTable_MissedBattle1_CameraWalk, VAR_INTERACT_Y
 	applymovement EVENT_OBJ_ID_CAMERA, 0
-	waitmovement 0
+	waitmovement EVENT_OBJ_ID_CAMERA
+	waitmovement EVENT_OBJ_ID_PLAYER
 	@ Maxie is defeated
 	applymovement LID_MAGMA, Common_Movement_WalkInPlaceUp
 	applymovement LID_MAXIE, Common_Movement_BackOffLeft1
@@ -270,6 +271,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle::
 	playse SE_PIN
 	message MossdeepCity_SpaceCenter_2F_Text_MissedBattle5
 	waitmovement 0
+	waitmovement EVENT_OBJ_ID_PLAYER
 	waitmessage
 	waitbuttonpress
 	@ "Boss?"
@@ -297,6 +299,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle::
 	applymovement EVENT_OBJ_ID_PLAYER, SpaceCenter_Movement_MissedBattle8_PlayerWatch
 	waitmovement LID_MAXIE
 	removeobject LID_MAXIE
+	waitmovement EVENT_OBJ_ID_PLAYER
 	@ Steven thanks Logan
 	applymovement 5, Common_Movement_WalkRight2 @ Remove magma grunts off screen
 	applymovement LID_STEVEN, Common_Movement_WalkInPlaceDown
@@ -322,8 +325,9 @@ MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle::
 	applymovement EVENT_OBJ_ID_CAMERA, Common_Movement_WalkRight2
 	playse SE_PIN
 	message MossdeepCity_SpaceCenter_2F_Text_MissedBattle11
-	waitmovement 0
+	waitmovement EVENT_OBJ_ID_PLAYER
 	waitmessage
+	waitmovement EVENT_OBJ_ID_CAMERA
 	special RemoveCameraObject
 	@ Player seethes
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_Angry

@@ -15,6 +15,7 @@
 #include "scanline_effect.h"
 #include "task.h"
 #include "bg.h"
+#include "rtc.h"
 #include "gpu_regs.h"
 #include "window.h"
 #include "palette.h"
@@ -75,6 +76,7 @@ static void DebugHandle_SwapGenders();
 static void DebugHandle_RenamePlayer();
 static void DebugHandle_UnmarkBoxMon();
 static void DebugHandle_ClearStats();
+static void DebugHandle_SetTimeOfDay();
 static void Task_InitMusicSelect(u8 taskId);
 
 void DebugSetCallbackSuccess()
@@ -109,6 +111,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_RenamePlayer,
 	DebugHandle_UnmarkBoxMon,
 	DebugHandle_ClearStats,
+	DebugHandle_SetTimeOfDay,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -446,6 +449,22 @@ void DebugHandle_UnmarkBoxMon()
 void DebugHandle_ClearStats()
 {
 	ResetGameStats();
+	DebugSetCallbackSuccess();
+}
+
+extern struct SiiRtcInfo sRtc;
+// arguments: 
+//   args[0] = hours
+//   args[1] = minutes
+// returns: none
+void DebugHandle_SetTimeOfDay()
+{
+	RtcCalcLocalTime();
+	gLocalTime.hours = gDebugInterrupts.args[0] % 24;
+	gLocalTime.minutes = gDebugInterrupts.args[1] % 60;
+	RtcGetInfo(&sRtc);
+    RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
+	
 	DebugSetCallbackSuccess();
 }
 
