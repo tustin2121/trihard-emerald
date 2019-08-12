@@ -119,6 +119,15 @@ AquaHideout_B2F_TriggerScript_Arrival:: @ 8233DE5
 	applymovement LID_MATT, Common_Movement_FacePlayer
 	waitmovement 0
 	setvar VAR_TEMP_1, 1
+	@ Clean up Slateport Heist, which didn't get seen
+	setvar VAR_SLATEPORT_STATE, 2
+	setvar VAR_SLATEPORT_HARBOR_STATE, 2
+	setflag FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN
+	setflag FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY
+	setflag FLAG_MET_TEAM_AQUA_HARBOR @ Blatant Lies
+	setflag FLAG_TEAM_AQUA_STOLE_SUBMARINE
+	setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN
 	releaseall
 	end
 

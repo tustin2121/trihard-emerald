@@ -25,7 +25,7 @@ Route111_OldLadysRestStop_Text_22A978: @ 822A978
 	.string "That's a fine idea! You should do that.$"
 
 Route111_OldLadysRestStop_EventScript_LadyHeal1:: @ 822A941
-	goto_if_set setflag FLAG_TEMP_1, Route111_OldLadysRestStop_EventScript_LadyHeal2
+	goto_if_set FLAG_TEMP_1, Route111_OldLadysRestStop_EventScript_LadyHeal2
 	msgbox Route111_OldLadysRestStop_Text_22A9EC, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal

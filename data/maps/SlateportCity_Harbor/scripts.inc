@@ -3,7 +3,7 @@ SlateportCity_Harbor_MapScripts:: @ 820C97D
 	.byte 0
 
 SlateportCity_Harbor_OnTransition: @ 820C983
-	setescapewarp MAP_SLATEPORT_CITY, 255, 28, 13
+	setescapewarp MAP_SLATEPORT_CITY, 255, 8+28, 13
 	setvar VAR_TEMP_1, 0
 	compare VAR_SLATEPORT_HARBOR_STATE, 1
 	call_if_eq SlateportCity_Harbor_EventScript_20C9A9
@@ -16,8 +16,8 @@ SlateportCity_Harbor_EventScript_20C9A5:: @ 820C9A5
 
 SlateportCity_Harbor_EventScript_20C9A9:: @ 820C9A9
 	savebgm MUS_AQA_0
-	setobjectxyperm 4, 12, 13
-	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_LEFT
+	setobjectxyperm 4, 7, 12
+	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_UP
 	setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
 	return
 
@@ -53,6 +53,7 @@ SlateportCity_Harbor_EventScript_20C9F5:: @ 820C9F5
 	applymovement 6, Common_Movement_WalkInPlaceDown
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
+	markasdialog -10
 	msgbox SlateportCity_Harbor_Text_20D291, MSGBOX_DEFAULT
 	closemessage
 	applymovement 6, SlateportCity_Harbor_Movement_20CAC8
@@ -65,14 +66,11 @@ SlateportCity_Harbor_EventScript_20C9F5:: @ 820C9F5
 	setvar VAR_SLATEPORT_HARBOR_STATE, 2
 	setflag FLAG_MET_TEAM_AQUA_HARBOR
 	setflag FLAG_HIDE_LILCOVE_MOTEL_SCOTT
-	compare VAR_0x8008, 0
-	call_if_eq SlateportCity_Harbor_EventScript_20CA89
-	compare VAR_0x8008, 1
-	call_if_eq SlateportCity_Harbor_EventScript_20CA9E
-	compare VAR_0x8008, 2
-	call_if_eq SlateportCity_Harbor_EventScript_20CAB3
-	compare VAR_0x8008, 3
-	call_if_eq SlateportCity_Harbor_EventScript_20CAB3
+	applymovement 4, Common_Movement_WalkLeft1
+	waitmovement 0
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	markasdialog 10
 	msgbox SlateportCity_Harbor_Text_20D35A, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_TEAM_AQUA_STOLE_SUBMARINE
@@ -81,27 +79,46 @@ SlateportCity_Harbor_EventScript_20C9F5:: @ 820C9F5
 	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_RIGHT
 	releaseall
 	end
+SlateportCity_Harbor_Text_20D291: @ 820D291
+	.string "Archie: Oh? {PLAYER}!\n"
+	.string "I did not expect to see you here…\p"
+	.string "You must have been {PLAYER_they} who distracted\n"
+	.string "Stern long enough to allow us to strike.\p"
+	.string "Well done, {PLAYER}.\p"
+	.string "But now…\n"
+	.string "No one can stop us! No one!\p"
+	.string "See you back to the Hideout in\n"
+	.string "Lilycove City.\p"
+	.string "Fwahahahaha…$"
+SlateportCity_Harbor_Text_20D35A: @ 820D35A
+	.string "Capt. Stern: Why…\p"
+	.string "Why would Team Aqua steal my\n"
+	.string "Submarine Explorer 1?\p"
+	.string "They can't be after the slumbering\n"
+	.string "Pokémon at the bottom of the sea…\p"
+	.string "But even if I were to chase them,\n"
+	.string "I don't stand a chance against them…$"
 
-SlateportCity_Harbor_EventScript_20CA89:: @ 820CA89
-	applymovement 4, SlateportCity_Harbor_Movement_20CAE0
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
-	waitmovement 0
-	return
+@ SlateportCity_Harbor_EventScript_20CA89:: @ 820CA89
+@ 	applymovement 4, SlateportCity_Harbor_Movement_20CAE0
+@ 	waitmovement 0
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
+@ 	waitmovement 0
+@ 	return
 
-SlateportCity_Harbor_EventScript_20CA9E:: @ 820CA9E
-	applymovement 4, SlateportCity_Harbor_Movement_20CAE6
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
-	waitmovement 0
-	return
+@ SlateportCity_Harbor_EventScript_20CA9E:: @ 820CA9E
+@ 	applymovement 4, SlateportCity_Harbor_Movement_20CAE6
+@ 	waitmovement 0
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+@ 	waitmovement 0
+@ 	return
 
-SlateportCity_Harbor_EventScript_20CAB3:: @ 820CAB3
-	applymovement 4, SlateportCity_Harbor_Movement_20CAEB
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
-	waitmovement 0
-	return
+@ SlateportCity_Harbor_EventScript_20CAB3:: @ 820CAB3
+@ 	applymovement 4, SlateportCity_Harbor_Movement_20CAEB
+@ 	waitmovement 0
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+@ 	waitmovement 0
+@ 	return
 
 SlateportCity_Harbor_Movement_20CAC8: @ 820CAC8
 	delay_16
@@ -293,34 +310,59 @@ SlateportCity_Harbor_EventScript_20CC99:: @ 820CC99
 SlateportCity_Harbor_EventScript_20CCA2:: @ 820CCA2
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE07_GET, SlateportCity_Harbor_EventScript_20CD00
-	goto_if_set FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE, SlateportCity_Harbor_EventScript_20CCF6
-	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, SlateportCity_Harbor_EventScript_20CCE9
-	compare VAR_SLATEPORT_HARBOR_STATE, 2
-	goto_if_eq SlateportCity_Harbor_EventScript_20CCDF
+	markasdialog
+	@ goto_if_set FLAG_BADGE07_GET, SlateportCity_Harbor_EventScript_20CD00
+	@ goto_if_set FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE, SlateportCity_Harbor_EventScript_20CCF6
+	@ goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, SlateportCity_Harbor_EventScript_20CCE9
+	@ compare VAR_SLATEPORT_HARBOR_STATE, 2
+	@ goto_if_eq SlateportCity_Harbor_EventScript_20CCDF
 	msgbox SlateportCity_Harbor_Text_20D232, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-	waitmovement 0
+	faceoriginaldir
 	release
 	end
-
-SlateportCity_Harbor_EventScript_20CCDF:: @ 820CCDF
-	msgbox SlateportCity_Harbor_Text_20D35A, MSGBOX_DEFAULT
-	release
-	end
+SlateportCity_Harbor_Text_20D232: @ 820D232
+	.string "Capt. Stern: AUGH! MONSTER!!\p"
+	.string "GET AWAY FROM ME!!$"
+@ SlateportCity_Harbor_EventScript_20CCDF:: @ 820CCDF
+@ 	msgbox SlateportCity_Harbor_Text_20D35B
+@ 	release
+@ 	end
+@ SlateportCity_Harbor_Text_20D35B:
+@ 	.string "AUGH! MONSTER!! GET AWAY FROM ME!!$"
 
 SlateportCity_Harbor_EventScript_20CCE9:: @ 820CCE9
 	setflag FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE
 	msgbox SlateportCity_Harbor_Text_20D42B, MSGBOX_DEFAULT
 	release
 	end
-
+SlateportCity_Harbor_Text_20D42B: @ 820D42B
+	.string "CAPT. STERN: Oh, {PLAYER}…\p"
+	.string "Okay… So Team Aqua left before you\n"
+	.string "could stop them…\p"
+	.string "Oh, no, don't blame yourself.\n"
+	.string "You're not responsible for this.\p"
+	.string "Trying to catch a submarine…\n"
+	.string "It's impossible for most people.\p"
+	.string "You would need a Pokémon that knows\n"
+	.string "how to DIVE…\p"
+	.string "Perhaps if you went out to\n"
+	.string "Mossdeep City…\p"
+	.string "A lot of divers live out there, so\n"
+	.string "someone might teach you…$"
 SlateportCity_Harbor_EventScript_20CCF6:: @ 820CCF6
 	msgbox SlateportCity_Harbor_Text_20D58A, MSGBOX_DEFAULT
 	release
 	end
-
+SlateportCity_Harbor_Text_20D58A: @ 820D58A
+	.string "CAPT. STERN: Trying to catch a\n"
+	.string "submarine… It's impossible.\p"
+	.string "You would need a Pokémon that knows\n"
+	.string "how to DIVE…\p"
+	.string "Perhaps if you went out to\n"
+	.string "Mossdeep City…\p"
+	.string "A lot of divers live out there, so\n"
+	.string "someone might teach you…$"
 SlateportCity_Harbor_EventScript_20CD00:: @ 820CD00
 	compare VAR_TEMP_1, 1
 	goto_if_eq SlateportCity_Harbor_EventScript_20CE11
@@ -331,17 +373,38 @@ SlateportCity_Harbor_EventScript_20CD00:: @ 820CD00
 	msgbox SlateportCity_Harbor_Text_20D65C, MSGBOX_DEFAULT
 	release
 	end
+SlateportCity_Harbor_Text_20D65C: @ 820D65C
+	.string "CAPT. STERN: Oh, yes.\n"
+	.string "MR. BRINEY came to our SHIPYARD.\p"
+	.string "It won't be long now before we finish\n"
+	.string "making the ferry!$"
 
 SlateportCity_Harbor_EventScript_20CD2E:: @ 820CD2E
 	msgbox SlateportCity_Harbor_Text_20D6CB, MSGBOX_DEFAULT
 	release
 	end
+SlateportCity_Harbor_Text_20D6CB: @ 820D6CB
+	.string "CAPT. STERN: {PLAYER}!\p"
+	.string "We finally finished making the ferry\n"
+	.string "S.S. TIDAL!\p"
+	.string "We couldn't have done it without\n"
+	.string "your friend MR. BRINEY.\p"
+	.string "Please go for a short cruise on it!$"
 
 SlateportCity_Harbor_EventScript_20CD38:: @ 820CD38
 	message SlateportCity_Harbor_Text_20D76C
 	waitmessage
 	goto SlateportCity_Harbor_EventScript_20CD44
 	end
+SlateportCity_Harbor_Text_20D76C: @ 820D76C
+	.string "CAPT. STERN: Oh?\n"
+	.string "{PLAYER}, that item you have…\p"
+	.string "That's a SCANNER! That would sure\n"
+	.string "help us on our explorations.\p"
+	.string "{PLAYER}, would you trade your\n"
+	.string "SCANNER for something?\p"
+	.string "Like, say, a DEEPSEATOOTH or\n"
+	.string "a DEEPSEASCALE that I have?$"
 
 SlateportCity_Harbor_EventScript_20CD44:: @ 820CD44
 	multichoice 0, 0, 46, 0
@@ -456,79 +519,13 @@ SlateportCity_Harbor_Text_20D194: @ 820D194
 	.string "If I squeezed in, there wouldn't be\n"
 	.string "any room for the CAPTAIN…$"
 
-SlateportCity_Harbor_Text_20D232: @ 820D232
-	.string "CAPT. STERN: Those thugs…\p"
-	.string "They're the same lot who tried to rob\n"
-	.string "the DEVON GOODS at the MUSEUM.$"
 
-SlateportCity_Harbor_Text_20D291: @ 820D291
-	.string "ARCHIE: Oh?\n"
-	.string "Not you again…\p"
-	.string "You are tenacious to track us here,\n"
-	.string "that much I will give you.\p"
-	.string "But now…\n"
-	.string "No one can stop us! No one!\p"
-	.string "Or, will you follow us back to our\n"
-	.string "HIDEOUT in Lilycove City?\p"
-	.string "Fwahahahaha…$"
 
-SlateportCity_Harbor_Text_20D35A: @ 820D35A
-	.string "CAPT. STERN: Why…\p"
-	.string "Why would Team Aqua steal my\n"
-	.string "SUBMARINE EXPLORER 1?\p"
-	.string "They can't be after the slumbering\n"
-	.string "Pokémon at the bottom of the sea…\p"
-	.string "But even if I were to chase them,\n"
-	.string "I don't stand a chance against them…$"
 
-SlateportCity_Harbor_Text_20D42B: @ 820D42B
-	.string "CAPT. STERN: Oh, {PLAYER}…\p"
-	.string "Okay… So Team Aqua left before you\n"
-	.string "could stop them…\p"
-	.string "Oh, no, don't blame yourself.\n"
-	.string "You're not responsible for this.\p"
-	.string "Trying to catch a submarine…\n"
-	.string "It's impossible for most people.\p"
-	.string "You would need a Pokémon that knows\n"
-	.string "how to DIVE…\p"
-	.string "Perhaps if you went out to\n"
-	.string "Mossdeep City…\p"
-	.string "A lot of divers live out there, so\n"
-	.string "someone might teach you…$"
 
-SlateportCity_Harbor_Text_20D58A: @ 820D58A
-	.string "CAPT. STERN: Trying to catch a\n"
-	.string "submarine… It's impossible.\p"
-	.string "You would need a Pokémon that knows\n"
-	.string "how to DIVE…\p"
-	.string "Perhaps if you went out to\n"
-	.string "Mossdeep City…\p"
-	.string "A lot of divers live out there, so\n"
-	.string "someone might teach you…$"
 
-SlateportCity_Harbor_Text_20D65C: @ 820D65C
-	.string "CAPT. STERN: Oh, yes.\n"
-	.string "MR. BRINEY came to our SHIPYARD.\p"
-	.string "It won't be long now before we finish\n"
-	.string "making the ferry!$"
 
-SlateportCity_Harbor_Text_20D6CB: @ 820D6CB
-	.string "CAPT. STERN: {PLAYER}!\p"
-	.string "We finally finished making the ferry\n"
-	.string "S.S. TIDAL!\p"
-	.string "We couldn't have done it without\n"
-	.string "your friend MR. BRINEY.\p"
-	.string "Please go for a short cruise on it!$"
 
-SlateportCity_Harbor_Text_20D76C: @ 820D76C
-	.string "CAPT. STERN: Oh?\n"
-	.string "{PLAYER}, that item you have…\p"
-	.string "That's a SCANNER! That would sure\n"
-	.string "help us on our explorations.\p"
-	.string "{PLAYER}, would you trade your\n"
-	.string "SCANNER for something?\p"
-	.string "Like, say, a DEEPSEATOOTH or\n"
-	.string "a DEEPSEASCALE that I have?$"
 
 SlateportCity_Harbor_Text_20D841: @ 820D841
 	.string "CAPT. STERN: Are you certain?\n"

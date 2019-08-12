@@ -26,14 +26,14 @@ SlateportCity_EventScript_1DCC99:: @ 81DCC99
 	setobjectxyperm 6, 27+8, 16
 	setobjectxyperm 8, 28+8, 16
 	setobjectxyperm 1, 29+8, 16
-	setobjectxyperm 2, 31+8, 14
+	setobjectxyperm 2, 30+8, 17
 	setobjectmovementtype LID_CAPT_STERN, MOVEMENT_TYPE_FACE_DOWN
 	setobjectmovementtype 7, MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT
 	setobjectmovementtype 3, MOVEMENT_TYPE_FACE_UP_AND_RIGHT
 	setobjectmovementtype 6, MOVEMENT_TYPE_FACE_UP
 	setobjectmovementtype 8, MOVEMENT_TYPE_FACE_UP
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
-	setobjectmovementtype 2, MOVEMENT_TYPE_FACE_LEFT
+	setobjectmovementtype 2, MOVEMENT_TYPE_FACE_UP
 	return
 SlateportCity_EventScript_PositionScottAfterMuseum:: @ 81DCCE7
 	setflag FLAG_HIDE_MAP_NAME_POPUP
@@ -1080,54 +1080,58 @@ SlateportCity_Text_1DE4C4: @ 81DE4C4
 	.string "Gabby: I see, I see. You've had a most\n"
 	.string "invaluable experience…$"
 
-
 SlateportCity_EventScript_CaptainStern:: @ 81DD1F8
 	lockall
-	msgbox SlateportCity_Text_1DE502, MSGBOX_DEFAULT
-	msgbox SlateportCity_Text_1DE54A, MSGBOX_DEFAULT
+	@ Stern talking
+	markasdialog 16
+	msgbox SlateportCity_Text_1DE502
+	@ Gabby
+	markasdialog -6
+	msgbox SlateportCity_Text_1DE54A
 	closemessage
-	applymovement 10, Common_Movement_WalkInPlaceRight
+	@ Reporter walks away
+	applymovement LID_REPORTER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	delay 10
-	applymovement 9, Common_Movement_WalkInPlaceDown
+	applymovement LID_CAMERAMAN, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	delay 25
 	applymovement LID_CAPT_STERN, SlateportCity_Movement_1DD33C
 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DD34A
-	applymovement 10, SlateportCity_Movement_1DD319
-	applymovement 9, SlateportCity_Movement_1DD326
+	applymovement LID_REPORTER, SlateportCity_Movement_1DD319
+	applymovement LID_CAMERAMAN, SlateportCity_Movement_1DD326
 	waitmovement 0
-	removeobject 10
-	removeobject 9
-	msgbox SlateportCity_Text_1DE5F7, MSGBOX_DEFAULT
-	applymovement LID_CAPT_STERN, Common_Movement_WalkInPlaceUp
-	waitmovement 0
+	removeobject LID_REPORTER
+	removeobject LID_CAMERAMAN
+	@
+	markasdialog 12
 	msgbox SlateportCity_Text_1DE64F, MSGBOX_DEFAULT
+	@ Archie on megaphone
 	playbgm MUS_AQA_0, 0
+	markasdialog -10
 	msgbox SlateportCity_Text_1DE724, MSGBOX_DEFAULT
+	@ Panic
 	applymovement 6, Common_Movement_WalkInPlaceLeft
 	applymovement 1, Common_Movement_WalkInPlaceLeft
 	applymovement 7, SlateportCity_Movement_1DD309
 	applymovement 3, Common_Movement_QuestionMark
 	applymovement 2, SlateportCity_Movement_1DD311
-	waitmovement 0
-	applymovement LID_CAPT_STERN, Common_Movement_WalkInPlaceDown
-	waitmovement 0
-	msgbox SlateportCity_Text_1DE7F7, MSGBOX_DEFAULT
+	delay 20
 	playse SE_PIN
-	applymovement LID_CAPT_STERN, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement LID_CAPT_STERN, Common_Movement_Delay48
+	applymovement LID_CAPT_STERN, Common_Movement_ExclamationMarkAndWait
 	waitmovement 0
 	applymovement LID_CAPT_STERN, Common_Movement_WalkInPlaceUp
 	waitmovement 0
+	@ 
+	markasdialog 12
 	msgbox SlateportCity_Text_1DE860, MSGBOX_DEFAULT
-	msgbox SlateportCity_Text_1DE8A0, MSGBOX_DEFAULT
 	closemessage
+	@ Go inside
 	applymovement LID_CAPT_STERN, SlateportCity_Movement_1DD337
 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_1DD344
 	waitmovement 0
-	removeobject 11
+	removeobject LID_CAPT_STERN
+	@ Prepare next screen in harbor
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT
@@ -1146,10 +1150,26 @@ SlateportCity_Text_1DE54A: @ 81DE54A
 	.string "your busy schedule to talk to us.\p"
 	.string "We hope we can interview you again\n"
 	.string "with news of more discoveries!$"
-SlateportCity_Text_1DE5F7: @ 81DE5F7
-	.string "Capt. Stern: Whew…\p"
-	.string "That was my first time to be filmed for\n"
-	.string "TV. That was nerve-wracking.$"
+SlateportCity_Text_1DE64F: @ 81DE64F
+	.string "Capt. Stern: Augh! {P_PLAYER}!\n"
+	.string "If you're here! That means the rest\l"
+	.string "Team Aqua isn't too far behind!!$"
+SlateportCity_Text_1DE724: @ 81DE724
+	.string "Archie: Fufufu…\n"
+	.string "That's right, Capt. Stern.\p"
+	.string "We of Team Aqua will assume\n"
+	.string "control of your submarine!\p"
+	.string "Your objections are meaningless!\n"
+	.string "We expect your total cooperation!\p"
+	.string "Fufufu…\n"
+	.string "Just watch and learn what Team\l"
+	.string "Aqua has planned!$"
+SlateportCity_Text_1DE860: @ 81DE860
+	.string "Capt. Stern: It's from the harbor!\p"
+	.string "The submarine!\n"
+	.string "They're trying to take it!$"
+
+
 SlateportCity_Movement_1DD33C: @ 81DD33C
 	delay_16
 	delay_16
@@ -1158,16 +1178,14 @@ SlateportCity_Movement_1DD33C: @ 81DD33C
 	delay_16
 	walk_down
 	walk_left
+	walk_in_place_fastest_down
+	emote_exclamation_mark
 	step_end
 SlateportCity_Movement_1DD34A: @ 81DD34A
 	delay_16
 	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	walk_in_place_fastest_down
+	walk_right
+	walk_in_place_fastest_up
 	step_end
 SlateportCity_Movement_1DD319: @ 81DD319
 	delay_16
@@ -1217,29 +1235,23 @@ SlateportCity_Movement_1DD311: @ 81DD311
 	walk_in_place_fastest_left
 	step_end
 
-
-
-
-
 SlateportCity_Movement_1DD334: @ 81DD334
 	walk_down
 	walk_in_place_fastest_up
 	step_end
 
 SlateportCity_Movement_1DD337: @ 81DD337
-	walk_right
-	walk_up
-	walk_up
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
 	set_invisible
 	step_end
-
-
-
 SlateportCity_Movement_1DD344: @ 81DD344
-	walk_in_place_fastest_right
 	delay_16
 	delay_16
 	walk_right
+	walk_up
+	walk_up
 	walk_up
 	step_end
 
@@ -1478,44 +1490,6 @@ SlateportCity_EventScript_1DD643:: @ 81DD643
 
 
 
-
-
-
-SlateportCity_Text_1DE64F: @ 81DE64F
-	.string "Oh! {PLAYER}!\n"
-	.string "You're looking great!\p"
-	.string "We made a huge discovery on our last\n"
-	.string "seafloor exploration.\p"
-	.string "We found an underwater cavern on\n"
-	.string "Route 128.\p"
-	.string "We think it's the habitat of a Pokémon\n"
-	.string "that's said to have been long extinct.$"
-
-SlateportCity_Text_1DE724: @ 81DE724
-	.string "Fufufu…\n"
-	.string "Capt. Stern, I presume.\p"
-	.string "We of Team Aqua will assume\n"
-	.string "control of your submarine!\p"
-	.string "Your objections are meaningless!\n"
-	.string "We expect your total cooperation!\p"
-	.string "Fufufu…\n"
-	.string "Just watch and learn what Team\l"
-	.string "Aqua has planned!$"
-
-SlateportCity_Text_1DE7F7: @ 81DE7F7
-	.string "Capt. Stern: What was that all about?\p"
-	.string "It sounded like someone using\n"
-	.string "a megaphone…\p"
-	.string "Where did it come from?$"
-
-SlateportCity_Text_1DE860: @ 81DE860
-	.string "It's from the harbor!\p"
-	.string "The submarine!\n"
-	.string "They're trying to take it!$"
-
-SlateportCity_Text_1DE8A0: @ 81DE8A0
-	.string "{PLAYER}!\n"
-	.string "Please, come with me!$"
 
 
 

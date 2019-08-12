@@ -1,6 +1,17 @@
 MagmaHideout_1F_MapScripts:: @ 8239880
 	map_script MAP_SCRIPT_ON_TRANSITION, MagmaHideout_1F_OnTransition
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, MagmaHideout_1F_MapTable
 	.byte 0
+
+@ -----------------------------------------------------
+
+MagmaHideout_1F_MapTable: @ 8255C41
+	map_script_2 VAR_LAST_WARP_ID, 3, MagmaHideout_1F_OnWalkIn
+	.2byte 0
+
+MagmaHideout_1F_OnWalkIn:
+	setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+	end
 
 @ -----------------------------------------------------
 

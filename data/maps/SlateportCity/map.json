@@ -152,6 +152,15 @@
             "var_value": "0",
             "x": 29,
             "y": 25
+        },
+        {
+            "elevation": 0,
+            "script": "SlateportCity_EventScript_CaptainStern",
+            "type": "trigger",
+            "var": "VAR_SLATEPORT_STATE",
+            "var_value": "1",
+            "x": 34,
+            "y": 15
         }
     ],
     "id": "MAP_SLATEPORT_CITY",

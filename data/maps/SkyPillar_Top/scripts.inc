@@ -1,19 +1,22 @@
 SkyPillar_Top_MapScripts:: @ 82396B8
-	map_script MAP_SCRIPT_ON_RESUME, SkyPillar_Top_MapScript1_2396C8
+	map_script MAP_SCRIPT_ON_RESUME, SkyPillar_Top_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Top_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SkyPillar_Top_MapScript2_239713
 	.byte 0
 
-SkyPillar_Top_MapScript1_2396C8: @ 82396C8
+@ -----------------------------------------------------
+
+SkyPillar_Top_OnResume: @ 82396C8
 	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, SkyPillar_Top_EventScript_2396D2
 	end
-
 SkyPillar_Top_EventScript_2396D2:: @ 82396D2
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, 7
 	goto_if_ne Common_EventScript_NopReturn
 	removeobject VAR_LAST_TALKED
 	return
+
+@ -----------------------------------------------------
 
 SkyPillar_Top_OnTransition: @ 82396E6
 	compare VAR_SKY_PILLAR_STATE, 2
@@ -26,14 +29,14 @@ SkyPillar_Top_EventScript_2396FD:: @ 82396FD
 	setmaplayoutindex LAYOUT_SKY_PILLAR_TOP_CLEAN
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_DOWN
 	return
-
 SkyPillar_Top_EventScript_239705:: @ 8239705
 	call_if_unset FLAG_DEFEATED_RAYQUAZA, SkyPillar_Top_EventScript_23970F
 	return
-
 SkyPillar_Top_EventScript_23970F:: @ 823970F
 	clearflag FLAG_RAYQUAZA_ON_SKY_TOWER_SUMMIT
 	return
+
+@ -----------------------------------------------------
 
 SkyPillar_Top_MapScript2_239713: @ 8239713
 	map_script_2 VAR_SKY_PILLAR_STATE, 0, SkyPillar_Top_EventScript_23971D
@@ -43,13 +46,16 @@ SkyPillar_Top_EventScript_23971D:: @ 823971D
 	turnobject 1, 1
 	end
 
+@ ------------------------------------------------------
+@ Battle With Rayquaza
+
 SkyPillar_Top_EventScript_239722:: @ 8239722
 	lockall
 	waitse
 	playmoncry SPECIES_RAYQUAZA, 2
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_RAYQUAZA, 70, ITEM_NONE
+	setwildbattle SPECIES_RAYQUAZA, 120, ITEM_NONE
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
@@ -91,6 +97,8 @@ SkyPillar_Top_EventScript_239785:: @ 8239785
 	releaseall
 	end
 
+@ -----------------------------------------------------
+
 SkyPillar_Top_EventScript_23979A:: @ 823979A
 	lockall
 	fadeoutbgm 1
@@ -122,7 +130,7 @@ SkyPillar_Top_EventScript_23979A:: @ 823979A
 	applymovement 1, SkyPillar_Top_Movement_23984B
 	waitmovement 0
 	removeobject 1
-	msgbox SkyPillar_Top_Text_239860, MSGBOX_DEFAULT
+	msgbox SkyPillar_Top_Text_239860, MSGBOX_DESCRIBE
 	closemessage
 	delay 20
 	fadeinbgm 1
