@@ -2002,10 +2002,10 @@ Route119_EventScript_272365:: @ 8272365
 	release
 	end
 Route119_Text_1F5D63: @ 81F5D63
-	.string "{PLAYER} used the DEVON SCOPE.\p"
+	.string "{PLAYER} attacked.\p"
 	.string "An invisible Pokémon became completely\n"
 	.string "visible!\p"
-	.string "The startled Pokémon attacked!$"
+	.string "The startled Pokémon fights back!$"
 
 FallarborTown_House1_EventScript_2723E4:: @ 82723E4
 GraniteCave_StevensRoom_EventScript_2723E4:: @ 82723E4
@@ -5601,7 +5601,7 @@ gText_082C877B:: @ 82C877B
 	.align 2
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
-	
+
 	.include "data/scripts/te_debug.inc"
 
 	.include "data/maps/SootopolisLegendsEdit/scripts.inc"
