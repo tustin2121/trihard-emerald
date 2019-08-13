@@ -76,10 +76,10 @@ SlateportCity_Movement_SailOff:
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
-	walk_faster_right
-	walk_faster_right
-	walk_faster_right
-	walk_faster_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
 	step_end
 
 
