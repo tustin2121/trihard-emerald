@@ -6,6 +6,22 @@ Route121_SafariZoneEntrance_MapScript2_22BBC1: @ 822BBC1
 	map_script_2 VAR_SAFARI_ZONE_STATE, 1, Route121_SafariZoneEntrance_EventScript_22BBCB
 	.2byte 0
 
+Route121_SafariZoneEntrance_PCGuy::
+	lock
+	faceplayer
+	markasdialog
+	msgbox Route121_SafariZoneEntrance_PCGuy_Text, MSGBOX_NPC
+	applymovement 4, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+Route121_SafariZoneEntrance_PCGuy_Text::
+	.string "There are so many exotic Pokémon\n"
+	.string "in the world…\p"
+	.string "I like to spend each one of my days\n"
+	.string "on the internet to study them all!$"
+
 Route121_SafariZoneEntrance_EventScript_22BBCB:: @ 822BBCB
 	lockall
 	applymovement EVENT_OBJ_ID_PLAYER, Route121_SafariZoneEntrance_Movement_22BBDD
@@ -139,4 +155,3 @@ Route121_SafariZoneEntrance_Movement_22BD18: @ 822BD18
 Route121_SafariZoneEntrance_EventScript_22BD21:: @ 822BD21
 	msgbox Route121_SafariZoneEntrance_Text_2A55BB, MSGBOX_SIGN
 	end
-
