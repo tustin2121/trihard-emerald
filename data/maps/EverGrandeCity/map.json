@@ -169,7 +169,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 45,
+            "x": 39,
             "y": 80
         },
         {
@@ -191,12 +191,12 @@
             "graphics_id": "EVENT_OBJ_GFX_SAILOR",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 46,
-            "y": 77
+            "x": 37,
+            "y": 78
         },
         {
             "elevation": 3,
@@ -210,6 +210,32 @@
             "trainer_type": "0",
             "x": 31,
             "y": 66
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_RICH_BOY",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "EverGrandeCity_EventScript_TransportMossdeep",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 47,
+            "y": 76
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_MR_BRINEYS_BOAT",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 48,
+            "y": 76
         }
     ],
     "region_map_section": "MAPSEC_EVER_GRANDE_CITY",

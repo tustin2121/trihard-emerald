@@ -86,3 +86,13 @@
 	waitmovement 0
 	.endm
 
+	.macro askforboat ask:req, decline:req, nomoney:req, embark:req
+	loadword 0, \ask
+	loadword 1, \decline
+	loadword 2, \nomoney
+	loadword 3, \embark
+	call Common_EventScript_AskForBoatTransport
+	compare VAR_RESULT, NO
+	goto_if_eq Common_EventScript_ReleaseEnd
+	.endm
+

@@ -13,6 +13,8 @@ SlateportCity_OnTransition: @ 81DCC6C
 	call SlateportCity_EventScript_1DCC8D
 	compare VAR_SLATEPORT_STATE, 1
 	call_if_eq SlateportCity_EventScript_1DCC99
+	compare VAR_CROSS_MAP_TRIGGER, 1
+	call_if_eq SlateportCity_EventScript_SailOffPrep
 	end
 SlateportCity_EventScript_1DCC8D:: @ 81DCC8D
 	setflag FLAG_VISITED_SLATEPORT_CITY
@@ -35,6 +37,12 @@ SlateportCity_EventScript_1DCC99:: @ 81DCC99
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
 	setobjectmovementtype 2, MOVEMENT_TYPE_FACE_UP
 	return
+
+SlateportCity_EventScript_SailOffPrep:
+	setobjectxyperm 38, 44, 12
+	return
+
+
 SlateportCity_EventScript_PositionScottAfterMuseum:: @ 81DCCE7
 	setflag FLAG_HIDE_MAP_NAME_POPUP
 	@ Check if the player is on the left of the door
@@ -51,7 +59,29 @@ SlateportCity_EventScript_1DCD06:: @ 81DCD06
 
 SlateportCity_MapScript2_FrameTable: @ 81DCD12
 	map_script_2 VAR_SLATEPORT_MUSEUM_HEIST_STATE, 3, SlateportCity_EventScript_LoganAfterMuseum
+	map_script_2 VAR_CROSS_MAP_TRIGGER, 1, SlateportCity_EventScript_SailOff
 	.2byte 0
+
+SlateportCity_EventScript_SailOff:
+	applymovement 38, SlateportCity_Movement_SailOff
+	setobjectxyperm 38, 47, 0
+	setvar VAR_CROSS_MAP_TRIGGER, 0
+	end
+SlateportCity_Movement_SailOff:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_faster_right
+	walk_faster_right
+	walk_faster_right
+	walk_faster_right
+	step_end
+
 
 @ -----------------------------------------------------
 @ Signs

@@ -256,6 +256,70 @@ MossdeepCity_Text_1E5581: @ 81E5581
 	.string "People tell me the new Leader once\n"
 	.string "mentored Wallace.$"
 
+
+MossdeepCity_EventScript_TransportEverGrande::
+	lock
+	faceplayer
+	markasdialog
+	askforboat MossdeepCity_Text_TransportEverGrande_Ask, MossdeepCity_Text_TransportEverGrande_Decline, MossdeepCity_Text_TransportEverGrande_NoMoney, MossdeepCity_Text_TransportEverGrande_Embark
+	warpcustom MAP_EVER_GRANDE_CITY, 255, 45, 76
+	waitstate
+	end
+MossdeepCity_Text_TransportEverGrande_Ask:
+	.string "Hello, old {PLAYER_boy}, I will be\n"
+	.string "travelling to {PLACE}Ever Grande{END} shortly.\p"
+	.string "For ¥100, I'll give you a ride there.$"
+MossdeepCity_Text_TransportEverGrande_Decline:
+	.string "Your loss.$"
+MossdeepCity_Text_TransportEverGrande_NoMoney:
+	.string "You don't have the money.$"
+MossdeepCity_Text_TransportEverGrande_Embark:
+	.string "Thanks! Let us embark!$"
+
+
+MossdeepCity_EventScript_TransportSootopolis::
+	lock
+	faceplayer
+	markasdialog
+	askforboat MossdeepCity_Text_TransportSootopolis_Ask, MossdeepCity_Text_TransportSootopolis_Decline, MossdeepCity_Text_TransportSootopolis_NoMoney, MossdeepCity_Text_TransportSootopolis_Embark
+	warpcustom MAP_ROUTE126, 255, 25, 50
+	waitstate
+	end
+MossdeepCity_Text_TransportSootopolis_Ask:
+	.string "Ahoy! I'm heading off near {PLACE}Sootopolis{END}\n"
+	.string "to do some fishing. I can drop ya off\l"
+	.string "for ¥100. Need me some bait, after all.$"
+MossdeepCity_Text_TransportSootopolis_Decline:
+	.string "Ah, well.$"
+MossdeepCity_Text_TransportSootopolis_NoMoney:
+	.string "Um, I need the fee first.\n"
+	.string "No fishing without it.$"
+MossdeepCity_Text_TransportSootopolis_Embark:
+	.string "Mighty thank ya! Onward!$"
+
+
+MossdeepCity_EventScript_TransportPacifidlog::
+	lock
+	faceplayer
+	markasdialog
+	askforboat MossdeepCity_Text_TransportPacifidlog_Ask, MossdeepCity_Text_TransportPacifidlog_Decline, MossdeepCity_Text_TransportPacifidlog_NoMoney, MossdeepCity_Text_TransportPacifidlog_Embark
+	warpcustom MAP_PACIFIDLOG_TOWN, 255, 17, 14
+	waitstate
+	end
+MossdeepCity_Text_TransportPacifidlog_Ask:
+	.string "Oh, hello! I'm going to {PLACE}Pacifidlog{END}\n"
+	.string "soon to visit some family.\p"
+	.string "If you're heading the same way,\n"
+	.string "I think ¥100 will cover the fuel.$"
+MossdeepCity_Text_TransportPacifidlog_Decline:
+	.string "Oh, alright.$"
+MossdeepCity_Text_TransportPacifidlog_NoMoney:
+	.string "Ah ah, no stiffing me, young {PLAYER_man}.$"
+MossdeepCity_Text_TransportPacifidlog_Embark:
+	.string "Yay! Let's head out now!$"
+
+
+
 @ -----------------------------------------------------
 @ State: Magma Invasion
 

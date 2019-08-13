@@ -101,3 +101,25 @@ EverGrandeCity_Text_WaterfallRoadBlock2:
 	.string "landslide here that we had to clear out.\p"
 	.string "Thankfully, we managed to do it before\n"
 	.string "the Elite Four Conference started.$"
+
+
+EverGrandeCity_EventScript_TransportMossdeep::
+	lock
+	faceplayer
+	markasdialog
+	askforboat EverGrandeCity_Text_TransportMossdeep_Ask, EverGrandeCity_Text_TransportMossdeep_Decline, EverGrandeCity_Text_TransportMossdeep_NoMoney, EverGrandeCity_Text_TransportMossdeep_Embark
+	warpcustom MAP_MOSSDEEP_CITY, 255, 65, 37
+	waitstate
+	end
+EverGrandeCity_Text_TransportMossdeep_Ask:
+	.string "Hello, old {PLAYER_boy}, I will be\n"
+	.string "heading back to {PLACE}Mossdeep{END} shortly.\p"
+	.string "For ¥100, I'll give you a ride there.$"
+EverGrandeCity_Text_TransportMossdeep_Decline:
+	.string "Your loss.$"
+EverGrandeCity_Text_TransportMossdeep_NoMoney:
+	.string "You don't have the money.$"
+EverGrandeCity_Text_TransportMossdeep_Embark:
+	.string "Thanks! Let us embark!$"
+
+

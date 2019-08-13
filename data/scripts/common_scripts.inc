@@ -435,6 +435,58 @@ Common_Text_FailTheftNoRoom:
 	.string "But then, you don't have the space\n"
 	.string "available anyway…$"
 
+#define MONEY_AMOUNT 100
+
+@ Load the following text pointers into script banks:
+@ 0 = Ask dialog
+@ 1 = Decline dialog
+@ 2 = Lacking funds dialog
+@ 3 = Embarking dialog
+@ VAR_RESULT will be loaded with 1 if embarking, 0 otherwise
+@ using the macro `askforboat` will do this for you
+Common_EventScript_AskForBoatTransport::
+	showmoneybox 0, 0, 0
+	setyesnotext gYN_Sure, gYN_Nah
+	message 0
+	waitmessage
+	yesnobox 20, 8
+	compare VAR_RESULT, YES
+	goto_if_eq Common_EventScript_AskForBoatTransport_CheckMoney
+	message 1
+	waitmessage
+	waitbuttonpress
+	hidemoneybox
+	setvar VAR_RESULT, 0
+	return
+Common_EventScript_AskForBoatTransport_CheckMoney:
+	checkmoney MONEY_AMOUNT, 0
+	compare VAR_RESULT, YES
+	goto_if_eq Common_EventScript_AskForBoatTransport_Embark
+	message 2
+	waitmessage
+	waitbuttonpress
+	setvar VAR_RESULT, 0
+	return
+Common_EventScript_AskForBoatTransport_Embark:
+	takemoney MONEY_AMOUNT, 0
+	updatemoneybox 0, 0
+	message 3
+	waitmessage
+	waitbuttonpress
+	closemessage
+	hidemoneybox
+	delay 1
+	@ Embark animation
+	fadescreen 1
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	playse SE_NAMINORI
+	delay 60
+	setvar VAR_RESULT, 1
+	return
+
+#undef MONEY_AMOUNT
+
 
 Common_Text_DummiedOut:
 	.string "This event is dummied out.\n"

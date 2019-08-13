@@ -1339,8 +1339,8 @@ bool8 ScrCmd_message(struct ScriptContext *ctx)
     const u8 *msg = (const u8 *)ScriptReadWord(ctx);
     u8 msgType = ScriptReadByte(ctx);
 
-    if (msg == NULL)
-        msg = (const u8 *)ctx->data[0];
+    if ((u32)msg < 4)
+        msg = (const u8 *)ctx->data[(u32)msg];
     if (msgType == 0)
         msgType = gSpecialVar_TextboxType;
     SetFieldMessageBoxType(msgType);
