@@ -1,4 +1,5 @@
 EverGrandeCity_MapScripts:: @ 81E7D1B
+	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_OnTransition
 	.byte 0
 
@@ -6,6 +7,20 @@ EverGrandeCity_MapScripts:: @ 81E7D1B
 
 EverGrandeCity_OnTransition: @ 81E7D21
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeatherAlternating
+	end
+@ -----------------------------------------------------
+
+EverGrandeCity_OnLoad:
+	call_if_unset FLAG_BADGE08_GET, EverGrandeCity_OnLoad_MakeRoadblock
+	end
+
+EverGrandeCity_OnLoad_MakeRoadblock:
+	setmetatile 32, 62, 0x27E, TRUE
+	setmetatile 33, 62, 0x27F, TRUE
+	setmetatile 32, 63, 0x286, TRUE
+	setmetatile 33, 63, 0x287, TRUE
+	setobjectxyperm 4, 33, 64
+	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_UP
 	end
 
 @ -----------------------------------------------------
@@ -47,8 +62,42 @@ EverGrandeCity_TriggerScript_RemoveVRRoadBlock::
 	setvar VAR_EVERGRANDE_STATE, 1
 	end
 
+
 EverGrandeCity_TriggerScript_VRRoadBlock::
-	
+	lock
+	applymovement 2, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox EverGrandeCity_Text_VRRoadBlock, MSGBOX_CDIALOG
+	closemessage
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown1
+	waitmovement 0
+	applymovement 2, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	release
 	end
+EverGrandeCity_Text_VRRoadBlock:
+	.string "I'm sorry, {PLAYER_sir}. This road is still\n"
+	.string "being cleared of landslide rubble.\p"
+	.string "You'll have to take the detour\n"
+	.string "through Victory Road for now.$"
 
 
+EverGrandeCity_EventScript_WaterfallRoadBlock::
+	goto_if_set FLAG_BADGE08_GET, EverGrandeCity_EventScript_WaterfallRoadBlock2
+	msgbox EverGrandeCity_Text_WaterfallRoadBlock1, MSGBOX_NPC
+	end
+EverGrandeCity_Text_WaterfallRoadBlock1:
+	.string "A giant red Pokémon came rampaging\n"
+	.string "through here the other day!\p"
+	.string "It caused several landslides which\n"
+	.string "we can hopfully clear out before the\l"
+	.string "start of the Elite Four Conference.$"
+EverGrandeCity_EventScript_WaterfallRoadBlock2:
+	msgbox EverGrandeCity_Text_WaterfallRoadBlock2, MSGBOX_NPC
+	end
+EverGrandeCity_Text_WaterfallRoadBlock2:
+	.string "That massive red Pokémon that was\n"
+	.string "fighting in Sootopolis! It caused a\l"
+	.string "landslide here that we had to clear out.\p"
+	.string "Thankfully, we managed to do it before\n"
+	.string "the Elite Four Conference started.$"
