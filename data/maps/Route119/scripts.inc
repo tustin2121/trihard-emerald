@@ -605,7 +605,7 @@ Route119_EventScript_1F45E4:: @ 81F45E4
 Route119_Text_1F4D4B: @ 81F4D4B
 	.string "Brendan: I'd say you're good enough\n"
 	.string "to run from… Pokémon… anywhere!\p"
-	.string "Like me right now bye!$"
+	.string "Like me, right now. Bye!$"
 @ Route119_Text_1F4DB5: @ 81F4DB5
 @ 	.string "Brendan: Use FLY, and your Pokémon\n"
 @ 	.string "instantly carries you to any town\l"

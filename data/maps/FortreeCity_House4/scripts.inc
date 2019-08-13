@@ -13,6 +13,7 @@ FortreeCity_House4_Text_217D33: @ 8217D33
 
 FortreeCity_House4_EventScript_217C8A:: @ 8217C8A
 	lockall
+	markasdialog
 	goto_if_set FLAG_RECEIVED_MENTAL_HERB, FortreeCity_House4_EventScript_217D06
 	goto_if_set FLAG_WINGULL_DELIVERED_MAIL, FortreeCity_House4_EventScript_217CD8
 	goto_if_set FLAG_WINGULL_SENT_ON_ERRAND, FortreeCity_House4_EventScript_217CC4
@@ -88,4 +89,3 @@ FortreeCity_House4_EventScript_217D20:: @ 8217D20
 	end
 FortreeCity_House4_Text_217EE0: @ 8217EE0
 	.string "Wingy: Pihyoh!$"
-
