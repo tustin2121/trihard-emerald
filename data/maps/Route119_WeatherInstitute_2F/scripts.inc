@@ -36,7 +36,7 @@ Route119_WeatherInstitute_2F_EventScript_Scientist1:: @ 826FF68
 	end
 Route119_WeatherInstitute_2F_Text_270335: @ 8270335
 	.string "Wha-! Who are you people?!\n"
-	.string "What do you want with our Pokémon?!$"
+	.string "What do you want from our Pokémon?!$"
 Route119_WeatherInstitute_2F_Text_27039F: @ 827039F
 	.string "Oh, will you look at my Pokémon?$"
 Route119_WeatherInstitute_2F_Text_2703C0: @ 82703C0
@@ -58,7 +58,7 @@ Route119_WeatherInstitute_2F_Text_27022B: @ 827022B
 	.string "And despite what you might think,\n"
 	.string "raiding a place of science like this\l"
 	.string "is an act of evil in my book!$"
-			
+
 
 Route119_WeatherInstitute_2F_EventScript_26FF96:: @ 826FF96
 	trainerbattle_single TRAINER_WALKER, Route119_WeatherInstitute_2F_Text_270292, Route119_WeatherInstitute_2F_Text_2702CE
@@ -133,7 +133,7 @@ Route119_WeatherInstitute_2F_EventScript_InstituteFinale::
 	waitmovement 0
 	markasdialog -14
 	msgbox Route119_WeatherInstitute_2F_Text_InstituteFinale3
-	@ 
+	@
 	markasdialog 9
 	applymovement LID_SHELLY, Common_Movement_WalkInPlaceRight
 	waitmovement 0
@@ -221,7 +221,7 @@ Route119_WeatherInstitute_2F_EventScript_InstituteFinale_Ending:
 	setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
 	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_AQUA_GRUNT_M
 	call Common_EventScript_ClearSceneFlags
-	@ 
+	@
 	warp MAP_ROUTE119, 0, 0xFF, 0xFF
 	waitstate
 	release
@@ -229,7 +229,7 @@ Route119_WeatherInstitute_2F_EventScript_InstituteFinale_Ending:
 
 Route119_WeatherInstitute_2F_Text_InstituteFinale1:
 	.string "Shelly: This thing is the Pokémon\n"
-	.string "we heard about?! That's it??$"
+	.string "we heard about?! That's it?$"
 Route119_WeatherInstitute_2F_Text_InstituteFinale2:
 	.string "You're the one who invaded us for it!$"
 Route119_WeatherInstitute_2F_Text_InstituteFinale3:
@@ -245,13 +245,13 @@ Route119_WeatherInstitute_2F_Text_InstituteFinale4b:
 	.string "Battle me. We're gonna see how this\n"
 	.string "thing fares in battle.$"
 Route119_WeatherInstitute_2F_Text_InstituteFinale4b_lose:
-	.string "This is the thing the boss wants??$"
+	.string "This is the thing the boss wants?$"
 Route119_WeatherInstitute_2F_Text_InstituteFinale5:
 	.string "{RIVAL_HERO}: What are you guys\n"
 	.string "doing here?! You have no right to\l"
 	.string "raid these people!$"
 Route119_WeatherInstitute_2F_Text_InstituteFinale6:
-	.string "Shelly: Ahahahaha!\p"
+	.string "Shelly: Hahahaha!\p"
 	.string "You're going to meddle in Team Aqua's\n"
 	.string "affairs?\p"
 	.string "You're either absolutely fearless,\n"
@@ -263,9 +263,9 @@ Route119_WeatherInstitute_2F_Text_InstituteFinale7:
 	.string "Ugh, I should have known you'd get in\n"
 	.string "my way again!$"
 Route119_WeatherInstitute_2F_Text_InstituteFinale8:
-	.string "Some day, I'm gonna defeat you and\n"
+	.string "Someday, I'm gonna defeat you and\n"
 	.string "your posse.\p"
-	.string "Some day, you're all gonna pay for\n"
+	.string "Someday, you're all gonna pay for\n"
 	.string "your crimes.$"
 Route119_WeatherInstitute_2F_Text_InstituteFinale10:
 	.string "We got what we came for!\p"
@@ -588,18 +588,3 @@ Route119_WeatherInstitute_2F_EventScript_27018B:: @ 827018B
 	@ goto_if_set FLAG_RECEIVED_CASTFORM, Route119_WeatherInstitute_2F_EventScript_2700F7
 	@ goto Route119_WeatherInstitute_2F_EventScript_27004D
 	end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

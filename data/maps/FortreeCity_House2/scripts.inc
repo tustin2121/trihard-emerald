@@ -4,6 +4,7 @@ FortreeCity_House2_MapScripts:: @ 82177CA
 FortreeCity_House2_EventScript_2177CB:: @ 82177CB
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_TM10, FortreeCity_House2_EventScript_21786E
 	call_if_unset FLAG_MET_HIDDEN_POWER_GIVER, FortreeCity_House2_EventScript_217862
 	msgbox FortreeCity_House2_Text_2178D6, MSGBOX_DEFAULT
@@ -25,6 +26,11 @@ FortreeCity_House2_EventScript_2177CB:: @ 82177CB
 	setflag FLAG_RECEIVED_TM10
 	msgbox FortreeCity_House2_Text_217A91, MSGBOX_DEFAULT
 	release
+	end
+
+FortreeCity_House2_HusbandHiddenPower::
+	markasdialog
+	goto FortreeCity_House2_EventScript_2C811E
 	end
 
 FortreeCity_House2_EventScript_217862:: @ 8217862
@@ -79,4 +85,3 @@ FortreeCity_House2_Text_217A91: @ 8217A91
 FortreeCity_House2_Text_217AC7: @ 8217AC7
 	.string "No, too bad.\n"
 	.string "You guessed wrong.$"
-

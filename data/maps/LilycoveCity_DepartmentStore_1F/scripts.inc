@@ -190,4 +190,3 @@ LilycoveCity_DepartmentStore_1F_Text_21FA13: @ 821FA13
 LilycoveCity_DepartmentStore_1F_Text_21FAE5: @ 821FAE5
 	.string "I want to spread the word about how\n"
 	.string "fun Wireless Communication can be.$"
-

@@ -693,4 +693,3 @@ LilycoveCity_EventScript_1E3006:: @ 81E3006
 	setflag FLAG_MET_RIVAL_LILYCOVE
 	release
 	end
-

@@ -3,6 +3,7 @@ FallarborTown_House2_MapScripts:: @ 8201382
 
 FallarborTown_House2_EventScript_201383:: @ 8201383
 	lockall
+	markasdialog
 	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	goto_if_set FLAG_TEMP_1, FallarborTown_House2_EventScript_2013A8
@@ -99,4 +100,3 @@ FallarborTown_House2_Text_201653: @ 8201653
 FallarborTown_House2_Text_201697: @ 8201697
 	.string "Hunh? There isn't a single move that\n"
 	.string "I can teach an EGG.$"
-

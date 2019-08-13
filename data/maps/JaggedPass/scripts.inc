@@ -68,6 +68,7 @@ JaggedPass_EventScript_2306BB:: @ 82306BB
 
 JaggedPass_EventScript_230718:: @ 8230718
 	lockall
+	markasdialog
 	goto_if_set FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS, JaggedPass_EventScript_230766
 	waitse
 	playse SE_PIN
@@ -269,4 +270,3 @@ JaggedPass_Text_230ECD: @ 8230ECD
 JaggedPass_Text_230EE3: @ 8230EE3
 	.string "What is that odd rock protrusion\n"
 	.string "a little up the hill from here?$"
-
