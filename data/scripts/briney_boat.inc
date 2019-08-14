@@ -1,5 +1,27 @@
 
 @ -----------------------------------------------------
+@ Wingull Rescue
+
+@ Wingull_EventScript_Rescue::
+	
+	
+@ Wingull_Text_Rescue:
+@ 	.string "Oh, hey, it's Peeko!\n"
+@ 	.string "What are the odds?\p"
+@ 	.string "It looks like she wants to fly you\n"
+@ 	.string "back to {STR_VAR_1}.\p"
+@ 	.string "Hop a ride?$"
+
+
+@ Wingull_EventScript_NoRescue::
+@ 	msgbox Wingull_Text_NoRescue, MSGBOX_DESCRIBE
+@ 	end
+@ Wingull_Text_NoRescue:
+@ 	.string "This wild Wingull seems uninterested\n"
+@ 	.string "in you.$"
+
+
+@ -----------------------------------------------------
 @ Route 104 to Dewford
 
 Briney_EventScript_Route104_Dewford:: @ 81ED0D9

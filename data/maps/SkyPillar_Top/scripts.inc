@@ -30,11 +30,10 @@ SkyPillar_Top_EventScript_2396FD:: @ 82396FD
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_DOWN
 	return
 SkyPillar_Top_EventScript_239705:: @ 8239705
-@ 	call_if_unset FLAG_DEFEATED_RAYQUAZA, SkyPillar_Top_EventScript_23970F
-@ 	return
-@ SkyPillar_Top_EventScript_23970F:: @ 823970F
-	@ clearflag FLAG_RAYQUAZA_ON_SKY_TOWER_SUMMIT
-	setflag FLAG_RAYQUAZA_ON_SKY_TOWER_SUMMIT
+	call_if_unset FLAG_DEFEATED_RAYQUAZA, SkyPillar_Top_EventScript_23970F
+	return
+SkyPillar_Top_EventScript_23970F:: @ 823970F
+	clearflag FLAG_RAYQUAZA_ON_SKY_TOWER_SUMMIT
 	return
 
 @ -----------------------------------------------------

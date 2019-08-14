@@ -2743,6 +2743,7 @@ extern const u8 gText_The[];
 
 extern const u8 gText_Whiteout_WildMon[];
 extern const u8 gText_Whiteout_RagingLegendary[];
+extern const u8 gText_Whiteout_Rayquaza[];
 extern const u8 gText_Whiteout_GoodTrainer[];
 extern const u8 gText_Whiteout_YoungTrainer[];
 extern const u8 gText_Whiteout_NinjaTrainer[];

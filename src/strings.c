@@ -1922,6 +1922,7 @@ const u8 gText_Berries[] = _("BERRIES");
 
 const u8 gText_Whiteout_WildMon[] = _("The wild Pokémon lunged for {PLAYER}!");
 const u8 gText_Whiteout_RagingLegendary[] = _("Groudon and Kyogre clash again\nover {PLAYER}'s head!\p{PLAYER} sinks beneath the waves…");
+const u8 gText_Whiteout_Rayquaza[] = _("Rayquaza bellows angrily at the sky\nbefore lunging at {PLAYER}!");
 const u8 gText_Whiteout_GoodTrainer[] = _("Good battle!\pHey, are you alright?");
 const u8 gText_Whiteout_YoungTrainer[] = _("Yay I won! You lost! Ha ha!\p{PLAYER} curled up into a ball in\nembarrassment.");
 const u8 gText_Whiteout_NinjaTrainer[] = _("You fell to the ninja! Whacha!");
