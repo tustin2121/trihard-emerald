@@ -73,17 +73,63 @@ SootopolisCity_PokemonCenter_1F_OnLoad_NoEscape:
 @ -----------------------------------------------------
 
 SootopolisCity_PokemonCenter_1F_NurseScript:: @ 8226500
+	lock
 	setvar VAR_0x800B, 1
-	@ goto PokemonCenter_1F_NurseHealScript
-	SootopolisCity_GotoIfNoWeather PokemonCenter_1F_NurseHealScript
-	msgbox SootopolisCity_PokemonCenter_1F_NurseScript_Text, MSGBOX_NPC
+	faceplayer
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DIALOG
+	goto_if_set FLAG_TEMP_5, SootopolisCity_PokemonCenter_1F_NurseHealScript_Talk
+	setyesnotext gYN_Sure, gYN_No
+	msgbox SootopolisCity_PokemonCenter_1F_NurseScript_Text, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq SootopolisCity_PokemonCenter_1F_NurseHealScript_Heal
+	goto SootopolisCity_PokemonCenter_1F_NurseHealScript_Talk
 	end
 SootopolisCity_PokemonCenter_1F_NurseScript_Text:
-	.string "The second floor is damaged.\n"
-	.string "I couldn't give you a safe room to\l"
-	.string "rest in even if I wanted to.\p"
-	.string "If you think you can somehow sleep,\n"
-	.string "find an empty cot down here.$"
+	.string "Oh, hello.\n"
+	.string "The second floor is damaged.\p"
+	.string "We can only offer cots.\n"
+	.string "Would you like one?$"
+SootopolisCity_PokemonCenter_1F_NurseHealScript_Heal:
+	incrementgamestat GAME_STAT_USED_POKECENTER
+	setflag FLAG_TEMP_5
+	message PokemonCenter_1F_NurseText_NurseNowHealing
+	waitmessage
+	waitbuttonpress
+	closemessage
+	@ Walk towards escalator, fade screen
+	fadescreen 5 @ FADE_TO_BLACK_NO_WINDOW
+	setflag FLAG_DISABLE_FADE_INIT
+	@ Heal while setting positions
+	playfanfare MUS_ME_ASA
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkDown2
+	waitfanfare
+	waitmovement 0
+	special HealPlayerParty
+	advancetime 6, 45, 30
+	@ Do the mourning cutscene, if needed
+	domourning
+	@ TriHard Emerald: Force Save
+	special ForceSaveGame
+	waitstate
+	closemessage
+	delay 1
+	@ Check for dream cutscenes
+	dodreams
+	clearflag FLAG_DISABLE_FADE_INIT
+	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
+	warpcustom MAP_SOOTOPOLIS_CITY_POKEMON_CENTER_1F, 255, VAR_INTERACT_X, VAR_INTERACT_Y @ FADE_FROM_BLACK_NO_WINDOW
+	waitstate
+	release
+	end
+SootopolisCity_PokemonCenter_1F_NurseHealScript_Talk:
+	message SootopolisCity_PokemonCenter_1F_NurseText_Goodluck
+	waitmessage
+	waitbuttonpress
+	release
+	end
+SootopolisCity_PokemonCenter_1F_NurseText_Goodluck:
+	.string "Stay safe out there.$"
+
 
 
 SootopolisCity_PokemonCenter_1F_FreePokeballCounter:: @ 8226500
@@ -175,8 +221,8 @@ SootopolisCity_PokemonCenter_1F_Text_Teala:
 SootopolisCity_PokemonCenter_1F_EventScript_PC::
 	lock
 	@ SootopolisCity_GotoIfNoWeather SootopolisCity_PokemonCenter_1F_EventScript_PCNoStorm
-	goto_if_unset FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS, SootopolisCity_PokemonCenter_1F_EventScript_PCNoStorm
-	msgbox SootopolisCity_PokemonCenter_1F_Text_PC, MSGBOX_DIALOG
+	goto_if_set FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS, SootopolisCity_PokemonCenter_1F_EventScript_PCNoStorm
+	msgbox SootopolisCity_PokemonCenter_1F_Text_PC, MSGBOX_DESCRIBE
 	release
 	end
 SootopolisCity_PokemonCenter_1F_Text_PC:
@@ -185,7 +231,7 @@ SootopolisCity_PokemonCenter_1F_Text_PC:
 	.string "There's no way the PC is going to turn\n"
 	.string "on in these conditions.$"
 SootopolisCity_PokemonCenter_1F_EventScript_PCNoStorm:
-	msgbox SootopolisCity_PokemonCenter_1F_Text_PCNoStorm, MSGBOX_DIALOG
+	msgbox SootopolisCity_PokemonCenter_1F_Text_PCNoStorm, MSGBOX_DESCRIBE
 	release
 	end
 SootopolisCity_PokemonCenter_1F_Text_PCNoStorm:

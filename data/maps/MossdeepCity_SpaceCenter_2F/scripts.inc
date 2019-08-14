@@ -486,7 +486,6 @@ SpaceCenter_Movement_MissedBattle1_CameraWalk1:
 	walk_left
 	walk_left
 	walk_left
-	walk_left
 	step_end
 SpaceCenter_Movement_MissedBattle1_CameraWalk2:
 	walk_left
@@ -500,7 +499,6 @@ SpaceCenter_Movement_MissedBattle1_CameraWalk3:
 	walk_left
 	walk_left
 	walk_diag_northwest
-	walk_left
 	walk_left
 	walk_left
 	walk_left

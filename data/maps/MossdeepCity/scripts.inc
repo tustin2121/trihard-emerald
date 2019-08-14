@@ -30,9 +30,7 @@ MossdeepCity_EventScript_UpdateInvasionFlags:
 
 MossdeepCity_OnLoad:
 	compare VAR_MOSSDEEP_STATE, 11
-	call_if_eq MossdeepCity_OnLoad_AddTeamPile
-	compare VAR_MOSSDEEP_STATE, 12
-	call_if_eq MossdeepCity_OnLoad_AddTeamPile
+	call_if_ge MossdeepCity_OnLoad_AddTeamPile
 	end
 
 MossdeepCity_OnLoad_AddTeamPile:
@@ -79,6 +77,16 @@ MossdeepCity_EventScript_1E4B2F:: @ 81E4B2F
 MossdeepCity_Text_1E541F: @ 81E541F
 	.string "{PLACE}Mossdeep Space Center{END}\n"
 	.string "“The closest place to space.”$"
+
+
+MossdeepCity_EventScript_TeamPile:: @ 81E4B2F
+	compare VAR_MOSSDEEP_STATE, 12
+	goto_if_lt Common_EventScript_ReleaseEnd
+	msgbox MossdeepCity_Text_TeamPile, MSGBOX_DESCRIBE
+	end
+MossdeepCity_Text_TeamPile: @ 81E541F
+	.string "The discarded colors of Team Aqua\n"
+	.string "and Team Magma.$"
 
 @ -----------------------------------------------------
 @ People
@@ -658,6 +666,7 @@ MossdeepCity_EventScript_RainsBegin::
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE_1
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
+	setflag FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN
 	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
 	call Common_EventScript_ClearSceneFlags
 	setflag FLAG_HIDE_MAP_NAME_POPUP
@@ -1201,8 +1210,8 @@ MossdeepCity_Text_LoganCenter2:
 	.string "Why don't you go home? At least you\n"
 	.string "can't cause any more damage there.\p"
 	.string "Now excuse me. I need to fly into\n"
-	.string "Sootopolis to try and stop the\l"
-	.string "rampaging god-beasts.$"
+	.string "Sootopolis to try and figure out how\l"
+	.string "to stop the rampaging god-beasts.$"
 MossdeepCity_Text_LoganCenter3:
 	.string "{RIVAL_HERO} left something behind\n"
 	.string "on the ground.$"
