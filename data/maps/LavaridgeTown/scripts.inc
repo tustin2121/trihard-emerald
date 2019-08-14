@@ -102,7 +102,7 @@ LavaridgeTown_Text_1EAE03: @ 81EAE03
 
 
 LavaridgeTown_EventScript_SandMan:: @ 81EA717
-	msgbox LavaridgeTown_Text_1EAEE1, MSGBOX_DESCRIBE
+	msgbox LavaridgeTown_Text_1EAEE1, MSGBOX_NPC
 	end
 LavaridgeTown_Text_1EAEE1: @ 81EAEE1
 	.string "Being buried in this hot sand is…\n"
@@ -156,6 +156,7 @@ LavaridgeTown_Text_1EAF4E: @ 81EAF4E
 LavaridgeTown_EventScript_EggWoman:: @ 81EA744
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_LAVARIDGE_EGG, LavaridgeTown_EventScript_1EA787
 	msgbox LavaridgeTown_Text_1EAB80, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -307,60 +308,74 @@ LavaridgeTown_Movement_1EA6ED: @ 81EA6ED
 	step_end
 
 LavaridgeTown_EventScript_1EA5B5:: @ 81EA5B5
+	markasdialog
 	msgbox LavaridgeTown_Text_1EA7C0, MSGBOX_DEFAULT
 	giveitem_std ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
-	msgbox LavaridgeTown_Text_1EA897, MSGBOX_DEFAULT
+	message LavaridgeTown_Text_1EA897
+	waitmessage
+	message LavaridgeTown_BetterThanYou_Text
+	waitmessage
+	msgbox LavaridgeTown_GottaGo_Text, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_1EA5FF
 	end
 LavaridgeTown_Text_1EA7C0: @ 81EA7C0
-	.string "May: {PLAYER}! Long time no see!\p"
-	.string "Oh? While I visited the hot springs,\n"
-	.string "you got the Lavaridge Gym Badge.\p"
-	.string "You must have collected\n"
-	.string "good Pokémon…\l"
-	.string "No, I believe you raised some.\p"
-	.string "I guess it would be okay for you to\n"
-	.string "have this.$"
+	.string "May: {PLAYER}! Long time no see…\p"
+	.string "While I visited the hot springs,\n"
+	.string "you convinced the Lavaridge Gym leader\l"
+	.string "to give you a badge.\p"
+	.string "You must have been very… persuasive.\p"
+	.string "I guess here's a gift for that win.$"
 LavaridgeTown_Text_1EA897: @ 81EA897
-	.string "May: With those GO-GOGGLES, you'll\n"
-	.string "have no trouble getting through the\l"
-	.string "desert near Route 111.\p"
+	.string "May: With those Go-Goggles, you'll\n"
+	.string "have no trouble if you get lost in\l"
+	.string "the desert near Route 111.\p"
 	.string "But, wow, {PLAYER}…\n"
 	.string "Challenging Gyms…\p"
-	.string "You're trying hard because you don't\n"
-	.string "want to lose to me, I bet!\p"
-	.string "{PLAYER}, I think I should challenge\n"
-	.string "your dad in Petalburg Gym.\p"
-	.string "See you again!$"
+	.string "You're trying hard I see…\n"
+	.string "For what, I don't know…\p"
+	.string "I heard that Petalburg City's Gym\n"
+	.string "should be open again soon.\l"
+	.string "That's where I'm heading now.\p"
+	.string "I hope the new Gym Leader will be\n"
+	.string "nicer… Malaqui could have given you\l"
+	.string "a run for your money.\p$"
 
 LavaridgeTown_EventScript_1EA5DA:: @ 81EA5DA
+	markasdialog
 	msgbox LavaridgeTown_Text_1EA9A2, MSGBOX_DEFAULT
 	giveitem_std ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
-	msgbox LavaridgeTown_Text_1EAA2E, MSGBOX_DEFAULT
+	message LavaridgeTown_Text_1EAA2E
+	waitmessage
+	message LavaridgeTown_BetterThanYou_Text
+	waitmessage
+	msgbox LavaridgeTown_GottaGo_Text, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_1EA5FF
 	end
 LavaridgeTown_Text_1EA9A2: @ 81EA9A2
-	.string "Brendan: {PLAYER}, hey, it's been a while.\n"
-	.string "How's it going?\p"
-	.string "Hmm…\n"
+	.string "Brendan: {PLAYER}, ah, it's been a bit.\n"
 	.string "That's a decent collection of Badges.\p"
-	.string "All right, then.\n"
-	.string "You may as well have this.$"
+	.string "Who did you steal them from?\p"
+	.string "Ah… I-I mean, here, a gift for your…\n"
+	.string "tenacity.$"
 LavaridgeTown_Text_1EAA2E: @ 81EAA2E
 	.string "Brendan: Keep those with you if you're\n"
-	.string "planning on going into that desert near\l"
-	.string "Route 111.\p"
-	.string "There should be some Pokémon that\n"
-	.string "are exclusively desert-dwellers.\l"
-	.string "You might look around for those.\p"
-	.string "As for me…\n"
-	.string "I'm considering challenging Norman,\l"
-	.string "the Gym Leader of Petalburg.\p"
-	.string "Unlike you, {PLAYER}, your dad looks like\n"
-	.string "he really is tough.\p"
-	.string "See you around!$"
+	.string "feel like getting lost in that desert\l"
+	.string "near Route 111.\p"
+	.string "But yeah… you're trying hard I see…\n"
+	.string "For what, I don't know…\p"
+	.string "I heard that Petalburg City's Gym\n"
+	.string "should be open again soon.\l"
+	.string "That's where I'm heading now.\p"
+	.string "I hope the new Gym Leader will be\n"
+	.string "nicer… Malaqui could have given you\l"
+	.string "a run for your money.\p$"
+LavaridgeTown_BetterThanYou_Text::
+	.string "{COLOR LIGHT_GREY}{SHADOW WHITE}"
+	.string "(in the kindness department…)\p$"
+LavaridgeTown_GottaGo_Text::
+	.string "OK, gotta go!$"
 
 LavaridgeTown_EventScript_1EA5FF:: @ 81EA5FF
 	closemessage
@@ -417,4 +432,3 @@ LavaridgeTown_Movement_1EA6D4: @ 81EA6D4
 	walk_fast_up
 	walk_fast_up
 	step_end
-

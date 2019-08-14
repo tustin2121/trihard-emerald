@@ -244,7 +244,7 @@
 #define FLAG_RECEIVED_TM36                                    0xE6
 #define FLAG_RECEIVED_TM05                                    0xE7
 #define FLAG_RECEIVED_TM19                                    0xE8
-#define FLAG_UNUSED_0x0E9                                     0xE9 // Unused Flag
+#define FLAG_ITEM_STOLEN_FALLARBOR_CONTESTHALL                0xE9 // TriHard Emerald
 #define FLAG_RECEIVED_TM44                                    0xEA
 #define FLAG_RECEIVED_TM45                                    0xEB
 #define FLAG_RECEIVED_GLASS_ORNAMENT                          0xEC
@@ -443,7 +443,7 @@
 #define FLAG_REMATCH_GLACIA                                   0x1A7
 #define FLAG_REMATCH_DRAKE                                    0x1A8
 #define FLAG_REMATCH_WALLACE                                  0x1A9
-#define FLAG_UNUSED_0x1AA                                     0x1AA // Unused Flag
+#define FLAG_ITEM_STOLEN_LILYCOVE_FANCLUB                     0x1AA // TriHard Emerald
 #define FLAG_UNUSED_0x1AB                                     0x1AB // Unused Flag
 #define FLAG_DEFEATED_DEOXYS                                  0x1AC
 #define FLAG_BATTLED_DEOXYS                                   0x1AD
@@ -699,7 +699,7 @@
 #define FLAG_HIDE_ROUTE_101_ZIGZAGOON                               0x2EE
 #define FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY                           0x2EF
 #define FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE                       0x2F0
-#define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_AQUA_BOY              0x2F1
+#define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_AQUA_BOY            0x2F1
 #define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1          0x2F2
 #define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2          0x2F3
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA          0x2F4
@@ -767,7 +767,7 @@
 #define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL           0x332
 #define FLAG_HIDE_ROUTE_112_TEAM_MAGMA                              0x333
 #define FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE                        0x334
-#define FLAG_UNUSED_0x335                                           0x335
+#define FLAG_HIDE_VICTORY_ROAD_BLOCKER                              0x335 // Trihard
 #define FLAG_UNUSED_0x336                                           0x336
 #define FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA                          0x337
 #define FLAG_HIDE_PETALBURG_GYM_OLD_LEADER                          0x338
@@ -831,7 +831,7 @@
 #define FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA                          0x372
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS         0x373
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA             0x374
-#define FLAG_UNUSED_0x375                                           0x375 // TE: Unused
+#define FLAG_HIDE_SKY_PILLAR_LOGAN                                  0x375 // Trihard
 #define FLAG_UNUSED_0x376                                           0x376 // TE: Unused
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN    0x377
 #define FLAG_HIDE_BATTLE_TOWER_OPPONENT                             0x378

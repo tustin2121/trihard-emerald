@@ -39,7 +39,7 @@ LilycoveCity_LilycoveMuseum_1F_EventScript_218D14:: @ 8218D14
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_218D1E:: @ 8218D1E
 	lock
-	msgbox LilycoveCity_LilycoveMuseum_1F_Text_219035, MSGBOX_CDIALOG
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_219035, MSGBOX_NPC
 	applymovement 2, LilycoveCity_LilycoveMuseum_1F_Movement_218D99
 	waitmovement 0
 	removeobject 2
@@ -302,4 +302,3 @@ LilycoveCity_LilycoveMuseum_1F_Text_21967A: @ 821967A
 	.string "No, great for the Hoenn region!\p"
 	.string "This is what I've heard--a lone TRAINER\n"
 	.string "procured all the paintings upstairs.$"
-

@@ -182,8 +182,15 @@ SootopolisCity_EventScript_1E58D3:: @ 81E58D3
 @ -----------------------------------------------------
 
 SootopolisCity_MapScript2_WarpTable: @ 81E58DB
+	map_script_2 VAR_CROSS_MAP_TRIGGER, 2, SootopolisCity_EventScript_FlyFromPillar
 	map_script_2 VAR_RAYQUAZA_STATE, 5, SootopolisCity_EventScript_1E58E5
 	.2byte 0
+
+SootopolisCity_EventScript_FlyFromPillar:
+	callnative HidePlayerOnLoad
+	turnobject EVENT_OBJ_ID_PLAYER, 1
+	@ setvar VAR_CROSS_MAP_TRIGGER, 0
+	end
 
 SootopolisCity_EventScript_1E58E5:: @ 81E58E5
 	compare VAR_SKY_PILLAR_STATE, 1
@@ -205,9 +212,23 @@ SootopolisCity_EventScript_1E5901:: @ 81E5901
 #define LID_KYOGRE 10
 
 SootopolisCity_MapScript2_FrameTable: @ 81E5914
+	map_script_2 VAR_CROSS_MAP_TRIGGER, 2, SootopolisCity_EventScript_FlyIn
 	map_script_2 VAR_RAYQUAZA_STATE, 1, SootopolisCity_EventScript_1E5926
 	map_script_2 VAR_SKY_PILLAR_STATE, 1, SootopolisCity_EventScript_1E5BFE
 	.2byte 0
+
+SootopolisCity_EventScript_FlyIn:
+	lockall
+	setfieldeffectargument 0, 1
+	dofieldeffect FLDEFF_NPCFLY_OUT
+	delay 15
+	createvobject EVENT_OBJ_GFX_WALLY, 50, 44, 32
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_SetVisible
+	waitmovement 0
+	setvar VAR_CROSS_MAP_TRIGGER, 0
+	releaseall
+	end
+
 
 SootopolisCity_EventScript_1E5926:: @ 81E5926
 	lockall
@@ -1362,11 +1383,9 @@ SootopolisCity_Text_1E6B2A: @ 81E6B2A
 @ -----------------------------------------------------
 
 
-
-
-
 SootopolisCity_EventScript_1E6166:: @ 81E6166
 	lockall
+	markasdialog
 	applymovement 7, Common_Movement_FacePlayer
 	waitmovement 0
 	call_if_unset FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN, SootopolisCity_EventScript_1E61CC
@@ -1380,88 +1399,99 @@ SootopolisCity_EventScript_1E6166:: @ 81E6166
 	msgbox SootopolisCity_Text_1E78E5, MSGBOX_DEFAULT
 	releaseall
 	end
+SootopolisCity_Text_1E78E5: @ 81E78E5
+	.string "Steven: So that's Rayquaza…\p"
+	.string "It's incredible how the two rampaging\n"
+	.string "Pokémon would flee from it in fear…$"
 
 SootopolisCity_EventScript_1E61AE:: @ 81E61AE
 	msgbox SootopolisCity_Text_1E7866, MSGBOX_DEFAULT
+	setflag FLAG_WALLACE_GOES_TO_SKY_PILLAR
+	setflag FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE
+	setvar VAR_RAYQUAZA_STATE, 3
 	releaseall
 	end
 SootopolisCity_Text_1E7866: @ 81E7866
-	.string "STEVEN: I think you have what's\n"
-	.string "needed to help him…$"
+	.string "Steven: Excuse me, who are you…?\n"
+	.string "Are you {RIVAL_HERO}'s friend?\p"
+	.string "He went searching for the {PLACE}Sky Pillar{END}.\p"
+	.string "He hopes to find an ancient Pokémon\n"
+	.string "at the top who can help quell the\l"
+	.string "fighting of these legendary beasts.$"
 
 SootopolisCity_EventScript_1E61B8:: @ 81E61B8
 	msgbox SootopolisCity_Text_1E794B, MSGBOX_DEFAULT
 	releaseall
 	end
 SootopolisCity_Text_1E794B: @ 81E794B
-	.string "STEVEN: It looks like both MAXIE and\n"
-	.string "ARCHIE have gone away somewhere.\p"
+	.string "Steven: It looks like both Maxie and\n"
+	.string "Archie have gone away somewhere.\p"
 	.string "Perhaps they've gone to Mt. Pyre to\n"
-	.string "return those ORBS…$"
+	.string "return those orbs…$"
 
 SootopolisCity_EventScript_1E61C2:: @ 81E61C2
 	msgbox SootopolisCity_Text_1E789A, MSGBOX_DEFAULT
 	releaseall
 	end
 SootopolisCity_Text_1E789A: @ 81E789A
-	.string "STEVEN: The Sky Pillar…\p"
+	.string "Steven: The Sky Pillar…\p"
 	.string "I've never been there.\n"
 	.string "I wonder where it could be?$"
 
 SootopolisCity_EventScript_1E61CC:: @ 81E61CC
-	msgbox SootopolisCity_Text_1E75CB, MSGBOX_DEFAULT
-	closemessage
-	compare VAR_FACING, 3
-	call_if_eq SootopolisCity_EventScript_1E6243
-	compare VAR_FACING, 2
-	call_if_eq SootopolisCity_EventScript_1E6255
-	msgbox SootopolisCity_Text_1E7737, MSGBOX_DEFAULT
-	closemessage
-	applymovement 7, SootopolisCity_Movement_1E62D4
-	applymovement EVENT_OBJ_ID_PLAYER, SootopolisCity_Movement_1E630E
-	waitmovement 0
-	delay 120
-	applymovement 1, SootopolisCity_Movement_1E6341
-	waitmovement 0
-	applymovement 7, SootopolisCity_Movement_1E6344
-	applymovement EVENT_OBJ_ID_PLAYER, SootopolisCity_Movement_1E634F
-	waitmovement 0
-	msgbox SootopolisCity_Text_1E77F0, MSGBOX_DEFAULT
-	closemessage
-	setflag FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN
-	applymovement EVENT_OBJ_ID_PLAYER, SootopolisCity_Movement_1E635A
-	waitmovement 0
-	warp MAP_CAVE_OF_ORIGIN_ENTRANCE, 255, 9, 20
-	waitstate
+	@ msgbox SootopolisCity_Text_1E75CB, MSGBOX_DEFAULT
+	@ closemessage
+	@ compare VAR_FACING, 3
+	@ call_if_eq SootopolisCity_EventScript_1E6243
+	@ compare VAR_FACING, 2
+	@ call_if_eq SootopolisCity_EventScript_1E6255
+	@ msgbox SootopolisCity_Text_1E7737, MSGBOX_DEFAULT
+	@ closemessage
+	@ applymovement 7, SootopolisCity_Movement_1E62D4
+	@ applymovement EVENT_OBJ_ID_PLAYER, SootopolisCity_Movement_1E630E
+	@ waitmovement 0
+	@ delay 120
+	@ applymovement 1, SootopolisCity_Movement_1E6341
+	@ waitmovement 0
+	@ applymovement 7, SootopolisCity_Movement_1E6344
+	@ applymovement EVENT_OBJ_ID_PLAYER, SootopolisCity_Movement_1E634F
+	@ waitmovement 0
+	@ msgbox SootopolisCity_Text_1E77F0, MSGBOX_DEFAULT
+	@ closemessage
+	@ setflag FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN
+	@ applymovement EVENT_OBJ_ID_PLAYER, SootopolisCity_Movement_1E635A
+	@ waitmovement 0
+	@ warp MAP_CAVE_OF_ORIGIN_ENTRANCE, 255, 9, 20
+	@ waitstate
 	end
-SootopolisCity_Text_1E75CB: @ 81E75CB
-	.string "STEVEN: Those Pokémon fighting…\n"
-	.string "GROUDON… And KYOGRE…\p"
-	.string "The two super-ancient Pokémon\n"
-	.string "were awakened from a long sleep…\p"
-	.string "And now they are smashing each other\n"
-	.string "with their uncontrollable energy…\p"
-	.string "…{PLAYER}.\p"
-	.string "You being here now I'll take to mean\n"
-	.string "that you're prepared to become\l"
-	.string "involved in this crisis.\p"
-	.string "Well, then, there's someone that\n"
-	.string "I'd like you to meet.\p"
-	.string "Come with me, please.$"
-SootopolisCity_Text_1E7737: @ 81E7737
-	.string "STEVEN: Listen, {PLAYER}.\p"
-	.string "Does seeing GROUDON and KYOGRE make\n"
-	.string "you think Pokémon are to be feared?\p"
-	.string "But that's not true.\n"
-	.string "Pokémon are really more…\p"
-	.string "…Why am I asking you this?\n"
-	.string "You already know.$"
-SootopolisCity_Text_1E77F0: @ 81E77F0
-	.string "STEVEN: Okay, here we are!\p"
-	.string "Inside here you'll find someone named\n"
-	.string "WALLACE.\p"
-	.string "I think you have what's needed to\n"
-	.string "help him…$"
+@ SootopolisCity_Text_1E75CB: @ 81E75CB
+@ 	.string "STEVEN: Those Pokémon fighting…\n"
+@ 	.string "GROUDON… And KYOGRE…\p"
+@ 	.string "The two super-ancient Pokémon\n"
+@ 	.string "were awakened from a long sleep…\p"
+@ 	.string "And now they are smashing each other\n"
+@ 	.string "with their uncontrollable energy…\p"
+@ 	.string "…{PLAYER}.\p"
+@ 	.string "You being here now I'll take to mean\n"
+@ 	.string "that you're prepared to become\l"
+@ 	.string "involved in this crisis.\p"
+@ 	.string "Well, then, there's someone that\n"
+@ 	.string "I'd like you to meet.\p"
+@ 	.string "Come with me, please.$"
+@ SootopolisCity_Text_1E7737: @ 81E7737
+@ 	.string "STEVEN: Listen, {PLAYER}.\p"
+@ 	.string "Does seeing GROUDON and KYOGRE make\n"
+@ 	.string "you think Pokémon are to be feared?\p"
+@ 	.string "But that's not true.\n"
+@ 	.string "Pokémon are really more…\p"
+@ 	.string "…Why am I asking you this?\n"
+@ 	.string "You already know.$"
+@ SootopolisCity_Text_1E77F0: @ 81E77F0
+@ 	.string "STEVEN: Okay, here we are!\p"
+@ 	.string "Inside here you'll find someone named\n"
+@ 	.string "WALLACE.\p"
+@ 	.string "I think you have what's needed to\n"
+@ 	.string "help him…$"
 
 
 SootopolisCity_EventScript_1E6243:: @ 81E6243
@@ -1746,6 +1776,7 @@ SootopolisCity_Movement_1E635A: @ 81E635A
 SootopolisCity_EventScript_1E6446:: @ 81E6446
 	lock
 	faceplayer
+	markasdialog
 	compare VAR_RAYQUAZA_STATE, 4
 	goto_if_eq SootopolisCity_EventScript_1E64D8
 	goto_if_set FLAG_RECEIVED_TM57, SootopolisCity_EventScript_1E64E2
@@ -1753,6 +1784,11 @@ SootopolisCity_EventScript_1E6446:: @ 81E6446
 	msgbox SootopolisCity_Text_1E7A3E, MSGBOX_DEFAULT
 	release
 	end
+SootopolisCity_Text_1E7A3E: @ 81E7A3E
+	.string "Wallace: The leaders of Team Magma and\n"
+	.string "Aqua, I don't think they meant harm.\p"
+	.string "It wouldn't hurt to hear what they\n"
+	.string "have to say for themselves.$"
 
 SootopolisCity_EventScript_1E646F:: @ 81E646F
 	msgbox SootopolisCity_Text_1E7ACF, MSGBOX_DEFAULT
@@ -1768,6 +1804,28 @@ SootopolisCity_EventScript_1E646F:: @ 81E646F
 	call_if_eq SootopolisCity_EventScript_1E64C5
 	release
 	end
+SootopolisCity_Text_1E7ACF: @ 81E7ACF
+	.string "Wallace: {RIVAL_HERO}…\n"
+	.string "My eyes didn't deceive me…\l"
+	.string "Even without my contacts…\p"
+	.string "Thanks to your help, Sootopolis…\n"
+	.string "No, all of Hoenn was saved.\p"
+	.string "On behalf of the people, I thank you.\p"
+	.string "This is a gift from me.\n"
+	.string "Please accept it.$"
+SootopolisCity_Text_1E7B86: @ 81E7B86
+	.string "That Technical Machine contains\n"
+	.string "Waterfall.\p"
+	.string "It allows a Pokémon to use their natural\n"
+	.string "waterfall-climbing ability in-battle.\p"
+	.string "But of course, they can only harness that\n"
+	.string "ability if you have the Rain Badge.\p"
+	.string "And where does one get the Rain Badge?\n"
+	.string "You know, don't you?\p"
+	.string "That's right! You have to beat\n"
+	.string "the Sootopolis Gym Leader.\p"
+	.string "When you're all set to go, step through\n"
+	.string "that door.$"
 
 SootopolisCity_EventScript_1E64B2:: @ 81E64B2
 	applymovement 18, SootopolisCity_Movement_1E64EC
@@ -1787,11 +1845,23 @@ SootopolisCity_EventScript_1E64D8:: @ 81E64D8
 	msgbox SootopolisCity_Text_1E79C8, MSGBOX_DEFAULT
 	release
 	end
+SootopolisCity_Text_1E79C8: @ 81E79C8
+	.string "WALLACE: Oh?\n"
+	.string "{RIVAL_HERO}?\p"
+	.string "Haven't you scaled the Sky Pillar\n"
+	.string "yet?\p"
+	.string "I can't see anything… I lost\n"
+	.string "my contacts in the Cave of Origin.$"
 
 SootopolisCity_EventScript_1E64E2:: @ 81E64E2
 	msgbox SootopolisCity_Text_1E7CBC, MSGBOX_DEFAULT
 	release
 	end
+SootopolisCity_Text_1E7CBC: @ 81E7CBC
+	.string "Wallace: Hang on, you're not {RIVAL_HERO}.\n"
+	.string "Who are you?\p"
+	.string "Did I just give an inspiring speech\n"
+	.string "to the wrong person?$"
 
 SootopolisCity_Movement_1E64EC: @ 81E64EC
 	walk_right
@@ -1805,6 +1875,7 @@ SootopolisCity_Movement_1E64EF: @ 81E64EF
 
 SootopolisCity_EventScript_1E64F2:: @ 81E64F2
 	lockall
+	markasdialog
 	compare VAR_RAYQUAZA_STATE, 5
 	goto_if_eq SootopolisCity_EventScript_1E6509
 	msgbox SootopolisCity_Text_1E72DB, MSGBOX_DEFAULT
@@ -1836,6 +1907,7 @@ SootopolisCity_Text_1E737E: @ 81E737E
 
 SootopolisCity_EventScript_1E651F:: @ 81E651F
 	lockall
+	markasdialog
 	compare VAR_RAYQUAZA_STATE, 5
 	goto_if_eq SootopolisCity_EventScript_1E6536
 	msgbox SootopolisCity_Text_1E7460, MSGBOX_DEFAULT
@@ -1844,7 +1916,7 @@ SootopolisCity_EventScript_1E651F:: @ 81E651F
 	end
 SootopolisCity_Text_1E7460: @ 81E7460
 	.string "Archie: Kyogre! What's wrong?!\n"
-	.string "Look over here! It's the RED ORB!\l"
+	.string "Look over here! It's the Red Orb!\l"
 	.string "Calm down! Kyogre!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
@@ -1858,15 +1930,22 @@ SootopolisCity_EventScript_1E6536:: @ 81E6536
 	releaseall
 	end
 SootopolisCity_Text_1E74F6: @ 81E74F6
-	.string "Archie: Kyogre and GROUDON both\n"
-	.string "flew off to who knows where.\p"
+	.string "Archie: Oh, {PLAYER}.\p"
+	.string "Kyogre and Groudon both flew off\n"
+	.string "to who knows where.\p"
 	.string "The weather in Hoenn has returned\n"
 	.string "to its normal state…\p"
+	.string "… … … … … …\n"
+	.string "… … … … … …\p"
 	.string "Haha…\n"
 	.string "Hahaha…\p"
 	.string "Maybe what we were trying to do was\n"
 	.string "something small, even meaningless,\l"
-	.string "to Pokémon…$"
+	.string "to Pokémon…\p"
+	.string "… … … … … …\n"
+	.string "I'm dissolving the team.\p"
+	.string "Please, get rid of that uniform…\p"
+	.string "It doesn't suit you anymore.$"
 
 SootopolisCity_EventScript_1E654C:: @ 81E654C
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE
@@ -1895,51 +1974,3 @@ SootopolisCity_Movement_1E656D:: @ 81E656D
 
 
 
-
-SootopolisCity_Text_1E78E5: @ 81E78E5
-	.string "STEVEN: So that's RAYQUAZA…\p"
-	.string "It's incredible how the two rampaging\n"
-	.string "Pokémon would flee from it in fear…$"
-
-
-SootopolisCity_Text_1E79C8: @ 81E79C8
-	.string "WALLACE: Oh?\n"
-	.string "{PLAYER}?\p"
-	.string "Haven't you scaled the Sky Pillar\n"
-	.string "yet?\p"
-	.string "I'm sure that you can make it to\n"
-	.string "the top of the Sky Pillar…$"
-
-SootopolisCity_Text_1E7A3E: @ 81E7A3E
-	.string "WALLACE: {PLAYER}…\p"
-	.string "The leaders of Team Magma and AQUA,\n"
-	.string "I don't think they meant harm.\p"
-	.string "It wouldn't hurt to hear what they\n"
-	.string "have to say for themselves.$"
-
-SootopolisCity_Text_1E7ACF: @ 81E7ACF
-	.string "WALLACE: {PLAYER}…\n"
-	.string "My eyes didn't deceive me.\p"
-	.string "Thanks to your help, Sootopolis…\n"
-	.string "No, all of Hoenn was saved.\p"
-	.string "On behalf of the people, I thank you.\p"
-	.string "This is a gift from me.\n"
-	.string "Please accept it.$"
-
-SootopolisCity_Text_1E7B86: @ 81E7B86
-	.string "That HIDDEN MACHINE contains\n"
-	.string "WATERFALL.\p"
-	.string "If you have the RAIN BADGE, a Pokémon\n"
-	.string "that has learned that HM move can\l"
-	.string "force its way up waterfalls.\p"
-	.string "And where does one get the RAIN BADGE?\n"
-	.string "You know, don't you?\p"
-	.string "That's right! You have to beat\n"
-	.string "the Sootopolis Gym Leader.\p"
-	.string "When you're all set to go, step through\n"
-	.string "that door.$"
-
-SootopolisCity_Text_1E7CBC: @ 81E7CBC
-	.string "WALLACE: I'm sure that you will be\n"
-	.string "dazzled by my mentor's breathtakingly\l"
-	.string "elegant battle style.$"

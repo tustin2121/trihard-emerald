@@ -27,6 +27,14 @@ FortreeCity_Text_1E2AAC: @ 81E2AAC
 	.string "nature.”$"
 
 
+FortreeCity_EventScript_DecorShop:: @ 81E2602
+	msgbox FortreeCity_Text_DecorShop, MSGBOX_SIGN
+	end
+FortreeCity_Text_DecorShop: @ 81E2AAC
+	.string "{PLACE}Secret Base Decor Shop{END}\n"
+	.string "“Furnish your bushy abode!”$"
+
+
 FortreeCity_EventScript_1E260B:: @ 81E260B
 	msgbox FortreeCity_Text_1E2AE6, MSGBOX_SIGN
 	end

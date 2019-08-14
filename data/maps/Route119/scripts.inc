@@ -110,8 +110,8 @@ Route119_Text_1F51A2: @ 81F51A2
 	.string "I thought you fly by catching a whole\n"
 	.string "flock of bird Pokémon, and then\l"
 	.string "hanging on to them somehow.\p"
-	.string "But it turns out there's an HM move\n"
-	.string "called fly!\p"
+	.string "But it turns out there's a Gym Badge\n"
+	.string "that lets you fly them!\p"
 	.string "I wish I'd known about that a long\n"
 	.string "time ago…$"
 
@@ -574,7 +574,7 @@ Route119_EventScript_1F4585:: @ 81F4585
 Route119_Text_1F4C9A: @ 81F4C9A
 	.string "Brendan: {PLAYER}!\p"
 	.string "So this is where you've been hiding\n"
-	.string "from the la{PAUSE 10}a{PAUSE 12}a{PAUSE 16}a{PAUSE 6}oud Pokémon!\l" 
+	.string "from the la{PAUSE 10}a{PAUSE 12}a{PAUSE 16}a{PAUSE 6}oud Pokémon!\l"
 	.string "Those Loudred are booming today!\p"
 	.string "Say! Our eyes met, right?!\n"
 	.string "It's a battle, so battle!$"
@@ -605,7 +605,7 @@ Route119_EventScript_1F45E4:: @ 81F45E4
 Route119_Text_1F4D4B: @ 81F4D4B
 	.string "Brendan: I'd say you're good enough\n"
 	.string "to run from… Pokémon… anywhere!\p"
-	.string "Like me right now bye!$"
+	.string "Like me, right now. Bye!$"
 @ Route119_Text_1F4DB5: @ 81F4DB5
 @ 	.string "Brendan: Use FLY, and your Pokémon\n"
 @ 	.string "instantly carries you to any town\l"

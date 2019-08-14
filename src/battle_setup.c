@@ -1593,7 +1593,9 @@ const u8 *GetTrainerWonSpeech(void)
 {
     const u8 *string;
     
-    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) == 0)
+    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
+        string = gText_Whiteout_RagingLegendary;
+    else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) == 0)
         string = gText_Whiteout_WildMon;
     else
         string = sTrainerVictorySpeech;

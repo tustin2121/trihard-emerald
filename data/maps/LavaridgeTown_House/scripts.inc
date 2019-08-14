@@ -5,6 +5,11 @@ LavaridgeTown_House_EventScript_1FF912:: @ 81FF912
 	msgbox LavaridgeTown_House_Text_1FF92E, MSGBOX_NPC
 	end
 
+LavaridgeTown_House_MimicBoy::
+	markasdialog
+	goto LavaridgeTown_House_EventScript_2C804E
+	end
+
 LavaridgeTown_House_EventScript_1FF91B:: @ 81FF91B
 	lock
 	faceplayer
@@ -23,4 +28,3 @@ LavaridgeTown_House_Text_1FF92E: @ 81FF92E
 
 LavaridgeTown_House_Text_1FF9BB: @ 81FF9BB
 	.string "ZIGZAGOON: Pshoo!$"
-

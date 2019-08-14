@@ -16,6 +16,11 @@ Route111_EventScript_1F0CD1:: @ 81F0CD1
 	setmetatile 29, 87, 145, 1
 	return
 
+Route111_EventScript_HiddenPowerMan::
+	markasdialog
+	goto Route111_EventScript_2765FF
+	end
+
 Route111_EventScript_1F0CE4:: @ 81F0CE4
 	setmetatile 18, 53, 984, 0
 	setmetatile 19, 53, 985, 0

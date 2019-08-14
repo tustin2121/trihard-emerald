@@ -1050,7 +1050,7 @@ EventScript_ResetAllMapFlags:: @ 82715DE
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_LOVER_WOMAN
 	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA
 	setflag FLAG_UNUSED_0x376
-	setflag FLAG_UNUSED_0x375
+	setflag FLAG_HIDE_SKY_PILLAR_LOGAN
 	setflag FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION
 	setflag FLAG_HIDE_BATTLE_TOWER_OPPONENT
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
@@ -1619,16 +1619,16 @@ DewfordTown_Gym_EventScript_272010:: @ 8272010
 	return
 
 DewfordTown_Gym_EventScript_272035:: @ 8272035
-	settrainerflag TRAINER_ANDREA
-	settrainerflag TRAINER_CRISSY
-	settrainerflag TRAINER_BRIANNA
-	settrainerflag TRAINER_CONNIE
-	settrainerflag TRAINER_BRIDGET
-	settrainerflag TRAINER_OLIVIA
-	settrainerflag TRAINER_TIFFANY
-	settrainerflag TRAINER_BETHANY
-	settrainerflag TRAINER_ANNIKA
-	settrainerflag TRAINER_DAPHNE
+	@ settrainerflag TRAINER_ANDREA
+	@ settrainerflag TRAINER_CRISSY
+	@ settrainerflag TRAINER_BRIANNA
+	@ settrainerflag TRAINER_CONNIE
+	@ settrainerflag TRAINER_BRIDGET
+	@ settrainerflag TRAINER_OLIVIA
+	@ settrainerflag TRAINER_TIFFANY
+	@ settrainerflag TRAINER_BETHANY
+	@ settrainerflag TRAINER_ANNIKA
+	@ settrainerflag TRAINER_DAPHNE
 	return
 
 Route114_LanettesHouse_EventScript_272067:: @ 8272067
@@ -1642,7 +1642,9 @@ Common_EventScript_NoRoomLeftForAnother:: @ 8272071
 
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 	call Common_EventScript_PartyHealSave_Setup
+	domourning @ Do the mourning cutscene, if needed
 	call Common_EventScript_PartyHealSave_Save
+	dodreams @ Check for dream cutscenes
 	call Common_EventScript_PartyHealSave_Complete
 	return
 
@@ -2002,10 +2004,10 @@ Route119_EventScript_272365:: @ 8272365
 	release
 	end
 Route119_Text_1F5D63: @ 81F5D63
-	.string "{PLAYER} used the DEVON SCOPE.\p"
+	.string "{PLAYER} attacked.\p"
 	.string "An invisible Pokémon became completely\n"
 	.string "visible!\p"
-	.string "The startled Pokémon attacked!$"
+	.string "The startled Pokémon fights back!$"
 
 FallarborTown_House1_EventScript_2723E4:: @ 82723E4
 GraniteCave_StevensRoom_EventScript_2723E4:: @ 82723E4
@@ -5601,7 +5603,7 @@ gText_082C877B:: @ 82C877B
 	.align 2
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
-	
+
 	.include "data/scripts/te_debug.inc"
 
 	.include "data/maps/SootopolisLegendsEdit/scripts.inc"
@@ -5633,3 +5635,9 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/FallarborTown_ContestHall/scripts.inc"
 
 	.include "data/maps/MirageTowerLayout/scripts.inc"
+
+	.include "data/maps/FortreeCity_House6/scripts.inc"
+
+	.include "data/maps/FortreeCity_House7/scripts.inc"
+
+	.include "data/maps/FortreeCity_House8/scripts.inc"

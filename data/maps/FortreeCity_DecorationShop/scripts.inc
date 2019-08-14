@@ -12,6 +12,7 @@ FortreeCity_DecorationShop_EventScript_218017:: @ 8218017
 FortreeCity_DecorationShop_EventScript_218020:: @ 8218020
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Desks
@@ -36,6 +37,7 @@ FortreeCity_DecorationShop_PokemartDecor_Desks: @ 8218038
 FortreeCity_DecorationShop_EventScript_21804C:: @ 821804C
 	lock
 	faceplayer
+	markasdialog
 	message gText_Mart_Welcome
 	waitmessage
 	pokemartdecoration FortreeCity_DecorationShop_PokemartDecor_Chairs
@@ -69,4 +71,3 @@ FortreeCity_DecorationShop_Text_2180ED: @ 82180ED
 	.string "If I don't, when I decorate my\n"
 	.string "SECRET BASE, my DOLLS will get\l"
 	.string "dirty or poked with splinters.$"
-

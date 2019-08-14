@@ -189,7 +189,7 @@ MauvilleCity_Gym_TextArray_GymSignageNames:
 	.4byte 0
 MauvilleCity_Gym_Text_GymSignageNameList1:
 	.string "Glacia, Charlie, Sidney, Darlene, Daniel,\n"
-	.string "Kelly, Leslie, Steven, Wallace, Clifton,\n "
+	.string "Kelly, Leslie, Steven, Wallace, Clifton,\n"
 	.string "Phoebe, Roxanne, Katie, Connor, Holly,\n"
 	.string "Flannery, {RIVAL_BIRCH}, Alexis, Ethan,\n"
 	.string "{RIVAL_HERO}$"

@@ -29,6 +29,7 @@ LavaridgeTown_HerbShop_EventScript_1FE4FC:: @ 81FE4FC
 LavaridgeTown_HerbShop_EventScript_1FE505:: @ 81FE505
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_CHARCOAL, LavaridgeTown_HerbShop_EventScript_1FE534
 	msgbox LavaridgeTown_HerbShop_Text_1FE584, MSGBOX_DEFAULT
 	giveitem_std ITEM_CHARCOAL
@@ -65,4 +66,3 @@ LavaridgeTown_HerbShop_Text_1FE685: @ 81FE685
 	.string "Herbal medicine works impressively well.\n"
 	.string "But your Pokémon will dislike you for it.\l"
 	.string "It must be horribly bitter!$"
-

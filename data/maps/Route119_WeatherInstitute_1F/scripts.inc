@@ -416,7 +416,8 @@ Route119_WeatherInstitute_1F_EventScript_26FB29:: @ 826FB29
 	end
 Route119_WeatherInstitute_1F_Text_26FB57: @ 826FB57
 	.string "I can't let you people get past!\p"
-	.string "There's very important research at stake!$"
+	.string "There's some very important research\n"
+	.string "at stake!$"
 Route119_WeatherInstitute_1F_Text_26FBBB: @ 826FBBB
 	.string "Blast it…\n"
 	.string "Blasted by a kid…$"
@@ -438,4 +439,3 @@ Route119_WeatherInstitute_1F_Text_26FC60: @ 826FC60
 	.string "What could you guys possibly want\n"
 	.string "with us?!\p"
 	.string "What do you mean, you don't know?!$"
-

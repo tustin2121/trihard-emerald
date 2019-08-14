@@ -47,7 +47,8 @@ Route114_LanettesHouse_EventScript_22B33C:: @ 822B33C
 	return
 
 Route114_LanettesHouse_EventScript_22B345:: @ 822B345
-	msgbox Route114_LanettesHouse_Text_22B6FC, MSGBOX_SIGN
+	msgbox Route114_LanettesHouse_Text_22B6FC, MSGBOX_DEFAULT
+	msgbox Route114_LanettesHouse_Text_PCPart2, MSGBOX_SIGN
 	end
 
 Route114_LanettesHouse_Text_22B34E: @ 822B34E
@@ -94,8 +95,9 @@ Route114_LanettesHouse_Text_22B6E4: @ 822B6E4
 
 Route114_LanettesHouse_Text_22B6FC: @ 822B6FC
 	.string "There's an e-mail from someone on\n"
-	.string "the PC.\p"
-	.string "“… … … … … … …\p"
+	.string "the PC.$"
+	
+Route114_LanettesHouse_Text_PCPart2:
 	.string "“Your Storage System offers more\n"
 	.string "convenience than mine.\p"
 	.string "“It has a lot of user-friendly features\n"
@@ -104,6 +106,4 @@ Route114_LanettesHouse_Text_22B6FC: @ 822B6FC
 	.string "a part in its development.\p"
 	.string "“Here's hoping that you'll continue\n"
 	.string "research in Storage Systems.\p"
-	.string "“From BILL\n"
-	.string "… … … … … … … …”$"
-
+	.string "“From BILL$"

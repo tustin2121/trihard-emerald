@@ -6766,36 +6766,48 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Edwin5[] = {
     }
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_Wally1[] = {
+static const struct TrainerMonItemCustomMoves sParty_Wally1[] = {
     {
     .iv = 150,
-    .lvl = 44,
-    .species = SPECIES_ALTARIA,
-    .moves = MOVE_AERIAL_ACE, MOVE_SAFEGUARD, MOVE_DRAGON_BREATH, MOVE_DRAGON_DANCE
+    .lvl = 48,
+    .species = SPECIES_WHISCASH,
+    .heldItem = ITEM_SOFT_SAND,
+    .moves = MOVE_EARTHQUAKE, MOVE_SURF, MOVE_FUTURE_SIGHT, MOVE_ROCK_TOMB
     },
     {
-    .iv = 150,
-    .lvl = 43,
-    .species = SPECIES_DELCATTY,
-    .moves = MOVE_SING, MOVE_ASSIST, MOVE_CHARM, MOVE_FAINT_ATTACK
+    .iv = 180,
+    .lvl = 49,
+    .species = SPECIES_DUSCLOPS,
+    .heldItem = ITEM_BLACK_GLASSES,
+    .moves = MOVE_SHADOW_BALL, MOVE_PURSUIT, MOVE_WILL_O_WISP, MOVE_BLIZZARD
     },
     {
-    .iv = 150,
-    .lvl = 44,
-    .species = SPECIES_ROSELIA,
-    .moves = MOVE_MAGICAL_LEAF, MOVE_LEECH_SEED, MOVE_GIGA_DRAIN, MOVE_TOXIC
+    .iv = 200,
+    .lvl = 50,
+    .species = SPECIES_ELECTRODE,
+    .heldItem = ITEM_QUICK_CLAW,
+    .moves = MOVE_SUPERSONIC, MOVE_THUNDERBOLT, MOVE_SELF_DESTRUCT, MOVE_LIGHT_SCREEN
     },
     {
-    .iv = 150,
-    .lvl = 41,
-    .species = SPECIES_MAGNETON,
-    .moves = MOVE_SUPERSONIC, MOVE_THUNDERBOLT, MOVE_TRI_ATTACK, MOVE_SCREECH
+    .iv = 210,
+    .lvl = 51,
+    .species = SPECIES_SALAMENCE,
+    .heldItem = ITEM_DRAGON_FANG,
+    .moves = MOVE_FLY, MOVE_DRAGON_CLAW, MOVE_FLAMETHROWER, MOVE_AERIAL_ACE
+    },
+    {
+    .iv = 220,
+    .lvl = 52,
+    .species = SPECIES_METAGROSS,
+    .heldItem = ITEM_TWISTED_SPOON,
+    .moves = MOVE_PSYCHIC, MOVE_METAL_CLAW, MOVE_PURSUIT, MOVE_TOXIC
     },
     {
     .iv = 250,
-    .lvl = 45,
-    .species = SPECIES_GARDEVOIR,
-    .moves = MOVE_DOUBLE_TEAM, MOVE_CALM_MIND, MOVE_PSYCHIC, MOVE_FUTURE_SIGHT
+    .lvl = 55,
+    .species = SPECIES_SHIFTRY,
+    .heldItem = ITEM_FOCUS_BAND,
+    .moves = MOVE_FAINT_ATTACK, MOVE_EXTRASENSORY, MOVE_PSYCHIC, MOVE_AERIAL_ACE
     }
 };
 

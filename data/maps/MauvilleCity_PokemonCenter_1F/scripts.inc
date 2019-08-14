@@ -112,11 +112,10 @@ MauvilleCity_PokemonCenter_1F_EventScript_210E98:: @ 8210E98
 	msgbox MauvilleCity_PokemonCenter_1F_Text_210F8A, MSGBOX_NPC
 	end
 MauvilleCity_PokemonCenter_1F_Text_210F8A: @ 8210F8A
-	@ TODO remove record corner reference, it no longer exists
-	.string "A RECORD CORNER opened upstairs in\n"
+	.string "There are rooms upstairs in\n"
 	.string "the Pokémon Center.\p"
-	.string "I don't know what it's about, but it\n"
-	.string "sounds fun. I'll go check it out!$"
+	.string "They built them so trainers can\n"
+	.string "get some rest after travelling!$"
 
 
 MauvilleCity_Mart_EventScript_21111C:: @ 821111C

@@ -30,9 +30,7 @@ MossdeepCity_EventScript_UpdateInvasionFlags:
 
 MossdeepCity_OnLoad:
 	compare VAR_MOSSDEEP_STATE, 11
-	call_if_eq MossdeepCity_OnLoad_AddTeamPile
-	compare VAR_MOSSDEEP_STATE, 12
-	call_if_eq MossdeepCity_OnLoad_AddTeamPile
+	call_if_ge MossdeepCity_OnLoad_AddTeamPile
 	end
 
 MossdeepCity_OnLoad_AddTeamPile:
@@ -79,6 +77,16 @@ MossdeepCity_EventScript_1E4B2F:: @ 81E4B2F
 MossdeepCity_Text_1E541F: @ 81E541F
 	.string "{PLACE}Mossdeep Space Center{END}\n"
 	.string "“The closest place to space.”$"
+
+
+MossdeepCity_EventScript_TeamPile:: @ 81E4B2F
+	compare VAR_MOSSDEEP_STATE, 12
+	goto_if_lt Common_EventScript_ReleaseEnd
+	msgbox MossdeepCity_Text_TeamPile, MSGBOX_DESCRIBE
+	end
+MossdeepCity_Text_TeamPile: @ 81E541F
+	.string "The discarded colors of Team Aqua\n"
+	.string "and Team Magma.$"
 
 @ -----------------------------------------------------
 @ People
@@ -255,6 +263,70 @@ MossdeepCity_Text_1E5581: @ 81E5581
 	.string "Leader come in.\p"
 	.string "People tell me the new Leader once\n"
 	.string "mentored Wallace.$"
+
+
+MossdeepCity_EventScript_TransportEverGrande::
+	lock
+	faceplayer
+	markasdialog
+	askforboat MossdeepCity_Text_TransportEverGrande_Ask, MossdeepCity_Text_TransportEverGrande_Decline, MossdeepCity_Text_TransportEverGrande_NoMoney, MossdeepCity_Text_TransportEverGrande_Embark
+	warpcustom MAP_EVER_GRANDE_CITY, 255, 45, 76
+	waitstate
+	end
+MossdeepCity_Text_TransportEverGrande_Ask:
+	.string "Hello, old {PLAYER_boy}, I will be\n"
+	.string "travelling to {PLACE}Ever Grande{END} shortly.\p"
+	.string "For ¥100, I'll give you a ride there.$"
+MossdeepCity_Text_TransportEverGrande_Decline:
+	.string "Your loss.$"
+MossdeepCity_Text_TransportEverGrande_NoMoney:
+	.string "You don't have the money.$"
+MossdeepCity_Text_TransportEverGrande_Embark:
+	.string "Thanks! Let us embark!$"
+
+
+MossdeepCity_EventScript_TransportSootopolis::
+	lock
+	faceplayer
+	markasdialog
+	askforboat MossdeepCity_Text_TransportSootopolis_Ask, MossdeepCity_Text_TransportSootopolis_Decline, MossdeepCity_Text_TransportSootopolis_NoMoney, MossdeepCity_Text_TransportSootopolis_Embark
+	warpcustom MAP_ROUTE126, 255, 25, 50
+	waitstate
+	end
+MossdeepCity_Text_TransportSootopolis_Ask:
+	.string "Ahoy! I'm heading off near {PLACE}Sootopolis{END}\n"
+	.string "to do some fishing. I can drop ya off\l"
+	.string "for ¥100. Need me some bait, after all.$"
+MossdeepCity_Text_TransportSootopolis_Decline:
+	.string "Ah, well.$"
+MossdeepCity_Text_TransportSootopolis_NoMoney:
+	.string "Um, I need the fee first.\n"
+	.string "No fishing without it.$"
+MossdeepCity_Text_TransportSootopolis_Embark:
+	.string "Mighty thank ya! Onward!$"
+
+
+MossdeepCity_EventScript_TransportPacifidlog::
+	lock
+	faceplayer
+	markasdialog
+	askforboat MossdeepCity_Text_TransportPacifidlog_Ask, MossdeepCity_Text_TransportPacifidlog_Decline, MossdeepCity_Text_TransportPacifidlog_NoMoney, MossdeepCity_Text_TransportPacifidlog_Embark
+	warpcustom MAP_PACIFIDLOG_TOWN, 255, 17, 14
+	waitstate
+	end
+MossdeepCity_Text_TransportPacifidlog_Ask:
+	.string "Oh, hello! I'm going to {PLACE}Pacifidlog{END}\n"
+	.string "soon to visit some family.\p"
+	.string "If you're heading the same way,\n"
+	.string "I think ¥100 will cover the fuel.$"
+MossdeepCity_Text_TransportPacifidlog_Decline:
+	.string "Oh, alright.$"
+MossdeepCity_Text_TransportPacifidlog_NoMoney:
+	.string "Ah ah, no stiffing me, young {PLAYER_man}.$"
+MossdeepCity_Text_TransportPacifidlog_Embark:
+	.string "Yay! Let's head out now!$"
+
+
 
 @ -----------------------------------------------------
 @ State: Magma Invasion
@@ -594,6 +666,7 @@ MossdeepCity_EventScript_RainsBegin::
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_MAGMA_GRUNTS
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_KYOGRE_1
 	setflag FLAG_HIDE_SEAFLOOR_CAVERN_AQUA_GRUNTS
+	setflag FLAG_STEVEN_GUIDES_TO_CAVE_OF_ORIGIN
 	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
 	call Common_EventScript_ClearSceneFlags
 	setflag FLAG_HIDE_MAP_NAME_POPUP
@@ -1137,8 +1210,8 @@ MossdeepCity_Text_LoganCenter2:
 	.string "Why don't you go home? At least you\n"
 	.string "can't cause any more damage there.\p"
 	.string "Now excuse me. I need to fly into\n"
-	.string "Sootopolis to try and stop the\l"
-	.string "rampaging god-beasts.$"
+	.string "Sootopolis to try and figure out how\l"
+	.string "to stop the rampaging god-beasts.$"
 MossdeepCity_Text_LoganCenter3:
 	.string "{RIVAL_HERO} left something behind\n"
 	.string "on the ground.$"

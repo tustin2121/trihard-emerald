@@ -109,4 +109,3 @@ LilycoveCity_MoveDeletersHouse_Text_21EC9C: @ 821EC9C
 	.string "Hm!\p"
 	.string "Your {STR_VAR_1} doesn't seem willing\n"
 	.string "to forget SURF.$"
-

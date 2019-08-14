@@ -49,7 +49,7 @@ LilycoveCity_CoveLilyMotel_1F_EventScript_218211:: @ 8218211
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
-	msgbox LilycoveCity_CoveLilyMotel_1F_Text_21839B, MSGBOX_CDIALOG
+	msgbox LilycoveCity_CoveLilyMotel_1F_Text_21839B, MSGBOX_NPC
 	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_CoveLilyMotel_1F_Movement_218259
 	applymovement 1, LilycoveCity_CoveLilyMotel_1F_Movement_21825E
@@ -129,4 +129,3 @@ LilycoveCity_CoveLilyMotel_1F_Text_2185F4: @ 82185F4
 	.string "so I guess they must make games.\p"
 	.string "Uh-oh, I'd better get working on\n"
 	.string "their dinner!$"
-

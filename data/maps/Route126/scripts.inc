@@ -63,3 +63,28 @@ Route126_EventScript_1F69C2:: @ 81F69C2
 	msgbox Route126_Text_2A200C, MSGBOX_AUTOCLOSE
 	end
 
+
+
+Route126_EventScript_TransportMossdeep::
+	lock
+	faceplayer
+	markasdialog
+	askforboat Route126_Text_TransportMossdeep_Ask, Route126_Text_TransportMossdeep_Decline, Route126_Text_TransportMossdeep_NoMoney, Route126_Text_TransportMossdeep_Embark
+	warpcustom MAP_MOSSDEEP_CITY, 255, 62, 38
+	waitstate
+	end
+Route126_Text_TransportMossdeep_Ask:
+	.string "Ahoy! You look stuck outside the city!\p"
+	.string "The only way in is either flying or\n"
+	.string "diving under water!\p"
+	.string "But if you're looking to go to {PLACE}Mossdeep{END}\n"
+	.string "I can take ya if ya cover the gas!\p"
+	.string "¥100 should do it fine.$"
+Route126_Text_TransportMossdeep_Decline:
+	.string "Alright. Good luck getting into the city!$"
+Route126_Text_TransportMossdeep_NoMoney:
+	.string "Oh, you don't have ¥100?\n"
+	.string "Well, you could try fishing it up!$"
+Route126_Text_TransportMossdeep_Embark:
+	.string "Mighty thank ya! Onward!$"
+

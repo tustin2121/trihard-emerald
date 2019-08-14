@@ -4,6 +4,7 @@ FallarborTown_House1_MapScripts:: @ 8200F12
 FallarborTown_House1_EventScript_200F13:: @ 8200F13
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_TM27, FallarborTown_House1_EventScript_200FB2
 	checkitem ITEM_METEORITE, 1
 	compare VAR_RESULT, 1
@@ -51,6 +52,7 @@ FallarborTown_House1_EventScript_200FB2:: @ 8200FB2
 FallarborTown_House1_EventScript_200FBC:: @ 8200FBC
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_TM27, FallarborTown_House1_EventScript_200FE4
 	goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_House1_EventScript_200FDA
 	msgbox FallarborTown_House1_Text_2012BC, MSGBOX_DEFAULT
@@ -118,4 +120,3 @@ FallarborTown_House1_Text_201310: @ 8201310
 FallarborTown_House1_Text_20134B: @ 820134B
 	.string "Look at PROF. COZMO…\n"
 	.string "He's so happy! I think it's cute.$"
-

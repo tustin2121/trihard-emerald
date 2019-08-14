@@ -150,7 +150,7 @@ PetalburgCity_Gym_Text_LoganScene4:
 	.string "If you're here to challenge me,\n"
 	.string "bug off. I don't accept challenges\l"
 	.string "from anyone under four badges.$"
-	
+
 
 @ -----------------------------------------------------
 
@@ -214,7 +214,7 @@ PetalburgCity_Gym_Text_GymSignageTitle: @ 820744C
 	.string "{GYM}Petalburg City Pokémon Gym{END}\n"
 	.string "Norman's Certified Trainers:$"
 PetalburgCity_Gym_Text_GymSignageNameList1:
-	.string "(There are no names under that.)$"
+	.string "There are no names under that.$"
 PetalburgCity_Gym_GymSignage_AfterBadge5:
 	msgbox PetalburgCity_Gym_Text_GymSignageNameList2, MSGBOX_SIGN
 	releaseall
@@ -289,7 +289,7 @@ PetalburgCity_Gym_EventScript_205187:: @ 8205187
 	goto_if_eq Common_EventScript_ReleaseAllEnd
 	end
 PetalburgCity_Gym_Text_207280: @ 8207280
-	.string "“{PLACE}Accuracy Room{END},” the sign says.\p"
+	.string "“{PLACE}Accuracy Room{END}”, the sign says.\p"
 	.string "Do you want to go through?$"
 
 
@@ -306,7 +306,7 @@ PetalburgCity_Gym_EventScript_205137:: @ 8205137
 	goto_if_eq Common_EventScript_ReleaseAllEnd
 	end
 PetalburgCity_Gym_Text_20721E: @ 820721E
-	.string "“{PLACE}Speed Room{END},” the sign says.\p"
+	.string "“{PLACE}Speed Room{END}”, the sign says.\p"
 	.string "Do you want to go through?$"
 
 
@@ -323,7 +323,7 @@ PetalburgCity_Gym_EventScript_2051BC:: @ 82051BC
 	goto_if_eq Common_EventScript_ReleaseAllEnd
 	end
 PetalburgCity_Gym_Text_2072BB: @ 82072BB
-	.string "“{PLACE}Confusion Room{END},” the sign says.\p"
+	.string "“{PLACE}Confusion Room{END}”, the sign says.\p"
 	.string "Do you want to go through?$"
 
 
@@ -352,7 +352,7 @@ PetalburgCity_Gym_EventScript_205222:: @ 8205222
 	goto_if_eq Common_EventScript_ReleaseAllEnd
 	end
 PetalburgCity_Gym_Text_2072F7: @ 82072F7
-	.string "“{PLACE}Defense Room{END},” the sign says.\p"
+	.string "“{PLACE}Defense Room{END}”, the sign says.\p"
 	.string "Do you want to go through?$"
 
 
@@ -369,7 +369,7 @@ PetalburgCity_Gym_EventScript_205255:: @ 8205255
 	goto_if_eq Common_EventScript_ReleaseAllEnd
 	end
 PetalburgCity_Gym_Text_207331: @ 8207331
-	.string "“{PLACE}Recovery Room{END},” the sign says.\p"
+	.string "“{PLACE}Recovery Room{END}”, the sign says.\p"
 	.string "Do you want to go through?$"
 
 
@@ -398,7 +398,7 @@ PetalburgCity_Gym_EventScript_2052BB:: @ 82052BB
 	goto_if_eq Common_EventScript_ReleaseAllEnd
 	end
 PetalburgCity_Gym_Text_20736C: @ 820736C
-	.string "“{PLACE}Strength Room{END},” the sign says.\p"
+	.string "“{PLACE}Strength Room{END}”, the sign says.\p"
 	.string "Do you want to go through?$"
 
 
@@ -427,7 +427,7 @@ PetalburgCity_Gym_EventScript_205321:: @ 8205321
 	goto_if_eq Common_EventScript_ReleaseAllEnd
 	end
 PetalburgCity_Gym_Text_2073A7: @ 82073A7
-	.string "“{PLACE}One-Hit KO Room{END},” the sign says.\p"
+	.string "“{PLACE}One-Hit KO Room{END}”, the sign says.\p"
 	.string "Do you want to go through?$"
 
 
@@ -458,7 +458,7 @@ PetalburgCity_Gym_EventScript_205387:: @ 8205387
 PetalburgCity_Gym_Text_2073E4: @ 82073E4
 	.string "“{PLACE}Gym Leader's Room{END}\p"
 	.string "“See for yourself what Pokémon await\n"
-	.string "you!” the sign says.\p"
+	.string "you!”, the sign says.\p"
 	.string "Do you want to go through?$"
 
 @ -----------------------------------------------------
@@ -876,7 +876,7 @@ PetalburgCity_Gym_Text_2062FB: @ 82062FB
 	.string "Clearly, I will need to train harder\n"
 	.string "if I want to face them with dignity.$"
 PetalburgCity_Gym_EventScript_1FE7C1:
-	message PetalburgCity_Gym_Text_206162
+	message PetalburgCity_Gym_Text_206162, MSGTYPE_DESCRIBE
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PetalburgCity_Gym_Text_20618A, MSGBOX_DEFAULT
@@ -922,7 +922,7 @@ PetalburgCity_Gym_EventScript_GiveTM:: @ 8204ED2
 PetalburgCity_Gym_Text_206254: @ 8206254
 	.string "Norman: TM42 contains Facade.\p"
 	.string "It doubles the power of moves if\n"
-	.string "the Pokémon is poisoned, paralyzed,\l"
+	.string "the Pokémon is poisoned, paralyzed\l"
 	.string "or burned.\p"
 	.string "It might be able to turn a bad\n"
 	.string "situation into an advantage.$"
