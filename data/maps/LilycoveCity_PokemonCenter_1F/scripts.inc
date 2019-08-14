@@ -13,7 +13,7 @@ LilycoveCity_PokemonCenter_1F_OnTransition: @ 821C5BD
 	goto LilycoveCity_PokemonCenter_1F_EventScript_21C5C6
 	end
 
-LilycoveCity_PokemonCenter_1F_FavorLady:
+LilycoveCity_PokemonCenter_1F_FavorLady::
 	markasdialog
 	goto LilycoveCity_PokemonCenter_1F_EventScript_2A836B
 	end
