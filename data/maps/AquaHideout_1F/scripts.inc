@@ -105,7 +105,7 @@ AquaHideout_1F_Text_Bailey_PostMagma1:
 	.string "{AQUA_BOY}: Woah, {PLAYER}!\n"
 	.string "You alright? You look a bit pale.\p"
 	.string "… … … … … … …\n"
-	.string "Magma did WHAT?!\n"
+	.string "Magma did WHAT?!\l"
 	.string "What's a Groudon?!\p"
 	.string "No, I never heard of it either!\p"
 	.string "Don't worry. Just tell the boss if you\n"
@@ -137,7 +137,7 @@ AquaHideout_1F_Text_Bailey_PostHijack1:
 	.string "{AQUA_BOY}: The boss is back, {PLAYER}.\p"
 	.string "He should be downstairs in the underwater\n"
 	.string "docks area. You should go tell him\l"
-	.string "about this Groudon Pokémon.$"
+	.string "about that Groudon Pokémon.$"
 AquaHideout_1F_EventScript_Bailey_PostHijack2:
 	msgbox AquaHideout_1F_Text_Bailey_PostHijack2
 	release
@@ -171,14 +171,61 @@ AquaHideout_1F_Text_Bailey_PostEscape1:
 	.string "to contact the boss from there.\p"
 	.string "We've got a radio relay to him there.$"
 AquaHideout_1F_EventScript_Bailey_PostEscape2:
+	@ Check if the player has a surfer
+	checkpartycapability CAPABILITY_SURF
+	compare VAR_RESULT, 6
+	goto_if_eq AquaHideout_1F_EventScript_Bailey_PostEscape3
+	@ Normal message
 	msgbox AquaHideout_1F_Text_Bailey_PostEscape2
 	release
 	end
 AquaHideout_1F_Text_Bailey_PostEscape2:
-	.string "{AQUA_BOY}: It's alright, {PLAYER}."
+	.string "{AQUA_BOY}: It's alright, {PLAYER}.\p"
 	.string "You should head to Mossdeep. The boss\n"
 	.string "directed us there to be part of his\l"
 	.string "radio relay.$"
+AquaHideout_1F_EventScript_Bailey_PostEscape3:
+	@ Soft lock prevention
+	msgbox AquaHideout_1F_Text_Bailey_PostEscape3
+	getpartysize
+	compare VAR_RESULT, 6
+	goto_if_eq AquaHideout_1F_EventScript_Bailey_PostEscape4
+	@ Give surf mon
+	setvar VAR_TEMP_1, SPECIES_CARVANHA
+	bufferspeciesname 0, VAR_TEMP_1
+	givemon VAR_TEMP_1, 30, ITEM_NONE
+	@
+	playfanfare MUS_FANFA4
+	message AquaHideout_1F_Text_Bailey_PostEscape3a, MSGTYPE_DESCRIBE
+	waitmessage
+	waitfanfare
+	@ Nickname?
+	.if !TPP_MODE
+		msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+		compare VAR_RESULT, 0
+		goto_if_eq Common_EventScript_ReleaseEnd
+	.endif
+	getpartysize
+	copyvar VAR_0x8004, VAR_RESULT
+	subvar VAR_0x8004, 1
+	call Common_EventScript_NameReceivedPokemon
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostEscape3:
+	.string "{AQUA_BOY}: What's up, {PLAYER}?\p"
+	.string "Oh, that visor kid took out your only\n"
+	.string "surfing Pokémon, huh?\p"
+	.string "Well, um… I can give you one of mine.\n"
+	.string "Just caught this little guy myself.\p"
+	.string "Here, take good care of it.$"
+AquaHideout_1F_Text_Bailey_PostEscape3a:
+	.string "{PLAYER} scored a free {STR_VAR_1}!$"
+AquaHideout_1F_EventScript_Bailey_PostEscape4:
+	msgbox AquaHideout_1F_Text_Bailey_PostEscape3b
+	release
+	end
+AquaHideout_1F_Text_Bailey_PostEscape3b:
+	.string "How do you have no room??$"
 
 
 @ -----------------------------------------------------
