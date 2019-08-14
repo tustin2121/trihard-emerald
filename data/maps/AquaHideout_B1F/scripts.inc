@@ -8,6 +8,15 @@ AquaHideout_B1F_MapScripts:: @ 82339A7
 
 AquaHideout_B1F_OnLoad:
 	setflag FLAG_TEMP_5
+	@ If Mt. Pyre is finished, but Jagged pass is not yet open, show Aqua girl
+	setflag VAR_TEMP_A
+	@ If before Mt. Pyre, stay hidden
+	goto_if_unset FLAG_RECEIVED_RED_OR_BLUE_ORB, Common_EventScript_NopEnd
+	@ If after Jagged Pass, stay hidden
+	compare VAR_JAGGED_PASS_STATE, 0
+	goto_if_gt Common_EventScript_NopEnd
+	@ Show
+	clearflag VAR_TEMP_A
 	end
 
 @ -----------------------------------------------------
@@ -195,6 +204,24 @@ AquaHideout_B1F_Text_233CDC: @ 8233CDC
 	.string "Everyone else is always scurrying\n"
 	.string "around everywhere.\p"
 	.string "I'm content to just chill for a while.$"
+
+
+AquaHideout_B1F_EventScript_Jessica::
+	goto_if_set FLAG_SCENE_1, AquaHideout_B1F_EventScript_Jessica2
+	msgbox AquaHideout_B1F_Text_Jessica, MSGBOX_NPC
+	setflag FLAG_SCENE_1
+	addvar VAR_AQUA_GIRL_FRIENDSHIP, 1
+	end
+AquaHideout_B1F_Text_Jessica:
+	.string "{AQUA_GIRL}: Oh, {PLAYER}. I'm working\n"
+	.string "on finding the Magma base…\p"
+	.string "All I've got to work with right now\n"
+	.string "it's near Mt. Chimney…$"
+AquaHideout_B1F_EventScript_Jessica2:
+	msgbox AquaHideout_B1F_Text_Jessica2, MSGBOX_DIALOG
+	end
+AquaHideout_B1F_Text_Jessica2:
+	.string "{AQUA_GIRL}: Where could it be…?$"
 
 @ -----------------------------------------------------
 

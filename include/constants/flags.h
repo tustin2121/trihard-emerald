@@ -831,7 +831,7 @@
 #define FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA                          0x372
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS         0x373
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA             0x374
-#define FLAG_UNUSED_0x375                                           0x375 // TE: Unused
+#define FLAG_HIDE_SKY_PILLAR_LOGAN                                  0x375 // Trihard
 #define FLAG_UNUSED_0x376                                           0x376 // TE: Unused
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN    0x377
 #define FLAG_HIDE_BATTLE_TOWER_OPPONENT                             0x378

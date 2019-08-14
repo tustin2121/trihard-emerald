@@ -132,6 +132,8 @@ SkyPillar_Top_EventScript_23979A:: @ 823979A
 	removeobject 1
 	msgbox SkyPillar_Top_Text_239860, MSGBOX_DESCRIBE
 	closemessage
+	addobject 3 @ logan
+	clearflag FLAG_HIDE_SKY_PILLAR_LOGAN
 	delay 20
 	fadeinbgm 1
 	special SpawnCameraObject
@@ -143,6 +145,8 @@ SkyPillar_Top_EventScript_23979A:: @ 823979A
 	setvar VAR_SKY_PILLAR_RAQUAZA_CRY_DONE, 1
 	releaseall
 	end
+SkyPillar_Top_Text_239860: @ 8239860
+	.string "The awakened dragon Pokémon flew off…$"
 
 SkyPillar_Top_Movement_23983A: @ 823983A
 	delay_16
@@ -190,6 +194,67 @@ SkyPillar_Top_Movement_23985C: @ 823985C
 	walk_slow_down
 	step_end
 
-SkyPillar_Top_Text_239860: @ 8239860
-	.string "The awakened RAYQUAZA flew off…$"
+
+SkyPillar_Top_EventScript_Logan::
+	lockall
+	faceplayer
+	markasdialog
+	goto_if_set FLAG_SCENE_C, SkyPillar_Top_EventScript_Logan_Ask2
+	setyesnotext gYN_Sure, gYN_Elipsis2
+	msgbox SkyPillar_Top_Text_Logan, MSGBOX_YESNO
+	setflag FLAG_SCENE_C
+	compare VAR_RESULT, NO
+	goto_if_eq SkyPillar_Top_EventScript_Logan_Decline
+	goto SkyPillar_Top_EventScript_Logan_Accept
+	end
+SkyPillar_Top_Text_Logan:
+	.string "{RIVAL_HERO}: Uh, hey, {PLAYER}.\n"
+	.string "You got here before me, huh?\p"
+	.string "How did you figure out to come here?\p"
+	.string "Doesn't matter. Rayquaza is on its\n"
+	.string "way back to Sootopolis…\p"
+	.string "Need a ride back? We'll follow at a\n"
+	.string "safe distance.$"
+SkyPillar_Top_EventScript_Logan_Decline:
+	msgbox SkyPillar_Top_Text_Logan_Decline
+	releaseall
+	end
+SkyPillar_Top_Text_Logan_Decline:
+	.string "It's fine if you don't.\n"
+	.string "I understand.\p"
+	.string "But we seem to be finally working\n"
+	.string "towards the same goal.$"
+SkyPillar_Top_EventScript_Logan_Ask2:
+	setyesnotext gYN_Fine1, gYN_No
+	msgbox SkyPillar_Top_Text_Logan_Ask2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq SkyPillar_Top_EventScript_Logan_Decline
+	goto SkyPillar_Top_EventScript_Logan_Accept
+	end
+SkyPillar_Top_Text_Logan_Ask2:
+	.string "It's moving pretty fast…$"
+SkyPillar_Top_EventScript_Logan_Accept:
+	msgbox SkyPillar_Top_Text_Logan_Accept
+	closemessage
+	applymovement 3, Common_Movement_FaceDown
+	setfieldeffectargument 0, 1
+	dofieldeffect FLDEFF_NPCFLY_OUT
+	@ dofieldeffect FLDEFF_USE_FLY
+	delay 15
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_SetInvisible
+	removeobject 3
+	setflag FLAG_HIDE_SKY_PILLAR_LOGAN
+	waitfieldeffect FLDEFF_NPCFLY_OUT
+	@ waitfieldeffect FLDEFF_USE_FLY
+	@ setvar VAR_SKY_PILLAR_STATE, 3
+	setvar VAR_CROSS_MAP_TRIGGER, 2
+	warpsilent MAP_SOOTOPOLIS_CITY, 255, 43, 32
+	waitstate
+	releaseall
+	end
+SkyPillar_Top_Text_Logan_Accept:
+	.string "Alright.{PAUSE 20} Hop on!$"
+
+
+
 

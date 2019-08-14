@@ -182,8 +182,15 @@ SootopolisCity_EventScript_1E58D3:: @ 81E58D3
 @ -----------------------------------------------------
 
 SootopolisCity_MapScript2_WarpTable: @ 81E58DB
+	map_script_2 VAR_CROSS_MAP_TRIGGER, 2, SootopolisCity_EventScript_FlyFromPillar
 	map_script_2 VAR_RAYQUAZA_STATE, 5, SootopolisCity_EventScript_1E58E5
 	.2byte 0
+
+SootopolisCity_EventScript_FlyFromPillar:
+	callnative HidePlayerOnLoad
+	turnobject EVENT_OBJ_ID_PLAYER, 1
+	@ setvar VAR_CROSS_MAP_TRIGGER, 0
+	end
 
 SootopolisCity_EventScript_1E58E5:: @ 81E58E5
 	compare VAR_SKY_PILLAR_STATE, 1
@@ -205,9 +212,23 @@ SootopolisCity_EventScript_1E5901:: @ 81E5901
 #define LID_KYOGRE 10
 
 SootopolisCity_MapScript2_FrameTable: @ 81E5914
+	map_script_2 VAR_CROSS_MAP_TRIGGER, 2, SootopolisCity_EventScript_FlyIn
 	map_script_2 VAR_RAYQUAZA_STATE, 1, SootopolisCity_EventScript_1E5926
 	map_script_2 VAR_SKY_PILLAR_STATE, 1, SootopolisCity_EventScript_1E5BFE
 	.2byte 0
+
+SootopolisCity_EventScript_FlyIn:
+	lockall
+	setfieldeffectargument 0, 1
+	dofieldeffect FLDEFF_NPCFLY_OUT
+	delay 15
+	createvobject EVENT_OBJ_GFX_WALLY, 50, 44, 32
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_SetVisible
+	waitmovement 0
+	setvar VAR_CROSS_MAP_TRIGGER, 0
+	releaseall
+	end
+
 
 SootopolisCity_EventScript_1E5926:: @ 81E5926
 	lockall

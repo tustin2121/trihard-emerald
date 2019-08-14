@@ -326,6 +326,9 @@ EventScript_FallDownHole:: @ 82A8337
 Common_Movement_SetInvisible: @ 82A8369
 	set_invisible
 	step_end
+Common_Movement_SetVisible: @ 82A8369
+	set_visible
+	step_end
 
 
 GraniteCave_B1F_MapScript1_2A8331: @ 82A8331
