@@ -444,7 +444,7 @@
 #define FLAG_REMATCH_DRAKE                                    0x1A8
 #define FLAG_REMATCH_WALLACE                                  0x1A9
 #define FLAG_ITEM_STOLEN_LILYCOVE_FANCLUB                     0x1AA // TriHard Emerald
-#define FLAG_UNUSED_0x1AB                                     0x1AB // Unused Flag
+#define FLAG_ITEM_LILYCOVE_CITY_PEARL                         0x1AB // TriHard Emerald
 #define FLAG_DEFEATED_DEOXYS                                  0x1AC
 #define FLAG_BATTLED_DEOXYS                                   0x1AD
 #define FLAG_HAS_EON_TICKET                                   0x1AE

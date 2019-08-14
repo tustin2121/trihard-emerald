@@ -4,6 +4,7 @@ LilycoveCity_House2_MapScripts:: @ 821ED74
 LilycoveCity_House2_EventScript_21ED75:: @ 821ED75
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_TM44, LilycoveCity_House2_EventScript_21EDAC
 	msgbox LilycoveCity_House2_Text_21EDB6, MSGBOX_DEFAULT
 	giveitem_std ITEM_TM44
