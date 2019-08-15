@@ -34,6 +34,7 @@ ShoalCave_LowTideLowerRoom_EventScript_2371A8:: @ 82371A8
 ShoalCave_LowTideLowerRoom_EventScript_2371B2:: @ 82371B2
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_FOCUS_BAND, ShoalCave_LowTideLowerRoom_EventScript_2371E1
 	msgbox ShoalCave_LowTideLowerRoom_Text_2371EB, MSGBOX_DEFAULT
 	giveitem_std ITEM_FOCUS_BAND
@@ -57,4 +58,3 @@ ShoalCave_LowTideLowerRoom_Text_2371EB: @ 82371EB
 
 ShoalCave_LowTideLowerRoom_Text_23728D: @ 823728D
 	.string "Everything starts with focus!$"
-

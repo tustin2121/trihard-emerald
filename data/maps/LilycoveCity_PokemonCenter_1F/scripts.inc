@@ -13,6 +13,11 @@ LilycoveCity_PokemonCenter_1F_OnTransition: @ 821C5BD
 	goto LilycoveCity_PokemonCenter_1F_EventScript_21C5C6
 	end
 
+LilycoveCity_PokemonCenter_1F_FavorLady::
+	markasdialog
+	goto LilycoveCity_PokemonCenter_1F_EventScript_2A836B
+	end
+
 LilycoveCity_PokemonCenter_1F_EventScript_21C5C6:: @ 821C5C6
 	special sub_818D9C0
 	compare VAR_RESULT, 0
@@ -63,7 +68,7 @@ LilycoveCity_Mart_Pokemart: @ 8217680
 	.2byte ITEM_NONE
 	release
 	end
-	
+
 LilycoveCity_PokemonCenter_1F_LittleKidMartText1M:
 	.string "Hiya! I'm selling Lemonade!\n"
 	.string "Want some, mister?$"
@@ -78,6 +83,7 @@ LilycoveCity_PokemonCenter_1F_LittleKidMartText2:
 LilycoveCity_PokemonCenter_1F_PCMan::
 	lock
 	faceplayer
+	markasdialog
 	msgbox LilycoveCity_PokemonCenter_1F_PCMan_Text1, MSGBOX_DEFAULT
 	closemessage
 	applymovement THIS_EVENT, Common_Movement_FaceUp
@@ -111,6 +117,7 @@ LilycoveCity_PokemonCenter_1F_Text_21C61E: @ 821C61E
 LilycoveCity_PokemonCenter_1F_EventScript_MeteoriteManiac:: @ 821C5FF
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_BADGE07_GET, LilycoveCity_PokemonCenter_1F_EventScript_21C614
 	msgbox LilycoveCity_PokemonCenter_1F_Text_21C69D, MSGBOX_DEFAULT
 	release

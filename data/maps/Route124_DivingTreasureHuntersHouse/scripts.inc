@@ -9,6 +9,7 @@ Route124_DivingTreasureHuntersHouse_OnTransition: @ 8270A2E
 Route124_DivingTreasureHuntersHouse_EventScript_270A32:: @ 8270A32
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MET_DIVING_TREASURE_HUNTER, Route124_DivingTreasureHuntersHouse_EventScript_270A4E
 	msgbox Route124_DivingTreasureHuntersHouse_Text_270F6C, MSGBOX_DEFAULT
 	setflag FLAG_MET_DIVING_TREASURE_HUNTER

@@ -2870,7 +2870,7 @@ gText_MrStone_Pokenav_2B65BB:: @ 82B65BB
 
 gText_MrStone_Pokenav_2B6664:: @ 82B6664
 	.string "…Huh? …What's that?\p"
-	.string "GROU… Yes? …DON?\p"
+	.string "Grou… Yes? …Don?\p"
 	.string "You're breaking up…\n"
 	.string "…can't hear…\p"
 	.string "BZZZZ…$"

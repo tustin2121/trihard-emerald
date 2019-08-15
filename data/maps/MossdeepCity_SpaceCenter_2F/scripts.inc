@@ -2,7 +2,7 @@ MossdeepCity_SpaceCenter_2F_MapScripts:: @ 8223D58
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_SpaceCenter_2F_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_SpaceCenter_2F_MapScript2_FrameTable
 	.byte 0
-	
+
 @ -----------------------------------------------------
 
 MossdeepCity_SpaceCenter_2F_OnTransition: @ 8223D63
@@ -225,7 +225,7 @@ MossdeepCity_SpaceCenter_2F_Text_GameKid:
 	.string "this level!$"
 
 @ -----------------------------------------------------
-@ Cutscene: 
+@ Cutscene:
 
 #define LID_STEVEN 4
 #define LID_LOGAN 10
@@ -418,15 +418,18 @@ MossdeepCity_SpaceCenter_2F_Text_MissedBattle12:
 	.string "to pick up. Smell ya later!$"
 MossdeepCity_SpaceCenter_2F_Text_MissedBattle14:
 	.string "{PLAYER}, for the love of Arceus,\n"
-	.string "ignore him. I need you to pay attention…\p"
+	.string "ignore him.\p"
+	.string "I need you to pay attention…\p"
 	.string "What Maxie said… …\n"
 	.string "Could…{PAUSE 10} Could he be right?\p"
-	.string "Is… Is Team Aqua as insane as Team Magma…?\p"
+	.string "Is… Is Team Aqua as insane\n"
+	.string "as Team Magma…?\p"
 	.string "I mean, Magma wanted to wake up an\n"
 	.string "ancient Pokémon… Explode a volcano…\p"
 	.string "That could kill millions!\p"
 	.string "What do we, Team Aqua, want to do?\n"
-	.string "Expand the seas?! How many could drown?!\p"
+	.string "Expand the seas?!\l"
+	.string "How many could drown?!\p"
 	.string "{P_PLAYER}… Could… Are we the bad guys…?$"
 MossdeepCity_SpaceCenter_2F_Text_MissedBattle15_yes:
 	.string "All this time… Y-You knew?\n"
@@ -440,7 +443,7 @@ MossdeepCity_SpaceCenter_2F_Text_MissedBattle15_no:
 MossdeepCity_SpaceCenter_2F_Text_MissedBattle16:
 	.string "I… I need to think this over…\n"
 	.string "What am I doing with my life…?$"
-			
+
 
 .align 2
 SpaceCenter_StringTable_MissedBattle15:
@@ -670,7 +673,7 @@ MossdeepCity_SpaceCenter_2F_Text_2245D9: @ 82245D9
 MossdeepCity_SpaceCenter_2F_EventScript_AquaBoy::
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MissedBattle16, MSGBOX_NPC
 	end
-	
+
 
 
 
@@ -926,4 +929,3 @@ MossdeepCity_SpaceCenter_2F_EventScript_AquaBoy::
 @ 	.string "{PLAYER}.\p"
 @ 	.string "… … … … … …\n"
 @ 	.string "… … … … … Click!$"
-

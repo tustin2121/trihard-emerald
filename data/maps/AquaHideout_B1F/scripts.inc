@@ -215,7 +215,7 @@ AquaHideout_B1F_EventScript_Jessica::
 AquaHideout_B1F_Text_Jessica:
 	.string "{AQUA_GIRL}: Oh, {PLAYER}. I'm working\n"
 	.string "on finding the Magma base…\p"
-	.string "All I've got to work with right now\n"
+	.string "All I know right now is that\n"
 	.string "it's near Mt. Chimney…$"
 AquaHideout_B1F_EventScript_Jessica2:
 	msgbox AquaHideout_B1F_Text_Jessica2, MSGBOX_DIALOG
@@ -361,7 +361,6 @@ AquaHideout_B1F_Movement_LoganFight2_JukePlayer3:
 	player_run_right
 	walk_in_place_up
 	step_end
-	
+
 
 #undef LID_LOGAN
-

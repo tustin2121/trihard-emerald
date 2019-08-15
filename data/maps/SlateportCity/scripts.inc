@@ -812,7 +812,7 @@ SlateportCity_EventScript_AquaMember8:: @ 81DD065
 	faceplayer
 	goto_if_set FLAG_SCENE_1, SlateportCity_EventScript_AquaMember8a
 	selectpointer_clamp SlateportCity_TextArray_AquaGirl, VAR_AQUA_GIRL_FRIENDSHIP
-	msgbox_selected 
+	msgbox_selected
 	closemessage
 	setflag FLAG_SCENE_1
 	addvar VAR_AQUA_GIRL_FRIENDSHIP, 1
@@ -862,7 +862,7 @@ SlateportCity_EventScript_AquaMember4:: @ 81DD14A
 	faceplayer
 	goto_if_set FLAG_SCENE_0, SlateportCity_EventScript_AquaMember4a
 	selectpointer_clamp SlateportCity_TextArray_AquaBoy, VAR_AQUA_BOY_FRIENDSHIP
-	msgbox_selected 
+	msgbox_selected
 	closemessage
 	setflag FLAG_SCENE_0
 	addvar VAR_AQUA_BOY_FRIENDSHIP, 1
@@ -1012,7 +1012,7 @@ SlateportCity_Movement_AquaLineMove_GoIn:
 	set_invisible
 	step_end
 
-	
+
 #undef LID_FRONT1
 #undef LID_FRONT2
 #undef LID_FRONT3
@@ -1152,7 +1152,7 @@ SlateportCity_EventScript_CaptainStern:: @ 81DD1F8
 	waitmovement 0
 	applymovement LID_CAPT_STERN, Common_Movement_WalkInPlaceUp
 	waitmovement 0
-	@ 
+	@
 	markasdialog 12
 	msgbox SlateportCity_Text_1DE860, MSGBOX_DEFAULT
 	closemessage
@@ -1504,7 +1504,7 @@ SlateportCity_EventScript_1DD5CE:: @ 81DD5CE
 SlateportCity_Text_1DEEC9: @ 81DEEC9
 	.string "Oh, dear. You don't have enough\n"
 	.string "Berry Powder.$"
-	
+
 
 
 

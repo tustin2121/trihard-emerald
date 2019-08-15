@@ -219,7 +219,7 @@ MtPyre_Summit_Text_23245K:
 	.string "{AQUA_GIRL}: I'm gonna head back to\n"
 	.string "the base to research that emblem.\p"
 	.string "I'll be there if you need help.$"
-			
+
 
 MtPyre_Summit_EventScript_AquaGuy1:: @ 82323FD
 	msgbox MtPyre_Summit_Text_23245Z, MSGBOX_NPC
@@ -340,7 +340,7 @@ MtPyre_Summit_EventScript_OrbTheft::
 	waitmovement 0
 	markasdialog 8
 	msgbox MtPyre_Summit_Text_OrbTheft4
-	@ 
+	@
 	markasdialog -6
 	msgbox MtPyre_Summit_Text_OrbTheft5
 	@
@@ -425,7 +425,7 @@ MtPyre_Summit_Text_OrbTheft5:
 	.string "The rest of Team Magma are gone too!$"
 MtPyre_Summit_Text_OrbTheft6:
 	.string "Archie: It doesn't matter.\p"
-	.string "Good work everyone. We got what we\n"
+	.string "Good work, everyone. We got what we\n"
 	.string "came for as well.\p"
 	.string "Time to pull out!$"
 MtPyre_Summit_Text_OrbTheft7:
@@ -434,7 +434,7 @@ MtPyre_Summit_Text_OrbTheft7:
 	.string "be separated! They belong together!$"
 MtPyre_Summit_Text_OrbTheft8:
 	.string "Archie: I'm sure this Red Orb will\n"
-	.string "see it's blue brother soon enough.\p"
+	.string "see its blue brother soon enough.\p"
 	.string "Fwahahahahaha…$"
 MtPyre_Summit_Text_OrbTheft9:
 	.string "Archie: You two. I have a task for you.\p"
@@ -442,7 +442,7 @@ MtPyre_Summit_Text_OrbTheft9:
 	.string "in a moment of panic.\p"
 	.string "No, not the Orb. This.$"
 MtPyre_Summit_Text_OrbTheft10:
-	.string "Archie: I beleive this is the key\n"
+	.string "Archie: I believe this is the key\n"
 	.string "to finding their secret base.\p"
 	.string "Perhaps if we find it, we can\n"
 	.string "bring down their whole operation.\p"
@@ -849,4 +849,3 @@ MtPyre_Summit_Text_233183: @ 8233183
 #undef LID_AQUAGIRL
 #undef LID_AQUAGUY
 #undef LID_OLDWOMAN
-

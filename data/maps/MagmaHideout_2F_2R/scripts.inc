@@ -41,7 +41,7 @@ MagmaHideout_2F_2R_EventScript_239E36:: @ 8239E36
 MagmaHideout_2F_2R_Text_239FDE: @ 8239FDE
 	.string "You can hear tremors here sometimes.\p"
 	.string "Could it be the volcano rattling?\n"
-	.string "Or is it GROU…\p"
+	.string "Or is it Grou…\p"
 	.string "Whoops!\n"
 	.string "No, no, never mind!$"
 MagmaHideout_2F_2R_Text_23A050: @ 823A050
