@@ -72,7 +72,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_LaunchGuy:: @ 8222FD8
 	specialvar VAR_RESULT, GetWeekCount
 	buffernumberstring 0, VAR_RESULT
 	selectpointer_clamp MossdeepCity_SpaceCenter_1F_TextArray_RocketLaunch, VAR_RESULT
-	msgbox_selected 
+	msgbox_selected
 	closemessage
 	faceoriginaldir
 	release
@@ -82,7 +82,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_223024:: @ 8223024
 	specialvar VAR_RESULT, GetWeekCount
 	buffernumberstring 0, VAR_RESULT
 	selectpointer_clamp MossdeepCity_SpaceCenter_1F_TextArray_RocketLaunchInvasion, VAR_RESULT
-	msgbox_selected 
+	msgbox_selected
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceRight
 	waitmovement 0
@@ -284,10 +284,12 @@ MossdeepCity_SpaceCenter_1F_Text_2237B5: @ 82237B5
 
 MossdeepCity_SpaceCenter_1F_EventScript_Notice:: @ 82231CF
 	msgbox MossdeepCity_SpaceCenter_1F_Text_Notice, MSGBOX_DESCRIBE
+	msgbox MossdeepCity_SpaceCenter_1F_Text_Notice_Content, MSGBOX_SIGN
 	end
 MossdeepCity_SpaceCenter_1F_Text_Notice: @ 8223C2C
 	.string "This is…\n"
-	.string "An intent-to-steal notice?\p"
+	.string "An intent-to-steal notice?$"
+MossdeepCity_SpaceCenter_1F_Text_Notice_Content:
 	.string "“To the staff of the SPACE CENTER:\n"
 	.string "How are you? We are doing fine.\p"
 	.string "“We will soon visit you to take your\n"
@@ -488,4 +490,3 @@ MossdeepCity_SpaceCenter_1F_Movement_22329E: @ 822329E
 	walk_right
 	unlock_facing_direction
 	step_end
-

@@ -102,8 +102,8 @@
         },
         {
             "elevation": 0,
-            "flag": "FLAG_HIDDEN_ITEM_LILYCOVE_CITY_POKE_BALL",
-            "item": "ITEM_SUN_STONE",
+            "flag": "FLAG_HIDDEN_ITEM_LILYCOVE_CITY_MOON_STONE",
+            "item": "ITEM_MOON_STONE",
             "type": "hidden_item",
             "x": 64,
             "y": 31

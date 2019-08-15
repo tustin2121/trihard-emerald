@@ -4,6 +4,7 @@ MossdeepCity_House3_MapScripts:: @ 82225C2
 MossdeepCity_House3_EventScript_2225C3:: @ 82225C3
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_SUPER_ROD, MossdeepCity_House3_EventScript_222602
 	msgbox MossdeepCity_House3_Text_222616, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -48,4 +49,3 @@ MossdeepCity_House3_Text_222733: @ 8222733
 MossdeepCity_House3_Text_222751: @ 8222751
 	.string "Go after the seafloor Pokémon with\n"
 	.string "your SUPER ROD.$"
-

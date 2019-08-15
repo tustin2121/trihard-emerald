@@ -36,7 +36,7 @@ MossdeepCity_OnLoad:
 MossdeepCity_OnLoad_AddTeamPile:
 	setmetatile 31, 26, 0x380, FALSE
 	return
-	
+
 
 MossdeepCity_MapTable:
 	@ map_script_2 VAR_LAST_WARP_ID, 8, MossdeepCity_MapTable_StepMusicOn
@@ -90,6 +90,11 @@ MossdeepCity_Text_TeamPile: @ 81E541F
 
 @ -----------------------------------------------------
 @ People
+
+MossdeepCity_DynamicPunchGuy::
+	markasdialog
+	goto MossdeepCity_EventScript_2C81EE
+	end
 
 MossdeepCity_EventScript_1E4AB2:: @ 81E4AB2
 	lock
@@ -594,7 +599,7 @@ MossdeepCity_EventScript_RainsBegin::
 	special DrawWholeMapView
 	addobject LID_AQUA_GIRL
 	delay 8
-	@ 
+	@
 	applymovement LID_AQUA_BOY, Common_Movement_WalkUp1
 	applymovement LID_AQUA_GIRL, MossdeepCity_Movement_RainsBegin22_AquaGirl
 	applymovement LID_MAGMA_GUY, MossdeepCity_Movement_RainsBegin23
@@ -628,7 +633,7 @@ MossdeepCity_EventScript_RainsBegin::
 	setobjectxyperm LID_MAGMA_GUY, 80, 0
 	setobjectxyperm LID_AQUA_GIRL, 80, 0
 	setobjectxyperm LID_AQUA_BOY, 80, 0
-	@ 
+	@
 	delay 20
 	applymovement EVENT_OBJ_ID_CAMERA, MossdeepCity_Movement_RainsBegin26
 	waitmovement 0
@@ -1017,7 +1022,7 @@ MossdeepCity_Movement_RainsBegin16:
 	walk_fast_right
 	walk_fast_right
 	step_end
-	
+
 MossdeepCity_Movement_RainsBegin18_Logan:
 	emote_angry
 	delay_8
@@ -1151,7 +1156,7 @@ MossdeepCity_Movement_RainsBegin26:
 	walk_diag_northeast
 	step_end
 
-#undef LID_AQUA_BOY 
+#undef LID_AQUA_BOY
 #undef LID_AQUA_GIRL
 #undef LID_MAGMA_GUY
 #undef LID_LOGAN

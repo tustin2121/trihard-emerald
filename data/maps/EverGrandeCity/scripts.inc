@@ -90,7 +90,7 @@ EverGrandeCity_Text_WaterfallRoadBlock1:
 	.string "A giant red Pokémon came rampaging\n"
 	.string "through here the other day!\p"
 	.string "It caused several landslides which\n"
-	.string "we can hopfully clear out before the\l"
+	.string "we can hopefully clear out before the\l"
 	.string "start of the Elite Four Conference.$"
 EverGrandeCity_EventScript_WaterfallRoadBlock2:
 	msgbox EverGrandeCity_Text_WaterfallRoadBlock2, MSGBOX_NPC
@@ -121,5 +121,3 @@ EverGrandeCity_Text_TransportMossdeep_NoMoney:
 	.string "You don't have the money.$"
 EverGrandeCity_Text_TransportMossdeep_Embark:
 	.string "Thanks! Let us embark!$"
-
-
