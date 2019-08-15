@@ -141,12 +141,12 @@ AquaHideout_B2F_Text_233EDD: @ 8233EDD
 	.string "We just got back from the submarine\n"
 	.string "hijacking.\p"
 	.string "They're in there installing the Devon\n"
-	.string "Goods so we can give deeper than ever\n"
+	.string "Goods so we can dive deeper than ever\l"
 	.string "before.\p"
 	.string "How are you liking the hideout?\p"
 	.string "Oh, you wanna scrap? You sure?\p"
 	.string "I'm a mite tougher than the others.\p"
-	.string "Oh you beat the others already, huh?\n"
+	.string "Oh, you beat the others already, huh?\n"
 	.string "Don't get a swollen head now.\l"
 	.string "Let's go!$"
 AquaHideout_B2F_Text_233F8D: @ 8233F8D
@@ -180,4 +180,3 @@ AquaHideout_B2F_Text_233FF2a:
 	.string "get out of here, will ya?$"
 
 #undef LID_MATT
-
