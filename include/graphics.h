@@ -3944,6 +3944,8 @@ extern const u32 gIntro2MayNoTurnGfx[];
 extern const u16 gIntro2BrendanNoTurnPal[];
 extern const u16 gIntro2FlygonPal[];
 extern const u32 gIntro2FlygonGfx[];
+extern const u16 gCreditsProtagMalePal[];
+extern const u16 gCreditsProtagFemalePal[];
 
 // party menu graphics
 extern const u32 gPartyMenuMisc_Gfx[];
