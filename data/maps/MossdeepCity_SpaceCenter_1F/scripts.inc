@@ -284,12 +284,10 @@ MossdeepCity_SpaceCenter_1F_Text_2237B5: @ 82237B5
 
 MossdeepCity_SpaceCenter_1F_EventScript_Notice:: @ 82231CF
 	msgbox MossdeepCity_SpaceCenter_1F_Text_Notice, MSGBOX_DESCRIBE
-	msgbox MossdeepCity_SpaceCenter_1F_Text_Notice_Content, MSGBOX_SIGN
 	end
 MossdeepCity_SpaceCenter_1F_Text_Notice: @ 8223C2C
 	.string "This is…\n"
-	.string "An intent-to-steal notice?$"
-MossdeepCity_SpaceCenter_1F_Text_Notice_Content:
+	.string "An intent-to-steal notice?\p"
 	.string "“To the staff of the SPACE CENTER:\n"
 	.string "How are you? We are doing fine.\p"
 	.string "“We will soon visit you to take your\n"

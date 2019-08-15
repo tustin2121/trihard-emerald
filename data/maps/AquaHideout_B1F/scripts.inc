@@ -364,3 +364,4 @@ AquaHideout_B1F_Movement_LoganFight2_JukePlayer3:
 
 
 #undef LID_LOGAN
+
