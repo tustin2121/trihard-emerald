@@ -103,12 +103,20 @@ EverGrandeCity_Text_WaterfallRoadBlock2:
 	.string "the Elite Four Conference started.$"
 
 
+EverGrandeCity_EventScript_Sailor::
+	msgbox EverGrandeCity_Text_Sailor, MSGBOX_DESCRIBE
+	end
+EverGrandeCity_Text_Sailor:
+	.string "He's just staring off into space,\n"
+	.string "completely oblivious to you.$"
+
+
 EverGrandeCity_EventScript_TransportMossdeep::
 	lock
 	faceplayer
 	markasdialog
 	askforboat EverGrandeCity_Text_TransportMossdeep_Ask, EverGrandeCity_Text_TransportMossdeep_Decline, EverGrandeCity_Text_TransportMossdeep_NoMoney, EverGrandeCity_Text_TransportMossdeep_Embark
-	warpcustom MAP_MOSSDEEP_CITY, 255, 65, 37
+	warpcustom MAP_MOSSDEEP_CITY, 255, 65, 36
 	waitstate
 	end
 EverGrandeCity_Text_TransportMossdeep_Ask:
