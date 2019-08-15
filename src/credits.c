@@ -171,7 +171,7 @@ static const u32 gCreditsCopyrightEnd_Gfx[] = INCBIN_U32("graphics/credits/the_e
 
 static void sub_81772B8(struct Sprite *sprite);
 
-static const u8 gUnknown_085E5BAC[] =
+static const u8 sTheEnd_LetterTMap[] =
 {
     0,    1, 0,
     0xFF, 1, 0xFF,
@@ -180,7 +180,7 @@ static const u8 gUnknown_085E5BAC[] =
     0xFF, 1, 0xFF,
 };
 
-static const u8 gUnknown_085E5BBB[] =
+static const u8 sTheEnd_LetterHMap[] =
 {
     1, 0xFF, 1,
     1, 0xFF, 1,
@@ -189,7 +189,7 @@ static const u8 gUnknown_085E5BBB[] =
     1, 0xFF, 1,
 };
 
-static const u8 gUnknown_085E5BCA[] =
+static const u8 sTheEnd_LetterEMap[] =
 {
     1, 0, 0,
     1, 0xFF, 0xFF,
@@ -198,7 +198,7 @@ static const u8 gUnknown_085E5BCA[] =
     1, 0x80, 0x80,
 };
 
-static const u8 gUnknown_085E5BD9[] =
+static const u8 sTheEnd_LetterNMap[] =
 {
     1, 3, 1,
     1, 4, 1,
@@ -207,7 +207,7 @@ static const u8 gUnknown_085E5BD9[] =
     1, 0xC3, 1,
 };
 
-static const u8 gUnknown_085E5BE8[] =
+static const u8 sTheEnd_LetterDMap[] =
 {
     1, 6, 7,
     1, 8, 9,
@@ -247,8 +247,8 @@ static const struct WindowTemplate gUnknown_085E6F6C[] =
         .tilemapTop = 0,
         .width = 30,
         .height = 32,
-        .paletteNum = 8,
-        .baseBlock = 1
+        .paletteNum = 13, //8,
+        .baseBlock = 0x100
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -419,7 +419,7 @@ static void sub_817624C(u8 taskIdA);
 static bool8 sub_8176AB0(u8 data, u8 taskIdA);
 static void ResetCreditsTasks(u8 taskIdA);
 static void LoadTheEndScreen(u16, u16, u16);
-static void sub_8176E40(u16 arg0, u16 palette);
+static void WriteTheEndTileMap(u16 arg0, u16 palette);
 static void sub_8176EE8(struct Sprite *sprite);
 static void sub_8176F90(struct Sprite *sprite);
 static u8 sub_8177224(u16 species, s16 x, s16 y, u16 position);
@@ -786,7 +786,7 @@ static void Task_CreditsTheEnd5(u8 taskIdA)
 {
     if (!gPaletteFade.active)
     {
-        sub_8176E40(0x3800, 0);
+        WriteTheEndTileMap(0x3800, 0);
 
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0, RGB_BLACK);
         gTasks[taskIdA].data[TDA_0] = 7200;
@@ -798,6 +798,7 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
 {
     if (!gPaletteFade.active)
     {
+        #if !TPP_MODE
         if (gTasks[taskIdA].data[TDA_0] == 0 || gMain.newKeys)
         {
             FadeOutBGM(4);
@@ -805,6 +806,7 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
             gTasks[taskIdA].func = Task_CreditsSoftReset;
             return;
         }
+        #endif
 
         if (gTasks[taskIdA].data[TDA_0] == 7144)
             FadeOutBGM(8);
@@ -812,7 +814,7 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
         if (gTasks[taskIdA].data[TDA_0] == 6840)
         {
             m4aSongNumStart(MUS_END);
-            gTasks[taskIdA].func = Task_CreditsTheEnd7;
+            // gTasks[taskIdA].func = Task_CreditsTheEnd7;
         }
         
         if (gTasks[taskIdA].data[TDA_0] > 10) //do not allow auto-reset
@@ -925,7 +927,7 @@ static void sub_8175DA0(u8 taskIdB)
     switch (gTasks[taskIdB].data[TDB_0])
     {
     case 0:
-        gTasks[taskIdB].data[TDB_0] = 10; return; //TESTING HACK DO NOT COMMIT
+        // gTasks[taskIdB].data[TDB_0] = 10; return; //TESTING HACK DO NOT COMMIT
     case 6:
     case 7:
     case 8:
@@ -1397,12 +1399,12 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
     case 2:
         if (GetPlayerGender() == MALE)
         {
-            LoadCompressedSpriteSheet(gUnknown_085F5334);
-            LoadCompressedSpriteSheet(gUnknown_085F53BC);
-            LoadCompressedSpriteSheet(gUnknown_085F5354);
-            LoadSpritePalettes(gUnknown_085F5384);
+            LoadCompressedSpriteSheet(gCreditsProtagMaleSpriteSheet);
+            LoadCompressedSpriteSheet(gCreditsMaySpriteSheet2);
+            LoadCompressedSpriteSheet(gCreditsBikeSpriteSheet);
+            LoadSpritePalettes(gCreditsPalettes1);
 
-            spriteId = intro_create_brendan_sprite(120, 46);
+            spriteId = credits_create_maleprotag_sprite(120, 46);
             gTasks[taskIdA].data[TDA_PLAYER_CYCLIST] = spriteId;
             gSprites[spriteId].callback = sub_8176EE8;
             gSprites[spriteId].anims = gUnknown_085E6FD0;
@@ -1414,12 +1416,12 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
         }
         else
         {
-            LoadCompressedSpriteSheet(gUnknown_085F5344);
-            LoadCompressedSpriteSheet(gUnknown_085F53AC);
-            LoadCompressedSpriteSheet(gUnknown_085F5354);
-            LoadSpritePalettes(gUnknown_085F5384);
+            LoadCompressedSpriteSheet(gCreditsProtagFemaleSpriteSheet);
+            LoadCompressedSpriteSheet(gCreditsBrendanSpriteSheet2);
+            LoadCompressedSpriteSheet(gCreditsBikeSpriteSheet);
+            LoadSpritePalettes(gCreditsPalettes1);
 
-            spriteId = intro_create_may_sprite(120, 46);
+            spriteId = credits_create_femaleprotag_sprite(120, 46);
             gTasks[taskIdA].data[TDA_PLAYER_CYCLIST] = spriteId;
             gSprites[spriteId].callback = sub_8176EE8;
             gSprites[spriteId].anims = gUnknown_085E6FD0;
@@ -1488,7 +1490,7 @@ static u16 sub_8176D78(u8 arg0)
     u16 out = (arg0 & 0x3F) + 80;
 
     if (arg0 == 0xFF)
-        return 1;
+        return 0;//1;
 
     if (arg0 & (1 << 7))
         out |= 1 << 11;
@@ -1498,7 +1500,7 @@ static u16 sub_8176D78(u8 arg0)
     return out;
 }
 
-static void sub_8176DBC(const u8 arg0[], u8 baseX, u8 baseY, u16 arg3, u16 palette)
+static void sub_8176DBC(const u8 arg0[], u8 baseX, u8 baseY, u16 vramOffset, u16 palette)
 {
     u8 y, x;
     const u16 tileOffset = (palette / 16) << 12;
@@ -1506,24 +1508,24 @@ static void sub_8176DBC(const u8 arg0[], u8 baseX, u8 baseY, u16 arg3, u16 palet
     for (y = 0; y < 5; y++)
     {
         for (x = 0; x < 3; x++)
-            ((u16 *) (VRAM + arg3 + (baseY + y) * 64))[baseX + x] = tileOffset + sub_8176D78(arg0[y * 3 + x]);
+            ((u16 *) (VRAM + vramOffset + (baseY + y) * 64))[baseX + x] = tileOffset + sub_8176D78(arg0[y * 3 + x]);
     }
 }
 
-static void sub_8176E40(u16 arg0, u16 palette)
+static void WriteTheEndTileMap(u16 vramOffset, u16 palette)
 {
     u16 pos;
     u16 baseTile = (palette / 16) << 12;
 
     for (pos = 0; pos < 32 * 32; pos++)
-        ((u16 *) (VRAM + arg0))[pos] = baseTile + 1;
+        ((u16 *) (VRAM + vramOffset))[pos] = baseTile;// + 1;
 
-    sub_8176DBC(gUnknown_085E5BAC, 3, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BBB, 7, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BCA, 11, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BCA, 16, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BD9, 20, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BE8, 24, 7, arg0, palette);
+    sub_8176DBC(sTheEnd_LetterTMap, 3, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterHMap, 7, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterEMap, 11, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterEMap, 16, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterNMap, 20, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterDMap, 24, 7, vramOffset, palette);
 }
 
 static void sub_8176EE8(struct Sprite *sprite)
