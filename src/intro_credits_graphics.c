@@ -881,7 +881,7 @@ void sub_817B150(u8 a)
     }
 }
 
-void sub_817B1C8(u8 a)
+void LoadBikingGrassScene(u8 a)
 {
     LZ77UnCompVram(gUnknown_085F0740, (void *)(BG_CHAR_ADDR(1)));
     LZ77UnCompVram(gUnknown_085F0BC0, (void *)(BG_SCREEN_ADDR(15)));

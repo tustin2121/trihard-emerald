@@ -21,7 +21,7 @@ extern const struct SpritePalette gCreditsPalettes1[];
 
 void load_intro_part2_graphics(u8 a);
 void sub_817B150(u8 a);
-void sub_817B1C8(u8);
+void LoadBikingGrassScene(u8);
 void sub_817B3A8(u8);
 u8 CreateBicycleAnimationTask(u8 a, u16 b, u16 c, u16 d);
 void sub_817B540(u8);

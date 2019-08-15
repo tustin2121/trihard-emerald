@@ -230,6 +230,16 @@ static const struct BgTemplate gUnknown_085E6F68[] =
         .baseTile = 0
     },
 };
+static const struct BgTemplate sBgTemplateTheEnd =
+{
+    .bg = 1,
+    .charBaseIndex = 1,
+    .mapBaseIndex = 29,
+    .screenSize = 0,
+    .paletteMode = 0,
+    .priority = 0,
+    .baseTile = 0
+};
 static const struct WindowTemplate gUnknown_085E6F6C[] =
 {
     {
@@ -248,7 +258,7 @@ static const struct WindowTemplate gUnknown_085E6F6C[] =
         .width = 30,
         .height = 32,
         .paletteNum = 13, //8,
-        .baseBlock = 0x100
+        .baseBlock = 1
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -416,7 +426,7 @@ static u8 CheckChangeScene(u8 page, u8 taskIdA);
 static void sub_81760FC(u8 taskIdA);
 static void sub_817651C(u8 taskIdA);
 static void sub_817624C(u8 taskIdA);
-static bool8 sub_8176AB0(u8 data, u8 taskIdA);
+static bool8 LoadBikingScene(u8 data, u8 taskIdA);
 static void ResetCreditsTasks(u8 taskIdA);
 static void LoadTheEndScreen(u16, u16, u16);
 static void WriteTheEndTileMap(u16 arg0, u16 palette);
@@ -466,7 +476,7 @@ static void sub_8175548(void)
 static void sub_81755A4(void)
 {
     void *ptr;
-    FreeAllWindowBuffers();
+    // FreeAllWindowBuffers();
     ptr = GetBgTilemapBuffer(0);
     if (ptr)
         Free(ptr);
@@ -550,7 +560,7 @@ void CB2_StartCreditsSequence(void)
 
     while (TRUE)
     {
-        if (sub_8176AB0(0, taskIdA))
+        if (LoadBikingScene(0, taskIdA))
             break;
     }
 
@@ -638,7 +648,7 @@ static void c2_080C9BFC(u8 taskIdA)
 
     SetVBlankCallback(NULL);
 
-    if (sub_8176AB0(gTasks[taskIdA].data[TDA_7], taskIdA))
+    if (LoadBikingScene(gTasks[taskIdA].data[TDA_7], taskIdA))
     {
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         EnableInterrupts(INTR_FLAG_VBLANK);
@@ -750,21 +760,24 @@ static void Task_CreditsTheEnd3(u8 taskIdA)
     ResetSpriteData();
     FreeAllSpritePalettes();
     BeginNormalPaletteFade(0xFFFFFFFF, 8, 16, 0, RGB_BLACK);
-
-    SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0)
+    
+    SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(1)
                                | BGCNT_CHARBASE(0)
                                | BGCNT_SCREENBASE(7)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
-    SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1)
-                               | BGCNT_CHARBASE(0)
-                               | BGCNT_SCREENBASE(0)
-                               | BGCNT_16COLOR
-                               | BGCNT_TXT256x256);
+    InitBgFromTemplate(&sBgTemplateTheEnd);
+    SetBgTilemapBuffer(1, AllocZeroed(0x800));
+    // SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(0)
+    //                            | BGCNT_CHARBASE(1)
+    //                            | BGCNT_SCREENBASE(15)
+    //                            | BGCNT_16COLOR
+    //                            | BGCNT_TXT256x256);
     EnableInterrupts(INTR_FLAG_VBLANK);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0
                                 | DISPCNT_OBJ_1D_MAP
-                                | DISPCNT_BG0_ON);
+                                | DISPCNT_BG0_ON
+                                | DISPCNT_BG1_ON);
 
     gTasks[taskIdA].data[TDA_0] = 215; //235
     gTasks[taskIdA].func = Task_CreditsTheEnd4;
@@ -814,7 +827,7 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
         if (gTasks[taskIdA].data[TDA_0] == 6840)
         {
             m4aSongNumStart(MUS_END);
-            // gTasks[taskIdA].func = Task_CreditsTheEnd7;
+            gTasks[taskIdA].func = Task_CreditsTheEnd7;
         }
         
         if (gTasks[taskIdA].data[TDA_0] > 10) //do not allow auto-reset
@@ -851,6 +864,7 @@ static void Task_CreditsTheEnd7(u8 taskIdA)
     gTasks[taskIdA].data[TDF_SCROLL_DELAY] = 0;
     gTasks[taskIdA].data[TDF_NEXT_LINE] = 0;
     
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
     
@@ -883,6 +897,7 @@ static void Task_CreditsTheEnd8(u8 taskIdA)
         int line = nextLine;// + 10;
         // ClearLine(line);
         PrintStringVar4(sText_HelloWorld, line);
+        PutWindowTilemap(windowId);
         CopyWindowToVram(windowId, 2);
     }
 }
@@ -927,7 +942,7 @@ static void sub_8175DA0(u8 taskIdB)
     switch (gTasks[taskIdB].data[TDB_0])
     {
     case 0:
-        // gTasks[taskIdB].data[TDB_0] = 10; return; //TESTING HACK DO NOT COMMIT
+        gTasks[taskIdB].data[TDB_0] = 10; return; //TESTING HACK DO NOT COMMIT
     case 6:
     case 7:
     case 8:
@@ -1369,7 +1384,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gTasks[gTasks[taskIdA].data[TDA_TASK_C_ID]].data[TDC_5] = 0x45;
 }
 
-static bool8 sub_8176AB0(u8 data, u8 taskIdA)
+static bool8 LoadBikingScene(u8 data, u8 taskIdA)
 {
     u8 spriteId;
 
@@ -1393,7 +1408,7 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
     case 1:
         gUnknown_0203BD24 = 34;
         gUnknown_0203BD26 = 0;
-        sub_817B1C8(data);
+        LoadBikingGrassScene(data);
         gMain.state += 1;
         break;
     case 2:
