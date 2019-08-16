@@ -6766,49 +6766,49 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Edwin5[] = {
     }
 };
 
-#define TPP_MODE
+#if TPP_MODE
 static const struct TrainerMonItemCustomMoves sParty_Logan1[] = {
     {
     .iv = 150,
-    .lvl = 48,
-    .species = SPECIES_WHISCASH,
-    .heldItem = ITEM_SOFT_SAND,
-    .moves = MOVE_EARTHQUAKE, MOVE_SURF, MOVE_FUTURE_SIGHT, MOVE_ROCK_TOMB
+    .lvl = 47,
+    .species = SPECIES_XATU,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .moves = MOVE_PSYCHIC, MOVE_WISH, MOVE_FLY, MOVE_CONFUSE_RAY
     },
     {
     .iv = 180,
-    .lvl = 49,
-    .species = SPECIES_DUSCLOPS,
-    .heldItem = ITEM_BLACK_GLASSES,
-    .moves = MOVE_SHADOW_BALL, MOVE_PURSUIT, MOVE_WILL_O_WISP, MOVE_BLIZZARD
+    .lvl = 48,
+    .species = SPECIES_GLALIE,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .moves = MOVE_ICE_BEAM, MOVE_CRUNCH, MOVE_DOUBLE_TEAM, MOVE_PROTECT
     },
     {
     .iv = 200,
-    .lvl = 50,
-    .species = SPECIES_ELECTRODE,
-    .heldItem = ITEM_QUICK_CLAW,
-    .moves = MOVE_SUPERSONIC, MOVE_THUNDERBOLT, MOVE_SELF_DESTRUCT, MOVE_LIGHT_SCREEN
-    },
-    {
-    .iv = 210,
-    .lvl = 51,
-    .species = SPECIES_SALAMENCE,
-    .heldItem = ITEM_DRAGON_FANG,
-    .moves = MOVE_FLY, MOVE_DRAGON_CLAW, MOVE_FLAMETHROWER, MOVE_AERIAL_ACE
-    },
-    {
-    .iv = 220,
-    .lvl = 52,
+    .lvl = 48,
     .species = SPECIES_METAGROSS,
     .heldItem = ITEM_TWISTED_SPOON,
     .moves = MOVE_PSYCHIC, MOVE_METAL_CLAW, MOVE_PURSUIT, MOVE_TOXIC
     },
     {
+    .iv = 210,
+    .lvl = 49,
+    .species = SPECIES_WHISCASH,
+    .heldItem = ITEM_QUICK_CLAW,
+    .moves = MOVE_EARTHQUAKE, MOVE_SURF, MOVE_WATERFALL, MOVE_ICE_BEAM
+    },
+    {
+    .iv = 220,
+    .lvl = 50,
+    .species = SPECIES_FLYGON,
+    .heldItem = ITEM_SOFT_SAND,
+    .moves = MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_CRUNCH, MOVE_ROCK_TOMB
+    },
+    {
     .iv = 250,
-    .lvl = 55,
+    .lvl = 52,
     .species = SPECIES_SHIFTRY,
     .heldItem = ITEM_FOCUS_BAND,
-    .moves = MOVE_FAINT_ATTACK, MOVE_EXTRASENSORY, MOVE_PSYCHIC, MOVE_AERIAL_ACE
+    .moves = MOVE_FAINT_ATTACK, MOVE_EXTRASENSORY, MOVE_GIGA_DRAIN, MOVE_FAKE_OUT
     }
 };
 #else
