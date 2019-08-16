@@ -5,13 +5,12 @@ Route119_House_EventScript_270966:: @ 8270966
 	msgbox Route119_House_Text_270982, MSGBOX_NPC
 	end
 
-Route119_House_EventScript_WingullCry:: @ 827096F
+Route119_House_EventScript_27096F:: @ 827096F
 	lock
 	faceplayer
-	markasdialog
 	waitse
 	playmoncry SPECIES_WINGULL, 0
-	msgbox Route119_House_Text_WingullCry, MSGBOX_DEFAULT
+	msgbox Route119_House_Text_270A17, MSGBOX_DEFAULT
 	waitmoncry
 	release
 	end
@@ -23,5 +22,6 @@ Route119_House_Text_270982: @ 8270982
 	.string "Pokémon are revived there. Could\l"
 	.string "something like that really happen?$"
 
-Route119_House_Text_WingullCry: @ 8270A17
-	.string "Wingull: Pihyoh!$"
+Route119_House_Text_270A17: @ 8270A17
+	.string "WINGULL: Pihyoh!$"
+
