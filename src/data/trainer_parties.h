@@ -6766,7 +6766,8 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Edwin5[] = {
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Wally1[] = {
+#define TPP_MODE
+static const struct TrainerMonItemCustomMoves sParty_Logan1[] = {
     {
     .iv = 150,
     .lvl = 48,
@@ -6810,6 +6811,52 @@ static const struct TrainerMonItemCustomMoves sParty_Wally1[] = {
     .moves = MOVE_FAINT_ATTACK, MOVE_EXTRASENSORY, MOVE_PSYCHIC, MOVE_AERIAL_ACE
     }
 };
+#else
+static const struct TrainerMonItemCustomMoves sParty_Logan1[] = {
+    {
+    .iv = 210,
+    .lvl = 44,
+    .species = SPECIES_SHELGON,
+    .heldItem = ITEM_DRAGON_FANG,
+    .moves = MOVE_ROAR, MOVE_DRAGON_BREATH, MOVE_FLAMETHROWER, MOVE_AERIAL_ACE
+    },
+    {
+    .iv = 150,
+    .lvl = 41,
+    .species = SPECIES_WHISCASH,
+    .heldItem = ITEM_SOFT_SAND,
+    .moves = MOVE_EARTHQUAKE, MOVE_SURF, MOVE_FUTURE_SIGHT, MOVE_ROCK_TOMB
+    },
+    {
+    .iv = 200,
+    .lvl = 43,
+    .species = SPECIES_ELECTRODE,
+    .heldItem = ITEM_QUICK_CLAW,
+    .moves = MOVE_SUPERSONIC, MOVE_THUNDERBOLT, MOVE_SELF_DESTRUCT, MOVE_LIGHT_SCREEN
+    },
+    {
+    .iv = 180,
+    .lvl = 42,
+    .species = SPECIES_DUSCLOPS,
+    .heldItem = ITEM_BLACK_GLASSES,
+    .moves = MOVE_SHADOW_BALL, MOVE_PURSUIT, MOVE_WILL_O_WISP, MOVE_BLIZZARD
+    },
+    {
+    .iv = 220,
+    .lvl = 45,
+    .species = SPECIES_METAGROSS,
+    .heldItem = ITEM_TWISTED_SPOON,
+    .moves = MOVE_PSYCHIC, MOVE_METAL_CLAW, MOVE_PURSUIT, MOVE_TOXIC
+    },
+    {
+    .iv = 250,
+    .lvl = 46,
+    .species = SPECIES_SHIFTRY,
+    .heldItem = ITEM_FOCUS_BAND,
+    .moves = MOVE_FAINT_ATTACK, MOVE_EXTRASENSORY, MOVE_FAKE_OUT, MOVE_AERIAL_ACE
+    }
+};
+#endif
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Brendan1[] = {
     {
@@ -8773,7 +8820,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Ashley[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Wally2[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Logan2[] = {
     {
     .iv = 30,
     .lvl = 16,
@@ -8781,7 +8828,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Wally2[] = {
     }
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_Wally3[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_Logan3[] = {
     {
     .iv = 150,
     .lvl = 47,
@@ -8814,7 +8861,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_Wally3[] = {
     }
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_Wally4[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_Logan4[] = {
     {
     .iv = 150,
     .lvl = 50,
@@ -8847,7 +8894,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_Wally4[] = {
     }
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_Wally5[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_Logan5[] = {
     {
     .iv = 150,
     .lvl = 53,
@@ -8880,7 +8927,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_Wally5[] = {
     }
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_Wally6[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_Logan6[] = {
     {
     .iv = 150,
     .lvl = 56,

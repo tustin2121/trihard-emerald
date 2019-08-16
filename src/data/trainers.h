@@ -7279,7 +7279,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = 6,
-        .party = {.ItemCustomMoves = sParty_Wally1 }
+        .party = {.ItemCustomMoves = sParty_Logan1 }
     },
 
     [TRAINER_BRENDAN_1] =
@@ -9197,7 +9197,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = 1,
-        .party = {.NoItemDefaultMoves = sParty_Wally2 }
+        .party = {.NoItemDefaultMoves = sParty_Logan2 }
     },
 
     [TRAINER_WALLY_3] =
@@ -9211,7 +9211,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = 5,
-        .party = {.NoItemCustomMoves = sParty_Wally3 }
+        .party = {.NoItemCustomMoves = sParty_Logan3 }
     },
 
     [TRAINER_WALLY_4] =
@@ -9225,7 +9225,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = 5,
-        .party = {.NoItemCustomMoves = sParty_Wally4 }
+        .party = {.NoItemCustomMoves = sParty_Logan4 }
     },
 
     [TRAINER_WALLY_5] =
@@ -9239,7 +9239,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = 5,
-        .party = {.NoItemCustomMoves = sParty_Wally5 }
+        .party = {.NoItemCustomMoves = sParty_Logan5 }
     },
 
     [TRAINER_WALLY_6] =
@@ -9253,7 +9253,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = 5,
-        .party = {.NoItemCustomMoves = sParty_Wally6 }
+        .party = {.NoItemCustomMoves = sParty_Logan6 }
     },
 
     [TRAINER_BRENDAN_13] =
