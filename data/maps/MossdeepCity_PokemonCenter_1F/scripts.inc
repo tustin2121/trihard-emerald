@@ -55,13 +55,9 @@ MossdeepCity_Mart_EventScript_2223F6:: @ 82223F6
 	msgbox MossdeepCity_Mart_Text_222411, MSGBOX_NPC
 	end
 MossdeepCity_Mart_Text_222411: @ 8222411
-	@ TODO REMOVE
-	.string "Revive is fantastic!\p"
-	.string "Give it to a fainted Pokémon,\n"
-	.string "and the Pokémon will arise.\p"
-	.string "But be careful, Revive doesn't restore\n"
-	.string "the used-up PP of moves.$"
-
+	.string "I wish there was a way to bring\n"
+	.string "Pokémon back from death.\p"
+	.string "I miss my dead Pokémon so much…$"
 
 MossdeepCity_Mart_EventScript_2223FF:: @ 82223FF
 	msgbox MossdeepCity_Mart_Text_2224A0, MSGBOX_NPC
