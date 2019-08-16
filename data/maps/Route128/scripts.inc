@@ -8,171 +8,171 @@ Route128_OnTransition: @ 81F6B43
 	end
 
 Route128_MapScript2_1F6B4D: @ 81F6B4D
-	map_script_2 VAR_ROUTE128_STATE, 1, Route128_EventScript_1F6B57
+	@ map_script_2 VAR_ROUTE128_STATE, 1, Route128_EventScript_1F6B57
 	.2byte 0
 
-Route128_EventScript_1F6B57:: @ 81F6B57
-	lockall
-	delay 20
-	applymovement 4, Route128_Movement_1F6C89
-	waitmovement 0
-	msgbox Route128_Text_1F6DF5, MSGBOX_DEFAULT
-	closemessage
-	applymovement 4, Route128_Movement_1F6C91
-	waitmovement 0
-	msgbox Route128_Text_1F6E48, MSGBOX_DEFAULT
-	closemessage
-	applymovement 5, Route128_Movement_1F6CAD
-	waitmovement 0
-	applymovement 4, Common_Movement_WalkInPlaceUp
-	waitmovement 0
-	msgbox Route128_Text_1F6E5A, MSGBOX_DEFAULT
-	closemessage
-	applymovement 5, Route128_Movement_1F6CBB
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
-	waitmovement 0
-	msgbox Route128_Text_1F6F1E, MSGBOX_DEFAULT
-	closemessage
-	applymovement 4, Route128_Movement_1F6C96
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
-	applymovement 5, Route128_Movement_1F6CA8
-	waitmovement 0
-	msgbox Route128_Text_1F704F, MSGBOX_DEFAULT
-	closemessage
-	delay 40
-	applymovement 5, Route128_Movement_1F6CB0
-	applymovement 4, Route128_Movement_1F6C9B
-	waitmovement 0
-	removeobject 5
-	removeobject 4
-	delay 100
-	setfieldeffectargument 0, 1
-	dofieldeffect FLDEFF_NPCFLY_OUT
-	waitfieldeffect FLDEFF_NPCFLY_OUT
-	addobject 3
-	applymovement 3, Route128_Movement_1F6C87
-	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
-	waitmovement 0
-	msgbox Route128_Text_1F70C9, MSGBOX_DEFAULT
-	closemessage
-	applymovement 3, Route128_Movement_1F6C85
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
-	waitmovement 0
-	msgbox Route128_Text_1F70EA, MSGBOX_DEFAULT
-	applymovement 3, Common_Movement_WalkInPlaceDown
-	waitmovement 0
-	msgbox Route128_Text_1F721B, MSGBOX_DEFAULT
-	closemessage
-	applymovement 3, Common_Movement_WalkInPlaceDown
-	waitmovement 0
-	delay 50
-	setfieldeffectargument 0, 1
-	dofieldeffect FLDEFF_NPCFLY_OUT
-	delay 15
-	removeobject 3
-	waitfieldeffect FLDEFF_NPCFLY_OUT
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	setvar VAR_ROUTE128_STATE, 2
-	releaseall
-	end
+@ Route128_EventScript_1F6B57:: @ 81F6B57
+@ 	lockall
+@ 	delay 20
+@ 	applymovement 4, Route128_Movement_1F6C89
+@ 	waitmovement 0
+@ 	msgbox Route128_Text_1F6DF5, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement 4, Route128_Movement_1F6C91
+@ 	waitmovement 0
+@ 	msgbox Route128_Text_1F6E48, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement 5, Route128_Movement_1F6CAD
+@ 	waitmovement 0
+@ 	applymovement 4, Common_Movement_WalkInPlaceUp
+@ 	waitmovement 0
+@ 	msgbox Route128_Text_1F6E5A, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement 5, Route128_Movement_1F6CBB
+@ 	waitmovement 0
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+@ 	waitmovement 0
+@ 	msgbox Route128_Text_1F6F1E, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement 4, Route128_Movement_1F6C96
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
+@ 	applymovement 5, Route128_Movement_1F6CA8
+@ 	waitmovement 0
+@ 	msgbox Route128_Text_1F704F, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	delay 40
+@ 	applymovement 5, Route128_Movement_1F6CB0
+@ 	applymovement 4, Route128_Movement_1F6C9B
+@ 	waitmovement 0
+@ 	removeobject 5
+@ 	removeobject 4
+@ 	delay 100
+@ 	setfieldeffectargument 0, 1
+@ 	dofieldeffect FLDEFF_NPCFLY_OUT
+@ 	waitfieldeffect FLDEFF_NPCFLY_OUT
+@ 	addobject 3
+@ 	applymovement 3, Route128_Movement_1F6C87
+@ 	waitmovement 0
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+@ 	waitmovement 0
+@ 	msgbox Route128_Text_1F70C9, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement 3, Route128_Movement_1F6C85
+@ 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
+@ 	waitmovement 0
+@ 	msgbox Route128_Text_1F70EA, MSGBOX_DEFAULT
+@ 	applymovement 3, Common_Movement_WalkInPlaceDown
+@ 	waitmovement 0
+@ 	msgbox Route128_Text_1F721B, MSGBOX_DEFAULT
+@ 	closemessage
+@ 	applymovement 3, Common_Movement_WalkInPlaceDown
+@ 	waitmovement 0
+@ 	delay 50
+@ 	setfieldeffectargument 0, 1
+@ 	dofieldeffect FLDEFF_NPCFLY_OUT
+@ 	delay 15
+@ 	removeobject 3
+@ 	waitfieldeffect FLDEFF_NPCFLY_OUT
+@ 	clearflag FLAG_HIDE_MAP_NAME_POPUP
+@ 	setvar VAR_ROUTE128_STATE, 2
+@ 	releaseall
+@ 	end
 
-Route128_Movement_1F6C76: @ 81F6C76
-	walk_fast_left
-	step_end
+@ Route128_Movement_1F6C76: @ 81F6C76
+@ 	walk_fast_left
+@ 	step_end
 
-Route128_Movement_1F6C78: @ 81F6C78
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
+@ Route128_Movement_1F6C78: @ 81F6C78
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_left
+@ 	walk_up
+@ 	walk_up
+@ 	walk_up
+@ 	walk_up
+@ 	walk_up
+@ 	walk_up
+@ 	step_end
 
-Route128_Movement_1F6C85: @ 81F6C85
-	walk_up
-	step_end
+@ Route128_Movement_1F6C85: @ 81F6C85
+@ 	walk_up
+@ 	step_end
 
-Route128_Movement_1F6C87: @ 81F6C87
-	walk_fast_left
-	step_end
+@ Route128_Movement_1F6C87: @ 81F6C87
+@ 	walk_fast_left
+@ 	step_end
 
-Route128_Movement_1F6C89: @ 81F6C89
-	walk_fast_down
-	walk_in_place_fastest_left
-	delay_16
-	walk_in_place_fastest_right
-	delay_16
-	delay_16
-	walk_in_place_fastest_down
-	step_end
+@ Route128_Movement_1F6C89: @ 81F6C89
+@ 	walk_fast_down
+@ 	walk_in_place_fastest_left
+@ 	delay_16
+@ 	walk_in_place_fastest_right
+@ 	delay_16
+@ 	delay_16
+@ 	walk_in_place_fastest_down
+@ 	step_end
 
-Route128_Movement_1F6C91: @ 81F6C91
-	lock_facing_direction
-	walk_slow_up
-	delay_16
-	unlock_facing_direction
-	step_end
+@ Route128_Movement_1F6C91: @ 81F6C91
+@ 	lock_facing_direction
+@ 	walk_slow_up
+@ 	delay_16
+@ 	unlock_facing_direction
+@ 	step_end
 
-Route128_Movement_1F6C96: @ 81F6C96
-	walk_fast_left
-	walk_fast_left
-	walk_fast_left
-	walk_in_place_fastest_right
-	step_end
+@ Route128_Movement_1F6C96: @ 81F6C96
+@ 	walk_fast_left
+@ 	walk_fast_left
+@ 	walk_fast_left
+@ 	walk_in_place_fastest_right
+@ 	step_end
 
-Route128_Movement_1F6C9B: @ 81F6C9B
-	delay_16
-	delay_16
-	walk_fast_up
-	walk_fast_left
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	step_end
+@ Route128_Movement_1F6C9B: @ 81F6C9B
+@ 	delay_16
+@ 	delay_16
+@ 	walk_fast_up
+@ 	walk_fast_left
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	step_end
 
-Route128_Movement_1F6CA8: @ 81F6CA8
-	walk_left
-	walk_left
-	delay_8
-	delay_4
-	step_end
+@ Route128_Movement_1F6CA8: @ 81F6CA8
+@ 	walk_left
+@ 	walk_left
+@ 	delay_8
+@ 	delay_4
+@ 	step_end
 
-Route128_Movement_1F6CAD: @ 81F6CAD
-	walk_left
-	walk_in_place_fastest_down
-	step_end
+@ Route128_Movement_1F6CAD: @ 81F6CAD
+@ 	walk_left
+@ 	walk_in_place_fastest_down
+@ 	step_end
 
-Route128_Movement_1F6CB0: @ 81F6CB0
-	walk_fast_left
-	walk_fast_left
-	walk_fast_left
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	step_end
+@ Route128_Movement_1F6CB0: @ 81F6CB0
+@ 	walk_fast_left
+@ 	walk_fast_left
+@ 	walk_fast_left
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	walk_fast_up
+@ 	step_end
 
-Route128_Movement_1F6CBB: @ 81F6CBB
-	walk_right
-	walk_in_place_fastest_down
-	step_end
+@ Route128_Movement_1F6CBB: @ 81F6CBB
+@ 	walk_right
+@ 	walk_in_place_fastest_down
+@ 	step_end
 
 Route128_EventScript_1F6CBE:: @ 81F6CBE
 	trainerbattle_single TRAINER_ISAIAH_1, Route128_Text_2A287F, Route128_Text_2A28AB, Route128_EventScript_1F6CEA
