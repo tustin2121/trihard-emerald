@@ -311,7 +311,7 @@ SlateportCity_Harbor_EventScript_20CCA2:: @ 820CCA2
 	lock
 	faceplayer
 	markasdialog
-	@ goto_if_set FLAG_BADGE07_GET, SlateportCity_Harbor_EventScript_20CD00
+	goto_if_set FLAG_BADGE07_GET, SlateportCity_Harbor_EventScript_20CD00
 	@ goto_if_set FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE, SlateportCity_Harbor_EventScript_20CCF6
 	@ goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, SlateportCity_Harbor_EventScript_20CCE9
 	@ compare VAR_SLATEPORT_HARBOR_STATE, 2
@@ -337,7 +337,7 @@ SlateportCity_Harbor_EventScript_20CCE9:: @ 820CCE9
 	release
 	end
 SlateportCity_Harbor_Text_20D42B: @ 820D42B
-	.string "CAPT. STERN: Oh, {PLAYER}…\p"
+	.string "Capt. Stern: Oh, {PLAYER}…\p"
 	.string "Okay… So Team Aqua left before you\n"
 	.string "could stop them…\p"
 	.string "Oh, no, don't blame yourself.\n"
@@ -355,7 +355,7 @@ SlateportCity_Harbor_EventScript_20CCF6:: @ 820CCF6
 	release
 	end
 SlateportCity_Harbor_Text_20D58A: @ 820D58A
-	.string "CAPT. STERN: Trying to catch a\n"
+	.string "Capt. Stern: Trying to catch a\n"
 	.string "submarine… It's impossible.\p"
 	.string "You would need a Pokémon that knows\n"
 	.string "how to DIVE…\p"
@@ -374,8 +374,8 @@ SlateportCity_Harbor_EventScript_20CD00:: @ 820CD00
 	release
 	end
 SlateportCity_Harbor_Text_20D65C: @ 820D65C
-	.string "CAPT. STERN: Oh, yes.\n"
-	.string "MR. BRINEY came to our SHIPYARD.\p"
+	.string "Capt. Stern: Oh, yes.\n"
+	.string "Mr. Briney came to our Shipyard.\p"
 	.string "It won't be long now before we finish\n"
 	.string "making the ferry!$"
 
@@ -384,11 +384,11 @@ SlateportCity_Harbor_EventScript_20CD2E:: @ 820CD2E
 	release
 	end
 SlateportCity_Harbor_Text_20D6CB: @ 820D6CB
-	.string "CAPT. STERN: {PLAYER}!\p"
+	.string "Capt. Stern: {PLAYER}!\p"
 	.string "We finally finished making the ferry\n"
 	.string "S.S. TIDAL!\p"
 	.string "We couldn't have done it without\n"
-	.string "your friend MR. BRINEY.\p"
+	.string "your friend Mr. Briney.\p"
 	.string "Please go for a short cruise on it!$"
 
 SlateportCity_Harbor_EventScript_20CD38:: @ 820CD38
@@ -397,14 +397,14 @@ SlateportCity_Harbor_EventScript_20CD38:: @ 820CD38
 	goto SlateportCity_Harbor_EventScript_20CD44
 	end
 SlateportCity_Harbor_Text_20D76C: @ 820D76C
-	.string "CAPT. STERN: Oh?\n"
+	.string "Capt. Stern: Oh?\n"
 	.string "{PLAYER}, that item you have…\p"
-	.string "That's a SCANNER! That would sure\n"
+	.string "That's a Scanner! That would sure\n"
 	.string "help us on our explorations.\p"
 	.string "{PLAYER}, would you trade your\n"
-	.string "SCANNER for something?\p"
-	.string "Like, say, a DEEPSEATOOTH or\n"
-	.string "a DEEPSEASCALE that I have?$"
+	.string "Scanner for something?\p"
+	.string "Like, say, a DeepseaTooth or\n"
+	.string "a DeepseaScale that I have?$"
 
 SlateportCity_Harbor_EventScript_20CD44:: @ 820CD44
 	multichoice 0, 0, 46, 0
@@ -528,26 +528,26 @@ SlateportCity_Harbor_Text_20D194: @ 820D194
 
 
 SlateportCity_Harbor_Text_20D841: @ 820D841
-	.string "CAPT. STERN: Are you certain?\n"
+	.string "Capt. Stern: Are you certain?\n"
 	.string "It's useless to you, {PLAYER}…\p"
 	.string "Well, okay, then. If you want to trade\n"
 	.string "your SCANNER, let me know.$"
 
 SlateportCity_Harbor_Text_20D8BC: @ 820D8BC
-	.string "CAPT. STERN: So you'll trade it for\n"
+	.string "Capt. Stern: So you'll trade it for\n"
 	.string "my DEEPSEATOOTH?$"
 
 SlateportCity_Harbor_Text_20D8F1: @ 820D8F1
-	.string "CAPT. STERN: So you'll trade it for\n"
+	.string "Capt. Stern: So you'll trade it for\n"
 	.string "my DEEPSEASCALE?$"
 
 SlateportCity_Harbor_Text_20D926: @ 820D926
-	.string "CAPT. STERN: Which one do you want?$"
+	.string "Capt. Stern: Which one do you want?$"
 
 SlateportCity_Harbor_Text_20D94A: @ 820D94A
 	.string "{PLAYER} handed the SCANNER to\n"
 	.string "CAPT. STERN.$"
 
 SlateportCity_Harbor_Text_20D970: @ 820D970
-	.string "CAPT. STERN: Thanks, {PLAYER}!\n"
+	.string "Capt. Stern: Thanks, {PLAYER}!\n"
 	.string "This will help our research a lot!$"

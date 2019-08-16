@@ -127,6 +127,11 @@ enum
     TDE_0 = 0,
     TDE_1 = 1,
     TDE_TASK_A_ID = 2,
+    
+    TDF_0 = 0,
+    TDF_SCROLL = 1,
+    TDF_SCROLL_DELAY = 2,
+    TDF_NEXT_LINE = 3,
 };
 
 struct Unk201C000
@@ -166,7 +171,7 @@ static const u32 gCreditsCopyrightEnd_Gfx[] = INCBIN_U32("graphics/credits/the_e
 
 static void sub_81772B8(struct Sprite *sprite);
 
-static const u8 gUnknown_085E5BAC[] =
+static const u8 sTheEnd_LetterTMap[] =
 {
     0,    1, 0,
     0xFF, 1, 0xFF,
@@ -175,7 +180,7 @@ static const u8 gUnknown_085E5BAC[] =
     0xFF, 1, 0xFF,
 };
 
-static const u8 gUnknown_085E5BBB[] =
+static const u8 sTheEnd_LetterHMap[] =
 {
     1, 0xFF, 1,
     1, 0xFF, 1,
@@ -184,7 +189,7 @@ static const u8 gUnknown_085E5BBB[] =
     1, 0xFF, 1,
 };
 
-static const u8 gUnknown_085E5BCA[] =
+static const u8 sTheEnd_LetterEMap[] =
 {
     1, 0, 0,
     1, 0xFF, 0xFF,
@@ -193,7 +198,7 @@ static const u8 gUnknown_085E5BCA[] =
     1, 0x80, 0x80,
 };
 
-static const u8 gUnknown_085E5BD9[] =
+static const u8 sTheEnd_LetterNMap[] =
 {
     1, 3, 1,
     1, 4, 1,
@@ -202,7 +207,7 @@ static const u8 gUnknown_085E5BD9[] =
     1, 0xC3, 1,
 };
 
-static const u8 gUnknown_085E5BE8[] =
+static const u8 sTheEnd_LetterDMap[] =
 {
     1, 6, 7,
     1, 8, 9,
@@ -235,6 +240,15 @@ static const struct WindowTemplate gUnknown_085E6F6C[] =
         .height = 12,
         .paletteNum = 8,
         .baseBlock = 1
+    },
+    {
+        .bg = 1,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 30,
+        .height = 32,
+        .paletteNum = 13, //8,
+        .baseBlock = 0x100
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -393,8 +407,10 @@ static void Task_CreditsTheEnd3(u8 taskIdA);
 static void Task_CreditsTheEnd4(u8 taskIdA);
 static void Task_CreditsTheEnd5(u8 taskIdA);
 static void Task_CreditsTheEnd6(u8 taskIdA);
+static void Task_CreditsTheEnd7(u8 taskIdA);
+static void Task_CreditsTheEnd8(u8 taskIdA);
 static void Task_CreditsSoftReset(u8 taskIdA);
-static void sub_8175CE4(void);
+static void ResetGpuAndVram(void);
 static void sub_8175DA0(u8 taskIdB);
 static u8 CheckChangeScene(u8 page, u8 taskIdA);
 static void sub_81760FC(u8 taskIdA);
@@ -402,8 +418,8 @@ static void sub_817651C(u8 taskIdA);
 static void sub_817624C(u8 taskIdA);
 static bool8 sub_8176AB0(u8 data, u8 taskIdA);
 static void ResetCreditsTasks(u8 taskIdA);
-static void sub_8176D1C(u16, u16, u16);
-static void sub_8176E40(u16 arg0, u16 palette);
+static void LoadTheEndScreen(u16, u16, u16);
+static void WriteTheEndTileMap(u16 arg0, u16 palette);
 static void sub_8176EE8(struct Sprite *sprite);
 static void sub_8176F90(struct Sprite *sprite);
 static u8 sub_8177224(u16 species, s16 x, s16 y, u16 position);
@@ -518,7 +534,7 @@ void CB2_StartCreditsSequence(void)
     s16 taskIdC;
     u8 taskIdB;
 
-    sub_8175CE4();
+    ResetGpuAndVram();
     SetVBlankCallback(NULL);
     InitHeap(gHeap, HEAP_SIZE);
     ResetPaletteFade();
@@ -728,9 +744,9 @@ static void Task_CreditsTheEnd2(u8 taskIdA)
 
 static void Task_CreditsTheEnd3(u8 taskIdA)
 {
-    sub_8175CE4();
+    ResetGpuAndVram();
     ResetPaletteFade();
-    sub_8176D1C(0, 0x3800, 0);
+    LoadTheEndScreen(0, 0x3800, 0);
     ResetSpriteData();
     FreeAllSpritePalettes();
     BeginNormalPaletteFade(0xFFFFFFFF, 8, 16, 0, RGB_BLACK);
@@ -738,6 +754,11 @@ static void Task_CreditsTheEnd3(u8 taskIdA)
     SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_PRIORITY(0)
                                | BGCNT_CHARBASE(0)
                                | BGCNT_SCREENBASE(7)
+                               | BGCNT_16COLOR
+                               | BGCNT_TXT256x256);
+    SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(1)
+                               | BGCNT_CHARBASE(0)
+                               | BGCNT_SCREENBASE(0)
                                | BGCNT_16COLOR
                                | BGCNT_TXT256x256);
     EnableInterrupts(INTR_FLAG_VBLANK);
@@ -765,7 +786,7 @@ static void Task_CreditsTheEnd5(u8 taskIdA)
 {
     if (!gPaletteFade.active)
     {
-        sub_8176E40(0x3800, 0);
+        WriteTheEndTileMap(0x3800, 0);
 
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0, RGB_BLACK);
         gTasks[taskIdA].data[TDA_0] = 7200;
@@ -777,6 +798,7 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
 {
     if (!gPaletteFade.active)
     {
+        #if !TPP_MODE
         if (gTasks[taskIdA].data[TDA_0] == 0 || gMain.newKeys)
         {
             FadeOutBGM(4);
@@ -784,17 +806,91 @@ static void Task_CreditsTheEnd6(u8 taskIdA)
             gTasks[taskIdA].func = Task_CreditsSoftReset;
             return;
         }
+        #endif
 
         if (gTasks[taskIdA].data[TDA_0] == 7144)
             FadeOutBGM(8);
 
         if (gTasks[taskIdA].data[TDA_0] == 6840)
+        {
             m4aSongNumStart(MUS_END);
+            // gTasks[taskIdA].func = Task_CreditsTheEnd7;
+        }
         
         if (gTasks[taskIdA].data[TDA_0] > 10) //do not allow auto-reset
             gTasks[taskIdA].data[TDA_0] -= 1;
     }
 }
+
+#define scroll gTasks[taskIdA].data[TDF_SCROLL]
+#define scrollDelay gTasks[taskIdA].data[TDF_SCROLL_DELAY]
+#define nextLine gTasks[taskIdA].data[TDF_NEXT_LINE]
+#define windowId 1
+
+static const u8 sText_ClearLine[] = _("{CLEAR 240}");
+static const u8 sText_HelloWorld[] = _("Hello World{CLEAR_TO 160}00");
+
+static void ClearLine(u8 line)
+{
+    AddTextPrinterParameterized(windowId, 1, sText_ClearLine, 0, line*16, -1, NULL);
+}
+
+static void PrintStringVar4(const u8* string, u8 line)
+{
+    u8 color[3];
+    color[0] = 0;
+    color[1] = 1;
+    color[2] = 2;
+    StringExpandPlaceholders(gStringVar4, string);
+    AddTextPrinterParameterized4(windowId, 1, 32, line*16, 1, 0, color, -1, gStringVar4);
+}
+
+static void Task_CreditsTheEnd7(u8 taskIdA)
+{
+    gTasks[taskIdA].data[TDF_SCROLL] = 0;
+    gTasks[taskIdA].data[TDF_SCROLL_DELAY] = 0;
+    gTasks[taskIdA].data[TDF_NEXT_LINE] = 0;
+    
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+    
+    gTasks[taskIdA].func = Task_CreditsTheEnd8;
+}
+
+static void Task_CreditsTheEnd8(u8 taskIdA)
+{
+    if (gTasks[taskIdA].data[TDA_0] == 0 || gMain.newKeys)
+    {
+        FadeOutBGM(4);
+        BeginNormalPaletteFade(0xFFFFFFFF, 8, 0, 16, RGB_WHITEALPHA);
+        gTasks[taskIdA].func = Task_CreditsSoftReset;
+        return;
+    }
+    
+    if (scrollDelay > 0)
+    {
+        scrollDelay--;
+    }
+    else
+    {
+        scrollDelay = 4;
+        scroll++;
+        SetGpuReg(REG_OFFSET_BG0VOFS, scroll);
+    }
+    
+    if (scroll % 16 == 0 && (scroll >> 4) > nextLine)
+    {
+        int line = nextLine;// + 10;
+        // ClearLine(line);
+        PrintStringVar4(sText_HelloWorld, line);
+        CopyWindowToVram(windowId, 2);
+    }
+}
+
+#undef scroll
+#undef scrollDelay
+#undef nextLine
+#undef windowId
 
 static void Task_CreditsSoftReset(u8 taskIdA)
 {
@@ -802,7 +898,7 @@ static void Task_CreditsSoftReset(u8 taskIdA)
         SoftReset(0xFF);
 }
 
-static void sub_8175CE4(void)
+static void ResetGpuAndVram(void)
 {
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
 
@@ -831,6 +927,7 @@ static void sub_8175DA0(u8 taskIdB)
     switch (gTasks[taskIdB].data[TDB_0])
     {
     case 0:
+        // gTasks[taskIdB].data[TDB_0] = 10; return; //TESTING HACK DO NOT COMMIT
     case 6:
     case 7:
     case 8:
@@ -1302,12 +1399,12 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
     case 2:
         if (GetPlayerGender() == MALE)
         {
-            LoadCompressedSpriteSheet(gUnknown_085F5334);
-            LoadCompressedSpriteSheet(gUnknown_085F53BC);
-            LoadCompressedSpriteSheet(gUnknown_085F5354);
-            LoadSpritePalettes(gUnknown_085F5384);
+            LoadCompressedSpriteSheet(gCreditsProtagMaleSpriteSheet);
+            LoadCompressedSpriteSheet(gCreditsMaySpriteSheet2);
+            LoadCompressedSpriteSheet(gCreditsBikeSpriteSheet);
+            LoadSpritePalettes(gCreditsPalettes1);
 
-            spriteId = intro_create_brendan_sprite(120, 46);
+            spriteId = credits_create_maleprotag_sprite(120, 46);
             gTasks[taskIdA].data[TDA_PLAYER_CYCLIST] = spriteId;
             gSprites[spriteId].callback = sub_8176EE8;
             gSprites[spriteId].anims = gUnknown_085E6FD0;
@@ -1319,12 +1416,12 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
         }
         else
         {
-            LoadCompressedSpriteSheet(gUnknown_085F5344);
-            LoadCompressedSpriteSheet(gUnknown_085F53AC);
-            LoadCompressedSpriteSheet(gUnknown_085F5354);
-            LoadSpritePalettes(gUnknown_085F5384);
+            LoadCompressedSpriteSheet(gCreditsProtagFemaleSpriteSheet);
+            LoadCompressedSpriteSheet(gCreditsBrendanSpriteSheet2);
+            LoadCompressedSpriteSheet(gCreditsBikeSpriteSheet);
+            LoadSpritePalettes(gCreditsPalettes1);
 
-            spriteId = intro_create_may_sprite(120, 46);
+            spriteId = credits_create_femaleprotag_sprite(120, 46);
             gTasks[taskIdA].data[TDA_PLAYER_CYCLIST] = spriteId;
             gSprites[spriteId].callback = sub_8176EE8;
             gSprites[spriteId].anims = gUnknown_085E6FD0;
@@ -1374,18 +1471,18 @@ static void ResetCreditsTasks(u8 taskIdA)
     gUnknown_0203BD28 = 1;
 }
 
-static void sub_8176D1C(u16 arg0, u16 arg1, u16 arg2)
+static void LoadTheEndScreen(u16 arg0, u16 baseAddress, u16 palOff)
 {
     u16 baseTile;
     u16 i;
 
     LZ77UnCompVram(gCreditsCopyrightEnd_Gfx, (void *)(VRAM + arg0));
-    LoadPalette(gIntroCopyright_Pal, arg2, sizeof(gIntroCopyright_Pal));
+    LoadPalette(gIntroCopyright_Pal, palOff, sizeof(gIntroCopyright_Pal));
 
-    baseTile = (arg2 / 16) << 12;
+    baseTile = (palOff / 16) << 12;
 
     for (i = 0; i < 32 * 32; i++)
-        ((u16 *) (VRAM + arg1))[i] = baseTile + 1;
+        ((u16 *) (VRAM + baseAddress))[i] = baseTile + 1;
 }
 
 static u16 sub_8176D78(u8 arg0)
@@ -1393,7 +1490,7 @@ static u16 sub_8176D78(u8 arg0)
     u16 out = (arg0 & 0x3F) + 80;
 
     if (arg0 == 0xFF)
-        return 1;
+        return 0;//1;
 
     if (arg0 & (1 << 7))
         out |= 1 << 11;
@@ -1403,7 +1500,7 @@ static u16 sub_8176D78(u8 arg0)
     return out;
 }
 
-static void sub_8176DBC(const u8 arg0[], u8 baseX, u8 baseY, u16 arg3, u16 palette)
+static void sub_8176DBC(const u8 arg0[], u8 baseX, u8 baseY, u16 vramOffset, u16 palette)
 {
     u8 y, x;
     const u16 tileOffset = (palette / 16) << 12;
@@ -1411,24 +1508,24 @@ static void sub_8176DBC(const u8 arg0[], u8 baseX, u8 baseY, u16 arg3, u16 palet
     for (y = 0; y < 5; y++)
     {
         for (x = 0; x < 3; x++)
-            ((u16 *) (VRAM + arg3 + (baseY + y) * 64))[baseX + x] = tileOffset + sub_8176D78(arg0[y * 3 + x]);
+            ((u16 *) (VRAM + vramOffset + (baseY + y) * 64))[baseX + x] = tileOffset + sub_8176D78(arg0[y * 3 + x]);
     }
 }
 
-static void sub_8176E40(u16 arg0, u16 palette)
+static void WriteTheEndTileMap(u16 vramOffset, u16 palette)
 {
     u16 pos;
     u16 baseTile = (palette / 16) << 12;
 
     for (pos = 0; pos < 32 * 32; pos++)
-        ((u16 *) (VRAM + arg0))[pos] = baseTile + 1;
+        ((u16 *) (VRAM + vramOffset))[pos] = baseTile;// + 1;
 
-    sub_8176DBC(gUnknown_085E5BAC, 3, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BBB, 7, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BCA, 11, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BCA, 16, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BD9, 20, 7, arg0, palette);
-    sub_8176DBC(gUnknown_085E5BE8, 24, 7, arg0, palette);
+    sub_8176DBC(sTheEnd_LetterTMap, 3, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterHMap, 7, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterEMap, 11, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterEMap, 16, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterNMap, 20, 7, vramOffset, palette);
+    sub_8176DBC(sTheEnd_LetterDMap, 24, 7, vramOffset, palette);
 }
 
 static void sub_8176EE8(struct Sprite *sprite)

@@ -70,7 +70,7 @@ Route126_EventScript_TransportMossdeep::
 	faceplayer
 	markasdialog
 	askforboat Route126_Text_TransportMossdeep_Ask, Route126_Text_TransportMossdeep_Decline, Route126_Text_TransportMossdeep_NoMoney, Route126_Text_TransportMossdeep_Embark
-	warpcustom MAP_MOSSDEEP_CITY, 255, 62, 38
+	warpcustom MAP_MOSSDEEP_CITY, 255, 62, 37
 	waitstate
 	end
 Route126_Text_TransportMossdeep_Ask:

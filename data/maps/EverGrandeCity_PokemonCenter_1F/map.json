@@ -30,6 +30,32 @@
         {
             "elevation": 3,
             "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_MART_EMPLOYEE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "EverGrandeCity_PokemonCenter_1F_EventScript_MartScript",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 16,
+            "y": 5
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_LINK_RECEPTIONIST",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "PokemonCenter_1F_EventScript_FreePokeballCounter",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 15,
+            "y": 4
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
             "graphics_id": "EVENT_OBJ_GFX_WOMAN_5",
             "movement_range_x": 0,
             "movement_range_y": 0,

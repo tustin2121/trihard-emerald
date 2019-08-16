@@ -44,17 +44,21 @@ static const u32 gIntro2NightTiles[] = INCBIN_U32("graphics/intro/intro2_night.4
 static const u16 gIntro2BrendanPalette[] = INCBIN_U16("graphics/intro/intro2_brendan.gbapal");
 static const u32 gIntro2BrendanTiles[] = INCBIN_U32("graphics/intro/intro2_brendan.4bpp.lz");
 static const u16 gIntro2MayPalette[] = INCBIN_U16("graphics/intro/intro2_may.gbapal");
-static const u16 gUnknown_085F3490[0xF0] = {0};
 static const u32 gIntro2MayTiles[] = INCBIN_U32("graphics/intro/intro2_may.4bpp.lz");
 static const u32 gIntro2BicycleTiles[] = INCBIN_U32("graphics/intro/intro2_bicycle.4bpp.lz");
 static const u16 gIntro2LatiosPalette[] = INCBIN_U16("graphics/intro/intro2_latios.gbapal");
 static const u32 gIntro2LatiosTiles[] = INCBIN_U32("graphics/intro/intro2_latios.4bpp.lz");
 static const u16 gIntro2LatiasPalette[] = INCBIN_U16("graphics/intro/intro2_latias.gbapal");
 static const u32 gIntro2LatiasTiles[] = INCBIN_U32("graphics/intro/intro2_latias.4bpp.lz");
+static const u16 gCreditsProtagMalePal[] = INCBIN_U16("graphics/credits/protagmale.gbapal");
+static const u32 gCreditsProtagMaleGfx[] = INCBIN_U32("graphics/credits/protagmale.4bpp.lz");
+static const u16 gCreditsProtagFemalePal[] = INCBIN_U16("graphics/credits/protagfemale.gbapal");
+static const u32 gCreditsProtagFemaleGfx[] = INCBIN_U32("graphics/credits/protagfemale.4bpp.lz");
+
 
 static void sub_817B62C(struct Sprite *sprite);
 static void nullsub_65(struct Sprite *sprite);
-static void sub_817B7C4(struct Sprite *sprite);
+static void alignBikeSpriteCallback(struct Sprite *sprite);
 static void nullsub_66(struct Sprite *sprite);
 
 static const struct SpriteTemplate gUnknown_085F504C =
@@ -421,7 +425,7 @@ static const struct IntroCreditsSpriteMetadata gUnknown_085F519C[] =
     }
 };
 
-static const struct OamData gOamData_85F51CC =
+static const struct OamData sBikeOAM =
 {
     .y = 160,
     .shape = SPRITE_SHAPE(64x64),
@@ -429,7 +433,7 @@ static const struct OamData gOamData_85F51CC =
     .priority = 1
 };
 
-static const union AnimCmd gUnknown_085F51D4[] =
+static const union AnimCmd sBikingAnimationCmd[] =
 {
     ANIMCMD_FRAME(  0, 8),
     ANIMCMD_FRAME( 64, 8),
@@ -438,34 +442,56 @@ static const union AnimCmd gUnknown_085F51D4[] =
     ANIMCMD_JUMP(0)
 };
 
-static const union AnimCmd *const gUnknown_085F51E8[] =
+static const union AnimCmd *const sBikingAnimation[] =
 {
-    gUnknown_085F51D4
+    sBikingAnimationCmd
 };
 
-static const struct SpriteTemplate gUnknown_085F51EC =
+static const struct SpriteTemplate sBrendanBikeSpriteTemplate =
 {
     .tileTag = 1002,
     .paletteTag = 1002,
-    .oam = &gOamData_85F51CC,
-    .anims = gUnknown_085F51E8,
+    .oam = &sBikeOAM,
+    .anims = sBikingAnimation,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = nullsub_65
 };
 
-static const struct SpriteTemplate gUnknown_085F5204 =
+static const struct SpriteTemplate sMayBikeSpriteTemplate =
 {
     .tileTag = 1003,
     .paletteTag = 1003,
-    .oam = &gOamData_85F51CC,
-    .anims = gUnknown_085F51E8,
+    .oam = &sBikeOAM,
+    .anims = sBikingAnimation,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = nullsub_65
 };
 
-static const struct OamData gUnknown_085F521C =
+static const struct SpriteTemplate sMaleProtagBikeSpriteTemplate =
+{
+    .tileTag = 1006,
+    .paletteTag = 1006,
+    .oam = &sBikeOAM,
+    .anims = sBikingAnimation,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = nullsub_65
+};
+
+static const struct SpriteTemplate sFemaleProtagBikeSpriteTemplate =
+{
+    .tileTag = 1007,
+    .paletteTag = 1007,
+    .oam = &sBikeOAM,
+    .anims = sBikingAnimation,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = nullsub_65
+};
+
+static const struct OamData gBikeRiderOAM =
 {
     .y = 160,
     .shape = SPRITE_SHAPE(64x32),
@@ -473,7 +499,7 @@ static const struct OamData gUnknown_085F521C =
     .priority = 1
 };
 
-static const union AnimCmd gUnknown_085F5224[] =
+static const union AnimCmd gBikeRiderAnimationCmd[] =
 {
     ANIMCMD_FRAME(  0, 8),
     ANIMCMD_FRAME( 32, 8),
@@ -482,31 +508,53 @@ static const union AnimCmd gUnknown_085F5224[] =
     ANIMCMD_JUMP(0)
 };
 
-static const union AnimCmd *const gUnknown_085F5238[] =
+static const union AnimCmd *const gBikeRiderAnimation[] =
 {
-    gUnknown_085F5224
+    gBikeRiderAnimationCmd
 };
 
-static const struct SpriteTemplate gUnknown_085F523C =
+static const struct SpriteTemplate sBrendanRiderSpriteTemplate =
 {
     .tileTag = 1001,
     .paletteTag = 1002,
-    .oam = &gUnknown_085F521C,
-    .anims = gUnknown_085F5238,
+    .oam = &gBikeRiderOAM,
+    .anims = gBikeRiderAnimation,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = sub_817B7C4
+    .callback = alignBikeSpriteCallback
 };
 
-static const struct SpriteTemplate gUnknown_085F5254 =
+static const struct SpriteTemplate sMayRiderSpriteTemplate =
 {
     .tileTag = 1001,
     .paletteTag = 1003,
-    .oam = &gUnknown_085F521C,
-    .anims = gUnknown_085F5238,
+    .oam = &gBikeRiderOAM,
+    .anims = gBikeRiderAnimation,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = sub_817B7C4
+    .callback = alignBikeSpriteCallback
+};
+
+static const struct SpriteTemplate sMaleProtagRiderSpriteTemplate =
+{
+    .tileTag = 1001,
+    .paletteTag = 1002,
+    .oam = &gBikeRiderOAM,
+    .anims = gBikeRiderAnimation,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = alignBikeSpriteCallback
+};
+
+static const struct SpriteTemplate sFemaleProtagRiderSpriteTemplate =
+{
+    .tileTag = 1001,
+    .paletteTag = 1003,
+    .oam = &gBikeRiderOAM,
+    .anims = gBikeRiderAnimation,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = alignBikeSpriteCallback
 };
 
 static const struct OamData gUnknown_085F526C =
@@ -616,7 +664,7 @@ const struct SpritePalette gIntroBikeAndFlygonPalette[] =
     {}
 };
 
-const struct CompressedSpriteSheet gUnknown_085F5334[] =
+const struct CompressedSpriteSheet gCreditsBrendanSpriteSheet[] =
 {
     {
         .data = gIntro2BrendanTiles,
@@ -626,7 +674,7 @@ const struct CompressedSpriteSheet gUnknown_085F5334[] =
     {}
 };
 
-const struct CompressedSpriteSheet gUnknown_085F5344[] =
+const struct CompressedSpriteSheet gCreditsMaySpriteSheet[] =
 {
     {
         .data = gIntro2MayTiles,
@@ -636,7 +684,27 @@ const struct CompressedSpriteSheet gUnknown_085F5344[] =
     {}
 };
 
-const struct CompressedSpriteSheet gUnknown_085F5354[] =
+const struct CompressedSpriteSheet gCreditsProtagMaleSpriteSheet[] =
+{
+    {
+        .data = gCreditsProtagMaleGfx,
+        .size = 0x3800,
+        .tag = 1006
+    },
+    {}
+};
+
+const struct CompressedSpriteSheet gCreditsProtagFemaleSpriteSheet[] =
+{
+    {
+        .data = gCreditsProtagFemaleGfx,
+        .size = 0x3800,
+        .tag = 1007
+    },
+    {}
+};
+
+const struct CompressedSpriteSheet gCreditsBikeSpriteSheet[] =
 {
     {
         .data = gIntro2BicycleTiles,
@@ -666,16 +734,18 @@ static const struct CompressedSpriteSheet gUnknown_085F5374[] =
     {}
 };
 
-const struct SpritePalette gUnknown_085F5384[] =
+const struct SpritePalette gCreditsPalettes1[] =
 {
     { .data = gIntro2BrendanPalette, .tag = 1002 },
     { .data = gIntro2MayPalette,     .tag = 1003 },
     { .data = gIntro2LatiosPalette,  .tag = 1004 },
     { .data = gIntro2LatiasPalette,  .tag = 1005 },
+    { .data = gCreditsProtagMalePal,   .tag = 1006 },
+    { .data = gCreditsProtagFemalePal, .tag = 1007 },
     {}
 };
 
-const struct CompressedSpriteSheet gUnknown_085F53AC[] =
+const struct CompressedSpriteSheet gCreditsBrendanSpriteSheet2[] =
 {
     {
         .data = gIntro2BrendanTiles,
@@ -685,7 +755,7 @@ const struct CompressedSpriteSheet gUnknown_085F53AC[] =
     {}
 };
 
-const struct CompressedSpriteSheet gUnknown_085F53BC[] =
+const struct CompressedSpriteSheet gCreditsMaySpriteSheet2[] =
 {
     {
         .data = gIntro2MayTiles,
@@ -1058,7 +1128,7 @@ static void nullsub_65(struct Sprite *sprite)
 {
 }
 
-static void sub_817B7C4(struct Sprite* sprite)
+static void alignBikeSpriteCallback(struct Sprite* sprite)
 {
     sprite->invisible = gSprites[sprite->data[0]].invisible;
     sprite->pos1.x = gSprites[sprite->data[0]].pos1.x;
@@ -1067,19 +1137,35 @@ static void sub_817B7C4(struct Sprite* sprite)
     sprite->pos2.y = gSprites[sprite->data[0]].pos2.y;
 }
 
-u8 intro_create_brendan_sprite(s16 a, s16 b)
+u8 intro_create_brendan_sprite(s16 x, s16 y)
 {
-    u8 sprite = CreateSprite(&gUnknown_085F51EC, a, b, 2);
-    u8 brendan = CreateSprite(&gUnknown_085F523C, a, b + 8, 3);
+    u8 sprite = CreateSprite(&sBrendanBikeSpriteTemplate, x, y, 2);
+    u8 brendan = CreateSprite(&sBrendanRiderSpriteTemplate, x, y + 8, 3);
     gSprites[brendan].data[0] = sprite;
     return sprite;
 }
 
-u8 intro_create_may_sprite(s16 a, s16 b)
+u8 intro_create_may_sprite(s16 x, s16 y)
 {
-    u8 sprite = CreateSprite(&gUnknown_085F5204, a, b, 2);
-    u8 may = CreateSprite(&gUnknown_085F5254, a, b + 8, 3);
+    u8 sprite = CreateSprite(&sMayBikeSpriteTemplate, x, y, 2);
+    u8 may = CreateSprite(&sMayRiderSpriteTemplate, x, y + 8, 3);
     gSprites[may].data[0] = sprite;
+    return sprite;
+}
+
+u8 credits_create_maleprotag_sprite(s16 x, s16 y)
+{
+    u8 sprite = CreateSprite(&sMaleProtagBikeSpriteTemplate, x, y, 2);
+    u8 rider = CreateSprite(&sMaleProtagRiderSpriteTemplate, x, y + 8, 3);
+    gSprites[rider].data[0] = sprite;
+    return sprite;
+}
+
+u8 credits_create_femaleprotag_sprite(s16 x, s16 y)
+{
+    u8 sprite = CreateSprite(&sFemaleProtagBikeSpriteTemplate, x, y, 2);
+    u8 rider = CreateSprite(&sFemaleProtagRiderSpriteTemplate, x, y + 8, 3);
+    gSprites[rider].data[0] = sprite;
     return sprite;
 }
 

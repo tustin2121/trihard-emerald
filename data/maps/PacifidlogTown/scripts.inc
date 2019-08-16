@@ -57,7 +57,7 @@ PacifidlogTown_EventScript_TransportMossdeep::
 	faceplayer
 	markasdialog
 	askforboat PacifidlogTown_Text_TransportMossdeep_Ask, PacifidlogTown_Text_TransportMossdeep_Decline, PacifidlogTown_Text_TransportMossdeep_NoMoney, PacifidlogTown_Text_TransportMossdeep_Embark
-	warpcustom MAP_MOSSDEEP_CITY, 255, 54, 38
+	warpcustom MAP_MOSSDEEP_CITY, 255, 54, 37
 	waitstate
 	end
 PacifidlogTown_Text_TransportMossdeep_Ask:

@@ -30,6 +30,33 @@ MossdeepCity_Gym_EventScript_220885:: @ 8220885
 
 @ -----------------------------------------------------
 
+MossdeepCity_Gym_GymSignage:: @ 81FC9A2
+	lockall
+	msgbox MossdeepCity_Gym_Text_GymSignageTitle, MSGBOX_SIGN
+	setvar VAR_0x8000, 0
+	addvar_if_set FLAG_BADGE08_GET, VAR_0x8000, 1
+	selectpointer_clamp MossdeepCity_Gym_TextArray_GymSignageNames, VAR_0x8000
+	msgbox_selected MSGBOX_SIGN
+	releaseall
+	end
+MossdeepCity_Gym_Text_GymSignageTitle: @ 820744C
+	.string "{GYM}Sootopolis City Pokémon Gym{END}\n"
+	.string "Tate & Liza's Certified Trainers:$"
+.align 2
+MossdeepCity_Gym_TextArray_GymSignageNames:
+	.4byte MossdeepCity_Gym_Text_GymSignageNameList1
+	.4byte MossdeepCity_Gym_Text_GymSignageNameList2
+	.4byte 0
+MossdeepCity_Gym_Text_GymSignageNameList1:
+	.string "Connor, Holly, Flannery, Alexis, Ethan,\n"
+	.string "{RIVAL_BIRCH}, {RIVAL_HERO}$"
+MossdeepCity_Gym_Text_GymSignageNameList2:
+	.string "Connor, Holly, Flannery, Alexis, Ethan,\n"
+	.string "{RIVAL_BIRCH}, {RIVAL_HERO}, {PLAYER}$"
+
+
+@ -----------------------------------------------------
+
 MossdeepCity_Gym_EventScript_220898:: @ 8220898
 	trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_221783, MossdeepCity_Gym_Text_2218EC, MossdeepCity_Gym_Text_221BCE, MossdeepCity_Gym_EventScript_2208D1, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle

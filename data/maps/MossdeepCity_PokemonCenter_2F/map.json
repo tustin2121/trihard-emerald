@@ -9,7 +9,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
             "script": "PokemonCenter_2F_EventScript_OccupiedSign",
             "type": "sign",
-            "x": 14,
+            "x": 12,
             "y": 6
         },
         {
@@ -73,29 +73,16 @@
             "y": 2
         },
         {
-            "elevation": 3,
-            "flag": "0",
+            "elevation": 4,
+            "flag": "FLAG_ITEM_STOLEN_OCCUPIED_CUSHION",
             "graphics_id": "EVENT_OBJ_GFX_BALL_CUSHION",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
+            "script": "MossdeepCity_PokemonCenter_2F_EventScript_Cushion",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 2,
-            "y": 17
-        },
-        {
-            "elevation": 4,
-            "flag": "0",
-            "graphics_id": "EVENT_OBJ_GFX_BALL_CUSHION",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "PokemonCenter_2F_EventScript_OccupiedSign",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 16,
             "y": 17
         },
         {
@@ -208,7 +195,7 @@
             "dest_map": "MAP_MOSSDEEP_CITY_POKEMON_CENTER_2F",
             "dest_warp_id": 2,
             "elevation": 3,
-            "x": 12,
+            "x": 14,
             "y": 5
         },
         {

@@ -574,6 +574,11 @@ LilycoveCity_ContestLobby_Movement_294053: @ 8294053
 	step_end
 
 EventScript_PblockLink:: @ 8294055
+	msgbox gText_PblockLink, MSGBOX_DESCRIBE
+	end
+gText_PblockLink:
+	.string "This one seems to be out of order.$"
+@ dummied out
 	lockall
 	specialvar VAR_RESULT, PlayerHasBerries
 	compare VAR_RESULT, 0
