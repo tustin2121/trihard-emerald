@@ -18,7 +18,6 @@ SootopolisCity_PokemonCenter_1F_OnTransition: @ 82264FC
 	setrespawn HEAL_LOCATION_SOOTOPOLIS_CITY
 	goto_if_set FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS, Common_EventScript_NopEnd
 	setweather_nodelay WEATHER_POWEROUT
-	playse SE_T_AME
 	setmaplayoutindex LAYOUT_SOOTOPOLIS_CITY_POKEMON_CENTER_ALT
 	@ Move people around
 	setobjectxyperm 4, 6, 9

@@ -1068,6 +1068,7 @@ static bool16 ShouldLegendaryMusicPlayAtLocation(struct WarpData *warp)
         case MAP_NUM(ROUTE126):
         case MAP_NUM(ROUTE127):
         case MAP_NUM(ROUTE128):
+            FlagClear(FLAG_SHOULD_PLAY_LOSER_MUSIC);
             return TRUE;
         default:
             if (VarGet(VAR_RAYQUAZA_STATE) < 4)
