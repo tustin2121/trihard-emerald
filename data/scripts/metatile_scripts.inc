@@ -74,8 +74,13 @@ MetatileText_EmptyTrashCan2:
 MetatileText_EmptyTrashCan3:
 	.string "There's a half-eaten burger in there.$"
 MetatileText_EmptyTrashCan4:
+.if TPP_MODE
 	.string "There's a figure of a man in there,\n"
 	.string "covered in trash. How very disgusting.$"
+.else
+	.string "There's some discarded fliers in here\n"
+	.string "that have old memes printed on them…$"
+.endif
 MetatileText_EmptyTrashCan5:
 	.string "Looks like there's a broken TM in here.$"
 MetatileText_EmptyTrashCan6:
