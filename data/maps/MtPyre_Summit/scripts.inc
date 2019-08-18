@@ -16,6 +16,8 @@ MtPyre_Summit_OnTransition: @ 8231FFD
 	call_if_eq MtPyre_Summit_OnTransition_SetSceneForTheft
 	compare VAR_MT_PYRE_STATE, 2
 	call_if_eq MtPyre_Summit_OnTransition_SetSceneForReturn
+	compare VAR_MT_PYRE_STATE, 3
+	call_if_eq MtPyre_Summit_OnTransition_SetSceneForAfterReturn
 	end
 
 MtPyre_Summit_OnTransition_SetSceneForTheft:
@@ -31,6 +33,11 @@ MtPyre_Summit_OnTransition_SetSceneForReturn: @ 8232009
 	setobjectxyperm LID_ARCHIE, 22, 6
 	setobjectmovementtype LID_MAXIE, MOVEMENT_TYPE_FACE_UP
 	setobjectmovementtype LID_ARCHIE, MOVEMENT_TYPE_FACE_UP
+	end
+
+MtPyre_Summit_OnTransition_SetSceneForAfterReturn:
+	setflag FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
+	setflag FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
 	end
 
 @ -----------------------------------------------------

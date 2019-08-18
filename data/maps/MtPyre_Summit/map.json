@@ -57,7 +57,7 @@
             "var": "VAR_MT_PYRE_STATE",
             "var_value": "2",
             "x": 22,
-            "y": 14
+            "y": 10
         },
         {
             "elevation": 3,
@@ -66,7 +66,7 @@
             "var": "VAR_MT_PYRE_STATE",
             "var_value": "2",
             "x": 23,
-            "y": 14
+            "y": 10
         },
         {
             "elevation": 3,
@@ -75,7 +75,7 @@
             "var": "VAR_MT_PYRE_STATE",
             "var_value": "2",
             "x": 24,
-            "y": 14
+            "y": 10
         }
     ],
     "id": "MAP_MT_PYRE_SUMMIT",
