@@ -87,7 +87,7 @@ Route110_TrickHouseEntrance_EventScript_269B93:: @ 8269B93
 	return
 
 Route110_TrickHouseEntrance_EventScript_269B9D:: @ 8269B9D
-	call_if_unset FLAG_SYS_GAME_CLEAR, Route110_TrickHouseEntrance_EventScript_269BAD
+	call_if_unset FLAG_BADGE08_GET, Route110_TrickHouseEntrance_EventScript_269BAD
 	return
 
 Route110_TrickHouseEntrance_EventScript_269BA7:: @ 8269BA7
