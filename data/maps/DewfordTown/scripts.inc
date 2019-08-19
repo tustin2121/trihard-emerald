@@ -24,7 +24,7 @@ DewfordTown_EventScript_BrineyArriveFromSlateport:: @ 81ED139
 	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	hideobjectat 1, MAP_ROUTE109
-	msgbox Route109_Text_1E9C1D, MSGBOX_DEFAULT
+	msgbox Route109_Text_1E9C1D, MSGBOX_NPC
 	closemessage
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
 	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_ROUTE109
@@ -166,7 +166,7 @@ DewfordTown_EventScript_BrineyDepartForRoute104:: @ 81E9660
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
 	goto Briney_EventScript_Dewford_Route104
 	end
-	
+
 DewfordTown_EventScript_BrineyDepartForSlateport:: @ 81E96E7
 	call DewfordTown_EventScript_271E95
 	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
@@ -420,4 +420,3 @@ DewfordTown_Text_1EA3FE: @ 81EA3FE
 	.string "But personally, I think\n"
 	.string "“{STR_VAR_1}”\l"
 	.string "is what's real in cool.$"
-
