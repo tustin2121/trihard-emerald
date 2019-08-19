@@ -2,13 +2,13 @@ SeafloorCavern_Room3_MapScripts:: @ 8234937
 	.byte 0
 
 SeafloorCavern_Room3_EventScript_234938:: @ 8234938
-	trainerbattle_single TRAINER_SHELLY_2, SeafloorCavern_Room3_Text_234966, SeafloorCavern_Room3_Text_234A79
-	msgbox SeafloorCavern_Room3_Text_234A8A, MSGBOX_AUTOCLOSE
+	@ trainerbattle_single TRAINER_SHELLY_2, SeafloorCavern_Room3_Text_234966, SeafloorCavern_Room3_Text_234A79
+	@ msgbox SeafloorCavern_Room3_Text_234A8A, MSGBOX_AUTOCLOSE
 	end
 
 SeafloorCavern_Room3_EventScript_23494F:: @ 823494F
-	trainerbattle_single TRAINER_GRUNT_27, SeafloorCavern_Room3_Text_234B3A, SeafloorCavern_Room3_Text_234BFE
-	msgbox SeafloorCavern_Room3_Text_234C04, MSGBOX_AUTOCLOSE
+	@ trainerbattle_single TRAINER_JOEY_E4_1, SeafloorCavern_Room3_Text_234B3A, SeafloorCavern_Room3_Text_234BFE
+	@ msgbox SeafloorCavern_Room3_Text_234C04, MSGBOX_AUTOCLOSE
 	end
 
 SeafloorCavern_Room3_Text_234966: @ 8234966

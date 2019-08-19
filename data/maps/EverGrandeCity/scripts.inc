@@ -129,3 +129,61 @@ EverGrandeCity_Text_TransportMossdeep_NoMoney:
 	.string "You don't have the money.$"
 EverGrandeCity_Text_TransportMossdeep_Embark:
 	.string "Thanks! Let us embark!$"
+
+
+EverGrandeCity_EventScript_JoeyFight::
+	lock
+	faceplayer
+	markasdialog
+	goto_if_set FLAG_DAILY_E4_JOEY_BATTLE, EverGrandeCity_EventScript_JoeyFight_After
+	goto_if_set FLAG_MET_E4_JOEY, EverGrandeCity_EventScript_JoeyFightRematch
+	msgbox EverGrandeCity_Text_JoeyFight1
+	setflag FLAG_MET_E4_JOEY
+	setflag FLAG_DEATH_PREVENT
+	setflag FLAG_DEATH_PREVENT_1HP
+	trainerbattle_no_intro TRAINER_JOEY_E4_1, EverGrandeCity_Text_JoeyFight2
+	clearflag FLAG_DEATH_PREVENT
+	clearflag FLAG_DEATH_PREVENT_1HP
+	setflag FLAG_DAILY_E4_JOEY_BATTLE
+	msgbox EverGrandeCity_Text_JoeyFight3
+	release
+	end
+EverGrandeCity_Text_JoeyFight1:
+	.string "I'm really nervous about the\n"
+	.string "Hoenn Elite Four Conference.\p"
+	.string "I came all the way from Johto for this,\n"
+	.string "but I don't think I'm ready yet…\p"
+	.string "Hey, wanna battle real quick?\n"
+	.string "We can see if we're ready together!$"
+EverGrandeCity_Text_JoeyFight2:
+	.string "Man, I can't catch a break…$"
+EverGrandeCity_Text_JoeyFight3:
+	.string "So, are you really tough?\n"
+	.string "Or am I just bad this?\p"
+	.string "I taught my Pokémon some TMs like\n"
+	.string "people said, but I think that just\l"
+	.string "made my Pokémon worse…$"
+EverGrandeCity_EventScript_JoeyFight_After:
+	msgbox EverGrandeCity_Text_JoeyFight_After
+	release
+	end
+EverGrandeCity_Text_JoeyFight_After:
+	.string "Joey: Maybe I'll be better tomorrow…\n"
+	.string "I gotta think on what to do…$"
+EverGrandeCity_EventScript_JoeyFightRematch:
+	msgbox EverGrandeCity_Text_JoeyFightRematch1
+	setflag FLAG_DEATH_PREVENT
+	setflag FLAG_DEATH_PREVENT_1HP
+	trainerbattle_no_intro TRAINER_JOEY_E4_1, EverGrandeCity_Text_JoeyFight2
+	clearflag FLAG_DEATH_PREVENT
+	clearflag FLAG_DEATH_PREVENT_1HP
+	setflag FLAG_DAILY_E4_JOEY_BATTLE
+	msgbox EverGrandeCity_Text_JoeyFightRematch3
+	release
+	end
+EverGrandeCity_Text_JoeyFightRematch1:
+	.string "Joey: Hey, let's battle again and see\n"
+	.string "if we got any better!$"
+EverGrandeCity_Text_JoeyFightRematch3:
+	.string "Man, I must be bad at this. You seem\n"
+	.string "to be getting better, but I'm not…$"

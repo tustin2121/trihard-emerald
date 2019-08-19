@@ -7655,19 +7655,6 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Julio[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Grunt27[] = {
-    {
-    .iv = 50,
-    .lvl = 35,
-    .species = SPECIES_MIGHTYENA,
-    },
-    {
-    .iv = 50,
-    .lvl = 35,
-    .species = SPECIES_GOLBAT,
-    }
-};
-
 static const struct TrainerMonNoItemDefaultMoves sParty_Grunt28[] = {
     {
     .iv = 0,
@@ -12498,6 +12485,38 @@ static const struct TrainerMonNoItemDefaultMoves sParty_May16[] = {
 
 // Trihard Emerald
 
+static const struct TrainerMonNoItemCustomMoves sParty_JoeyE41[] = {
+    {
+    .iv = 0,
+    .lvl = 46,
+    .species = SPECIES_MIGHTYENA,
+    .moves = MOVE_SNATCH, MOVE_TAUNT, MOVE_ODOR_SLEUTH, MOVE_ROAR
+    },
+    {
+    .iv = 0,
+    .lvl = 48,
+    .species = SPECIES_MACHAMP,
+    .moves = MOVE_LEER, MOVE_BULK_UP, MOVE_FOCUS_ENERGY, MOVE_ROCK_SMASH
+    },
+    {
+    .iv = 0,
+    .lvl = 50,
+    .species = SPECIES_CHANSEY,
+    .moves = MOVE_CALM_MIND, MOVE_SUNNY_DAY, MOVE_SAFEGUARD, MOVE_DOUBLE_SLAP
+    },
+    {
+    .iv = 0,
+    .lvl = 52,
+    .species = SPECIES_BLISSEY,
+    .moves = MOVE_SNATCH, MOVE_RAIN_DANCE, MOVE_ATTRACT, MOVE_DOUBLE_SLAP
+    },
+    {
+    .iv = 0,
+    .lvl = 55,
+    .species = SPECIES_RATICATE,
+    .moves = MOVE_TACKLE, MOVE_TAUNT, MOVE_FOCUS_ENERGY, MOVE_ROAR
+    }
+};
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Logan_SternMugging[] = {
     {

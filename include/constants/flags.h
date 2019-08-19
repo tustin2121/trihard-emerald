@@ -1126,7 +1126,7 @@
 #define FLAG_ITEM_STOLEN_FULL_RESTORES                              0x496 // Trihard
 #define FLAG_ITEM_STOLEN_SNORLAX_DOLL                               0x497 // Trihard
 #define FLAG_ITEM_STOLEN_OCCUPIED_CUSHION                           0x498 // Trihard
-#define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
+#define FLAG_MET_E4_JOEY                                            0x499 // Unused Flag
 #define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
 #define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag
 #define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag
@@ -1457,7 +1457,7 @@
 #define FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY       (SYSTEM_FLAGS + 0xD0)
 #define FLAG_DAILY_BERRY_MASTERS_WIFE               (SYSTEM_FLAGS + 0xD1)
 #define FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY        (SYSTEM_FLAGS + 0xD2)
-#define FLAG_DAILY_0x933                            (SYSTEM_FLAGS + 0xD3)
+#define FLAG_DAILY_E4_JOEY_BATTLE                   (SYSTEM_FLAGS + 0xD3)
 #define FLAG_DAILY_APPRENTICE_LEAVES                (SYSTEM_FLAGS + 0xD4)
 #define FLAG_DAILY_DAD_CALL                         (SYSTEM_FLAGS + 0xD5)
 #define FLAG_DAILY_0x936                            (SYSTEM_FLAGS + 0xD6)

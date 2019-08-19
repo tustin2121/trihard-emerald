@@ -568,7 +568,7 @@
 #define TRAINER_CATHERINE_4     564
 #define TRAINER_CATHERINE_5     565
 #define TRAINER_JULIO           566
-#define TRAINER_GRUNT_27        567
+#define TRAINER_JOEY_E4_1        567
 #define TRAINER_GRUNT_28        568
 #define TRAINER_GRUNT_29        569
 #define TRAINER_GRUNT_30        570
