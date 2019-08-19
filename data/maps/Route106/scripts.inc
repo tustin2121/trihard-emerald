@@ -1,6 +1,75 @@
 Route106_MapScripts:: @ 81EE489
 	.byte 0
 
+@ Tyler -----------------------------------
+
+Route106_TrainerTrio_Tyler::
+	lock
+	faceplayer
+	markasdialog
+	@ TODO here I need to check if one day has passed
+	msgbox Route106_TrainerTrio_Tyler_Text1, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route106_TrainerTrio_Tyler_Battle
+	release
+	end
+
+Route106_TrainerTrio_Tyler_Text1:
+	.string "Tyler: Heya! We are the Trainer Trio!\p"
+	.string "We came here in vacation from\n"
+	.string "another region and we are really\l"
+	.string "enjoying ourselves in Hoenn.\p"
+	.string "We like to train our Pokémon everyday.\p"
+	.string "Would you like to join us in our\n"
+	.string "training session?$"
+
+Route106_TrainerTrio_Tyler_Battle:
+	msgbox Route106_TrainerTrio_Tyler_Battle_Text, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_TYLER, Route106_TrainerTrio_Tyler_Battle_DefeatText
+	release
+	end
+
+Route106_TrainerTrio_Tyler_Battle_Text:
+	.string "Tyler: Good, we will do our best!\n"
+	.string "I will be your first opponent.$"
+
+Route106_TrainerTrio_Tyler_Battle_DefeatText:
+	.string "Well, good job!/p"
+	.string "Come back tomorrow if you want\n"
+	.string "to train more!"
+
+@ Tessa ------------------------------------
+
+Route106_TrainerTrio_Tessa::
+	lock
+	faceplayer
+	markasdialog
+	msgbox Route106_TrainerTrio_Tessa_Text, MSGBOX_NPC
+	release
+	end
+
+Route106_TrainerTrio_Tessa_Text:
+	.string "Tessa: The weather in Hoenn is\n"
+	.string "wonderful!\p"
+	.string "I wish I could bring it to the island\n"
+	.string "we live in…$"
+
+@ Theo -------------------------------------
+
+Route106_TrainerTrio_Theo::
+	lock
+	faceplayer
+	markasdialog
+	msgbox Route106_TrainerTrio_Theo_Text, MSGBOX_NPC
+	release
+	end
+
+Route106_TrainerTrio_Theo_Text:
+	.string "We usually do a training session\n"
+	.string "per day.\p"
+	.string "If you want to train with us,\n"
+	.string "come here regularly.$"
+
 @ -----------------------------------------------------
 @ Signs
 
@@ -110,4 +179,3 @@ Route106_Text_296553: @ 8296553
 Route106_Text_296588: @ 8296588
 	.string "Oh, no! I've got this feeling I'll hook\n"
 	.string "a big one!$"
-

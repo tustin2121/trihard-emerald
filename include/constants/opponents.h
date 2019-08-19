@@ -856,7 +856,10 @@
 #define TRAINER_LEAF            852
 #define TRAINER_BRENDAN_16      853
 #define TRAINER_MAY_16          854
+#define TRAINER_TYLER           855
+#define TRAINER_TESSA           856
+#define TRAINER_THEO            857
 
-#define TRAINERS_COUNT          855
+#define TRAINERS_COUNT          858
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H
