@@ -28,7 +28,7 @@ Route106_TrainerTrio_Tyler_TextAlreadyDone:
 	.string "tomorrow too!$"
 
 Route106_TrainerTrio_Tyler_Text1:
-	.string "Tyler: Heya! We are the Trainer Trio!\p"
+	.string "Tyler: Heya, we are the Training Trio!\p"
 	.string "We came here in vacation from\n"
 	.string "another region and we are really\l"
 	.string "enjoying ourselves in Hoenn.\p"
