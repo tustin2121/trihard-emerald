@@ -5977,7 +5977,11 @@ void dp05_rare_candy(u8 taskId, TaskFunc task)
     u16 *itemPtr = &gSpecialVar_ItemId;
     bool8 cannotUseEffect;
 
-    if (GetMonData(mon, MON_DATA_LEVEL) != MAX_LEVEL)
+    if (GetMonData(mon, MON_DATA_HP) == 0)
+    {
+        cannotUseEffect = TRUE;
+    }
+    else if (GetMonData(mon, MON_DATA_LEVEL) != MAX_LEVEL)
     {
         sub_81B79A0(mon, arrayPtr);
         cannotUseEffect = ExecuteTableBasedItemEffect__(gUnknown_0203CEC8.unk9, *itemPtr, 0);

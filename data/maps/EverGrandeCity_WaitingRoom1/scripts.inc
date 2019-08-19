@@ -72,7 +72,7 @@ EverGrandeCity_WaitingRoom1_Text_TVs:
 	.string "12th combatant for the day, a {PLAYER_boy}\l"
 	.string "by the name of {PLAYER}, coming to us\l"
 	.string "from the town of Littleroot!\p"
-	.string "But first, a word from our sponsers.$"
+	.string "But first, a word from our sponsors.$"
 EverGrandeCity_WaitingRoom1_SignScript_TVs2:
 	msgbox EverGrandeCity_WaitingRoom1_Text_TVs2, MSGBOX_DESCRIBE
 	end

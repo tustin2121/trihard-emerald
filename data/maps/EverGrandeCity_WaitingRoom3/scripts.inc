@@ -61,7 +61,7 @@ EverGrandeCity_WaitingRoom3_Text_TVs:
 	.string "was a rogue agent that helped stop\l"
 	.string "the beasts and save the region!\p"
 	.string "If these roumors are true, it's possible\n"
-	.string "we may be seeing a new raising star!\l"
+	.string "we may be seeing a new rising star!\l"
 	.string "Possibly even the next champion!$"
 EverGrandeCity_WaitingRoom3_SignScript_TVsA:
 	msgbox EverGrandeCity_WaitingRoom3_Text_TVsA, MSGBOX_DIALOG
