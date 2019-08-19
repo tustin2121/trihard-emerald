@@ -7,12 +7,25 @@ Route106_TrainerTrio_Tyler::
 	lock
 	faceplayer
 	markasdialog
-	@ TODO here I need to check if one day has passed
+	dotimebasedevents
+	compare VAR_DAILY_TRAINERTRIO, 0
+	goto_if_eq Route106_TrainerTrio_Tyler_NewDay
+	msgbox Route106_TrainerTrio_Tyler_TextAlreadyDone
+	release
+	end
+
+Route106_TrainerTrio_Tyler_NewDay:
 	msgbox Route106_TrainerTrio_Tyler_Text1, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq Route106_TrainerTrio_Tyler_Battle
+	msgbox Route106_TrainerTrio_Tyler_TextRefusal, MSGBOX_NPC
 	release
 	end
+
+Route106_TrainerTrio_Tyler_TextAlreadyDone:
+	.string "Tyler: You are very talented!\p"
+	.string "I would like to battle you\n"
+	.string "tomorrow too!$"
 
 Route106_TrainerTrio_Tyler_Text1:
 	.string "Tyler: Heya! We are the Trainer Trio!\p"
@@ -25,7 +38,9 @@ Route106_TrainerTrio_Tyler_Text1:
 
 Route106_TrainerTrio_Tyler_Battle:
 	msgbox Route106_TrainerTrio_Tyler_Battle_Text, MSGBOX_NPC
-	trainerbattle_no_intro TRAINER_TYLER, Route106_TrainerTrio_Tyler_Battle_DefeatText
+	trainerbattle_no_intro TRAINER_TYLER_BADGE8, Route106_TrainerTrio_Tyler_Battle_DefeatText
+	setvar VAR_DAILY_TRAINERTRIO, 1
+	msgbox Route106_TrainerTrio_Tyler_Text2
 	release
 	end
 
@@ -34,9 +49,16 @@ Route106_TrainerTrio_Tyler_Battle_Text:
 	.string "I will be your first opponent.$"
 
 Route106_TrainerTrio_Tyler_Battle_DefeatText:
-	.string "Well, good job!/p"
-	.string "Come back tomorrow if you want\n"
-	.string "to train more!"
+	.string "Well, good job!$"
+
+Route106_TrainerTrio_Tyler_Text2:
+	.string "Tyler: You really are powerful.\p"
+	.string "If you want to train more,\n"
+	.string "I think Tessa will be happy\l"
+	.string "to take on your challenge.$"
+
+Route106_TrainerTrio_Tyler_TextRefusal:
+	.string "Aw, that's too bad.$"
 
 @ Tessa ------------------------------------
 
@@ -44,6 +66,8 @@ Route106_TrainerTrio_Tessa::
 	lock
 	faceplayer
 	markasdialog
+	compare VAR_DAILY_TRAINERTRIO, 1
+	goto_if_eq Route106_TrainerTrio_Tessa_NewDay
 	msgbox Route106_TrainerTrio_Tessa_Text, MSGBOX_NPC
 	release
 	end
@@ -54,21 +78,96 @@ Route106_TrainerTrio_Tessa_Text:
 	.string "I wish I could bring it to the island\n"
 	.string "we live in…$"
 
+Route106_TrainerTrio_Tessa_NewDay:
+	msgbox Route106_TrainerTrio_Tessa_Text1, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route106_TrainerTrio_Tessa_Battle
+	msgbox Route106_TrainerTrio_Tessa_TextRefusal, MSGBOX_NPC
+	release
+	end
+
+Route106_TrainerTrio_Tessa_Text1:
+	.string "Tessa: So, you defeated Tyler…\p"
+	.string "Please, let me see how strong\n"
+	.string "you are.$"
+
+Route106_TrainerTrio_Tessa_Battle:
+	msgbox Route106_TrainerTrio_Tessa_Battle_Text, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_TESSA_BADGE8, Route106_TrainerTrio_Tessa_Battle_DefeatText
+	setvar VAR_DAILY_TRAINERTRIO, 2
+	msgbox Route106_TrainerTrio_Tessa_Text2
+	release
+	end
+
+Route106_TrainerTrio_Tessa_Battle_Text:
+	.string "I will do my best!$"
+
+Route106_TrainerTrio_Tessa_Battle_DefeatText:
+	.string "Whoa! You are too strong!$"
+
+Route106_TrainerTrio_Tessa_Text2:
+	.string "Tessa: At this point, Theo is\n"
+	.string "the only one who could have\l"
+	.string "a chance to beat you…$"
+
+Route106_TrainerTrio_Tessa_TextRefusal:
+	.string "Now I'm just upset.$"
+
 @ Theo -------------------------------------
 
 Route106_TrainerTrio_Theo::
 	lock
 	faceplayer
 	markasdialog
+	compare VAR_DAILY_TRAINERTRIO, 2
+	goto_if_eq Route106_TrainerTrio_Theo_NewDay
 	msgbox Route106_TrainerTrio_Theo_Text, MSGBOX_NPC
 	release
 	end
 
+Route106_TrainerTrio_Theo_NewDay:
+	msgbox Route106_TrainerTrio_Theo_Text1, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route106_TrainerTrio_Theo_Battle
+	msgbox Route106_TrainerTrio_Theo_TextRefusal, MSGBOX_NPC
+	release
+	end
+
+Route106_TrainerTrio_Theo_Battle:
+	msgbox Route106_TrainerTrio_Theo_Battle_Text, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_THEO_BADGE8, Route106_TrainerTrio_Theo_Battle_DefeatText
+	setvar VAR_DAILY_TRAINERTRIO, 3
+	msgbox Route106_TrainerTrio_Theo_Text2, MSGBOX_NPC
+	release
+	end
+
 Route106_TrainerTrio_Theo_Text:
-	.string "We usually do a training session\n"
-	.string "per day.\p"
+	.string "Theo: We usually do a training\n"
+	.string "session per day.\p"
 	.string "If you want to train with us,\n"
 	.string "come here regularly.$"
+
+Route106_TrainerTrio_Theo_Text1:
+	.string "Theo: So you defeated both Tyler\n"
+	.string "and Tessa?\p"
+	.string "Well, then I am curious.\p"
+	.string "Please, accept my challenge.$"
+
+Route106_TrainerTrio_Theo_Battle_Text:
+	.string "Thank you. En garde!$"
+
+Route106_TrainerTrio_Theo_Battle_DefeatText:
+	.string "What happened?$"
+
+Route106_TrainerTrio_Theo_Text2::
+	.string "Theo: I can't believe it.\p"
+	.string "You literally swept us.\p"
+	.string "Please, come back tomorrow,\n"
+	.string "it has been an honor battling\l"
+	.string "with such a great trainer.$"
+
+Route106_TrainerTrio_Theo_TextRefusal:
+	.string "Oh, come on…$"
 
 @ -----------------------------------------------------
 @ Signs
