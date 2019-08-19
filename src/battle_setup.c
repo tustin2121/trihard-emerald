@@ -1595,7 +1595,7 @@ const u8 *GetTrainerWonSpeech(void)
     
     if (gBattleTypeFlags & BATTLE_TYPE_RAYQUAZA)
         string = gText_Whiteout_Rayquaza;
-    else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
+    else if (gBattleTypeFlags & BATTLE_TYPE_RAGING_LEGENDARY)
         string = gText_Whiteout_RagingLegendary;
     else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) == 0)
         string = gText_Whiteout_WildMon;

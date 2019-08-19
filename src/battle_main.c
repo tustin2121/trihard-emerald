@@ -5715,7 +5715,7 @@ static void HandleAction_Run(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
 
-    if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY) //BATTLE_TYPE_RAGING_LEGENDARY)
+    if (gBattleTypeFlags & BATTLE_TYPE_WEATHER_TRIO) //BATTLE_TYPE_RAGING_LEGENDARY)
     {
         ClearFuryCutterDestinyBondGrudge(gBattlerAttacker);
         gBattleCommunication[MULTISTRING_CHOOSER] = 3;
