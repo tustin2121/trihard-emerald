@@ -34,7 +34,7 @@ Run Manager
 
 (For the subreddit and/or the stream description)
 
-TriHard Emerald is an Emerald ROM Hack and about as close to a Nuzelocke TPP is ever likely to get. When a Pokemon's HP 
+TriHard Emerald is an Emerald ROM Hack and about as close to a Nuzlocke TPP is ever likely to get. When a Pokemon's HP 
 drops to zero, *they die*. If we white out, the game resets from our last save point. We can only save when healing at 
 a Pokemon Center or heal house. There's no PC, only our team of six. There will be help along the way, but it's up to 
 us to use that help effectively. Can we become Champion under such circumstances?
