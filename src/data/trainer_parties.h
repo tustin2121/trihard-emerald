@@ -6783,7 +6783,7 @@ static const struct TrainerMonItemCustomMoves sParty_Logan1[] = {
     .heldItem = ITEM_SITRUS_BERRY,
     .moves = MOVE_PSYCHIC, MOVE_WISH, MOVE_FLY, MOVE_CONFUSE_RAY
     },
-    #else 
+    #else
     {
     .iv = 150,
     .lvl = LOGAN_BASE_LEVEL+0,
@@ -12578,3 +12578,56 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Logan_Hideout[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_TrainerTrio_Tyler_Badge8[] = {
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_DRAGONAIR,
+    },
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_GENGAR,
+    },
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_AMPHAROS,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_TrainerTrio_Tessa_Badge8[] = {
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_JUMPLUFF,
+    },
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_MILOTIC,
+    },
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_BLISSEY,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_TrainerTrio_Theo_Badge8[] = {
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_AGGRON,
+    },
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_SNORLAX,
+    },
+    {
+        .iv = 50,
+        .lvl = 45,
+        .species = SPECIES_LAPRAS,
+    }
+};

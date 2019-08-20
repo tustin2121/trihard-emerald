@@ -241,7 +241,8 @@ static const u16 sNumberOneVarsAndThresholds[][2] = {
     {VAR_DAILY_BLENDER,  20},
     {VAR_DAILY_PLANTED_BERRIES,  20},
     {VAR_DAILY_PICKED_BERRIES,  20},
-    {VAR_DAILY_BP,  30}
+    {VAR_DAILY_BP,  30},
+    {VAR_DAILY_TRAINERTRIO,  200} // Resets trainer trio daily and makes a TV program if var reaches 200 (never)
 };
 
 static const u8 *const sPokeNewsTextGroup_Upcoming[] = {

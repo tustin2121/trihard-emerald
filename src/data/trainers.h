@@ -2696,7 +2696,7 @@ const struct Trainer gTrainers[] = {
         .trainerClass = TRAINER_CLASS_TEAM_AQUA,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_AQUA,
         .trainerPic = TRAINER_PIC_AQUA_GRUNT_F,
-        .trainerName = _("Mila"), //_("Grunt"), 
+        .trainerName = _("Mila"), //_("Grunt"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
@@ -11971,9 +11971,9 @@ const struct Trainer gTrainers[] = {
         .partySize = 1,
         .party = {.NoItemDefaultMoves = sParty_May16 }
     },
-    
+
     // Trihard Emerald
-    
+
     [TRAINER_LOGAN_STERNCUTSCENE] =
     {
         .partyFlags = 0,
@@ -11988,8 +11988,8 @@ const struct Trainer gTrainers[] = {
         .extraSize = 0,
         .party = {.NoItemDefaultMoves = sParty_Logan_SternMugging }
     },
-    
-    [TRAINER_LOGAN_INSTITUTE] = 
+
+    [TRAINER_LOGAN_INSTITUTE] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -12003,7 +12003,7 @@ const struct Trainer gTrainers[] = {
         .extraSize = 0,
         .party = {.NoItemDefaultMoves = sParty_Logan_Institute }
     },
-    
+
     [TRAINER_LOGAN_HIDEOUT] =
     {
         .partyFlags = 0,
@@ -12017,6 +12017,51 @@ const struct Trainer gTrainers[] = {
         .partySize = 4,
         .extraSize = 2,
         .party = {.NoItemDefaultMoves = sParty_Logan_Hideout }
+    },
+
+    [TRAINER_TYLER_BADGE8] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_CAMPER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CAMPER,
+        .trainerName = _("Tyler"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = 3,
+        .extraSize = 0,
+        .party = {.NoItemDefaultMoves = sParty_TrainerTrio_Tyler_Badge8 }
+    },
+
+    [TRAINER_TESSA_BADGE8] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_LASS,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_LASS,
+        .trainerName = _("Tessa"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = 3,
+        .extraSize = 0,
+        .party = {.NoItemDefaultMoves = sParty_TrainerTrio_Tessa_Badge8 }
+    },
+
+    [TRAINER_THEO_BADGE8] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_SCHOOL_KID,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_SCHOOL_KID_M,
+        .trainerName = _("Theo"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = 3,
+        .extraSize = 0,
+        .party = {.NoItemDefaultMoves = sParty_TrainerTrio_Theo_Badge8 }
     },
 
 };
