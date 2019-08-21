@@ -541,7 +541,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_SYS_WEATHER_CTRL",
             "graphics_id": "EVENT_OBJ_GFX_CAMPER",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -554,7 +554,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_SYS_WEATHER_CTRL",
             "graphics_id": "EVENT_OBJ_GFX_LASS",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -567,7 +567,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_SYS_WEATHER_CTRL",
             "graphics_id": "EVENT_OBJ_GFX_SCHOOL_KID_M",
             "movement_range_x": 0,
             "movement_range_y": 0,
