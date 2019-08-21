@@ -12604,11 +12604,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TrainerTrio_Theo_Badge8[
     {
         .iv = 50,
         .lvl = 45,
-        .species = SPECIES_SNORLAX,
+        .species = SPECIES_LAPRAS,
     },
     {
         .iv = 50,
         .lvl = 45,
-        .species = SPECIES_LAPRAS,
+        .species = SPECIES_SNORLAX,
     }
 };
