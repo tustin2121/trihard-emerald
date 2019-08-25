@@ -523,7 +523,7 @@ void CopyMon(void *dest, void *src, size_t size);
 u8 GiveMonToPlayer(struct Pokemon *mon);
 u8 SendMonToPC(struct Pokemon* mon);
 bool8 CanMonDie(int partySlot);
-void KillMon(int partySlot, u8 hasMourned);
+void KillMon(int partySlot, u8 hasMourned, bool8 bypassChecks);
 void Restore1HPDeathPreventedMons(void);
 void RemoveDeadMonFromParty(bool8 endOfBattle);
 u8 CalculatePlayerPartyCount(void);

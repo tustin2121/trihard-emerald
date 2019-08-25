@@ -4459,7 +4459,7 @@ bool8 CanMonDie(int partySlot)
 }
 
 // Sends a pokemon to the PC and removes it from the party.
-void KillMon(int partySlot, u8 hasMourned)
+void KillMon(int partySlot, u8 hasMourned, bool8 bypassChecks)
 {
     struct Pokemon* mon = &gPlayerParty[partySlot];
     u16 item;
@@ -4468,14 +4468,14 @@ void KillMon(int partySlot, u8 hasMourned)
     if (partySlot >= gPlayerPartyCount) return;
     // sanity check, can't kill null pokemon or eggs
     if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_NONE) return;
-    if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_EGG) return;
+    if (!bypassChecks && GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_EGG) return;
     // Cannot kill a Shedinja
-    if (GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_SHEDINJA) return;
+    if (!bypassChecks && GetMonData(mon, MON_DATA_SPECIES2, NULL) == SPECIES_SHEDINJA) return;
     
     // If the global death prevention flag is on, don't kill it.
-    if (FlagGet(FLAG_DEATH_PREVENT)) return;
+    if (!bypassChecks && FlagGet(FLAG_DEATH_PREVENT)) return;
     // If this pokemon has a death prevention flag on it, don't kill it.
-    if (gPlayerDeathPreventions[partySlot] != DEATH_PREVENT_NONE) return;
+    if (!bypassChecks && gPlayerDeathPreventions[partySlot] != DEATH_PREVENT_NONE) return;
 
     // Don't bother, as this last pokemon fainting will cause a whiteout anyway, which will reset everything
     if (gPlayerPartyCount <= 1) return;
@@ -4545,7 +4545,7 @@ void RemoveDeadMonFromParty(bool8 endOfBattle)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_STATUS, NULL) == STATUS1_DEAD)
         {
-            KillMon(i, 0);
+            KillMon(i, 0, FALSE);
         }
     }
     CompactPartySlots();
@@ -7263,7 +7263,7 @@ void RemovePartyBadEggs(void)
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE) continue;
         if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG, NULL))
         {
-            KillMon(i, 1);
+            KillMon(i, 1, TRUE);
         }
     }
     CompactPartySlots();
@@ -7279,7 +7279,7 @@ void RemovePartyShedinja(void)
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL) == SPECIES_SHEDINJA)
         {
             GetMonData(&gPlayerParty[i], MON_DATA_NICKNAME, gStringVar1);
-            KillMon(i, 1);
+            KillMon(i, 1, TRUE);
         }
     }
     CompactPartySlots();
