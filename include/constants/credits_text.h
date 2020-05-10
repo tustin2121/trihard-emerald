@@ -29,7 +29,7 @@ static const u8 gCreditsText_ConceptandBalancing[] = _("Concept and Balancing");
 static const u8 gCreditsText_Chaoslord2[] = _("Chaos lord2");
 static const u8 gCreditsText_SpecialThanksTo[] = _("Special Thanks To");
 static const u8 gCreditsText_ThePkmnReverseEngineeringProject[] = _("The Pokémon Reverse Engineering Project");
-static const u8 gCreditsText_DiegoIsAwesomesCrystalDustProject[] = _("DiegoIsAwesome's CrystalDust Project");
+static const u8 gCreditsText_SierraffinitysCrystalDustProject[] = _("Sierraffinity's CrystalDust Project");
 static const u8 gCreditsText_TheTwitchPlaysPkmnCommunity[] = _("The TwitchPlaysPokémon Community");
 static const u8 gCreditsText_HiMom[] = _("Hi, Mom!");
 static const u8 gCreditsText_ImonTwitchTV[] = _("I'm on Twitch.TV!");
@@ -202,7 +202,7 @@ static const struct CreditsEntry gCreditsEntry_ConceptandBalancing[] = {FALSE, T
 static const struct CreditsEntry gCreditsEntry_Chaoslord2[] = {FALSE, FALSE, gCreditsText_Chaoslord2};
 static const struct CreditsEntry gCreditsEntry_SpecialThanksTo[] = {FALSE, TRUE, gCreditsText_SpecialThanksTo};
 static const struct CreditsEntry gCreditsEntry_ThePkmnReverseEngineeringProject[] = {FALSE, FALSE, gCreditsText_ThePkmnReverseEngineeringProject};
-static const struct CreditsEntry gCreditsEntry_DiegoIsAwesomesCrystalDustProject[] = {FALSE, FALSE, gCreditsText_DiegoIsAwesomesCrystalDustProject};
+static const struct CreditsEntry gCreditsEntry_SierraffinitysCrystalDustProject[] = {FALSE, FALSE, gCreditsText_SierraffinitysCrystalDustProject};
 static const struct CreditsEntry gCreditsEntry_TheTwitchPlaysPkmnCommunity[] = {FALSE, FALSE, gCreditsText_TheTwitchPlaysPkmnCommunity};
 static const struct CreditsEntry gCreditsEntry_HiMom[] = {FALSE, FALSE, gCreditsText_HiMom};
 static const struct CreditsEntry gCreditsEntry_ImonTwitchTV[] = {FALSE, TRUE, gCreditsText_ImonTwitchTV};
@@ -472,7 +472,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 	{
 		gCreditsEntry_SpecialThanksTo,
 		gCreditsEntry_ThePkmnReverseEngineeringProject,
-		gCreditsEntry_DiegoIsAwesomesCrystalDustProject,
+		gCreditsEntry_SierraffinitysCrystalDustProject,
 		gCreditsEntry_TheTwitchPlaysPkmnCommunity,
 		_,
 		NULL,
