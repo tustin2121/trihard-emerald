@@ -20,7 +20,7 @@ static const u8 gCreditsText_mathfreak231[] = _("mathfreak231");
 static const u8 gCreditsText_StoryModifications[] = _("Story Modifications");
 static const u8 gCreditsText_Copyeditor[] = _("Copyeditor");
 static const u8 gCreditsText_Testers[] = _("Testers");
-static const u8 gCreditsText_Charmy[] = _("Charmy");
+static const u8 gCreditsText_FrostedGeulleisia[] = _("FrostedGeulleisia");
 static const u8 gCreditsText_TheTPPChat[] = _("The TPP Chat");
 static const u8 gCreditsText_diana[] = _("diana");
 static const u8 gCreditsText_Blackrose[] = _("Blackrose");
@@ -193,7 +193,7 @@ static const struct CreditsEntry gCreditsEntry_mathfreak231[] = {FALSE, FALSE, g
 static const struct CreditsEntry gCreditsEntry_StoryModifications[] = {FALSE, TRUE, gCreditsText_StoryModifications};
 static const struct CreditsEntry gCreditsEntry_Copyeditor[] = {FALSE, TRUE, gCreditsText_Copyeditor};
 static const struct CreditsEntry gCreditsEntry_Testers[] = {FALSE, TRUE, gCreditsText_Testers};
-static const struct CreditsEntry gCreditsEntry_Charmy[] = {FALSE, FALSE, gCreditsText_Charmy};
+static const struct CreditsEntry gCreditsEntry_FrostedGeulleisia[] = {FALSE, FALSE, gCreditsText_FrostedGeulleisia};
 static const struct CreditsEntry gCreditsEntry_TheTPPChat[] = {FALSE, FALSE, gCreditsText_TheTPPChat};
 static const struct CreditsEntry gCreditsEntry_diana[] = {FALSE, FALSE, gCreditsText_diana};
 static const struct CreditsEntry gCreditsEntry_Blackrose[] = {FALSE, FALSE, gCreditsText_Blackrose};
@@ -435,7 +435,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 	},
 	{
 		gCreditsEntry_Testers,
-		gCreditsEntry_Charmy,
+		gCreditsEntry_FrostedGeulleisia,
 		gCreditsEntry_Ericchi,
 		gCreditsEntry_TheTPPChat,
 		_,
@@ -462,7 +462,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 		gCreditsEntry_M4UsedRollout,
 		gCreditsEntry_Tustin2121,
 		gCreditsEntry_Chaoslord2,
-		gCreditsEntry_Charmy,
+		gCreditsEntry_FrostedGeulleisia,
 		NULL,
 		NULL,
 		NULL,
