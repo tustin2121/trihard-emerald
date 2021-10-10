@@ -6,7 +6,7 @@ NM := nm
 
 # Build Variables
 DEBUG			?= 1
-TPP_MODE		?= 1
+TPP_MODE		?= 0
 EMULATOR_ONLY	?= 1
 
 # Version branch
