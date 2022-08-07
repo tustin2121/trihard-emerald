@@ -7,6 +7,7 @@ extern const u16 gMessageBox_Pal[];
 extern const u16 gMessageBoxSign_Gfx[];
 extern const u16 gMessageBoxSign_Pal[];
 extern const u16 gMessageBoxDialogue_Gfx[];
+extern const u16 gMessageBox_DreamPal[];
 
 // interface pokeballs
 extern const u32 gInterfaceGfx_PokeBall[];

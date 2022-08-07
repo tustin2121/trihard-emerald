@@ -1235,6 +1235,7 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 	setvar VAR_ELITE_4_STATE, 0
 	return
 
+	.include "data/scripts/dreams.inc"
 	.include "data/scripts/pokecenter_scripts.inc"
 	.include "data/scripts/briney_boat.inc"
 	.include "data/scripts/common_scripts.inc"

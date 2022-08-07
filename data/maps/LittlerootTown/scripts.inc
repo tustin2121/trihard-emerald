@@ -736,10 +736,11 @@ LittlerootTown_Text_FinalIntro1b:
 LittlerootTown_Text_FinalIntro2:
 	.string "Dad: I wasn't sure I'd see you again\n"
 	.string "before I had to leave!\p"
-	.string "I'm heading to work now. I'm sure I'll\n"
-	.string "be back late. I made a batch of my\l"
-	.string "Dash of Figgy Soup. It's in the fridge\l"
-	.string "for you if you get hungry later.\p"
+	.string "I'm heading to work now.\n"
+	.string "I'm sure I'll be back late.\p"
+	.string "I made some of my Dash of Figy Soup!\n"
+	.string "I know it's your favorite.\l"
+	.string "It's in the fridge if you get hungry.\p"
 	.string "You look like you're going out.\n"
 	.string "Where are you off to?\p"
 	.string "$"
@@ -749,10 +750,10 @@ LittlerootTown_Text_FinalIntro3:
 	.string "again… … …{PAUSE 30}\p"
 	@ TODO: Different background music now, piano plunking?
 	.string "… … … … … … … … … … … … … … …\p"
-	.string "Um…\p"
-	.string "I…\p"
+	.string "Um…{PAUSE 10}\p"
+	.string "I…{PAUSE 10}\p"
 	.string "I… hope you… {PAUSE 15}learned from the Alolan\n"
-	.string "Challenge incident…$"
+	.string "Challenge incident…{PAUSE 30} …{P_PLAYER}?{PAUSE 10}$"
 LittlerootTown_Text_FinalIntro4_Yes:
 	.string "Did you…? I hope so…\p"
 	.string "$"
@@ -770,7 +771,7 @@ LittlerootTown_Text_FinalIntro4:
 	.string "the fridge stocked for you.\p$"
 LittlerootTown_Text_FinalIntro5:
 	.string "{PLAYER}…{PAUSE 60} Don't…{PAUSE 30}\n"
-	.string "get into trouble…{PAUSE 30} please…?\p"
+	.string "get into trouble…{PAUSE 30} please…?{PAUSE 10}\p"
 	.string "Good…{PAUSE 30} Good luck out there.$"
 			
 

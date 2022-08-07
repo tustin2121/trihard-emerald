@@ -13,5 +13,13 @@
 	},
 	"[arm]": {
 		"editor.rulers": [12, 55]
-	}
+	},
+	"cSpell.words": [
+		"Alola",
+		"Guzma",
+		"Guzma's",
+		"Pok",
+		"Pokédex",
+		"dex"
+	]
 }

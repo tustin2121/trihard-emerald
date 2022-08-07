@@ -19,7 +19,7 @@ EWRAM_DATA u8 gStringVar3[0x100] = {0};
 EWRAM_DATA u8 gStringVar4[0x3E8] = {0};
 
 EWRAM_DATA u8 gStringWorking[0x100] = {0};
-EWRAM_DATA u8 gYesNoStringVar[0x20] = {0};
+EWRAM_DATA u8 gYesNoStringVar[0x40] = {0};
 EWRAM_DATA const u8* gYesString = gYN_DefaultYes;
 EWRAM_DATA const u8* gNoString = gYN_DefaultNo;
 
@@ -392,6 +392,7 @@ u8 *StringExpandPlaceholders(u8 *dest, const u8 *src)
                     case 0x16:
                     case 0x17:
                     case 0x18:
+                    // case 0x1C:
                         break;
                     case 0x04:
                         *dest++ = *src++;
@@ -766,6 +767,16 @@ static const u8 *ExpandPlaceholder_BuddyHoney(void)
         return gExpandedPlaceholder_Honey;
 }
 
+extern const u8 gExpandedPlaceholder_Bro[];
+extern const u8 gExpandedPlaceholder_Sis[];
+static const u8 *ExpandPlaceholder_BroSis(void)
+{
+    if (GetPlayerGender() == MALE)
+        return gExpandedPlaceholder_Bro;
+    else
+        return gExpandedPlaceholder_Sis;
+}
+
 extern const u8 gExpandedPlaceholder_Son[];
 extern const u8 gExpandedPlaceholder_Daughter[];
 static const u8 *ExpandPlaceholder_SonDaughter(void)
@@ -845,7 +856,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
         ExpandPlaceholder_ManLady,
         ExpandPlaceholder_GuyGirl,
         ExpandPlaceholder_BuddyHoney,
-        ExpandPlaceholder_Invalid, // 1F
+        ExpandPlaceholder_BroSis, // 1F
         
         ExpandPlaceholder_RivalTheyUpper, // 20
         ExpandPlaceholder_RivalThemUpper,
@@ -1007,31 +1018,35 @@ u8 GetExtCtrlCodeLength(u8 code)
 {
     static const u8 lengths[] =
     {
-        1,
-        2,
-        2,
-        2,
-        4,
-        2,
-        2,
-        1,
-        2,
-        1,
-        1,
-        3,
-        2,
-        2,
-        2,
-        1,
-        3,
-        2,
-        2,
-        2,
-        2,
-        1,
-        1,
-        1,
-        1,
+        [0x00]                    = 1,
+        [EXT_CTRL_CODE_COLOR]     = 2,
+        [EXT_CTRL_CODE_HIGHLIGHT] = 2,
+        [EXT_CTRL_CODE_SHADOW]    = 2,
+        [0x04]                    = 4,
+        [0x05]                    = 2,
+        [0x06]                    = 2,
+        [EXT_CTRL_CODE_UNKNOWN_7] = 1,
+        [0x08]                    = 2,
+        [0x09]                    = 1,
+        [0x0A]                    = 1,
+        [0x0B]                    = 3,
+        [0x0C]                    = 2,
+        [0x0D]                    = 2,
+        [0x0E]                    = 2,
+        [0x0F]                    = 1,
+        [0x10]                    = 3,
+        [EXT_CTRL_CODE_CLEAR]     = 2,
+        [0x12]                    = 2,
+        [EXT_CTRL_CODE_CLEAR_TO]  = 2,
+        [0x14]                    = 2,
+        [EXT_CTRL_CODE_JPN]       = 1,
+        [EXT_CTRL_CODE_ENG]       = 1,
+        [0x17]                    = 1,
+        [0x18]                    = 1,
+        [0x19]                    = 1,
+        [0x1A]                    = 1,
+        [0x1B]                    = 1,
+        [0x1C]                    = 2,
     };
 
     u8 length = 0;

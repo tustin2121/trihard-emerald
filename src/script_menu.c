@@ -1201,8 +1201,9 @@ bool8 ScriptMenu_YesNo(u8 left, u8 top)
     }
     else
     {
-        gSpecialVar_Result = 0xFF;
+        gSpecialVar_Result = ((0xFF & left) << 8) | (0xFF & top);
         DisplayYesNoMenuDefaultYes();
+        gSpecialVar_Result = 0xFF;
         taskId = CreateTask(Task_HandleYesNoInput, 0x50);
         return TRUE;
     }

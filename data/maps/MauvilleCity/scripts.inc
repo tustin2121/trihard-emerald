@@ -586,7 +586,7 @@ MauvilleCity_Text_WattsonsQuest5: @ 81E0154
 	.string "exploding Pokémon down there.\l"
 	.string "Wahahahaha!\p"
 	.string "That's it, then, you have my trust!\p"
-	.string "{PAUSE_MUSIC}Don't{PAUSE 10} squander{PAUSE 10} it.{PAUSE 20}\n"
+	.string "{PAUSE_MUSIC}Don't{PAUSE 50} squander{PAUSE 50} it.{PAUSE 90}\n"
 	.string "{RESUME_MUSIC}Wahahahaha!$"
 MauvilleCity_EventScript_WattsonsQuest_During:: @ 81DF77A
 	msgbox MauvilleCity_Text_WattsonsQuest6, MSGBOX_DEFAULT

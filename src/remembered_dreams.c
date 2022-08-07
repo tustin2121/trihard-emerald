@@ -1,6 +1,7 @@
 #include "global.h"
 #include "main.h"
 #include "save.h"
+#include "text.h"
 #include "overworld.h"
 #include "event_data.h"
 #include "constants/game_stat.h"
@@ -120,4 +121,23 @@ badDreams:
 	return;
 #endif
 }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+void ForceTextSpeedToMid()
+{
+	gTextFlags.forceMidTextSpeed = TRUE;
+}
+
+void UnforceTextSpeedToMid()
+{
+	gTextFlags.forceMidTextSpeed = FALSE;
+}
+
+// TODO: move to the remembered dreams section, if they ever get added
+bool8 DoDreamCutscenes()
+{
+    return FALSE;
+}
+
 

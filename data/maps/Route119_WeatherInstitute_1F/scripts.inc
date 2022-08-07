@@ -18,6 +18,8 @@ Route119_WeatherInstitute_1F_EventScript_26FA9J:
 @ -----------------------------------------------------
 
 Route119_WeatherInstitute_1F_OnTransition: @ 826FA8C
+	compare VAR_WEATHER_INSTITUTE_STATE, 0
+	call_if_eq Route119_WeatherInstitute_1F_EventScript_26FA9J
 	compare VAR_WEATHER_INSTITUTE_STATE, 1
 	call_if_le Route119_WeatherInstitute_1F_EventScript_26FA98
 	end
@@ -109,8 +111,9 @@ Route119_WeatherInstitute_1F_EventScript_26FABE:: @ 826FABE
 	release
 	end
 Route119_WeatherInstitute_1F_Text_26FCB7: @ 826FCB7
-	.string "This nice lady says she's babysitting\n"
-	.string "me. Everyone else must have gone\l"
+	.string "This nice lady says that\n"
+	.string "she's babysitting me.\p"
+	.string "Everyone else must have gone\n"
 	.string "upstairs while I was sleeping.$"
 
 
@@ -324,6 +327,7 @@ Route119_WeatherInstitute_1F_EventScript_BedDuring:
 	addvar VAR_SLEPT_DURING_WI_HEIST, 1
 	setvar VAR_TEMP_2, 1
 	call Common_EventScript_OutOfCenterPartyHeal
+	fadedefaultbgm
 	end
 .align 2
 Route119_WeatherInstitute_1F_TextArray_BedDuring:
@@ -377,7 +381,7 @@ Route119_WeatherInstitute_1F_Text_BedDuring7:
 	.string "we're done here…$"
 Route119_WeatherInstitute_1F_Text_BedDuring8:
 	.string "Have you still not beaten them?\p"
-	.string "If you've come down here to geta \n"
+	.string "If you've come down here to get a\n"
 	.string "full night's rest after every fight,\l"
 	.string "you should have been done by now…$"
 Route119_WeatherInstitute_1F_Text_BedDuring9:

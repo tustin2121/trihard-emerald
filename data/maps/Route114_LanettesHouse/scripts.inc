@@ -66,11 +66,12 @@ Route114_LanettesHouse_Text_22B407: @ 822B407
 	.string "can tell which Pokémon are in them.$"
 
 Route114_LanettesHouse_Text_22B485: @ 822B485
-	.string "It's LANETTE's research notes.\n"
+	.string "It's someone's research notes.\n"
 	.string "There's information about BOXES.\p"
 	.string "Design BOXES to hold 30 Pokémon each.\p"
 	.string "Each TRAINER should be able to store\n"
 	.string "420 Pokémon on the PC system.\p"
+	.string "What on earth are they talking about…?\n"
 	.string "Keep reading?$"
 
 Route114_LanettesHouse_Text_22B53C: @ 822B53C
@@ -79,9 +80,16 @@ Route114_LanettesHouse_Text_22B53C: @ 822B53C
 	.string "The name and wallpaper design of each\n"
 	.string "BOX will be made changeable to please\l"
 	.string "the stored Pokémon.\p"
+	.string "No idea what this is about…\n"
 	.string "Keep reading?$"
 
 Route114_LanettesHouse_Text_22B5EF: @ 822B5EF
+	.string "When storing a Pokémon…\n"
+	.string "Wait, you can store Pokémon?!\l"
+	.string "Sound fake.\p"
+	.string "Clearly this is someone's fan fiction\n"
+	.string "or dream, and not real. Pfft.$"
+	
 	.string "When storing a Pokémon, it should be\n"
 	.string "sent to the BOX inspected last.\p"
 	.string "If that BOX is full, the received\n"

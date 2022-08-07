@@ -27,10 +27,14 @@ void InitFieldMessageBox(void)
     gTextFlags.forceMidTextSpeed = 0;
 }
 
+void THE_LoadMessageBoxPalette_Dream();
 static void DrawFieldDialogFrame(u8 windowId, bool8 copyToVram)
 {
     switch (sFieldMessageData.boxType)
     {
+        case FIELD_MESSAGE_TYPE_DREAM:
+            THE_LoadMessageBoxPalette_Dream();
+            // fallthrough
         default:
         case FIELD_MESSAGE_TYPE_DESCRIBE:
             DrawDescribeFrame(windowId, copyToVram);

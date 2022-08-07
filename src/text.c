@@ -1196,6 +1196,16 @@ void ClearTextSpan(struct TextPrinter *textPrinter, u32 width)
     }
 }
 
+void THE_LoadMessageBoxPalette_Dream();
+void THE_LoadMessageBoxPalette_Normal();
+void LoadPaletteFromCode(u16 ch)
+{
+    switch (ch) {
+        case 0x31: THE_LoadMessageBoxPalette_Dream(); break;
+        case 0x32: THE_LoadMessageBoxPalette_Normal(); break;
+    }
+}
+
 u16 Font0Func(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
@@ -1539,6 +1549,7 @@ u16 RenderText(struct TextPrinter *textPrinter)
                 GenerateFontHalfRowLookupTable(textPrinter->fgColor, textPrinter->bgColor, textPrinter->shadowColor);
                 return 2;
             case 0x05:
+                LoadPaletteFromCode(*textPrinter->printerTemplate.currentChar);
                 textPrinter->printerTemplate.currentChar++;
                 return 2;
             case 0x06:
@@ -1645,6 +1656,13 @@ u16 RenderText(struct TextPrinter *textPrinter)
                         return 0;
                     }
                 }
+                return 2;
+            case 0x1B: 
+                textPrinter->textSpeed = GetPlayerTextSpeedDelay();
+                return 2;
+            case 0x1C: 
+                textPrinter->textSpeed = *textPrinter->printerTemplate.currentChar;
+                textPrinter->printerTemplate.currentChar++;
                 return 2;
             }
             break;
@@ -1826,6 +1844,7 @@ u32 GetStringWidthFixedWidthFont(const u8 *str, u8 fontId, u8 letterSpacing)
             case 0x12:
             case 0x13:
             case 0x14:
+            case 0x1C:
                 ++strPos;
                 break;
             case EXT_CTRL_CODE_UNKNOWN_7:
@@ -1963,6 +1982,7 @@ s32 GetLineWidth(u8 fontId, const u8 *str, s16 letterSpacing)
             case 0xC:
             case 0xD:
             case 0xE:
+            case 0x1C:
                 ++str;
                 break;
             case 0x6:
@@ -2131,6 +2151,7 @@ s32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing)
             case 0xC:
             case 0xD:
             case 0xE:
+            case 0x1C:
                 ++str;
                 break;
             case 0x6:
@@ -2279,6 +2300,7 @@ u8 RenderTextFont9(u8 *pixels, u8 fontId, u8 *str)
             case 0x12:
             case 0x13:
             case 0x14:
+            case 0x1C:
                 ++strPos;
                 break;
             case EXT_CTRL_CODE_UNKNOWN_7:

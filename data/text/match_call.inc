@@ -4,7 +4,7 @@ gText_Dad_Pokenav_NoAnswer::
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
 	.string "The person you have dialed is\n"
-	.string "unavailable right now.\p"
+	.string "not available right now.\p"
 	.string "Please leave a message after\n"
 	.string "the tone…$"
 	
@@ -12,7 +12,8 @@ gText_Dad_Pokenav_AreYouHurt::
 	.string "Dad: {PLAYER}, hi! Is everything\n"
 	.string "okay? Are you hurt?\p"
 	.string "Oh, you're just calling to say hi?\p"
-	.string "Sorry, I can't talk long. In a meeting.\p"
+	.string "Sorry, I can't talk long.\n"
+	.string "I'm in a meeting.\p"
 	.string "Maybe we can catch up tonight?$"
 
 gText_Dad_Pokenav_TeamWarn::
@@ -21,7 +22,7 @@ gText_Dad_Pokenav_TeamWarn::
 	.string "going around causing trouble.\p"
 	.string "Try and avoid them, alright?\n"
 	.string "I don't want you getting into\l"
-	.string "any trouble.$"
+	.string "any more trouble.$"
 	
 gText_Dad_Pokenav_CallYouBack::
 	.string "Dad: {PLAYER}, you caught me at a\n"

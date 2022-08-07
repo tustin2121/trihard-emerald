@@ -467,7 +467,7 @@ PokemonCenter_1F_Text_FreePokeballCounter_Explain:
 	.string "to help keep you safe and reduce the\l"
 	.string "number of wild Pokémon incidences.$"
 PokemonCenter_1F_Text_FreePokeballCounter_Explain2:
-	.string "{COLOR LIGHT_GREY}{SHADOW WHITE}"
+	.string "{COLOR DARK_GREY}{SHADOW WHITE}"
 	.string "(Just between you and me, I think it's\n"
 	.string "actually increased the number of wild\l"
 	.string "Pokémon attacks… many people don't\l"

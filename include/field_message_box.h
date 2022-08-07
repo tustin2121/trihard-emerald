@@ -16,6 +16,7 @@ enum
     FIELD_MESSAGE_TYPE_DIALOG,
     FIELD_MESSAGE_TYPE_SIGN,
     FIELD_MESSAGE_TYPE_DESCRIBE,
+    FIELD_MESSAGE_TYPE_DREAM,
 };
 
 bool8 ShowFieldMessage(const u8 *message);

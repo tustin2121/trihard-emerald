@@ -335,6 +335,11 @@ REF    = FC 01 08   @ reference to something highlight
 TIPS   = FC 04 06 00 07   @ Trainer Tips
 BOLD   = FC 03 02   @ A faux bold by setting the shadow the same as the text
 END    = FC 19      @ reset highlight
+WOMAN_SPEAKING = FC 01 04
+MAN_SPEAKING   = FC 01 08
+ALEX_SPEAKING  = FC 01 06
+
+POKEMON = CA E3 DF 1B E1 E3 E2
 
 STRING = FD
 
@@ -373,6 +378,8 @@ PLAYER_lady    = FD 1C  @ "man" or "lady" addressing the player
 PLAYER_guy     = FD 1D  @ "guy" or "girl" addressing the player
 PLAYER_buddy   = FD 1E  @ "buddy" or "honey" addressing the player
 PLAYER_honey   = FD 1E  @ "buddy" or "honey" addressing the player
+PLAYER_bro     = FD 1E  @ "bro" or "sis" addressing the player
+PLAYER_sis     = FD 1E  @ "bro" or "sis" addressing the player
 
 @ pronouns for the opposite-gender characters (rival, alola friend)
 RIVAL_They     = FD 20  @ "He" or "She"
@@ -389,6 +396,9 @@ RIVAL_boy      = FD 2A  @ "boy" or "girl" addressing the rival
 RIVAL_girl     = FD 2A  @ "boy" or "girl" addressing the rival
 
 TIME_OF_DAY	   = FD 30
+@ blatantly misusing the placeholder system, since emerald's PALETTE code doesn't work atm
+SET_DREAM_PAL  = FC 05 31
+SET_NORM_PAL   = FC 05 32
 
 @ battle string placeholders
 
@@ -480,6 +490,10 @@ PAUSE_MUSIC = FC 17
 RESUME_MUSIC = FC 18
 RESETCOLOR = FC 19
 CENTER = FC 1A
+RESET_SPEED = FC 1B
+FORCE_SPEED_SLOW = FC 1C 00
+FORCE_SPEED_MID  = FC 1C 01
+FORCE_SPEED_FAST = FC 1C 02
 
 @ colors
 

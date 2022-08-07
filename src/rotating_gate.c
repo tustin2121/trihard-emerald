@@ -205,7 +205,7 @@ static const struct RotatingGatePuzzle sRotatingGate_FortreePuzzleConfig[] =
 };
 
 // Trickhouse
-static const struct RotatingGatePuzzle sRotatingGate_TrickHousePuzzleConfig[] =
+const struct RotatingGatePuzzle sRotatingGate_TrickHousePuzzleConfig[] =
 {
     {14,  5, GATE_SHAPE_T1, GATE_ORIENTATION_90},
     {10,  6, GATE_SHAPE_L2, GATE_ORIENTATION_180},

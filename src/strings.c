@@ -28,6 +28,8 @@ const u8 gExpandedPlaceholder_Son[] = _("son");
 const u8 gExpandedPlaceholder_Daughter[] = _("daughter");
 const u8 gExpandedPlaceholder_Buddy[] = _("buddy");
 const u8 gExpandedPlaceholder_Honey[] = _("honey");
+const u8 gExpandedPlaceholder_Bro[] = _("bro");
+const u8 gExpandedPlaceholder_Sis[] = _("sis");
 
 const u8 gExpandedPlaceholder_Brendan[] = _("Brendan");
 const u8 gExpandedPlaceholder_May[] = _("May");
@@ -67,6 +69,7 @@ const u8 gYN_PftNo[] =          _("Pft… No");
 const u8 gYN_FOff[] =           _("Screw You!");
 const u8 gYN_Duh[] =            _("Duh");
 const u8 gYN_Wait[] =           _("Wait…");
+const u8 gYN_Maybe[] =          _("Maybe…");
 const u8 gYN_Sure[] =           _("Sure");
 const u8 gYN_Fine1[] =          _("Fine…");
 const u8 gYN_Fine2[] =          _("Fine!");
@@ -327,17 +330,17 @@ const u8 gText_DontBeAThief[] =_("Guzma's advice…\nAre ya stupid? The trainer'
           //   {PLAYER}, there's a time and place for\l
           //   everything!{PAUSE_UNTIL_PRESS}");
 //			 -------------------------------------------
-const u8 gText_Advice01[] = _("Dad's advice…\n{PLAYER}, there's a time and place for\leverything. And that place is not the\lfloor of your room. Clean it up, now.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice01[] = _("Dad's advice…\n{PLAYER}, there's a time and place for\leverything. Now clean your room!{PAUSE_UNTIL_PRESS}");
 const u8 gText_Advice02[] = _("Mom's advice…\nThrow away junk you don't need.\lLike I did with your father.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Advice03[] = _("Dad's advice…\nDon't get married. Ever.\lIt's not worth the pain.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Advice04[] = _("Mom's advice…\nYou can never invest too much into\la good lawyer.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Advice05[] = _("Dad's advice…\n{PLAYER}, never get involved in a\lland war in Asia.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice05[] = _("Dad's advice…\nNot now, {PLAYER_buddy}, daddy's got to\lget to work for a meeting.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Advice06[] = _("Mom's advice…\nDon't listen to your father for advice,\lhe doesn't know what he's talking about.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Advice07[] = _("Dad's advice…\nIf at first you don't succeed, sue them.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Advice08[] = _("Mom's advice…\nViolence is never the answer.\lUnless it's a Pokémon battle.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Advice09[] = _("Dad's advice…\n{PLAYER}, go ask your mother.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Advice10[] = _("Mom's advice…\n{PLAYER}, go ask your father.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Advice11[] = _("Dad's advice…\nIf at first you don't succeed, sue them.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice08[] = _("Mom's advice…\nRemember, blood is thicker than water,\lbut blood doesn't quench thirst!\lWhat do we think, ladies? Martinis?{PAUSE_UNTIL_PRESS}");
+    const u8 gText_Advice09[] = _("Dad's advice…\n{PLAYER}, go ask your mother.{PAUSE_UNTIL_PRESS}");
+    const u8 gText_Advice10[] = _("Mom's advice…\n{PLAYER}, go ask your father.{PAUSE_UNTIL_PRESS}");
+    const u8 gText_Advice11[] = _("Dad's advice…\nIf at first you don't succeed, sue them.{PAUSE_UNTIL_PRESS}");
 
 const u8 *const gText_DadsAdviceTable[] =
 {
@@ -1875,7 +1878,7 @@ const u8 gMatchCallName_MrStone[] = _("Mr. Stone");
 const u8 gMatchCallDesc_Steven[] = _("HARD AS ROCK");
 const u8 gMatchCallName_Steven[] = _("Steven");
 const u8 gMatchCallDesc_Rival[] = _("Nosey Neighbor");
-const u8 gMatchCallDesc_Dad[] = _("Always at Work");
+const u8 gMatchCallDesc_Dad[] = _("Workaholic");
 const u8 gMatchCallName_Dad[] = _("Dad");
 const u8 gMatchCallDesc_Wally[] = _("{PKMN} Lover");
 const u8 gMatchCallDesc_Scott[] = _("Fecking Creep");

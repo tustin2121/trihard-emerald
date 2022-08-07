@@ -221,8 +221,8 @@ MossdeepCity_SpaceCenter_2F_EventScript_GameKid::
 	msgbox MossdeepCity_SpaceCenter_2F_Text_GameKid, MSGBOX_DIALOG
 	end
 MossdeepCity_SpaceCenter_2F_Text_GameKid:
-	.string "Not now, mom! I just need to complete\n"
-	.string "this level!$"
+	.string "Not now, mom! I just need\n"
+	.string "to complete this level!$"
 
 @ -----------------------------------------------------
 @ Cutscene:
@@ -252,11 +252,13 @@ MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle::
 	waitmovement 0
 	markasdialog 6
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MissedBattle2
+	playse SE_SELECT
 	@ "This is insane!"
 	markasdialog -14
 	applymovement LID_LOGAN, Common_Movement_WalkLeft1
 	waitmovement 0
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MissedBattle3
+	playse SE_SELECT
 	@ Maxie realization
 	applymovement LID_MAXIE, Common_Movement_WalkInPlaceDown
 	waitmovement 0
@@ -274,11 +276,13 @@ MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle::
 	waitmovement EVENT_OBJ_ID_PLAYER
 	waitmessage
 	waitbuttonpress
+	playse SE_SELECT
 	@ "Boss?"
 	applymovement LID_MAGMA, SpaceCenter_Movement_MissedBattle6_MagmaReact
 	applymovement LID_AQUA, Common_Movement_WalkInPlaceUp
 	markasdialog 8
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MissedBattle6
+	playse SE_SELECT
 	waitmovement 0
 	@ ""
 	message MossdeepCity_SpaceCenter_2F_Text_MissedBattle7
@@ -350,8 +354,11 @@ MossdeepCity_SpaceCenter_2F_EventScript_MissedBattle::
 	@
 	selectpointer SpaceCenter_StringTable_MissedBattle15, VAR_RESULT
 	msgbox_selected
+	playse SE_SELECT
 	@
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MissedBattle16
+	applymovement LID_AQUA, Common_Movement_WalkInPlaceUp
+	waitmovement LID_AQUA
 	@ clean up
 	setvar VAR_MOSSDEEP_STATE, 2
 	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE_2, 3
@@ -417,20 +424,20 @@ MossdeepCity_SpaceCenter_2F_Text_MissedBattle12:
 	.string "{COLOR BLUE}Former {COLOR GREEN}Hoenn Champion {COLOR RED}Steven Stone{END}\l"
 	.string "to pick up. Smell ya later!$"
 MossdeepCity_SpaceCenter_2F_Text_MissedBattle14:
-	.string "{PLAYER}, for the love of Arceus,\n"
-	.string "ignore him.\p"
+	.string "{PLAYER}, for the love of\n"
+	.string "Arceus above, ignore him!\l"
 	.string "I need you to pay attention…\p"
-	.string "What Maxie said… …\n"
-	.string "Could…{PAUSE 10} Could he be right?\p"
-	.string "Is… Is Team Aqua as insane\n"
+	.string "What Maxie said… …{PAUSE 20}\n"
+	.string "Could…{PAUSE 30} Could he be right?\p"
+	.string "Is…{PAUSE 20} Is Team Aqua as insane\n"
 	.string "as Team Magma…?\p"
 	.string "I mean, Magma wanted to wake up an\n"
-	.string "ancient Pokémon… Explode a volcano…\p"
+	.string "ancient Pokémon… {PAUSE 20}Explode a volcano…\p"
 	.string "That could kill millions!\p"
-	.string "What do we, Team Aqua, want to do?\n"
+	.string "What do we, Team Aqua, want to do?{PAUSE 20}\n"
 	.string "Expand the seas?!\l"
 	.string "How many could drown?!\p"
-	.string "{P_PLAYER}… Could… Are we the bad guys…?$"
+	.string "{P_PLAYER}… Could… Are we the bad guys…?{PAUSE 20}$"
 MossdeepCity_SpaceCenter_2F_Text_MissedBattle15_yes:
 	.string "All this time… Y-You knew?\n"
 	.string "D-Do you WANT to be a bad guy?!\l"
@@ -441,7 +448,7 @@ MossdeepCity_SpaceCenter_2F_Text_MissedBattle15_no:
 	.string "But we've been thugs… And we want to\n"
 	.string "drown the world…!$"
 MossdeepCity_SpaceCenter_2F_Text_MissedBattle16:
-	.string "I… I need to think this over…\n"
+	.string "I… I need to think this over…{PAUSE 20}\n"
 	.string "What am I doing with my life…?$"
 
 

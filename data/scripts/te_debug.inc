@@ -138,17 +138,52 @@ DebugScript_GiveDebugPartyAndSetFlags::
 	releaseall
 	return
 
+@ DebugScript_TestScript1::
+@ 	lockall
+@ 	setvar VAR_0x8000, 0
+@ 	addvar_if_set FLAG_BADGE01_GET, VAR_0x8000, 1
+@ 	addvar_if_set FLAG_BADGE04_GET, VAR_0x8000, 1
+@ 	buffernumberstring 0, VAR_0x8000
+@ 	msgbox ScriptText_TS1
+@ 	releaseall
+@ 	end
+@ ScriptText_TS1:
+@ 	.string "addvar: {STR_VAR_1}$"
 DebugScript_TestScript1::
-	lockall
-	setvar VAR_0x8000, 0
-	addvar_if_set FLAG_BADGE01_GET, VAR_0x8000, 1
-	addvar_if_set FLAG_BADGE04_GET, VAR_0x8000, 1
-	buffernumberstring 0, VAR_0x8000
-	msgbox ScriptText_TS1
-	releaseall
+	lock
+	fadescreenspeed 5, 0 @ FADE_TO_BLACK_NO_WINDOW
+	setflag FLAG_DISABLE_FADE_INIT
+	delay 10
+	@ callnative ForceTextSpeedToMid
+	
+	call DreamScript_0900
+	
+	@ callnative UnforceTextSpeedToMid
+	clearflag FLAG_DISABLE_FADE_INIT
+	fadescreenspeed 4, 0 @ FADE_FROM_BLACK_NO_WINDOW
+	release
 	end
 ScriptText_TS1:
-	.string "addvar: {STR_VAR_1}$"
+	.string "{SET_DREAM_PAL}"
+	.string "… … …{PAUSE 40}\p"
+	.string "{MAN_SPEAKING}"
+	.string "…Pathetic!{PAUSE 20} … …You're the\n"
+	.string "poster child of a bad trainer… …!{END}{PAUSE 30}\p"
+	.string "… … …{PAUSE 40}\p"
+	.string "{WOMAN_SPEAKING}"
+	.string "Uncle! His {POKEMON}!{PAUSE 20}\n"
+	.string "What happened to it?!{PAUSE 30}\p"
+	.string "{MAN_SPEAKING}"
+	.string "What did you do to this poor thing?!\p"
+	.string "… … You don't deserve to be a trainer… …{END}{PAUSE 40}\n"
+	.string "… … a trainer…{PAUSE 30} {COLOR LIGHT_GREY}… … a trainer…{END}\p"
+	.string "{SET_NORM_PAL}"
+	.string "GASP!{PAUSE 30}\n"
+	.string "You sit bolt upright in bed…\p"
+	.string "… … … …{PAUSE 30}\n"
+	.string "It was just a dream… …{PAUSE 30}\p"
+	.string "$"
+
 
 ScriptText_DebugBoxText:
 	.string "Oh! There's some Pokemon and badges in\n"

@@ -5,6 +5,9 @@
 #include "palette.h"
 #include "bg.h"
 #include "graphics.h"
+#include "field_message_box.h"
+#include "util.h"
+#include "constants/rgb.h"
 
 // const rom data
 const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1.4bpp");
@@ -91,10 +94,12 @@ const struct TilesPal *GetWindowFrameTilesPal(u8 id)
         return &sWindowFrames[id];
 }
 
+extern u16 gSpecialVar_TextboxType;
 void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x100, destOffset);
-    LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, 0x20);
+    if (gSpecialVar_TextboxType != FIELD_MESSAGE_TYPE_DREAM)
+        LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, 0x20);
 }
 
 void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset)
@@ -206,4 +211,19 @@ void sub_8098C6C(u8 bg, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(bg, sWindowFrames[gSaveBlock2Ptr->optionsWindowFrameType].tiles, 0x120, destOffset);
     LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, palOffset, 0x20);
+}
+
+void THE_LoadMessageBoxPalette_Dream()
+{
+    LoadPalette(gMessageBox_DreamPal, 15*0x10, 0x20);
+    BlendPalette((14*0x10), 14, 10, RGB_BLACK);
+    LoadPalette(gMessageBox_DreamPal+1, (14*0x10)+14, 4);
+    gTextFlags.useAlternateDownArrow = TRUE;
+}
+
+void THE_LoadMessageBoxPalette_Normal()
+{
+    LoadPalette(sWindowFrames[gSaveBlock2Ptr->optionsWindowFrameType].pal, 14*0x10, 0x20);
+    LoadPalette(gMessageBox_Pal, 15*0x10, 0x20);
+    gTextFlags.useAlternateDownArrow = FALSE;
 }

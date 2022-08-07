@@ -1318,6 +1318,7 @@ SootopolisCity_Text_1E69B9: @ 81E69B8
 
 SootopolisCity_EventScript_1E63DB:: @ 81E63DB
 	lockall
+	markasdialog
 	applymovement 13, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_RAYQUAZA_STATE, 5
@@ -1345,6 +1346,7 @@ SootopolisCity_Text_1E6CA6: @ 81E6CA6
 
 SootopolisCity_EventScript_1E6411:: @ 81E6411
 	lockall
+	markasdialog
 	applymovement 12, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_RAYQUAZA_STATE, 5

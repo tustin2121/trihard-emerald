@@ -1093,8 +1093,3 @@ bool8 DoMourningCutscene(void)
     }
 }
 
-// TODO: move to the remembered dreams section, if they ever get added
-bool8 DoDreamCutscenes()
-{
-    return FALSE;
-}
