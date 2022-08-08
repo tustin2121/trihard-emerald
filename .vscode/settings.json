@@ -16,10 +16,15 @@
 	},
 	"cSpell.words": [
 		"Alola",
+		"dex",
 		"Guzma",
 		"Guzma's",
+		"Lusamine",
+		"Malasada",
 		"Pok",
-		"Pokédex",
-		"dex"
+		"Pokédex"
+	],
+	"cSpell.enableFiletypes": [
+		"arm"
 	]
 }

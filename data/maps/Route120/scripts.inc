@@ -43,6 +43,7 @@ Route120_EventScript_1F5460:: @ 81F5460
 @ -----------------------------------------------------
 
 Route120_OnLoad: @ 81F5474
+	setvar FLAG_VISITED_ROUTE120
 	call_if_unset FLAG_REGI_DOORS_OPENED, Route120_EventScript_1F5490
 	@ call_if_set FLAG_RECEIVED_DEVON_SCOPE, Route120_EventScript_1F54A3
 	@ call_if_unset FLAG_RECEIVED_DEVON_SCOPE, Route120_EventScript_1F54C8

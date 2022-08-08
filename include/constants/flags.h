@@ -139,7 +139,7 @@
 #define FLAG_DEFEATED_RIVAL_ROUTE_104                         0x7D
 #define FLAG_DEFEATED_WALLY_VICTORY_ROAD                      0x7E
 #define FLAG_MET_PRETTY_PETAL_SHOP_OWNER                      0x7F
-#define FLAG_ENABLE_ROXANNE_FIRST_CALL                        0x80 // Set after defeating Brawly. This will activate a call with Roxanne in order to register her.
+#define FLAG_ENABLE_ALEX_FIRST_CALL                           0x80 // Co-Opted for TriHard Emerald
 #define FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN                   0x81
 #define FLAG_DEFEATED_RIVAL_ROUTE103                          0x82
 #define FLAG_RECEIVED_DOLL_LANETTE                            0x83
@@ -1128,12 +1128,12 @@
 #define FLAG_ITEM_STOLEN_OCCUPIED_CUSHION                           0x498 // Trihard
 #define FLAG_MET_E4_JOEY                                            0x499 // Trihard
 #define FLAG_AQUA_FETCH_QUEST_COMPLETED                             0x49A // Trihard
-#define FLAG_DEFEATED_RIVAL_R110                                    0x49B // Unused Flag
-#define FLAG_PLAYER_HAS_SURFED                                      0x49C // Unused Flag
-#define FLAG_LEGENDARIES_CLEARED                                    0x49D // Unused Flag
-#define FLAG_UNUSED_0x49E                                           0x49E // Unused Flag
-#define FLAG_UNUSED_0x49F                                           0x49F // Unused Flag
-#define FLAG_UNUSED_0x4A0                                           0x4A0 // Unused Flag
+#define FLAG_DEFEATED_RIVAL_R110                                    0x49B // Trihard
+#define FLAG_PLAYER_HAS_SURFED                                      0x49C // Trihard
+#define FLAG_LEGENDARIES_CLEARED                                    0x49D // Trihard
+#define FLAG_ENABLE_ALEX_LEAGUE_CALL                                0x49E // Trihard
+#define FLAG_ENABLE_ALEX_MATCH_CALL                                 0x49F // Trihard
+#define FLAG_VISITED_ROUTE120                                       0x4A0 // Unused Flag
 #define FLAG_UNUSED_0x4A1                                           0x4A1 // Unused Flag
 #define FLAG_UNUSED_0x4A2                                           0x4A2 // Unused Flag
 #define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
@@ -1460,7 +1460,7 @@
 #define FLAG_DAILY_E4_JOEY_BATTLE                   (SYSTEM_FLAGS + 0xD3)
 #define FLAG_DAILY_APPRENTICE_LEAVES                (SYSTEM_FLAGS + 0xD4)
 #define FLAG_DAILY_DAD_CALL                         (SYSTEM_FLAGS + 0xD5)
-#define FLAG_DAILY_0x936                            (SYSTEM_FLAGS + 0xD6)
+#define FLAG_DAILY_ALEX_CALL                        (SYSTEM_FLAGS + 0xD6)
 #define FLAG_DAILY_0x937                            (SYSTEM_FLAGS + 0xD7)
 #define FLAG_DAILY_0x938                            (SYSTEM_FLAGS + 0xD8)
 #define FLAG_DAILY_0x939                            (SYSTEM_FLAGS + 0xD9)
@@ -1530,12 +1530,12 @@
 #define FLAG_SAW_DREAM_0400                                        0x6004
 #define FLAG_SAW_DREAM_0900                                        0x6005
 #define FLAG_SAW_DREAM_1000                                        0x6006
-#define FLAG_REMEMBERED_0x07                                       0x6007
-#define FLAG_REMEMBERED_0x08                                       0x6008
-#define FLAG_REMEMBERED_0x09                                       0x6009
-#define FLAG_REMEMBERED_0x0A                                       0x600A
-#define FLAG_REMEMBERED_0x0B                                       0x600B
-#define FLAG_REMEMBERED_0x0C                                       0x600C
+#define FLAG_SAW_DREAM_0800                                        0x6007
+#define FLAG_SKIPPED_NIGHT_0801                                    0x6008
+#define FLAG_SAW_DREAM_0802                                        0x6009
+#define FLAG_SAW_DREAM_0500                                        0x600A
+#define FLAG_SAW_DREAM_0600                                        0x600B
+#define FLAG_SAW_DREAM_0700                                        0x600C
 #define FLAG_REMEMBERED_0x0D                                       0x600D
 #define FLAG_REMEMBERED_0x0E                                       0x600E
 #define FLAG_REMEMBERED_0x0F                                       0x600F

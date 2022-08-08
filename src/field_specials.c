@@ -7,6 +7,7 @@
 #include "decoration.h"
 #include "diploma.h"
 #include "event_data.h"
+#include "event_scripts.h"
 #include "event_object_movement.h"
 #include "fieldmap.h"
 #include "field_camera.h"
@@ -439,31 +440,43 @@ bool32 ShouldDoScottCall(void)
     return TRUE;
 }
 
-bool32 ShouldDoRoxanneCall(void)
+bool32 TryDoAlexCall(void)
 {
-    if (FlagGet(FLAG_ENABLE_ROXANNE_FIRST_CALL))
-    {
-        switch (gMapHeader.mapType)
-        {
+    if (FlagGet(FLAG_ENABLE_ALEX_FIRST_CALL)) {
+        switch (gMapHeader.mapType) {
             case 1:
             case 2:
             case 3:
             case 6:
-                if (++(*GetVarPointer(VAR_ROXANNE_CALL_STEP_COUNTER)) < 250)
-                {
+                // Step counter starts from 0, increments
+                if (++(*GetVarPointer(VAR_ALEX_CALL_STEP_COUNTER)) < 200) {
                     return FALSE;
                 }
                 break;
             default:
                 return FALSE;
         }
+        ScriptContext1_SetupScript(DreamScript_Alex_FirstCall);
+        return TRUE;
     }
-    else
-    {
-        return FALSE;
+    if (FlagGet(FLAG_ENABLE_ALEX_LEAGUE_CALL)) {
+        switch (gMapHeader.mapType) {
+            case 1:
+            case 2:
+            case 3:
+            case 6:
+                // Same step counter from above, reset
+                if (++(*GetVarPointer(VAR_ALEX_CALL_STEP_COUNTER)) < 20) {
+                    return FALSE;
+                }
+                break;
+            default:
+                return FALSE;
+        }
+        ScriptContext1_SetupScript(DreamScript_Alex_LeagueCall);
+        return TRUE;
     }
-
-    return TRUE;
+    return FALSE;
 }
 
 bool32 ShouldDoRivalRayquazaCall(void)

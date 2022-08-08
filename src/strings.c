@@ -340,9 +340,19 @@ const u8 gText_Advice05[] = _("Dad's advice…\nNot now, {PLAYER_buddy}, daddy's
 const u8 gText_Advice06[] = _("Mom's advice…\nDon't listen to your father for advice,\lhe doesn't know what he's talking about.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Advice07[] = _("Dad's advice…\nIf at first you don't succeed, sue them.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Advice08[] = _("Mom's advice…\nRemember, blood is thicker than water,\lbut blood doesn't quench thirst!\lWhat do we think, ladies? Martinis?{PAUSE_UNTIL_PRESS}");
-    const u8 gText_Advice09[] = _("Dad's advice…\n{PLAYER}, go ask your mother.{PAUSE_UNTIL_PRESS}");
-    const u8 gText_Advice10[] = _("Mom's advice…\n{PLAYER}, go ask your father.{PAUSE_UNTIL_PRESS}");
-    const u8 gText_Advice11[] = _("Dad's advice…\nIf at first you don't succeed, sue them.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice09[] = _("Dad's advice…\nYou already failed at {POKEMON},\ldon't you fail at math too! Homework!{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice10[] = _("Mom's advice…\nI don't like you hanging out with those\lhoodlums, {PLAYER}.\pWhat have they ever done for you\nbesides get you in trouble?{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice11[] = _("{ALOLA_RIVAL}'s advice…\nYou gotta hide them in your clothes,\nlike this. And don't act suspicious.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice12[] = _("{ALOLA_RIVAL}'s advice…\nSometimes you just gotta talk it out.\lTalk to me, {PLAYER}, what's wrong?{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice13[] = _("{ALOLA_RIVAL}'s advice…\nSomeone could get hurt, {PLAYER}!\lWe don't want to hurt nobody!{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice14[] = _("{ALOLA_RIVAL}'s advice…\nGrip with your toes. Feel the waves\lunder the board. You feel them?{PAUSE_UNTIL_PRESS}");
+const u8 gText_Advice15[] = _("{ALOLA_RIVAL}'s advice…\nWe got plenty of beds in Po Town.\pNothing says you have to sleep near\nyour crazy mom and dad all the time.{PAUSE_UNTIL_PRESS}");
+    const u8 gText_Advice16[] = _("Guzma's advice…\n {PAUSE_UNTIL_PRESS}");
+    const u8 gText_Advice17[] = _("Plumeria's advice…\n {PAUSE_UNTIL_PRESS}");
+    const u8 gText_Advice18[] = _("Guzma's advice…\n {PAUSE_UNTIL_PRESS}");
+    const u8 gText_Advice19[] = _("Plumeria's advice…\n {PAUSE_UNTIL_PRESS}");
+
+
 
 const u8 *const gText_DadsAdviceTable[] =
 {
@@ -357,6 +367,10 @@ const u8 *const gText_DadsAdviceTable[] =
     gText_Advice09,
     gText_Advice10,
     gText_Advice11,
+    gText_Advice12,
+    gText_Advice13,
+    gText_Advice14,
+    gText_Advice15,
 };
 
 const u8 *const gReturnToXStringsTable[] =
@@ -1877,11 +1891,13 @@ const u8 gText_Cancel4[] = _("CANCEL");
 
 const u8 gMatchCallDesc_MrStone[] = _("Devon Pres");
 const u8 gMatchCallName_MrStone[] = _("Mr. Stone");
+const u8 gMatchCallDesc_Alex[] = _("Alolan Friend");
+const u8 gMatchCallName_Alex[] = _("Alex {EMOJI_HEART}");
 const u8 gMatchCallDesc_Steven[] = _("HARD AS ROCK");
 const u8 gMatchCallName_Steven[] = _("Steven");
 const u8 gMatchCallDesc_Rival[] = _("Nosey Neighbor");
 const u8 gMatchCallDesc_Dad[] = _("Workaholic");
-const u8 gMatchCallName_Dad[] = _("Dad");
+const u8 gMatchCallName_Dad[] = _("Dad {EMOJI_ANGRY}");
 const u8 gMatchCallDesc_Wally[] = _("{PKMN} Lover");
 const u8 gMatchCallDesc_Scott[] = _("Fecking Creep");
 const u8 gMatchCallName_Scott[] = _("Scott");

@@ -142,8 +142,15 @@ extern const u8 DreamScript_0150[];
 extern const u8 DreamScript_0200[];
 extern const u8 DreamScript_0300[];
 extern const u8 DreamScript_0400[];
+extern const u8 DreamScript_0500[];
+extern const u8 DreamScript_0600[];
+extern const u8 DreamScript_0700[];
+extern const u8 DreamScript_0800[];
+extern const u8 DreamScript_0801[];
+extern const u8 DreamScript_0802[];
 extern const u8 DreamScript_0900[];
 extern const u8 DreamScript_1000[];
+extern const u8 DreamScript_1001[];
 
 struct DreamDataStruct {
 	const u8 *script;
@@ -153,14 +160,24 @@ struct DreamDataStruct {
 };
 
 static const struct DreamDataStruct sDreamScripts[] = {
-	{ DreamScript_0100, FLAG_DAD_IS_AT_WORK,              FLAG_SAW_DREAM_0100, 0xFFFF},
-	{ DreamScript_0150, FLAG_VISITED_RUSTBORO_CITY,       FLAG_SAW_DREAM_0150, 0xFFFF},
-	{ DreamScript_0200, FLAG_AQUA_FETCH_QUEST_COMPLETED,  FLAG_SAW_DREAM_0200, 0xFFFF},
-	{ DreamScript_0300, FLAG_DELIVERED_DEVON_GOODS,       FLAG_SAW_DREAM_0300, 0xFFFF},
-	{ DreamScript_0400, FLAG_DEFEATED_RIVAL_R110,         FLAG_SAW_DREAM_0400, 0xFFFF},
-	{ DreamScript_0900, FLAG_PLAYER_HAS_SURFED,           FLAG_SAW_DREAM_0900, 0xFFFF},
-	{ DreamScript_1000, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000, MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F},
-	{ NULL,             0xFFFF,                           0xFFFF,              0xFFFF},
+	// Highest priority
+	{ DreamScript_1000, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000,     MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F},
+	{ DreamScript_1001, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000,     0xFFFF}, // Must be below Mossdeep one
+	{ DreamScript_0900, FLAG_PLAYER_HAS_SURFED,           FLAG_SAW_DREAM_0900,     0xFFFF},
+	{ DreamScript_0800, FLAG_RECEIVED_TM54,               FLAG_SAW_DREAM_0800,     0xFFFF},
+	// Sequential dreams
+	{ DreamScript_0100, FLAG_DAD_IS_AT_WORK,              FLAG_SAW_DREAM_0100,     0xFFFF},
+	{ DreamScript_0150, FLAG_VISITED_RUSTBORO_CITY,       FLAG_SAW_DREAM_0150,     0xFFFF},
+	{ DreamScript_0200, FLAG_AQUA_FETCH_QUEST_COMPLETED,  FLAG_SAW_DREAM_0200,     0xFFFF},
+	{ DreamScript_0300, FLAG_DELIVERED_DEVON_GOODS,       FLAG_SAW_DREAM_0300,     0xFFFF},
+	{ DreamScript_0400, FLAG_DEFEATED_RIVAL_R110,         FLAG_SAW_DREAM_0400,     0xFFFF},
+	{ DreamScript_0500, FLAG_DEFEATED_LAVARIDGE_GYM,      FLAG_SAW_DREAM_0500,     0xFFFF},
+	{ DreamScript_0600, FLAG_DEFEATED_MAGMA_SPACE_CENTER, FLAG_SAW_DREAM_0600,     0xFFFF},
+	{ DreamScript_0700, FLAG_VISITED_ROUTE120,            FLAG_SAW_DREAM_0700,     0xFFFF},
+	// Lowest priority
+	{ DreamScript_0801, FLAG_SAW_DREAM_0800,              FLAG_SKIPPED_NIGHT_0801, 0xFFFF},
+	{ DreamScript_0802, FLAG_SKIPPED_NIGHT_0801,          FLAG_SAW_DREAM_0802,     0xFFFF},
+	{ NULL,             0xFFFF,                           0xFFFF,                  0xFFFF},
 };
 
 

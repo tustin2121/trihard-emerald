@@ -258,7 +258,7 @@
 #define VAR_DAILY_BP                         0x40F1
 #define VAR_WALLY_CALL_STEP_COUNTER          0x40F2
 #define VAR_WINONA_CALL_STEP_COUNTER         0x40F3
-#define VAR_ROXANNE_CALL_STEP_COUNTER        0x40F4
+#define VAR_ALEX_CALL_STEP_COUNTER           0x40F4 // Co-opted for Trihard
 #define VAR_SCOTT_CALL_STEP_COUNTER          0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER 0x40F6
 #define VAR_DAILY_TRAINERTRIO                0x40F7 // Trihard Emerald

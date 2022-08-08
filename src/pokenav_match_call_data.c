@@ -165,6 +165,10 @@ extern const u8 gText_MrStone_Pokenav_2B67ED[];
 extern const u8 gMatchCallDesc_MrStone[];
 extern const u8 gMatchCallName_MrStone[];
 
+extern const u8 gMatchCallDesc_Alex[];
+extern const u8 gMatchCallName_Alex[];
+extern const u8 gText_Alex_Pokenav_Unavailable[];
+
 extern const u8 gMatchCallDesc_ProfBirch[];
 extern const u8 gMatchCallName_ProfBirch[];
 
@@ -326,7 +330,21 @@ static const struct MatchCallStruct0 sMrStoneMatchCallHeader =
     .textData = sMrStoneTextScripts
 };
 
+static const match_call_text_data_t sAlexTextScripts[] = {
+    { gText_Alex_Pokenav_Unavailable, 0xFFFF,               FLAG_DAILY_ALEX_CALL },
+    { gText_Alex_Pokenav_Unavailable, FLAG_DAILY_ALEX_CALL, 0xFFFF },
+    { NULL,                           0xFFFF,               0xFFFF }
+};
 
+static const struct MatchCallStruct0 sAlexMatchCallHeader =
+{
+    .type = 0,
+    .v1 = 10,
+    .flag = FLAG_ENABLE_ALEX_MATCH_CALL,
+    .desc = gMatchCallDesc_Alex,
+    .name = gMatchCallName_Alex,
+    .textData = sAlexTextScripts
+};
 
 static const struct MatchCallStruct3 sProfBirchMatchCallHeader =
 {
@@ -735,12 +753,13 @@ static const struct MatchCallStruct5 sWallaceMatchCallHeader =
 };
 
 static const match_call_t sMatchCallHeaders[] = {
+    {.type0 = &sAlexMatchCallHeader}, // PC sorts this to the top of the list
     {.type0 = &sDadMatchCallHeader},
     {.type3 = &sProfBirchMatchCallHeader},
     {.type4 = &sMayMatchCallHeader},
     {.type4 = &sBrendanMatchCallHeader},
     {.type2 = &sWallyMatchCallHeader},
-    {.type0 = &sMrStoneMatchCallHeader},
+    // {.type0 = &sMrStoneMatchCallHeader},
     {.type0 = &sStevenMatchCallHeader},
     {.type0 = &sScottMatchCallHeader},
     {.type5 = &sRoxanneMatchCallHeader},

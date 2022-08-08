@@ -16,7 +16,7 @@ bool8 ShouldDoBrailleRegicePuzzle(void);
 bool32 ShouldDoWallyCall(void);
 bool32 ShouldDoWinonaCall(void);
 bool32 ShouldDoScottCall(void);
-bool32 ShouldDoRoxanneCall(void);
+bool32 TryDoAlexCall(void);
 bool32 ShouldDoRivalRayquazaCall(void);
 bool32 CountSSTidalStep(u16 delta);
 u8 GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y);

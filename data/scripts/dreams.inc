@@ -4,16 +4,15 @@
 @[0300]- Triggered by completing Museum Heist
 @[0400]- Triggered by defeating rival in Route 110
 @[    ]- Triggered by beating Magma in Meteor Falls
-@[    ]- Triggered by getting Strength (Rusturf Tunnel)
-@[    ]- Triggered by defeating the grunt in Meteor Falls
+@[080X]- Triggered by getting Strength (Rusturf Tunnel)
 @[0500]- Triggered by defeating Flannery
 @[0900]- Triggered by surfing for the first time
 @[    ]- Triggered by starting the Weather Institute invasion
-@[    ]- Triggered by first entering Route 120
-@[    ]- Triggered by completing the Mr. Pyre 
+@[0700]- Triggered by first entering Route 120
+@[    ]- Triggered by completing the Mt. Pyre event
 @[    ]- Triggered by first entering Aqua Hideout B1F
-@[    ]- Triggered by completing Space Center Rescue
-@[1000]- Triggered by the rains cutscene, required location Mossdeep
+@[0600]- Triggered by completing Space Center Rescue
+@[100X]- Triggered by the rains cutscene, required location Mossdeep
 @[    ]- Triggered by getting defeated by the legendaries
 @[    ]- Triggered by defeating Logan
 
@@ -346,22 +345,419 @@ DreamScript_0500_Text4:
 	.string "$"
 	
 @------------------------------------------------------
-@ Triggered after helping team Aqua at the volcano
-DreamScript_0700::
-	@
+@ Triggered by completing Space Center Rescue
+DreamScript_0600::
+	fadenewbgm MUS_MABOROSI @TODO
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	@ "Something is happening!"
+	message DreamScript_0600_Text1
+	setyesnotext DreamScript_0600_YN_Crazy, DreamScript_0600_YN_Refusal
+	waitmessage
+	yesnobox 18, 8
+	@ "Kidnapping!!"
+	message DreamScript_0600_Text2
+	setyesnotext DreamScript_0600_YN_Fine, DreamScript_0600_YN_Refusal
+	waitmessage
+	yesnobox 18, 8
+	@ "You're fine with this?!"
+	message DreamScript_0600_Text3
+	setyesnotext DreamScript_0600_YN_Guzma, DreamScript_0600_YN_Why
+	waitmessage
+	yesnobox 20, 8
+	@ stomp, stalk off
+	message DreamScript_0600_Text3
+	setyesnotext DreamScript_0600_YN_Alex, DreamScript_0600_YN_Guzma
+	waitmessage
+	yesnobox 20, 8
+	closemessage
+	fadenewbgm MUS_DUMMY
+	delay 90
+	fadedefaultbgm
 	return
-DreamScript_0700_Text1:
-	.string "{SET_DREAM_PAL}"
+DreamScript_0600_Text1:
+	.string "{ALEX_SPEAKING}"
+	.string "{PLAYER}!{PAUSE 30} Can't you see?!{PAUSE 30}\n"
+	.string "Something is happening to Team Skull!{PAUSE 20}$"
+DreamScript_0600_YN_Crazy:
+	.string "You're crazy!$"
+DreamScript_0600_YN_Refusal:
+	.string "No it's not!$"
+DreamScript_0600_Text2:
+	.string "{ALEX_SPEAKING}"
+	.string "Kidnapping, {PLAYER}!{PAUSE 20} Kidnapping!{PAUSE 20}\n"
+	.string "They want us to kidnap a girl!\p"
+	.string "Guzma has never asked us to do\n"
+	.string "something like this before!{END}\p"
+	.string "{RIVAL_They} was pacing agitatedly. {RIVAL_They}'s\n"
+	.string "never seemed this stressed before.\p"
+	.string "{ALEX_SPEAKING}"
+	.string "Graffiti, sure.{PAUSE 20} Petty theft, fine.{PAUSE 20}\n"
+	.string "Property damage, of course.{PAUSE 20}\l"
+	.string "Those are all just being a nuisance!\p"
+	.string "But this?! Kidnapping!?\n"
+	.string "It's too dangerous!\p"
+	.string "Someone could get hurt, {PLAYER}!\n"
+	.string "We don't want to hurt nobody!$"
+	.string "$"
+DreamScript_0600_YN_Fine:  @ no. it's not /
+	.string "It'll be fine!$"
+DreamScript_0600_Text3:
+	.string "{ALOLA_RIVAL} looks at you with wide eyes.\p"
+	.string "{P_PLAYER}…{PAUSE 20} Wha-?{PAUSE 20}\n"
+	.string "Y-You're actually…{PAUSE 20} FINE with this?!$"
+DreamScript_0600_YN_Guzma:
+	.string "Guzma said…$"
+DreamScript_0600_YN_Why:
+	.string "Why not?$"
+DreamScript_0600_Text4:
+	.string "{ALOLA_RIVAL} looks away as you speak.{PAUSE 30}\n"
+	.string "{ALEX_SPEAKING}"
+	.string "And I thought I knew you…{DONE}\p"
+	.string "{RIVAL_They} takes off her Skull bandanna and\n"
+	.string "tosses it on the ground!{PAUSE 30} And stomps it!\p"
+	.string "You stare in shock,\n"
+	.string "as {RIVAL_they} stalks away…$"
+DreamScript_0600_YN_Alex:
+	.string "{ALOLA_RIVAL}…$" @ "Guzma said…"
 	.string "$"
 	
 @------------------------------------------------------
-@ Triggered after beating Flannery's gym
+@ Triggered by first entering Route 120
+DreamScript_0700::
+	fadenewbgm MUS_AQA_0 @TODO
+	delay 60
+	setvar VAR_0x800B, 0
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	@ Arrive, skull broke up
+	message DreamScript_0700_Text1
+	setyesnotext DreamScript_0700_YN1, gYN_Elipsis3
+	waitmessage
+DreamScript_0700_loop1:
+	yesnobox 11, 8
+	compare VAR_RESULT, YES
+	goto_if_eq DreamScript_0700_next2
+	@ if no, loop
+	selectpointer_clamp DreamScript_0700_AltTable, VAR_0x800B
+	message 0
+	waitmessage
+	addvar VAR_0x800B, 1
+	goto DreamScript_0700_loop1
+	
+DreamScript_0700_next2:
+	@ disbanded
+	message DreamScript_0700_Text2
+	setyesnotext DreamScript_0700_YN2, gYN_Elipsis3
+	waitmessage
+DreamScript_0700_loop2:
+	yesnobox 11, 8
+	compare VAR_RESULT, YES
+	goto_if_eq DreamScript_0700_next3
+	@ if no, loop
+	selectpointer_clamp DreamScript_0700_AltTable, VAR_0x800B
+	message 0
+	waitmessage
+	addvar VAR_0x800B, 1
+	goto DreamScript_0700_loop2
+	
+DreamScript_0700_next3:
+	@ divorce
+	message DreamScript_0700_Text3
+	setyesnotext DreamScript_0700_YN3, gYN_Elipsis3
+	waitmessage
+DreamScript_0700_loop3:
+	yesnobox 11, 8
+	compare VAR_RESULT, YES
+	goto_if_eq DreamScript_0700_next4
+	@ if no, loop
+	selectpointer_clamp DreamScript_0700_AltTable, VAR_0x800B
+	message 0
+	waitmessage
+	addvar VAR_0x800B, 1
+	goto DreamScript_0700_loop3
+	
+DreamScript_0700_next4:
+	@ moving away
+	message DreamScript_0700_Text4
+	setyesnotext DreamScript_0700_YN4, gYN_Elipsis3
+	waitmessage
+DreamScript_0700_loop4:
+	yesnobox 11, 8
+	compare VAR_RESULT, YES
+	goto_if_eq DreamScript_0700_next5
+	@ if no, loop
+	selectpointer_clamp DreamScript_0700_AltTable, VAR_0x800B
+	message 0
+	waitmessage
+	addvar VAR_0x800B, 1
+	goto DreamScript_0700_loop4
+	
+DreamScript_0700_next5:
+	@ taking me
+	message DreamScript_0700_Text5
+	setyesnotext DreamScript_0700_YN5, gYN_Elipsis3
+	waitmessage
+DreamScript_0700_loop5:
+	yesnobox 11, 8
+	compare VAR_RESULT, YES
+	goto_if_eq DreamScript_0700_next6
+	@ if no, loop
+	selectpointer_clamp DreamScript_0700_AltTable, VAR_0x800B
+	message 0
+	waitmessage
+	addvar VAR_0x800B, 1
+	goto DreamScript_0700_loop5
+	
+DreamScript_0700_next6:
+	@ leaving tomorrow
+	message DreamScript_0700_Text6
+	setyesnotext DreamScript_0700_YN6, gYN_Elipsis2
+	waitmessage
+DreamScript_0700_loop6:
+	yesnobox 11, 8
+	compare VAR_RESULT, YES
+	goto_if_eq DreamScript_0700_next7
+	@ if no, loop
+	selectpointer_clamp DreamScript_0700_AltTable, VAR_0x800B
+	message 0
+	waitmessage
+	addvar VAR_0x800B, 1
+	goto DreamScript_0700_loop6
+	
+DreamScript_0700_next6:
+	@ "Do you want to go?"
+	message DreamScript_0700_Text7
+	setyesnotext gYN_No_, gYN_Elipsis3
+	waitmessage
+	yesnobox 20, 8
+	@ Hug?
+	message DreamScript_0700_Text8
+	setyesnotext DreamScript_0700_YN7a, DreamScript_0700_YN7b
+	waitmessage
+	yesnobox 20, 8
+	@ Split on answer
+	selectyesnoanswer DreamScript_0700_Text9a, DreamScript_0700_Text9b
+	message 0
+	waitmessage
+	closemessage
+	fadenewbgm MUS_DUMMY
+	@ enable the call from Alex
+	setflag FLAG_ENABLE_ALEX_FIRST_CALL
+	delay 120
+	fadedefaultbgm
+	return
+DreamScript_0700_Text1:
+	.string "You finally find {ALOLA_RIVAL} on the beach.\n"
+	.string "It's been weeks since you last saw {RIVAL_them}.\p"
+	.string "{RIVAL_They} doesn't look up as you approach,\n"
+	.string "just stares out over the darkening ocean.\p$"
+DreamScript_0700_YN1:
+	.string "Team Skull broke up$"
+DreamScript_0700_Text2:
+	.string "{RIVAL_Their} eyebrows raise slightly at the news.\n"
+	.string "{RIVAL_They} doesn't seem surprised.\p$"
+DreamScript_0700_YN2:
+	.string "Guzma disbanded us$"
+DreamScript_0700_Text3:
+	.string "{RIVAL_They} huffs a tiny laugh, like it was\n"
+	.string "some sort of unfunny joke.\p$"
+DreamScript_0700_YN3:
+	.string "The divorce finalized$"
+DreamScript_0700_Text4:
+	.string "{RIVAL_They} sighs, {RIVAL_their} eyes ever on the horizon.\p$"
+DreamScript_0700_YN4:
+	.string "My dad's moving away$"
+DreamScript_0700_Text5:
+	.string "{RIVAL_They} scratches {RIVAL_their} nose.\n"
+	.string "Biggest reaction out of {RIVAL_them} yet.\p$"
+DreamScript_0700_YN5:
+	.string "He's taking me with him$"
+DreamScript_0700_Text6:
+	.string "{RIVAL_Their} head finally turns halfway towards\n"
+	.string "you. {RIVAL_Their} eyebrows hint at fear.\p"
+	.string "{ALEX_SPEAKING}"
+	.string "Oh.{END}\p$"
+DreamScript_0700_YN6:
+	.string "We leave tomorrow$"
+DreamScript_0700_Text7:
+	.string "{ALEX_SPEAKING}"
+	.string "Is he…\n"
+	.string "Do you… want to go?$" @ "No"/"..."
+DreamScript_0700_Text8:
+	.string "{ALOLA_RIVAL} stands up, brushes sand off\n"
+	.string "{RIVAL_their}self, and turns to you.\p"
+	.string "{ALEX_SPEAKING}"
+	.string "Then, I guess… This is…\n"
+	.string "Goodbye…?{END}\p"
+	.string "{RIVAL_They} sheepishly holds {RIVAL_their} hands out\n"
+	.string "expectantly…$"
+DreamScript_0700_YN7a:
+	.string "(hug)$"
+DreamScript_0700_YN7b:
+	.string "(don't)$"
+DreamScript_0700_Text9a:
+	.string "You stand there, hands in pockets.\n"
+	.string "You nod slightly."
+	.string "{RIVAL_They} wraps {RIVAL_their} arms around you tightly.\n"
+	.string "A warm feeling washes over you.\p"
+	.string "You break away, hoping {RIVAL_they} doesn't see\n"
+	.string "you wipe tears away as you leave.$"
+DreamScript_0700_Text9b:
+	.string "You turn away from {RIVAL_them}. Too much has\n"
+	.string "transpired to just forgive so easily.\p"
+	.string "{ALEX_SPEAKING}"
+	.string "{PLAYER}…!{END}\p"
+	.string "You sulk away, not even looking back.\p"
+	.string "You regret it for the rest of the night\n"
+	.string "and the plane ride out of Alola…$"
+	.string "$"
+
+.align 2
+DreamScript_0700_AltTable:
+	.4byte DreamScript_0700_TextAlt1
+	.4byte DreamScript_0700_TextAlt2
+	.4byte DreamScript_0700_TextAlt3
+	.4byte DreamScript_0700_TextAlt4
+	.4byte DreamScript_0700_TextAlt5
+	.4byte DreamScript_0700_TextAlt6
+	.4byte DreamScript_0700_TextAlt7
+	.4byte 0
+DreamScript_0700_TextAlt1:
+	.string "You will {RIVAL_them} to turn to look at you.\n"
+	.string "{RIVAL_Their} eyes stay on the horizon.$"
+DreamScript_0700_TextAlt2:
+	.string "You sigh at the heavens in frustration.\n"
+	.string "The stars get brighter overhead.$"
+DreamScript_0700_TextAlt3:
+	.string "{ALOLA_RIVAL} shoves around the sand a bit.\n"
+	.string "You gotta get this off your chest…$"
+DreamScript_0700_TextAlt4:
+	.string "The last remnants of sunlight finally\n"
+	.string "vanish from the mountaintop.$"
+DreamScript_0700_TextAlt5:
+	.string "You sigh, and wish {RIVAL_they} would do\n"
+	.string "the talking here…$"
+DreamScript_0700_TextAlt6:
+	.string "Why doesn't {RIVAL_they} apologize? {RIVAL_They}'s\n"
+	.string "the one that abandoned you, after all…$"
+DreamScript_0700_TextAlt7:
+	.string "You plead to the guardian deities of\n"
+	.string "Alola to give you strength…$"
+	
+
+@------------------------------------------------------
+@ Triggered by getting Strength (Rusturf Tunnel)
 DreamScript_0800::
-	@ 
+	fadenewbgm MUS_MABOROSI @TODO
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	@ "Making out!"
+	message DreamScript_0800_Text1
+	setyesnotext DreamScript_0800_YN_Really, DreamScript_0800_YN_Again
+	waitmessage
+	yesnobox 20, 8
+	@ mouthing
+	message DreamScript_0800_Text2
+	setyesnotext DreamScript_0800_YN_What, DreamScript_0800_YN_Huh
+	waitmessage
+	yesnobox 20, 8
+	@ more mumbling
+	message DreamScript_0800_Text3
+	setyesnotext DreamScript_0800_YN_Huh, DreamScript_0800_YN_What
+	waitmessage
+	yesnobox 20, 8
+	@ continues story
+	message DreamScript_0800_Text4
+	waitmessage
+	closemessage
+	fadenewbgm MUS_DUMMY
+	delay 90
+	fadedefaultbgm
 	return
 DreamScript_0800_Text1:
-	.string "{SET_DREAM_PAL}"
+	.string "… … …\p"
+	.string "{ALEX_SPEAKING}"
+	.string "…and Guzma asked me to go get her, so\n"
+	.string "I started searching through bedrooms.{END}\p"
+	.string "{ALOLA_RIVAL} looked back to the sun setting\n"
+	.string "over the ocean, Malie City glowing below.\p"
+	.string "{ALEX_SPEAKING}"
+	.string "Third door I walked in, and she's there\n"
+	.string "making out with her girlfriend!$"
+DreamScript_0800_YN_Really:
+	.string "Really?!$"
+DreamScript_0800_YN_Again:
+	.string "Again?!$"
+DreamScript_0800_Text2:
+	.string "{ALEX_SPEAKING}"
+	.string "Right? And I'm like “Guzma's on his way,\n"
+	.string "you two!” And they're cursing up a storm!{END}\p"
+	.string "Laughter fills the air. {RIVAL_They} shares\n"
+	.string "a smile with you.\p"
+	.string "{RIVAL_They} then mouths something at you.\n"
+	.string "You never could read lips well.$"
+DreamScript_0800_YN_What:
+	.string "What?$"
+DreamScript_0800_YN_Huh:
+	.string "Huh?$"
+DreamScript_0800_Text3:
+	.string "{RIVAL_They} mumbles it again.\n"
+	.string "Why can't {RIVAL_they} just say it?$" @Huh?/What?
+DreamScript_0800_Text4:
+	.string "{RIVAL_They} turns to look back at the\n"
+	.string "sunset, {RIVAL_their} smile faltering.\p"
+	.string "{ALEX_SPEAKING}"
+	.string "So then, I'm playing defense for them\n"
+	.string "as Guzma is striding towards the door…{END}\p"
+	.string "… … …\p"
 	.string "$"
+
+DreamScript_0801::
+	@ Do nothing in this script, just set the flag
+	return
+	
+DreamScript_0802::
+	fadenewbgm MUS_MABOROSI @TODO (same music as above)
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	@ mumbles
+	message DreamScript_0802_Text1
+	setyesnotext DreamScript_0800_YN_Huh, DreamScript_0800_YN_What
+	waitmessage
+	yesnobox 20, 8
+	@ "F&#%!!""
+	message DreamScript_0802_Text2
+	waitmessage
+	closemessage
+	fadenewbgm MUS_DUMMY
+	delay 90
+	fadedefaultbgm
+	return
+DreamScript_0802_Text1:
+	.string "… … …\p"
+	.string "{ALEX_SPEAKING}"
+	.string "Right? And I'm like “Guzma's on his way,\n"
+	.string "you two!” And they're cursing up a storm!{END}\p"
+	.string "Laughter fills the air. {RIVAL_They} shares\n"
+	.string "a smile with you.\p"
+	.string "{RIVAL_They} then mouths something at you.\n"
+	.string "Why can't {RIVAL_they} just speak up??$" @Huh?/What?
+DreamScript_0802_Text2:
+	.string "{RIVAL_They} mouths it again.{PAUSE 20}\n"
+	.string "And again.{PAUSE 30} And again…{PAUSE 20}\p"
+	.string "{SET_NORM_PAL}{PLAY_BGM MUS_DUMMY}{PLAY_SE SE_W291}"
+	.string "Like a bolt of lightning, it suddenly\n"
+	.string "hits you what {RIVAL_they} was saying!\p"
+	.string "{RIVAL_They} was too afraid of losing\n"
+	.string "what {RIVAL_they} had with you, but had to try!\p"
+	.string "How could you have been so stupid?!{PAUSE 30}\n"
+	.string "How did you not realize before?!{PAUSE 30}\p"
+	.string "{RIVAL_They} was saying…{PAUSE 60}\n"
+	.string "{CENTER}“I love you”{PAUSE 60}\p"
+	.string "… … … … … … …\n"
+	.string "… … … … … F&¥%!\p"
+	.string "$"
+	
 	
 @------------------------------------------------------
 @ Triggered after having surfed for the first time
@@ -435,6 +831,34 @@ DreamScript_1000_Text2:
 	.string "{AQUA_BOY} launches once more into an\n"
 	.string "obnoxious song. You roll over.\p"
 	.string "$"
+
+DreamScript_1001:: @ Alt version for not-Mossdeep
+	fadenewbgm MUS_OOAME
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	message DreamScript_1001_Text1
+	waitmessage
+	closemessage
+	delay 90
+	fadedefaultbgm
+	return
+DreamScript_1001_Text1:
+	.string "You find yourself in the pouring\n"
+	.string "rain again…\p"
+	.string "{AQUA_BOY} and {AQUA_GIRL} are throwing\n"
+	.string "their bandannas to the ground…\p"
+	.string "You go to throw yours as well…\n"
+	.string "And {RIVAL_ALOLA} is there too…\p"
+	.string "{RIVAL_They} throws her bandanna to the\n"
+	.string "ground and stomps on it.\p"
+	.string "{RIVAL_They} looks at you expectantly…\n"
+	.string "You clutch your bandanna tighter…\p"
+	.string "You're alone in the rain again…\p"
+	.string "{ALEX_SPEAKING}"
+	.string "I won't be part of something so vile…{END}{PAUSE 30}\n"
+	.string "{SET_NORM_PAL}"
+	.string "{RIVAL_Their} words echo as you bolt awake.\p"
+	.string "$"
 	
 @------------------------------------------------------
 @ Triggered upon finishing the Weather Institute event
@@ -444,6 +868,19 @@ DreamScript_1100::
 	@ Possibly Palmera is involved or spoken about
 	return
 DreamScript_1100_Text1:
+	.string "{ALEX_SPEAKING}"
+	.string "I don't like Lusamine.{END}\p"
+	.string "You look over at {ALOLA_RIVAL}, eating {RIVAL_their}\n"
+	.string "Malasada pensively.\p$"
+DreamScript_1100_YN_Why:
+	.string "Why?$"
+DreamScript_1100_YN_Okay:
+	.string "Okay…?$"
+DreamScript_1100_Text2:
+	.string "{ALEX_SPEAKING}"
+	.string "There's just something off about her,\n"
+	.string "ya know? I know Guzma loves her, but…\p"
+	@ TODO
 	.string "{SET_DREAM_PAL}"
 	.string "$"
 	
@@ -498,15 +935,111 @@ DreamScript_1600_Text1:
 	
 @------------------------------------------------------
 
+@------------------------------------------------------
 
+
+
+DreamScript_Alex_FirstCall::
+	lockall
+	pokenavcall gText_Alex_Pokenav_FirstCall1
+	waitmessage
+	delay 30
+	@ "Registered!"
+	playfanfare MUS_ME_TORE_EYE
+	msgbox gText_Alex_Pokenav_Registered, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	delay 30
+@ 	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
+	clearflag FLAG_ENABLE_ALEX_FIRST_CALL
+	releaseall
+	end
+gText_Alex_Pokenav_FirstCall1:
+	.string "… … … … … …\n"
+	.string "… … … … … Beep!\p"
+	.string "{ALEX_SPEAKING}"
+	.string "… …{PAUSE 30} {P_PLAYER}?{PAUSE 40} Is that you?{PAUSE 30}\n"
+	@ TODO: Test how choices work with pokenav: choice here "Alex?!" / "Wha?!"
+	.string "It's me… … {RIVAL_ALOLA}.\p"
+	.string "I, uh…{PAUSE 20} got your new number from\n"
+	.string "your mom. I hope that's alright.\p"
+	.string "I wasn't sure if you wanted to hear\n"
+	.string "from me again after…{PAUSE 30} you know…\p"
+	.string "It's good to hear your voice again…\p"
+	.string "I can't talk long right now but…\n"
+	.string "call me if you need to talk.\p"
+	.string "I know it's long distance.\n"
+	.string "But for you, I don't mind…{END}\p"
+	.string "… … … … … …\n"
+	.string "… … … … … Click!$"
+gText_Alex_Pokenav_Registered: @ 8213C01
+	.string "Registered your friend {ALOLA_RIVAL}\n"
+	.string "in the PokéNav.$"
+
+
+DreamScript_Alex_LeagueCall::
+	lockall
+	pokenavcall gText_Alex_Pokenav_LeagueCall1
+	waitmessage
+	closemessage
+	clearflag FLAG_ENABLE_ALEX_LEAGUE_CALL
+	releaseall
+	end
+gText_Alex_Pokenav_LeagueCall1:
+	.string "… … … … … …\n"
+	.string "… … … … … Beep!\p"
+	.string "{ALEX_SPEAKING}"
+	.string "{PLAYER}! You're alright!\n"
+	.string "I just heard the news about the\l"
+	.string "legendary beasts!\p"
+	.string "I was so worried!\n"
+	.string "I'm glad you're okay!\p"
+	.string "What? You're going to the\n"
+	.string "{POKEMON} League Championship?!\p"
+	.string "That's starting so soon!\p"
+	.string "Do you mind if I tell your mom?\n"
+	.string "I think we'd BOTH want to watch!\p"
+	.string "Good luck at the league,\n{PLAYER}!\p"
+	.string "… … … … … …\n"
+	.string "… … … … … Click!$"
+
+@------------------------------------------------------
+
+gText_Alex_Pokenav_Unavailable::
+	.string "… … … … … …\n"
+	.string "beee-Deee-DEEEEP!\p"
+	.string "We're sorry, we are unable to\n"
+	.string "connect your call at this time.\p"
+	.string "Your long distance minutes for\n"
+	.string "the day have been expended.\p"
+	.string "Please try again tomorrow.\p"
+	.string "… … … … … …\n"
+	.string "BEEP BEEP BEEP BEEP BEEP BEEP\l"
+	.string "BEEP BEEP BEEP BEEP BEEP BEEP$"
 
 
 
 @------------------------------------------------------
 DreamScript_Dummy:
-	.string "Dad's advice…\n"
-	.string "{PLAYER}, there's a time and place for\l"
-	.string "everything!{PAUSE_UNTIL_PRESS}"
+	.string "{ALOLA_RIVAL}'s advice…\n"
+	.string "We got plenty of beds in Po Town.\p"
+	.string "Nothing says you have to sleep near\n"
+	.string "your crazy mom and dad all the time."
+	
+	.string "Grip with your toes. Feel the waves\l"
+	.string "under the board. You feel them?"
+	
+	.string "Someone could get hurt, {PLAYER}!\n"
+	.string "We don't want to hurt nobody!$"
+	
+	
+	.string "You already failed at {POKEMON},\l"
+	.string "don't you fail at math too! Homework!{PAUSE_UNTIL_PRESS}"
+	
+	.string "I don't like you hanging out with those\l"
+	.string "hoodlums, {PLAYER}.\p"
+	.string "What have they ever done for you\n"
+	.string "besides get you in trouble?{PAUSE_UNTIL_PRESS}"
 	
 	.string "Mom's advice…\n"
 	.string "Remember, blood is thicker than water,\l"
@@ -514,4 +1047,3 @@ DreamScript_Dummy:
 	.string "What do we think, ladies? Martinis?{PAUSE_UNTIL_PRESS}"
 	
 	.string "$"
-	

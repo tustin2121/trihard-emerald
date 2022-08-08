@@ -365,8 +365,8 @@ DewfordTown_Gym_EventScript_1FC7F7:: @ 81FC7F7
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
-	@ setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
-	@ setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+	@ setvar VAR_ALEX_CALL_STEP_COUNTER, 0
+	@ setflag FLAG_ENABLE_ALEX_FIRST_CALL
 	release
 	end
 DewfordTown_Gym_Text_1FD07D: @ 81FD07D

@@ -261,7 +261,7 @@ RustboroCity_Gym_Text_213D12: @ 8213D12
 @ 	closemessage
 @ 	delay 30
 @ 	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
-@ 	clearflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+@ 	clearflag FLAG_ENABLE_ALEX_FIRST_CALL
 @ 	releaseall
 @ 	end
 @ RustboroCity_Gym_Text_213A76: @ 8213A76
