@@ -37,3 +37,4 @@ tools/binutils
 *.pyc
 tools/pgegen/pgegen
 *.ini
+gccdump.*

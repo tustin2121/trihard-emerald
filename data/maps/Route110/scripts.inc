@@ -15,8 +15,9 @@ Route110_OnResume: @ 81EF279
 Route110_OnTransition: @ 81EF27D
 	call Common_EventScript_SetupRivalGender
 	call Common_EventScript_SetupRivalOnBikeGender
-	compare VAR_CYCLING_CHALLENGE_STATE, 1
-	call_if_eq Route110_EventScript_1EF293
+	call_if_set FLAG_SYS_CYCLING_ROAD, Route110_EventScript_1EF293
+	@ compare VAR_CYCLING_CHALLENGE_STATE, 1
+	@ call_if_eq Route110_EventScript_1EF293
 	end
 
 Route110_EventScript_1EF293:: @ 81EF293
@@ -631,8 +632,8 @@ Route110_TriggerScript_FinishCyclingRoadChallenge:: @ 81EF661
 	selectpointer_clamp Route110_StringTable_FinishCyclingRoadChallenge, VAR_RESULT
 	msgbox_selected
 	setvar VAR_CYCLING_CHALLENGE_STATE, 3
-	savebgm MUS_DUMMY
-	fadedefaultbgm
+	@ savebgm MUS_DUMMY
+	@ fadedefaultbgm
 	releaseall
 	end
 
@@ -869,6 +870,7 @@ Route110_EventScript_1EF8EC:: @ 81EF8EC
 	call_if_eq Route110_EventScript_1EF985
 	removeobject 29
 	setvar VAR_ROUTE110_STATE, 1
+	setflag FLAG_DEFEATED_RIVAL_R110
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall

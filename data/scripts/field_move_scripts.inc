@@ -267,6 +267,7 @@ EventScript_UseSurf:: @ 8271EA0
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_CloseReleaseAllEnd
 	msgbox gText_PlayerUsedSurf, MSGBOX_DEFAULT
+	setflag FLAG_PLAYER_HAS_SURFED
 	dofieldeffect FLDEFF_USE_SURF
 	goto Common_EventScript_CloseReleaseAllEnd
 gText_WantToUseSurf:: @ 8272FD6

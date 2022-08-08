@@ -1,6 +1,7 @@
 #include "global.h"
 #include "event_data.h"
 #include "pokedex.h"
+#include "remembered_dreams.h"
 
 #define TEMP_FLAGS_SIZE 0x4
 #define DAILY_FLAGS_SIZE 0x8
@@ -202,8 +203,10 @@ u8 *GetFlagPointer(u16 id)
         return NULL;
     else if (id < SPECIAL_FLAGS_START)
         return &gSaveBlock1Ptr->flags[id / 8];
-    else
+    else if (id < REMEMBERED_FLAGS_START)
         return &gSpecialFlags[(id - SPECIAL_FLAGS_START) / 8];
+    else
+        return GetRememberedFlagPointer(id);
 }
 
 u8 FlagSet(u16 id)

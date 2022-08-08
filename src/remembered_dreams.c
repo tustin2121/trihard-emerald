@@ -16,7 +16,7 @@ u16 CalculateChecksum(void *data, u16 size);
 struct RememberedDreamsV1
 {
 	/*0x0000*/ u32 gameStats[NUM_GAME_STATS];
-	/*0x0100*/
+	/*0x0100*/ u8 flags[8];
 };
 
 struct RememberedDreams
@@ -48,6 +48,11 @@ void RememberStat(u8 index, u32 value)
 {
 	if (index < NUM_USED_GAME_STATS)
         gRememberedDreams.data.v1.gameStats[index] = value;
+}
+
+u8 *GetRememberedFlagPointer(u16 id)
+{
+	return &gRememberedDreams.data.v1.flags[(id - REMEMBERED_FLAGS_START) / 8];
 }
 
 void RememberWhiteout()
@@ -123,6 +128,30 @@ badDreams:
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+
+extern const u8 DreamScript_0100[];
+extern const u8 DreamScript_0150[];
+extern const u8 DreamScript_0200[];
+extern const u8 DreamScript_0300[];
+extern const u8 DreamScript_0400[];
+extern const u8 DreamScript_0900[];
+
+struct DreamDataStruct {
+	const u8 *script;
+	u16 requiredFlag;
+	u16 doneFlag;
+};
+
+static const struct DreamDataStruct sDreamScripts[] = {
+	{ DreamScript_0100, FLAG_DAD_IS_AT_WORK,              FLAG_SAW_DREAM_0100},
+	{ DreamScript_0150, FLAG_VISITED_RUSTBORO_CITY,       FLAG_SAW_DREAM_0150},
+	{ DreamScript_0200, FLAG_AQUA_FETCH_QUEST_COMPLETED,  FLAG_SAW_DREAM_0200},
+	{ DreamScript_0300, FLAG_DELIVERED_DEVON_GOODS,       FLAG_SAW_DREAM_0300},
+	{ DreamScript_0400, FLAG_DEFEATED_RIVAL_R110,         FLAG_SAW_DREAM_0400},
+	{ DreamScript_0900, FLAG_PLAYER_HAS_SURFED,           FLAG_SAW_DREAM_0900},
+	{ NULL,             0xFFFF,                           0xFFFF},
+};
+
 
 void ForceTextSpeedToMid()
 {

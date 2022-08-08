@@ -4,6 +4,7 @@
 u32 GetRememberedStat(u8 index);
 void RememberStat(u8 index, u32 value);
 void RememberWhiteout();
+u8 *GetRememberedFlagPointer(u16 id);
 
 void InitRememberedDreams();
 void LoadAndProcessRememberedDreams();

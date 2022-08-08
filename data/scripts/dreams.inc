@@ -1,5 +1,29 @@
-@ Dream after dad leaves for work and worried about you
-DreamScript_0100:
+@[0100]- Triggered by dad leaving for work
+@[0150]- Triggered by first entering Rustboro
+@[0200]- Triggered by completing Aqua Fetch Quest
+@[0300]- Triggered by completing Museum Heist
+@[0400]- Triggered by defeating rival in Route 110
+@[    ]- Triggered by beating Magma in Meteor Falls
+@[    ]- Triggered by getting Strength (Rusturf Tunnel)
+@[    ]- Triggered by defeating the grunt in Meteor Falls
+@[    ]- Triggered by defeating Flannery
+@[0900]- Triggered by surfing for the first time
+@[    ]- Triggered by starting the Weather Institute invasion
+@[    ]- Triggered by first entering Route 120
+@[    ]- Triggered by completing the Mr. Pyre 
+@[    ]- Triggered by first entering Aqua Hideout B1F
+@[    ]- Triggered by completing Space Center Rescue
+@[    ]- Triggered by the rains cutscene
+@[    ]- Triggered by getting defeated by the legendaries
+@[    ]- Triggered by defeating Logan
+
+
+
+
+
+@------------------------------------------------------
+@ Triggered by dad leaving for work
+DreamScript_0100::
 	fadenewbgm MUS_B_DOME1
 	delay 60
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
@@ -38,8 +62,8 @@ DreamScript_0100_Text1:
 	.string "$"
 
 @------------------------------------------------------
-@ Triggered upon first entering Rustboro
-DreamScript_0150:
+@ Triggered by first entering Rustboro
+DreamScript_0150::
 	@ A tale of Skull pulling a prank of some sort on someone
 	@ Being all tough and getting money to live on...
 	fadenewbgm MUS_TONEKUSA
@@ -94,8 +118,8 @@ DreamScript_0150_Text3:
 	.string "$"
 
 @------------------------------------------------------
-@ Triggered after completing the aqua quest
-DreamScript_0200:
+@ Triggered by completing Aqua Fetch Quest
+DreamScript_0200::
 	fadenewbgm MUS_DUMMY
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
 	@ "At it again..."
@@ -158,8 +182,8 @@ DreamScript_0200_Text3:
 	.string "$"
 
 @------------------------------------------------------
-@ Triggered after the meusam segment
-DreamScript_0300:
+@ Triggered by completing Museum Heist
+DreamScript_0300::
 	fadenewbgm MUS_B_DOME
 	delay 60
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
@@ -206,8 +230,8 @@ DreamScript_0300_YN_Thanks:
 	.string "Thanks {RIVAL_ALOLA}…$"
 	
 @------------------------------------------------------
-@ Triggered after arriving in Mossdeep for the first time
-DreamScript_0400:
+@ Triggered by defeating rival in Route 110
+DreamScript_0400::
 	fadenewbgm MUS_AQA_0
 	delay 60
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
@@ -254,7 +278,7 @@ DreamScript_0400_YN_Divorce:
 	
 @------------------------------------------------------
 @ Triggered after beating team magma at Meteor Falls
-DreamScript_0600:
+DreamScript_0600::
 	@ Player talks about his parent's divorce with Alex
 	@ She gives some insight
 	return
@@ -264,7 +288,7 @@ DreamScript_0600_Text1:
 	
 @------------------------------------------------------
 @ Triggered after helping team Aqua at the volcano
-DreamScript_0700:
+DreamScript_0700::
 	@ 
 	return
 DreamScript_0700_Text1:
@@ -273,7 +297,7 @@ DreamScript_0700_Text1:
 	
 @------------------------------------------------------
 @ Triggered after beating Flannery's gym
-DreamScript_0800:
+DreamScript_0800::
 	@ 
 	return
 DreamScript_0800_Text1:
@@ -282,7 +306,7 @@ DreamScript_0800_Text1:
 	
 @------------------------------------------------------
 @ Triggered after having surfed for the first time
-DreamScript_0900:
+DreamScript_0900::
 	fadenewbgm MUS_M_BOAT
 	delay 60
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
@@ -318,7 +342,7 @@ DreamScript_0900_Text1:
 @ Triggered upon entering the Weather Institute for the first time
 @ TODO: Special handling: if in the weather institute bed while the heist is going on,
 @    don't do any solmn dreams, as going to sleep here is a silly situation?
-DreamScript_1000:
+DreamScript_1000::
 	@ Alex questioning what the deal is with Luisamine
 	@ And how they're always doing her dirty work inexplicably
 	@ Possibly Palmera is involved or spoken about
@@ -329,7 +353,7 @@ DreamScript_1000_Text1:
 	
 @------------------------------------------------------
 @ Triggered upon finishing the Weather Institute event
-DreamScript_1100:
+DreamScript_1100::
 	@ 
 	return
 DreamScript_1100_Text1:
@@ -338,7 +362,7 @@ DreamScript_1100_Text1:
 	
 @------------------------------------------------------
 @ Triggered after the Mt. Pyre event
-DreamScript_1200:
+DreamScript_1200::
 	@ 
 	return
 DreamScript_1200_Text1:
@@ -347,7 +371,7 @@ DreamScript_1200_Text1:
 	
 @------------------------------------------------------
 @ Triggered after entering Aqua hideout BF1 for the first time
-DreamScript_1300:
+DreamScript_1300::
 	@ Player is caught in the middle of another argument and
 	@ bolts to go see Alex in Po Town, hang out in Po Town
 	return
@@ -357,7 +381,7 @@ DreamScript_1300_Text1:
 	
 @------------------------------------------------------
 @ Triggered 
-DreamScript_1400:
+DreamScript_1400::
 	@
 	return
 DreamScript_1400_Text1:
@@ -366,28 +390,26 @@ DreamScript_1400_Text1:
 	
 @------------------------------------------------------
 @ Triggered after the space institute custscene
-DreamScript_1500_PostQuestion:
+DreamScript_1500::
 	@ Alex has told the player she's leaving Team Skull
 	@ Player tries to object
 	@ Alex says that if player actually cared, he'd leave too, before things get bad
 	return
-DreamScript_1500_PostQuestion_Text1:
+DreamScript_1500_Text1:
 	.string "{SET_DREAM_PAL}"
 	.string "$"
 	
 @------------------------------------------------------
 @ Triggered after Team Aqua disbands
-DreamScript_1600_PostAquaDisbang:
+DreamScript_1600::
 	@ Alex is crying, the player having just told her that he's being forcibly moved to Hoenn
 	@ 
 	return
-DreamScript_1600_PostAquaDisbang_Text1:
+DreamScript_1600_Text1:
 	.string "{SET_DREAM_PAL}"
 	.string "$"
 	
 @------------------------------------------------------
-
-
 
 
 
