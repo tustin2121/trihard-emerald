@@ -4,6 +4,7 @@
 #include "text.h"
 #include "overworld.h"
 #include "event_data.h"
+#include "script.h"
 #include "constants/game_stat.h"
 #include "constants/flags.h"
 #include "remembered_dreams.h"
@@ -12,6 +13,7 @@
 #define VERSION 1
 
 u16 CalculateChecksum(void *data, u16 size);
+bool16 ShouldLegendaryMusicPlayAtLocation(struct WarpData *warp);
 
 struct RememberedDreamsV1
 {
@@ -96,6 +98,10 @@ void LoadAndProcessRememberedDreams()
 		FlagSet(FLAG_LOADING_AFTER_WHITEOUT);
 		FlagSet(FLAG_SHOULD_PLAY_LOSER_MUSIC);
 	}
+	if (GetRememberedStat(GAME_STAT_DIED_TO_LEGENDARIES) > GetGameStat(GAME_STAT_DIED_TO_LEGENDARIES))
+	{
+		FlagSet(FLAG_LOADING_AFTER_LEGENDARY_DEATH);
+	}
 	//TODO: set flag is a dream is due, and do remembered dream
 	
 	// Copy over the more up-to-date stats into the game
@@ -129,6 +135,7 @@ badDreams:
 
 //////////////////////////////////////////////////////////////////////////////////
 
+extern const u8 DreamScript_CantSleep[];
 extern const u8 DreamScript_0100[];
 extern const u8 DreamScript_0150[];
 extern const u8 DreamScript_0200[];
@@ -140,16 +147,18 @@ struct DreamDataStruct {
 	const u8 *script;
 	u16 requiredFlag;
 	u16 doneFlag;
+	u16 reqLoc;
 };
 
 static const struct DreamDataStruct sDreamScripts[] = {
-	{ DreamScript_0100, FLAG_DAD_IS_AT_WORK,              FLAG_SAW_DREAM_0100},
-	{ DreamScript_0150, FLAG_VISITED_RUSTBORO_CITY,       FLAG_SAW_DREAM_0150},
-	{ DreamScript_0200, FLAG_AQUA_FETCH_QUEST_COMPLETED,  FLAG_SAW_DREAM_0200},
-	{ DreamScript_0300, FLAG_DELIVERED_DEVON_GOODS,       FLAG_SAW_DREAM_0300},
-	{ DreamScript_0400, FLAG_DEFEATED_RIVAL_R110,         FLAG_SAW_DREAM_0400},
-	{ DreamScript_0900, FLAG_PLAYER_HAS_SURFED,           FLAG_SAW_DREAM_0900},
-	{ NULL,             0xFFFF,                           0xFFFF},
+	{ DreamScript_0100, FLAG_DAD_IS_AT_WORK,              FLAG_SAW_DREAM_0100, 0xFFFF},
+	{ DreamScript_0150, FLAG_VISITED_RUSTBORO_CITY,       FLAG_SAW_DREAM_0150, 0xFFFF},
+	{ DreamScript_0200, FLAG_AQUA_FETCH_QUEST_COMPLETED,  FLAG_SAW_DREAM_0200, 0xFFFF},
+	{ DreamScript_0300, FLAG_DELIVERED_DEVON_GOODS,       FLAG_SAW_DREAM_0300, 0xFFFF},
+	{ DreamScript_0400, FLAG_DEFEATED_RIVAL_R110,         FLAG_SAW_DREAM_0400, 0xFFFF},
+	{ DreamScript_0900, FLAG_PLAYER_HAS_SURFED,           FLAG_SAW_DREAM_0900, 0xFFFF},
+	{ DreamScript_1000, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000, MOSSDEEP_CITY_POKEMON_CENTER_1F},
+	{ NULL,             0xFFFF,                           0xFFFF,              0xFFFF},
 };
 
 
@@ -163,10 +172,37 @@ void UnforceTextSpeedToMid()
 	gTextFlags.forceMidTextSpeed = FALSE;
 }
 
-// TODO: move to the remembered dreams section, if they ever get added
-bool8 DoDreamCutscenes()
+bool8 DoDreamCutscenes(struct ScriptContext *ctx)
 {
-    return FALSE;
+	u32 i;
+	if (ShouldLegendaryMusicPlayAtLocation(&gSaveBlock1Ptr->location)) {
+		// If we can't change the music at this location (ie, in the center 
+		// during the legendary fight). Don't do the dreams
+		ScriptCall(ctx, DreamScript_CantSleep);
+		return TRUE;
+	}
+	
+	#define REQ_FLAG sDreamScripts[i].requiredFlag
+	#define DONE_FLAG sDreamScripts[i].doneFlag
+	#define REQ_LOC sDreamScripts[i].reqLoc
+	
+	for (i = 0; TRUE; i++) {
+		// If we reached the sentinel at the bottom, no dreams apply
+		if (sDreamScripts[i].script == NULL) return FALSE;
+		// If requiredFlag if set and doneFlag is not, we can use this entry
+		// Also if doneFlag is not set, skip anyway
+		if (REQ_FLAG == 0xFFFF || FlagGet(REQ_FLAG) == FALSE) continue;
+		if (DONE_FLAG == 0xFFFF || FlagGet(DONE_FLAG) == TRUE) continue;
+		if (REQ_LOC != 0xFFFF) {
+			if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(REQ_LOC)
+				|| gSaveBlock1Ptr->location.mapNum != MAP_NUM(REQ_LOC)) continue;
+		}
+		break;
+	}
+	ScriptCall(ctx, sDreamScripts[i].script);
+	FlagSet(DONE_FLAG);
+	SaveRememberedDreams();
+	return TRUE;
 }
 
 

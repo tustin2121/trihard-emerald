@@ -6,19 +6,28 @@
 @[    ]- Triggered by beating Magma in Meteor Falls
 @[    ]- Triggered by getting Strength (Rusturf Tunnel)
 @[    ]- Triggered by defeating the grunt in Meteor Falls
-@[    ]- Triggered by defeating Flannery
+@[0500]- Triggered by defeating Flannery
 @[0900]- Triggered by surfing for the first time
 @[    ]- Triggered by starting the Weather Institute invasion
 @[    ]- Triggered by first entering Route 120
 @[    ]- Triggered by completing the Mr. Pyre 
 @[    ]- Triggered by first entering Aqua Hideout B1F
 @[    ]- Triggered by completing Space Center Rescue
-@[    ]- Triggered by the rains cutscene
+@[1000]- Triggered by the rains cutscene, required location Mossdeep
 @[    ]- Triggered by getting defeated by the legendaries
 @[    ]- Triggered by defeating Logan
 
-
-
+DreamScript_CantSleep::
+	delay 30
+	message DreamScript_CantSleep_Text1
+	waitmessage
+	closemessage
+	delay 90
+	return
+DreamScript_CantSleep_Text1:
+	.string "You toss and turn all night…\p"
+	.string "There's no way to sleep with those\n"
+	.string "giant beasts fighting outside…\p$"
 
 
 @------------------------------------------------------
@@ -277,19 +286,69 @@ DreamScript_0400_YN_Divorce:
 	.string "They mentioned divorce…$"
 	
 @------------------------------------------------------
-@ Triggered after beating team magma at Meteor Falls
-DreamScript_0600::
+@ Triggered by defeating Flannery
+DreamScript_0500::
+	fadenewbgm MUS_MABOROSI @TODO
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	@ "Sure?"
+	message DreamScript_0500_Text1
+	setyesnotext gYN_Yep_, gYN_Duh
+	waitmessage
+	yesnobox 20, 8
+	@ "Sure?"
+	message DreamScript_0500_Text2
+	setyesnotext gYN_Yeah, gYN_Elipsis2
+	waitmessage
+	yesnobox 20, 8
+	@ "How do you feel?"
+	message DreamScript_0500_Text3
+	setyesnotext gYN_Ugh, gYN_Fine1
+	waitmessage
+	yesnobox 20, 8
+	@ "Good to talk"
+	message DreamScript_0500_Text3
+	setyesnotext gYN_Elipsis2, gYN_No_
+	waitmessage
+	yesnobox 20, 8
+	closemessage
+	fadenewbgm MUS_DUMMY
+	delay 90
+	fadedefaultbgm
+	return
 	@ Player talks about his parent's divorce with Alex
 	@ She gives some insight
 	return
-DreamScript_0600_Text1:
-	.string "{SET_DREAM_PAL}"
+DreamScript_0500_Text1:
+	.string "{RIVAL_They} throws another rock into the surf.\n"
+	.string "You lay in the sand and stare at clouds.\p"
+	.string "{ALEX_SPEAKING}"
+	.string "You're sure they're getting divorced?$"
+DreamScript_0500_Text2:
+	.string "{ALEX_SPEAKING}"
+	.string "Like you saw the papers? And your\n"
+	.string "dad's staying at a hotel now?{END}$"
+DreamScript_0500_Text3:
+	.string "{RIVAL_ALOLA} comes over and sits beside\n"
+	.string "you in the sand, taking your hand.\p"
+	.string "{ALEX_SPEAKING}"
+	.string "And… how do you feel about that?$"
+DreamScript_0500_Text4:
+	.string "{ALEX_SPEAKING}"
+	.string "I know you don't like talking about\n"
+	.string "your feelings and all, but…{END}\p"
+	.string "{RIVAL_They} plays with your fingers.\n"
+	.string "{ALEX_SPEAKING}"
+	.string "Plumeria says it's good to talk.{END}\p"
+	.string "{RIVAL_They} looks down at you.\n"
+	.string "{ALEX_SPEAKING}"
+	.string "You okay?"
 	.string "$"
 	
 @------------------------------------------------------
 @ Triggered after helping team Aqua at the volcano
 DreamScript_0700::
-	@ 
+	@
 	return
 DreamScript_0700_Text1:
 	.string "{SET_DREAM_PAL}"
@@ -339,22 +398,50 @@ DreamScript_0900_Text1:
 	.string "$"
 	
 @------------------------------------------------------
-@ Triggered upon entering the Weather Institute for the first time
-@ TODO: Special handling: if in the weather institute bed while the heist is going on,
-@    don't do any solmn dreams, as going to sleep here is a silly situation?
+@ Triggered by the rains cutscene, required location Mossdeep
 DreamScript_1000::
-	@ Alex questioning what the deal is with Luisamine
-	@ And how they're always doing her dirty work inexplicably
-	@ Possibly Palmera is involved or spoken about
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	message DreamScript_1000_Text1
+	waitmessage
+	fadenewbgm MUS_OOAME
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	message DreamScript_1000_Text2
+	waitmessage
+	closemessage
+	delay 90
+	fadedefaultbgm
 	return
 DreamScript_1000_Text1:
-	.string "{SET_DREAM_PAL}"
+	.string "Between the pounding rain on the roof\n"
+	.string "and {AQUA_BOY}'s loud singing outside,\l"
+	.string "you're finding it difficult to sleep.\p$"
+DreamScript_1000_Text2:
+	.string "Eventually, though…"
+	.string "{PAUSE 30}{SET_DREAM_PAL}{PAUSE 20}"
+	.string                     " You find\n"
+	.string "yourself in the pouring rain again…\p"
+	.string "{AQUA_BOY} and {AQUA_GIRL} are throwing\n"
+	.string "their bandannas to the ground…\p"
+	.string "You go to throw yours as well…\n"
+	.string "And {RIVAL_ALOLA} is there too…\p"
+	.string "{RIVAL_They} throws her bandanna to the\n"
+	.string "ground and stomps on it.\p"
+	.string "{RIVAL_They} looks at you expectantly…\n"
+	.string "You clutch your bandanna tighter…\p"
+	.string "You're alone in the rain again…\p"
+	.string "{SET_NORM_PAL}{PLAY_BGM MUS_DUMMY}"
+	.string "{AQUA_BOY}: Com'on, guys! One more time!\p"
+	.string "{AQUA_BOY} launches once more into an\n"
+	.string "obnoxious song. You roll over.\p"
 	.string "$"
 	
 @------------------------------------------------------
 @ Triggered upon finishing the Weather Institute event
 DreamScript_1100::
-	@ 
+	@ Alex questioning what the deal is with Luisamine
+	@ And how they're always doing her dirty work inexplicably
+	@ Possibly Palmera is involved or spoken about
 	return
 DreamScript_1100_Text1:
 	.string "{SET_DREAM_PAL}"

@@ -404,7 +404,11 @@ void BattleSetup_SetupVictoryLines(void)
         case TRAINER_CLASS_PKMN_TRAINER_3:
             if (gTrainers[gTrainerBattleOpponent_A].trainerPic == TRAINER_PIC_WALLY)
             {
-                sTrainerVictorySpeech = (u8*)gText_Whiteout_RivalHero;
+                if (FlagGet(FLAG_LEGENDARIES_CLEARED)) {
+                    sTrainerVictorySpeech = (u8*)gText_Whiteout_RivalHero2;
+                } else {
+                    sTrainerVictorySpeech = (u8*)gText_Whiteout_RivalHero;
+                }
             }
             else
             {
@@ -1595,8 +1599,10 @@ const u8 *GetTrainerWonSpeech(void)
     
     if (gBattleTypeFlags & BATTLE_TYPE_RAYQUAZA)
         string = gText_Whiteout_Rayquaza;
-    else if (gBattleTypeFlags & BATTLE_TYPE_RAGING_LEGENDARY)
+    else if (gBattleTypeFlags & BATTLE_TYPE_RAGING_LEGENDARY) {
         string = gText_Whiteout_RagingLegendary;
+        IncrementGameStat(GAME_STAT_DIED_TO_LEGENDARIES);
+    }
     else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) == 0)
         string = gText_Whiteout_WildMon;
     else

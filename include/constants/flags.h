@@ -1130,7 +1130,7 @@
 #define FLAG_AQUA_FETCH_QUEST_COMPLETED                             0x49A // Trihard
 #define FLAG_DEFEATED_RIVAL_R110                                    0x49B // Unused Flag
 #define FLAG_PLAYER_HAS_SURFED                                      0x49C // Unused Flag
-#define FLAG_UNUSED_0x49D                                           0x49D // Unused Flag
+#define FLAG_LEGENDARIES_CLEARED                                    0x49D // Unused Flag
 #define FLAG_UNUSED_0x49E                                           0x49E // Unused Flag
 #define FLAG_UNUSED_0x49F                                           0x49F // Unused Flag
 #define FLAG_UNUSED_0x4A0                                           0x4A0 // Unused Flag
@@ -1517,6 +1517,9 @@
 #define FLAG_SHOULD_DO_DREAM_CUTSCENE                              0x4009 // TriHard
 #define FLAG_ERROR_READING_DREAMS                                  0x400A // TriHard
 #define FLAG_ERROR_WRITING_DREAMS                                  0x400B // TriHard
+#define FLAG_LOADING_AFTER_LEGENDARY_DEATH                         0x400C // TriHard
+
+#define NUM_SPECIAL_FLAGS                                          16*8
 
 // Remembered flags
 #define REMEMBERED_FLAGS_START                                     0x6000
@@ -1526,7 +1529,7 @@
 #define FLAG_SAW_DREAM_0300                                        0x6003
 #define FLAG_SAW_DREAM_0400                                        0x6004
 #define FLAG_SAW_DREAM_0900                                        0x6005
-#define FLAG_REMEMBERED_0x06                                       0x6006
+#define FLAG_SAW_DREAM_1000                                        0x6006
 #define FLAG_REMEMBERED_0x07                                       0x6007
 #define FLAG_REMEMBERED_0x08                                       0x6008
 #define FLAG_REMEMBERED_0x09                                       0x6009
@@ -1584,8 +1587,5 @@
 #define FLAG_REMEMBERED_0x3D                                       0x603D
 #define FLAG_REMEMBERED_0x3E                                       0x603E
 #define FLAG_REMEMBERED_0x3F                                       0x603F
-
-
-#define NUM_SPECIAL_FLAGS                                          16*8
 
 #endif // GUARD_CONSTANTS_FLAGS_H

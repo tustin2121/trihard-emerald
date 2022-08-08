@@ -549,6 +549,7 @@ SootopolisCity_TriggerScript_FightLegendaries::
 	setvar VAR_SKY_PILLAR_STATE, 10
 	setvar VAR_RAYQUAZA_STATE, 5
 	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	setflag FLAG_LEGENDARIES_CLEARED
 	fadenewbgm MUS_RUNECITY
 	delay 120
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
@@ -617,6 +618,7 @@ SootopolisCity_EventScript_1E5C1E:: @ 81E5C1E
 	clearflag FLAG_SYS_WEATHER_CTRL
 	setvar VAR_SKY_PILLAR_STATE, 3
 	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	setflag FLAG_LEGENDARIES_CLEARED
 	fadenewbgm MUS_RUNECITY
 	delay 120
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
@@ -670,6 +672,7 @@ SootopolisCity_EventScript_1E5CCE:: @ 81E5CCE
 	clearflag FLAG_SYS_WEATHER_CTRL
 	setvar VAR_SKY_PILLAR_STATE, 2
 	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
+	setflag FLAG_LEGENDARIES_CLEARED
 	fadenewbgm MUS_NAMINORI
 	delay 120
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
