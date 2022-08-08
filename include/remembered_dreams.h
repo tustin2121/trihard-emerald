@@ -10,5 +10,8 @@ void InitRememberedDreams();
 void LoadAndProcessRememberedDreams();
 void SaveRememberedDreams();
 
+struct ScriptContext;
+bool8 DoDreamCutscenes(struct ScriptContext *ctx);
+
 
 #endif // GUARD_REMEMBERED_DREAMS_H

@@ -79,6 +79,7 @@ OldaleTown_Text_BlockadeBoy2:
 OldaleTown_TriggerScript_Policeman::
 	lock
 	msgbox OldaleTown_Text_1E91G4, MSGBOX_CDIALOG
+	closemessage
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkRight1
 	waitmovement 0
 	release
@@ -180,6 +181,7 @@ OldaleTown_EventScript_RivalSpeak:: @ 81E90E6
 	waitmovement 0
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
+	markasdialog
 	selectpointer_ongender OldaleTown_Text_1E9462, OldaleTown_Text_1E948A
 	msgbox_selected
 	closemessage

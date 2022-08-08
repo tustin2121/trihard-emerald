@@ -2753,6 +2753,7 @@ extern const u8 gText_Whiteout_BadTrainer[];
 extern const u8 gText_Whiteout_AquaTrainer[];
 extern const u8 gText_Whiteout_AquaAdmin[];
 extern const u8 gText_Whiteout_RivalHero[];
+extern const u8 gText_Whiteout_RivalHero2[];
 extern const u8 gText_Whiteout_RivalBirch[];
 
 extern const u8 gText_Sunday[];

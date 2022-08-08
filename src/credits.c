@@ -715,7 +715,7 @@ static void Task_CreditsLoadGrassScene(u8 taskIdA)
                                     | DISPCNT_OBJ_ON);
 
         gMain.state = 0;
-        gSpriteDestroyFlag = 0;
+        gUnknown_0203BD28 = 0;
         gTasks[taskIdA].func = Task_WaitPaletteFade;
         break;
     }
@@ -1156,13 +1156,13 @@ static void sub_817624C(u8 taskIdC)
     switch (gTasks[taskIdC].data[TDC_0])
     {
     case 0:
-        gSkyBgPanYAdjust = Sin((gTasks[taskIdC].data[TDC_5] >> 1) & 0x7F, 12);
+        gUnknown_0203BD26 = Sin((gTasks[taskIdC].data[TDC_5] >> 1) & 0x7F, 12);
         gTasks[taskIdC].data[TDC_5]++;
         break;
     case 1:
-        if (gSkyBgPanYAdjust != 0)
+        if (gUnknown_0203BD26 != 0)
         {
-            gSkyBgPanYAdjust = Sin((gTasks[taskIdC].data[TDC_5] >> 1) & 0x7F, 12);
+            gUnknown_0203BD26 = Sin((gTasks[taskIdC].data[TDC_5] >> 1) & 0x7F, 12);
             gTasks[taskIdC].data[TDC_5]++;
         }
         else
@@ -1176,7 +1176,7 @@ static void sub_817624C(u8 taskIdC)
         if (gTasks[taskIdC].data[TDC_5] < 64)
         {
             gTasks[taskIdC].data[TDC_5]++;
-            gSkyBgPanYAdjust = Sin(gTasks[taskIdC].data[TDC_5] & 0x7F, 20);
+            gUnknown_0203BD26 = Sin(gTasks[taskIdC].data[TDC_5] & 0x7F, 20);
         }
         else
         {
@@ -1204,7 +1204,7 @@ static void sub_817624C(u8 taskIdC)
         if (gTasks[taskIdC].data[TDC_5] > 0)
         {
             gTasks[taskIdC].data[TDC_5]--;
-            gSkyBgPanYAdjust = Sin(gTasks[taskIdC].data[TDC_5] & 0x7F, 20);
+            gUnknown_0203BD26 = Sin(gTasks[taskIdC].data[TDC_5] & 0x7F, 20);
         }
         else
         {
@@ -1251,10 +1251,10 @@ static void sub_817651C(u8 taskIdE)
                 gTasks[taskIdE].data[TDE_1] = 0x7FFF;
             }
         }
-        Intro2FlickerPalette(0);
+        sub_817B540(0);
         break;
     case 1:
-        Intro2FlickerPalette(0);
+        sub_817B540(0);
         break;
     case 2:
         if (gTasks[taskIdE].data[TDE_1] != 0x7FFF)
@@ -1268,7 +1268,7 @@ static void sub_817651C(u8 taskIdE)
                 gTasks[taskIdE].data[TDE_1] = 0x7FFF;
             }
         }
-        Intro2FlickerPalette(1);
+        sub_817B540(1);
         break;
     case 3:
         if (gTasks[taskIdE].data[TDE_1] != 0x7FFF)
@@ -1284,10 +1284,10 @@ static void sub_817651C(u8 taskIdE)
                 gTasks[taskIdE].data[TDE_1] += 1;
             }
         }
-        Intro2FlickerPalette(1);
+        sub_817B540(1);
         break;
     case 4:
-        Intro2FlickerPalette(2);
+        sub_817B540(2);
         break;
     }
 }
@@ -1305,7 +1305,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = CreateBikeBackgroundAnimationTask(0, 0x2000, 0x20, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(0, 0x2000, 0x20, 8);
         break;
     case 1:
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].invisible = FALSE;
@@ -1316,7 +1316,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = CreateBikeBackgroundAnimationTask(0, 0x2000, 0x20, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(0, 0x2000, 0x20, 8);
         break;
     case 2:
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].invisible = FALSE;
@@ -1327,7 +1327,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = CreateBikeBackgroundAnimationTask(1, 0x2000, 0x200, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(1, 0x2000, 0x200, 8);
         break;
     case 3:
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].invisible = FALSE;
@@ -1338,7 +1338,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = CreateBikeBackgroundAnimationTask(1, 0x2000, 0x200, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(1, 0x2000, 0x200, 8);
         break;
     case 4:
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].invisible = FALSE;
@@ -1349,7 +1349,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = CreateBikeBackgroundAnimationTask(2, 0x2000, 0x200, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(2, 0x2000, 0x200, 8);
         break;
     }
 
@@ -1391,9 +1391,9 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
         gMain.state = 1;
         break;
     case 1:
-        gSkyBgPanY = 34;
-        gSkyBgPanYAdjust = 0;
-        LoadCreditsBackgroundScenery(data);
+        gUnknown_0203BD24 = 34;
+        gUnknown_0203BD26 = 0;
+        sub_817B1C8(data);
         gMain.state += 1;
         break;
     case 2:
@@ -1435,7 +1435,7 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
         break;
     case 3:
         sub_817664C(data, taskIdA);
-        SetGpuRegistersForBikeScene(data);
+        sub_817B3A8(data);
         gMain.state = 0;
         return TRUE;
     }
@@ -1468,7 +1468,7 @@ static void ResetCreditsTasks(u8 taskIdA)
         gTasks[taskIdA].data[TDA_TASK_D_ID] = 0;
     }
 
-    gSpriteDestroyFlag = 1;
+    gUnknown_0203BD28 = 1;
 }
 
 static void LoadTheEndScreen(u16 arg0, u16 baseAddress, u16 palOff)
@@ -1530,7 +1530,7 @@ static void WriteTheEndTileMap(u16 vramOffset, u16 palette)
 
 static void sub_8176EE8(struct Sprite *sprite)
 {
-    if (gSpriteDestroyFlag != 0)
+    if (gUnknown_0203BD28 != 0)
     {
         DestroySprite(sprite);
         return;
@@ -1567,7 +1567,7 @@ static void sub_8176EE8(struct Sprite *sprite)
 
 static void sub_8176F90(struct Sprite *sprite)
 {
-    if (gSpriteDestroyFlag != 0)
+    if (gUnknown_0203BD28 != 0)
     {
         DestroySprite(sprite);
         return;
@@ -1586,7 +1586,7 @@ static void sub_8176F90(struct Sprite *sprite)
             StartSpriteAnimIfDifferent(sprite, 2);
         if (sprite->pos1.x > -32)
             sprite->pos1.x -= 2;
-        sprite->pos2.y = -gSkyBgPanYAdjust;
+        sprite->pos2.y = -gUnknown_0203BD26;
         break;
     case 2:
         sprite->data[7] += 1;
@@ -1604,7 +1604,7 @@ static void sub_8176F90(struct Sprite *sprite)
 
 static void sub_8177050(struct Sprite *sprite)
 {
-    if (gSpriteDestroyFlag)
+    if (gUnknown_0203BD28)
     {
         FreeAndDestroyMonPicSprite(sprite->data[6]);
         return;
@@ -1711,7 +1711,7 @@ static u8 sub_8177224(u16 nationalDexNum, s16 x, s16 y, u16 position)
 
 static void sub_81772B8(struct Sprite *sprite)
 {
-    if (gSprites[sprite->data[0]].data[0] == 10 || gSpriteDestroyFlag)
+    if (gSprites[sprite->data[0]].data[0] == 10 || gUnknown_0203BD28)
     {
         DestroySprite(sprite);
         return;

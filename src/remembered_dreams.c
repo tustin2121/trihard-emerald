@@ -5,6 +5,7 @@
 #include "overworld.h"
 #include "event_data.h"
 #include "script.h"
+#include "constants/maps.h"
 #include "constants/game_stat.h"
 #include "constants/flags.h"
 #include "remembered_dreams.h"
@@ -142,6 +143,7 @@ extern const u8 DreamScript_0200[];
 extern const u8 DreamScript_0300[];
 extern const u8 DreamScript_0400[];
 extern const u8 DreamScript_0900[];
+extern const u8 DreamScript_1000[];
 
 struct DreamDataStruct {
 	const u8 *script;
@@ -157,7 +159,7 @@ static const struct DreamDataStruct sDreamScripts[] = {
 	{ DreamScript_0300, FLAG_DELIVERED_DEVON_GOODS,       FLAG_SAW_DREAM_0300, 0xFFFF},
 	{ DreamScript_0400, FLAG_DEFEATED_RIVAL_R110,         FLAG_SAW_DREAM_0400, 0xFFFF},
 	{ DreamScript_0900, FLAG_PLAYER_HAS_SURFED,           FLAG_SAW_DREAM_0900, 0xFFFF},
-	{ DreamScript_1000, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000, MOSSDEEP_CITY_POKEMON_CENTER_1F},
+	{ DreamScript_1000, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000, MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F},
 	{ NULL,             0xFFFF,                           0xFFFF,              0xFFFF},
 };
 
@@ -194,8 +196,8 @@ bool8 DoDreamCutscenes(struct ScriptContext *ctx)
 		if (REQ_FLAG == 0xFFFF || FlagGet(REQ_FLAG) == FALSE) continue;
 		if (DONE_FLAG == 0xFFFF || FlagGet(DONE_FLAG) == TRUE) continue;
 		if (REQ_LOC != 0xFFFF) {
-			if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(REQ_LOC)
-				|| gSaveBlock1Ptr->location.mapNum != MAP_NUM(REQ_LOC)) continue;
+			if (gSaveBlock1Ptr->location.mapGroup != (REQ_LOC >> 8)
+				|| gSaveBlock1Ptr->location.mapNum != (REQ_LOC & 0xFF)) continue;
 		}
 		break;
 	}
