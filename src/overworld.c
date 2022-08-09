@@ -6,6 +6,7 @@
 #include "bg.h"
 #include "cable_club.h"
 #include "clock.h"
+#include "credits.h"
 #include "day_night.h"
 #include "event_data.h"
 #include "field_camera.h"
@@ -1832,6 +1833,11 @@ void CB2_ContinueSavedGame(void)
     ScriptContext2_Disable();
     InitMatchCallCounters();
     DebugResetInterrupts();
+#if TPP_MODE
+    if (FlagGet(FLAG_SYS_GAME_CLEAR)) {
+        SetMainCallback2(CB2_StartCreditsSequence);
+    } else
+#endif
     if (UseContinueGameWarp() == TRUE)
     {
         ClearContinueGameWarpStatus();
