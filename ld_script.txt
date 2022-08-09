@@ -205,6 +205,7 @@ SECTIONS {
         src/battle_ai_script_commands.o(.text);
         src/trader.o(.text);
         src/starter_choose.o(.text);
+        src/starter_choose_tpp.o(.text);
         src/wallclock.o(.text);
         src/fldeff_rocksmash.o(.text);
         src/fldeff_dig.o(.text);
@@ -556,6 +557,7 @@ SECTIONS {
         src/battle_ai_script_commands.o(.rodata);
         src/trader.o(.rodata);
         src/starter_choose.o(.rodata);
+        src/starter_choose_tpp.o(.rodata);
         src/wallclock.o(.rodata);
         src/pokeblock.o(.rodata);
         src/fldeff_flash.o(.rodata);

@@ -97,6 +97,8 @@ For future person reference:
         * The game has programmed into it the ability to do a double wild battle that is never used in the vanilla game. It functions, but it's not polished.
     * There's a reason the battle goes to black when starting a trainer battle: instantiating pokemon teams is a taxing operation. If you attempt to generate a pokemon as part of an overworld script, expect the game to lag for a few frames, worse if you're generating more than one. *Definitely* don't try to do it after an `applymovement` to the player in an attempt to mitigate the lag spike at either end of the movement, as that only makes the lag ten times more noticable. Totally not speaking from experience or anything...
     * DON'T TOUCH THE BATTLE SYSTEM UNLESS YOU KNOW WHAT YOU'RE DOING. That way madness lies... It's a miracle the gen 3 battle system isn't *more* broken...
+* Sprites
+	* Sprite callbacks cannot be NULL. If they are, the game will crash. Instead set them to `SpriteCallbackDummy`.
 * Default Palette Setup:
     * Object Palettes 2-5 are standard object palettes. All event objects share these palettes.
     * Object palettes 6-9 are standard object reflection palettes. These are so all objects can have a water reflection.

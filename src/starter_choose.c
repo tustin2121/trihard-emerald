@@ -1,3 +1,5 @@
+#if !TPP_MODE
+
 #include "global.h"
 #include "bg.h"
 #include "data.h"
@@ -673,3 +675,5 @@ void StarterPokemonSpriteCallback(struct Sprite *sprite)
     if (sprite->pos1.y < STARTER_PKMN_POS_Y)
         sprite->pos1.y += 2;
 }
+
+#endif
