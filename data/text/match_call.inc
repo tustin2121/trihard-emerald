@@ -8,6 +8,14 @@ gText_Dad_Pokenav_NoAnswer::
 	.string "Please leave a message after\n"
 	.string "the tone…$"
 	
+gText_Dad_Pokenav_Starting::
+	.string "Dad: {PLAYER}?\n"
+	.string "Why are you calling me?\p"
+	.string "Yes, fine, you wanted to test the\n"
+	.string "phone. It works, good.\p"
+	.string "I'm still busy unpacking at home.\n"
+	.string "Just come talk to me if you want.$"
+	
 gText_Dad_Pokenav_AreYouHurt::
 	.string "Dad: {PLAYER}, hi! Is everything\n"
 	.string "okay? Are you hurt?\p"

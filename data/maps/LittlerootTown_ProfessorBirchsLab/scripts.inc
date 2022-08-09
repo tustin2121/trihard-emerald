@@ -928,7 +928,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC2:: @ 81FA4BB
 LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2: @ 81FB0E7
 	.string "It's a PC used for research.\p"
 	.string "You change the desktop background to\n"
-	.string "fill the screen an old gif.$"
+	.string "fill the screen with an old gif.$"
 LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC2_A:
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2A, MSGBOX_DESCRIBE
 	end
@@ -969,7 +969,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FB148: @ 81FB148
 
 
 LittlerootTown_ProfessorBirchsLab_EventScript_HealMachine:: @ 81FA3E3
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB0A2, MSGBOX_SIGN
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FB0A2, MSGBOX_DESCRIBE
 	end
 LittlerootTown_ProfessorBirchsLab_Text_1FB0A2: @ 81FB0A2
 	.string "It's a serious-looking machine.\n"

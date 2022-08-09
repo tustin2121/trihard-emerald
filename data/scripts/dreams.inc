@@ -95,7 +95,7 @@ DreamScript_0150_Text1:
 	.string "The cloudless sky…{PAUSE 50}\n"
 	.string "{CLEAR_TO 0x40}The sea-salt breeze…{PAUSE 50}\l"
 	.string "The arguing from the house behind you…{PAUSE 20}\p"
-	.string "You look down at the empty Pokéball…{PAUSE 50}\n"
+	.string "You look down at the empty Poké Ball…{PAUSE 50}\n"
 	.string "The broken challenge amulet…{PAUSE 20}\p"
 	.string "{MAN_SPEAKING}{RESET_SPEED}"
 	.string "AND STAY OUT OF MY SHOP!{END}{PAUSE 30}\n"

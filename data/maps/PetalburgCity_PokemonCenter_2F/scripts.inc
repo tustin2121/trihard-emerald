@@ -123,7 +123,8 @@ PetalburgCity_PokemonCenter_2F_EventScript_LoganBed::
 	release
 	end
 PetalburgCity_PokemonCenter_2F_Text_LoganBed:
-	.string "He's unconcious, but doesn't look too\n"
-	.string "bad. The nurse said he mainly had the\l"
+	.string "He's unconscious,\n"
+	.string "but doesn't look too bad.\p"
+	.string "The nurse said he mainly had the\n"
 	.string "wind knocked out of him.$"
 

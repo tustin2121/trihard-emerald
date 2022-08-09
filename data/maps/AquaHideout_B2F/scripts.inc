@@ -109,6 +109,64 @@ AquaHideout_B2F_Text_234112: @ 8234112
 
 @ -----------------------------------------------------
 
+AquaHideout_B2F_AquaWhy::
+	msgbox AquaHideout_B2F_AquaWhyText, MSGBOX_NPC
+	release
+	end
+AquaHideout_B2F_AquaWhyText:
+	.string "Why?! Why did they do this?!\p"
+	.string "This was an open passageway to the\n"
+	.string "lounge corner before the remodel!\p"
+	.string "But they walled it off and installed\n"
+	.string "that teleporter… which just takes\l"
+	.string "you to the room they walled off!\p"
+	.string "Just… why?!\n"
+	.string "Did they WANT this to be confusing?!$"
+
+@ -----------------------------------------------------
+@ Trigger: Napping on couch
+
+AquaHideout_B2F_RestCouch::
+	lockall
+	goto_if_set FLAG_TEMP_1F, AquaHideout_B2F_RestCouch_Nope
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	message AquaHideout_B2F_RestCouch_Text, MSGTYPE_DESCRIBE
+	waitmessage
+	yesnobox 20, 8
+	compare VAR_RESULT, NO
+	goto_if_eq Common_EventScript_ReleaseAllEnd
+	@ now napping
+	setflag FLAG_TEMP_1F
+	call Common_EventScript_PartyHealSave_Setup
+	@ TODO: Walk player off couch?
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	@ Do the mourning cutscene, if needed
+	domourning
+	call Common_EventScript_PartyHealSave_Save
+	@ Check for dream cutscenes
+	dodreams
+	call Common_EventScript_PartyHealSave_Complete
+	release
+	end
+AquaHideout_B2F_RestCouch_Text:
+	.string "This couch is very comfey…\n"
+	.string "Take a quick nap?$"
+AquaHideout_B2F_RestCouch_Nope:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	message AquaHideout_B2F_RestCouch_NopeText, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	release
+	end
+AquaHideout_B2F_RestCouch_NopeText:
+	.string "{PLAYER} takes a rest for a moment,\n"
+	.string "not feeling tired.$"
+
+@ -----------------------------------------------------
+
 #define LID_MATT 1
 
 AquaHideout_B2F_TriggerScript_Arrival:: @ 8233DE5

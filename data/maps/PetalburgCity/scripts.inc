@@ -120,7 +120,7 @@ PetalburgCity_Text_Notice:
 PetalburgCity_EventScript_1DC3E6:: @ 81DC3E6
 	lock
 	faceplayer
-	msgbox PetalburgCity_Text_1DC985, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Text_1DC985, MSGBOX_DIALOG
 	closemessage
 	applymovement 3, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -188,10 +188,10 @@ PetalburgCity_EventScript_LoganDad:: @ 81DC3FD
 	msgbox PetalburgCity_Text_1DC839, MSGBOX_NPC
 	end
 PetalburgCity_Text_1DC839: @ 81DC837
-	.string "{RIVAL_HERO}? {RIVAL_HERO}!\p"
-	.string "Oh, hello. We're searching for our\n"
-	.string "son, {RIVAL_HERO}. If you see him\l"
-	.string "come find us, please?$"
+	.string "{RIVAL_HERO}? {RIVAL_HERO}!{PAUSE 20}\n"
+	.string "Oh, hello.\p"
+	.string "We're searching for our son, {RIVAL_HERO}.\n"
+	.string "If you see him come find us, please?$"
 
 @ -----------------------------------------------------
 @ Cutscene: Logan in the dirt

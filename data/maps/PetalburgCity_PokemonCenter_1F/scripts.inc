@@ -106,7 +106,7 @@ PetalburgCity_PokemonCenter_1F_EventScript_207A0A:: @ 8207A0A
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207A76, MSGBOX_NPC
 	end
 PetalburgCity_PokemonCenter_1F_Text_207A76: @ 8207A76
-	.string "Roumor has it Malaqui was forcefully\n"
+	.string "Rumor has it Malaqui was forcefully\n"
 	.string "retired to a prison cell for his conduct\l"
 	.string "in that tall grass incident.\p"
 	.string "Good riddance, if you ask me.$"
@@ -182,6 +182,7 @@ PetalburgCity_PokemonCenter_1F_EventScript_StarterLady:: @ 8207A1C
 	faceplayer
 	markasdialog
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207B09, MSGBOX_DEFAULT
+	playse SE_SELECT
 	specialvar VAR_RESULT, IsStarterInParty
 	compare VAR_RESULT, 1
 	goto_if_eq PetalburgCity_PokemonCenter_1F_EventScript_207A38

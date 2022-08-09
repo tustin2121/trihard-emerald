@@ -124,9 +124,9 @@ OldaleTown_Text_1E91C0:
 	.string "Just head inside and find us in the\n"
 	.string "back corner of any Center.\p"
 	.string "We sell a variety of goods, including\n"
-	.string "Potions and Antidotes! And of course\l"
-	.string "we give away Poké Balls at the\l"
-	.string "adjoining counter!\p"
+	.string "Potions and Antidotes!\p"
+	.string "And of course we give away Poké Balls\n"
+	.string "at the adjoining counter!\p"
 	.string "Here, I'd like you to have this as\n"
 	.string "a promotional item.$"
 OldaleTown_Text_1E92AF: @ 81E92AF

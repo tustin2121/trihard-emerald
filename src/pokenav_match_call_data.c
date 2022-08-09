@@ -174,6 +174,7 @@ extern const u8 gMatchCallDesc_ProfBirch[];
 extern const u8 gMatchCallName_ProfBirch[];
 
 extern const u8 gText_Dad_Pokenav_NoAnswer[];
+extern const u8 gText_Dad_Pokenav_Starting[];
 extern const u8 gText_Dad_Pokenav_AreYouHurt[];
 extern const u8 gText_Dad_Pokenav_TeamWarn[];
 extern const u8 gText_Dad_Pokenav_LegendaryWarn[];
@@ -357,7 +358,8 @@ static const struct MatchCallStruct3 sProfBirchMatchCallHeader =
 };
 
 static const match_call_text_data_t sDadTextScripts[] = {
-    { gText_Dad_Pokenav_AreYouHurt,     0xffff, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_Starting,       0xFFFF, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_AreYouHurt,     FLAG_DAD_IS_AT_WORK, FLAG_DAILY_DAD_CALL },
     { gText_Dad_Pokenav_CallYouBack,    FLAG_BADGE01_GET, FLAG_DAILY_DAD_CALL },
     { gText_Dad_Pokenav_TeamWarn,       FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FLAG_DAILY_DAD_CALL },
     //TODO more text for various items
