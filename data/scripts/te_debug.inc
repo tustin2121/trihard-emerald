@@ -156,33 +156,33 @@ DebugScript_TestScript1::
 	delay 10
 	@ callnative ForceTextSpeedToMid
 	
-	call DreamScript_0900
+	selectpointer_clamp DebugScriptPtrTable, VAR_UNUSED_0x40FE
+	call 0
 	
 	@ callnative UnforceTextSpeedToMid
 	clearflag FLAG_DISABLE_FADE_INIT
 	fadescreenspeed 4, 0 @ FADE_FROM_BLACK_NO_WINDOW
 	release
 	end
-ScriptText_TS1:
-	.string "{SET_DREAM_PAL}"
-	.string "… … …{PAUSE 40}\p"
-	.string "{MAN_SPEAKING}"
-	.string "…Pathetic!{PAUSE 20} … …You're the\n"
-	.string "poster child of a bad trainer… …!{END}{PAUSE 30}\p"
-	.string "… … …{PAUSE 40}\p"
-	.string "{WOMAN_SPEAKING}"
-	.string "Uncle! His {POKEMON}!{PAUSE 20}\n"
-	.string "What happened to it?!{PAUSE 30}\p"
-	.string "{MAN_SPEAKING}"
-	.string "What did you do to this poor thing?!\p"
-	.string "… … You don't deserve to be a trainer… …{END}{PAUSE 40}\n"
-	.string "… … a trainer…{PAUSE 30} {COLOR LIGHT_GREY}… … a trainer…{END}\p"
-	.string "{SET_NORM_PAL}"
-	.string "GASP!{PAUSE 30}\n"
-	.string "You sit bolt upright in bed…\p"
-	.string "… … … …{PAUSE 30}\n"
-	.string "It was just a dream… …{PAUSE 30}\p"
-	.string "$"
+.align 2
+DebugScriptPtrTable:
+	.4byte DreamScript_CantSleep @ 0 - done
+	.4byte DreamScript_0100 @ 1 - done
+	.4byte DreamScript_0150 @ 2 - done
+	.4byte DreamScript_0200 @ 3 - done
+	.4byte DreamScript_0300 @ 4 - done
+	.4byte DreamScript_0400 @ 5 - done
+	.4byte DreamScript_0500 @ 6 - done
+	.4byte DreamScript_0600 @ 7 - done
+	.4byte DreamScript_0700 @ 8 - 
+	.4byte DreamScript_0800 @ 9 - done
+	.4byte DreamScript_0802 @ 10 - 
+	.4byte DreamScript_0900 @ 11 - done
+	.4byte DreamScript_1000 @ 12 - 
+	.4byte DreamScript_1001 @ 13 - 
+	.4byte DreamScript_Alex_FirstCall @ 14
+	.4byte DreamScript_Alex_LeagueCall @ 15
+	.4byte 0
 
 
 ScriptText_DebugBoxText:
