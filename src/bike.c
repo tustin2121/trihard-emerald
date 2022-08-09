@@ -982,7 +982,7 @@ void GetOnOffBike(u8 transitionFlags)
     if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
     {
         SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
-#ifndef TPP_MODE
+#if !TPP_MODE
         Overworld_ClearSavedMusic();
         Overworld_PlaySpecialMapMusic();
 #endif
@@ -990,7 +990,7 @@ void GetOnOffBike(u8 transitionFlags)
     else
     {
         SetPlayerAvatarTransitionFlags(transitionFlags);
-#ifndef TPP_MODE
+#if !TPP_MODE
         Overworld_SetSavedMusic(MUS_CYCLING);
         Overworld_ChangeMusicTo(MUS_CYCLING);
 #endif

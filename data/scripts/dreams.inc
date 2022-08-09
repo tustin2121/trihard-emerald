@@ -938,7 +938,7 @@ DreamScript_Alex_FirstCall::
 	waitfanfare
 	closemessage
 	delay 30
-@ 	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
+	setflag FLAG_ENABLE_ALEX_MATCH_CALL
 	clearflag FLAG_ENABLE_ALEX_FIRST_CALL
 	releaseall
 	end
