@@ -570,6 +570,7 @@ extern const u8 MauvilleCity_EventScript_1DF7BA[];
 // extern const u8 Route119_EventScript_1F49EC[];
 extern const u8 LittlerootTown_ProfessorBirchsLab_EventScript_1FA4D6[];
 extern const u8 DreamScript_Alex_FirstCall[];
+extern const u8 DreamScript_Alex_LegendaryCall[];
 extern const u8 DreamScript_Alex_LeagueCall[];
 // extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_224175[];
 extern const u8 SSTidalCorridor_EventScript_23C050[];

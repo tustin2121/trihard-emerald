@@ -20,9 +20,9 @@
 #define FLAG_TEMP_D      0xD // Unused Flag
 #define FLAG_TEMP_E      0xE // Unused Flag
 #define FLAG_TEMP_F      0xF // Unused Flag
-#define FLAG_TEMP_10    0x10 // Unused Flag
-#define FLAG_TEMP_11    0x11
-#define FLAG_TEMP_12    0x12
+#define FLAG_TEMP_10    0x10 // Used to hide people in maps
+#define FLAG_TEMP_11    0x11 // Used to hide people in maps
+#define FLAG_TEMP_12    0x12 // Used to hide people in maps
 #define FLAG_TEMP_13    0x13
 #define FLAG_TEMP_14    0x14
 #define FLAG_TEMP_15    0x15
@@ -1135,10 +1135,10 @@
 #define FLAG_ENABLE_ALEX_MATCH_CALL                                 0x49F // Trihard
 #define FLAG_VISITED_ROUTE120                                       0x4A0 // Unused Flag
 #define FLAG_HIDE_TRAINING_TRIO                                     0x4A1 // Unused Flag
-#define FLAG_ALEX_CALL_CAUGHT_UP                                    0x4A2 // Unused Flag
+#define FLAG_VISITED_AQUA_BASE                                      0x4A2 // Unused Flag
 #define FLAG_ALEX_CALL_LEGENDARIES                                  0x4A3 // Unused Flag
-#define FLAG_ALEX_CALL_SKY_PILLAR_INFO                              0x4A4 // Unused Flag
-#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
+#define FLAG_VISITED_MT_PYRE                                        0x4A4 // Unused Flag
+#define FLAG_ALEX_CALL_RESEARCHING                                  0x4A5 // Unused Flag
 #define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
 #define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
 #define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
@@ -1181,9 +1181,10 @@
 #define FLAG_UNUSED_0x4CD                                           0x4CD // Unused Flag
 #define FLAG_UNUSED_0x4CE                                           0x4CE // Unused Flag
 #define FLAG_UNUSED_0x4CF                                           0x4CF // Unused Flag
-#define FLAG_UNUSED_0x4D0                                           0x4D0 // Unused Flag
-#define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag
-#define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
+
+#define FLAG_ALEX_KNOWS_TO_R120                                     0x4D0 // Unused Flag
+#define FLAG_ALEX_KNOWS_LEGENDARIES                                 0x4D1 // Unused Flag
+#define FLAG_ALEX_TOLD_SKY_PILLAR                                   0x4D2 // Called to follow up on research
 #define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag
 #define FLAG_UNUSED_0x4D4                                           0x4D4 // Unused Flag
 #define FLAG_UNUSED_0x4D5                                           0x4D5 // Unused Flag
@@ -1509,7 +1510,7 @@
 #define FLAG_HIDE_MAP_NAME_POPUP                                   0x4000
 #define FLAG_SPECIAL_FLAG_ON_BRINEYS_BOAT                          0x4001
 #define FLAG_SPECIAL_FLAG_0x4002                                   0x4002
-#define FLAG_SPECIAL_FLAG_0x4003                                   0x4003
+#define FLAG_RESULT                                                0x4003
 #define FLAG_SPECIAL_FLAG_0x4004                                   0x4004
 #define FLAG_DID_MOURNING_CUTSCENE                                 0x4005 // TriHard
 #define FLAG_DISABLE_FADE_INIT                                     0x4006 // TriHard
@@ -1537,7 +1538,7 @@
 #define FLAG_SAW_DREAM_0500                                        0x600A
 #define FLAG_SAW_DREAM_0600                                        0x600B
 #define FLAG_SAW_DREAM_0700                                        0x600C
-#define FLAG_REMEMBERED_0x0D                                       0x600D
+#define FLAG_SAW_DREAM_1200                                        0x600D
 #define FLAG_REMEMBERED_0x0E                                       0x600E
 #define FLAG_REMEMBERED_0x0F                                       0x600F
 #define FLAG_REMEMBERED_0x10                                       0x6010

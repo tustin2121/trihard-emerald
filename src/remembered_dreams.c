@@ -160,6 +160,7 @@ extern const u8 DreamScript_0802[];
 extern const u8 DreamScript_0900[];
 extern const u8 DreamScript_1000[];
 extern const u8 DreamScript_1001[];
+extern const u8 DreamScript_1200[];
 
 struct DreamDataStruct {
 	const u8 *script;
@@ -173,16 +174,21 @@ static const struct DreamDataStruct sDreamScripts[] = {
 	{ DreamScript_1000, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000,     MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F},
 	{ DreamScript_1001, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000,     0xFFFF}, // Must be below Mossdeep one
 	{ DreamScript_0900, FLAG_PLAYER_HAS_SURFED,           FLAG_SAW_DREAM_0900,     0xFFFF},
-	{ DreamScript_0800, FLAG_RECEIVED_TM54,               FLAG_SAW_DREAM_0800,     0xFFFF},
+	{ DreamScript_0800, FLAG_RECEIVED_TM54,               FLAG_SAW_DREAM_0800,     0xFFFF}, // Post Rusturf Tunnel
 	// Sequential dreams
 	{ DreamScript_0100, FLAG_DAD_IS_AT_WORK,              FLAG_SAW_DREAM_0100,     0xFFFF},
 	{ DreamScript_0150, FLAG_VISITED_RUSTBORO_CITY,       FLAG_SAW_DREAM_0150,     0xFFFF},
 	{ DreamScript_0200, FLAG_AQUA_FETCH_QUEST_COMPLETED,  FLAG_SAW_DREAM_0200,     0xFFFF},
 	{ DreamScript_0300, FLAG_DELIVERED_DEVON_GOODS,       FLAG_SAW_DREAM_0300,     0xFFFF},
 	{ DreamScript_0400, FLAG_DEFEATED_RIVAL_R110,         FLAG_SAW_DREAM_0400,     0xFFFF},
+//	{ DreamScript_????, FLAG_MET_ARCHIE_METEOR_FALLS,     FLAG_SAW_DREAM_????,     0xFFFF},
 	{ DreamScript_0500, FLAG_DEFEATED_LAVARIDGE_GYM,      FLAG_SAW_DREAM_0500,     0xFFFF},
-	{ DreamScript_0600, FLAG_DEFEATED_MAGMA_SPACE_CENTER, FLAG_SAW_DREAM_0600,     0xFFFF},
+//	{ DreamScript_????, FLAG_HIDE_ROUTE_119_TEAM_AQUA,    FLAG_SAW_DREAM_????,     0xFFFF}, // post weather institute
 	{ DreamScript_0700, FLAG_VISITED_ROUTE120,            FLAG_SAW_DREAM_0700,     0xFFFF},
+	{ DreamScript_1200, FLAG_VISITED_MT_PYRE,             FLAG_SAW_DREAM_1200,     0xFFFF}, // post mt Pyre
+//	{ DreamScript_????, FLAG_VISITED_AQUA_BASE,           FLAG_SAW_DREAM_????,     0xFFFF},
+	{ DreamScript_0600, FLAG_DEFEATED_MAGMA_SPACE_CENTER, FLAG_SAW_DREAM_0600,     0xFFFF},
+//	{ DreamScript_????, FLAG_DEFEATED_WALLY_VICTORY_ROAD, FLAG_SAW_DREAM_????,     0xFFFF},
 	// Lowest priority
 	{ DreamScript_0801, FLAG_SAW_DREAM_0800,              FLAG_SKIPPED_NIGHT_0801, 0xFFFF},
 	{ DreamScript_0802, FLAG_SKIPPED_NIGHT_0801,          FLAG_SAW_DREAM_0802,     0xFFFF},
@@ -192,7 +198,13 @@ static const struct DreamDataStruct sDreamScripts[] = {
 
 void CheckIsWeatherAlternating()
 {
+	if (GetSav1Weather() == WEATHER_ALTERNATING) {
+		FlagSet(FLAG_RESULT);
+	} else {
+		FlagClear(FLAG_RESULT);
+	}
 	VarSet(VAR_RESULT, GetSav1Weather() == WEATHER_ALTERNATING);
+	
 }
 
 bool8 DoDreamCutscenes(struct ScriptContext *ctx)
@@ -227,5 +239,7 @@ bool8 DoDreamCutscenes(struct ScriptContext *ctx)
 	SaveRememberedDreams();
 	return TRUE;
 }
+
+
 
 

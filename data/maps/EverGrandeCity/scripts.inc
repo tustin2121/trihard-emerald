@@ -60,8 +60,9 @@ EverGrandeCity_TriggerScript_SetVisited:: @ 81E7D46
 EverGrandeCity_TriggerScript_RemoveVRRoadBlock::
 	setflag FLAG_HIDE_VICTORY_ROAD_BLOCKER
 	setvar VAR_EVERGRANDE_STATE, 1
-	@ setflag FLAG_ENABLE_ALEX_LEAGUE_CALL
-	@ setvar VAR_ALEX_CALL_STEP_COUNTER, 0
+	setflag FLAG_ENABLE_ALEX_LEAGUE_CALL
+	clearflag FLAG_ALEX_CALL_LEGENDARIES @ If somehow alex is still pending a call about legendaries
+	setvar VAR_ALEX_CALL_STEP_COUNTER, 0
 	end
 
 

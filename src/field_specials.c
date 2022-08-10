@@ -461,12 +461,12 @@ bool32 TryDoAlexCall(void)
         return TRUE;
     }
     if (FlagGet(FLAG_ALEX_CALL_LEGENDARIES)) {
-        if (!FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS)) {
-            // If the legendaries cleared themselves, cancel the call
-            FlagClear(FLAG_ALEX_CALL_LEGENDARIES);
-            SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
-            return FALSE;
-        }
+        // if (!FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS)) {
+        //     // If the legendaries cleared themselves, cancel the call
+        //     FlagClear(FLAG_ALEX_CALL_LEGENDARIES);
+        //     SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
+        //     return FALSE;
+        // }
         switch (gMapHeader.mapType) {
             case 1:
             case 2:

@@ -20,6 +20,7 @@ enum
     MC_TYPE_BIRCH,
     MC_TYPE_RIVAL,
     MC_TYPE_LEADER,
+    MC_TYPE_ALEX,
 };
 
 // Static type declarations
@@ -145,6 +146,7 @@ static void MatchCall_GetMessage_Trainer(match_call_t, u8 *);
 static void MatchCall_GetMessage_Wally(match_call_t, u8 *);
 static void MatchCall_GetMessage_Rival(match_call_t, u8 *);
 static void MatchCall_GetMessage_Birch(match_call_t, u8 *);
+static void MatchCall_GetMessage_Alex(match_call_t, u8*);
 
 static void MatchCall_GetNameAndDesc_NPC(match_call_t, const u8 **, const u8 **);
 static void MatchCall_GetNameAndDesc_Trainer(match_call_t, const u8 **, const u8 **);
@@ -337,32 +339,79 @@ static const struct MatchCallStructNPC sMrStoneMatchCallHeader =
     .dailyFlag = 0xFFFF,
 };
 
+//-----------------------------------------------------------------------------
+
 extern const u8 gText_Alex_Pokenav_CatchUp[];
 extern const u8 gText_Alex_Pokenav_RainsBegan[];
 extern const u8 gText_Alex_Pokenav_MidResearch[];
 extern const u8 gText_Alex_Pokenav_PostResearch[];
 extern const u8 gText_Alex_Pokenav_Unavailable[];
 
-static const match_call_text_data_t sAlexTextScripts[] = {
-    { gText_Alex_Pokenav_CatchUp,      0xFFFF,                         FLAG_ALEX_CALL_CAUGHT_UP },
-    { gText_Alex_Pokenav_Unavailable,  FLAG_ALEX_CALL_CAUGHT_UP,       FLAG_DAILY_ALEX_CALL },
+static const match_call_text_data_t sAlexTextScripts_CatchingUp[] = {
+    { gText_Alex_Pokenav_CatchUp,      0xFFFF,                         FLAG_ALEX_KNOWS_TO_R120 },
+    
+    { gText_Alex_Pokenav_Unavailable,  0xFFFF,                         0xFFFF },
+    { NULL,                            0xFFFF,                         0xFFFF }
+};
+
+static const match_call_text_data_t sAlexTextScripts_DuringLegendaries[] = {
     { gText_Alex_Pokenav_RainsBegan,   FLAG_LEGENDARIES_IN_SOOTOPOLIS, FLAG_ALEX_CALL_LEGENDARIES },
-    { gText_Alex_Pokenav_MidResearch,  FLAG_ALEX_CALL_LEGENDARIES,     0xFFFF },
-    { gText_Alex_Pokenav_PostResearch, FLAG_ALEX_CALL_SKY_PILLAR_INFO, 0xFFFF },
-    { gText_Alex_Pokenav_Unavailable,  FLAG_DAILY_ALEX_CALL,           0xFFFF },
+    { gText_Alex_Pokenav_MidResearch,  FLAG_ALEX_KNOWS_LEGENDARIES,    0xFFFF },
+    { gText_Alex_Pokenav_PostResearch, FLAG_ALEX_TOLD_SKY_PILLAR,     0xFFFF },
+//  { gText_Alex_Pokenav_Unavailable,  FLAG_DAILY_ALEX_CALL,           0xFFFF },
     { NULL,                            0xFFFF,                         0xFFFF }
 };
 
 static const struct MatchCallStructNPC sAlexMatchCallHeader =
 {
-    .type = MC_TYPE_NPC,
+    .type = MC_TYPE_ALEX,
     .mapSec = MAPSEC_ALOLA,
     .flag = FLAG_ENABLE_ALEX_MATCH_CALL,
     .desc = gMatchCallDesc_Alex,
     .name = gMatchCallName_Alex,
-    .textData = sAlexTextScripts,
-    .dailyFlag = FLAG_DAILY_ALEX_CALL,
+    .textData = NULL, // Unused since we're doing a custom GetMessage
+    .dailyFlag = FLAG_DAILY_ALEX_CALL, //Unused
 };
+
+// MatchCall_BufferCallMessageText -> Checks scripts table from bottom up
+static void MatchCall_BufferCallMessageText_TopDown(const match_call_text_data_t *textData, u8 *dest)
+{   // -> Checks scripts table from top down, like the dream table
+	u32 i;
+    
+	#define REQ_FLAG textData[i].flag
+	#define DONE_FLAG textData[i].flag2
+    
+    for (i = 0; TRUE; i++) {
+        // If we reached the sentinel at the bottom, something went wrong. panic!
+		if (textData[i].text == NULL) {
+            StringExpandPlaceholders(dest, gText_Dad_Pokenav_NoAnswer); //"The number you have dialed is unavailable"
+            return;
+        }
+        // Skip entries which don't meet the prerequisite
+        if (REQ_FLAG != 0xFFFF && FlagGet(REQ_FLAG) == FALSE) continue;
+        // Skip entires which have already been done
+        if (DONE_FLAG != 0xFFFF && FlagGet(DONE_FLAG) == TRUE) continue;
+        // Entires with neither of the above are always chosen
+        break;
+    }
+    StringExpandPlaceholders(dest, textData[i].text);
+}
+
+static void MatchCall_GetMessage_Alex(match_call_t matchCall, u8* dest)
+{
+    if (FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS)) {
+        MatchCall_BufferCallMessageText(sAlexTextScripts_DuringLegendaries, dest);
+        FlagSet(FLAG_ALEX_KNOWS_LEGENDARIES); // cheat: if we're getting from here, we've told Alex about the legendaries
+    }
+    // else if (FlagGet(FLAG_LEGENDARIES_CLEARED)) {
+    //     // TODO
+    // }
+    else {
+        MatchCall_BufferCallMessageText_TopDown(sAlexTextScripts_CatchingUp, dest);
+    }
+}
+
+//-----------------------------------------------------------------------------
 
 static const struct MatchCallBirch sProfBirchMatchCallHeader =
 {
@@ -804,7 +853,8 @@ static bool32 (*const sMatchCallGetFlagFuncs[])(match_call_t) = {
     MatchCallGetFlag_Trainer,
     MatchCallGetFlag_Wally,
     MatchCallGetFlag_Rival,
-    MatchCallGetFlag_Birch
+    MatchCallGetFlag_Birch,
+    MatchCallGetFlag_NPC,
 };
 
 static u8 (*const sMatchCallGetMapSecFuncs[])(match_call_t) = {
@@ -812,7 +862,8 @@ static u8 (*const sMatchCallGetMapSecFuncs[])(match_call_t) = {
     MatchCall_GetMapSec_Trainer,
     MatchCall_GetMapSec_Wally,
     MatchCall_GetMapSec_Rival,
-    MatchCall_GetMapSec_Birch 
+    MatchCall_GetMapSec_Birch, 
+    MatchCall_GetMapSec_NPC,
 };
 
 static bool32 (*const sMatchCall_IsRematchableFunctions[])(match_call_t) = {
@@ -820,7 +871,8 @@ static bool32 (*const sMatchCall_IsRematchableFunctions[])(match_call_t) = {
     MatchCall_IsRematchable_Trainer,
     MatchCall_IsRematchable_Wally,
     MatchCall_IsRematchable_Rival,
-    MatchCall_IsRematchable_Birch
+    MatchCall_IsRematchable_Birch,
+    MatchCall_IsRematchable_NPC,
 };
 
 static bool32 (*const sMatchCall_HasCheckPageFunctions[])(match_call_t) = {
@@ -828,7 +880,8 @@ static bool32 (*const sMatchCall_HasCheckPageFunctions[])(match_call_t) = {
     MatchCall_HasCheckPage_Trainer,
     MatchCall_HasCheckPage_Wally,
     MatchCall_HasCheckPage_Rival,
-    MatchCall_HasCheckPage_Birch
+    MatchCall_HasCheckPage_Birch,
+    MatchCall_HasCheckPage_NPC,
 };
 
 static u32 (*const sMatchCall_GetRematchTableIdxFunctions[])(match_call_t) = {
@@ -836,7 +889,8 @@ static u32 (*const sMatchCall_GetRematchTableIdxFunctions[])(match_call_t) = {
     MatchCall_GetRematchTableIdx_Trainer,
     MatchCall_GetRematchTableIdx_Wally,
     MatchCall_GetRematchTableIdx_Rival,
-    MatchCall_GetRematchTableIdx_Birch
+    MatchCall_GetRematchTableIdx_Birch,
+    MatchCall_GetRematchTableIdx_NPC,
 };
 
 static void (*const sMatchCall_GetMessageFunctions[])(match_call_t, u8 *) = {
@@ -844,7 +898,8 @@ static void (*const sMatchCall_GetMessageFunctions[])(match_call_t, u8 *) = {
     MatchCall_GetMessage_Trainer,
     MatchCall_GetMessage_Wally,
     MatchCall_GetMessage_Rival,
-    MatchCall_GetMessage_Birch
+    MatchCall_GetMessage_Birch,
+    MatchCall_GetMessage_Alex,
 };
 
 static void (*const sMatchCall_GetNameAndDescFunctions[])(match_call_t, const u8 **, const u8 **) = {
@@ -852,7 +907,8 @@ static void (*const sMatchCall_GetNameAndDescFunctions[])(match_call_t, const u8
     MatchCall_GetNameAndDesc_Trainer,
     MatchCall_GetNameAndDesc_Wally,
     MatchCall_GetNameAndDesc_Rival,
-    MatchCall_GetNameAndDesc_Birch
+    MatchCall_GetNameAndDesc_Birch,
+    MatchCall_GetNameAndDesc_NPC,
 };
 
 static const struct MatchCallCheckPageOverride sCheckPageOverrides[] = {
@@ -910,6 +966,8 @@ static u32 MatchCallGetFunctionIndex(match_call_t matchCall)
             return 3;
         case MC_TYPE_BIRCH:
             return 4;
+        case MC_TYPE_ALEX:
+            return 5;
     }
 }
 
@@ -1188,21 +1246,19 @@ static void MatchCall_BufferCallMessageText(const match_call_text_data_t *textDa
 {
     u32 i;
     // Find the bottom of the call array
-    for (i = 0; textData[i].text != NULL; i++)
-        ;
-    if (i)
-        i--;
+    for (i = 0; textData[i].text != NULL; i++);
+    if (i) i--;
     // Work our way up from the bottom of the table
-    while (i)
-    {
+    while (i) {
         // If flag1 is set, or if there's no flag specified, we can use this entry
         if (textData[i].flag != 0xffff && FlagGet(textData[i].flag) == TRUE)
             break;
         i--;
     }
     // If there's a flag2 specified, set it as part of this call
-    if (textData[i].flag2 != 0xffff)
+    if (textData[i].flag2 != 0xffff) {
         FlagSet(textData[i].flag2);
+    }
     // Return the text of the entry
     StringExpandPlaceholders(dest, textData[i].text);
 }

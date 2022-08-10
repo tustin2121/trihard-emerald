@@ -7,6 +7,7 @@ AquaHideout_B1F_MapScripts:: @ 82339A7
 @ -----------------------------------------------------
 
 AquaHideout_B1F_OnLoad:
+	setflag FLAG_VISITED_AQUA_BASE
 	setflag FLAG_TEMP_5
 	@ If Mt. Pyre is finished, but Jagged pass is not yet open, show Aqua girl
 	setflag VAR_TEMP_A
