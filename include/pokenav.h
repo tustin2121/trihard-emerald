@@ -41,6 +41,20 @@ enum
 	POKENAV_MENU_E,
 };
 
+enum
+{
+    CHECK_PAGE_STRATEGY,
+    CHECK_PAGE_POKEMON,
+    CHECK_PAGE_INTRO_1,
+    CHECK_PAGE_INTRO_2,
+    CHECK_PAGE_ENTRY_COUNT
+};
+
+#define MCFLAVOR(name) {[CHECK_PAGE_STRATEGY] = gText_MatchCall##name##_Strategy, \
+                        [CHECK_PAGE_POKEMON]  = gText_MatchCall##name##_Pokemon,  \
+                        [CHECK_PAGE_INTRO_1]  = gText_MatchCall##name##_Intro1,   \
+                        [CHECK_PAGE_INTRO_2]  = gText_MatchCall##name##_Intro2}
+
 // pokenav.c
 void sub_81C7694(u32);
 u16 sub_81C76AC(void);
@@ -93,16 +107,16 @@ bool32 sub_81C81D4(const struct BgTemplate *arg0, struct MatchCallListTemplate *
 void sub_81C8234(void);
 
 // pokenav_match_call_data.c
-bool32 sub_81D17E8(u32 idx);
-u8 sub_81D16DC(u32 idx);
-bool32 sub_81D1BF8(u32 idx);
-bool32 MatchCallFlagGetByIndex(u32 idx);
+bool32 MatchCall_HasCheckPage(u32 idx);
+u8 MatchCall_GetMapSec(u32 idx);
+bool32 MatchCall_HasRematchId(u32 idx);
+bool32 MatchCall_GetEnabled(u32 idx);
 u32 MatchCall_GetRematchTableIdx(u32 idx);
 u32 GetTrainerIdxByRematchIdx(u32 rematchIdx);
-int sub_81D1BD0(u32 idx);
+int MatchCall_GetOverrideFacilityClass(u32 idx);
 void MatchCall_GetMessage(u32 idx, u8 *dest);
-const u8 *sub_81D1B40(u32 idx, u32 offset);
-void sub_81D1A78(u32 idx, const u8 **desc, const u8 **name);
+const u8 *MatchCall_GetOverrideFlavorText(u32 idx, u32 offset);
+void MatchCall_GetNameAndDesc(u32 idx, const u8 **desc, const u8 **name);
 
 // pokenav_main_menu.c
 bool32 InitPokenavMainMenu(void);

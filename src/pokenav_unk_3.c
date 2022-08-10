@@ -83,7 +83,7 @@ static u32 sub_81CAB44(struct Pokenav3Struct *state)
         state->callback = sub_81CAC04;
         state->unk0 = 0;
         selectedMatchCall = GetSelectedMatchCall();
-        if (!state->unk1C[selectedMatchCall].unk0 || sub_81D17E8(state->unk1C[selectedMatchCall].unk2))
+        if (!state->unk1C[selectedMatchCall].unk0 || MatchCall_HasCheckPage(state->unk1C[selectedMatchCall].unk2))
         {
             state->unk4 = gUnknown_0862250A;
             state->unk2 = 2;
@@ -203,11 +203,11 @@ static u32 sub_81CAD20(int taskState)
     case 1:
         for (i = 0, j = state->unk8; i < 30; i++, j++)
         {
-            if (MatchCallFlagGetByIndex(j))
+            if (MatchCall_GetEnabled(j))
             {
                 state->unk1C[state->unkA].unk2 = j;
                 state->unk1C[state->unkA].unk0 = 1;
-                state->unk1C[state->unkA].unk1 = sub_81D16DC(j);
+                state->unk1C[state->unkA].unk1 = MatchCall_GetMapSec(j);
                 state->unkA++;
             }
 
@@ -223,7 +223,7 @@ static u32 sub_81CAD20(int taskState)
     case 2:
         for (i = 0, j = state->unk8; i < 30; i++, j++)
         {
-            if (!sub_81D1BF8(state->unk8) && sub_81CAE08(state->unk8))
+            if (!MatchCall_HasRematchId(state->unk8) && sub_81CAE08(state->unk8))
             {
                 state->unk1C[state->unkA].unk2 = state->unk8;
                 state->unk1C[state->unkA].unk0 = 0;
@@ -330,7 +330,7 @@ int sub_81CAF04(int index)
         return gTrainers[index].trainerPic;
     }
 
-    index = sub_81D1BD0(var0);
+    index = MatchCall_GetOverrideFacilityClass(var0);
     return gFacilityClassToPicIndex[index];
 }
 
@@ -357,7 +357,7 @@ const u8 *sub_81CAFD8(int index, int textType)
     {
         var0 = MatchCall_GetRematchTableIdx(state->unk1C[index].unk2);
         if (var0 == REMATCH_TABLE_ENTRIES)
-            return sub_81D1B40(state->unk1C[index].unk2, textType);
+            return MatchCall_GetOverrideFlavorText(state->unk1C[index].unk2, textType);
     }
     else
     {
@@ -397,7 +397,7 @@ void sub_81CB050(u32 arg0, u8 *str)
     }
     else
     {
-        sub_81D1A78(var0->unk2, &className, &trainerName);
+        MatchCall_GetNameAndDesc(var0->unk2, &className, &trainerName);
     }
 
     if (className && trainerName)
@@ -426,7 +426,7 @@ int sub_81CB0E4(int index)
     {
         if (!state->unk1C[index].unk0)
             return count;
-        if (sub_81D17E8(state->unk1C[index].unk2))
+        if (MatchCall_HasCheckPage(state->unk1C[index].unk2))
             return count;
 
         count++;
@@ -443,7 +443,7 @@ int sub_81CB128(int index)
     {
         if (!state->unk1C[index].unk0)
             return count;
-        if (sub_81D17E8(state->unk1C[index].unk2))
+        if (MatchCall_HasCheckPage(state->unk1C[index].unk2))
             return count;
 
         count--;
@@ -464,7 +464,7 @@ bool32 unref_sub_81CB16C(void)
 
     for (i = 0; i < 21; i++) // TODO: This is the size of sMatchCallHeaders
     {
-        if (MatchCallFlagGetByIndex(i))
+        if (MatchCall_GetEnabled(i))
         {
             int index = MatchCall_GetRematchTableIdx(i);
             if (gSaveBlock1Ptr->trainerRematches[index])
