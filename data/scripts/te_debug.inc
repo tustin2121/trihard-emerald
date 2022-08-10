@@ -138,51 +138,137 @@ DebugScript_GiveDebugPartyAndSetFlags::
 	releaseall
 	return
 
-@ DebugScript_TestScript1::
-@ 	lockall
-@ 	setvar VAR_0x8000, 0
-@ 	addvar_if_set FLAG_BADGE01_GET, VAR_0x8000, 1
-@ 	addvar_if_set FLAG_BADGE04_GET, VAR_0x8000, 1
-@ 	buffernumberstring 0, VAR_0x8000
-@ 	msgbox ScriptText_TS1
-@ 	releaseall
-@ 	end
-@ ScriptText_TS1:
-@ 	.string "addvar: {STR_VAR_1}$"
-DebugScript_TestScript1::
+@====================================================================
+
+.align 2
+DebugScript_TestScriptTable::
+	@ .4byte DreamScript_CantSleep @ 0 - done
+	.4byte DebugScript_TestScript2
+	.4byte DEBUG_DreamScript_0100 @ 1 - done
+	.4byte DEBUG_DreamScript_0150 @ 2 - done
+	.4byte DEBUG_DreamScript_0200 @ 3 - done
+	.4byte DEBUG_DreamScript_0300 @ 4 - done
+	.4byte DEBUG_DreamScript_0400 @ 5 - done
+	.4byte DEBUG_DreamScript_0500 @ 6 - done
+	.4byte DEBUG_DreamScript_0600 @ 7 - done
+	.4byte DEBUG_DreamScript_0700 @ 8 - 
+	.4byte DEBUG_DreamScript_0800 @ 9 - done
+	.4byte DEBUG_DreamScript_0802 @ 10 - 
+	.4byte DEBUG_DreamScript_0900 @ 11 - done
+	.4byte DEBUG_DreamScript_1000 @ 12 - 
+	.4byte DEBUG_DreamScript_1001 @ 13 - 
+	.4byte DEBUG_DreamScript_Alex_FirstCall @ 14
+	.4byte DEBUG_DreamScript_Alex_LeagueCall @ 15
+DebugScript_TestScriptTable_END::
+	.4byte 0
+
+
+DebugScript_DreamSetup:
 	lock
 	fadescreenspeed 5, 0 @ FADE_TO_BLACK_NO_WINDOW
 	setflag FLAG_DISABLE_FADE_INIT
 	delay 10
-	@ callnative ForceTextSpeedToMid
-	
-	selectpointer_clamp DebugScriptPtrTable, VAR_UNUSED_0x40FE
-	call 0
-	
-	@ callnative UnforceTextSpeedToMid
+	return
+DebugScript_DreamTeardown:
 	clearflag FLAG_DISABLE_FADE_INIT
 	fadescreenspeed 4, 0 @ FADE_FROM_BLACK_NO_WINDOW
 	release
+	return
+
+DEBUG_DreamScript_CantSleep:
+	call DebugScript_DreamSetup
+	call DreamScript_CantSleep
+	call DebugScript_DreamTeardown
 	end
-.align 2
-DebugScriptPtrTable:
-	.4byte DreamScript_CantSleep @ 0 - done
-	.4byte DreamScript_0100 @ 1 - done
-	.4byte DreamScript_0150 @ 2 - done
-	.4byte DreamScript_0200 @ 3 - done
-	.4byte DreamScript_0300 @ 4 - done
-	.4byte DreamScript_0400 @ 5 - done
-	.4byte DreamScript_0500 @ 6 - done
-	.4byte DreamScript_0600 @ 7 - done
-	.4byte DreamScript_0700 @ 8 - 
-	.4byte DreamScript_0800 @ 9 - done
-	.4byte DreamScript_0802 @ 10 - 
-	.4byte DreamScript_0900 @ 11 - done
-	.4byte DreamScript_1000 @ 12 - 
-	.4byte DreamScript_1001 @ 13 - 
-	.4byte DreamScript_Alex_FirstCall @ 14
-	.4byte DreamScript_Alex_LeagueCall @ 15
-	.4byte 0
+DEBUG_DreamScript_0100:
+	call DebugScript_DreamSetup
+	call DreamScript_0100
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0150:
+	call DebugScript_DreamSetup
+	call DreamScript_0150
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0200:
+	call DebugScript_DreamSetup
+	call DreamScript_0200
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0300:
+	call DebugScript_DreamSetup
+	call DreamScript_0300
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0400:
+	call DebugScript_DreamSetup
+	call DreamScript_0400
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0500:
+	call DebugScript_DreamSetup
+	call DreamScript_0500
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0600:
+	call DebugScript_DreamSetup
+	call DreamScript_0600
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0700:
+	call DebugScript_DreamSetup
+	call DreamScript_0700
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0800:
+	call DebugScript_DreamSetup
+	call DreamScript_0800
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0802:
+	call DebugScript_DreamSetup
+	call DreamScript_0802
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_0900:
+	call DebugScript_DreamSetup
+	call DreamScript_0900
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_1000:
+	call DebugScript_DreamSetup
+	call DreamScript_1000
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_1001:
+	call DebugScript_DreamSetup
+	call DreamScript_1001
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_Alex_FirstCall:
+	goto DreamScript_Alex_FirstCall
+	end
+DEBUG_DreamScript_Alex_LeagueCall:
+	goto DreamScript_Alex_LeagueCall
+	end
+
+
+DebugScript_TestScript2::
+	lockall
+	setvar VAR_0x8001, 0
+	setvar VAR_0x8002, 0
+	setvar VAR_0x8003, 0
+	addvar_if_set FLAG_ERROR_READING_DREAMS, VAR_0x8001, 1
+	addvar_if_set FLAG_ERROR_WRITING_DREAMS, VAR_0x8002, 1
+	buffernumberstring 0, VAR_0x8001
+	buffernumberstring 1, VAR_0x8002
+	buffernumberstring 2, VAR_0x8003
+	msgbox ScriptText_TS2
+	releaseall
+	end
+ScriptText_TS2:
+	.string "Read Error={STR_VAR_1}\n"
+	.string "Write Error={STR_VAR_2}$"
 
 
 ScriptText_DebugBoxText:

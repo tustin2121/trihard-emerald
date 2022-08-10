@@ -104,19 +104,21 @@ PetalburgCity_WallysHouse_Text_MotherState3yes:
 
 PetalburgCity_WallysHouse_EventScript_MotherState3no:
 	setflag FLAG_TEMP_1
-	messageautoscroll PetalburgCity_WallysHouse_Text_MotherState3no
+	message PetalburgCity_WallysHouse_Text_MotherState3no
 	waitmessage
-	waitbuttonpress
+	@ waitbuttonpress
+	playse SE_SELECT
 	@fallthrough
 PetalburgCity_WallysHouse_EventScript_MotherState3no2:
 	msgbox PetalburgCity_WallysHouse_Text_MotherState3no2
 	release
 	end
 PetalburgCity_WallysHouse_Text_MotherState3no:
+	.string "{FORCE_AUTOSCROLL_ON}{FORCE_SPEED_YES}"
 	.string "Oh, I'm so worried about him!\n"
 	.string "He could be hurt out there!\l"
 	.string "Mauled by a wild Pokémon!\l"
-	.string "Harrased by one of those evil teams!\l"
+	.string "Harassed by one of those evil teams!\l"
 	.string "Tortured by more Gym Leaders!\l"
 	.string "Murdered by a poacher!\l"
 	.string "Have his feelings hurt by bullies!\l"
@@ -124,7 +126,7 @@ PetalburgCity_WallysHouse_Text_MotherState3no:
 	.string "Fail to reach his dreams!\l"
 	.string "Trip and fall off a cliff into the sea!\l"
 	.string "Or worst of all, never shower another\l"
-	.string "day in his life!$"
+	.string "day in his life!{PAUSE 20}$"
 PetalburgCity_WallysHouse_Text_MotherState3no2:
 	.string "Oh Lord Acerus, help me find him!$"
 			

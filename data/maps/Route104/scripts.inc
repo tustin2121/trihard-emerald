@@ -839,10 +839,11 @@ Route104_EventScript_RivalMain:: @ 81ECD33
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
 	selectpointer_ongender Route104_Text_RivalMain2_Male, Route104_Text_RivalMain2_Female
-	msgbox_selected
+	msgbox_selected MSGBOX_DESCRIBE
 	waitfanfare
 	closemessage
 	delay 30
+	markasdialog
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	applymovement EVENT_OBJ_ID_PLAYER, Route104_Movement_1ECDCD
 	applymovement LID_RIVAL, Route104_Movement_1ECDC8

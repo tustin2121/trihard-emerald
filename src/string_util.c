@@ -557,6 +557,13 @@ static const u8 *ExpandPlaceholder_AquaGirl(void)
     return gExpandedPlaceholder_Jessica;
 }
 
+extern const u8 gExpandedPlaceholder_RivalLeadPkmn1[];
+extern const u8 gExpandedPlaceholder_RivalLeadPkmn2[];
+static const u8 *ExpandPlaceholder_RivalLead(void)
+{
+    return gExpandedPlaceholder_RivalLeadPkmn1;
+}
+
 extern const u8 gExpandedPlaceholder_HeUppercase[];
 extern const u8 gExpandedPlaceholder_SheUppercase[];
 extern const u8 gExpandedPlaceholder_HimUppercase[];
@@ -838,7 +845,7 @@ const u8 *GetExpandedPlaceholder(u32 id)
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid,
         ExpandPlaceholder_Invalid,
-        ExpandPlaceholder_Invalid,
+        ExpandPlaceholder_RivalLead,
         ExpandPlaceholder_PlayerNameStutter, // 0F
         
         ExpandPlaceholder_PlayerTheyUpper, // 10

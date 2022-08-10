@@ -51,7 +51,9 @@ extern const u8 DebugScript_SetLegendaryWeatherAfter[];
 extern const u8 DebugScript_SetLegendaryWeatherAfterGym[];
 extern const u8 DebugScript_GiveDebugPartyAndSetFlags[];
 extern const u8 DebugScript_GiveDebugPartyMessage[];
-extern const u8 DebugScript_TestScript1[];
+// extern const u8 DebugScript_TestScript1[];
+extern const u8* DebugScript_TestScriptTable[];
+extern const u8* DebugScript_TestScriptTable_END[];
 
 typedef void (*DebugFunc)(void);
 
@@ -71,7 +73,10 @@ static void DebugHandle_SetFlag();
 static void DebugHandle_SetVar();
 static void DebugHandle_SetLegendaryFight();
 static void DebugHandle_GiveDebugParty();
-static void DebugHandle_TestScript1();
+static void DebugHandle_TestScript();
+static void DebugHandle_TestScript2();
+static void DebugHandle_TestScript3();
+static void DebugHandle_TestScript4();
 static void DebugHandle_SwapGenders();
 static void DebugHandle_RenamePlayer();
 static void DebugHandle_UnmarkBoxMon();
@@ -106,7 +111,7 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_SetVar,
 	DebugHandle_SetLegendaryFight,
 	DebugHandle_GiveDebugParty,
-	DebugHandle_TestScript1,
+	DebugHandle_TestScript,
 	DebugHandle_SwapGenders,
 	DebugHandle_RenamePlayer,
 	DebugHandle_UnmarkBoxMon,
@@ -375,11 +380,24 @@ void DebugHandle_GiveDebugParty()
 	DebugSetCallbackSuccess();
 }
 
-// arguments: none
+// arguments: 
+//    args[0] = which script to run
 // returns: none
-void DebugHandle_TestScript1()
+void DebugHandle_TestScript()
 {
-	ScriptContext1_SetupScript(DebugScript_TestScript1);
+	const u8* script;
+	if (gDebugInterrupts.args[0] >= ((int)(DebugScript_TestScriptTable_END - DebugScript_TestScriptTable)/4)) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	
+	script = DebugScript_TestScriptTable[gDebugInterrupts.args[0]];
+	if (script == NULL) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	
+	ScriptContext1_SetupScript(script);
 	DebugSetCallbackSuccess();
 }
 

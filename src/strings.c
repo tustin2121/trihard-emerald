@@ -37,6 +37,8 @@ const u8 gExpandedPlaceholder_Logan[] = _("Logan");
 const u8 gExpandedPlaceholder_Alex[] = _("Alex");
 const u8 gExpandedPlaceholder_Bailey[] = _("Bailey");
 const u8 gExpandedPlaceholder_Jessica[] = _("Jessica");
+const u8 gExpandedPlaceholder_RivalLeadPkmn1[] = _("Nuzleaf");
+const u8 gExpandedPlaceholder_RivalLeadPkmn2[] = _("Shiftry");
 
 const u8 gExpandedPlaceholder_Morning[] = _("morning");
 const u8 gExpandedPlaceholder_Afternoon[] = _("afternoon");

@@ -12532,7 +12532,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Logan_SternMugging[] = {
     {
         .iv = 10,
         .lvl = 15,
-        .species = SPECIES_SEEDOT,
+        .species = SPECIES_NUZLEAF,
     }
 };
 
@@ -12574,7 +12574,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Logan_Hideout[] = {
     {
         .iv = 70,
         .lvl = 35,
-        .species = SPECIES_NUZLEAF,
+        .species = SPECIES_SHIFTRY,
     }
 };
 

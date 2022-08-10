@@ -1,5 +1,20 @@
 Route106_MapScripts:: @ 81EE489
+	map_script MAP_SCRIPT_ON_LOAD, Route106_MapScript_OnLoad
 	.byte 0
+
+@------------------------------------------------------
+
+Route106_MapScript_OnLoad:
+	call_if_set FLAG_BADGE08_GET, Route106_MapScript_ShowTrainingTrio
+	call_if_unset FLAG_BADGE08_GET, Route106_MapScript_HideTrainingTrio
+	end
+
+Route106_MapScript_HideTrainingTrio:
+	setflag FLAG_HIDE_TRAINING_TRIO
+	return
+Route106_MapScript_ShowTrainingTrio:
+	clearflag FLAG_HIDE_TRAINING_TRIO
+	return
 
 @ Tyler -----------------------------------
 

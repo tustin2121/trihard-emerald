@@ -157,8 +157,8 @@ RustboroCity_Gym_Text_21370B: @ 821370B
 	.string "League {ITEM}Stone Badge{END}.$"
 RustboroCity_Gym_Text_2139A7: @ 82139A7
 	.string "Since you are so strong, you should\n"
-	.string "challenge other Gym LeaderS.\p"
-	.string "By battling many TRAINERS, you should\n"
+	.string "challenge other Gym Leaders.\p"
+	.string "By battling many trainers, you should\n"
 	.string "learn many things.$"
 RustboroCity_Gym_EventScript_212F66:: @ 8212F66
 	message RustboroCity_Gym_Text_2137EC, MSGTYPE_DESCRIBE
@@ -191,8 +191,8 @@ RustboroCity_Gym_Text_213816: @ 8213816
 	.string "outside of battle.\p"
 	.string "Hm?{PAUSE 20} N-No, I don't know why a Pokémon's\n"
 	.string "natural capabilities are unlocked by\l"
-	.string "the posession of a badge. It's just\l"
-	.string "how it's always been.\p"
+	.string "the posession of a badge.\l"
+	.string "It's just how it's always been.\p"
 	.string "Oh, please take this with you, too.$"
 RustboroCity_Gym_Text_213C01: @ 8213C01
 	.string "Registered Gym Leader Roxanne\n"

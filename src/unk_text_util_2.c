@@ -33,11 +33,11 @@ u16 Font6Func(struct TextPrinter *textPrinter)
                 }
                 return 3;
             }
-            if (gTextFlags.autoScroll)
-            {
-                textPrinter->delayCounter = 3;
-            }
-            else
+            // if (gTextFlags.autoScroll)
+            // {
+            //     textPrinter->delayCounter = 3;
+            // }
+            // else
             {
                 textPrinter->delayCounter = textPrinter->textSpeed;
             }

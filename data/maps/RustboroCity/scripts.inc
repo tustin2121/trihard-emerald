@@ -152,9 +152,9 @@ RustboroCity_EventScript_1E0874:: @ 81E0874
 	release
 	end
 RustboroCity_Text_1E12AC: @ 81E12AC
-	.string "Hm? A sneaky-looking man?\p"
-	.string "Come to think of it, yes, a shady-\n"
-	.string "looking guy went around the corner.$"
+	.string "What on earth just happened?!\p"
+	.string "All these people in color-coded\n"
+	.string "getups just ran past!$"
 
 
 

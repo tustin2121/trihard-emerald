@@ -1134,7 +1134,7 @@
 #define FLAG_ENABLE_ALEX_LEAGUE_CALL                                0x49E // Trihard
 #define FLAG_ENABLE_ALEX_MATCH_CALL                                 0x49F // Trihard
 #define FLAG_VISITED_ROUTE120                                       0x4A0 // Unused Flag
-#define FLAG_UNUSED_0x4A1                                           0x4A1 // Unused Flag
+#define FLAG_HIDE_TRAINING_TRIO                                     0x4A1 // Unused Flag
 #define FLAG_UNUSED_0x4A2                                           0x4A2 // Unused Flag
 #define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
 #define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
@@ -1404,6 +1404,7 @@
 #define FLAG_UNUSED_0x8FD                           (SYSTEM_FLAGS + 0x9D) // Unused Flag
 #define FLAG_UNUSED_0x8FE                           (SYSTEM_FLAGS + 0x9E) // Unused Flag
 #define FLAG_UNUSED_0x8FF                           (SYSTEM_FLAGS + 0x9F) // Unused Flag
+
 #define FLAG_UNUSED_0x900                           (SYSTEM_FLAGS + 0xA0) // Unused Flag
 #define FLAG_UNUSED_0x901                           (SYSTEM_FLAGS + 0xA1) // Unused Flag
 #define FLAG_UNUSED_0x902                           (SYSTEM_FLAGS + 0xA2) // Unused Flag
@@ -1555,6 +1556,7 @@
 #define FLAG_REMEMBERED_0x1D                                       0x601D
 #define FLAG_REMEMBERED_0x1E                                       0x601E
 #define FLAG_REMEMBERED_0x1F                                       0x601F
+
 #define FLAG_REMEMBERED_0x20                                       0x6020
 #define FLAG_REMEMBERED_0x21                                       0x6021
 #define FLAG_REMEMBERED_0x22                                       0x6022

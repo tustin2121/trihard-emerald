@@ -299,6 +299,7 @@ RusturfTunnel_Text_22D5F3: @ 822D5F3
 
 RusturfTunnel_TriggerScript_ApproachGrunt:: @ 822D083
 	lockall
+	markasdialog 14
 	msgbox RusturfTunnel_Text_22D1C8, MSGBOX_DIALOG
 	closemessage
 	applymovement LID_GRUNT, RusturfTunnel_Movement_22D0AB

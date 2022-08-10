@@ -66,7 +66,7 @@ static EWRAM_DATA u16 gUnknown_0203CDA8 = 0;
 static EWRAM_DATA void *gUnknown_0203CDAC[0x20] = {NULL};
 
 const u16 gTextBoxPalette[] = INCBIN_U16("graphics/interface/860F074.gbapal");
-static const u8 gUnknown_0860F094[] = { 8, 4, 1 };
+static const u8 gUnknown_0860F094[] = { 8, 4, 1, 0 };
 
 static const struct WindowTemplate sStandardTextBox_WindowTemplates[] =
 {
@@ -490,6 +490,11 @@ u8 GetPlayerTextSpeedDelay(void)
     if (gSaveBlock2Ptr->optionsTextSpeed > OPTIONS_TEXT_SPEED_FAST)
         gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_MID;
     speed = GetPlayerTextSpeed();
+    return gUnknown_0860F094[speed];
+}
+
+u8 GetTextSpeedDelay(u8 speed)
+{
     return gUnknown_0860F094[speed];
 }
 

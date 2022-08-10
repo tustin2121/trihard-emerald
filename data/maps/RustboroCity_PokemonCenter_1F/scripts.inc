@@ -112,8 +112,11 @@ RustboroCity_PokemonCenter_1F_EventScript_214D8D:: @ 8214D8D
 RustboroCity_PokemonCenter_1F_Text_214E13: @ 8214E13
 	.string "Just like people, there are male and\n"
 	.string "female Pokémon.\p"
-	.string "And just like people, it doesn't make\n"
-	.string "any difference which they are.$"
+	.string "And just like people, there are Pokémon\n"
+	.string "which break the gender binary.\p"
+	.string "A lot of the Pokémon which break the\n"
+	.string "gender binary are like gods…\l"
+	.string "Is that true for people too?$"
 
 
 RustboroCity_PokemonCenter_1F_EventScript_214D96:: @ 8214D96
@@ -121,7 +124,7 @@ RustboroCity_PokemonCenter_1F_EventScript_214D96:: @ 8214D96
 	end
 RustboroCity_PokemonCenter_1F_Text_214E81: @ 8214E81
 	@ TODO: Change text for Techniques
-	.string "The man next door gave me an HM!\p"
+	.string "The man next door gave me a TM!\p"
 	.string "I used it to teach my Pokémon how to\n"
 	.string "CUT down skinny trees.$"
 

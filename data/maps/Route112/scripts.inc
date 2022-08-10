@@ -10,6 +10,7 @@ Route112_OnTransition: @ 81F1DAE
 Route112_EventScript_1F1DB7:: @ 81F1DB7
 	lockall
 	delay 40
+	markasdialog
 	applymovement 1, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	delay 20
@@ -117,16 +118,16 @@ Route112_Text_1F1F7A: @ 81F1F7A
 
 Route112_Text_1F1FBA: @ 81F1FBA
 	.string "Oh, I get it now. That's why the rest\n"
-	.string "of the crew went out to FALLARBOR.$"
+	.string "of the crew went out to {PLACE}Fallarbor{END}.$"
 
 Route112_Text_1F2003: @ 81F2003
 	.string "You got it. And until they come back,\n"
 	.string "we're not to let anyone pass, right.$"
 
 Route112_Text_1F204E: @ 81F204E
-	.string "Eh, I'd like to get to MAUVILLE, but if\n"
+	.string "Eh, I'd like to get to {PLACE}Mauville{END}, but if\n"
 	.string "I went down these ledges, it'd be no\l"
-	.string "easy matter to get back to LAVARIDGE.$"
+	.string "easy matter to get back to {PLACE}Lavaridge{END}.$"
 
 Route112_Text_1F20C1: @ 81F20C1
 	.string "{PLACE}Mt. Chimney Cable Car{END}\n"

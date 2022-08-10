@@ -354,6 +354,7 @@ RIVAL_HERO     = FD 06  @ name of the wally replacement "Logan"
 RIVAL_ALOLA    = FD 07  @ name of the alolan friend "Alex"
 AQUA_BOY       = FD 08  @ name of the male team aqua friend "Bailey"
 AQUA_GIRL      = FD 09  @ name of the female team aqua friend "Jessica"
+RIVAL_MON      = FD 0E  @ name of Logan's lead pokemon, nickname or perhaps species
 P_PLAYER       = FD 0F  @ Player name, but with the first character stuttered
 
 @ pronouns for same-gender characters (the player)
@@ -494,6 +495,9 @@ RESET_SPEED = FC 1B
 FORCE_SPEED_SLOW = FC 1C 00
 FORCE_SPEED_MID  = FC 1C 01
 FORCE_SPEED_FAST = FC 1C 02
+FORCE_SPEED_YES  = FC 1C 03
+FORCE_AUTOSCROLL_ON = FC 1D
+FORCE_AUTOSCROLL_OFF = FC 1E
 
 @ colors
 

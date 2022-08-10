@@ -31,7 +31,7 @@ SlateportCity_OceanicMuseum_2F_Text_20C5C6: @ 820C5C6
 	.string "{CENTER}pressure is not very heavy. However,\n"
 	.string "{CENTER}in extremely deep water, the pressure\n"
 	.string "{CENTER}can reach even tens of thousands of\l"
-	.string "{CENTER}tons on a small area.”$"
+	.string "{CENTER}tons on a small area.$"
 
 
 SlateportCity_OceanicMuseum_2F_EventScript_20BD25:: @ 820BD25
@@ -366,7 +366,7 @@ SlateportCity_OceanicMuseum_2F_Text_SternMugging11:
 SlateportCity_OceanicMuseum_2F_Text_SternMugging_LoganLose:
 	.string "Oh, crud, you're really tough…$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging12:
-	.string "{RIVAL_HERO}: Seedot? Are you alright?!$"
+	.string "{RIVAL_HERO}: {RIVAL_MON}? Are you alright?!$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging13:
 	.string "Capt. Stern: Ah, fellas…\p"
 	.string "Perhaps we can, um…\n"
@@ -409,7 +409,7 @@ SlateportCity_OceanicMuseum_2F_Text_SternMugging21:
 	.string "Archie takes the armband from his arm\n"
 	.string "and hands it to you.\p$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging22:
-	.string "Recieved the Team Aqua Bandana!$"
+	.string "Received the Team Aqua Bandana!$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging23:
 	.string "Archie: Time to leave, boys.$"
 SlateportCity_OceanicMuseum_2F_Text_SternMugging24:

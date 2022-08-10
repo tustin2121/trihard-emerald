@@ -480,9 +480,10 @@ MtChimney_Text_22F8B6: @ 822F8B6
 MtChimney_Text_22F921: @ 822F921
 	.string "My dream of a big house…$"
 MtChimney_Text_22F93A: @ 822F93A
-	.string "Why do you Team Aqua grunts always\n"
-	.string "ruin everything!? Go back to\l"
-	.string "splashing in the waves!$"
+	.string "Why do you Team Aqua grunts\n"
+	.string "always ruin everything!?\n"
+	.string "Go back to splashing in\n"
+	.string "the waves!$"
 
 
 MtChimney_EventScript_Archie:: @ 822EDD5

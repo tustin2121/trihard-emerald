@@ -1382,14 +1382,13 @@ bool8 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;
 
-    if (subStruct->autoScrollDelay == 49)
-    {
-        return TRUE;
-    }
-    else
-    {
+    if (gTextFlags.forceMidTextSpeed == TRUE) {
+        if (subStruct->autoScrollDelay == 49) return TRUE;
         ++subStruct->autoScrollDelay;
         return FALSE;
+    }
+    else {
+        return TRUE;
     }
 }
 
@@ -1496,9 +1495,9 @@ u16 RenderText(struct TextPrinter *textPrinter)
             return 3;
         }
 
-        if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED) && gTextFlags.autoScroll)
-            textPrinter->delayCounter = 3;
-        else
+        // if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED) && gTextFlags.autoScroll)
+        //     textPrinter->delayCounter = 3;
+        // else
             textPrinter->delayCounter = textPrinter->textSpeed;
 
         currChar = *textPrinter->printerTemplate.currentChar;
@@ -1661,8 +1660,14 @@ u16 RenderText(struct TextPrinter *textPrinter)
                 textPrinter->textSpeed = GetPlayerTextSpeedDelay();
                 return 2;
             case 0x1C: 
-                textPrinter->textSpeed = *textPrinter->printerTemplate.currentChar;
+                textPrinter->textSpeed = GetTextSpeedDelay(*textPrinter->printerTemplate.currentChar);
                 textPrinter->printerTemplate.currentChar++;
+                return 2;
+            case 0x1D:
+                gTextFlags.autoScroll = TRUE;
+                return 2;
+            case 0x1E:
+                gTextFlags.autoScroll = FALSE;
                 return 2;
             }
             break;

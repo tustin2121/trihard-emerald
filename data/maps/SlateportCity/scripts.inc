@@ -810,6 +810,7 @@ SlateportCity_Text_1DDF8E:
 SlateportCity_EventScript_AquaMember8:: @ 81DD065
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_SCENE_1, SlateportCity_EventScript_AquaMember8a
 	selectpointer_clamp SlateportCity_TextArray_AquaGirl, VAR_AQUA_GIRL_FRIENDSHIP
 	msgbox_selected
@@ -860,6 +861,7 @@ SlateportCity_Text_1DDD7D: @ 81DDD7D
 SlateportCity_EventScript_AquaMember4:: @ 81DD14A
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_SCENE_0, SlateportCity_EventScript_AquaMember4a
 	selectpointer_clamp SlateportCity_TextArray_AquaBoy, VAR_AQUA_BOY_FRIENDSHIP
 	msgbox_selected
@@ -937,6 +939,7 @@ SlateportCity_TriggerScript_AquaLineFront::
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox SlateportCity_Text_AquaLineFront3
+	closemessage
 	applymovement LID_BOY, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	delay 30
@@ -1036,11 +1039,16 @@ SlateportCity_EventScript_LoganAfterMuseum:
 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_LoganAfterMuseum_PlayerShoved
 	applymovement EVENT_OBJ_ID_CAMERA, Common_Movement_WalkDown1
 	markasdialog
-	msgbox SlateportCity_Text_LoganAfterMuseum1
+	@
+	setvar VAR_0x800B, 0
+	addvar_if_set FLAG_TATTLED_ON_LOGAN, VAR_0x800B, 1
+	selectpointer_from VAR_0x800B, SlateportCity_Text_LoganAfterMuseum1, SlateportCity_Text_LoganAfterMuseum2
+	msgbox_selected
 	waitmovement EVENT_OBJ_ID_PLAYER
 	waitmovement EVENT_OBJ_ID_CAMERA
 	special RemoveCameraObject
 	closemessage
+	@
 	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_Movement_LoganAfterMuseum_PlayerWatch
 	applymovement LID_LOGAN, SlateportCity_Movement_LoganAfterMuseum_LoganRunOff
 	waitmovement 0
@@ -1049,11 +1057,24 @@ SlateportCity_EventScript_LoganAfterMuseum:
 	setvar VAR_LOGAN_STATE, 5
 	releaseall
 	end
+.align 2
+SlateportCity_TextTable_LoganAfterMuseum:
+	.4byte SlateportCity_Text_LoganAfterMuseum1
+	.4byte SlateportCity_Text_LoganAfterMuseum2
+	.4byte 0
 SlateportCity_Text_LoganAfterMuseum1:
 	.string "{RIVAL_HERO}: What is your problem,\n"
 	.string "you big stupid jerk?!\p"
-	.string "You nearly got my Seedot killed!\p"
-	.string "This isn't the end of this!$"
+	.string "You nearly got my {RIVAL_MON} killed!\p"
+	.string "Go jump off a pier, jerk!$"
+SlateportCity_Text_LoganAfterMuseum2:
+	.string "{RIVAL_HERO}: What is your problem,\n"
+	.string "you big stupid jerk?!\p"
+	.string "First, you sic my mother on me after\n"
+	.string "I specifically asked you not to!\p"
+	.string "Then you nearly get my {RIVAL_MON} killed!\p"
+	.string "Do you just hate me or something?!\n"
+	.string "Go jump off a pier, jerk!$"
 
 SlateportCity_Movement_LoganAfterMuseum_PlayerShoved:
 	slide_down

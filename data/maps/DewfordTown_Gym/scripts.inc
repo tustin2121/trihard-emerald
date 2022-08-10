@@ -348,9 +348,10 @@ DewfordTown_Gym_Text_1FD20D: @ 81FD20D
 	.string "among trainers one day!$"
 DewfordTown_Gym_EventScript_1FC7F7:: @ 81FC7F7
 	call DewfordTown_Gym__AnimateFlashRadius0
-	message DewfordTown_Gym_Text_1FD07D
+	message DewfordTown_Gym_Text_1FD07D, MSGTYPE_DESCRIBE
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
+	markasdialog
 	msgbox DewfordTown_Gym_Text_1FD0A8, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_DEWFORD_GYM
 	setflag FLAG_BADGE02_GET

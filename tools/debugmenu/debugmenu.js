@@ -18,7 +18,7 @@ const DebugHandle_SetFlag = 10;
 const DebugHandle_SetVar = 11;
 const DebugHandle_SetLegendaryFight = 12;
 const DebugHandle_GiveDebugParty = 13;
-const DebugHandle_TestScript1 = 14;
+const DebugHandle_TestScript = 14;
 const DebugHandle_SwapGenders = 15;
 const DebugHandle_RenamePlayer = 16;
 const DebugHandle_UnmarkBoxMon = 17;
@@ -54,6 +54,8 @@ function initMenuV1() {
 			.on('click', function(){ switchMenu('gowarp'); });
 		$(`<li>Other Actions…</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('submenu1'); });
+		$(`<li>Run Test Script…</li>`).appendTo($m)
+			.on('click', function(){ switchMenu('runscript'); });
 	}{
 		let $m = $subMenus['submenu1'] = $('<ul>').appendTo('body');
 		$(`<li>&lt; Back</li>`).appendTo($m)
@@ -98,9 +100,22 @@ function initMenuV1() {
 			.on('click', function(){
 				switchMenu('timeofday');
 			});
-		$(`<li>Run Test Script 1</li>`).appendTo($m)
+	}{
+		let $m = $subMenus['runscript'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
+		let $v = $(`<input type='number' value="0" min="0" max="255" />`);
+		$(`<p>`).appendTo($m)
+			.append(`Script ID: `).append($v);
+		$(`<li>Run Script</li>`).appendTo($m)
 			.on('click', function(){
-				writeInterrupts({ funcId: DebugHandle_TestScript1 });
+				writeInterrupts({ funcId: DebugHandle_TestScript, args:[$v.val()] });
+				switchMenu();
+			});
+		$m.append('<hr/>');
+		$(`<li>Run Test Script 0</li>`).appendTo($m)
+			.on('click', function(){
+				writeInterrupts({ funcId: DebugHandle_TestScript, args:[0] });
 				switchMenu();
 			});
 	}{
