@@ -8,6 +8,7 @@
 #include "constants/maps.h"
 #include "constants/game_stat.h"
 #include "constants/flags.h"
+#include "constants/weather.h"
 #include "remembered_dreams.h"
 
 #define SENTINAL 0xA0
@@ -189,14 +190,9 @@ static const struct DreamDataStruct sDreamScripts[] = {
 };
 
 
-void ForceTextSpeedToMid()
+void CheckIsWeatherAlternating()
 {
-	gTextFlags.forceMidTextSpeed = TRUE;
-}
-
-void UnforceTextSpeedToMid()
-{
-	gTextFlags.forceMidTextSpeed = FALSE;
+	VarSet(VAR_RESULT, GetSav1Weather() == WEATHER_ALTERNATING);
 }
 
 bool8 DoDreamCutscenes(struct ScriptContext *ctx)

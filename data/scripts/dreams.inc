@@ -964,6 +964,78 @@ gText_Alex_Pokenav_Registered: @ 8213C01
 	.string "Registered your friend {RIVAL_ALOLA}\n"
 	.string "in the PokéNav.$"
 
+@------------------------------------------------------
+
+DreamScript_Alex_LegendaryCall::
+	lockall
+	callnative CheckIsWeatherAlternating
+	compare VAR_RESULT, FALSE
+	goto_if_eq DreamScript_Alex_LegendaryCall_Normal
+	@ We're in the storm
+	pokenavcall gText_Alex_Pokenav_LegendaryCall_Rain
+	waitmessage
+	closemessage
+	goto DreamScript_Alex_LegendaryCall_END
+	end
+DreamScript_Alex_LegendaryCall_Normal:
+	pokenavcall gText_Alex_Pokenav_LegendaryCall_Normal
+	waitmessage
+	closemessage
+	goto DreamScript_Alex_LegendaryCall_END
+	end
+DreamScript_Alex_LegendaryCall_END:
+	setflag FLAG_ALEX_CALL_SKY_PILLAR_INFO
+	clearflag FLAG_ALEX_CALL_LEGENDARIES
+	releaseall
+	end
+	
+gText_Alex_Pokenav_LegendaryCall_Rain:
+	.string "… … … … … …\n"
+	.string "… … … … … Beep!\p"
+	@ .string "{ALEX_SPEAKING}"
+	.string "{RIVAL_ALOLA}: {PLAYER}! Are you there?!\p"
+	.string "Wow, the signal is somehow worse!\n"
+	.string "Are you IN the storm?!\p"
+	.string "I found some info you might want\n"
+	.string "about the legendary beasts!\p"
+	.string "Like, literally, there's legends\n"
+	.string "about them! I have one here!\p"
+	.string "Groudon and Kyogre fought in the\n"
+	.string "distant past and nearly ended\l"
+	.string "the world, so the story goes!\p"
+	.string "But they were stopped by some\n"
+	.string "sort of greater serpent dragon?\p"
+	.string "The legend says it lives atop\n"
+	.string "Sky Pillar! Have you heard of that?\p"
+	.string "{PLAYER}? Hello?! Did I get dis--\n"
+	.string "… … Click! (CALL FAILED).$"
+gText_Alex_Pokenav_LegendaryCall_Normal:
+	.string "… … … … … …\n"
+	.string "… … … … … Beep!\p"
+	@ .string "{ALEX_SPEAKING}"
+	.string "{RIVAL_ALOLA}: {PLAYER}! Hey!\n"
+	.string "The signal got better since\l"
+	.string "I last called. That's good!\p"
+	.string "So, I found some info you might\n"
+	.string "want about those rampaging beasts!\p"
+	.string "There's an old legend about Groudon\n"
+	.string "and Kyogre fighting in the past.\p"
+	.string "Legend says it nearly ended the\n"
+	.string "world! But they were stopped.\p"
+	.string "There's some sort of greater\n"
+	.string "serpent dragon, which is said to\l"
+	.string "live atop Sky Pillar?\p"
+	.string "Is there some place called\n"
+	.string "Sky Pillar in Hoenn?\p"
+	.string "I'll try and keep researching for\n"
+	.string "more stuff that might help.\l"
+	.string "Stay safe, {PLAYER}!\p"
+	.string "… … … … … …\n"
+	.string "… … … … … Click!$"
+	
+	
+	
+@------------------------------------------------------
 
 DreamScript_Alex_LeagueCall::
 	lockall
@@ -1026,6 +1098,41 @@ gText_Alex_Pokenav_CatchUp::
 	.string "Let's talk more later, okay?\n"
 	.string "Bye…$"
 
+
+gText_Alex_Pokenav_RainsBegan::
+	.string "{RIVAL_ALOLA}: {PLAYER}? What's going on?\n"
+	.string "I can barely hear you!\p"
+	.string "… … … … … …\n"
+	.string "Woah, okay, slow down!\l"
+	.string "Start again from the beginning.\p"
+	.string "… … … … … …\n"
+	.string "Your team did what?! An ancient\l"
+	.string "super-powerful {POKEMON}?!\p"
+	.string "Okay, that's got Team Skull beat…\p"
+	.string "Listen, I can barely hear you.\n"
+	.string "I think our connection is bad!\p"
+	.string "But I can see if I can find any\n"
+	.string "info on… what were the names?\l"
+	.string "Kyogre and Grupon-- Groudon, okay.\p"
+	.string "I'll call you back if I find anything!\n"
+	.string "Stay safe, please!$"
+gText_Alex_Pokenav_MidResearch::
+	.string "{RIVAL_ALOLA}: {PLAYER}? Are you alright?\n"
+	.string "Okay, that's good.\p"
+	.string "Listen, I can't talk much.\n"
+	.string "I think I found a lead for you\l"
+	.string "but I'm still tracing it down.\p"
+	.string "I'll give you a call if it might\n"
+	.string "be something useful to you.\p"
+	.string "Stay safe, please!$"
+gText_Alex_Pokenav_PostResearch::
+	.string "{RIVAL_ALOLA}: {PLAYER}? Hey!\n"
+	.string "Have you found anything yet?\p"
+	.string "Remember, you're looking for\n"
+	.string "some place called Sky Pillar?\p"
+	.string "Maybe ask around? Or surf around?\n"
+	.string "I imagine it'd be hard to miss!\p"
+	.string "Good luck! And stay safe!$"
 
 @------------------------------------------------------
 DreamScript_Dummy:

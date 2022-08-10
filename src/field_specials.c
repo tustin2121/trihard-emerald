@@ -457,6 +457,31 @@ bool32 TryDoAlexCall(void)
                 return FALSE;
         }
         ScriptContext1_SetupScript(DreamScript_Alex_FirstCall);
+        SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
+        return TRUE;
+    }
+    if (FlagGet(FLAG_ALEX_CALL_LEGENDARIES)) {
+        if (!FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS)) {
+            // If the legendaries cleared themselves, cancel the call
+            FlagClear(FLAG_ALEX_CALL_LEGENDARIES);
+            SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
+            return FALSE;
+        }
+        switch (gMapHeader.mapType) {
+            case 1:
+            case 2:
+            case 3:
+            case 6:
+                // Same step counter from above, reset
+                if (++(*GetVarPointer(VAR_ALEX_CALL_STEP_COUNTER)) < 1024) {
+                    return FALSE;
+                }
+                break;
+            default:
+                return FALSE;
+        }
+        ScriptContext1_SetupScript(DreamScript_Alex_LegendaryCall);
+        SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
         return TRUE;
     }
     if (FlagGet(FLAG_ENABLE_ALEX_LEAGUE_CALL)) {
@@ -474,6 +499,7 @@ bool32 TryDoAlexCall(void)
                 return FALSE;
         }
         ScriptContext1_SetupScript(DreamScript_Alex_LeagueCall);
+        SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
         return TRUE;
     }
     return FALSE;

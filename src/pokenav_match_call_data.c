@@ -19,7 +19,7 @@ enum
     MC_TYPE_WALLY,
     MC_TYPE_BIRCH,
     MC_TYPE_RIVAL,
-    MC_TYPE_LEADER
+    MC_TYPE_LEADER,
 };
 
 // Static type declarations
@@ -43,6 +43,7 @@ struct MatchCallStructNPC {
     const u8 *desc;
     const u8 *name;
     const match_call_text_data_t *textData;
+    u16 dailyFlag;
 };
 
 // Shared by MC_TYPE_TRAINER and MC_TYPE_LEADER
@@ -172,8 +173,6 @@ extern const u8 gMatchCallName_MrStone[];
 
 extern const u8 gMatchCallDesc_Alex[];
 extern const u8 gMatchCallName_Alex[];
-extern const u8 gText_Alex_Pokenav_CatchUp[];
-extern const u8 gText_Alex_Pokenav_Unavailable[];
 
 extern const u8 gMatchCallDesc_ProfBirch[];
 extern const u8 gMatchCallName_ProfBirch[];
@@ -334,13 +333,24 @@ static const struct MatchCallStructNPC sMrStoneMatchCallHeader =
     .flag = 0xFFFF, 
     .desc = gMatchCallDesc_MrStone,
     .name = gMatchCallName_MrStone,
-    .textData = sMrStoneTextScripts
+    .textData = sMrStoneTextScripts,
+    .dailyFlag = 0xFFFF,
 };
 
+extern const u8 gText_Alex_Pokenav_CatchUp[];
+extern const u8 gText_Alex_Pokenav_RainsBegan[];
+extern const u8 gText_Alex_Pokenav_MidResearch[];
+extern const u8 gText_Alex_Pokenav_PostResearch[];
+extern const u8 gText_Alex_Pokenav_Unavailable[];
+
 static const match_call_text_data_t sAlexTextScripts[] = {
-    { gText_Alex_Pokenav_CatchUp,     0xFFFF,               FLAG_DAILY_ALEX_CALL },
-    { gText_Alex_Pokenav_Unavailable, FLAG_DAILY_ALEX_CALL, 0xFFFF },
-    { NULL,                           0xFFFF,               0xFFFF }
+    { gText_Alex_Pokenav_CatchUp,      0xFFFF,                         FLAG_ALEX_CALL_CAUGHT_UP },
+    { gText_Alex_Pokenav_Unavailable,  FLAG_ALEX_CALL_CAUGHT_UP,       FLAG_DAILY_ALEX_CALL },
+    { gText_Alex_Pokenav_RainsBegan,   FLAG_LEGENDARIES_IN_SOOTOPOLIS, FLAG_ALEX_CALL_LEGENDARIES },
+    { gText_Alex_Pokenav_MidResearch,  FLAG_ALEX_CALL_LEGENDARIES,     0xFFFF },
+    { gText_Alex_Pokenav_PostResearch, FLAG_ALEX_CALL_SKY_PILLAR_INFO, 0xFFFF },
+    { gText_Alex_Pokenav_Unavailable,  FLAG_DAILY_ALEX_CALL,           0xFFFF },
+    { NULL,                            0xFFFF,                         0xFFFF }
 };
 
 static const struct MatchCallStructNPC sAlexMatchCallHeader =
@@ -350,7 +360,8 @@ static const struct MatchCallStructNPC sAlexMatchCallHeader =
     .flag = FLAG_ENABLE_ALEX_MATCH_CALL,
     .desc = gMatchCallDesc_Alex,
     .name = gMatchCallName_Alex,
-    .textData = sAlexTextScripts
+    .textData = sAlexTextScripts,
+    .dailyFlag = FLAG_DAILY_ALEX_CALL,
 };
 
 static const struct MatchCallBirch sProfBirchMatchCallHeader =
@@ -363,14 +374,14 @@ static const struct MatchCallBirch sProfBirchMatchCallHeader =
 };
 
 static const match_call_text_data_t sDadTextScripts[] = {
-    { gText_Dad_Pokenav_Starting,       0xFFFF, FLAG_DAILY_DAD_CALL },
-    { gText_Dad_Pokenav_AreYouHurt,     FLAG_DAD_IS_AT_WORK, FLAG_DAILY_DAD_CALL },
-    { gText_Dad_Pokenav_CallYouBack,    FLAG_BADGE01_GET, FLAG_DAILY_DAD_CALL },
-    { gText_Dad_Pokenav_TeamWarn,       FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_Starting,       0xFFFF, 0xFFFF },
+    { gText_Dad_Pokenav_AreYouHurt,     FLAG_DAD_IS_AT_WORK, 0xFFFF },
+    { gText_Dad_Pokenav_CallYouBack,    FLAG_BADGE01_GET, 0xFFFF },
+    { gText_Dad_Pokenav_TeamWarn,       FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, 0xFFFF },
     //TODO more text for various items
-    { gText_Dad_Pokenav_LegendaryWarn,  FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, FLAG_DAILY_DAD_CALL },
-    { gText_Dad_Pokenav_Singlehanded,   FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, FLAG_DAILY_DAD_CALL },
-    { gText_Dad_Pokenav_EverGrande,     FLAG_VISITED_EVER_GRANDE_CITY, FLAG_DAILY_DAD_CALL },
+    { gText_Dad_Pokenav_LegendaryWarn,  FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, 0xFFFF },
+    { gText_Dad_Pokenav_Singlehanded,   FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, 0xFFFF },
+    { gText_Dad_Pokenav_EverGrande,     FLAG_VISITED_EVER_GRANDE_CITY, 0xFFFF },
     { gText_Dad_Pokenav_NoAnswer,       FLAG_DAILY_DAD_CALL, 0xffff },
     
     // { gText_Mom_Pokenav_2B227B, 0xffff,              0xffff },
@@ -395,7 +406,8 @@ static const struct MatchCallStructNPC sDadMatchCallHeader =
     .flag = 0xFFFF,//FLAG_ENABLE_MOM_MATCH_CALL,
     .desc = gMatchCallDesc_Dad,
     .name = gMatchCallName_Dad,
-    .textData = sDadTextScripts
+    .textData = sDadTextScripts,
+    .dailyFlag = FLAG_DAILY_DAD_CALL,
 };
 
 static const match_call_text_data_t sStevenTextScripts[] = {
@@ -416,7 +428,8 @@ static const struct MatchCallStructNPC sStevenMatchCallHeader =
     .flag = FLAG_REGISTERED_STEVEN_POKENAV,
     .desc = gMatchCallDesc_Steven,
     .name = gMatchCallName_Steven,
-    .textData = sStevenTextScripts
+    .textData = sStevenTextScripts,
+    .dailyFlag = 0xFFFF,
 };
 
 static const match_call_text_data_t sMayTextScripts[] = {
@@ -525,7 +538,8 @@ static const struct MatchCallStructNPC sScottMatchCallHeader =
     .flag = FLAG_ENABLE_SCOTT_MATCH_CALL,
     .desc = gMatchCallDesc_Scott,
     .name = gMatchCallName_Scott,
-    .textData = sScottTextScripts
+    .textData = sScottTextScripts,
+    .dailyFlag = 0xFFFF,
 };
 
 static const match_call_text_data_t sRoxanneTextScripts[] = {
@@ -884,17 +898,17 @@ static u32 MatchCallGetFunctionIndex(match_call_t matchCall)
 {
     switch (matchCall.common->type)
     {
-        case 0:
         default:
+        case MC_TYPE_NPC:
             return 0;
-        case 1:
-        case 5:
+        case MC_TYPE_TRAINER:
+        case MC_TYPE_LEADER:
             return 1;
-        case 2:
+        case MC_TYPE_WALLY:
             return 2;
-        case 4:
+        case MC_TYPE_RIVAL:
             return 3;
-        case 3:
+        case MC_TYPE_BIRCH:
             return 4;
     }
 }
@@ -1142,6 +1156,9 @@ void MatchCall_GetMessage(u32 idx, u8 *dest)
 static void MatchCall_GetMessage_NPC(match_call_t matchCall, u8 *dest)
 {
     MatchCall_BufferCallMessageText(matchCall.npc->textData, dest);
+    // Set the daily flag, if there is one, as part of this call
+    if (matchCall.npc->dailyFlag != 0xFFFF)
+        FlagSet(matchCall.npc->dailyFlag);
 }
 
 static void MatchCall_GetMessage_Trainer(match_call_t matchCall, u8 *dest)
