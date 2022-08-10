@@ -110,6 +110,14 @@ void LoadAndProcessRememberedDreams()
 	{
 		SetGameStat(i, GetRememberedStat(i));
 	}
+	// Special case: Dream 700 is the only dream that affects the real world, by enabling
+	// Alex to call the player. We need to make sure this is still the case upon load, since
+	// the dream happens after the save.
+	if (!FlagGet(FLAG_ENABLE_ALEX_MATCH_CALL) && FlagGet(FLAG_SAW_DREAM_0700)) {
+		// If Alex isn't in our phonebook, but we saw the dream, enable the counter to the first call,
+		// which will add alex to our phone book.
+		FlagSet(FLAG_ENABLE_ALEX_FIRST_CALL);
+	}
 	return;
 badDreams:
 	FlagSet(FLAG_ERROR_READING_DREAMS);

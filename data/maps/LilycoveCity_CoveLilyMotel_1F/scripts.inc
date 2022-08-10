@@ -87,7 +87,9 @@ LilycoveCity_CoveLilyMotel_1F_Text_218264: @ 8218264
 LilycoveCity_CoveLilyMotel_1F_Text_21831E: @ 821831E
 	.string "Oh, sorry, sorry!\n"
 	.string "I was too involved in watching TV!\p"
-	.string "Since that Team Aqua came to town,\n"
+	.string "Oh. It's you lot. You know,\n"
+	.string "you're bad for business.\p"
+	.string "Since your team came to town,\n"
 	.string "the tourists have been staying away.$"
 
 LilycoveCity_CoveLilyMotel_1F_Text_21839B: @ 821839B

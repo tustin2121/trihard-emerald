@@ -25,6 +25,7 @@ FortreeCity_Gym_EventScript_2165C4:: @ 82165C4
 FortreeCity_Gym_EventScript_216732:: @ 8216732
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_DEFEATED_FORTREE_GYM, FortreeCity_Gym_EventScript_216747
 	msgbox FortreeCity_Gym_Text_216785, MSGBOX_DEFAULT
 	release

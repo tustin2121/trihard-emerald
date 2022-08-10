@@ -110,9 +110,11 @@ LilycoveCity_Text_1E4624: @ 81E4624
 
 LilycoveCity_EventScript_1E2D62:: @ 81E2D62
 	msgbox LilycoveCity_Text_1E466E, MSGBOX_SIGN
+	msgbox LilycoveCity_Text_1E466Eb, MSGBOX_DESCRIBE
 	end
 LilycoveCity_Text_1E466E: @ 81E466E
-	.string "{PLACE}Pokémon Trainer Fan Club{END}\p"
+	.string "{PLACE}Pokémon Trainer Fan Club{END}$"
+LilycoveCity_Text_1E466Eb:
 	.string "The names of trainers are scribbled\n"
 	.string "all over the sign…$"
 
@@ -227,20 +229,27 @@ LilycoveCity_EventScript_1E2C53:: @ 81E2C53
 	release
 	end
 LilycoveCity_Text_1E3FAB: @ 81E3FAB
-	.string "Team Aqua's been training their\n"
-	.string "Wailmer in the cove.\p"
-	.string "We sailors can't get our boats out\n"
-	.string "to sea with them in the way!$"
+	.string "Oi! Tell your buddies to get\n"
+	.string "their Wailmer out of the cove!\p"
+	.string "Your team has blockaided the port!\n"
+	.string "No one can get out!$"
+	@ .string "Team Aqua's been training their\n"
+	@ .string "Wailmer in the cove.\p"
+	@ .string "We sailors can't get our boats out\n"
+	@ .string "to sea with them in the way!$"
 LilycoveCity_EventScript_1E2C68:: @ 81E2C68
 	msgbox LilycoveCity_Text_1E4020, MSGBOX_DEFAULT
 	release
 	end
 LilycoveCity_Text_1E4020: @ 81E4020
-	.string "Ahoy, did you know?\p"
-	.string "Someone punted Team Aqua out of\n"
-	.string "the way for us!\p"
-	.string "That got the WAILMER out of the cove,\n"
-	.string "so we can get our boats out again.$"
+	.string "Finally, Team Aqua's gone and trained\n"
+	.string "their Wailmer somewhere else!\p"
+	.string "We can finally get our boats out again.$"
+	@ .string "Ahoy, did you know?\p"
+	@ .string "Someone punted Team Aqua out of\n"
+	@ .string "the way for us!\p"
+	@ .string "That got the Wailmer out of the cove,\n"
+	@ .string "so we can get our boats out again.$"
 
 
 LilycoveCity_EventScript_1E2C72:: @ 81E2C72
@@ -256,7 +265,8 @@ LilycoveCity_Text_1E40AD: @ 81E40AD
 	.string "seaside inn to the sound of waves…\p"
 	.string "When someone stole my Pokémon!\p"
 	.string "Who's the abductor?\n"
-	.string "Team Aqua? Is it Team Aqua?$"
+	.string "You look the type. Do you know?$"
+	@ .string "Team Aqua? Is it Team Aqua?$"
 LilycoveCity_EventScript_1E2C87:: @ 81E2C87
 	msgbox LilycoveCity_Text_1E4145, MSGBOX_DEFAULT
 	release
@@ -311,9 +321,9 @@ LilycoveCity_Text_1E42FC: @ 81E42FC
 	.string "That had been a natural formation,\n"
 	.string "but then that Team Aqua lot came\l"
 	.string "along and made their renovations.\p"
-	.string "They call themselves\n"
+	.string "You call yourselves\n"
 	.string "the “nature-loving Team Aqua”!\p"
-	.string "But what they do and what they say\n"
+	.string "But what you do and what you say\n"
 	.string "don't match at all!$"
 LilycoveCity_EventScript_1E2CC1:: @ 81E2CC1
 	msgbox LilycoveCity_Text_1E43FF, MSGBOX_DEFAULT
@@ -641,7 +651,7 @@ LilycoveCity_EventScript_1E2F3E:: @ 81E2F3E
 LilycoveCity_Text_1E32FB: @ 81E32FB
 	.string "May: {PLAYER}, I don't know if you're\n"
 	.string "aware, but you CAN forfiet a battle.\p"
-	.string "You don't have to fight every battle\l"
+	.string "You don't have to fight every battle\n"
 	.string "tooth-and-nail. It's okay to lose.\p"
 	.string "… … … … …\p"
 	.string "I'm going back to Littleroot soon.\p"

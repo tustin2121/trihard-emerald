@@ -18,11 +18,14 @@ Route121_EventScript_1F5E18:: @ 81F5E18
 	playbgm MUS_AQA_0, 0
 	applymovement 13, Route121_Movement_2725B8
 	waitmovement 0
+	markasdialog 20
 	msgbox Route121_Text_1F605A, MSGBOX_DEFAULT
 	closemessage
 	applymovement 12, Route121_Movement_1F5E59
-	applymovement 13, Route121_Movement_1F5E62
+	delay 4
 	applymovement 14, Route121_Movement_1F5E6B
+	delay 3
+	applymovement 13, Route121_Movement_1F5E62
 	waitmovement 0
 	fadedefaultbgm
 	removeobject 12

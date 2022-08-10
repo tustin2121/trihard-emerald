@@ -144,7 +144,8 @@ DebugScript_GiveDebugPartyAndSetFlags::
 DebugScript_TestScriptTable::
 	@ .4byte DreamScript_CantSleep @ 0 - done
 	.4byte DebugScript_TestScript2
-	.4byte DEBUG_DreamScript_0100 @ 1 - done
+	@ .4byte DEBUG_DreamScript_0100 @ 1 - done
+	.4byte DebugScript_TestScript3
 	.4byte DEBUG_DreamScript_0150 @ 2 - done
 	.4byte DEBUG_DreamScript_0200 @ 3 - done
 	.4byte DEBUG_DreamScript_0300 @ 4 - done
@@ -269,6 +270,24 @@ DebugScript_TestScript2::
 ScriptText_TS2:
 	.string "Read Error={STR_VAR_1}\n"
 	.string "Write Error={STR_VAR_2}$"
+
+DebugScript_TestScript3::
+	lockall
+	setvar VAR_0x8001, 0
+	setvar VAR_0x8002, 0
+	setvar VAR_0x8003, 0
+	addvar_if_set FLAG_SAW_DREAM_0700, VAR_0x8001, 1
+	addvar_if_set FLAG_ENABLE_ALEX_MATCH_CALL, VAR_0x8002, 1
+	addvar_if_set FLAG_ENABLE_ALEX_FIRST_CALL, VAR_0x8003, 1
+	buffernumberstring 0, VAR_0x8001
+	buffernumberstring 1, VAR_0x8002
+	buffernumberstring 2, VAR_0x8003
+	msgbox ScriptText_TS3
+	releaseall
+	end
+ScriptText_TS3:
+	.string "Dream 700={STR_VAR_1}  First={STR_VAR_3}\n"
+	.string "Match Call={STR_VAR_2}$"
 
 
 ScriptText_DebugBoxText:

@@ -168,6 +168,7 @@ extern const u8 gMatchCallName_MrStone[];
 
 extern const u8 gMatchCallDesc_Alex[];
 extern const u8 gMatchCallName_Alex[];
+extern const u8 gText_Alex_Pokenav_CatchUp[];
 extern const u8 gText_Alex_Pokenav_Unavailable[];
 
 extern const u8 gMatchCallDesc_ProfBirch[];
@@ -333,7 +334,7 @@ static const struct MatchCallStruct0 sMrStoneMatchCallHeader =
 };
 
 static const match_call_text_data_t sAlexTextScripts[] = {
-    { gText_Alex_Pokenav_Unavailable, 0xFFFF,               FLAG_DAILY_ALEX_CALL },
+    { gText_Alex_Pokenav_CatchUp,     0xFFFF,               FLAG_DAILY_ALEX_CALL },
     { gText_Alex_Pokenav_Unavailable, FLAG_DAILY_ALEX_CALL, 0xFFFF },
     { NULL,                           0xFFFF,               0xFFFF }
 };

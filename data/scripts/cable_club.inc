@@ -1421,7 +1421,7 @@ RustboroCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 SlateportCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 SootopolisCity_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
 VerdanturfTown_PokemonCenter_1F_MapScript1_277C30: @ 8277C30
-	special sub_8016934
+	@ special sub_8016934
 	end
 
 MossdeepCity_GameCorner_1F_EventScript_277C34:: @ 8277C34

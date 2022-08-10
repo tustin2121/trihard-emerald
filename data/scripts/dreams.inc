@@ -948,7 +948,7 @@ gText_Alex_Pokenav_FirstCall1:
 	@ .string "{ALEX_SPEAKING}"
 	.string "… …{PAUSE 30} {P_PLAYER}?{PAUSE 40} Is that you?{PAUSE 30}\n"
 	@ TODO: Test how choices work with pokenav: choice here "Alex?!" / "Wha?!"
-	.string "It's me… … {RIVAL_ALOLA}.\p"
+	.string "It's me… … {RIVAL_ALOLA}.{PAUSE 60}\p"
 	.string "I, uh…{PAUSE 20} got your new number from\n"
 	.string "your mom. I hope that's alright.\p"
 	.string "I wasn't sure if you wanted to hear\n"
@@ -1005,6 +1005,26 @@ gText_Alex_Pokenav_Unavailable::
 	.string "BEEP BEEP BEEP BEEP BEEP BEEP\l"
 	.string "BEEP BEEP BEEP BEEP BEEP BEEP$"
 
+gText_Alex_Pokenav_CatchUp::
+	.string "{RIVAL_ALOLA}: {PLAYER}! Hey!\n"
+	.string "You wanna chat? Yeah, I've got time.\p"
+	.string "So, what's Hoenn like?\n"
+	.string "That have you been up to?\p"
+	.string "… … … … … …\n"
+	.string "… … … … … …\p"
+	.string "Wow, your're doing the gym challenge?\n"
+	.string "Good to see you back at the--\p"
+	.string "You, what? You joined a new team?!\p"
+	.string "…{PAUSE 30}Oh…{PAUSE 20}! That's…{PAUSE 30} cool…!\p"
+	.string "Well, what do you want me to say?!\n"
+	.string "Being on Team Skull is kind of…\l"
+	.string "I'm not proud of it, {PLAYER}…\p"
+	.string "Alright! No need to yell!\n"
+	.string "Having friends is good, but…\p"
+	.string "Just… be aware of if they're maybe…\n"
+	.string "Doing something extreme…\p"
+	.string "Let's talk more later, okay?\n"
+	.string "Bye…$"
 
 
 @------------------------------------------------------
