@@ -179,7 +179,8 @@ OldaleTown_EventScript_RivalSpeak:: @ 81E90E6
 	selectpointer OldaleTown_EventScript_Rival_MovementTable, VAR_0x8009
 	applymovement 4, 0 @ Apply selected movement
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	selectpointer OldaleTown_EventScript_Rival_MovementTablePlayer, VAR_0x8009
+	applymovement EVENT_OBJ_ID_PLAYER, 0
 	waitmovement 0
 	markasdialog
 	selectpointer_ongender OldaleTown_Text_1E9462, OldaleTown_Text_1E948A
@@ -225,6 +226,12 @@ OldaleTown_EventScript_Rival_MovementTable:
 	.4byte Common_Movement_FaceLeft
 	.4byte Common_Movement_WalkLeft1
 	.4byte OldaleTown_Movement_1E9170
+	.4byte 0
+OldaleTown_EventScript_Rival_MovementTablePlayer:
+	.4byte Common_Movement_NoOp
+	.4byte Common_Movement_WalkInPlaceRight
+	.4byte Common_Movement_WalkInPlaceRight
+	.4byte Common_Movement_WalkInPlaceRight
 	.4byte 0
 OldaleTown_Movement_1E9170: @ 81E9170
 	walk_left
