@@ -346,12 +346,24 @@ extern const u8 gText_Alex_Pokenav_RainsBegan[];
 extern const u8 gText_Alex_Pokenav_MidResearch[];
 extern const u8 gText_Alex_Pokenav_PostResearch[];
 extern const u8 gText_Alex_Pokenav_Unavailable[];
+extern const u8 gText_Alex_Pokenav_GymChallenge[];
+extern const u8 gText_Alex_Pokenav_TeamAqua[];
+extern const u8 gText_Alex_Pokenav_Grandma[];
+extern const u8 gText_Alex_Pokenav_Magma[];
+extern const u8 gText_Alex_Pokenav_Stern[];
+extern const u8 gText_Alex_Pokenav_SternAfter[];
 
 static const match_call_text_data_t sAlexTextScripts_CatchingUp[] = {
-    { gText_Alex_Pokenav_CatchUp,      0xFFFF,                         FLAG_ALEX_KNOWS_TO_R120 },
+    { gText_Alex_Pokenav_CatchUp,      0xFFFF,                              FLAG_ALEX_KNOWS_TO_R120 },
+    { gText_Alex_Pokenav_GymChallenge, FLAG_ALEX_KNOWS_TO_R120,             FLAG_ALEX_KNOWS_GYM },
+    { gText_Alex_Pokenav_TeamAqua,     FLAG_ALEX_KNOWS_GYM,                 FLAG_ALEX_DISCUSSED_AQUA },
+    { gText_Alex_Pokenav_Grandma,      FLAG_SAW_DREAM_1200,                 FLAG_ALEX_DISCUSSED_GRANDMA },
+    { gText_Alex_Pokenav_Magma,        FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_MAGMA },
+    { gText_Alex_Pokenav_SternAfter,   FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_STERN },
+    { gText_Alex_Pokenav_Stern,        FLAG_TEAM_AQUA_STOLE_SUBMARINE,      FLAG_ALEX_DISCUSSED_STERN },
     
-    { gText_Alex_Pokenav_Unavailable,  0xFFFF,                         0xFFFF },
-    { NULL,                            0xFFFF,                         0xFFFF }
+    { gText_Alex_Pokenav_Unavailable,  0xFFFF,                              0xFFFF },
+    { NULL,                            0xFFFF,                              0xFFFF }
 };
 
 static const match_call_text_data_t sAlexTextScripts_DuringLegendaries[] = {
@@ -393,6 +405,10 @@ static void MatchCall_BufferCallMessageText_TopDown(const match_call_text_data_t
         if (DONE_FLAG != 0xFFFF && FlagGet(DONE_FLAG) == TRUE) continue;
         // Entires with neither of the above are always chosen
         break;
+    }
+    // If there's a doneFlag specified, set it as part of this call
+    if (DONE_FLAG != 0xffff) {
+        FlagSet(DONE_FLAG);
     }
     StringExpandPlaceholders(dest, textData[i].text);
 }

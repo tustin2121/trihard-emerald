@@ -457,7 +457,7 @@ bool32 TryDoAlexCall(void)
                 return FALSE;
         }
         ScriptContext1_SetupScript(DreamScript_Alex_FirstCall);
-        SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
+        VarSet(VAR_ALEX_CALL_STEP_COUNTER, 0);
         return TRUE;
     }
     if (FlagGet(FLAG_ALEX_CALL_LEGENDARIES)) {
@@ -481,7 +481,7 @@ bool32 TryDoAlexCall(void)
                 return FALSE;
         }
         ScriptContext1_SetupScript(DreamScript_Alex_LegendaryCall);
-        SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
+        VarSet(VAR_ALEX_CALL_STEP_COUNTER, 0);
         return TRUE;
     }
     if (FlagGet(FLAG_ENABLE_ALEX_LEAGUE_CALL)) {
@@ -499,7 +499,7 @@ bool32 TryDoAlexCall(void)
                 return FALSE;
         }
         ScriptContext1_SetupScript(DreamScript_Alex_LeagueCall);
-        SetVar(VAR_ALEX_CALL_STEP_COUNTER, 0);
+        VarSet(VAR_ALEX_CALL_STEP_COUNTER, 0);
         return TRUE;
     }
     return FALSE;

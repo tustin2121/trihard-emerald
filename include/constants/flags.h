@@ -1138,7 +1138,7 @@
 #define FLAG_VISITED_AQUA_BASE                                      0x4A2 // Unused Flag
 #define FLAG_ALEX_CALL_LEGENDARIES                                  0x4A3 // Unused Flag
 #define FLAG_VISITED_MT_PYRE                                        0x4A4 // Unused Flag
-#define FLAG_ALEX_CALL_RESEARCHING                                  0x4A5 // Unused Flag
+#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
 #define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
 #define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
 #define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
@@ -1185,11 +1185,11 @@
 #define FLAG_ALEX_KNOWS_TO_R120                                     0x4D0 // Unused Flag
 #define FLAG_ALEX_KNOWS_LEGENDARIES                                 0x4D1 // Unused Flag
 #define FLAG_ALEX_TOLD_SKY_PILLAR                                   0x4D2 // Called to follow up on research
-#define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag
-#define FLAG_UNUSED_0x4D4                                           0x4D4 // Unused Flag
-#define FLAG_UNUSED_0x4D5                                           0x4D5 // Unused Flag
-#define FLAG_UNUSED_0x4D6                                           0x4D6 // Unused Flag
-#define FLAG_UNUSED_0x4D7                                           0x4D7 // Unused Flag
+#define FLAG_ALEX_KNOWS_GYM                                         0x4D3 // Unused Flag
+#define FLAG_ALEX_DISCUSSED_AQUA                                    0x4D4 // Unused Flag
+#define FLAG_ALEX_DISCUSSED_GRANDMA                                 0x4D5 // Unused Flag
+#define FLAG_ALEX_DISCUSSED_STERN                                   0x4D6 // Unused Flag
+#define FLAG_ALEX_DISCUSSED_MAGMA                                   0x4D7 // Unused Flag
 #define FLAG_UNUSED_0x4D8                                           0x4D8 // Unused Flag
 #define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
 #define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag

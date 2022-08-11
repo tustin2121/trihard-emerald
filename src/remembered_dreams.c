@@ -4,6 +4,7 @@
 #include "text.h"
 #include "overworld.h"
 #include "event_data.h"
+#include "field_weather.h"
 #include "script.h"
 #include "constants/maps.h"
 #include "constants/game_stat.h"

@@ -1122,7 +1122,7 @@ DreamScript_Alex_LeagueCall::
 	selectpointer gText_Alex_Pokenav_LeagueCallTableB, VAR_0x800B
 	bufferstring 1, 0
 	@ display message
-	pokenavcall gText_Alex_Pokenav_LeagueCall1
+	pokenavcall gText_Alex_Pokenav_LeagueCall
 	waitmessage
 	closemessage
 	clearflag FLAG_ENABLE_ALEX_LEAGUE_CALL
