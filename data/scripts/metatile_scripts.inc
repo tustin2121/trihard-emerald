@@ -89,6 +89,58 @@ MetatileText_EmptyTrashCan7:
 	.string "Hopefully those papers weren't\nimportant.$"
 
 
+MetatileScript_GraveStone::
+	callnative HashLocationToBoxedMon
+	selectpointer_wrap TextArray_GraveStone_Epithet, VAR_0x8000
+	bufferstring 2, 0
+	selectpointer_clamp TextArray_GraveStone_Base, VAR_0x8001
+	msgbox_selected MSGBOX_SIGN
+	end
+	
+.align 2
+TextArray_GraveStone_Base:
+	.4byte MetatileText_GraveStone_Base0
+	.4byte MetatileText_GraveStone_Base1
+	.4byte MetatileText_GraveStone_Base2
+	.4byte 0
+TextArray_GraveStone_Epithet:
+	.4byte MetatileText_GraveStone_Epithet1
+	.4byte MetatileText_GraveStone_Epithet2
+	.4byte MetatileText_GraveStone_Epithet3
+	.4byte MetatileText_GraveStone_Epithet4
+	.4byte MetatileText_GraveStone_Epithet5
+	.4byte MetatileText_GraveStone_Epithet6
+	.4byte MetatileText_GraveStone_Epithet7
+	.4byte MetatileText_GraveStone_Epithet8
+	.4byte 0
+MetatileText_GraveStone_Base0:
+	.string "RIP\n"
+	.string "{STR_VAR_3}$"
+MetatileText_GraveStone_Base1:
+	.string "RIP my {STR_VAR_2}\n"
+	.string "{STR_VAR_3}$"
+MetatileText_GraveStone_Base2:
+	.string "RIP\n"
+	.string "{STR_VAR_1} the {STR_VAR_2}\n"
+	.string "{STR_VAR_3}$"
+MetatileText_GraveStone_Epithet1:
+	.string "My Beloved {POKEMON}$"
+MetatileText_GraveStone_Epithet2:
+	.string "Dearest Friend$"
+MetatileText_GraveStone_Epithet3:
+	.string "Friend and Compainion$"
+MetatileText_GraveStone_Epithet4:
+	.string "Darling Pet, Treasured Friend$"
+MetatileText_GraveStone_Epithet5:
+	.string "Gone too soon$"
+MetatileText_GraveStone_Epithet6:
+	.string "2019 - 2022$"
+MetatileText_GraveStone_Epithet7:
+	.string "Much Loved, Much Adored$"
+MetatileText_GraveStone_Epithet8:
+	.string "Friend, Confidant, Bodyguard$"
+
+
 MetatileScript_ShopShelf:: @ 82725FB
 	msgbox MetatileText_ShopShelf, MSGBOX_DESCRIBE
 	end

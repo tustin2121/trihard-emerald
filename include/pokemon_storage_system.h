@@ -17,7 +17,7 @@ COLUMNS     0   1   2   3   4   5
 
 struct PokemonStorage
 {
-    /*0x0000*/ u8 currentBox;
+    /*0x0000*/ u8 currentBox; // I SEVERELY question that there isn't a 3 byte gap here
     /*0x0001*/ struct BoxPokemon boxes[TOTAL_BOXES_COUNT][IN_BOX_COUNT];
     /*0x8344*/ u8 boxNames[TOTAL_BOXES_COUNT][9];
     /*0x83C2*/ u8 boxWallpapers[TOTAL_BOXES_COUNT];

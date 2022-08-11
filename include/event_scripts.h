@@ -548,6 +548,7 @@ extern const u8 MetatileScript_PokemonCenterSleepSign[];
 extern const u8 MetatileScript_PokemonCenterBookShelf[];
 extern const u8 MetatileScript_Vase[];
 extern const u8 MetatileScript_EmptyTrashCan[];
+extern const u8 MetatileScript_GraveStone[];
 extern const u8 MetatileScript_ShopShelf[];
 extern const u8 MetatileScript_Blueprint[];
 extern const u8 EventScript_WirelessBoxResults[];

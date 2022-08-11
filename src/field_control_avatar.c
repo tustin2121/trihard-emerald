@@ -24,10 +24,14 @@
 #include "script.h"
 #include "secret_base.h"
 #include "sound.h"
+#include "string_util.h"
 #include "start_menu.h"
 #include "trainer_see.h"
 #include "trainer_hill.h"
 #include "wild_encounter.h"
+#include "data.h"
+#include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "constants/bg_event_constants.h"
 #include "constants/event_objects.h"
 #include "constants/items.h"
@@ -404,6 +408,8 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return MetatileScript_Vase;
     if (MetatileBehavior_IsTrashCan(metatileBehavior) == TRUE)
         return MetatileScript_EmptyTrashCan;
+    if (MetatileBehavior_IsGraveMarker(metatileBehavior) == TRUE)
+        return MetatileScript_GraveStone;
     if (MetatileBehavior_IsShopShelf(metatileBehavior) == TRUE)
         return MetatileScript_ShopShelf;
     if (MetatileBehavior_IsBlueprint(metatileBehavior) == TRUE)
@@ -1024,6 +1030,38 @@ void HashInteractLocation(void)
     gSpecialVar_0x8000 += gSaveBlock1Ptr->location.mapNum;
     gSpecialVar_0x8000 += gSpecialVar_InteractX;
     gSpecialVar_0x8000 += gSpecialVar_InteractY;
+}
+
+void HashLocationToBoxedMon(void)
+{
+    #define w gMapHeader.mapLayout->width
+    #define h gMapHeader.mapLayout->height
+    struct BoxPokemon* selMon;
+    u32 numMons; // TODO: memoize this shit
+    u16 species;
+    
+    gSpecialVar_0x8001 = 0;
+    for (numMons = 0; numMons < TOTAL_BOXES_COUNT * IN_BOX_COUNT; numMons++)
+    {   // All the boxes are sequentially stored here, so just go from first box
+        if (GetBoxMonData(&gPokemonStoragePtr->boxes[0][numMons], MON_DATA_SPECIES) == SPECIES_NONE) break;
+    }
+    if (numMons == 0) return;
+    gSpecialVar_0x8001++;
+    gSpecialVar_0x8000 = 
+        ((gSaveBlock1Ptr->location.mapGroup * (24 * 13 * 13)) 
+        + (gSaveBlock1Ptr->location.mapNum * (13 * 13)) 
+        + (gSpecialVar_InteractY * w) 
+        + gSpecialVar_InteractX) 
+        % numMons;
+    
+    selMon = &gPokemonStoragePtr->boxes[0][gSpecialVar_0x8000];
+    
+    species = GetBoxMonData(selMon, MON_DATA_SPECIES);
+    GetBoxMonData(selMon, MON_DATA_NICKNAME, gStringVar1);
+    StringCopy(gStringVar2, gSpeciesNames[species]);
+    StringGetEnd10(gStringVar2);
+    
+    if (StringCompare(gSpeciesNames[species], gStringVar1)) gSpecialVar_0x8001++;
 }
 
 void SetPlayerOutfit(void)

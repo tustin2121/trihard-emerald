@@ -245,7 +245,7 @@ static const u8 sTileBitAttributes[] =
     [MB_WIRELESS_BOX_RESULTS] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_TRAINER_HILL_TIMER] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNKNOWN_CLOSED_DOOR] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
-    [MB_UNUSED_EB] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_GRAVE_MARKER] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_EC] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_ED] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_EE] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
@@ -1450,6 +1450,14 @@ bool8 MetatileBehavior_IsVase(u8 metatileBehavior)
 bool8 MetatileBehavior_IsTrashCan(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_TRASH_CAN)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsGraveMarker(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_GRAVE_MARKER)
         return TRUE;
     else
         return FALSE;
