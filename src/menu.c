@@ -1541,9 +1541,10 @@ void CreateYesNoMenu(const struct WindowTemplate *_window, u16 baseTileNum, u8 p
     strWidth = ((strWidth % 8 != 0)? 2 : 1) + (strWidth >> 3);
     template.width = max(strWidth, _window->width);
     // Hack for now to actually get left / top into the yes no menu creation
-    if (gSpecialVar_Result != 0xFF) {
-        template.tilemapLeft = (gSpecialVar_Result >> 8) + 1;
-        template.tilemapTop = (gSpecialVar_Result & 0xFF) + 1;
+    if (gSpecialVar_YesNoBoxOffset != 0) {
+        template.tilemapLeft = (gSpecialVar_YesNoBoxOffset >> 8) + 1;
+        template.tilemapTop = (gSpecialVar_YesNoBoxOffset & 0xFF) + 1;
+        gSpecialVar_YesNoBoxOffset = 0;
     }
 
     sYesNoWindowId = AddWindow(&template);

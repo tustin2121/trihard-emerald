@@ -882,8 +882,8 @@ DreamScript_1200::
 	message DreamScript_1200_Text1
 	waitmessage
 	closemessage
-	delay 90
 	fadedefaultbgm
+	delay 90
 	return
 DreamScript_1200_Text1:
 	.string "You count the candles as tūtū lights\n"
@@ -893,7 +893,8 @@ DreamScript_1200_Text1:
 	.string "You blow them out and she claps happily.{PAUSE 20}\p"
 	.string "You wished that tūtū would get better.{PAUSE 20}\n"
 	.string "That the chemo treatments would work,\l"
-	.string "and that you could remain hānai-ed to her.{PAUSE 20}\p"
+	.string "and that you could remain with her…\l"
+	.string "Her precious hānai child…{PAUSE 20}\p"
 	.string "… … …{PAUSE 50} The wish didn't come true.{PAUSE 20}\p"
 	.string "{MAN_SPEAKING}"
 	.string "Not now, {PLAYER}, {PLAYER_honey}.\n"
@@ -1207,8 +1208,8 @@ gText_Alex_Pokenav_Unavailable::
 	.string "BEEP BEEP BEEP BEEP BEEP BEEP$"
 
 gText_Alex_Pokenav_CatchUp::
-	.string "{RIVAL_ALOLA}: {PLAYER}! Hey!\n"
-	.string "You wanna chat? Yeah, I've got time.\p"
+	.string "{RIVAL_ALOLA}: {PLAYER}! Hey! You wanna\n"
+	.string "chat? Yeah, I've got time.\p"
 	.string "So, what's Hoenn like?\n"
 	.string "What have you been up to?\p"
 	.string "… … … … … …\n"
@@ -1251,9 +1252,9 @@ gText_Alex_Pokenav_TeamAqua::
 	.string "news about them loving the seas?\p"
 	.string "Since when did you love the seas\n"
 	.string "so much? Or is it just comradery?\p"
-	.string "Yeah, I figure it would be.\n"
+	.string "Yeah, I figured it would be.\n"
 	.string "Team Skull was quite close knit.\p"
-	.string "Is Aqua as close knit as skull was?\n"
+	.string "Is Aqua as close knit as Skull was?\n"
 	.string "Yeah, you've got two friends, but…\p"
 	.string "Yeah, most of Skull were idiots.\n"
 	.string "Some of the stupid things we did…\p"
@@ -1277,7 +1278,8 @@ gText_Alex_Pokenav_Magma::
 	.string "Woah, you alright?\p"
 	.string "Wh-What about a volcano and…?\n"
 	.string "A rampaging beast…?!\p"
-	.string "… … … … … …\n"
+	.string "… … … … … …\p"
+	.string "… … … … … …\p"
 	.string "So a massive red beast got awoken\n"
 	.string "by a rival team and… Are you hurt?!\p"
 	.string "Okay, good, you're not hurt.\n"

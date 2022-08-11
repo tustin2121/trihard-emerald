@@ -65,6 +65,7 @@ MtPyre_1F_Text_2310BA: @ 82310BA
 MtPyre_1F_EventScript_TriggerMemory::
 	lockall
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_ExclamationMark
+	playse SE_PIN
 	waitmovement EVENT_OBJ_ID_PLAYER
 	delay 15
 	msgbox MtPyre_1F_Text_TriggerMemory1, MSGBOX_DESCRIBE

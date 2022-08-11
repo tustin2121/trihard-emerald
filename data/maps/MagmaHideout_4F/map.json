@@ -7,6 +7,33 @@
     ],
     "connections": null,
     "coord_events": [
+        {
+            "elevation": 0,
+            "script": "MagmaHideout_4F_TriggerScript_Logan",
+            "type": "trigger",
+            "var": "VAR_TEMP_6",
+            "var_value": "0",
+            "x": 6,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "MagmaHideout_4F_TriggerScript_Logan",
+            "type": "trigger",
+            "var": "VAR_TEMP_6",
+            "var_value": "0",
+            "x": 5,
+            "y": 18
+        },
+        {
+            "elevation": 0,
+            "script": "MagmaHideout_4F_TriggerScript_Logan",
+            "type": "trigger",
+            "var": "VAR_TEMP_6",
+            "var_value": "0",
+            "x": 4,
+            "y": 18
+        }
     ],
     "id": "MAP_MAGMA_HIDEOUT_4F",
     "layout": "LAYOUT_MAGMA_HIDEOUT_4F",
@@ -120,7 +147,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS",
+            "flag": "FLAG_HIDE_MAGMA_HIDEOUT_OTHERS",
             "graphics_id": "EVENT_OBJ_GFX_WALLY",
             "movement_range_x": 0,
             "movement_range_y": 0,

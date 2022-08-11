@@ -1138,7 +1138,7 @@
 #define FLAG_VISITED_AQUA_BASE                                      0x4A2 // Unused Flag
 #define FLAG_ALEX_CALL_LEGENDARIES                                  0x4A3 // Unused Flag
 #define FLAG_VISITED_MT_PYRE                                        0x4A4 // Unused Flag
-#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
+#define FLAG_HIDE_MAGMA_HIDEOUT_OTHERS                              0x4A5 // Unused Flag
 #define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
 #define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
 #define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag

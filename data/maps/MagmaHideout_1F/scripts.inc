@@ -10,7 +10,7 @@ MagmaHideout_1F_MapTable: @ 8255C41
 	.2byte 0
 
 MagmaHideout_1F_OnWalkIn:
-	setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+	setflag FLAG_HIDE_MAGMA_HIDEOUT_OTHERS
 	end
 
 @ -----------------------------------------------------

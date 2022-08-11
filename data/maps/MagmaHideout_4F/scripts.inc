@@ -1,5 +1,12 @@
 MagmaHideout_4F_MapScripts:: @ 823A55F
+	map_script MAP_SCRIPT_ON_LOAD, MagmaHideout_4F_OnLoad
 	.byte 0
+
+@ -----------------------------------------------------
+
+MagmaHideout_4F_OnLoad::
+	addvar_if_set FLAG_SCENE_6, VAR_TEMP_6, 1
+	end
 
 @ -----------------------------------------------------
 @ Trainers
@@ -71,6 +78,24 @@ MagmaHideout_4F_Text_23A9AC: @ 823A9AC
 	.string "…And while you wasted time with me,\n"
 	.string "Maxie should have awakened Groudon…$"
 
+#define LID_LOGAN 9
+
+MagmaHideout_4F_TriggerScript_Logan::
+	lock
+	applymovement LID_LOGAN, Common_Movement_WalkInPlaceLeft
+	waitmovement LID_LOGAN
+	applymovement LID_LOGAN, Common_Movement_ExclamationMark
+	playse SE_PIN
+	waitmovement LID_LOGAN
+	delay 16
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
+	waitmovement EVENT_OBJ_ID_PLAYER
+	setvar VAR_TEMP_6, 1
+	markasdialog 14
+	msgbox MagmaHideout_4F_Text_Logan, MSGBOX_DEFAULT
+	setflag FLAG_SCENE_6
+	release
+	end
 
 MagmaHideout_4F_EventScript_Logan::
 	goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, MagmaHideout_4F_EventScript_Logan3
@@ -102,6 +127,7 @@ MagmaHideout_4F_Text_Logan3:
 	.string "You just let him get away?!\p"
 	.string "How can you be so BAD at this?!$"
 	
+#undef LID_LOGAN
 
 @ -----------------------------------------------------
 @ Maxie
@@ -190,7 +216,12 @@ MagmaHideout_4F_EventScript_23A560:: @ 823A560
 	removeobject 3
 	removeobject 4
 	removeobject 5
-	@ setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+	@ removeobject 9
+	@ addobject 9
+	@ setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS @ set by removeobjects above
+	@ clearflag FLAG_HIDE_MAGMA_HIDEOUT_OTHERS
+	@ There's some sort of weird thing here where Logan will vanish if he goes off-screen
+	@ after the fight, but he's there if you reload the room... wtf??
 	fadescreen 0
 	releaseall
 	end

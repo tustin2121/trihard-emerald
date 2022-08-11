@@ -10,12 +10,12 @@ MagmaHideout_3F_3R_EventScript_AquaGirl::
 	addvar VAR_AQUA_GIRL_FRIENDSHIP, 1
 	end
 MagmaHideout_3F_3R_Text_AquaGirl:
-	.string "{AQUA_GIRL}: Oh, {P_PLAYER}.\n"
-	.string "What have they released onto the world?!\p"
-	.string "Did you see how big and powerful that\n"
-	.string "Pokémon looked?!\p"
-	.string "We have to tell the boss when we see\n"
-	.string "him next!\p"
+	.string "{AQUA_GIRL}: Oh, {P_PLAYER}. What have\n"
+	.string "they released onto the world?!\p"
+	.string "Did you see how big and powerful\n"
+	.string "that Pokémon looked?!\p"
+	.string "We have to tell the boss\n"
+	.string "when we see him next!\p"
 	.string "If we both try and do it, one of us\n"
 	.string "will eventually, right?$"
 MagmaHideout_3F_3R_EventScript_AquaGirl2::

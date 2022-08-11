@@ -52,5 +52,6 @@ extern u16 gSpecialVar_InteractX;
 extern u16 gSpecialVar_InteractY;
 extern u16 gSpecialVar_LastWarpId;
 extern u16 gSpecialVar_DialogTailOffset;
+extern u16 gSpecialVar_YesNoBoxOffset;
 
 #endif // GUARD_EVENT_DATA_H

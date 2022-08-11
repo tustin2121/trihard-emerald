@@ -11,8 +11,8 @@ MagmaHideout_2F_1R_Text_239BAD: @ 8239BAD
 	.string "What, what, what?\p"
 	.string "Only Team Magma members are supposed\n"
 	.string "to be in here!\p"
-	.string "But you're not dressed in Team Magma's\n"
-	.string "uniform…\p"
+	.string "But you're dressed like our rivals!\n"
+	.string "Team Aqua…!\p"
 	.string "You rouse my suspicion!\n"
 	.string "Battle with me!$"
 MagmaHideout_2F_1R_Text_239C4B: @ 8239C4B

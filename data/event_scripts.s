@@ -59,6 +59,7 @@ gSpecialVars:: @ 81DBA0C
 	.4byte gSpecialVar_InteractY
 	.4byte gSpecialVar_LastWarpId
 	.4byte gSpecialVar_DialogTailOffset
+	.4byte gSpecialVar_YesNoBoxOffset
 
 	.include "data/specials.inc"
 

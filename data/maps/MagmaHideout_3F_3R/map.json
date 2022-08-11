@@ -29,7 +29,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS",
+            "flag": "FLAG_HIDE_MAGMA_HIDEOUT_OTHERS",
             "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -37,7 +37,7 @@
             "script": "MagmaHideout_3F_3R_EventScript_AquaGirl",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 15,
+            "x": 16,
             "y": 18
         }
     ],

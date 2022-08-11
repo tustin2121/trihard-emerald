@@ -300,6 +300,7 @@
 #define VAR_INTERACT_Y                0x8017
 #define VAR_LAST_WARP_ID              0x8018
 #define VAR_DIALOG_TAIL_OFFSET        0x8019
+#define VAR_YES_NO_BOX_OFFSET         0x8020
 
 #define THIS_EVENT                    0x800F //alias to VAR_LAST_TALKED
 
