@@ -923,7 +923,7 @@ DreamScript_1300_Text1:
 	.string "$"
 	
 @------------------------------------------------------
-@ Triggered 
+@  
 DreamScript_1400::
 	@
 	return
@@ -932,20 +932,17 @@ DreamScript_1400_Text1:
 	.string "$"
 	
 @------------------------------------------------------
-@ Triggered after the space institute custscene
+@ 
 DreamScript_1500::
-	@ Alex has told the player she's leaving Team Skull
-	@ Player tries to object
-	@ Alex says that if player actually cared, he'd leave too, before things get bad
+	@
 	return
 DreamScript_1500_Text1:
 	.string "{SET_DREAM_PAL}"
 	.string "$"
 	
 @------------------------------------------------------
-@ Triggered after Team Aqua disbands
+@ 
 DreamScript_1600::
-	@ Alex is crying, the player having just told her that he's being forcibly moved to Hoenn
 	@ 
 	return
 DreamScript_1600_Text1:
@@ -1213,11 +1210,11 @@ gText_Alex_Pokenav_CatchUp::
 	.string "{RIVAL_ALOLA}: {PLAYER}! Hey!\n"
 	.string "You wanna chat? Yeah, I've got time.\p"
 	.string "So, what's Hoenn like?\n"
-	.string "That have you been up to?\p"
+	.string "What have you been up to?\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
 	.string "Wow, your're doing the gym challenge?\n"
-	.string "Good to see you back at the--\p"
+	.string "Good to see you back at--\p"
 	.string "You, what? You joined a new team?!\p"
 	.string "…{PAUSE 30}Oh…{PAUSE 20}! That's…{PAUSE 30} cool…!\p"
 	.string "Well, what do you want me to say?!\n"
@@ -1229,6 +1226,87 @@ gText_Alex_Pokenav_CatchUp::
 	.string "Doing something extreme…\p"
 	.string "Let's talk more later, okay?\n"
 	.string "Bye…$"
+
+gText_Alex_Pokenav_GymChallenge::
+	.string "{RIVAL_ALOLA}: Hey, {PLAYER}.\n"
+	.string "You doing okay?\p"
+	.string "I wanted to ask you about the gym\n"
+	.string "challenge? What's it been like?\p"
+	.string "They're trying to implement some\n"
+	.string "gym stuff here. A lot of the locals\l"
+	.string "are really mad about it.\p"
+	.string "How many badges do you have now?\p"
+	.string "Yes, I am avoiding talking about\n"
+	.string "your new team. Team Aqua, whatever.\p"
+	.string "I've been researching Hoenn news\n"
+	.string "about them, and it's not pretty.\p"
+	.string "I'll talk to you later.$"
+
+gText_Alex_Pokenav_TeamAqua::
+	.string "{RIVAL_ALOLA}: Hey, {PLAYER}.\n"
+	.string "How are you?\p"
+	.string "Alright, so Team Aqua…\n"
+	.string "I've been doing research.\p"
+	.string "There's some manifesto in the\n"
+	.string "news about them loving the seas?\p"
+	.string "Since when did you love the seas\n"
+	.string "so much? Or is it just comradery?\p"
+	.string "Yeah, I figure it would be.\n"
+	.string "Team Skull was quite close knit.\p"
+	.string "Is Aqua as close knit as skull was?\n"
+	.string "Yeah, you've got two friends, but…\p"
+	.string "Yeah, most of Skull were idiots.\n"
+	.string "Some of the stupid things we did…\p"
+	.string "Anyway, gotta go.\n"
+	.string "Stay safe, {PLAYER}.$"
+
+gText_Alex_Pokenav_Grandma::
+	.string "{RIVAL_ALOLA}: Hey {PLAYER}!\n"
+	.string "You doing okay?\p"
+	.string "Mt. Pyre?{PAUSE 30} A graveyard, huh?{PAUSE 30}\n"
+	.string "Are you gonna--{PAUSE 20}yep.{PAUSE 30} Let it out.\p"
+	.string "Don't apologize, {PLAYER}.\n"
+	.string "You're allowed to cry sometimes.\p"
+	.string "Your tūtū meant a lot to you.\n"
+	.string "You're allowed to cry.\p"
+	.string "Feel a little better? I'm glad.\n"
+	.string "Call me if you wanna cry some more.$"
+
+gText_Alex_Pokenav_Magma::
+	.string "{RIVAL_ALOLA}: {PLAYER}! H--!\n"
+	.string "Woah, you alright?\p"
+	.string "Wh-What about a volcano and…?\n"
+	.string "A rampaging beast…?!\p"
+	.string "… … … … … …\n"
+	.string "So a massive red beast got awoken\n"
+	.string "by a rival team and… Are you hurt?!\p"
+	.string "Okay, good, you're not hurt.\n"
+	.string "Do you know where it went?!\p"
+	.string "What's it called, maybe I can\n"
+	.string "try and find something…?\p"
+	.string "Alright, breathe, {PLAYER}\n"
+	.string "you're gonna be alright… … …\p"
+	.string "I'll see what I can find.\n"
+	.string "Call me with any developments.$"
+
+gText_Alex_Pokenav_Stern::
+	.string "{RIVAL_ALOLA}: {PLAYER}!\n"
+	.string "Great timing!\p"
+	.string "Are you aware that your Team Aqua\n"
+	.string "people are on the news RIGHT NOW?!\p"
+	.string "They're in… Slateport?! They're\n"
+	.string "stealing some submarine?!\p"
+	.string "Are you not there with them?!$"
+gText_Alex_Pokenav_SternAfter::
+	.string "{RIVAL_ALOLA}: {PLAYER}!\n"
+	.string "Care to explain?!\p"
+	.string "We saw your new friends in some\n"
+	.string "Slateport? Stealing a submarine?!\l"
+	.string "Do you know anything about this?\p"
+	.string "Really? You don't know anything?\n"
+	.string "Is that usually what happens?\p"
+	.string "And you're okay with that?\n"
+	.string "If you say so…$"
 
 
 gText_Alex_Pokenav_RainsBegan::
