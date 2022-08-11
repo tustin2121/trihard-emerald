@@ -1,11 +1,19 @@
 MtPyre_1F_MapScripts:: @ 8230F3E
 	map_script MAP_SCRIPT_ON_LOAD, MtPyre_1F_OnLoad
+	map_script MAP_SCRIPT_ON_RESUME, MtPyre_Common_OnResume
 	.byte 0
 
 @ -----------------------------------------------------
 MtPyre_1F_OnLoad:
 	addvar_if_unset FLAG_VISITED_MT_PYRE, VAR_TEMP_0, 1
 	end
+
+MtPyre_Common_OnResume:
+	@ Memoize the number of dead pokemon for use here
+	callnative MemoizeBoxedMon
+	@ Now VAR_TEMP_B has the number of mon in the graveyard
+	end
+	
 
 @ -----------------------------------------------------
 
@@ -55,9 +63,27 @@ MtPyre_1F_Text_23104Fb:
 
 
 MtPyre_1F_EventScript_230F81:: @ 8230F81
+	compare VAR_TEMP_B, 0
+	goto_if_eq MtPyre_1F_EventScript_230F81_normal
 	msgbox MtPyre_1F_Text_2310BA, MSGBOX_NPC
 	end
 MtPyre_1F_Text_2310BA: @ 82310BA
+	.string "You okay? You seem vexed.\p"
+	.string "Every time you look at a grave\n"
+	.string "marker, you go pale.\p"
+.if TPP_MODE
+	.string "{FORCE_SPEED_MID}{FORCE_AUTOSCROLL_ON}"
+.endif
+	.string "Like those who you've discarded on your\n"
+	.string "journey haunt your guilty conscience…"
+.if TPP_MODE
+	.string "{PAUSE 60}"
+.endif
+	.string "$"
+MtPyre_1F_EventScript_230F81_normal:
+	msgbox MtPyre_1F_Text_2310BB, MSGBOX_NPC
+	end
+MtPyre_1F_Text_2310BB:
 	.string "This is the final resting place of my\n"
 	.string "Zigzagoon. I cherished it…$"
 

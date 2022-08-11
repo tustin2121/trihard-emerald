@@ -1,4 +1,5 @@
 MtPyre_5F_MapScripts:: @ 8231C6D
+	map_script MAP_SCRIPT_ON_RESUME, MtPyre_Common_OnResume
 	.byte 0
 
 @ -----------------------------------------------------

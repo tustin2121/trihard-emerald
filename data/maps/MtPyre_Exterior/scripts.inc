@@ -1,5 +1,6 @@
 MtPyre_Exterior_MapScripts:: @ 8231FCC
 	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Exterior_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, MtPyre_Common_OnResume
 	.byte 0
 
 @ -----------------------------------------------------

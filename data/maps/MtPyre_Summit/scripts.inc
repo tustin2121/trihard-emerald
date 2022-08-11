@@ -1,5 +1,6 @@
 MtPyre_Summit_MapScripts:: @ 8231FF7
 	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Summit_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, MtPyre_Common_OnResume
 	.byte 0
 
 @ -----------------------------------------------------
@@ -420,7 +421,7 @@ MtPyre_Summit_EventScript_OrbTheft::
 	end
 
 MtPyre_Summit_Text_OrbTheft3:
-	.string "Maxie: Ah, so the calvary arrived.\p"
+	.string "Maxie: Ah, so the cavalry arrived.\p"
 	.string "I suppose that means it's time to make\n"
 	.string "my departure.\p"
 	.string "No matter, I got what I came for.\p"

@@ -1,3 +1,7 @@
+Mt. Chimney:
+- Pokemon defeated in battle should be marked with "how" they died.
+	- In the same way they're marked with when and where they were met.
+	- The gravestones then query that data when writing the shame epitaphs.
 After Mt. Chimney:
 - The boss mentions keeping in touch.
 	- He should give the player, not his number but Matt's number.

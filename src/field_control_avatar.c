@@ -1032,20 +1032,35 @@ void HashInteractLocation(void)
     gSpecialVar_0x8000 += gSpecialVar_InteractY;
 }
 
+void MemoizeBoxedMon(void)
+{
+    u16 numMons; // TODO: memoize this shit
+    for (numMons = 0; numMons < TOTAL_BOXES_COUNT * IN_BOX_COUNT; numMons++)
+    {   // All the boxes are sequentially stored here, so just go from first box
+        if (GetBoxMonData(&gPokemonStoragePtr->boxes[0][numMons], MON_DATA_SPECIES) == SPECIES_NONE) break;
+    }
+    VarSet(VAR_TEMP_B, numMons)
+}
+
 void HashLocationToBoxedMon(void)
 {
     #define w gMapHeader.mapLayout->width
     #define h gMapHeader.mapLayout->height
     struct BoxPokemon* selMon;
-    u32 numMons; // TODO: memoize this shit
+    u16 numMons; // TODO: memoize this shit
     u16 species;
     
     gSpecialVar_0x8001 = 0;
-    for (numMons = 0; numMons < TOTAL_BOXES_COUNT * IN_BOX_COUNT; numMons++)
-    {   // All the boxes are sequentially stored here, so just go from first box
-        if (GetBoxMonData(&gPokemonStoragePtr->boxes[0][numMons], MON_DATA_SPECIES) == SPECIES_NONE) break;
+    // for (numMons = 0; numMons < TOTAL_BOXES_COUNT * IN_BOX_COUNT; numMons++)
+    // {   // All the boxes are sequentially stored here, so just go from first box
+    //     if (GetBoxMonData(&gPokemonStoragePtr->boxes[0][numMons], MON_DATA_SPECIES) == SPECIES_NONE) break;
+    // }
+    numMons = VarGet(VAR_TEMP_B);
+    if (numMons == 0) { // Zero? Really? That can't be right. Double Check
+        MemoizeBoxedMon();
+        numMons = VarGet(VAR_TEMP_B);
     }
-    if (numMons == 0) return;
+    if (numMons == 0) return; // Oh, it's really zero. Nothing more to do.
     gSpecialVar_0x8001++;
     gSpecialVar_0x8000 = 
         ((gSaveBlock1Ptr->location.mapGroup * (24 * 13 * 13)) 

@@ -73,7 +73,7 @@ BattleScript_PrintCaughtMonInfo::
 	displaydexinfo
 BattleScript_TryNicknameCaughtMon::
 	.if TPP_MODE 
-		setbyte gBattleCommunication, 0x5 @fade out immedeately
+		setbyte gBattleCommunication, 0x5 @fade out immediately
 	.else
 		printstring STRINGID_GIVENICKNAMECAPTURED
 		waitstate

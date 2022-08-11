@@ -91,54 +91,90 @@ MetatileText_EmptyTrashCan7:
 
 MetatileScript_GraveStone::
 	callnative HashLocationToBoxedMon
-	selectpointer_wrap TextArray_GraveStone_Epithet, VAR_0x8000
+	@ If somehow there are no pokemon in the graveyard...
+	comapre VAR_0x8001, 0
+	goto_if_eq MetatileScript_GraveStone_Normal
+	@ otherwise, write up an epitaph
+	selectpointer_wrap TextArray_GraveStone_Epitaph, VAR_0x8000
 	bufferstring 2, 0
 	selectpointer_clamp TextArray_GraveStone_Base, VAR_0x8001
 	msgbox_selected MSGBOX_SIGN
 	end
-	
+MetatileScript_GraveStone_Normal:
+	msgbox MetatileText_GraveStone_Normal, MSGBOX_DESCRIBE
+	end
+MetatileText_GraveStone_Normal:
+	.string "A gravestone for a {POKEMON}\n"
+	.string "that has passed away…$"
 .align 2
 TextArray_GraveStone_Base:
-	.4byte MetatileText_GraveStone_Base0
+	.4byte MetatileText_GraveStone_Base0 @ unused
 	.4byte MetatileText_GraveStone_Base1
 	.4byte MetatileText_GraveStone_Base2
 	.4byte 0
-TextArray_GraveStone_Epithet:
-	.4byte MetatileText_GraveStone_Epithet1
-	.4byte MetatileText_GraveStone_Epithet2
-	.4byte MetatileText_GraveStone_Epithet3
-	.4byte MetatileText_GraveStone_Epithet4
-	.4byte MetatileText_GraveStone_Epithet5
-	.4byte MetatileText_GraveStone_Epithet6
-	.4byte MetatileText_GraveStone_Epithet7
-	.4byte MetatileText_GraveStone_Epithet8
+TextArray_GraveStone_Epitaph:
+	.4byte MetatileText_GraveStone_Epitaph1
+	.4byte MetatileText_GraveStone_Epitaph2
+	.4byte MetatileText_GraveStone_Epitaph3
+	.4byte MetatileText_GraveStone_Epitaph4
+	.4byte MetatileText_GraveStone_Epitaph5
+	.4byte MetatileText_GraveStone_Epitaph6
+	.4byte MetatileText_GraveStone_Epitaph7
+	.4byte MetatileText_GraveStone_Epitaph8
+	.4byte MetatileText_GraveStone_Epitaph9
+	.4byte MetatileText_GraveStone_Epitaph10
+	.4byte MetatileText_GraveStone_Epitaph11
+	.4byte MetatileText_GraveStone_Epitaph12
+	.4byte MetatileText_GraveStone_Epitaph13
+	.4byte MetatileText_GraveStone_Epitaph14
+	.4byte MetatileText_GraveStone_Epitaph15
+	.4byte MetatileText_GraveStone_Epitaph16
+	.4byte MetatileText_GraveStone_Epitaph17
 	.4byte 0
 MetatileText_GraveStone_Base0:
 	.string "RIP\n"
 	.string "{STR_VAR_3}$"
 MetatileText_GraveStone_Base1:
-	.string "RIP my {STR_VAR_2}\n"
+	.string "RIP {STR_VAR_2}\n"
 	.string "{STR_VAR_3}$"
 MetatileText_GraveStone_Base2:
 	.string "RIP\n"
 	.string "{STR_VAR_1} the {STR_VAR_2}\n"
 	.string "{STR_VAR_3}$"
-MetatileText_GraveStone_Epithet1:
-	.string "My Beloved {POKEMON}$"
-MetatileText_GraveStone_Epithet2:
-	.string "Dearest Friend$"
-MetatileText_GraveStone_Epithet3:
+MetatileText_GraveStone_Epitaph1:
+	.string "Beloved {POKEMON}, Dearest Friend$"
+MetatileText_GraveStone_Epitaph2:
+	.string "Run free, little buddy.$"
+MetatileText_GraveStone_Epitaph3:
 	.string "Friend and Compainion$"
-MetatileText_GraveStone_Epithet4:
+MetatileText_GraveStone_Epitaph4:
 	.string "Darling Pet, Treasured Friend$"
-MetatileText_GraveStone_Epithet5:
-	.string "Gone too soon$"
-MetatileText_GraveStone_Epithet6:
+MetatileText_GraveStone_Epitaph5:
+	.string "Our Beloved Pet$"
+MetatileText_GraveStone_Epitaph6:
 	.string "2019 - 2022$"
-MetatileText_GraveStone_Epithet7:
-	.string "Much Loved, Much Adored$"
-MetatileText_GraveStone_Epithet8:
+MetatileText_GraveStone_Epitaph7:
+	.string "Much Loved, So Adored, Very Missed$"
+MetatileText_GraveStone_Epitaph8:
 	.string "Friend, Confidant, Bodyguard$"
+MetatileText_GraveStone_Epitaph9:
+	.string "Cherished Friendship 'Till the End$"
+MetatileText_GraveStone_Epitaph10:
+	.string "The house is too quiet without you.$"
+MetatileText_GraveStone_Epitaph11:
+	.string "Forever Our Little One$"
+MetatileText_GraveStone_Epitaph12:
+	.string "Our Little Buddy$"
+MetatileText_GraveStone_Epitaph13:
+	.string "Always in Our Hearts, Never Forgotten$"
+MetatileText_GraveStone_Epitaph14:
+	.string "Forever eating berries in the sunshine$"
+MetatileText_GraveStone_Epitaph15:
+	.string "Forever in Our Hearts$"
+MetatileText_GraveStone_Epitaph16:
+	.string "You will be missed, never forgotten.$"
+MetatileText_GraveStone_Epitaph17:
+	.string "Made of Stardust and Sunshine$"
 
 
 MetatileScript_ShopShelf:: @ 82725FB

@@ -9,16 +9,35 @@ MtPyre_2F_MapScripts:: @ 82310FB
 MtPyre_2F_OnResume: @ 823110B
 	setstepcallback 7
 	setholewarp MAP_MT_PYRE_1F, 255, 0, 0
+	callnative MemoizeBoxedMon
 	end
 
 @ -----------------------------------------------------
 
 MtPyre_2F_EventScript_231116:: @ 8231116
+	compare VAR_TEMP_B, 0
+	goto_if_gt MtPyre_2F_EventScript_231116_Alt
 	msgbox MtPyre_2F_Text_2311A3, MSGBOX_NPC
 	end
 MtPyre_2F_Text_2311A3: @ 82311A3
 	.string "Memories of my darling Skitty…\n"
 	.string "My eyes overflow thinking about it.$"
+MtPyre_2F_EventScript_231116_Alt:
+	buffernumberstring2 0, VAR_TEMP_B
+	msgbox MtPyre_2F_Text_2311A3_Alt, MSGBOX_NPC
+	end
+MtPyre_2F_Text_2311A3_Alt:
+	.string "Memories of my darling Skitty…\n"
+	.string "My eyes overflow thinking about it.\p"
+	.string "Why aren't your eyes overflowing?\n"
+.if TPP_MODE
+	.string "{PAUSE 30}{FORCE_SPEED_MID}"
+.endif
+	.string "For the {STR_VAR_1} you lost?"
+.if TPP_MODE
+	.string "{PAUSE 60}"
+.endif
+	.string "$"
 
 
 MtPyre_2F_EventScript_23111F:: @ 823111F
