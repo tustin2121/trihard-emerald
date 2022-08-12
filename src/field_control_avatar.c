@@ -1039,7 +1039,7 @@ void MemoizeBoxedMon(void)
     {   // All the boxes are sequentially stored here, so just go from first box
         if (GetBoxMonData(&gPokemonStoragePtr->boxes[0][numMons], MON_DATA_SPECIES) == SPECIES_NONE) break;
     }
-    VarSet(VAR_TEMP_B, numMons)
+    VarSet(VAR_TEMP_B, numMons);
 }
 
 void HashLocationToBoxedMon(void)

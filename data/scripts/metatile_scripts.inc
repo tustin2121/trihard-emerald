@@ -92,7 +92,7 @@ MetatileText_EmptyTrashCan7:
 MetatileScript_GraveStone::
 	callnative HashLocationToBoxedMon
 	@ If somehow there are no pokemon in the graveyard...
-	comapre VAR_0x8001, 0
+	compare VAR_0x8001, 0
 	goto_if_eq MetatileScript_GraveStone_Normal
 	@ otherwise, write up an epitaph
 	selectpointer_wrap TextArray_GraveStone_Epitaph, VAR_0x8000
