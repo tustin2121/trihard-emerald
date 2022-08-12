@@ -17,6 +17,7 @@
 
 u16 CalculateChecksum(void *data, u16 size);
 bool16 ShouldLegendaryMusicPlayAtLocation(struct WarpData *warp);
+void SetPlayerOutfit(void);
 
 struct RememberedDreamsV1
 {
@@ -120,6 +121,15 @@ void LoadAndProcessRememberedDreams()
 		// which will add alex to our phone book.
 		FlagSet(FLAG_ENABLE_ALEX_FIRST_CALL);
 	}
+	// Special case: Dream 1600 also affects the real world, by changing the player's outfit
+	// as a story beat.
+	if (FlagGet(FLAG_SAW_DREAM_1600)) {
+		// Still old outfit
+		if ((gSaveBlock2Ptr->playerForm >> 1) == 3) {
+			gSpecialVar_0x8000 = 4;
+			SetPlayerOutfit();
+		}
+	}
 	return;
 badDreams:
 	FlagSet(FLAG_ERROR_READING_DREAMS);
@@ -162,6 +172,10 @@ extern const u8 DreamScript_0900[];
 extern const u8 DreamScript_1000[];
 extern const u8 DreamScript_1001[];
 extern const u8 DreamScript_1200[];
+extern const u8 DreamScript_1300[];
+extern const u8 DreamScript_1600[];
+extern const u8 DreamScript_1601[];
+extern const u8 DreamScript_1602[];
 
 struct DreamDataStruct {
 	const u8 *script;
@@ -174,6 +188,7 @@ static const struct DreamDataStruct sDreamScripts[] = {
 	// Highest priority
 	{ DreamScript_1000, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000,     MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F},
 	{ DreamScript_1001, FLAG_LEGENDARIES_IN_SOOTOPOLIS,   FLAG_SAW_DREAM_1000,     0xFFFF}, // Must be below Mossdeep one
+//	{ DreamScript_1600, FLAG_DEFEATED_WALLY_VICTORY_ROAD, FLAG_SAW_DREAM_1600,     0xFFFF},
 	{ DreamScript_0900, FLAG_PLAYER_HAS_SURFED,           FLAG_SAW_DREAM_0900,     0xFFFF},
 	{ DreamScript_0800, FLAG_RECEIVED_TM54,               FLAG_SAW_DREAM_0800,     0xFFFF}, // Post Rusturf Tunnel
 	// Sequential dreams
@@ -187,10 +202,14 @@ static const struct DreamDataStruct sDreamScripts[] = {
 //	{ DreamScript_????, FLAG_HIDE_ROUTE_119_TEAM_AQUA,    FLAG_SAW_DREAM_????,     0xFFFF}, // post weather institute
 	{ DreamScript_0700, FLAG_VISITED_ROUTE120,            FLAG_SAW_DREAM_0700,     0xFFFF},
 	{ DreamScript_1200, FLAG_VISITED_MT_PYRE,             FLAG_SAW_DREAM_1200,     0xFFFF}, // post mt Pyre
-//	{ DreamScript_????, FLAG_VISITED_AQUA_BASE,           FLAG_SAW_DREAM_????,     0xFFFF},
+	{ DreamScript_1300, FLAG_VISITED_AQUA_BASE,           FLAG_SAW_DREAM_1300,     0xFFFF},
 	{ DreamScript_0600, FLAG_DEFEATED_MAGMA_SPACE_CENTER, FLAG_SAW_DREAM_0600,     0xFFFF},
-//	{ DreamScript_????, FLAG_DEFEATED_WALLY_VICTORY_ROAD, FLAG_SAW_DREAM_????,     0xFFFF},
 	// Lowest priority
+//	{ DreamScript_1601, FLAG_SAW_DREAM_1600,              FLAG_SAW_DREAM_1601,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
+//	{ DreamScript_1602, FLAG_SAW_DREAM_1601,              FLAG_SAW_DREAM_1602,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
+//	{ DreamScript_1603, FLAG_SAW_DREAM_1602,              FLAG_SAW_DREAM_1603,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
+//	{ DreamScript_1604, FLAG_SAW_DREAM_1603,              FLAG_SAW_DREAM_1604,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
+//	{ DreamScript_1605, FLAG_SAW_DREAM_1604,              FLAG_SAW_DREAM_1605,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
 	{ DreamScript_0801, FLAG_SAW_DREAM_0800,              FLAG_SKIPPED_NIGHT_0801, 0xFFFF},
 	{ DreamScript_0802, FLAG_SKIPPED_NIGHT_0801,          FLAG_SAW_DREAM_0802,     0xFFFF},
 	{ NULL,             0xFFFF,                           0xFFFF,                  0xFFFF},

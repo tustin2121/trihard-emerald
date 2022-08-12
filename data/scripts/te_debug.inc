@@ -160,13 +160,23 @@ DebugScript_TestScriptTable::
 	.4byte DEBUG_DreamScript_1001 @ 13 - 
 	.4byte 0 @ 14 - 
 	.4byte DEBUG_DreamScript_1200 @ 15 - 
-	.4byte 0 @ 16 - 
-	.4byte 0 @ 17 - 
-	.4byte 0 @ 18 - 
-	.4byte 0 @ 19 - 
+	.4byte DEBUG_DreamScript_1300 @ 16 - 
+	.4byte DEBUG_DreamScript_1600 @ 17 - 
+	.4byte DEBUG_DreamScript_1601 @ 18 - 
+	.4byte DEBUG_DreamScript_1602 @ 19 - 
 	.4byte 0 @ 20 - 
-	.4byte DEBUG_DreamScript_Alex_FirstCall @ 21
-	.4byte DEBUG_DreamScript_Alex_LeagueCall @ 22
+	.4byte 0 @ 21 - 
+	.4byte 0 @ 22 - 
+	.4byte 0 @ 23 - 
+	.4byte 0 @ 24 - 
+	.4byte 0 @ 25 - 
+	.4byte 0 @ 26 - 
+	.4byte 0 @ 27 - 
+	.4byte 0 @ 28 - 
+	.4byte 0 @ 29 - 
+	.4byte 0 @ 30 - 
+	.4byte DEBUG_DreamScript_Alex_FirstCall @ 31
+	.4byte DEBUG_DreamScript_Alex_LeagueCall @ 32
 DebugScript_TestScriptTable_END::
 	.4byte 0
 
@@ -256,6 +266,26 @@ DEBUG_DreamScript_1001:
 DEBUG_DreamScript_1200:
 	call DebugScript_DreamSetup
 	call DreamScript_1200
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_1300:
+	call DebugScript_DreamSetup
+	call DreamScript_1300
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_1600:
+	call DebugScript_DreamSetup
+	call DreamScript_1600
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_1601:
+	call DebugScript_DreamSetup
+	call DreamScript_1601
+	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_1602:
+	call DebugScript_DreamSetup
+	call DreamScript_1602
 	call DebugScript_DreamTeardown
 	end
 DEBUG_DreamScript_Alex_FirstCall:

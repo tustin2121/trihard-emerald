@@ -10,11 +10,11 @@
 @[    ]- Triggered by starting the Weather Institute invasion
 @[0700]- Triggered by first entering Route 120
 @[1200]- Triggered by first entering Mt. Pyre 
-@[    ]- Triggered by first entering Aqua Hideout B1F
+@[1300]- Triggered by first entering Aqua Hideout B1F
 @[0600]- Triggered by completing Space Center Rescue
 @[100X]- Triggered by the rains cutscene, required location Mossdeep
 @[    ]- Triggered by getting defeated by the legendaries
-@[    ]- Triggered by defeating Logan
+@[1600]- Triggered by defeating Logan in victory road
 
 DreamScript_CantSleep:: @done
 	delay 30
@@ -200,8 +200,6 @@ DreamScript_0300::  @done
 	fadenewbgm MUS_DUMMY
 	delay 90
 	fadedefaultbgm
-	return
-	@ Dream of a time with Team Skull and the comraderie had therein
 	return
 DreamScript_0300_Text1:
 	.string "{MAN_SPEAKING}"
@@ -523,15 +521,25 @@ DreamScript_0700_next7:
 	setyesnotext DreamScript_0700_YN7a, DreamScript_0700_YN7b
 	yesnobox 20, 8
 	@ Split on answer
-	selectyesnoanswer DreamScript_0700_Text9a, DreamScript_0700_Text9b
-	message 0
-	fadenewbgm MUS_DUMMY
-	waitmessage
-	closemessage
+	selectyesnoanswer DreamScript_0700_hugged, DreamScript_0700_rejected
+	call 0
 	@ enable the call from Alex
 	setflag FLAG_ENABLE_ALEX_FIRST_CALL
 	delay 120
 	fadedefaultbgm
+	return
+DreamScript_0700_hugged:
+	message DreamScript_0700_Text9a
+	setflag FLAG_HUGGED_ALEX
+	waitmessage
+	closemessage
+	fadenewbgm MUS_DUMMY
+	return
+DreamScript_0700_rejected:
+	message DreamScript_0700_Text9b
+	fadenewbgm MUS_DUMMY
+	waitmessage
+	closemessage
 	return
 DreamScript_0700_Text1:
 	.string "{PAUSE 30}You finally find {RIVAL_ALOLA} on the beach.{PAUSE 20}\n"
@@ -916,11 +924,57 @@ DreamScript_1200_Text1:
 @------------------------------------------------------
 @ Triggered after entering Aqua hideout BF1 for the first time
 DreamScript_1300::
-	@ Player is caught in the middle of another argument and
-	@ bolts to go see Alex in Po Town, hang out in Po Town
+	fadenewbgm MUS_B_DOME
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	message DreamScript_1300_Text1
+	waitmessage
+	selectpointer_ongender DreamScript_1300_Text2m, DreamScript_1300_Text2f
+	message 0
+	waitmessage
+	message DreamScript_1300_Text3
+	waitmessage
+	closemessage
+	fadenewbgm MUS_DUMMY
+	delay 90
+	fadedefaultbgm
 	return
 DreamScript_1300_Text1:
-	.string "{SET_DREAM_PAL}"
+	.string "You lie awake on the mattress, staring\n"
+	.string "at the skull symbol tagged on the ceiling.\p"
+	.string "This was the first time you opted\n"
+	.string "to sleep in the Po Town house.\p"
+	.string "The place is run down and tagged up,\n"
+	.string "and filled with broken furniture.\p$"
+DreamScript_1300_Text2m:
+	.string "There are five other guys sleeping\n"
+	.string "in this little room, spread across the\n"
+	.string "three mattresses and the floor.\p"
+	.string "Several of them are half-dressed.\n"
+	.string "One had fallen out of bed and is\l"
+	.string "sleeping with his legs up on the bed.\p$"
+DreamScript_1300_Text2f:
+	.string "There are three other girls sleeping\n"
+	.string "in this little room, spread across the\l"
+	.string "five mattresses shoved together.\p"
+	.string "The two girlfriends are sharing one\n"
+	.string "bed but the other girl is spread out\l"
+	.string "sideways across three beds.\p$"
+DreamScript_1300_Text3:
+	.string "There's shouting and laughter echoing\n"
+	.string "elsewhere in the house, along with\l"
+	.string "sounds of breaking glass.\p"
+	.string "It's a strange new experience…{PAUSE 20}\n"
+	.string "and you haven't stopped smiling yet.{PAUSE 20}\p"
+	.string "Earlier in the evening, a bunch of\n"
+	.string "grunts were hanging around a campfire,\l"
+	.string "all swapping stories and spitting bars.\p"
+	.string "At your parents' place, the only thing\n"
+	.string "being spit were insults and accusations.\p"
+	.string "This place is dirty, run down, and broken,{PAUSE 20}\n"
+	.string "but filled with love and opportunity.\p"
+	.string "This is practically paradise…{PAUSE 20}\n"
+	.string "You never want to leave…{PAUSE 30}\p"
 	.string "$"
 	
 @------------------------------------------------------
@@ -942,14 +996,192 @@ DreamScript_1500_Text1:
 	.string "$"
 	
 @------------------------------------------------------
-@ 
+@ Triggered by defeating Logan in victory road
+@ This is the end game. This dream is expected to play upon saving at the E4
+@ The additional dreams are for any other times the player explicitly saves at the E4
 DreamScript_1600::
-	@ 
+	fadenewbgm MUS_B_DOME @ TODO
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	message DreamScript_1600_Text1
+	waitmessage
+	closemessage
+	fadenewbgm MUS_DUMMY
+	delay 15
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DESCRIBE
+	message DreamScript_1600_Text2
+	waitmessage
+	closemessage
+	@
+	setvar VAR_0x8000, 4
+	callnative SetPlayerOutfit 
+	@ Note: We're not going to reload the map, as this may happen anywhere
+	@ The outfit change will just take effect on next map load, 
+	@ like the player puts on the hat on the way out the door or something.
+	delay 60
+	fadedefaultbgm
 	return
 DreamScript_1600_Text1:
-	.string "{SET_DREAM_PAL}"
+	.string "Guzma stands on the landing, looking\n"
+	.string "pensive. Plumeria stands next to him.\p"
+	.string "The boss doesn't speak, he simply turns\n"
+	.string "around to reveal his jacket's Skull logo.\p"
+	.string "There's a big red X over the logo.\n"
+	.string "Your stomach drops. Gasps resound.\p"
+	.string "Plumeria steps forward, stone-faced.\n"
+	.string "{WOMAN_SPEAKING}"
+	.string "Team Skull is hereby disbanded.{END}\p"
+	.string "Commotion. Uproar. You feel like the\n"
+	.string "floor is collapsing under you.\p"
+	.string "{WOMAN_SPEAKING}"
+	.string "After the Aether incident, the boss\n"
+	.string "had some soul serching to do.\p"
+	.string "He doesn't want to put y'all in danger\n"
+	.string "like that again over his screw ups.\p"
+	.string "{MAN_SPEAKING}"
+	.string "Y'all can do better than this.{END}\n"
+	.string "He speaks over his shoulder, shamefully.\p"
+	.string "Bandannas and hats are being discarded\n"
+	.string "all around you, thrown to the floor.\p"
+	.string "Gang signs are ripped off and tossed aside.\n"
+	.string "You clutch your bandanna tightly.\p"
+	.string "Everyone's clamboring, asking what's next\n"
+	.string "asking where they should go, asking why.\p"
+	.string "You stay rooted to the spot, bandanna\n"
+	.string "tightly in hand…\p"
 	.string "$"
-	
+DreamScript_1600_Text2:
+	.string "{PLAYER} looks at the Aqua Bandana\n"
+	.string "that {PLAYER_they} kept on {PLAYER_them}.\p"
+	.string "Some things need to be let go…$" @ Player discards the bandanna
+
+
+DreamScript_1601::
+	fadenewbgm MUS_B_DOME @TODO
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	@ mom speaking
+	message DreamScript_1601_Text1
+	setyesnotext DreamScript_1601_YN_What, DreamScript_1601_YN_Why
+	waitmessage
+	yesnobox 20, 8
+	@ dad packing
+	message DreamScript_1601_Text2
+	setyesnotext DreamScript_1601_YN_But, DreamScript_1601_YN_Why2
+	waitmessage
+	yesnobox 20, 8
+	@ run away?
+	message DreamScript_1601_Text3
+	setyesnotext DreamScript_1601_YN_How, DreamScript_1601_YN_Gone
+	waitmessage
+	yesnobox 16, 8
+	@ fight back?
+	message DreamScript_1601_Text4
+	setyesnotext DreamScript_1601_YN_Where, DreamScript_1601_YN_WhyBother
+	waitmessage
+	yesnobox 16, 8
+	@ self-harm?
+	message DreamScript_1601_Text5
+	setyesnotext gYN_Elipsis2, DreamScript_1601_YN_WhyTry
+	waitmessage
+	yesnobox 16, 8
+	@ alex?
+	message DreamScript_1601_Text6
+	waitmessage
+	fadenewbgm MUS_DUMMY
+	message DreamScript_1601_Text7
+	waitmessage
+	closemessage
+	delay 60
+	fadedefaultbgm
+	return
+DreamScript_1601_Text1:
+	.string "… … Skull's gone… … …\p"
+	.string "After several hours wandering the island\n"
+	.string "in a daze… you arrive at your parents'.\p"
+	.string "The house is quiet for once. Your mom\n"
+	.string "smokes out on the front porch.\p"
+	.string "{WOMAN_SPEAKING}"
+	.string "Go help your Dad pack.\n"
+	.string "Pack your things too.$" 
+	@ "What?"/"Why?"
+DreamScript_1601_YN_What:
+	.string "What?$"
+DreamScript_1601_YN_Why:
+	.string "Why?$"
+DreamScript_1601_Text2:
+	.string "{WOMAN_SPEAKING}"
+	.string "He's got a new job elsewhere. Court\n"
+	.string "ordered that custody of… you… is his.\l"
+	.string "That means you're going with him.{END}\p"
+	.string "First Guzma abandons you. Now this?\p"
+	.string "Dad is already half-packed.\n"
+	.string "{MAN_SPEAKING}"
+	.string "We fly out Friday.\l"
+	.string "You've got four days to pack.{END}$"
+	@ "But…!"/"Why…?"
+DreamScript_1601_YN_But:
+	.string "But…!$"
+DreamScript_1601_YN_Why2:
+	.string "Why…?$"
+DreamScript_1601_Text3:
+	.string "{MAN_SPEAKING}"
+	.string "Don't argue. I didn't want to be\n"
+	.string "reassigned away from Alola either.{END}\p"
+	.string "Thoughts of running away.$" 
+	@ "To where?" / "Skull's gone…"
+DreamScript_1601_YN_Where:
+	.string "To where?$"
+DreamScript_1601_YN_Gone:
+	.string "Skull's gone…$"
+DreamScript_1601_Text4:
+	.string "Thoughts of fighting back.$" 
+	@ "But how?" / "Why bother…?"
+DreamScript_1601_YN_How:
+	.string "But how?$"
+DreamScript_1601_YN_WhyBother:
+	.string "Why bother…?$"
+DreamScript_1601_Text5:
+	.string "Thoughts of ending things.$" 
+	@ .string "Thoughts… of a darker nature.$" 
+	@ "……" / "Why even try…?"
+DreamScript_1601_YN_WhyTry:
+	.string "Why even try…?$"
+DreamScript_1601_Text6:
+	.string "Thoughts of {RIVAL_ALOLA}…\p$"
+DreamScript_1601_Text7:
+	.string "{PAUSE 30}{SET_NORM_PAL}{PAUSE 30}"
+	.string "You're in a much better headspace now.\n"
+	.string "You can do this.\p"
+	.string "$"
+
+
+DreamScript_1602::
+	@ 
+	return
+DreamScript_1602_Text1:
+	.string "You must have circled the island\n"
+	.string "a hundred times looking for {RIVAL_ALOLA}.\p"
+	.string "You're leaving in three days…\p"
+	.string "You've run into several former grunts\n"
+	.string "all doing community service and crap…\p"
+	.string "Apparently Guzma and Plumeria have\n"
+	.string "already moved on too. Trainers now.\p"
+	.string "… … … …\n"
+	.string "As the sun sets, you enter the graveyard.\p"
+	.string "You collapse onto tūtū's grave,\n"
+	.string "trying to not cry, and failing.$"
+DreamScript_1602_Why:
+	.string "Tūtū why?$"
+DreamScript_1602_Help:
+	.string "Help me…$"
+DreamScript_1602_Text2:
+	.string "The headstone is ever silent.\n"
+	.string "The Drifloon peer at you from a distance.\p"
+	.string "$"
+
+
+
 @------------------------------------------------------
 
 @------------------------------------------------------
@@ -1345,6 +1577,12 @@ gText_Alex_Pokenav_PostResearch::
 	.string "Maybe ask around? Or surf around?\n"
 	.string "I imagine it'd be hard to miss!\p"
 	.string "Good luck! And stay safe!$"
+
+@ TODO: Post legendaries pokenav calls
+@ One reacting to it finishing
+@ One reacting to the player being a hero
+@ 1-2 just talking afterwards.
+
 
 @------------------------------------------------------
 DreamScript_Dummy:

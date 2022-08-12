@@ -1539,11 +1539,11 @@
 #define FLAG_SAW_DREAM_0600                                        0x600B
 #define FLAG_SAW_DREAM_0700                                        0x600C
 #define FLAG_SAW_DREAM_1200                                        0x600D
-#define FLAG_REMEMBERED_0x0E                                       0x600E
-#define FLAG_REMEMBERED_0x0F                                       0x600F
-#define FLAG_REMEMBERED_0x10                                       0x6010
-#define FLAG_REMEMBERED_0x11                                       0x6011
-#define FLAG_REMEMBERED_0x12                                       0x6012
+#define FLAG_SAW_DREAM_1300                                        0x600E
+#define FLAG_HUGGED_ALEX                                           0x600F
+#define FLAG_SAW_DREAM_1600                                        0x6010
+#define FLAG_SAW_DREAM_1601                                        0x6011
+#define FLAG_SAW_DREAM_1602                                        0x6012
 #define FLAG_REMEMBERED_0x13                                       0x6013
 #define FLAG_REMEMBERED_0x14                                       0x6014
 #define FLAG_REMEMBERED_0x15                                       0x6015
