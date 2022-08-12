@@ -72,7 +72,7 @@ MtPyre_1F_Text_2310BA: @ 82310BA
 	.string "Every time you look at a grave\n"
 	.string "marker, you go pale.\p"
 .if TPP_MODE
-	.string "{FORCE_SPEED_MID}{FORCE_AUTOSCROLL_ON}"
+	.string "{FORCE_SPEED_MID}"
 .endif
 	.string "Like those who you've discarded on your\n"
 	.string "journey haunt your guilty conscience…"

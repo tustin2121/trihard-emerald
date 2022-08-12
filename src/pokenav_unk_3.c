@@ -15,7 +15,7 @@
 #include "constants/flags.h"
 #include "constants/songs.h"
 
-struct Pokenav3Struct
+struct Pokenav3Struct // Pokenav_MatchCallMenu - pokenav_match_call_list.c
 {
     u16 unk0;
     u16 unk2;
@@ -26,7 +26,7 @@ struct Pokenav3Struct
     u32 unk10;
     u32 unk14;
     u32 (*callback)(struct Pokenav3Struct*);
-    struct Pokenav3Struct_Unk1C unk1C[99];
+    struct Pokenav3Struct_Unk1C matchCallEntries[99];
 };
 
 static u32 sub_81CAB44(struct Pokenav3Struct *);
@@ -83,7 +83,7 @@ static u32 sub_81CAB44(struct Pokenav3Struct *state)
         state->callback = sub_81CAC04;
         state->unk0 = 0;
         selectedMatchCall = GetSelectedMatchCall();
-        if (!state->unk1C[selectedMatchCall].unk0 || MatchCall_HasCheckPage(state->unk1C[selectedMatchCall].unk2))
+        if (!state->matchCallEntries[selectedMatchCall].unk0 || MatchCall_HasCheckPage(state->matchCallEntries[selectedMatchCall].unk2))
         {
             state->unk4 = gUnknown_0862250A;
             state->unk2 = 2;
@@ -205,9 +205,9 @@ static u32 sub_81CAD20(int taskState)
         {
             if (MatchCall_GetEnabled(j))
             {
-                state->unk1C[state->unkA].unk2 = j;
-                state->unk1C[state->unkA].unk0 = 1;
-                state->unk1C[state->unkA].unk1 = MatchCall_GetMapSec(j);
+                state->matchCallEntries[state->unkA].unk2 = j;
+                state->matchCallEntries[state->unkA].unk0 = 1;
+                state->matchCallEntries[state->unkA].unk1 = MatchCall_GetMapSec(j);
                 state->unkA++;
             }
 
@@ -225,9 +225,9 @@ static u32 sub_81CAD20(int taskState)
         {
             if (!MatchCall_HasRematchId(state->unk8) && sub_81CAE08(state->unk8))
             {
-                state->unk1C[state->unkA].unk2 = state->unk8;
-                state->unk1C[state->unkA].unk0 = 0;
-                state->unk1C[state->unkA].unk1 = sub_81CB0C8(j);
+                state->matchCallEntries[state->unkA].unk2 = state->unk8;
+                state->matchCallEntries[state->unkA].unk0 = 0;
+                state->matchCallEntries[state->unkA].unk1 = sub_81CB0C8(j);
                 state->unkA++;
             }
 
@@ -283,28 +283,28 @@ int unref_sub_81CAE6C(int arg0)
     if (arg0 >= state->unkA)
         return REMATCH_TABLE_ENTRIES;
     
-    return state->unk1C[arg0].unk2;
+    return state->matchCallEntries[arg0].unk2;
 }
 
 struct Pokenav3Struct_Unk1C *sub_81CAE94(void)
 {
     struct Pokenav3Struct *state = GetSubstructPtr(5);
-    return state->unk1C;
+    return state->matchCallEntries;
 }
 
-u16 sub_81CAEA4(int index)
+u16 GetMatchCallMapSec(int index)
 {
     struct Pokenav3Struct *state = GetSubstructPtr(5);
-    return state->unk1C[index].unk1;
+    return state->matchCallEntries[index].unk1;
 }
 
 bool32 sub_81CAEBC(int index)
 {
     struct Pokenav3Struct *state = GetSubstructPtr(5);
-    if (!state->unk1C[index].unk0)
-        index = state->unk1C[index].unk2;
+    if (!state->matchCallEntries[index].unk0)
+        index = state->matchCallEntries[index].unk2;
     else
-        index = MatchCall_GetRematchTableIdx(state->unk1C[index].unk2);
+        index = MatchCall_GetRematchTableIdx(state->matchCallEntries[index].unk2);
 
     if (index == REMATCH_TABLE_ENTRIES)
         return FALSE;
@@ -316,13 +316,13 @@ int sub_81CAF04(int index)
 {
     int var0;
     struct Pokenav3Struct *state = GetSubstructPtr(5);
-    if (!state->unk1C[index].unk0)
+    if (!state->matchCallEntries[index].unk0)
     {
-        index = GetTrainerIdxByRematchIdx(state->unk1C[index].unk2);
+        index = GetTrainerIdxByRematchIdx(state->matchCallEntries[index].unk2);
         return gTrainers[index].trainerPic;
     }
     
-    var0 = state->unk1C[index].unk2;
+    var0 = state->matchCallEntries[index].unk2;
     index = MatchCall_GetRematchTableIdx(var0);
     if (index != REMATCH_TABLE_ENTRIES)
     {
@@ -341,10 +341,10 @@ const u8 *sub_81CAF78(int index, u8 *arg1)
     if (!Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType))
         return gText_CallCantBeMadeHere;
 
-    if (!state->unk1C[index].unk0)
-        *arg1 = SelectMatchCallMessage(GetTrainerIdxByRematchIdx(state->unk1C[index].unk2), gStringVar4);
+    if (!state->matchCallEntries[index].unk0)
+        *arg1 = SelectMatchCallMessage(GetTrainerIdxByRematchIdx(state->matchCallEntries[index].unk2), gStringVar4);
     else
-        MatchCall_GetMessage(state->unk1C[index].unk2, gStringVar4);
+        MatchCall_GetMessage(state->matchCallEntries[index].unk2, gStringVar4);
 
     return gStringVar4;
 }
@@ -353,15 +353,15 @@ const u8 *sub_81CAFD8(int index, int textType)
 {
     int var0;
     struct Pokenav3Struct *state = GetSubstructPtr(5);
-    if (state->unk1C[index].unk0)
+    if (state->matchCallEntries[index].unk0)
     {
-        var0 = MatchCall_GetRematchTableIdx(state->unk1C[index].unk2);
+        var0 = MatchCall_GetRematchTableIdx(state->matchCallEntries[index].unk2);
         if (var0 == REMATCH_TABLE_ENTRIES)
-            return MatchCall_GetOverrideFlavorText(state->unk1C[index].unk2, textType);
+            return MatchCall_GetOverrideFlavorText(state->matchCallEntries[index].unk2, textType);
     }
     else
     {
-        var0 = state->unk1C[index].unk2;
+        var0 = state->matchCallEntries[index].unk2;
     }
 
     return gUnknown_08622028[var0][textType];
@@ -424,9 +424,9 @@ int sub_81CB0E4(int index)
     int count = 1;
     while (++index < state->unkA)
     {
-        if (!state->unk1C[index].unk0)
+        if (!state->matchCallEntries[index].unk0)
             return count;
-        if (MatchCall_HasCheckPage(state->unk1C[index].unk2))
+        if (MatchCall_HasCheckPage(state->matchCallEntries[index].unk2))
             return count;
 
         count++;
@@ -441,9 +441,9 @@ int sub_81CB128(int index)
     int count = -1;
     while (--index >= 0)
     {
-        if (!state->unk1C[index].unk0)
+        if (!state->matchCallEntries[index].unk0)
             return count;
-        if (MatchCall_HasCheckPage(state->unk1C[index].unk2))
+        if (MatchCall_HasCheckPage(state->matchCallEntries[index].unk2))
             return count;
 
         count--;
@@ -479,19 +479,19 @@ static bool32 sub_81CB1D0(void)
 {
     struct Pokenav3Struct *state = GetSubstructPtr(5);
     int index = GetSelectedMatchCall();
-    if (!state->unk1C[index].unk0)
+    if (!state->matchCallEntries[index].unk0)
     {
-        if (sub_81CAEA4(index) == gMapHeader.regionMapSectionId)
+        if (GetMatchCallMapSec(index) == gMapHeader.regionMapSectionId)
         {
-            if (!gSaveBlock1Ptr->trainerRematches[state->unk1C[index].unk2])
+            if (!gSaveBlock1Ptr->trainerRematches[state->matchCallEntries[index].unk2])
                 return TRUE;
         }
     }
     else
     {
-        if (state->unk1C[index].unk2 == 11)
+        if (state->matchCallEntries[index].unk2 == 11)
         {
-            if (sub_81CAEA4(index) == gMapHeader.regionMapSectionId
+            if (GetMatchCallMapSec(index) == gMapHeader.regionMapSectionId
              && FlagGet(FLAG_BADGE05_GET) == TRUE)
             {
                 if (!FlagGet(FLAG_WATTSON_REMATCH_AVAILABLE))

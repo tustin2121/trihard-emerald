@@ -25,7 +25,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 
-struct Pokenav4Struct
+struct Pokenav4Struct // Pokenav_MatchCallGfx - pokenav_match_call_gfx.c
 {
     bool32 (*unk0)(void);
     u32 unk4;
@@ -57,7 +57,7 @@ static void sub_81CC2B4(void);
 static void sub_81CC034(struct Pokenav4Struct *);
 static void sub_81CBD78(struct Pokenav4Struct *);
 static void sub_81CBDC0(struct Pokenav4Struct *);
-static void sub_81CBEF8(struct Pokenav4Struct *, int);
+static void PrintMatchCallLocation(struct Pokenav4Struct *, int);
 static void sub_81CC214(void);
 static void sub_81CBC38(int);
 static void sub_81CBF60(struct Pokenav4Struct *);
@@ -205,7 +205,7 @@ static u32 sub_81CB324(int taskState)
         return 0;
     case 5:
         sub_81CBDC0(state);
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 6:
         ChangeBgX(1, 0, 0);
@@ -253,10 +253,10 @@ u32 sub_81CB510(int taskState)
         if (sub_81C8630())
             return 2;
 
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 2:
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 3:
         if (IsDma3ManagerBusyWithBgCopy())
@@ -290,10 +290,10 @@ u32 sub_81CB588(int taskState)
         if (sub_81C8630())
             return 2;
 
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 2:
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 3:
         if (IsDma3ManagerBusyWithBgCopy())
@@ -327,10 +327,10 @@ u32 sub_81CB600(int taskState)
         if (sub_81C8630())
             return 2;
 
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 2:
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 3:
         if (IsDma3ManagerBusyWithBgCopy())
@@ -364,10 +364,10 @@ u32 sub_81CB678(int taskState)
         if (sub_81C8630())
             return 2;
 
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 2:
-        sub_81CBEF8(state, 0);
+        PrintMatchCallLocation(state, 0);
         return 0;
     case 3:
         if (IsDma3ManagerBusyWithBgCopy())
@@ -600,7 +600,7 @@ u32 sub_81CB9C8(int taskState)
         if (sub_81CC42C(state))
             return 2;
 
-        sub_81CBEF8(state, state->unk16);
+        PrintMatchCallLocation(state, state->unk16);
         return 0;
     case 2:
         sub_81C87AC(state->unk16);
@@ -665,7 +665,7 @@ u32 sub_81CBAD4(int taskState)
         if (sub_81CC42C(state))
             return 2;
 
-        sub_81CBEF8(state, state->unk16);
+        PrintMatchCallLocation(state, state->unk16);
         return 0;
     case 2:
         sub_81C87AC(state->unk16);
@@ -837,12 +837,12 @@ static void sub_81CBEB4(u16 windowId, const u8 *str, int top)
     AddTextPrinterParameterized(windowId, 7, str, x, y, TEXT_SPEED_FF, NULL);
 }
 
-static void sub_81CBEF8(struct Pokenav4Struct *state, int arg1)
+static void PrintMatchCallLocation(struct Pokenav4Struct *state, int arg1)
 {
     u8 mapName[32];
     int x;
     int index = GetSelectedMatchCall() + arg1;
-    int regionMapSection = sub_81CAEA4(index);
+    int regionMapSection = GetMatchCallMapSec(index);
     if (regionMapSection != MAPSEC_NONE)
         GetMapName(mapName, regionMapSection, 0);
     else
@@ -853,7 +853,7 @@ static void sub_81CBEF8(struct Pokenav4Struct *state, int arg1)
     AddTextPrinterParameterized(state->unk10, 7, mapName, x, 1, 0, NULL);
 }
 
-static void sub_81CBF60(struct Pokenav4Struct *state)
+static void sub_81CBF60(struct Pokenav4Struct *state) // PrintMatchCallSelectionOptions
 {
     u32 i;
 
@@ -906,7 +906,7 @@ static void sub_81CC034(struct Pokenav4Struct *state)
     sub_81C7B40();
 }
 
-static void sub_81CC058(struct Pokenav4Struct *state)
+static void sub_81CC058(struct Pokenav4Struct *state) // DrawMsgBoxForMatchCallMsg
 {
     struct Sprite *sprite;
     sub_8197184(state->unk14, 1, 4);
@@ -939,7 +939,7 @@ static void sub_81CC0E0(struct Pokenav4Struct *state)
     AddTextPrinterParameterized(state->unk14, 1, gUnknown_086227F4, 32, 1, 1, NULL);
 }
 
-static bool32 sub_81CC104(struct Pokenav4Struct *state)
+static bool32 sub_81CC104(struct Pokenav4Struct *state) // WaitForCallingDotsText
 {
     RunTextPrinters();
     return IsTextPrinterActive(state->unk14);
@@ -975,7 +975,7 @@ static bool32 sub_81CC194(struct Pokenav4Struct *state)
     return IsTextPrinterActive(state->unk14);
 }
 
-static void sub_81CC1DC(struct Pokenav4Struct *state)
+static void sub_81CC1DC(struct Pokenav4Struct *state) // EraseCallMessageBox
 {
     ResumeSpinningPokenavSprite();
     FillBgTilemapBufferRect_Palette0(1, 0, 0, 0, 32, 20);
@@ -987,7 +987,7 @@ static bool32 sub_81CC204(struct Pokenav4Struct *state)
     return  IsDma3ManagerBusyWithBgCopy();
 }
 
-static void sub_81CC214(void)
+static void sub_81CC214(void) // AllocMatchCallSprites
 {
     int i;
     u8 paletteNum;
@@ -1009,7 +1009,7 @@ static void sub_81CC214(void)
     state->unk20->invisible = 1;
 }
 
-static void sub_81CC2B4(void)
+static void sub_81CC2B4(void) // FreeMatchCallSprites
 {
     struct Pokenav4Struct *state = GetSubstructPtr(6);
     if (state->unk1C)
@@ -1023,7 +1023,7 @@ static void sub_81CC2B4(void)
     FreeSpritePaletteByTag(13);
 }
 
-static void sub_81CC2F0(struct Pokenav4Struct *state, int top)
+static void sub_81CC2F0(struct Pokenav4Struct *state, int top) // CreateOptionsCursorSprite
 {
     if (!state->unk1C)
     {
@@ -1053,7 +1053,7 @@ void sub_81CC34C(struct Sprite *sprite)
     }
 }
 
-static struct Sprite *sub_81CC370(void)
+static struct Sprite *sub_81CC370(void) // CreateTrainerPicSprite
 {
     u8 spriteId = CreateSprite(&gUnknown_08622850, 44, 104, 6);
     return &gSprites[spriteId];
@@ -1075,17 +1075,17 @@ static void sub_81CC39C(struct Pokenav4Struct *state)
     }
 }
 
-static void sub_81CC420(struct Pokenav4Struct *state)
+static void sub_81CC420(struct Pokenav4Struct *state) // TrainerPicSlideOffscreen
 {
     state->unk20->callback = sub_81CC4A4;
 }
 
-static bool32 sub_81CC42C(struct Pokenav4Struct *state)
+static bool32 sub_81CC42C(struct Pokenav4Struct *state) // WaitForTrainerPic
 {
     return state->unk20->callback != SpriteCallbackDummy;
 }
 
-static void sub_81CC440(struct Sprite *sprite)
+static void sub_81CC440(struct Sprite *sprite) // SpriteCB_TrainerPicSlideOnscreen
 {
     switch (sprite->data[0])
     {
@@ -1108,7 +1108,7 @@ static void sub_81CC440(struct Sprite *sprite)
     }
 }
 
-static void sub_81CC4A4(struct Sprite *sprite)
+static void sub_81CC4A4(struct Sprite *sprite) // SpriteCB_TrainerPicSlideOffscreen
 {
     sprite->pos2.x -= 8;
     if (sprite->pos2.x <= -80)

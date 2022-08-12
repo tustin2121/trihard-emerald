@@ -106,6 +106,9 @@ For future person reference:
     * 10 and 11 are reserved for special palettes, like the rival's palette and reflection palette.
     * Background palettes 13-16 are reserved for text windows. Usually palette 15 is used for the standard textbox palette. This palette is written to any time the textbox opens.
     * The game has two palette buffers, one for unfaded colors, and a derivative one for faded colors. The faded colors are the ones copied to VRAM, and the fading is used for fading in and out when doing transitions.
+* Region Map
+    * When in the pokenav, the region map gets what region a square is part of by querying \graphics\pokenav\region_map_section_layout.bin
+    * If you add a new region map segment to the bottom of gRegionMapEntries, you will need to replace all the values denoting MAPSEC_NONE from its old value to its new value.
 * Converting from pokeruby
     * Ruby/Sapphire and Emerald have major differences in text rendering. The text renderer was rewritten from the ground up for FireRed, most likely, and this is backported to Emerald. You cannot expect to copy (non-scripting) code from RS into Emerald without accounting for the fundamental difference in text rendering between the two. Emerald's text renderer is far more sophisticated than RS's.
 

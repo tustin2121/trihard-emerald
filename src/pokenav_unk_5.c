@@ -51,13 +51,13 @@ static void sub_81CCD10(void);
 static bool32 sub_81CCD24(void);
 static void sub_81CCA1C(struct Pokenav5Struct_2 *);
 static bool32 sub_81CCAFC(void);
-static void sub_81CCB0C(struct Pokenav5Struct_2 *);
+static void UpdateMapSecInfoWindow(struct Pokenav5Struct_2 *);
 static bool32 sub_81CCC4C(struct Pokenav5Struct_2 *);
 static void sub_81CCC5C(int);
 static bool32 sub_81CCC88(void);
 static void sub_81CCE58(void);
 static void sub_81CCD70(struct Pokenav5Struct_2 *, int, int);
-static void sub_81CCDE8(struct Pokenav5Struct_2 *, int, int);
+static void PrintLandmarkNames(struct Pokenav5Struct_2 *, int, int);
 static void sub_81CCFA4(int);
 static void sub_81CCC9C(u8 taskId);
 static void sub_81CCF78(void);
@@ -248,7 +248,7 @@ static u32 sub_81CC6F4(int taskState)
         if (sub_81CCAFC())
             return 2;
 
-        sub_81CCB0C(state);
+        UpdateMapSecInfoWindow(state);
         sub_81C7B40();
         return 0;
     case 5:
@@ -284,7 +284,7 @@ u32 sub_81CC848(int taskState)
     switch (taskState)
     {
     case 0:
-        sub_81CCB0C(state);
+        UpdateMapSecInfoWindow(state);
         return 0;
     case 1:
         if (sub_81CCC4C(state))
@@ -328,7 +328,7 @@ u32 sub_81CC8D8(int taskState)
     {
     case 0:
         PlaySE(SE_SELECT);
-        sub_81CCB0C(state);
+        UpdateMapSecInfoWindow(state);
         return 0;
     case 1:
         if (sub_81CCC4C(state))
@@ -430,7 +430,7 @@ static bool32 sub_81CCAFC(void)
     return free_temp_tile_data_buffers_if_possible();
 }
 
-static void sub_81CCB0C(struct Pokenav5Struct_2 *state)
+static void UpdateMapSecInfoWindow(struct Pokenav5Struct_2 *state) // UpdateMapSecInfoWindow
 {
     struct RegionMap *regionMap = GetSubstructPtr(16);
     switch (regionMap->iconDrawType)
@@ -456,7 +456,7 @@ static void sub_81CCB0C(struct Pokenav5Struct_2 *state)
         FillWindowPixelBuffer(state->unk8, PIXEL_FILL(1));
         PutWindowTilemap(state->unk8);
         AddTextPrinterParameterized(state->unk8, 7, regionMap->mapSecName, 0, 1, TEXT_SPEED_FF, NULL);
-        sub_81CCDE8(state, regionMap->mapSecId, regionMap->posWithinMapSec);
+        PrintLandmarkNames(state, regionMap->mapSecId, regionMap->posWithinMapSec);
         CopyWindowToVram(state->unk8, 3);
         sub_81CCFA4(1);
         break;
@@ -543,7 +543,7 @@ static void sub_81CCD70(struct Pokenav5Struct_2 *state, int mapSecId, int pos)
     CopyToBgTilemapBufferRect(1, state->cityZoomPics[i], 18, 6, 10, 10);
 }
 
-static void sub_81CCDE8(struct Pokenav5Struct_2 *state, int mapSecId, int pos)
+static void PrintLandmarkNames(struct Pokenav5Struct_2 *state, int mapSecId, int pos)
 {
     int i = 0;
     while (1)

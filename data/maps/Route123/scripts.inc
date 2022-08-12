@@ -9,6 +9,7 @@ Route123_OnTransition: @ 81F614D
 Route123_EventScript_1F6151:: @ 81F6151
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_RECEIVED_TM19, Route123_EventScript_1F61A0
 	msgbox Route123_Text_1F641E, MSGBOX_DEFAULT
 	special IsGrassTypeInParty

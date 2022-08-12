@@ -169,7 +169,7 @@ int sub_81CAE28(void);
 int sub_81CAE38(void);
 int sub_81CAE48(void);
 struct Pokenav3Struct_Unk1C *sub_81CAE94(void);
-u16 sub_81CAEA4(int);
+u16 GetMatchCallMapSec(int);
 bool32 sub_81CAEBC(int index);
 int sub_81CAF04(int index);
 const u8 *sub_81CAFD8(int index, int textType);
