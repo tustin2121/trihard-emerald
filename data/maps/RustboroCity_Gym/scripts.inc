@@ -191,7 +191,7 @@ RustboroCity_Gym_Text_213816: @ 8213816
 	.string "outside of battle.\p"
 	.string "Hm?{PAUSE 20} N-No, I don't know why a Pokémon's\n"
 	.string "natural capabilities are unlocked by\l"
-	.string "the posession of a badge.\l"
+	.string "the possession of a badge.\l"
 	.string "It's just how it's always been.\p"
 	.string "Oh, please take this with you, too.$"
 RustboroCity_Gym_Text_213C01: @ 8213C01

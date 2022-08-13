@@ -62,7 +62,7 @@ PetalburgCity_PokemonCenter_2F_TextLoganAfter2:
 
 PetalburgCity_PokemonCenter_2F_EventScript_WalkedInOn::
 	setvar VAR_LAST_WARP_ID, 0
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED, 2
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED, 2
 	playse SE_PIN
 	applymovement 5, PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn
 	applymovement 6, PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn

@@ -151,7 +151,7 @@ AquaHideout_B2F_RestCouch::
 	release
 	end
 AquaHideout_B2F_RestCouch_Text:
-	.string "This couch is very comfey…\n"
+	.string "This couch is very comfy…\n"
 	.string "Take a quick nap?$"
 AquaHideout_B2F_RestCouch_Nope:
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown

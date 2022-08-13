@@ -673,7 +673,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BirchAide:: @ 81F9F84
 	goto_if_ge LittlerootTown_ProfessorBirchsLab_EventScript_1F9FB1
 	goto_if_set FLAG_BIRCH_AIDE_MET, LittlerootTown_ProfessorBirchsLab_EventScript_1F9FA7
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_1FA4E2, MSGBOX_DEFAULT
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	setflag FLAG_BIRCH_AIDE_MET
 	release
 	end
@@ -905,7 +905,7 @@ LittlerootTown_ProfessorBirchsLab_Text_1FB58A: @ 81FB58A
 LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC1:: @ 81FA4BB
 	goto_if_set FLAG_TEMP_5, LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC1_A
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC1, MSGBOX_DESCRIBE
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	setflag FLAG_TEMP_5
 	end
 LittlerootTown_ProfessorBirchsLab_Text_ResearchPC1: @ 81FB0E7
@@ -922,7 +922,7 @@ LittlerootTown_ProfessorBirchsLab_Text_ResearchPC1A:
 LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC2:: @ 81FA4BB
 	goto_if_set FLAG_TEMP_6, LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC2_A
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2, MSGBOX_DESCRIBE
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	setflag FLAG_TEMP_6
 	end
 LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2: @ 81FB0E7
@@ -940,7 +940,7 @@ LittlerootTown_ProfessorBirchsLab_Text_ResearchPC2A:
 LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC3:: @ 81FA4BB
 	goto_if_set FLAG_TEMP_7, LittlerootTown_ProfessorBirchsLab_EventScript_ResearchPC3_A
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ResearchPC3, MSGBOX_DESCRIBE
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	setflag FLAG_TEMP_7
 	end
 LittlerootTown_ProfessorBirchsLab_Text_ResearchPC3: @ 81FB0E7

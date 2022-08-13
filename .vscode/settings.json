@@ -15,42 +15,51 @@
 		"editor.rulers": [12, 55]
 	},
 	"cSpell.words": [
-		"Alola",
-		"Alolan",
 		"ANIMCMD",
 		"anims",
 		"BGCNT",
-		"Brawly",
-		"Briney",
+		"Cutscene",
 		"dex",
+		"enroute",
 		"EWRAM",
-		"fadedefaultbgm",
-		"fadenewbgm",
-		"Flannery",
 		"gbapal",
-		"Guzma",
-		"Guzma's",
-		"Hoenn",
-		"Hoenn's",
 		"HOFS",
-		"Lusamine",
-		"Malasada",
-		"Malie",
-		"markasdialog",
+		"ITEMFINDER",
+		"LEGENDARIES",
+		"NPCS",
+		"OPPO",
 		"PKMN",
-		"playse",
-		"Pok",
-		"Poké",
-		"Pokédex",
+		"POKEBLOCKS",
+		"POKECENTER",
 		"rodata",
-		"Teala",
-		"Treecko",
+		"teleporter",
+		"teleporters",
 		"VBLANK",
-		"Verdanturf",
-		"VOFS",
-		"Winona"
+		"VOFS"
 	],
-	"cSpell.allowCompoundWords": true,
+	"cSpell.dictionaries": [ "scrcmd", "names", "onomatopoeia" ],
+	"cSpell.dictionaryDefinitions": [
+		{
+			"name": "scrcmd",
+			"path": "./.vscode/scrcmd.dict.txt",
+			"scope": "folder",
+			"addWords": true
+		},
+		{
+			"name": "names",
+			"path": "./.vscode/names.dict.txt",
+			"scope": "folder",
+			"addWords": true
+		},
+		{
+			"name": "onomatopoeia",
+			"path": "./.vscode/onomatopoeia.dict.txt",
+			"scope": "folder",
+			"noSuggest": true,
+			"addWords": true
+		}
+	],
+	// "cSpell.allowCompoundWords": true,
 	"cSpell.enableFiletypes": [
 		"arm"
 	]

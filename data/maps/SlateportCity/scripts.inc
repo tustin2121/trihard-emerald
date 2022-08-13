@@ -367,7 +367,7 @@ SlateportCity_EventScript_TentGuy:: @ 81DCEB8
 	end
 SlateportCity_Text_1DDA34: @ 81DDA34
 	.string "Wroooar! I'm going to compete in\n"
-	.string "the Battle Tent, too!\p"
+	.string "the {POKEMON} Contests, too!\p"
 	.string "But before that, I need to catch\n"
 	.string "some Pokémon!$"
 SlateportCity_EventScript_1DCECF:: @ 81DCECF
@@ -453,7 +453,7 @@ SlateportCity_EventScript_NameRaterGuy:: @ 81DCFBB
 	goto_if_set FLAG_TEMP_5, SlateportCity_EventScript_NameRaterGuy2
 	msgbox SlateportCity_Text_NameRaterGuy, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_5
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	release
 	end
 SlateportCity_EventScript_NameRaterGuy2:
@@ -778,7 +778,7 @@ SlateportCity_EventScript_AquaMember6:: @ 81DD153
 	msgbox_selected
 	closemessage
 	setflag FLAG_TEMP_6
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	faceoriginaldir
 	release
 	end
@@ -908,7 +908,7 @@ SlateportCity_Text_1DDF32:
 	.string "behind me. We should be going in soon.$"
 
 @ -----------------------------------------------------
-@ Cutscene: Entering the Musaem
+@ Cutscene: Entering the Museum
 
 #define LID_BEHIND 31
 #define LID_BOY 32
@@ -1356,15 +1356,17 @@ SlateportCity_EventScript_1DD3C0:: @ 81DD3C0
 	release
 	end
 SlateportCity_Text_1DED27: @ 81DED27
-	.string "I recently had machines installed at\n"
-	.string "Pokémon Centers for crushing berries.\p"
-	.string "The berry crush machines are at\n"
-	.string "the direct corner upstairs.\p"
+	.string "I recently applied to have machines\n"
+	.string "installed at Centers for crushing berries.\p"
+	.string "The berry crush machines would be in\n"
+	.string "the {PLACE}Trainer's Lounge{END} upstairs.\p"
 	.string "Did you know?\p"
 	.string "Could you make Berry Powder for\n"
 	.string "me using those machines?\p"
-	.string "I can make you all sorts of medicine\n"
-	.string "if you bring me lots of Berry Powder.$"
+	.string "Any day now, the Hoenn General Council\n"
+	.string "will approve my petition.$"
+	@ .string "I can make you all sorts of medicine\n"
+	@ .string "if you bring me lots of Berry Powder.$"
 
 SlateportCity_EventScript_1DD3CA:: @ 81DD3CA
 	message SlateportCity_Text_1DEE67

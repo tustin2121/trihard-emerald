@@ -135,7 +135,7 @@ EverGrandeCity_ChampionsRoom_Text_ChampTalk1:
 	.string "said you helped stop the Sootopolis\l"
 	.string "City incident.\p"
 	.string "I don't know how true these rumors are,\n"
-	.string "but they make for facinating TV.\p"
+	.string "but they make for fascinating TV.\p"
 	.string "You did manage to make it this far\n"
 	.string "in the Elite Four Conference.\p"
 	.string "Tell me. What drives you so?\p"
@@ -413,7 +413,7 @@ EverGrandeCity_ChampionsRoom_EventScript_DoFriendScene1:
 EverGrandeCity_ChampionsRoom_Text_Friend1A:
 	.string "{AQUA_BOY}: Congratulations, {PLAYER}!\n"
 	.string "I knew you could do it!\p"
-	.string "Even with all that roumor stuff,\n"
+	.string "Even with all that rumor stuff,\n"
 	.string "you still came out on top!\p"
 	.string "You beat them! You beat them all!$"
 EverGrandeCity_ChampionsRoom_Text_Friend1B:

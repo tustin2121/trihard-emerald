@@ -351,7 +351,7 @@ LittlerootTown_EventScript_RandomBoy:: @ 81E802B
 	waitmovement 0
 	waitmessage
 	waitbuttonpress
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	setflag FLAG_TEMP_5
 	release
 	end

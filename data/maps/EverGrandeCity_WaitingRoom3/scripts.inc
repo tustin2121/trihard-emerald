@@ -60,7 +60,7 @@ EverGrandeCity_WaitingRoom3_Text_TVs:
 	.string "once part of Team Aqua, but that {PLAYER_they}\l"
 	.string "was a rogue agent that helped stop\l"
 	.string "the beasts and save the region!\p"
-	.string "If these roumors are true, it's possible\n"
+	.string "If these rumors are true, it's possible\n"
 	.string "we may be seeing a new rising star!\l"
 	.string "Possibly even the next champion!$"
 EverGrandeCity_WaitingRoom3_SignScript_TVsA:
@@ -78,7 +78,7 @@ EverGrandeCity_WaitingRoom3_Text_TVsA:
 	.string "that were wreaking havoc in the region.\p"
 	.string "{PLAYER_They} did it SINGLEHANDEDLY, as told\n"
 	.string "by multiple eyewitness accounts!\p"
-	.string "If these roumors are true, we're sure to\n"
+	.string "If these rumors are true, we're sure to\n"
 	.string "see {PLAYER} shoot to the top of this\l"
 	.string "Conference, to the Championship!$"
 EverGrandeCity_WaitingRoom3_SignScript_TVs2:

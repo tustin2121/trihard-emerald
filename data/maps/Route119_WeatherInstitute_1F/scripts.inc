@@ -323,7 +323,7 @@ Route119_WeatherInstitute_1F_EventScript_BedDuring:
 	@ Player does just that
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	addvar VAR_SLEPT_DURING_WI_HEIST, 1
 	setvar VAR_TEMP_2, 1
 	call Common_EventScript_OutOfCenterPartyHeal

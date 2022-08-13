@@ -53,7 +53,7 @@
 #define GAME_STAT_ENTERED_HOT_SPRINGS       49
 #define GAME_STAT_NUM_UNION_ROOM_BATTLES    50
 #define GAME_STAT_51                        51 //Related to berry crush
-#define GAME_STAT_NUM_NPCS_HARRASSED        52
+#define GAME_STAT_NUM_NPCS_HARASSED        52
 #define GAME_STAT_NUM_OPPO_CASUALTIES       53
 #define GAME_STAT_NUM_PARTY_CASUALTIES      54
 #define GAME_STAT_NUM_THINGS_STOLEN         55

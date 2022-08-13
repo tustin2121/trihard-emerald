@@ -161,7 +161,7 @@ AquaHideout_1F_Text_Bailey_PostEscape1:
 	.string "I just saw that visor kid run out of\n"
 	.string "here really fast. Did you do that?\p"
 	.string "Good job. You held him off long enough\n"
-	.string "for the boss to get the preperations\l"
+	.string "for the boss to get the preparations\l"
 	.string "done and head out to sea.\p"
 	.string "You… didn't get the chance to tell him\n"
 	.string "about Groudon, did you?\p"

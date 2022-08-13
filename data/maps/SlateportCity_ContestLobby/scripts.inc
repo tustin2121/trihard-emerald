@@ -143,7 +143,7 @@ SlateportCity_ContestLobby_IdolGirlPC_Text_Letter3:
 	.string "It's not that I'm embarassed…$"
 SlateportCity_ContestLobby_IdolGirlPC_LetterGive4:
 	msgbox SlateportCity_ContestLobby_IdolGirlPC_Text_Letter4, MSGBOX_CDIALOG
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	faceoriginaldir
 	release
 	end

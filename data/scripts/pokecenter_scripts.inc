@@ -417,7 +417,7 @@ PokemonCenter_1F_EventScript_FreePokeballCounter_DenyCutoff:
 	waitmessage
 	waitbuttonpress
 	goto_if_set FLAG_TEMP_6, PokemonCenter_1F_EventScript_FreePokeballCounter_DenyCutoff_jump
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	setflag FLAG_TEMP_6 @fallthrough
 PokemonCenter_1F_EventScript_FreePokeballCounter_DenyCutoff_jump:
 	release

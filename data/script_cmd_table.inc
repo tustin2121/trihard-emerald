@@ -219,7 +219,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_cmdD8
 	.4byte ScrCmd_cmdD9
 	.4byte ScrCmd_cleanupbraillemessage
-	.4byte SrcCmd_messagesign
+	.4byte ScrCmd_messagesign
 	.4byte ScrCmd_fadescreenswapbuffers
 	.4byte ScrCmd_buffertrainerclassname
 	.4byte ScrCmd_buffertrainername

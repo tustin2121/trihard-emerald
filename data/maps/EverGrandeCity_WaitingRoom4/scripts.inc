@@ -67,7 +67,7 @@ EverGrandeCity_WaitingRoom4_EventScript_Logan::
 	msgbox EverGrandeCity_WaitingRoom4_Text_Logan, MSGBOX_NPC
 	applymovement THIS_EVENT, Common_Movement_FaceDown
 	waitmovement 0
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	setflag FLAG_TEMP_1
 	end
 EverGrandeCity_WaitingRoom4_Text_Logan:
@@ -95,7 +95,7 @@ EverGrandeCity_WaitingRoom4_EventScript_Person2::
 	msgbox EverGrandeCity_WaitingRoom4_Text_Person2, MSGBOX_NPC
 	end
 EverGrandeCity_WaitingRoom4_Text_Person2::
-	.string "Her incessent pacing… Ugh!\p"
+	.string "Her incessant pacing… Ugh!\p"
 	.string "It made it impossible for me to continue\n"
 	.string "to sit in my lucky corner.$"
 

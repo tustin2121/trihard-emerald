@@ -82,7 +82,7 @@
 	@ Take the item
 	giveitem_std \item, \num
 	setflag \flag
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, \num
 	.endm
 	
@@ -96,7 +96,7 @@
 	givemoney VAR_0x8001, 0
 	call Common_EventScript_ReportTheftMoney
 	setflag \flag
-	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
 	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, \num
 	.endm
 	

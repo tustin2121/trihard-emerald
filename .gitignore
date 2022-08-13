@@ -32,9 +32,12 @@ build/
 .vscode/ipch/
 porymap.*
 porymap.project.cfg
-.vscode/
+.vscode/*
 tools/binutils
 *.pyc
 tools/pgegen/pgegen
 *.ini
 gccdump.*
+
+!.vscode/*.dict.txt
+!.vscode/*.json

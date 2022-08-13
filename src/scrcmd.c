@@ -1377,7 +1377,7 @@ bool8 WaitForSignPopup(void)
     return !IsSignPoppedUp();
 }
 
-bool8 SrcCmd_messagesign(struct ScriptContext *ctx)
+bool8 ScrCmd_messagesign(struct ScriptContext *ctx)
 {
     struct WindowTemplate win;
     s32 i;

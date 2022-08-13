@@ -119,7 +119,7 @@ EverGrandeCity_WaitingRoom2_EventScript_Person3::
 	end
 EverGrandeCity_WaitingRoom2_Text_Person3::
 	.string "That's right, my little Pikaq!\p"
-	.string "Eat these protien cookies so you can\n"
+	.string "Eat these protein cookies so you can\n"
 	.string "be ready to battle anything!$"
 
 
