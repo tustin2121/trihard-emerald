@@ -1,9 +1,12 @@
 SafariZone_South_MapScripts:: @ 823D279
+	map_script MAP_SCRIPT_ON_LOAD, SafariZone_South_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, SafariZone_South_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, SafariZone_South_MapScript2_23D284
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, SafariZone_South_MapScript2_FrameTable
 	.byte 0
 
-SafariZone_South_MapScript2_23D284: @ 823D284
+@------------------------------------------------------
+
+SafariZone_South_MapScript2_FrameTable: @ 823D284
 	map_script_2 VAR_SAFARI_ZONE_STATE, 2, SafariZone_South_EventScript_23D28E
 	.2byte 0
 
@@ -18,6 +21,8 @@ SafariZone_South_EventScript_23D28E:: @ 823D28E
 	releaseall
 	end
 
+@------------------------------------------------------
+
 SafariZone_South_OnTransition: @ 823D2B1
 	compare VAR_SAFARI_ZONE_STATE, 2
 	call_if_eq SafariZone_South_EventScript_23D2BD
@@ -26,6 +31,18 @@ SafariZone_South_OnTransition: @ 823D2B1
 SafariZone_South_EventScript_23D2BD:: @ 823D2BD
 	setobjectxyperm 1, 31, 34
 	return
+
+@------------------------------------------------------
+
+SafariZone_South_OnLoad:
+	call_if_set FLAG_BADGE08_GET, SafariZone_South_HideExtentionGuards
+	end
+
+SafariZone_South_HideExtentionGuards:
+	setflag FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS
+	return
+
+@------------------------------------------------------
 
 SafariZone_South_Movement_23D2C5: @ 823D2C5
 	walk_down
