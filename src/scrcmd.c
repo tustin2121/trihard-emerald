@@ -55,6 +55,7 @@
 #include "constants/field_effects.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement_constants.h"
+#include "constants/map_scripts.h"
 
 
 typedef u16 (*SpecialFunc)(void);
@@ -2618,3 +2619,33 @@ bool8 ScrCmd_buffernumberstring2(struct ScriptContext *ctx)
     ConvertIntToNameStringN(sScriptStringVars[stringVarIndex], v1, 0, v2);
     return FALSE;
 }
+
+
+bool8 ScrCmd_checksteal(struct ScriptContext *ctx)
+{
+    u16 theftFlag = ScriptReadHalfword(ctx);
+    const u8* checkPtr;
+    
+    // If we've already stolen this thing, return false
+    if (FlagGet(theftFlag)) {
+        gSpecialVar_Result = FALSE;
+        return FALSE;
+    }
+    
+    // Check to see if there's a MAP_SCRIPT_STEAL_CHECK header
+    checkPtr = MapHeaderGetScriptTable(MAP_SCRIPT_STEAL_CHECK);
+    // If there isn't, try and get one setup with trysteal_setcheck
+    if (!checkPtr) {
+        checkPtr = (const u8*) ctx->data[3];
+    }
+    // Assume we are allowed to steal at this point
+    gSpecialVar_Result = TRUE;
+    // If we have a script, we are going to call it. If the script determines
+    // that we fail, it must handle the consequences, and either return with 
+    // VAR_RESULT=FALSE, or just release and end the script.
+    if (checkPtr > (const u8*)&Start) {
+        ScriptCall(ctx, checkPtr);
+    }
+    return FALSE;
+}
+

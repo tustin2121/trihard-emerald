@@ -66,16 +66,35 @@
 	.endm
 
 @ Convienence Macros
+	.macro trysteal_setcheck ptr:req
+	loadword 3, \ptr
+	.endm
 	
 	.macro trysteal item:req, num:req, flag:req
-	@ If already stolen from, exit
-	goto_if_set \flag, Common_EventScript_ReleaseEnd
+	@ Check if we can steal this item
+	checksteal \flag
+	compare VAR_RESULT, 0
+	goto_if_eq Common_EventScript_ReleaseEnd
 	@ Check space for item
 	checkitemspace \item, \num
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_FailTheftNoRoom
 	@ Take the item
 	giveitem_std \item, \num
+	setflag \flag
+	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
+	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, \num
+	.endm
+	
+	.macro trysteal_money amount:req, flag:req
+	@ Check if we can steal this item
+	checksteal \flag
+	compare VAR_RESULT, 0
+	goto_if_eq Common_EventScript_ReleaseEnd
+	@ Take the item
+	setvar VAR_0x8001, \amount
+	givemoney VAR_0x8001, 0
+	call Common_EventScript_ReportTheftMoney
 	setflag \flag
 	incrementgamestat GAME_STAT_NUM_NPCS_HARRASSED
 	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, \num

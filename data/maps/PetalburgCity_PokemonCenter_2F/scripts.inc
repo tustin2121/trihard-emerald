@@ -72,6 +72,7 @@ PetalburgCity_PokemonCenter_2F_EventScript_WalkedInOn::
 	@ applymovement 6, PetalburgCity_PokemonCenter_2F_Movement_WalkedInOn2
 	@ delay 4
 	warptodynamic
+	waitstate
 	end
 PetalburgCity_PokemonCenter_2F_Text_WalkedInOn:
 	.string "AAAIIIIIIIIEEEEEEEE!!!!!!!$"

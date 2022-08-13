@@ -1624,6 +1624,11 @@
 	.2byte \destination
 	.2byte \value
 	.endm
+	
+	.macro checksteal flag:req
+	.byte 0xe8
+	.2byte \flag
+	.endm
 
 @ Supplementary
 
@@ -1725,6 +1730,7 @@
 	MSGBOX_DIALOGUE = 12
 	MSGBOX_CDESCRIBE = 13
 	MSGBOX_CDIALOG = 14
+	@ Note: the C-types are "Cutscene" versions, which do not call lock/release
 	
     MSGTYPE_STANDARD = 1
     MSGTYPE_DIALOG = 2

@@ -9,12 +9,14 @@
 #include "pokemon.h"
 #include "random.h"
 #include "recorded_battle.h"
+#include "event_data.h"
 #include "util.h"
 #include "constants/abilities.h"
 #include "constants/battle_ai.h"
 #include "constants/battle_move_effects.h"
 #include "constants/moves.h"
 #include "constants/species.h"
+#include "constants/trainers.h"
 
 #define AI_ACTION_DONE          0x0001
 #define AI_ACTION_FLEE          0x0002
@@ -286,17 +288,26 @@ void BattleAI_HandleItemUseBeforeAISetup(u8 defaultScoreMoves)
 {
     s32 i;
     u8 *data = (u8 *)BATTLE_HISTORY;
+    bool8 allowItems;
 
     for (i = 0; i < sizeof(struct BattleHistory); i++)
         data[i] = 0;
 
     // Items are allowed to use in ONLY trainer battles.
-    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    allowItems = (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_BATTLE_TOWER
                                | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_SECRET_BASE | BATTLE_TYPE_FRONTIER
                                | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_x2000000)
             )
-       )
+        ;
+    
+    // TriHard Hack: Pheobe's steal check.
+    if (gTrainerBattleOpponent_A == TRAINER_PHOEBE)
+    {   // If phoebe's stuff was stolen by the player earlier, she can't use it here.
+        allowItems &= !FlagGet(FLAG_ITEM_STOLEN_FROM_PHOEBE);
+    }
+    
+    if (allowItems)
     {
         for (i = 0; i < 4; i++)
         {

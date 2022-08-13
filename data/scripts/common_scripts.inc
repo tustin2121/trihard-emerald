@@ -430,6 +430,43 @@ Common_EventScript_ClearSceneFlags::
 	clearflag FLAG_SCENE_FORCE_AQUA_THEME
 	return
 
+Common_EventScript_RestorePlayerFacing::
+	switch VAR_FACING
+	case DIR_SOUTH, Common_EventScript_RestorePlayerFacing_South
+	case DIR_NORTH, Common_EventScript_RestorePlayerFacing_North
+	case DIR_WEST, Common_EventScript_RestorePlayerFacing_West
+	case DIR_EAST, Common_EventScript_RestorePlayerFacing_East
+	return
+Common_EventScript_RestorePlayerFacing_South:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement EVENT_OBJ_ID_PLAYER
+	return
+Common_EventScript_RestorePlayerFacing_North:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement EVENT_OBJ_ID_PLAYER
+	return
+Common_EventScript_RestorePlayerFacing_West:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceLeft
+	waitmovement EVENT_OBJ_ID_PLAYER
+	return
+Common_EventScript_RestorePlayerFacing_East:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement EVENT_OBJ_ID_PLAYER
+	return
+
+@ -----------------------------------------------------
+@ Theft
+
+Common_EventScript_ReportTheftMoney::
+	buffernumberstring 0, VAR_0x8001
+	call Std_ObtainItem_PlayItemJingle
+	message gText_ObtainedMoney, MSGTYPE_DESCRIBE
+	waitfanfare
+	message gText_PlayerPutMoneyInBag, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	return
+
 Common_EventScript_FailTheftNoRoom::
 	msgbox Common_Text_FailTheftNoRoom, MSGBOX_DEFAULT
 	release
@@ -437,6 +474,9 @@ Common_EventScript_FailTheftNoRoom::
 Common_Text_FailTheftNoRoom:
 	.string "But then, you don't have the space\n"
 	.string "available anyway…$"
+
+@ -----------------------------------------------------
+@ Boat Transport
 
 #define MONEY_AMOUNT 100
 

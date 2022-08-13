@@ -10,7 +10,12 @@ EverGrandeCity_PhoebesRoom_OnLoad: @ 82281AA
 	call_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_E4Room_SetRoomPostBattle
 	compare VAR_ELITE_4_STATE, 2
 	call_if_eq EverGrandeCity_E4Room_SetRoomClosedDoorBehind
+	call_if_set FLAG_ITEM_STOLEN_FROM_PHOEBE, EverGrandeCity_PhoebesRoom_SetItemsStolen
 	end
+
+EverGrandeCity_PhoebesRoom_SetItemsStolen:
+	setobjectmovementtype 1, MOVEMENT_TYPE_LOOK_AROUND
+	return
 
 @ -----------------------------------------------------
 
@@ -35,8 +40,9 @@ EverGrandeCity_PhoebesRoom_EventScript_22819D:: @ 822819D
 
 EverGrandeCity_PhoebesRoom_EventScript_2281CB:: @ 82281CB
 	lock
-	faceplayer
 	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_2281F2
+	call_if_set FLAG_ITEM_STOLEN_FROM_PHOEBE, EverGrandeCity_PhoebesRoom_CommentItemsStolen
+	faceplayer
 	playbgm MUS_SITENNOU, 0
 	msgbox EverGrandeCity_PhoebesRoom_Text_22820E, MSGBOX_CDIALOG
 	setflag FLAG_DEATH_PREVENT
@@ -57,7 +63,13 @@ EverGrandeCity_PhoebesRoom_Text_228325: @ 8228325
 	.string "Oh, darn.\n"
 	.string "I've gone and lost.$"
 EverGrandeCity_PhoebesRoom_EventScript_2281F2:: @ 82281F2
+	faceplayer
+	goto_if_set FLAG_ITEM_STOLEN_FROM_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_2281F2_alt
 	msgbox EverGrandeCity_PhoebesRoom_Text_228343, MSGBOX_CDIALOG
+	release
+	end
+EverGrandeCity_PhoebesRoom_EventScript_2281F2_alt::
+	msgbox EverGrandeCity_PhoebesRoom_CommentItemsStolen_Text2, MSGBOX_CDIALOG
 	release
 	end
 EverGrandeCity_PhoebesRoom_EventScript_2281FC:: @ 82281FC
@@ -75,4 +87,17 @@ EverGrandeCity_PhoebesRoom_Text_228343: @ 8228343
 	.string "will carry you.\p"
 	.string "Go ahead through that door to the next\n"
 	.string "challenge.$"
+
+EverGrandeCity_PhoebesRoom_CommentItemsStolen:
+	msgbox EverGrandeCity_PhoebesRoom_CommentItemsStolen_Text, MSGBOX_CDIALOG
+	return
+EverGrandeCity_PhoebesRoom_CommentItemsStolen_Text:
+	.string "…I know I had more on me before…\n"
+	.string "Did someone steal some, or…?\p"
+	.string "Oh! Uh…!$"
+EverGrandeCity_PhoebesRoom_CommentItemsStolen_Text2:
+	.string "Where did my Full Restores go?\n"
+	.string "I'm losing battles because of this!\p"
+	.string "Guess I need to go grab more before\n"
+	.string "the next match…$"
 

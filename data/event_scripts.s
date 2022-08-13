@@ -2153,6 +2153,9 @@ gText_Mart_Goodbye:: @ 8272A3F
 gText_ObtainedTheItem:: @ 8272A78
 	.string "Scored {STR_VAR_1} {STR_VAR_2}!$"
 
+gText_ObtainedMoney::
+	.string "Scored ¥{STR_VAR_1}!$"
+
 gText_BagIsFull3:: @ 8272A89
 	.string "The bag is full…$"
 
@@ -2164,6 +2167,9 @@ gText_PlayerFoundOneItem:: @ 8272ABF
 
 gText_PlayerPutItemInBag:: @ 8272AEA
 	.string "{PLAYER} put away the {STR_VAR_2}\nin the bag.$"
+	
+gText_PlayerPutMoneyInBag::
+	.string "{PLAYER} stashed the money away\nin the bag.$"
 
 gUnknown_08272B09:: @ 8272B09
 	.string "Obtained the {STR_VAR_2}!$"

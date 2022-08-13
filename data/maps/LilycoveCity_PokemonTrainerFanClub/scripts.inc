@@ -5,7 +5,7 @@ LilycoveCity_PokemonTrainerFanClub_MapScripts:: @ 821C785
 
 LilycoveCity_FanClub_Stealspot::
 		lock
-		msgbox FallarborTown_ContestHall_Stealspot_Text, MSGBOX_DEFAULT
+		msgbox LilycoveCity_FanClub_Stealspot_Text, MSGBOX_DEFAULT
 		trysteal ITEM_LEMONADE, 2, FLAG_ITEM_STOLEN_LILYCOVE_FANCLUB
 		release
 		end

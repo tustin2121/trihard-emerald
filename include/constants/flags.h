@@ -1122,8 +1122,8 @@
 
 #define FLAG_HIDE_PETALBURG_CENTER_LOGAN                            0x493 // Trihard
 #define FLAG_ITEM_STOLEN_MARILL_DOLL                                0x494 // Trihard
-#define FLAG_ITEM_STOLEN_FROM_PHEOBE                                0x495 // Trihard
-#define FLAG_ITEM_STOLEN_FULL_RESTORES                              0x496 // Trihard
+#define FLAG_ITEM_STOLEN_FROM_PHOEBE                                0x495 // Trihard
+#define FLAG_ITEM_STOLEN_EVERGRANDE_SOUTH1                              0x496 // Trihard
 #define FLAG_ITEM_STOLEN_SNORLAX_DOLL                               0x497 // Trihard
 #define FLAG_ITEM_STOLEN_OCCUPIED_CUSHION                           0x498 // Trihard
 #define FLAG_MET_E4_JOEY                                            0x499 // Trihard
@@ -1503,7 +1503,7 @@
 #define FLAG_DAILY_0x95C                            (SYSTEM_FLAGS + 0xFC)
 #define FLAG_DAILY_0x95D                            (SYSTEM_FLAGS + 0xFD)
 #define FLAG_DAILY_0x95E                            (SYSTEM_FLAGS + 0xFE)
-#define FLAG_DAILY_0x95F                            (SYSTEM_FLAGS + 0xFF)
+#define FLAG_DAILY_STEALFAIL_EVERGRANDE_SOUTH1      (SYSTEM_FLAGS + 0xFF)
 
 // Special Flags (Unknown)
 #define SPECIAL_FLAGS_START                                        0x4000

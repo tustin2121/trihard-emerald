@@ -267,10 +267,6 @@ void DebugHandle_SetFlag()
 {
 	bool8 set = gDebugInterrupts.args[0];
 	u16 id = T2_READ_16(gDebugInterrupts.args + 2);
-	if (id > FLAG_DAILY_0x95F) {
-		DebugSetCallbackFailure();
-		return;
-	}
 	if (GetFlagPointer(id) == NULL) {
 		DebugSetCallbackFailure();
 		return;

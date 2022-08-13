@@ -34,9 +34,14 @@ EverGrandeCity_PokemonLeague_2F_Text_SleepingGirl:
 EverGrandeCity_PokemonLeague_2F_EventScript_SleepingGirlsBag::
 	lock
 	msgbox EverGrandeCity_PokemonLeague_2F_Text_SleepingGirlsBag, MSGBOX_DEFAULT
-	trysteal ITEM_FULL_RESTORE, 2, FLAG_ITEM_STOLEN_FROM_PHEOBE
+	trysteal ITEM_FULL_RESTORE, 2, FLAG_ITEM_STOLEN_FROM_PHOEBE
+	msgbox EverGrandeCity_PokemonLeague_2F_Text_SleepingGirlsBag2, MSGBOX_DEFAULT
 	release
 	end
 EverGrandeCity_PokemonLeague_2F_Text_SleepingGirlsBag:
-	.string "She's not gonna miss those…$"
+	.string "She's got a boat-load of these…\n"
+	.string "She won't miss a couple…$"
+EverGrandeCity_PokemonLeague_2F_Text_SleepingGirlsBag2:
+	.string "Man, who is this chick? She must be\n"
+	.string "some big hot shot with all this stuff.$"
 

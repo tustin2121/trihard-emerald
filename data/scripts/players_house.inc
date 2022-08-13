@@ -417,6 +417,7 @@ LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoNorman:
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_SIGN
 	msgbox LittlerootTown_PlayerHouse_1F_Text_LetterNorman1
 	giveitem_std ITEM_AMULET_COIN, 1
+	removeobject THIS_EVENT
 	setflag FLAG_DAILY_DADS_LETTER_REMOVED
 	setflag FLAG_DAD_LETTER_AMULET
 	release
@@ -434,6 +435,7 @@ LittlerootTown_PlayerHouse_1F_EventScript_Letter_DoStandard:
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_SIGN
 	msgbox LittlerootTown_PlayerHouse_1F_Text_LetterCommon
 	applymovement THIS_EVENT, Common_Movement_FaceDown
+	removeobject THIS_EVENT
 	setflag FLAG_DAILY_DADS_LETTER_REMOVED
 	release
 	end
