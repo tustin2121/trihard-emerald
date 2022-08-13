@@ -2630,7 +2630,7 @@ void sub_80DA8C8(u8 partyIndex)
     s16 cute;
     s16 smart;
     s16 tough;
-    u16 playerGraphicsIds[8] = {
+    u16 playerGraphicsIds[10] = {
         EVENT_OBJ_GFX_PROTAG_BOY1_NORMAL,
         EVENT_OBJ_GFX_PROTAG_GIRL1_NORMAL,
         EVENT_OBJ_GFX_PROTAG_BOY2_NORMAL,
@@ -2639,6 +2639,8 @@ void sub_80DA8C8(u8 partyIndex)
         EVENT_OBJ_GFX_PROTAG_GIRL3_NORMAL,
         EVENT_OBJ_GFX_PROTAG_BOY4_NORMAL,
         EVENT_OBJ_GFX_PROTAG_GIRL4_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY5_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL5_NORMAL,
     };
 
     StringCopy(name, gSaveBlock2Ptr->playerName);
@@ -5882,7 +5884,7 @@ void sub_80DFA08(struct ContestPokemon *mon, s32 language)
 
 void SetupPlayerSprite()
 {
-    u16 playerGraphicsIds[8] = {
+    u16 playerGraphicsIds[10] = {
         EVENT_OBJ_GFX_PROTAG_BOY1_NORMAL,
         EVENT_OBJ_GFX_PROTAG_GIRL1_NORMAL,
         EVENT_OBJ_GFX_PROTAG_BOY2_NORMAL,
@@ -5891,6 +5893,8 @@ void SetupPlayerSprite()
         EVENT_OBJ_GFX_PROTAG_GIRL3_NORMAL,
         EVENT_OBJ_GFX_PROTAG_BOY4_NORMAL,
         EVENT_OBJ_GFX_PROTAG_GIRL4_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY5_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL5_NORMAL,
     };
     VarSet(VAR_OBJ_GFX_ID_3, playerGraphicsIds[gSaveBlock2Ptr->playerForm]);
 }

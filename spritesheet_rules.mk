@@ -247,7 +247,67 @@ $(EVENTOBJGFXDIR)/people/protaggirl4/watering.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/people/protaggirl4/underwater.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+# TODO {PROTAG5_GRAPHICS}
+#$(EVENTOBJGFXDIR)/people/protagboy5/walking.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 2 -mheight 4
 
+#$(EVENTOBJGFXDIR)/people/protagboy5/running.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+#$(EVENTOBJGFXDIR)/people/protagboy5/decorating.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protagboy5/field_move.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protagboy5/surfing.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protagboy5/mach_bike.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protagboy5/acro_bike.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protagboy5/fishing.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protagboy5/watering.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protagboy5/underwater.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/walking.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/running.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 2 -mheight 4
+	
+#$(EVENTOBJGFXDIR)/people/protaggirl5/decorating.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/field_move.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/surfing.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/mach_bike.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/acro_bike.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/fishing.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/watering.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+#$(EVENTOBJGFXDIR)/people/protaggirl5/underwater.4bpp: %.4bpp: %.png
+#	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 
 $(EVENTOBJGFXDIR)/people/brendan/walking.4bpp: %.4bpp: %.png

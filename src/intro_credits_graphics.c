@@ -52,8 +52,10 @@ static const u16 gIntro2LatiasPalette[] = INCBIN_U16("graphics/intro/intro2_lati
 static const u32 gIntro2LatiasTiles[] = INCBIN_U32("graphics/intro/intro2_latias.4bpp.lz");
 static const u16 gCreditsProtagMalePal[] = INCBIN_U16("graphics/credits/protagmale.gbapal");
 static const u32 gCreditsProtagMaleGfx[] = INCBIN_U32("graphics/credits/protagmale.4bpp.lz");
+static const u32 gCreditsProtagMale5Gfx[] = INCBIN_U32("graphics/credits/protagmale.4bpp.lz"); // TODO {PROTAG5_GRAPHICS}
 static const u16 gCreditsProtagFemalePal[] = INCBIN_U16("graphics/credits/protagfemale.gbapal");
 static const u32 gCreditsProtagFemaleGfx[] = INCBIN_U32("graphics/credits/protagfemale.4bpp.lz");
+static const u32 gCreditsProtagFemale5Gfx[] = INCBIN_U32("graphics/credits/protagfemale.4bpp.lz"); // TODO {PROTAG5_GRAPHICS}
 
 
 static void sub_817B62C(struct Sprite *sprite);
@@ -704,6 +706,26 @@ const struct CompressedSpriteSheet gCreditsProtagFemaleSpriteSheet[] =
     {}
 };
 
+const struct CompressedSpriteSheet gCreditsProtagMale5SpriteSheet[] =
+{
+    {
+        .data = gCreditsProtagMale5Gfx,
+        .size = 0x3800,
+        .tag = 1006
+    },
+    {}
+};
+
+const struct CompressedSpriteSheet gCreditsProtagFemale5SpriteSheet[] =
+{
+    {
+        .data = gCreditsProtagFemale5Gfx,
+        .size = 0x3800,
+        .tag = 1007
+    },
+    {}
+};
+
 const struct CompressedSpriteSheet gCreditsBikeSpriteSheet[] =
 {
     {
@@ -1156,7 +1178,12 @@ u8 intro_create_may_sprite(s16 x, s16 y)
 u8 credits_create_maleprotag_sprite(s16 x, s16 y)
 {
     u8 sprite = CreateSprite(&sMaleProtagBikeSpriteTemplate, x, y, 2);
-    u8 rider = CreateSprite(&sMaleProtagRiderSpriteTemplate, x, y + 8, 3);
+    u8 rider;
+    // if ((gSaveBlock2Ptr->playerForm >> 1) == 4) {
+    //     rider = CreateSprite(&sMaleProtag5RiderSpriteTemplate, x, y + 8, 3);
+    // } else {
+        rider = CreateSprite(&sMaleProtagRiderSpriteTemplate, x, y + 8, 3);
+    // }
     gSprites[rider].data[0] = sprite;
     return sprite;
 }
@@ -1164,7 +1191,12 @@ u8 credits_create_maleprotag_sprite(s16 x, s16 y)
 u8 credits_create_femaleprotag_sprite(s16 x, s16 y)
 {
     u8 sprite = CreateSprite(&sFemaleProtagBikeSpriteTemplate, x, y, 2);
-    u8 rider = CreateSprite(&sFemaleProtagRiderSpriteTemplate, x, y + 8, 3);
+    u8 rider;
+    // if ((gSaveBlock2Ptr->playerForm >> 1) == 4) {
+    //     rider = CreateSprite(&sFemaleProtag5RiderSpriteTemplate, x, y + 8, 3);
+    // } else {
+        rider = CreateSprite(&sFemaleProtagRiderSpriteTemplate, x, y + 8, 3);
+    // }
     gSprites[rider].data[0] = sprite;
     return sprite;
 }

@@ -767,7 +767,7 @@ static void LoadCableCarSprites(void)
     u8 spriteId;
     u8 i;
 
-    u16 playerGraphicsIds[8] = {
+    u16 playerGraphicsIds[10] = {
         EVENT_OBJ_GFX_PROTAG_BOY1_NORMAL,
         EVENT_OBJ_GFX_PROTAG_GIRL1_NORMAL,
         EVENT_OBJ_GFX_PROTAG_BOY2_NORMAL,
@@ -776,6 +776,8 @@ static void LoadCableCarSprites(void)
         EVENT_OBJ_GFX_PROTAG_GIRL3_NORMAL,
         EVENT_OBJ_GFX_PROTAG_BOY4_NORMAL,
         EVENT_OBJ_GFX_PROTAG_GIRL4_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_BOY5_NORMAL,
+        EVENT_OBJ_GFX_PROTAG_GIRL5_NORMAL,
     };
     u16 rval = Random();
     u16 hikerGraphicsIds[4] = {

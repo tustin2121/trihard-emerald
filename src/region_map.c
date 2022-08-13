@@ -115,10 +115,12 @@ static const u8 sRegionMapPlayerIconGfx_ProtagMale1[] = INCBIN_U8("graphics/even
 static const u8 sRegionMapPlayerIconGfx_ProtagMale2[] = INCBIN_U8("graphics/event_objects/pics/people/protagboy2/map_head.4bpp");
 static const u8 sRegionMapPlayerIconGfx_ProtagMale3[] = INCBIN_U8("graphics/event_objects/pics/people/protagboy3/map_head.4bpp");
 static const u8 sRegionMapPlayerIconGfx_ProtagMale4[] = INCBIN_U8("graphics/event_objects/pics/people/protagboy4/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagMale5[] = INCBIN_U8("graphics/event_objects/pics/people/protagboy4/map_head.4bpp"); // TODO {PROTAG5_GRAPHICS}
 static const u8 sRegionMapPlayerIconGfx_ProtagFemale1[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl1/map_head.4bpp");
 static const u8 sRegionMapPlayerIconGfx_ProtagFemale2[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl2/map_head.4bpp");
 static const u8 sRegionMapPlayerIconGfx_ProtagFemale3[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl3/map_head.4bpp");
 static const u8 sRegionMapPlayerIconGfx_ProtagFemale4[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl4/map_head.4bpp");
+static const u8 sRegionMapPlayerIconGfx_ProtagFemale5[] = INCBIN_U8("graphics/event_objects/pics/people/protaggirl4/map_head.4bpp"); // TODO {PROTAG5_GRAPHICS}
 static const u16 sRegionMapPlayerIconPal_ProtagMale[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag.gbapal");
 static const u16 sRegionMapPlayerIconPal_ProtagFemale[] = INCBIN_U16("graphics/event_objects/palettes/field_object_palette_protag.gbapal");
 
@@ -133,8 +135,12 @@ static const u8* const sRegionMapPlayerIcon_Gfx[] = {
     sRegionMapPlayerIconGfx_ProtagFemale3,
     sRegionMapPlayerIconGfx_ProtagMale4,
     sRegionMapPlayerIconGfx_ProtagFemale4,
+    sRegionMapPlayerIconGfx_ProtagMale5,
+    sRegionMapPlayerIconGfx_ProtagFemale5,
 };
 static const u16* const sRegionMapPlayerIcon_Pal[] = {
+    sRegionMapPlayerIconPal_ProtagMale,
+    sRegionMapPlayerIconPal_ProtagFemale,
     sRegionMapPlayerIconPal_ProtagMale,
     sRegionMapPlayerIconPal_ProtagFemale,
     sRegionMapPlayerIconPal_ProtagMale,

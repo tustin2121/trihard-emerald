@@ -70,6 +70,24 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl4_Underw
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl4_Fishing;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl4_Watering;
 
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_Normal;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_MachBike;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_AcroBike;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_Surfing;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_FieldMove;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_Underwater;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_Fishing;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_Watering;
+
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_Normal;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_MachBike;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_AcroBike;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_Surfing;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_FieldMove;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_Underwater;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_Fishing;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_Watering;
+
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy_Decorating;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl_Decorating;
 
@@ -81,6 +99,8 @@ const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy3_Decorat
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl3_Decorating;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy4_Decorating;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl4_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagBoy5_Decorating;
+const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_ProtagGirl5_Decorating;
 
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_RivalBrendanNormal;
 const struct EventObjectGraphicsInfo gEventObjectGraphicsInfo_RivalBrendanMachBike;
@@ -396,6 +416,23 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     [EVENT_OBJ_GFX_PROTAG_GIRL4_FISHING]    = &gEventObjectGraphicsInfo_ProtagGirl4_Fishing,
     [EVENT_OBJ_GFX_PROTAG_GIRL4_WATERING]   = &gEventObjectGraphicsInfo_ProtagGirl4_Watering,
     
+    [EVENT_OBJ_GFX_PROTAG_BOY5_NORMAL]      = &gEventObjectGraphicsInfo_ProtagBoy5_Normal,
+    [EVENT_OBJ_GFX_PROTAG_BOY5_MACH_BIKE]   = &gEventObjectGraphicsInfo_ProtagBoy5_MachBike,
+    [EVENT_OBJ_GFX_PROTAG_BOY5_ACRO_BIKE]   = &gEventObjectGraphicsInfo_ProtagBoy5_AcroBike,
+    [EVENT_OBJ_GFX_PROTAG_BOY5_SURFING]     = &gEventObjectGraphicsInfo_ProtagBoy5_Surfing,
+    [EVENT_OBJ_GFX_PROTAG_BOY5_FIELD_MOVE]  = &gEventObjectGraphicsInfo_ProtagBoy5_FieldMove,
+    [EVENT_OBJ_GFX_PROTAG_BOY5_UNDERWATER]  = &gEventObjectGraphicsInfo_ProtagBoy5_Underwater,
+    [EVENT_OBJ_GFX_PROTAG_BOY5_FISHING]     = &gEventObjectGraphicsInfo_ProtagBoy5_Fishing,
+    [EVENT_OBJ_GFX_PROTAG_BOY5_WATERING]    = &gEventObjectGraphicsInfo_ProtagBoy5_Watering,
+    [EVENT_OBJ_GFX_PROTAG_GIRL5_NORMAL]     = &gEventObjectGraphicsInfo_ProtagGirl5_Normal,
+    [EVENT_OBJ_GFX_PROTAG_GIRL5_MACH_BIKE]  = &gEventObjectGraphicsInfo_ProtagGirl5_MachBike,
+    [EVENT_OBJ_GFX_PROTAG_GIRL5_ACRO_BIKE]  = &gEventObjectGraphicsInfo_ProtagGirl5_AcroBike,
+    [EVENT_OBJ_GFX_PROTAG_GIRL5_SURFING]    = &gEventObjectGraphicsInfo_ProtagGirl5_Surfing,
+    [EVENT_OBJ_GFX_PROTAG_GIRL5_FIELD_MOVE] = &gEventObjectGraphicsInfo_ProtagGirl5_FieldMove,
+    [EVENT_OBJ_GFX_PROTAG_GIRL5_UNDERWATER] = &gEventObjectGraphicsInfo_ProtagGirl5_Underwater,
+    [EVENT_OBJ_GFX_PROTAG_GIRL5_FISHING]    = &gEventObjectGraphicsInfo_ProtagGirl5_Fishing,
+    [EVENT_OBJ_GFX_PROTAG_GIRL5_WATERING]   = &gEventObjectGraphicsInfo_ProtagGirl5_Watering,
+    
     [EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL]    = &gEventObjectGraphicsInfo_RivalBrendanNormal,
     [EVENT_OBJ_GFX_RIVAL_BRENDAN_MACH_BIKE] = &gEventObjectGraphicsInfo_RivalBrendanMachBike,
     [EVENT_OBJ_GFX_RIVAL_BRENDAN_ACRO_BIKE] = &gEventObjectGraphicsInfo_RivalBrendanAcroBike,
@@ -413,8 +450,8 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     [EVENT_OBJ_GFX_RIVAL_MAY_FISHING]       = &gEventObjectGraphicsInfo_RivalMayNormal, //Placeholder
     [EVENT_OBJ_GFX_RIVAL_MAY_WATERING]      = &gEventObjectGraphicsInfo_RivalMayNormal, //Placeholder
     
-    [EVENT_OBJ_GFX_DECORATING_BRENDAN]      = &gEventObjectGraphicsInfo_ProtagBoy_Decorating, //TODO REMOVE
-    [EVENT_OBJ_GFX_DECORATING_MAY]          = &gEventObjectGraphicsInfo_ProtagGirl_Decorating, //TODO REMOVE
+//  [EVENT_OBJ_GFX_DECORATING_BRENDAN]      = &gEventObjectGraphicsInfo_ProtagBoy_Decorating, //TODO REMOVE
+//  [EVENT_OBJ_GFX_DECORATING_MAY]          = &gEventObjectGraphicsInfo_ProtagGirl_Decorating, //TODO REMOVE
     [EVENT_OBJ_GFX_LINK_BRENDAN]            = &gEventObjectGraphicsInfo_LinkBrendan,
     [EVENT_OBJ_GFX_LINK_MAY]                = &gEventObjectGraphicsInfo_LinkMay,
     [EVENT_OBJ_GFX_RED]                     = &gEventObjectGraphicsInfo_Red,
@@ -429,6 +466,8 @@ const struct EventObjectGraphicsInfo *const gEventObjectGraphicsInfoPointers[] =
     [EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL3] = &gEventObjectGraphicsInfo_ProtagGirl3_Decorating,
     [EVENT_OBJ_GFX_DECORATING_PROTAG_BOY4]  = &gEventObjectGraphicsInfo_ProtagBoy4_Decorating,
     [EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL4] = &gEventObjectGraphicsInfo_ProtagGirl4_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_BOY5]  = &gEventObjectGraphicsInfo_ProtagBoy5_Decorating,
+    [EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL5] = &gEventObjectGraphicsInfo_ProtagGirl5_Decorating,
     
     [EVENT_OBJ_GFX_NINJA_BOY]               = &gEventObjectGraphicsInfo_NinjaBoy,
     [EVENT_OBJ_GFX_TWIN]                    = &gEventObjectGraphicsInfo_Twin,

@@ -106,4 +106,6 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_PROTAG_FEMALE_3]   = sAnims_GeneralTrainerUnanimated,
     [TRAINER_PIC_PROTAG_MALE_4]     = sAnims_GeneralTrainerUnanimated,
     [TRAINER_PIC_PROTAG_FEMALE_4]   = sAnims_GeneralTrainerUnanimated,
+    [TRAINER_PIC_PROTAG_MALE_5]     = sAnims_GeneralTrainerUnanimated,
+    [TRAINER_PIC_PROTAG_FEMALE_5]   = sAnims_GeneralTrainerUnanimated,
 };

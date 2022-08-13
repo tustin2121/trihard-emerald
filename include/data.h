@@ -90,10 +90,12 @@ extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale1[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale2[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale3[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale4[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale5[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale1[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale2[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale3[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale4[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale5[];
 
 extern const union AffineAnimCmd *const gUnknown_082FF618[];
 extern const union AffineAnimCmd *const gUnknown_082FF694[];

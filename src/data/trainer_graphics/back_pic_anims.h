@@ -130,8 +130,10 @@ const union AnimCmd *const *const gTrainerBackAnimsPtrTable[] =
     [TRAINER_BACK_PIC_PROTAG_MALE_2] = sBackAnims_Brendan,
     [TRAINER_BACK_PIC_PROTAG_MALE_3] = sBackAnims_Brendan,
     [TRAINER_BACK_PIC_PROTAG_MALE_4] = sBackAnims_Brendan,
+    [TRAINER_BACK_PIC_PROTAG_MALE_5] = sBackAnims_Brendan,
     [TRAINER_BACK_PIC_PROTAG_FEMALE_1] = sBackAnims_May,
     [TRAINER_BACK_PIC_PROTAG_FEMALE_2] = sBackAnims_May,
     [TRAINER_BACK_PIC_PROTAG_FEMALE_3] = sBackAnims_May,
     [TRAINER_BACK_PIC_PROTAG_FEMALE_4] = sBackAnims_May,
+    [TRAINER_BACK_PIC_PROTAG_FEMALE_5] = sBackAnims_May,
 };

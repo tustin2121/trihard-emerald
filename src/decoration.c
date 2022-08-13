@@ -1364,30 +1364,16 @@ void SetUpPlacingDecorationPlayerAvatar(u8 taskId, struct PlaceDecorationGraphic
     
     switch (gSaveBlock2Ptr->playerForm)
     {
-        case 0:
-            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY1, SpriteCallbackDummy, x, 72, 0);
-            break;
-        case 1:
-            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL1, SpriteCallbackDummy, x, 72, 0);
-            break;
-        case 2:
-            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY2, SpriteCallbackDummy, x, 72, 0);
-            break;
-        case 3:
-            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL2, SpriteCallbackDummy, x, 72, 0);
-            break;
-        case 4:
-            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY3, SpriteCallbackDummy, x, 72, 0);
-            break;
-        case 5:
-            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL3, SpriteCallbackDummy, x, 72, 0);
-            break;
-        case 6:
-            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY4, SpriteCallbackDummy, x, 72, 0);
-            break;
-        case 7:
-            sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL4, SpriteCallbackDummy, x, 72, 0);
-            break;
+        case 0: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY1,  SpriteCallbackDummy, x, 72, 0); break;
+        case 1: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL1, SpriteCallbackDummy, x, 72, 0); break;
+        case 2: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY2,  SpriteCallbackDummy, x, 72, 0); break;
+        case 3: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL2, SpriteCallbackDummy, x, 72, 0); break;
+        case 4: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY3,  SpriteCallbackDummy, x, 72, 0); break;
+        case 5: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL3, SpriteCallbackDummy, x, 72, 0); break;
+        case 6: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY4,  SpriteCallbackDummy, x, 72, 0); break;
+        case 7: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL4, SpriteCallbackDummy, x, 72, 0); break;
+        case 8: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY5,  SpriteCallbackDummy, x, 72, 0); break;
+        case 9: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL5, SpriteCallbackDummy, x, 72, 0); break;
     }
 
     gSprites[sDecor_CameraSpriteObjectIdx2].oam.priority = 1;
@@ -2271,11 +2257,24 @@ void SetUpPuttingAwayDecorationPlayerAvatar(void)
     sub_812A39C();
     gFieldCamera.spriteId = CreateSprite(&gUnknown_085A7404, 120, 80, 0);
     //TODO: MULTIFORM PLAYER GetPlayerGender()
-    if (GetPlayerGender() == MALE)
-        sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_BRENDAN, SpriteCallbackDummy, 136, 72, 0);
-    else
-        sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_MAY, SpriteCallbackDummy, 136, 72, 0);
+    // if (GetPlayerGender() == MALE)
+    //     sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_BRENDAN, SpriteCallbackDummy, 136, 72, 0);
+    // else
+    //     sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_MAY, SpriteCallbackDummy, 136, 72, 0);
 
+    switch (gSaveBlock2Ptr->playerForm)
+    {
+        case 0: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY1,  SpriteCallbackDummy, 136, 72, 0); break;
+        case 1: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL1, SpriteCallbackDummy, 136, 72, 0); break;
+        case 2: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY2,  SpriteCallbackDummy, 136, 72, 0); break;
+        case 3: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL2, SpriteCallbackDummy, 136, 72, 0); break;
+        case 4: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY3,  SpriteCallbackDummy, 136, 72, 0); break;
+        case 5: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL3, SpriteCallbackDummy, 136, 72, 0); break;
+        case 6: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY4,  SpriteCallbackDummy, 136, 72, 0); break;
+        case 7: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL4, SpriteCallbackDummy, 136, 72, 0); break;
+        case 8: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_BOY5,  SpriteCallbackDummy, 136, 72, 0); break;
+        case 9: sDecor_CameraSpriteObjectIdx2 = AddPseudoEventObject(EVENT_OBJ_GFX_DECORATING_PROTAG_GIRL5, SpriteCallbackDummy, 136, 72, 0); break;
+    }
     gSprites[sDecor_CameraSpriteObjectIdx2].oam.priority = 1;
     DestroySprite(&gSprites[sDecor_CameraSpriteObjectIdx1]);
     sDecor_CameraSpriteObjectIdx1 = gFieldCamera.spriteId;

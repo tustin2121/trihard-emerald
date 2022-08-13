@@ -78,6 +78,14 @@ const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale4[] =
     gTrainerBackPic_ProtagMale4 + 0x1800, 0x0800,
 };
 
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagMale5[] =
+{
+    gTrainerBackPic_ProtagMale5, 0x0800,
+    gTrainerBackPic_ProtagMale5 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagMale5 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagMale5 + 0x1800, 0x0800,
+};
+
 const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale1[] =
 {
     gTrainerBackPic_ProtagFemale1, 0x0800,
@@ -108,6 +116,14 @@ const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale4[] =
     gTrainerBackPic_ProtagFemale4 + 0x0800, 0x0800,
     gTrainerBackPic_ProtagFemale4 + 0x1000, 0x0800,
     gTrainerBackPic_ProtagFemale4 + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_ProtagFemale5[] =
+{
+    gTrainerBackPic_ProtagFemale5, 0x0800,
+    gTrainerBackPic_ProtagFemale5 + 0x0800, 0x0800,
+    gTrainerBackPic_ProtagFemale5 + 0x1000, 0x0800,
+    gTrainerBackPic_ProtagFemale5 + 0x1800, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Brendan[] =

@@ -12,10 +12,12 @@ const struct MonCoords gTrainerBackPicCoords[] =
     [TRAINER_BACK_PIC_PROTAG_MALE_2] = {.size = 8, .y_offset = 4},
     [TRAINER_BACK_PIC_PROTAG_MALE_3] = {.size = 8, .y_offset = 4},
     [TRAINER_BACK_PIC_PROTAG_MALE_4] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_PROTAG_MALE_5] = {.size = 8, .y_offset = 4},
     [TRAINER_BACK_PIC_PROTAG_FEMALE_1] = {.size = 8, .y_offset = 4},
     [TRAINER_BACK_PIC_PROTAG_FEMALE_2] = {.size = 8, .y_offset = 4},
     [TRAINER_BACK_PIC_PROTAG_FEMALE_3] = {.size = 8, .y_offset = 4},
     [TRAINER_BACK_PIC_PROTAG_FEMALE_4] = {.size = 8, .y_offset = 4},
+    [TRAINER_BACK_PIC_PROTAG_FEMALE_5] = {.size = 8, .y_offset = 4},
 };
 
 // this table goes functionally unused, since none of these pics are compressed
@@ -39,6 +41,8 @@ const struct CompressedSpriteSheet gTrainerBackPicTable[] =
     (const u32 *)gTrainerBackPicTable_ProtagFemale3, 0x2000, TRAINER_BACK_PIC_PROTAG_MALE_3,
     (const u32 *)gTrainerBackPicTable_ProtagMale4, 0x2000, TRAINER_BACK_PIC_PROTAG_MALE_4,
     (const u32 *)gTrainerBackPicTable_ProtagFemale4, 0x2000, TRAINER_BACK_PIC_PROTAG_MALE_4,
+    (const u32 *)gTrainerBackPicTable_ProtagMale5, 0x2000, TRAINER_BACK_PIC_PROTAG_MALE_5,
+    (const u32 *)gTrainerBackPicTable_ProtagFemale5, 0x2000, TRAINER_BACK_PIC_PROTAG_MALE_5,
 };
 
 const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
@@ -59,4 +63,6 @@ const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
     TRAINER_BACK_PAL(PROTAG_FEMALE_3, gTrainerBackPicPalette_ProtagFemale),
     TRAINER_BACK_PAL(PROTAG_MALE_4, gTrainerBackPicPalette_ProtagMale),
     TRAINER_BACK_PAL(PROTAG_FEMALE_4, gTrainerBackPicPalette_ProtagFemale),
+    TRAINER_BACK_PAL(PROTAG_MALE_5, gTrainerBackPicPalette_ProtagMale),
+    TRAINER_BACK_PAL(PROTAG_FEMALE_5, gTrainerBackPicPalette_ProtagFemale),
 };
