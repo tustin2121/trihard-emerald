@@ -17,6 +17,7 @@ Guzma's
 Hoenn
 Hoenn's
 Kiri
+Kyogre
 Lilycove
 Littleroot
 Lusamine
@@ -27,6 +28,7 @@ Mauville
 Maxie
 Oldale
 Pikachu
+Plumeria
 Poké
 Pokédex
 Rustboro

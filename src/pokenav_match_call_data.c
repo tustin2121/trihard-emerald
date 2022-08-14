@@ -8,6 +8,8 @@
 #include "match_call.h"
 #include "pokenav.h"
 #include "constants/region_map_sections.h"
+#include "constants/maps.h"
+#include "constants/layouts.h"
 #include "constants/trainers.h"
 
 // NPC below means non-trainer character (no rematch or check page)
@@ -352,6 +354,12 @@ extern const u8 gText_Alex_Pokenav_Grandma[];
 extern const u8 gText_Alex_Pokenav_Magma[];
 extern const u8 gText_Alex_Pokenav_Stern[];
 extern const u8 gText_Alex_Pokenav_SternAfter[];
+extern const u8 gText_Alex_Pokenav_E4Day1[];
+extern const u8 gText_Alex_Pokenav_E4Day2[];
+extern const u8 gText_Alex_Pokenav_E4Day3[];
+extern const u8 gText_Alex_Pokenav_E4Day3_Hero[];
+extern const u8 gText_Alex_Pokenav_E4Day4[];
+extern const u8 gText_Alex_Pokenav_E4Day5[];
 
 static const match_call_text_data_t sAlexTextScripts_CatchingUp[] = {
     { gText_Alex_Pokenav_CatchUp,      0xFFFF,                              FLAG_ALEX_KNOWS_TO_R120 },
@@ -369,7 +377,7 @@ static const match_call_text_data_t sAlexTextScripts_CatchingUp[] = {
 static const match_call_text_data_t sAlexTextScripts_DuringLegendaries[] = {
     { gText_Alex_Pokenav_RainsBegan,   FLAG_LEGENDARIES_IN_SOOTOPOLIS, FLAG_ALEX_CALL_LEGENDARIES },
     { gText_Alex_Pokenav_MidResearch,  FLAG_ALEX_KNOWS_LEGENDARIES,    0xFFFF },
-    { gText_Alex_Pokenav_PostResearch, FLAG_ALEX_TOLD_SKY_PILLAR,     0xFFFF },
+    { gText_Alex_Pokenav_PostResearch, FLAG_ALEX_TOLD_SKY_PILLAR,      0xFFFF },
 //  { gText_Alex_Pokenav_Unavailable,  FLAG_DAILY_ALEX_CALL,           0xFFFF },
     { NULL,                            0xFFFF,                         0xFFFF }
 };
@@ -415,9 +423,22 @@ static void MatchCall_BufferCallMessageText_TopDown(const match_call_text_data_t
 
 static void MatchCall_GetMessage_Alex(match_call_t matchCall, u8* dest)
 {
+    // Handle E4 if the player is in there.
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_WAITING_ROOM1)) {
+        switch (gSaveBlock1Ptr->location.mapNum) {
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM1): StringExpandPlaceholders(dest, gText_Alex_Pokenav_E4Day1); return;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM2): StringExpandPlaceholders(dest, gText_Alex_Pokenav_E4Day2); return;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM4): StringExpandPlaceholders(dest, gText_Alex_Pokenav_E4Day4); return;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM5): StringExpandPlaceholders(dest, gText_Alex_Pokenav_E4Day5); return;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM3): StringExpandPlaceholders(dest, 
+                (FlagGet(FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY))? gText_Alex_Pokenav_E4Day3_Hero : gText_Alex_Pokenav_E4Day3); 
+                return;
+        }
+    }
     if (FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS)) {
         MatchCall_BufferCallMessageText(sAlexTextScripts_DuringLegendaries, dest);
-        FlagSet(FLAG_ALEX_KNOWS_LEGENDARIES); // cheat: if we're getting from here, we've told Alex about the legendaries
+        FlagSet(FLAG_ALEX_KNOWS_LEGENDARIES); // cheat: if we're getting from here, we have told / are telling Alex about the legendaries
+        return;
     }
     // else if (FlagGet(FLAG_LEGENDARIES_CLEARED)) {
     //     // TODO

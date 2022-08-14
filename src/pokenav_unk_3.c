@@ -12,6 +12,7 @@
 #include "sound.h"
 #include "string_util.h"
 #include "strings.h"
+#include "constants/layouts.h"
 #include "constants/flags.h"
 #include "constants/songs.h"
 
@@ -336,9 +337,17 @@ int sub_81CAF04(int index)
 
 const u8 *sub_81CAF78(int index, u8 *arg1)
 {
+    bool8 denyCall = FALSE;
     struct Pokenav3Struct *state = GetSubstructPtr(5);
     *arg1 = 0;
-    if (!Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType))
+    
+    denyCall = !Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType);
+    // Make exceptions for the E4 waiting room
+    if (gMapHeader.mapLayoutId == LAYOUT_EVER_GRANDE_CITY_WAITING_ROOM) {
+        denyCall = FALSE;
+    }
+    
+    if (denyCall)
         return gText_CallCantBeMadeHere;
 
     if (!state->matchCallEntries[index].unk0)

@@ -1542,7 +1542,13 @@ gText_Alex_Pokenav_SternAfter::
 	.string "And you're okay with that?\n"
 	.string "If you say so…$"
 
+@ Post logan
+@ "Logan? Who's that? Oh, just some guy, okay."
 
+@ Post Space Center
+@ "Yes, you're the bad guys"
+
+@ During legendaries event
 gText_Alex_Pokenav_RainsBegan::
 	.string "{RIVAL_ALOLA}: {PLAYER}? What's going on?\n"
 	.string "I can barely hear you!\p"
@@ -1583,6 +1589,85 @@ gText_Alex_Pokenav_PostResearch::
 @ One reacting to the player being a hero
 @ 1-2 just talking afterwards.
 
+
+gText_Alex_Pokenav_E4Day1::
+	.string "{RIVAL_ALOLA}: {PLAYER}! Hey!\n"
+	.string "It's starting!\p"
+	.string "The {POKEMON} League Conference!\n"
+	.string "It's starting today!\p"
+	.string "Are you participating?!\n"
+	.string "I haven't seen you yet!\p"
+	.string "You are parti--You're NEXT?!\p"
+	.string "Don't let me hold you up! You can\n"
+	.string "do this! Good luck!!$"
+gText_Alex_Pokenav_E4Day2::
+	.string "{RIVAL_ALOLA}: {PLAYER}!\n"
+	.string "You did so well yesterday!\p"
+	.string "I can't beleive how good you've\n"
+	.string "gotten at handling {POKEMON}!\p"
+	.string "Like, you've always been the best\n"
+	.string "of us at it, but going against the\l"
+	.string "Elites of the region is no joke!\p"
+	.string "Oh, they just said on the TV that\n"
+	.string "you're going next! Good luck!!$"
+gText_Alex_Pokenav_E4Day3::
+	.string "{RIVAL_ALOLA}: {PLAYER}! They're talking about\n"
+	.string "you being in Team Aqua.\p"
+	.string "Did you hear the news casters?\n"
+	.string "Is there a TV nearby you can watch?\p"
+	.string "Oh, I hope this doesn't disqualify\n"
+	.string "you or something! I'd be so mad!\p"
+	.string "Don't let it get you down!\n"
+	.string "You can do this! Good luck!$"
+gText_Alex_Pokenav_E4Day3_Hero::
+	.string "{RIVAL_ALOLA}: {PLAYER}! They're talking about\n"
+	.string "you beating those rampaging beasts!\p"
+	.string "Did you hear the news casters?\n"
+	.string "Is there a TV nearby you can watch?\p"
+	.string "The images they dug up of you fighting\n"
+	.string "them! It makes me scared all over again!\p"
+	.string "You've set some big expectations\n"
+	.string "for yourself…\p"
+	.string "Oh! Uh, but don't let it get to you!\n"
+	.string "Y-You can do this! Good luck!$"
+gText_Alex_Pokenav_E4Day4::
+	.string "{RIVAL_ALOLA}: {PLAYER}…\n"
+	.string "Can you believe it…?\p"
+	.string "It's down to the final five,\n"
+	.string "and YOU'RE ONE OF THEM!\p"
+	.string "I'm sure you're so nervous, so let\n"
+	.string "me tell you what's happening here.\p"
+	.string "Your mom has thrown a big lū'au\n"
+	.string "with a big TV high on the house wall.\p"
+	.string "All of her friends have come, as well\n"
+	.string "as all of your dad's friends.\p"
+	.string "Team Skull is basically having\n"
+	.string "a reunion here, just to watch you!\p"
+	.string "No one knows where Guzma is,\n"
+	.string "but Plumeria showed up!\p"
+	.string "She's pretending she doesn't care,\n"
+	.string "but I think she likes seeing one of\l"
+	.string "“her kids” accomplish so much.\p"
+	.string "Oh, they just announced you're\n"
+	.string "up next! I better go!\p"
+	.string "We're all rooting for you,\n"
+	.string "{PLAYER}! Good luck!$"
+gText_Alex_Pokenav_E4Day5::
+	.string "{RIVAL_ALOLA}: {PLAYER}…!\n"
+	.string "You're calling me now…?\p"
+	.string "You're the star challenger, {PLAYER_dude}!\n"
+	.string "You're due on stage!\p"
+	.string "Don't be nervous.\n"
+	.string "You can do this.\l"
+	.string "You've done so much already.\p"
+	.string "This champion guy? He's gonna be\n"
+	.string "a push over. You just watch and see.\p"
+	.string "Yeah, the lū'au is still going.\n"
+	.string "The whole the island is here, I swear!\p"
+	.string "I think I did actually see Guzma\n"
+	.string "hiding moodily somewhere in the back.\p"
+	.string "You can do this. I know you can.\n"
+	.string "Good luck, {PLAYER}… We love you…$"
 
 @------------------------------------------------------
 DreamScript_Dummy:
