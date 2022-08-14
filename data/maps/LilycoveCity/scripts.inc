@@ -231,7 +231,7 @@ LilycoveCity_EventScript_1E2C53:: @ 81E2C53
 LilycoveCity_Text_1E3FAB: @ 81E3FAB
 	.string "Oi! Tell your buddies to get\n"
 	.string "their Wailmer out of the cove!\p"
-	.string "Your team has blockaided the port!\n"
+	.string "Your team has blockaded the port!\n"
 	.string "No one can get out!$"
 	@ .string "Team Aqua's been training their\n"
 	@ .string "Wailmer in the cove.\p"
@@ -483,6 +483,20 @@ LilycoveCity_Text_1E3CBE: @ 81E3CBE
 	.string "Team Aqua's, it will be a happier\l"
 	.string "place for Pokémon, too.$"
 
+
+LilycoveCity_EventScript_RandomSignPost::
+	lockall
+	markasdialog 14
+	msgbox LilycoveCity_Text_SignPost
+	releaseall
+	end
+LilycoveCity_Text_SignPost:
+	.string "Ssh! Don't tell anyone I'm back here.\p"
+	.string "This is my special spot. I can lie here,\n"
+	.string "staring at clouds and listening to the\l"
+	.string "waves, and no one can bother me.\p"
+	.string "It's nice. You should find one too.\n"
+	.string "Your own, though. Shoo, please.$"
 
 @ -----------------------------------------------------
 @ Rival

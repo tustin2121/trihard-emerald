@@ -7,6 +7,7 @@ AquaHideout_B1F_MapScripts:: @ 82339A7
 @ -----------------------------------------------------
 
 AquaHideout_B1F_OnLoad:
+	call AquaHideout_B1F_EventScript_Scrappy21_SitDownOnLoad
 	setflag FLAG_VISITED_AQUA_BASE
 	setflag FLAG_TEMP_5
 	@ If Mt. Pyre is finished, but Jagged pass is not yet open, show Aqua girl
@@ -205,6 +206,13 @@ AquaHideout_B1F_Text_233CDC: @ 8233CDC
 	.string "Everyone else is always scurrying\n"
 	.string "around everywhere.\p"
 	.string "I'm content to just chill for a while.$"
+AquaHideout_B1F_EventScript_Scrappy21_SitDownOnLoad:
+	checktrainerflag TRAINER_GRUNT_21
+	goto_if_lt Common_EventScript_NopReturn
+	setobjectxy 4, 21, 16
+	setobjectxyperm 4, 21, 16
+	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_LEFT
+	return
 
 
 AquaHideout_B1F_EventScript_Jessica::
@@ -223,6 +231,90 @@ AquaHideout_B1F_EventScript_Jessica2:
 	end
 AquaHideout_B1F_Text_Jessica2:
 	.string "{AQUA_GIRL}: Where could it be…?$"
+
+@ -----------------------------------------------------
+
+AquaHideout_B1F_EventScript_Blueprint1::
+	lockall
+	selectpointer_clamp AquaHideout_B1F_TextTable_Blueprint1, VAR_AQUA_BLUEPRINT1
+	message 0x0, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	addvar VAR_AQUA_BLUEPRINT1, 1
+	releaseall 
+	end
+.align 2
+AquaHideout_B1F_TextTable_Blueprint1:
+	.4byte AquaHideout_B1F_Text_Blueprint1A
+	.4byte AquaHideout_B1F_Text_Blueprint1B
+	.4byte AquaHideout_B1F_Text_Blueprint1C
+	.4byte AquaHideout_B1F_Text_Blueprint1D
+	.4byte AquaHideout_B1F_Text_Blueprint1E
+	.4byte 0
+AquaHideout_B1F_Text_Blueprint1A:
+	.string "It's a blueprint for some kind of\n"
+	.string "ocean-faring vessel.\p"
+	.string "{PLAYER} looks through the various\n"
+	.string "measurements and details, picturing\l"
+	.string "what it might look like when built.\p"
+	.string "It looks like they got this calculation\n"
+	.string "wrong? {PLAYER} corrects it quickly.$"
+AquaHideout_B1F_Text_Blueprint1B:
+	.string "Wait, they got this wrong too!\p"
+	.string "{PLAYER} grabs a pen and starts\n"
+	.string "scribbling notes and calculations.\p"
+	.string "This this could never sail!\n"
+	.string "What were they thinking?!$"
+AquaHideout_B1F_Text_Blueprint1C:
+	.string "By Arceus's spike ring, who did this\n"
+	.string "blueprint?! It's a mess!\p"
+	.string "{PLAYER} goes at about five more things\n"
+	.string "that are so blatantly wrong here!\p"
+	.string "Really, how can ANYONE with this terrible\n"
+	.string "level of understanding about buoyancy\l"
+	.string "call themselves Team AQUA?! Disgraceful!$"
+AquaHideout_B1F_Text_Blueprint1D:
+	.string "{PLAYER} scribbles out the whole set of\n"
+	.string "calculations and grabs a sheet of paper.\p"
+	.string "{PLAYER_They} starts doing all the math again\n"
+	.string "from scratch. Nothing was salvageable.\p"
+	.string "After several minutes, {PLAYER_their} mathematical\n"
+	.string "proof is finished and flawless.\p"
+	.string "{PLAYER} tapes the new calculations over\n"
+	.string "the old ones. Idiots. All of them.$"
+AquaHideout_B1F_Text_Blueprint1E:
+	.string "{PLAYER} looks back over the corrected\n"
+	.string "calculations for errors.\p"
+	.string "Seems good now. THIS boat will float,\n"
+	.string "unlike the last one.$"
+
+AquaHideout_B1F_EventScript_Blueprint2::
+	lockall
+	selectpointer_clamp AquaHideout_B1F_TextTable_Blueprint2, VAR_AQUA_BLUEPRINT1
+	message 0x0, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	releaseall 
+	end
+.align 2
+AquaHideout_B1F_TextTable_Blueprint2:
+	.4byte AquaHideout_B1F_Text_Blueprint2A
+	.4byte AquaHideout_B1F_Text_Blueprint2A
+	.4byte AquaHideout_B1F_Text_Blueprint2B
+	.4byte AquaHideout_B1F_Text_Blueprint2B
+	.4byte AquaHideout_B1F_Text_Blueprint2B
+	.4byte 0
+AquaHideout_B1F_Text_Blueprint2A:
+	.string "It's a blueprint for some kind of\n"
+	.string "new propeller design.\p"
+	.string "{PLAYER} scans over it and pictures\n"
+	.string "how the fluid dynamics would function.$"
+AquaHideout_B1F_Text_Blueprint2B:
+	.string "It's a blueprint for some kind of\n"
+	.string "new propeller design.\p"
+	.string "THIS blueprint looks like it was made\n"
+	.string "by someone competent!$"
+
 
 @ -----------------------------------------------------
 

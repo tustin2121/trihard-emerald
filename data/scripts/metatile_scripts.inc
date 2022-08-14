@@ -189,10 +189,11 @@ MetatileScript_Blueprint:: @ 8272604
 	msgbox MetatileText_Blueprint, MSGBOX_DESCRIBE
 	end
 MetatileText_Blueprint: @ 82A82F7
-	.string "It's a blueprint. You scrutinize it,\n"
-	.string "examining the details and measurements\l"
-	.string "for a while, imagining what it would\l"
-	.string "look like when built…$"
+	.string "It's a blueprint.\n"
+	.string "For some kind of vehicle?\p"
+	.string "{PLAYER} looks through the various\n"
+	.string "measurements and details, picturing\l"
+	.string "what it might look like when built.$"
 
 
 MetatileScript_RegionMap:: @ 827208F
