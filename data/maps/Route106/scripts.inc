@@ -5,8 +5,8 @@ Route106_MapScripts:: @ 81EE489
 @------------------------------------------------------
 
 Route106_MapScript_OnLoad:
-	call_if_set FLAG_BADGE08_GET, Route106_MapScript_ShowTrainingTrio
-	call_if_unset FLAG_BADGE08_GET, Route106_MapScript_HideTrainingTrio
+	call_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, Route106_MapScript_ShowTrainingTrio
+	call_if_unset FLAG_DEFEATED_WALLY_VICTORY_ROAD, Route106_MapScript_HideTrainingTrio
 	end
 
 Route106_MapScript_HideTrainingTrio:
@@ -34,7 +34,9 @@ Route106_TrainerTrio_Tyler_TextAlreadyDone:
 	.string "tomorrow too!$"
 
 Route106_TrainerTrio_Tyler_NewDay:
-	msgbox Route106_TrainerTrio_Tyler_Text1, MSGBOX_YESNO
+	select_if_unset FLAG_MET_TRAINING_TRIO, Route106_TrainerTrio_Tyler_Text1, Route106_TrainerTrio_Tyler_Text2
+	msgbox_selected MSGBOX_YESNO
+	setflag FLAG_MET_TRAINING_TRIO
 	compare VAR_RESULT, 1
 	goto_if_eq Route106_TrainerTrio_Tyler_Battle
 	msgbox Route106_TrainerTrio_Tyler_TextRefusal, MSGBOX_NPC
@@ -42,18 +44,29 @@ Route106_TrainerTrio_Tyler_NewDay:
 	end
 Route106_TrainerTrio_Tyler_Text1:
 	.string "Tyler: Heya, we are the Training Trio!\p"
-	.string "We came here on vacation from\n"
-	.string "another region. We are really\l"
-	.string "enjoying ourselves in Hoenn.\p"
-	.string "We like to train our Pokémon everyday.\p"
+	.string "We are here on vacation from overseas.\n"
+	.string "Ever hear of Kalos, or Paldea?\l"
+	.string "We live in a region near there.\p"
+	.string "Even though we're on vacation, we\n"
+	.string "like to train our Pokémon everyday.\p"
+	.string "It keeps us strong and so we don't\n"
+	.string "slack off, right? Friendly fun too!\p"
 	.string "Would you like to join us in our\n"
-	.string "training session?$"
+	.string "training session today?$"
+Route106_TrainerTrio_Tyler_Text2:
+	.string "Tyler: Heya, you are back!\p"
+	.string "Would you like to train with us\n"
+	.string "today?$"
 Route106_TrainerTrio_Tyler_TextRefusal:
 	.string "Aw, that's too bad.$"
 
 Route106_TrainerTrio_Tyler_Battle:
 	msgbox Route106_TrainerTrio_Tyler_Battle_Text, MSGBOX_NPC
+	setflag FLAG_DEATH_PREVENT
+	setflag FLAG_DEATH_PREVENT_1HP
 	trainerbattle_no_intro TRAINER_TYLER_BADGE8, Route106_TrainerTrio_Tyler_Battle_DefeatText
+	clearflag FLAG_DEATH_PREVENT
+	clearflag FLAG_DEATH_PREVENT_1HP
 	setvar VAR_DAILY_TRAINERTRIO, 1
 	msgbox Route106_TrainerTrio_Tyler_Text2
 	release
@@ -83,9 +96,9 @@ Route106_TrainerTrio_Tessa::
 	end
 Route106_TrainerTrio_Tessa_Text:
 	.string "Tessa: The weather in Hoenn is\n"
-	.string "wonderful!\p"
-	.string "I wish I could bring it to the island\n"
-	.string "we live in…$"
+	.string "magnifico! Wonderful!\p"
+	.string "I wish I could bring it to the\n"
+	.string "island we live in…$"
 
 Route106_TrainerTrio_Tessa_NewDay:
 	msgbox Route106_TrainerTrio_Tessa_Text1, MSGBOX_YESNO
@@ -103,7 +116,11 @@ Route106_TrainerTrio_Tessa_TextRefusal:
 
 Route106_TrainerTrio_Tessa_Battle:
 	msgbox Route106_TrainerTrio_Tessa_Battle_Text, MSGBOX_NPC
+	setflag FLAG_DEATH_PREVENT
+	setflag FLAG_DEATH_PREVENT_1HP
 	trainerbattle_no_intro TRAINER_TESSA_BADGE8, Route106_TrainerTrio_Tessa_Battle_DefeatText
+	clearflag FLAG_DEATH_PREVENT
+	clearflag FLAG_DEATH_PREVENT_1HP
 	setvar VAR_DAILY_TRAINERTRIO, 2
 	msgbox Route106_TrainerTrio_Tessa_Text2
 	release
@@ -152,7 +169,11 @@ Route106_TrainerTrio_Theo_TextRefusal:
 
 Route106_TrainerTrio_Theo_Battle:
 	msgbox Route106_TrainerTrio_Theo_Battle_Text, MSGBOX_NPC
+	setflag FLAG_DEATH_PREVENT
+	setflag FLAG_DEATH_PREVENT_1HP
 	trainerbattle_no_intro TRAINER_THEO_BADGE8, Route106_TrainerTrio_Theo_Battle_DefeatText
+	clearflag FLAG_DEATH_PREVENT
+	clearflag FLAG_DEATH_PREVENT_1HP
 	setvar VAR_DAILY_TRAINERTRIO, 3
 	msgbox Route106_TrainerTrio_Theo_Text2, MSGBOX_NPC
 	release

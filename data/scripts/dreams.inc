@@ -1057,7 +1057,7 @@ DreamScript_1600_Text2:
 
 
 DreamScript_1601::
-	fadenewbgm MUS_B_DOME @TODO
+	fadenewbgm MUS_HIDERI
 	delay 60
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
 	@ mom speaking
@@ -1157,7 +1157,20 @@ DreamScript_1601_Text7:
 
 
 DreamScript_1602::
-	@ 
+	fadenewbgm MUS_HIDERI
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	@ mom speaking
+	message DreamScript_1602_Text1
+	setyesnotext DreamScript_1602_Why, DreamScript_1602_Help
+	waitmessage
+	yesnobox 20, 8
+	message DreamScript_1602_Text2
+	waitmessage
+	closemessage
+	fadenewbgm MUS_DUMMY
+	delay 90
+	fadedefaultbgm
 	return
 DreamScript_1602_Text1:
 	.string "You must have circled the island\n"

@@ -156,7 +156,7 @@ EverGrandeCity_Text_JoeyFight1:
 	.string "Hoenn Elite Four Conference.\p"
 	.string "I came all the way from Johto for this,\n"
 	.string "but I don't think I'm ready yet…\p"
-	.string "Hey, wanna battle real quick?\n"
+	.string "Hey, wanna scrap fight real quick?\n"
 	.string "We can see if we're ready together!$"
 EverGrandeCity_Text_JoeyFight2:
 	.string "Man, I can't catch a break…$"
@@ -185,7 +185,7 @@ EverGrandeCity_EventScript_JoeyFightRematch:
 	release
 	end
 EverGrandeCity_Text_JoeyFightRematch1:
-	.string "Joey: Hey, let's battle again and see\n"
+	.string "Joey: Hey, let's scrap again and see\n"
 	.string "if we got any better!$"
 EverGrandeCity_Text_JoeyFightRematch3:
 	.string "Man, I must be bad at this. You seem\n"
