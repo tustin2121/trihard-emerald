@@ -31,6 +31,7 @@ Pikachu
 Plumeria
 Poké
 Pokédex
+Rayquaza
 Rustboro
 Slateport
 Snorlax
