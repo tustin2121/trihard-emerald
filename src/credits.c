@@ -1399,7 +1399,11 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
     case 2:
         if (GetPlayerGender() == MALE)
         {
-            LoadCompressedSpriteSheet(gCreditsProtagMaleSpriteSheet);
+            if ((gSaveBlock2Ptr->playerForm >> 1) == 4) {
+                LoadCompressedSpriteSheet(gCreditsProtagMale5SpriteSheet);
+            } else {
+                LoadCompressedSpriteSheet(gCreditsProtagMaleSpriteSheet);
+            }
             LoadCompressedSpriteSheet(gCreditsMaySpriteSheet2);
             LoadCompressedSpriteSheet(gCreditsBikeSpriteSheet);
             LoadSpritePalettes(gCreditsPalettes1);
@@ -1416,7 +1420,11 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
         }
         else
         {
-            LoadCompressedSpriteSheet(gCreditsProtagFemaleSpriteSheet);
+            if ((gSaveBlock2Ptr->playerForm >> 1) == 4) {
+                LoadCompressedSpriteSheet(gCreditsProtagFemale5SpriteSheet);
+            } else {
+                LoadCompressedSpriteSheet(gCreditsProtagFemaleSpriteSheet);
+            }
             LoadCompressedSpriteSheet(gCreditsBrendanSpriteSheet2);
             LoadCompressedSpriteSheet(gCreditsBikeSpriteSheet);
             LoadSpritePalettes(gCreditsPalettes1);

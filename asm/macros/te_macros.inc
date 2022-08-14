@@ -48,6 +48,47 @@
 	selectpointer 0, VAR_RESULT
 	.endm
 	
+	.macro select_if condition:req, forTrue:req, forFalse:req
+	loadword TRUE, \forTrue
+	loadword FALSE, \forFalse
+	selectpointer_conditionally \condition
+	.endm
+	
+	.macro select_if_unset flag:req, forTrue:req, forFalse:req
+	checkflag \flag
+	select_if 0, \forTrue, \forFalse
+	.endm
+
+	.macro select_if_set flag:req, forTrue:req, forFalse:req
+	checkflag \flag
+	select_if 1, \forTrue, \forFalse
+	.endm
+
+	.macro select_if_lt forTrue:req, forFalse:req @ LESS THAN
+	select_if 0, \forTrue, \forFalse
+	.endm	
+
+	.macro select_if_eq forTrue:req, forFalse:req @ EQUAL
+	select_if 1, \forTrue, \forFalse
+	.endm
+
+	.macro select_if_gt forTrue:req, forFalse:req @ GREATER THAN
+	select_if 2, \forTrue, \forFalse
+	.endm
+
+	.macro select_if_le forTrue:req, forFalse:req @ LESS THAN OR EQUAL
+	select_if 3, \forTrue, \forFalse
+	.endm
+
+	.macro select_if_ge forTrue:req, forFalse:req @ GREATER THAN OR EQUAL
+	select_if 4, \forTrue, \forFalse
+	.endm
+
+	.macro select_if_ne forTrue:req, forFalse:req @ NOT EQUAL
+	select_if 5, \forTrue, \forFalse
+	.endm
+	
+	
 	.macro applymovement_gendered lid:req, forMale:req, forFemale:req
 	loadword MALE, \forMale 
 	loadword FEMALE, \forFemale

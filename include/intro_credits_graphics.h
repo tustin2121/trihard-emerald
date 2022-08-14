@@ -17,6 +17,8 @@ extern const struct CompressedSpriteSheet gCreditsBrendanSpriteSheet2[];
 extern const struct CompressedSpriteSheet gCreditsMaySpriteSheet2[];
 extern const struct CompressedSpriteSheet gCreditsProtagMaleSpriteSheet[];
 extern const struct CompressedSpriteSheet gCreditsProtagFemaleSpriteSheet[];
+extern const struct CompressedSpriteSheet gCreditsProtagMale5SpriteSheet[];
+extern const struct CompressedSpriteSheet gCreditsProtagFemale5SpriteSheet[];
 extern const struct SpritePalette gCreditsPalettes1[];
 
 void load_intro_part2_graphics(u8 a);

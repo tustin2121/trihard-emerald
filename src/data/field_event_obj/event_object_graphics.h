@@ -126,25 +126,25 @@ const u32 gEventObjectPic_ProtagGirl4_FieldMove[] = INCBIN_U32("graphics/event_o
 const u32 gEventObjectPic_ProtagGirl4_Fishing[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/fishing.4bpp");
 const u32 gEventObjectPic_ProtagGirl4_Watering[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/watering.4bpp");
 
-const u32 gEventObjectPic_ProtagBoy5_Normal[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/walking.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagBoy5_Running[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/running.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagBoy5_MachBike[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/mach_bike.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagBoy5_AcroBike[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/acro_bike.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagBoy5_Surfing[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/surfing.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagBoy5_Underwater[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/underwater.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagBoy5_FieldMove[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/field_move.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagBoy5_Fishing[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/fishing.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagBoy5_Watering[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/watering.4bpp"); // TODO {PROTAG5_GRAPHICS}
+const u32 gEventObjectPic_ProtagBoy5_Normal[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/walking.4bpp");
+const u32 gEventObjectPic_ProtagBoy5_Running[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/running.4bpp");
+const u32 gEventObjectPic_ProtagBoy5_MachBike[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/mach_bike.4bpp");
+const u32 gEventObjectPic_ProtagBoy5_AcroBike[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/acro_bike.4bpp");
+const u32 gEventObjectPic_ProtagBoy5_Surfing[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/surfing.4bpp");
+const u32 gEventObjectPic_ProtagBoy5_Underwater[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/underwater.4bpp");
+const u32 gEventObjectPic_ProtagBoy5_FieldMove[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/field_move.4bpp");
+const u32 gEventObjectPic_ProtagBoy5_Fishing[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/fishing.4bpp");
+const u32 gEventObjectPic_ProtagBoy5_Watering[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/watering.4bpp");
 
-const u32 gEventObjectPic_ProtagGirl5_Normal[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/walking.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_Running[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/running.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_MachBike[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/mach_bike.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_AcroBike[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/acro_bike.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_Surfing[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/surfing.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_Underwater[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/underwater.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_FieldMove[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/field_move.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_Fishing[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/fishing.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_Watering[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/watering.4bpp"); // TODO {PROTAG5_GRAPHICS}
+const u32 gEventObjectPic_ProtagGirl5_Normal[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/walking.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_Running[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/running.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_MachBike[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/mach_bike.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_AcroBike[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/acro_bike.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_Surfing[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/surfing.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_Underwater[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/underwater.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_FieldMove[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/field_move.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_Fishing[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/fishing.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_Watering[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/watering.4bpp");
 
 const u32 gEventObjectPic_BrendanNormal[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/walking.4bpp");
 const u32 gEventObjectPic_BrendanRunning[] = INCBIN_U32("graphics/event_objects/pics/people/brendan/running.4bpp");
@@ -182,8 +182,8 @@ const u32 gEventObjectPic_ProtagBoy3_Decorating[] = INCBIN_U32("graphics/event_o
 const u32 gEventObjectPic_ProtagGirl3_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl3/decorating.4bpp");
 const u32 gEventObjectPic_ProtagBoy4_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/decorating.4bpp");
 const u32 gEventObjectPic_ProtagGirl4_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/decorating.4bpp");
-const u32 gEventObjectPic_ProtagBoy5_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy4/decorating.4bpp"); // TODO {PROTAG5_GRAPHICS}
-const u32 gEventObjectPic_ProtagGirl5_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl4/decorating.4bpp"); // TODO {PROTAG5_GRAPHICS}
+const u32 gEventObjectPic_ProtagBoy5_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protagboy5/decorating.4bpp");
+const u32 gEventObjectPic_ProtagGirl5_Decorating[] = INCBIN_U32("graphics/event_objects/pics/people/protaggirl5/decorating.4bpp");
 
 
 // const u16 NullPalette_8499A38[16] = {};

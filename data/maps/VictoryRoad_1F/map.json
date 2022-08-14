@@ -17,7 +17,7 @@
     "coord_events": [
         {
             "elevation": 4,
-            "script": "VictoryRoad_1F_EventScript_235DAF",
+            "script": "VictoryRoad_1F_TriggerScript_Logan1",
             "type": "trigger",
             "var": "VAR_VICTORY_ROAD_1F_STATE",
             "var_value": "0",
@@ -26,7 +26,7 @@
         },
         {
             "elevation": 4,
-            "script": "VictoryRoad_1F_EventScript_235DC8",
+            "script": "VictoryRoad_1F_TriggerScript_Logan2",
             "type": "trigger",
             "var": "VAR_VICTORY_ROAD_1F_STATE",
             "var_value": "0",

@@ -25,70 +25,114 @@ VictoryRoad_1F_EventScript_235DA3:: @ 8235DA3
 
 @ -----------------------------------------------------
 
-VictoryRoad_1F_EventScript_235DAF:: @ 8235DAF
+VictoryRoad_1F_TriggerScript_Logan1:: @ 8235DAF
 	lockall
 	setvar VAR_0x8008, 1
 	addobject LID_LOGAN
 	applymovement LID_LOGAN, VictoryRoad_1F_Movement_235E15
 	waitmovement 0
-	goto VictoryRoad_1F_EventScript_235DE1
+	goto VictoryRoad_1F_EventScript_LoganFight
 	end
 
-VictoryRoad_1F_EventScript_235DC8:: @ 8235DC8
+VictoryRoad_1F_TriggerScript_Logan2:: @ 8235DC8
 	lockall
 	setvar VAR_0x8008, 2
 	addobject LID_LOGAN
 	applymovement LID_LOGAN, VictoryRoad_1F_Movement_235E21
 	waitmovement 0
-	goto VictoryRoad_1F_EventScript_235DE1
+	goto VictoryRoad_1F_EventScript_LoganFight
 	end
 
-VictoryRoad_1F_EventScript_235DE1:: @ 8235DE1
+VictoryRoad_1F_EventScript_LoganFight:: @ 8235DE1
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	@
 	markasdialog
-	msgbox VictoryRoad_1F_Text_235EE6, MSGBOX_DEFAULT
+	message VictoryRoad_1F_Text_LoganFight1
+	waitmessage
+	select_if_set FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY, VictoryRoad_1F_Text_LoganFight2b, VictoryRoad_1F_Text_LoganFight2a
+	message 0
+	waitmessage
+	message VictoryRoad_1F_Text_LoganFight3
+	waitmessage
+	waitbuttonpress
+	playse SE_SELECT
+	message VictoryRoad_1F_Text_LoganFight4, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	playse SE_SELECT
+	message VictoryRoad_1F_Text_LoganFight5
+	waitmessage
+	waitbuttonpress
+	playse SE_SELECT
+	message VictoryRoad_1F_Text_LoganFight6, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	playse SE_SELECT
+	message VictoryRoad_1F_Text_LoganFight7
+	waitmessage
+	waitbuttonpress
 	@ Battle!
-	trainerbattle_no_intro TRAINER_WALLY_1, VictoryRoad_1F_Text_235FFC
-	msgbox VictoryRoad_1F_Text_236020, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_WALLY_1, VictoryRoad_1F_Text_LoganLose
+	msgbox VictoryRoad_1F_Text_LoganFightPost, MSGBOX_DEFAULT
 	@ clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
 	moveobjectoffscreen LID_LOGAN
 	setflag FLAG_DEFEATED_WALLY_VICTORY_ROAD
 	copyvar VAR_VICTORY_ROAD_1F_STATE, VAR_0x8008
 	releaseall
 	end
-VictoryRoad_1F_Text_235EE6: @ 8235EE6
+VictoryRoad_1F_Text_LoganFight1:
 	.string "{RIVAL_HERO}: Oh, {PLAYER}, how are you?\p"
 	.string "Listen, uh… I didn't… really get to talk\n"
 	.string "to you after all that stuff in…\l"
 	.string "in Sootopolis City…\p"
-	.string "I…{PAUSE 20} I forgive you…{PAUSE 20} and I'm sorry…\p"
-	.string "After seeing you without that bandanna,\n"
-	.string "I realized you might have had a change\l"
-	.string "of heart.\p"
-	.string "And… you were the one to help me find\n"
-	.string "Rayquaza and all.\p"
+	.string "I…{PAUSE 20} I forgive you…{PAUSE 30} and I'm sorry…\p"
+	.string "After I saw you on Mossdeep without\n"
+	.string "the bandanna, I realized that maybe…\l"
+	.string "maybe you had a change of heart.\p$"
+VictoryRoad_1F_Text_LoganFight2a:
+	.string "And… you were the one to help me\n"
+	.string "find Rayquaza and all.\p$"
+VictoryRoad_1F_Text_LoganFight2b:
+	.string "And then you just went and fought the\n"
+	.string "giant beasts singlehandedly…!\p"
+	.string "Which is either really brave or\n"
+	.string "REALLY stupid, by the way…\p$"
+VictoryRoad_1F_Text_LoganFight3:
 	.string "So… maybe we can be friends after all…\p"
 	.string "Or at least not enemies…\p"
-	.string "Rivals, I guess… Let's go with that.\p"
-	.string "And as such…\n"
-	.string "I challenge you to a rival battle!\p"
+	.string "Here, as a gesture of… apology…\n"
+	.string "I got you this…$"
+VictoryRoad_1F_Text_LoganFight4:
+	.string "{RIVAL_HERO} hands {PLAYER} a hat.{PAUSE 30}\n"
+	.string "{PLAYER} raises an eyebrow at him.$"
+VictoryRoad_1F_Text_LoganFight5:
+	.string "{RIVAL_HERO}: I figured you needed something new\n"
+	.string "to wear, since you ditched the bandanna.$"
+VictoryRoad_1F_Text_LoganFight6:
+	.string "{RIVAL_HERO} claiming to know anything about\n"
+	.string "fashion is laughable…\p"
+	.string "But {PLAYER} puts the hat away anyway,\n"
+	.string "if only to keep {RIVAL_HERO} happy.$"
+VictoryRoad_1F_Text_LoganFight7:
+	.string "So…{PAUSE 10} …{PAUSE 10} …{PAUSE 10} Not-Enemy…{PAUSE 20} You wanna battle\n"
+	.string "one more time before the League?\p"
+	.string "Our eyes met, it's the rules!\n"
 	.string "Let's go!$"
-VictoryRoad_1F_Text_235FFC: @ 8235FFC
-	.string "Enough! I forfiet! You win.$"
-VictoryRoad_1F_Text_236020: @ 8236020
-	.string "Good lord Acrecus, {PLAYER}…\p"
+VictoryRoad_1F_Text_LoganLose:
+	.string "Enough! I forfeit! You win.$"
+VictoryRoad_1F_Text_LoganFightPost:
+	.string "Arceus wept, {PLAYER}…\p"
 	.string "You're still way too rough with your\n"
 	.string "Pokémon…\p"
 	.string "I know we just had a heart-to-heart and\n"
 	.string "all that, but… as a friend…\p"
 	.string "You need to cool it.\n" @fallthrough
-VictoryRoad_1F_Text_23602A:
+VictoryRoad_1F_Text_LoganPostBattle:
 	.string "You're driving your Pokémon too hard.\p"
 	.string "Just… think about it, alright?$"
 VictoryRoad_1F_EventScript_235E2C:: @ 8235E2C
-	msgbox VictoryRoad_1F_Text_23602A, MSGBOX_NPC
+	msgbox VictoryRoad_1F_Text_LoganPostBattle, MSGBOX_NPC
 	end
 
 VictoryRoad_1F_Movement_235E15: @ 8235E15

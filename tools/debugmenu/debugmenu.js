@@ -154,11 +154,13 @@ function initMenuV1() {
 			$(`<li>Male / Team Skull</li>`).attr('value', 0),
 			$(`<li>Male / Aqua Bandanna</li>`).attr('value', 2),
 			$(`<li>Male / Aqua Uniform</li>`).attr('value', 4),
-			$(`<li>Male / Final Outfit</li>`).attr('value', 6),
+			$(`<li>Male / No Headgear</li>`).attr('value', 6),
+			$(`<li>Male / Final Outfit</li>`).attr('value', 8),
 			$(`<li>Female / Team Skull</li>`).attr('value', 1),
 			$(`<li>Female / Aqua Bandanna</li>`).attr('value', 3),
 			$(`<li>Female / Aqua Uniform</li>`).attr('value', 5),
-			$(`<li>Female / Final Outfit</li>`).attr('value', 7),
+			$(`<li>Female / No Headgear</li>`).attr('value', 7),
+			$(`<li>Female / Final Outfit</li>`).attr('value', 9),
 		];
 		$opts.forEach($x=>$x.appendTo($m)
 			.attr('name', 'genderid')

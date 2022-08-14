@@ -1600,6 +1600,13 @@
 	.byte 2
 	.endm
 	
+	.macro selectpointer_conditionally condition:req
+	.byte 0xe3
+	.4byte 0
+	.2byte 0
+	.byte 3+\condition
+	.endm
+	
 	.macro setyesnotext yes:req, no:req
 	.byte 0xe4
 	.4byte \yes
