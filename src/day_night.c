@@ -13,6 +13,7 @@
 #include "field_weather.h"
 #include "overworld.h"
 #include "palette.h"
+#include "main.h"
 #include "rtc.h"
 #include "strings.h"
 #include "string_util.h"
@@ -254,11 +255,16 @@ static void LoadPaletteOverrides(void)
     }
 }
 
+void CableCarMainCallback_Setup(void);
+void C2_NamingScreen(void);
+void MainCallback_EasyChatScreen(void);
 static bool8 ShouldTintOverworld(void)
 {
-    if (IsMapTypeOutdoors(gMapHeader.mapType))
-        return TRUE;
-
+    if (gMain.callback2 == CableCarMainCallback_Setup) return TRUE;
+    if (gMain.callback2 == C2_NamingScreen) return FALSE;
+    if (gMain.callback2 == MainCallback_EasyChatScreen) return FALSE;
+    if (IsMapTypeOutdoors(gMapHeader.mapType)) return TRUE;
+    return FALSE;
     // more conditions?
     return FALSE;
 }

@@ -46,7 +46,7 @@ static EWRAM_DATA struct Unk203A11C *sUnknown_0203A11C = NULL;
 static EWRAM_DATA struct Unk203A120 *sUnknown_0203A120 = NULL;
 
 static void sub_811A2C0(u8);
-static void MainCallback_EasyChatScreen(void);
+       void MainCallback_EasyChatScreen(void);
 static bool8 sub_811A428(u8);
 static void sub_811A2FC(u8);
 static void sub_811A4D0(MainCallback);
@@ -1092,7 +1092,7 @@ void DoEasyChatScreen(u8 type, u16 *words, MainCallback callback, u8 displayedPe
     SetMainCallback2(MainCallback_EasyChatScreen);
 }
 
-static void MainCallback_EasyChatScreen(void)
+void MainCallback_EasyChatScreen(void)
 {
     RunTasks();
     AnimateSprites();
@@ -4709,6 +4709,7 @@ static void sub_811E7F8(void)
 static void sub_811E828(void)
 {
     int graphicsId;
+    int playerGfxId;
     u8 spriteId;
 
     switch (GetDisplayedPersonType())
@@ -4735,10 +4736,22 @@ static void sub_811E828(void)
         gSprites[spriteId].oam.priority = 0;
         StartSpriteAnim(&gSprites[spriteId], 2);
     }
-
+    switch (gSaveBlock2Ptr->playerForm)
+    {
+        case 0: playerGfxId = EVENT_OBJ_GFX_PROTAG_BOY1_NORMAL;  break;
+        case 1: playerGfxId = EVENT_OBJ_GFX_PROTAG_GIRL1_NORMAL; break;
+        case 2: playerGfxId = EVENT_OBJ_GFX_PROTAG_BOY2_NORMAL;  break;
+        case 3: playerGfxId = EVENT_OBJ_GFX_PROTAG_GIRL2_NORMAL; break;
+        case 4: playerGfxId = EVENT_OBJ_GFX_PROTAG_BOY3_NORMAL;  break;
+        case 5: playerGfxId = EVENT_OBJ_GFX_PROTAG_GIRL3_NORMAL; break;
+        case 6: playerGfxId = EVENT_OBJ_GFX_PROTAG_BOY4_NORMAL;  break;
+        case 7: playerGfxId = EVENT_OBJ_GFX_PROTAG_GIRL4_NORMAL; break;
+        case 8: playerGfxId = EVENT_OBJ_GFX_PROTAG_BOY5_NORMAL;  break;
+        case 9: playerGfxId = EVENT_OBJ_GFX_PROTAG_GIRL5_NORMAL; break;
+    }
+    
     spriteId = AddPseudoEventObject(
-        //TODO: MULTIFORM PLAYER 
-        GetPlayerGender() == MALE ? EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL : EVENT_OBJ_GFX_RIVAL_MAY_NORMAL,
+        playerGfxId,
         SpriteCallbackDummy,
         52,
         40,

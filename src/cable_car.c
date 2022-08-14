@@ -1,6 +1,7 @@
 #include "global.h"
 #include "bg.h"
 #include "decompress.h"
+#include "day_night.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_weather.h"
@@ -65,7 +66,7 @@ EWRAM_DATA u8 gUnknown_0203ABB3 = 0;
 EWRAM_DATA u8 gUnknown_0203ABB4 = 0;
 EWRAM_DATA u8 gUnknown_0203ABB5 = 0;
 
-static void CableCarMainCallback_Setup(void);
+       void CableCarMainCallback_Setup(void);
 static void sub_8150B6C(u8);
 static void LoadCableCarSprites(void);
 static void sub_81514C8(u8);
@@ -241,7 +242,7 @@ void CableCar(void)
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
 }
 
-static void CableCarMainCallback_Setup(void)
+void CableCarMainCallback_Setup(void)
 {
     u16 imebak;
     u8 i = 0;
@@ -285,7 +286,7 @@ static void CableCarMainCallback_Setup(void)
         for (i = 0; i < 3; i++)
             LoadCompressedSpriteSheet(&gUnknown_085CDB54[i]);
 
-        LoadSpritePalettes(gUnknown_085CDB74);
+        LoadSpritePalettesDayNight(gUnknown_085CDB74);
         sCableCar->mtChimneyTilemap = malloc_and_decompress(gCableCarMtChimneyTilemap, &sizeOut);
         sCableCar->treeTilemap = malloc_and_decompress(gCableCarTreeTilemap, &sizeOut);
         sCableCar->mountainTilemap = malloc_and_decompress(gCableCarMountainTilemap, &sizeOut);
@@ -297,7 +298,7 @@ static void CableCarMainCallback_Setup(void)
     case 3:
         if (!free_temp_tile_data_buffers_if_possible())
         {
-            LoadPalette(gUnknown_08DBA518, 0, 0x80);
+            LoadPaletteDayNight(gUnknown_08DBA518, 0, 0x80);
             gMain.state++;
         }
         break;

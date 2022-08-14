@@ -2169,7 +2169,7 @@ static u8 sub_808E8F4(const struct SpritePalette *spritePalette)
     {
         return 0xFF;
     }
-    return LoadSpritePalette(spritePalette);
+    return LoadSpritePaletteDayNight(spritePalette);
 }
 
 void PatchObjectPalette(u16 paletteTag, u8 paletteSlot)

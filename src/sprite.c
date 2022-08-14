@@ -1637,6 +1637,14 @@ void LoadSpritePalettes(const struct SpritePalette *palettes)
             break;
 }
 
+void LoadSpritePalettesDayNight(const struct SpritePalette *palettes)
+{
+    u8 i;
+    for (i = 0; palettes[i].data != NULL; i++)
+        if (LoadSpritePaletteDayNight(&palettes[i]) == 0xFF)
+            break;
+}
+
 void DoLoadSpritePalette(const u16 *src, u16 paletteOffset)
 {
     LoadPalette(src, paletteOffset + 0x100, 32);

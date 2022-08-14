@@ -214,7 +214,7 @@ static const u8* const gUnknown_0858C198[][4];
 static const struct SpriteSheet gUnknown_0858C1C8[];
 static const struct SpritePalette gUnknown_0858C230[];
 
-static void C2_NamingScreen(void);
+       void C2_NamingScreen(void);
 static void NamingScreen_Init(void);
 static void NamingScreen_InitBGs(void);
 static void DoNamingScreenMain(void);
@@ -302,7 +302,7 @@ void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGende
     }
 }
 
-static void C2_NamingScreen(void)
+void C2_NamingScreen(void)
 {
     switch (gMain.state)
     {
