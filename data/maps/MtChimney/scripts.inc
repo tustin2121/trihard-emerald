@@ -357,7 +357,7 @@ MtChimney_Text_AquaGirl3b:
 	.string "{AQUA_GIRL}: That was amazing, {PLAYER}!\n"
 	.string "Welcome to the Team, full time!\p"
 	.string "I hope we have some downtime for a bit.\n"
-	.string "All this running around Hoenn is tirind.\p"
+	.string "All this running around Hoenn is tiring.\p"
 	.string "I just wanna chill in front of some TV\n"
 	.string "for a while or something. Phew!$"
 	

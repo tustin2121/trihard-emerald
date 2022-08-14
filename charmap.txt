@@ -85,7 +85,7 @@ SUPER_RE    = A0
 '“'         = B1
 '”'         = B2
 '‘'         = B3
-'\''         = B4
+'\''        = B4
 '♂'         = B5
 '♀'         = B6
 '¥'         = B7
@@ -1078,6 +1078,7 @@ PP = F9 06
 ID = F9 07
 NO = F9 08
 UNDERSCORE = F9 09
+'_' = F9 09
 CIRCLE_1 = F9 0A
 CIRCLE_2 = F9 0B
 CIRCLE_3 = F9 0C
@@ -1092,6 +1093,8 @@ ROUND_RIGHT_PAREN = F9 14
 CIRCLE_DOT = F9 15
 TRIANGLE = F9 16
 BIG_MULT_X = F9 17
+
+@ massive open gap in the printable font space that could likely be used for whatever.
 
 EMOJI_UNDERSCORE = F9 D0
 EMOJI_PIPE = F9 D1

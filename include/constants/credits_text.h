@@ -1,12 +1,12 @@
 #define MULTI_COLUMN_MODE
 static const u8 gCreditsText_EmptyString[] = _("");
-static const u8 gCreditsText_TRIHARDEMERALDVERSION[] = _("TRIHARD EMERALD VERSION");
+static const u8 gCreditsText_TRIHARDEMERALDDXVERSION[] = _("TRIHARD EMERALD DX VERSION");
 static const u8 gCreditsText_HackCredits[] = _("Hack Credits");
 static const u8 gCreditsText_ProjectLead[] = _("Project Lead");
 static const u8 gCreditsText_Tustin2121[] = _("Tustin2121");
 static const u8 gCreditsText_Programmers[] = _("Programmers");
 static const u8 gCreditsText_ShantyTown[] = _("ShantyTown");
-static const u8 gCreditsText_M4UsedRollout[] = _("M4 Used Rollout");
+static const u8 gCreditsText_M4usedrollout[] = _("M4_used_rollout");
 static const u8 gCreditsText_AdditionalProgramming[] = _("Additional Programming");
 static const u8 gCreditsText_PikalaxAlt[] = _("PikalaxAlt");
 static const u8 gCreditsText_Ax6[] = _("Ax6");
@@ -19,21 +19,22 @@ static const u8 gCreditsText_PkmnCenterBorntoHealRemix[] = _("Pokémon Center (B
 static const u8 gCreditsText_mathfreak231[] = _("mathfreak231");
 static const u8 gCreditsText_StoryModifications[] = _("Story Modifications");
 static const u8 gCreditsText_Copyeditor[] = _("Copyeditor");
-static const u8 gCreditsText_Testers[] = _("Testers");
+static const u8 gCreditsText_TestersOG[] = _("Testers OG");
 static const u8 gCreditsText_FrostedGeulleisia[] = _("FrostedGeulleisia");
 static const u8 gCreditsText_TheTPPChat[] = _("The TPP Chat");
 static const u8 gCreditsText_diana[] = _("diana");
 static const u8 gCreditsText_Blackrose[] = _("Blackrose");
+static const u8 gCreditsText_TestersDXRando[] = _("Testers DX / Rando");
+static const u8 gCreditsText_Ravendwyr[] = _("Ravendwyr");
+static const u8 gCreditsText_brespawn3[] = _("brespawn3");
+static const u8 gCreditsText_Fenris[] = _("Fenris");
 static const u8 gCreditsText_OriginalConcept[] = _("Original Concept");
 static const u8 gCreditsText_ConceptandBalancing[] = _("Concept and Balancing");
-static const u8 gCreditsText_Chaoslord2[] = _("Chaos lord2");
+static const u8 gCreditsText_Chaoslord2[] = _("Chaos_lord2");
 static const u8 gCreditsText_SpecialThanksTo[] = _("Special Thanks To");
 static const u8 gCreditsText_ThePkmnReverseEngineeringProject[] = _("The Pokémon Reverse Engineering Project");
 static const u8 gCreditsText_SierraffinitysCrystalDustProject[] = _("Sierraffinity's CrystalDust Project");
 static const u8 gCreditsText_TheTwitchPlaysPkmnCommunity[] = _("The TwitchPlaysPokémon Community");
-static const u8 gCreditsText_HiMom[] = _("Hi, Mom!");
-static const u8 gCreditsText_ImonTwitchTV[] = _("I'm on Twitch.TV!");
-static const u8 gCreditsText_Kappa[] = _("Kappa");
 static const u8 gCreditsText_PkmnEMERALDVERSION[] = _("Pokémon EMERALD VERSION");
 static const u8 gCreditsText_OriginalCredits[] = _("Original Credits");
 static const u8 gCreditsText_Director[] = _("Director");
@@ -173,13 +174,13 @@ static const u8 gCreditsText_ExecutiveProducers[] = _("Executive Producers");
 static const u8 gCreditsText_SatoruIwata[] = _("Satoru Iwata");
 static const u8 gCreditsText_TsunekazIshihara[] = _("Tsunekaz Ishihara");
 static const struct CreditsEntry gCreditsEntry_EmptyString[] = {0, FALSE, gCreditsText_EmptyString};
-static const struct CreditsEntry gCreditsEntry_TRIHARDEMERALDVERSION[] = {FALSE, TRUE, gCreditsText_TRIHARDEMERALDVERSION};
+static const struct CreditsEntry gCreditsEntry_TRIHARDEMERALDDXVERSION[] = {FALSE, TRUE, gCreditsText_TRIHARDEMERALDDXVERSION};
 static const struct CreditsEntry gCreditsEntry_HackCredits[] = {FALSE, TRUE, gCreditsText_HackCredits};
 static const struct CreditsEntry gCreditsEntry_ProjectLead[] = {FALSE, TRUE, gCreditsText_ProjectLead};
 static const struct CreditsEntry gCreditsEntry_Tustin2121[] = {FALSE, FALSE, gCreditsText_Tustin2121};
 static const struct CreditsEntry gCreditsEntry_Programmers[] = {FALSE, TRUE, gCreditsText_Programmers};
 static const struct CreditsEntry gCreditsEntry_ShantyTown[] = {FALSE, FALSE, gCreditsText_ShantyTown};
-static const struct CreditsEntry gCreditsEntry_M4UsedRollout[] = {FALSE, FALSE, gCreditsText_M4UsedRollout};
+static const struct CreditsEntry gCreditsEntry_M4usedrollout[] = {FALSE, FALSE, gCreditsText_M4usedrollout};
 static const struct CreditsEntry gCreditsEntry_AdditionalProgramming[] = {FALSE, TRUE, gCreditsText_AdditionalProgramming};
 static const struct CreditsEntry gCreditsEntry_PikalaxAlt[] = {FALSE, FALSE, gCreditsText_PikalaxAlt};
 static const struct CreditsEntry gCreditsEntry_Ax6[] = {FALSE, FALSE, gCreditsText_Ax6};
@@ -192,11 +193,15 @@ static const struct CreditsEntry gCreditsEntry_PkmnCenterBorntoHealRemix[] = {FA
 static const struct CreditsEntry gCreditsEntry_mathfreak231[] = {FALSE, FALSE, gCreditsText_mathfreak231};
 static const struct CreditsEntry gCreditsEntry_StoryModifications[] = {FALSE, TRUE, gCreditsText_StoryModifications};
 static const struct CreditsEntry gCreditsEntry_Copyeditor[] = {FALSE, TRUE, gCreditsText_Copyeditor};
-static const struct CreditsEntry gCreditsEntry_Testers[] = {FALSE, TRUE, gCreditsText_Testers};
+static const struct CreditsEntry gCreditsEntry_TestersOG[] = {FALSE, TRUE, gCreditsText_TestersOG};
 static const struct CreditsEntry gCreditsEntry_FrostedGeulleisia[] = {FALSE, FALSE, gCreditsText_FrostedGeulleisia};
 static const struct CreditsEntry gCreditsEntry_TheTPPChat[] = {FALSE, FALSE, gCreditsText_TheTPPChat};
 static const struct CreditsEntry gCreditsEntry_diana[] = {FALSE, FALSE, gCreditsText_diana};
 static const struct CreditsEntry gCreditsEntry_Blackrose[] = {FALSE, FALSE, gCreditsText_Blackrose};
+static const struct CreditsEntry gCreditsEntry_TestersDXRando[] = {FALSE, TRUE, gCreditsText_TestersDXRando};
+static const struct CreditsEntry gCreditsEntry_Ravendwyr[] = {FALSE, FALSE, gCreditsText_Ravendwyr};
+static const struct CreditsEntry gCreditsEntry_brespawn3[] = {FALSE, FALSE, gCreditsText_brespawn3};
+static const struct CreditsEntry gCreditsEntry_Fenris[] = {FALSE, FALSE, gCreditsText_Fenris};
 static const struct CreditsEntry gCreditsEntry_OriginalConcept[] = {FALSE, TRUE, gCreditsText_OriginalConcept};
 static const struct CreditsEntry gCreditsEntry_ConceptandBalancing[] = {FALSE, TRUE, gCreditsText_ConceptandBalancing};
 static const struct CreditsEntry gCreditsEntry_Chaoslord2[] = {FALSE, FALSE, gCreditsText_Chaoslord2};
@@ -204,9 +209,6 @@ static const struct CreditsEntry gCreditsEntry_SpecialThanksTo[] = {FALSE, TRUE,
 static const struct CreditsEntry gCreditsEntry_ThePkmnReverseEngineeringProject[] = {FALSE, FALSE, gCreditsText_ThePkmnReverseEngineeringProject};
 static const struct CreditsEntry gCreditsEntry_SierraffinitysCrystalDustProject[] = {FALSE, FALSE, gCreditsText_SierraffinitysCrystalDustProject};
 static const struct CreditsEntry gCreditsEntry_TheTwitchPlaysPkmnCommunity[] = {FALSE, FALSE, gCreditsText_TheTwitchPlaysPkmnCommunity};
-static const struct CreditsEntry gCreditsEntry_HiMom[] = {FALSE, FALSE, gCreditsText_HiMom};
-static const struct CreditsEntry gCreditsEntry_ImonTwitchTV[] = {FALSE, TRUE, gCreditsText_ImonTwitchTV};
-static const struct CreditsEntry gCreditsEntry_Kappa[] = {FALSE, FALSE, gCreditsText_Kappa};
 static const struct CreditsEntry gCreditsEntry_PkmnEMERALDVERSION[] = {FALSE, TRUE, gCreditsText_PkmnEMERALDVERSION};
 static const struct CreditsEntry gCreditsEntry_OriginalCredits[] = {FALSE, TRUE, gCreditsText_OriginalCredits};
 static const struct CreditsEntry gCreditsEntry_Director[] = {FALSE, TRUE, gCreditsText_Director};
@@ -351,7 +353,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 {
 	{
 		_,
-		gCreditsEntry_TRIHARDEMERALDVERSION,
+		gCreditsEntry_TRIHARDEMERALDDXVERSION,
 		gCreditsEntry_HackCredits,
 		_,
 		_,
@@ -375,9 +377,9 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 	},
 	{
 		gCreditsEntry_Programmers,
-		gCreditsEntry_ShantyTown,
 		gCreditsEntry_Tustin2121,
-		gCreditsEntry_M4UsedRollout,
+		gCreditsEntry_ShantyTown,
+		gCreditsEntry_M4usedrollout,
 		_,
 		NULL,
 		NULL,
@@ -434,7 +436,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 		NULL,
 	},
 	{
-		gCreditsEntry_Testers,
+		gCreditsEntry_TestersOG,
 		gCreditsEntry_FrostedGeulleisia,
 		gCreditsEntry_Ericchi,
 		gCreditsEntry_TheTPPChat,
@@ -446,9 +448,21 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 		NULL,
 	},
 	{
+		gCreditsEntry_TestersDXRando,
+		gCreditsEntry_Ravendwyr,
+		gCreditsEntry_M4usedrollout,
+		gCreditsEntry_TheTPPChat,
+		_,
+		NULL,
+		gCreditsEntry_brespawn3,
+		gCreditsEntry_Fenris,
+		NULL,
+		NULL,
+	},
+	{
 		_,
 		gCreditsEntry_OriginalConcept,
-		gCreditsEntry_M4UsedRollout,
+		gCreditsEntry_M4usedrollout,
 		_,
 		_,
 		NULL,
@@ -459,7 +473,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 	},
 	{
 		gCreditsEntry_ConceptandBalancing,
-		gCreditsEntry_M4UsedRollout,
+		gCreditsEntry_M4usedrollout,
 		gCreditsEntry_Tustin2121,
 		gCreditsEntry_Chaoslord2,
 		gCreditsEntry_FrostedGeulleisia,
@@ -474,18 +488,6 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][10] =
 		gCreditsEntry_ThePkmnReverseEngineeringProject,
 		gCreditsEntry_SierraffinitysCrystalDustProject,
 		gCreditsEntry_TheTwitchPlaysPkmnCommunity,
-		_,
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-	},
-	{
-		_,
-		gCreditsEntry_HiMom,
-		gCreditsEntry_ImonTwitchTV,
-		gCreditsEntry_Kappa,
 		_,
 		NULL,
 		NULL,

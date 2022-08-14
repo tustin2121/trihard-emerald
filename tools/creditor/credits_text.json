@@ -1,6 +1,6 @@
 [
 	[
-		"#TRIHARD EMERALD VERSION",
+		"#TRIHARD EMERALD DX VERSION",
 		"#Hack Credits"
 	],
 	[
@@ -9,9 +9,9 @@
 	],
 	[
 		"#Programmers",
-		"ShantyTown",
 		"Tustin2121",
-		"M4 Used Rollout"
+		"ShantyTown",
+		"M4_used_rollout"
 	],
 	[
 		"#Additional Programming",
@@ -38,20 +38,26 @@
 		"Ericchi"
 	],
 	[
-		"#Testers",
+		"#Testers OG",
 		["FrostedGeulleisia", "diana"],
 		["Ericchi", "Blackrose"],
 		"The TPP Chat"
 	],
 	[
+		"#Testers DX / Rando",
+		["Ravendwyr", "brespawn3"],
+		["M4_used_rollout", "Fenris"],
+		"The TPP Chat"
+	],
+	[
 		"#Original Concept",
-		"M4 Used Rollout"
+		"M4_used_rollout"
 	],
 	[
 		"#Concept and Balancing",
-		"M4 Used Rollout",
+		"M4_used_rollout",
 		"Tustin2121",
-		"Chaos lord2",
+		"Chaos_lord2",
 		"FrostedGeulleisia"
 	],
 	[
@@ -60,14 +66,6 @@
 		"Sierraffinity's CrystalDust Project",
 		"The TwitchPlaysPokémon Community"
 	],
-	
-	
-	[
-		"Hi, Mom!",
-		"#I'm on Twitch.TV!",
-		"Kappa"
-	],
-	
 	
 	
 	[
