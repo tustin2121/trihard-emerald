@@ -23,6 +23,7 @@
 		"enroute",
 		"EWRAM",
 		"gbapal",
+		"hānai",
 		"HOFS",
 		"ITEMFINDER",
 		"LEGENDARIES",
@@ -34,6 +35,7 @@
 		"rodata",
 		"teleporter",
 		"teleporters",
+		"tūtū",
 		"VBLANK",
 		"VOFS"
 	],

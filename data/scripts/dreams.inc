@@ -884,7 +884,7 @@ DreamScript_1100_Text2:
 @------------------------------------------------------
 @ Triggered by first entering Mt. Pyre
 DreamScript_1200::
-	fadenewbgm MUS_RG_TAMAMUSI @ TODO
+	fadenewbgm MUS_RG_NAMINORI
 	delay 60
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
 	message DreamScript_1200_Text1
@@ -1000,7 +1000,7 @@ DreamScript_1500_Text1:
 @ This is the end game. This dream is expected to play upon saving at the E4
 @ The additional dreams are for any other times the player explicitly saves at the E4
 DreamScript_1600::
-	fadenewbgm MUS_B_DOME @ TODO
+	fadenewbgm MUS_RG_POKEYASHI
 	delay 60
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
 	message DreamScript_1600_Text1
@@ -1035,7 +1035,7 @@ DreamScript_1600_Text1:
 	.string "floor is collapsing under you.\p"
 	.string "{WOMAN_SPEAKING}"
 	.string "After the Aether incident, the boss\n"
-	.string "had some soul serching to do.\p"
+	.string "had some soul searching to do.\p"
 	.string "He doesn't want to put y'all in danger\n"
 	.string "like that again over his screw ups.\p"
 	.string "{MAN_SPEAKING}"
@@ -1045,10 +1045,10 @@ DreamScript_1600_Text1:
 	.string "all around you, thrown to the floor.\p"
 	.string "Gang signs are ripped off and tossed aside.\n"
 	.string "You clutch your bandanna tightly.\p"
-	.string "Everyone's clamboring, asking what's next\n"
+	.string "Everyone's clambering, asking what's next\n"
 	.string "asking where they should go, asking why.\p"
-	.string "You stay rooted to the spot, bandanna\n"
-	.string "tightly in hand…\p"
+	.string "You stay rooted to the spot,\n"
+	.string "Skull Bandanna tightly in hand…\p"
 	.string "$"
 DreamScript_1600_Text2:
 	.string "{PLAYER} looks at the Aqua Bandana\n"
@@ -1151,7 +1151,7 @@ DreamScript_1601_Text6:
 	.string "Thoughts of {RIVAL_ALOLA}…\p$"
 DreamScript_1601_Text7:
 	.string "{PAUSE 30}{SET_NORM_PAL}{PAUSE 30}"
-	.string "You're in a much better headspace now.\n"
+	.string "You're in a much better head space now.\n"
 	.string "You can do this.\p"
 	.string "$"
 
