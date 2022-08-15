@@ -48,7 +48,7 @@ OldaleTown_EventScript_RestingGirl_BlockEvent:
 	end
 OldaleTown_Text_1E918E: @ 81E918E
 	.string "I can't stand the atmosphere inside.\p"
-	.string "They say my brother is in stable\n"
+	.string "They say my brother is in a stable\n"
 	.string "condition…$"
 
 
@@ -153,8 +153,8 @@ OldaleTown_EventScript_BlockadeBoy3:: @ 81E901F
 OldaleTown_Text_1E939A: @ 81E939A
 	.string "I saw it myself! A boy's Pokémon\n"
 	.string "was struck down by a wild Pokémon!\p"
-	.string "And then the boy was attacked by\n"
-	.string "the wild Pokémon himself!\p"
+	.string "And then the boy himself was\n"
+	.string "attacked by the wild Pokémon!\p"
 	.string "My Poochyena and I managed to fend\n"
 	.string "off the wild Pokémon, but the boy\l"
 	.string "was badly injured!\p"

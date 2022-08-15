@@ -298,7 +298,7 @@ LittlerootTown_PlayersHouse_2F_Text_1F877F: @ 81F877F
 	.string "{TIPS}TRIHARD ADVENTURE RULES{END}\p"
 	.string "{NO} 1: Rest at a Pokémon Center,\n"
 	.string "at home, or a heal house to SAVE!\p"
-	.string "{NO} 2: If you white out or forfiet,\n"
+	.string "{NO} 2: If you white out or forfeit,\n"
 	.string "the game will RESET without saving!\p"
 	.string "{NO} 3: Fainting means DEATH!\n"
 	.string "Don't let your Pokémon faint!\p"

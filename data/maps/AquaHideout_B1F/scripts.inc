@@ -241,7 +241,7 @@ AquaHideout_B1F_EventScript_Blueprint1::
 	waitmessage
 	waitbuttonpress
 	addvar VAR_AQUA_BLUEPRINT1, 1
-	releaseall 
+	releaseall
 	end
 .align 2
 AquaHideout_B1F_TextTable_Blueprint1:
@@ -263,7 +263,7 @@ AquaHideout_B1F_Text_Blueprint1B:
 	.string "Wait, they got this wrong too!\p"
 	.string "{PLAYER} grabs a pen and starts\n"
 	.string "scribbling notes and calculations.\p"
-	.string "This this could never sail!\n"
+	.string "This thing could never sail!\n"
 	.string "What were they thinking?!$"
 AquaHideout_B1F_Text_Blueprint1C:
 	.string "By Arceus's spike ring, who did this\n"
@@ -294,7 +294,7 @@ AquaHideout_B1F_EventScript_Blueprint2::
 	message 0x0, MSGTYPE_DESCRIBE
 	waitmessage
 	waitbuttonpress
-	releaseall 
+	releaseall
 	end
 .align 2
 AquaHideout_B1F_TextTable_Blueprint2:
