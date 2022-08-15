@@ -915,7 +915,7 @@ DreamScript_1200_Text1:
 	.string "{ALEX_SPEAKING}"
 	.string "Yes, I know I didn't have to get you\n"
 	.string "the birthday cake. I still did.{PAUSE 20}\p"
-	.string "It's not like I paid for it. Just\n"
+	.string "It's not like I paid for it anyway. Just\n"
 	.string "pretend there's sixteen candles on it.{END}{PAUSE 20}\p"
 	.string "You blow out the imaginary candles.{PAUSE 20}\n"
 	.string "She claps, like tūtū did…{PAUSE 40}\p"
@@ -940,19 +940,19 @@ DreamScript_1300::
 	fadedefaultbgm
 	return
 DreamScript_1300_Text1:
-	.string "You lie awake on the mattress, staring\n"
-	.string "at the skull symbol tagged on the ceiling.\p"
+	.string "You lie awake on the mattress, staring at\n"
+	.string "a skull symbol tagged on the ceiling.\p"
 	.string "This was the first time you opted\n"
 	.string "to sleep in the Po Town house.\p"
-	.string "The place is run down and tagged up,\n"
+	.string "The place is run down, tagged up,\n"
 	.string "and filled with broken furniture.\p$"
 DreamScript_1300_Text2m:
 	.string "There are five other guys sleeping\n"
-	.string "in this little room, spread across the\n"
+	.string "in this little room, spread across the\l"
 	.string "three mattresses and the floor.\p"
 	.string "Several of them are half-dressed.\n"
 	.string "One had fallen out of bed and is\l"
-	.string "sleeping with his legs up on the bed.\p$"
+	.string "sleeping with his legs still up on top.\p$"
 DreamScript_1300_Text2f:
 	.string "There are three other girls sleeping\n"
 	.string "in this little room, spread across the\l"
@@ -973,7 +973,7 @@ DreamScript_1300_Text3:
 	.string "being spit were insults and accusations.\p"
 	.string "This place is dirty, run down, and broken,{PAUSE 20}\n"
 	.string "but filled with love and opportunity.\p"
-	.string "This is practically paradise…{PAUSE 20}\n"
+	.string "This is practically paradise…{PAUSE 30}\n"
 	.string "You never want to leave…{PAUSE 30}\p"
 	.string "$"
 	
@@ -1007,10 +1007,11 @@ DreamScript_1600::
 	waitmessage
 	closemessage
 	fadenewbgm MUS_DUMMY
-	delay 15
+	delay 45
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DESCRIBE
 	message DreamScript_1600_Text2
 	waitmessage
+	waitbuttonpress
 	closemessage
 	@
 	setvar VAR_0x8000, 4
@@ -1026,29 +1027,31 @@ DreamScript_1600_Text1:
 	.string "pensive. Plumeria stands next to him.\p"
 	.string "The boss doesn't speak, he simply turns\n"
 	.string "around to reveal his jacket's Skull logo.\p"
-	.string "There's a big red X over the logo.\n"
-	.string "Your stomach drops. Gasps resound.\p"
-	.string "Plumeria steps forward, stone-faced.\n"
+	.string "There's a big red X over the logo.{PAUSE 20}\n"
+	.string "Your stomach drops.{PAUSE 20} Gasps resound.{PAUSE 20}\p"
+	.string "Plumeria steps forward, stone-faced.{PAUSE 20}\n"
 	.string "{WOMAN_SPEAKING}"
 	.string "Team Skull is hereby disbanded.{END}\p"
-	.string "Commotion. Uproar. You feel like the\n"
-	.string "floor is collapsing under you.\p"
+	.string "Commotion.{PAUSE 20} Uproar.{PAUSE 20} You feel like the\n"
+	.string "floor is collapsing out from under you.\p"
 	.string "{WOMAN_SPEAKING}"
 	.string "After the Aether incident, the boss\n"
 	.string "had some soul searching to do.\p"
 	.string "He doesn't want to put y'all in danger\n"
 	.string "like that again over his screw ups.\p"
 	.string "{MAN_SPEAKING}"
-	.string "Y'all can do better than this.{END}\n"
+	.string "Y'all can do better than this.{END}{PAUSE 20}\n"
 	.string "He speaks over his shoulder, shamefully.\p"
 	.string "Bandannas and hats are being discarded\n"
 	.string "all around you, thrown to the floor.\p"
-	.string "Gang signs are ripped off and tossed aside.\n"
+	.string "Gang signs are ripped off, tossed aside.\n"
 	.string "You clutch your bandanna tightly.\p"
-	.string "Everyone's clambering, asking what's next\n"
-	.string "asking where they should go, asking why.\p"
-	.string "You stay rooted to the spot,\n"
-	.string "Skull Bandanna tightly in hand…\p"
+	.string "Everyone's talking all at once.\n"
+	.string "Asking what's next?\l"
+	.string "Asking why?\l"
+	.string "Asking where they should go?\p"
+	.string "You stay rooted to the spot, Skull\n"
+	.string "Bandanna held tightly in hand…\p"
 	.string "$"
 DreamScript_1600_Text2:
 	.string "{PLAYER} looks at the Aqua Bandana\n"
@@ -1114,7 +1117,7 @@ DreamScript_1601_Text2:
 	.string "He's got a new job elsewhere. Court\n"
 	.string "ordered that custody of… you… is his.\l"
 	.string "That means you're going with him.{END}\p"
-	.string "First Guzma abandons you. Now this?\p"
+	.string "First Guzma abandons you.{PAUSE 30}\nNow this?\p"
 	.string "Dad is already half-packed.\n"
 	.string "{MAN_SPEAKING}"
 	.string "We fly out Friday.\l"
@@ -1128,21 +1131,21 @@ DreamScript_1601_Text3:
 	.string "{MAN_SPEAKING}"
 	.string "Don't argue. I didn't want to be\n"
 	.string "reassigned away from Alola either.{END}\p"
-	.string "Thoughts of running away.$" 
+	.string "Thoughts of running away.{PAUSE 20}$" 
 	@ "To where?" / "Skull's gone…"
 DreamScript_1601_YN_Where:
 	.string "To where?$"
 DreamScript_1601_YN_Gone:
 	.string "Skull's gone…$"
 DreamScript_1601_Text4:
-	.string "Thoughts of fighting back.$" 
+	.string "Thoughts of fighting back.{PAUSE 20}$" 
 	@ "But how?" / "Why bother…?"
 DreamScript_1601_YN_How:
 	.string "But how?$"
 DreamScript_1601_YN_WhyBother:
 	.string "Why bother…?$"
 DreamScript_1601_Text5:
-	.string "Thoughts of ending things.$" 
+	.string "Thoughts of ending things.{PAUSE 20}$" 
 	@ .string "Thoughts… of a darker nature.$" 
 	@ "……" / "Why even try…?"
 DreamScript_1601_YN_WhyTry:
@@ -1150,13 +1153,15 @@ DreamScript_1601_YN_WhyTry:
 DreamScript_1601_Text6:
 	.string "Thoughts of {RIVAL_ALOLA}…\p$"
 DreamScript_1601_Text7:
-	.string "{PAUSE 30}{SET_NORM_PAL}{PAUSE 30}"
-	.string "You're in a much better head space now.\n"
-	.string "You can do this.\p"
+	.string "{PAUSE 50}{SET_NORM_PAL}{PAUSE 10}"
+	.string "It was rough…{PAUSE 20} But you made it through.{PAUSE 30}\n"
+	.string "You made it this far…{PAUSE 30} eight badges…{PAUSE 20}\p"
+	.string "You're in a much better head space now.{PAUSE 30}\n"
+	.string "You can do this.{PAUSE 40} You can do this…{PAUSE 10}\p"
 	.string "$"
 
 
-DreamScript_1602::
+DreamScript_1602:: @ done
 	fadenewbgm MUS_HIDERI
 	delay 60
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
@@ -1176,11 +1181,12 @@ DreamScript_1602_Text1:
 	.string "You must have circled the island\n"
 	.string "a hundred times looking for {RIVAL_ALOLA}.\p"
 	.string "You're leaving in three days…\p"
-	.string "You've run into several former grunts\n"
+	.string "You've run into several former grunts,\n"
 	.string "all doing community service and crap…\p"
 	.string "Apparently Guzma and Plumeria have\n"
 	.string "already moved on too. Trainers now.\p"
 	.string "… … … …\n"
+	.string "… … … …\p"
 	.string "As the sun sets, you enter the graveyard.\p"
 	.string "You collapse onto tūtū's grave,\n"
 	.string "trying to not cry, and failing.$"
@@ -1190,7 +1196,7 @@ DreamScript_1602_Help:
 	.string "Help me…$"
 DreamScript_1602_Text2:
 	.string "The headstone is ever silent.\n"
-	.string "The Drifloon peer at you from a distance.\p"
+	.string "Drifloon peer at you from a distance.\p"
 	.string "$"
 
 
