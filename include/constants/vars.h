@@ -111,9 +111,9 @@
 #define VAR_RAYQUAZA_STATE                   0x405E // Actually "VAR_SOOTOPOLIS_STATE"
 #define VAR_EVERGRANDE_STATE                 0x405F // TriHard Emerald
 #define VAR_ROUTE101_STATE                   0x4060
-#define VAR_AQUA_BLUEPRINT1                  0x4061 // Unused Var
+#define VAR_AQUA_BLUEPRINT1                  0x4061 // Trihard
 #define VAR_AQUA_BLUEPRINT2                  0x4062 // Unused Var
-#define VAR_UNUSED_0x4063                    0x4063 // TE: Unused
+#define VAR_LOGAN_AQUA_FIGHT_LOST_MON_COUNT  0x4063 // Trihard
 #define VAR_UNUSED_0x4064                    0x4064 // Unused Var
 #define VAR_UNUSED_0x4065                    0x4065 // Unused Var
 #define VAR_UNUSED_0x4066                    0x4066 // Unused Var
@@ -165,7 +165,7 @@
 #define VAR_LILYCOVE_MUSEUM_2F_STATE         0x4094
 #define VAR_LILYCOVE_FAN_CLUB_STATE          0x4095
 #define VAR_BRINEY_LOCATION                  0x4096
-#define VAR_INIT_SECRET_BASE       0x4097
+#define VAR_INIT_SECRET_BASE                 0x4097
 #define VAR_PETALBURG_WOODS_STATE            0x4098
 #define VAR_LILYCOVE_CONTEST_LOBBY_STATE     0x4099
 #define VAR_RUSTURF_TUNNEL_STATE             0x409A

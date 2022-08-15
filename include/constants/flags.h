@@ -1190,10 +1190,10 @@
 #define FLAG_ALEX_DISCUSSED_GRANDMA                                 0x4D5 // Unused Flag
 #define FLAG_ALEX_DISCUSSED_STERN                                   0x4D6 // Unused Flag
 #define FLAG_ALEX_DISCUSSED_MAGMA                                   0x4D7 // Unused Flag
-#define FLAG_UNUSED_0x4D8                                           0x4D8 // Unused Flag
-#define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
-#define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
-#define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
+#define FLAG_ALEX_DISCUSSED_LOGAN                                   0x4D8 // Unused Flag
+#define FLAG_ALEX_DISCUSSED_SPACE_CENTER                            0x4D9 // Unused Flag
+#define FLAG_ALEX_KNOWS_LEGENDARY_OUTCOME                           0x4DA // Unused Flag
+#define FLAG_ALEX_KNOWS_E4                                          0x4DB // Unused Flag
 #define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
 #define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag
 #define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag

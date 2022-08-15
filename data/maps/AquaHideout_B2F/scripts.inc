@@ -129,6 +129,8 @@ AquaHideout_B2F_AquaWhyText:
 AquaHideout_B2F_RestCouch::
 	lockall
 	goto_if_set FLAG_TEMP_1F, AquaHideout_B2F_RestCouch_Nope
+	compare VAR_AQUA_HIDEOUT_STATE, 1
+	goto_if_eq AquaHideout_B2F_RestCouch_LoganDeny
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
 	message AquaHideout_B2F_RestCouch_Text, MSGTYPE_DESCRIBE
@@ -153,6 +155,18 @@ AquaHideout_B2F_RestCouch::
 AquaHideout_B2F_RestCouch_Text:
 	.string "This couch is very comfy…\n"
 	.string "Take a quick nap?$"
+AquaHideout_B2F_RestCouch_LoganDeny:
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	message AquaHideout_B2F_RestCouch_NopeText, MSGTYPE_DESCRIBE
+	waitmessage
+	waitbuttonpress
+	release
+	end
+AquaHideout_B2F_RestCouch_LoganDenyText:
+	.string "As much as it'd be nice to nap right\n"
+	.string "about now, Logan is loose in the base.\p"
+	.string "He needs to be dealt with quickly.$"
 AquaHideout_B2F_RestCouch_Nope:
 	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0

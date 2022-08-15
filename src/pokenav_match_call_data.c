@@ -360,26 +360,44 @@ extern const u8 gText_Alex_Pokenav_E4Day3[];
 extern const u8 gText_Alex_Pokenav_E4Day3_Hero[];
 extern const u8 gText_Alex_Pokenav_E4Day4[];
 extern const u8 gText_Alex_Pokenav_E4Day5[];
+extern const u8 gText_Alex_Pokenav_Logan_Base[];
+extern const u8 gText_Alex_Pokenav_Logan_Deaths[];
+extern const u8 gText_Alex_Pokenav_SpaceCenter[];
+extern const u8 gText_Alex_Pokenav_PostReport_BaseHelped[];
+extern const u8 gText_Alex_Pokenav_PostReport_BaseKnown[];
+extern const u8 gText_Alex_Pokenav_PostReport_BaseUnknown[];
+extern const u8 gText_Alex_Pokenav_PostReport_OutcomeNormal[];
+extern const u8 gText_Alex_Pokenav_PostReport_OutcomeHero[];
+extern const u8 gExpandedPlaceholder_Empty[];
 
 static const match_call_text_data_t sAlexTextScripts_CatchingUp[] = {
     { gText_Alex_Pokenav_CatchUp,      0xFFFF,                              FLAG_ALEX_KNOWS_TO_R120 },
     { gText_Alex_Pokenav_GymChallenge, FLAG_ALEX_KNOWS_TO_R120,             FLAG_ALEX_KNOWS_GYM },
     { gText_Alex_Pokenav_TeamAqua,     FLAG_ALEX_KNOWS_GYM,                 FLAG_ALEX_DISCUSSED_AQUA },
-    { gText_Alex_Pokenav_Grandma,      FLAG_SAW_DREAM_1200,                 FLAG_ALEX_DISCUSSED_GRANDMA },
-    { gText_Alex_Pokenav_Magma,        FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_MAGMA },
-    { gText_Alex_Pokenav_SternAfter,   FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_STERN },
-    { gText_Alex_Pokenav_Stern,        FLAG_TEAM_AQUA_STOLE_SUBMARINE,      FLAG_ALEX_DISCUSSED_STERN },
-    
-    { gText_Alex_Pokenav_Unavailable,  0xFFFF,                              0xFFFF },
     { NULL,                            0xFFFF,                              0xFFFF }
 };
 
-static const match_call_text_data_t sAlexTextScripts_DuringLegendaries[] = {
-    { gText_Alex_Pokenav_RainsBegan,   FLAG_LEGENDARIES_IN_SOOTOPOLIS, FLAG_ALEX_CALL_LEGENDARIES },
-    { gText_Alex_Pokenav_MidResearch,  FLAG_ALEX_KNOWS_LEGENDARIES,    0xFFFF },
-    { gText_Alex_Pokenav_PostResearch, FLAG_ALEX_TOLD_SKY_PILLAR,      0xFFFF },
-//  { gText_Alex_Pokenav_Unavailable,  FLAG_DAILY_ALEX_CALL,           0xFFFF },
+static const match_call_text_data_t sAlexTextScripts_BeforeLegendaries[] = {
+    { gText_Alex_Pokenav_SpaceCenter,  FLAG_DEFEATED_MAGMA_SPACE_CENTER,    FLAG_ALEX_DISCUSSED_SPACE_CENTER },
+    { gText_Alex_Pokenav_Logan_Base,   FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, FLAG_ALEX_DISCUSSED_LOGAN },
+    { gText_Alex_Pokenav_SternAfter,   FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_STERN },
+    { gText_Alex_Pokenav_Stern,        FLAG_TEAM_AQUA_STOLE_SUBMARINE,      FLAG_ALEX_DISCUSSED_STERN },
+    { gText_Alex_Pokenav_Magma,        FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_MAGMA },
+    { gText_Alex_Pokenav_Grandma,      FLAG_SAW_DREAM_1200,                 FLAG_ALEX_DISCUSSED_GRANDMA },
     { NULL,                            0xFFFF,                         0xFFFF }
+};
+static const match_call_text_data_t sAlexTextScripts_DuringLegendaries[] = {
+    { gText_Alex_Pokenav_PostResearch, FLAG_ALEX_TOLD_SKY_PILLAR,      0xFFFF },
+    { gText_Alex_Pokenav_MidResearch,  FLAG_ALEX_KNOWS_LEGENDARIES,    0xFFFF },
+    { gText_Alex_Pokenav_RainsBegan,   FLAG_LEGENDARIES_IN_SOOTOPOLIS, FLAG_ALEX_CALL_LEGENDARIES },
+    { NULL,                            0xFFFF,                         0xFFFF }
+};
+static const match_call_text_data_t sAlexTextScripts_AfterLegendaries[] = {
+    { gText_Alex_Pokenav_PostReport_BaseHelped,  FLAG_ALEX_TOLD_SKY_PILLAR,   FLAG_ALEX_KNOWS_LEGENDARY_OUTCOME },
+    { gText_Alex_Pokenav_PostReport_BaseKnown,   FLAG_ALEX_KNOWS_LEGENDARIES, FLAG_ALEX_KNOWS_LEGENDARY_OUTCOME },
+    { gText_Alex_Pokenav_PostReport_BaseUnknown, 0xFFFF,                      FLAG_ALEX_KNOWS_LEGENDARY_OUTCOME },
+//  { gText_Alex_Pokenav_PostReport_BaseUnknown, FLAG_ALEX_KNOWS_E4,          FLAG_ALEX_KNOWS_LEGENDARY_OUTCOME },
+    { NULL,                                      0xFFFF,                      0xFFFF }
 };
 
 static const struct MatchCallStructNPC sAlexMatchCallHeader =
@@ -394,18 +412,17 @@ static const struct MatchCallStructNPC sAlexMatchCallHeader =
 };
 
 // MatchCall_BufferCallMessageText -> Checks scripts table from bottom up
-static void MatchCall_BufferCallMessageText_TopDown(const match_call_text_data_t *textData, u8 *dest)
+static const u8* MatchCall_GetMessageText_AllOnce(const match_call_text_data_t *textData)
 {   // -> Checks scripts table from top down, like the dream table
 	u32 i;
-    
 	#define REQ_FLAG textData[i].flag
 	#define DONE_FLAG textData[i].flag2
     
     for (i = 0; TRUE; i++) {
         // If we reached the sentinel at the bottom, something went wrong. panic!
 		if (textData[i].text == NULL) {
-            StringExpandPlaceholders(dest, gText_Dad_Pokenav_NoAnswer); //"The number you have dialed is unavailable"
-            return;
+            // return gText_Dad_Pokenav_NoAnswer; //"The number you have dialed is unavailable"
+            return NULL;
         }
         // Skip entries which don't meet the prerequisite
         if (REQ_FLAG != 0xFFFF && FlagGet(REQ_FLAG) == FALSE) continue;
@@ -418,34 +435,84 @@ static void MatchCall_BufferCallMessageText_TopDown(const match_call_text_data_t
     if (DONE_FLAG != 0xffff) {
         FlagSet(DONE_FLAG);
     }
-    StringExpandPlaceholders(dest, textData[i].text);
+    return textData[i].text;
+}
+
+static const u8* MatchCall_GetMessageText_NewestOnly(const match_call_text_data_t *textData)
+{
+    u32 i;
+	#define REQ_FLAG textData[i].flag
+	#define DONE_FLAG textData[i].flag2
+    
+    for (i = 0; TRUE; i++) {
+        // If flag1 is set, or if there's no flag specified, we can use this entry
+        if (REQ_FLAG != 0xffff && FlagGet(REQ_FLAG) == TRUE) break;
+    }
+    // If there's a flag2 specified, set it as part of this call
+    if (DONE_FLAG != 0xffff) {
+        if (FlagGet(DONE_FLAG)) return NULL; // Skip if we've already done this
+        FlagSet(DONE_FLAG);
+    }
+    // Return the text of the entry
+    return textData[i].text;
 }
 
 static void MatchCall_GetMessage_Alex(match_call_t matchCall, u8* dest)
 {
+    const u8* textPtr = NULL;
     // Handle E4 if the player is in there.
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_WAITING_ROOM1)) {
+    if (textPtr == NULL && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_WAITING_ROOM1)) {
         switch (gSaveBlock1Ptr->location.mapNum) {
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM1): StringExpandPlaceholders(dest, gText_Alex_Pokenav_E4Day1); return;
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM2): StringExpandPlaceholders(dest, gText_Alex_Pokenav_E4Day2); return;
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM4): StringExpandPlaceholders(dest, gText_Alex_Pokenav_E4Day4); return;
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM5): StringExpandPlaceholders(dest, gText_Alex_Pokenav_E4Day5); return;
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM3): StringExpandPlaceholders(dest, 
-                (FlagGet(FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY))? gText_Alex_Pokenav_E4Day3_Hero : gText_Alex_Pokenav_E4Day3); 
-                return;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM1): textPtr = gText_Alex_Pokenav_E4Day1; break;;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM2): textPtr = gText_Alex_Pokenav_E4Day2; break;;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM3): textPtr = (FlagGet(FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY))? gText_Alex_Pokenav_E4Day3_Hero : gText_Alex_Pokenav_E4Day3; break;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM4): textPtr = gText_Alex_Pokenav_E4Day4; break;;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM5): textPtr = gText_Alex_Pokenav_E4Day5; break;;
         }
     }
-    if (FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS)) {
-        MatchCall_BufferCallMessageText(sAlexTextScripts_DuringLegendaries, dest);
+    if (textPtr == NULL && FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS)) {
+        textPtr = MatchCall_GetMessageText_AllOnce(sAlexTextScripts_DuringLegendaries);
         FlagSet(FLAG_ALEX_KNOWS_LEGENDARIES); // cheat: if we're getting from here, we have told / are telling Alex about the legendaries
-        return;
     }
-    // else if (FlagGet(FLAG_LEGENDARIES_CLEARED)) {
-    //     // TODO
-    // }
+    if (FlagGet(FLAG_LEGENDARIES_CLEARED)) {
+        if (FlagGet(FLAG_DAILY_ALEX_CALL)) textPtr = gText_Alex_Pokenav_Unavailable;
+        if (textPtr == NULL) {
+            textPtr = MatchCall_GetMessageText_AllOnce(sAlexTextScripts_AfterLegendaries);
+        }
+        if (textPtr != NULL) FlagSet(FLAG_DAILY_ALEX_CALL);
+    }
     else {
-        MatchCall_BufferCallMessageText_TopDown(sAlexTextScripts_CatchingUp, dest);
+        if (FlagGet(FLAG_DAILY_ALEX_CALL)) textPtr = gText_Alex_Pokenav_Unavailable;
+        if (textPtr == NULL) {
+            textPtr = MatchCall_GetMessageText_AllOnce(sAlexTextScripts_CatchingUp);
+        }
+        if (textPtr == NULL) {
+            textPtr = MatchCall_GetMessageText_NewestOnly(sAlexTextScripts_BeforeLegendaries);
+        }
+        if (textPtr != NULL) FlagSet(FLAG_DAILY_ALEX_CALL);
     }
+    if (textPtr == NULL) {
+        textPtr = gText_Alex_Pokenav_Unavailable;
+    }
+    
+    // Special handling for string expansions
+    if (textPtr == gText_Alex_Pokenav_Logan_Base) {
+        if (VarGet(VAR_LOGAN_AQUA_FIGHT_LOST_MON_COUNT) > 0) {
+            ConvertIntToNameStringN(gStringVar2, VarGet(VAR_LOGAN_AQUA_FIGHT_LOST_MON_COUNT), 0, 1);
+            StringExpandPlaceholders(gStringVar1, gText_Alex_Pokenav_Logan_Deaths);
+        } else {
+            StringExpandPlaceholders(gStringVar1, gExpandedPlaceholder_Empty);
+        }
+    }
+    if (textPtr == gText_Alex_Pokenav_PostReport_BaseHelped || textPtr == gText_Alex_Pokenav_PostReport_BaseKnown || gText_Alex_Pokenav_PostReport_BaseUnknown) {
+        if (FlagGet(FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY)) {
+            StringExpandPlaceholders(gStringVar1, gText_Alex_Pokenav_PostReport_OutcomeHero);
+        } else {
+            StringExpandPlaceholders(gStringVar1, gText_Alex_Pokenav_PostReport_OutcomeNormal);
+        }
+        FlagClear(FLAG_ALEX_CALL_LEGENDARIES); // Clear the due call, if it's ongoing
+    }
+    StringExpandPlaceholders(dest, textPtr);
 }
 
 //-----------------------------------------------------------------------------

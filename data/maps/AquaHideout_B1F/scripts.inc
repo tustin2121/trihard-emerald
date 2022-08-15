@@ -336,7 +336,7 @@ AquaHideout_B1F_TriggerScript_LoganFight::
 	markasdialog
 	msgbox AquaHideout_B1F_Text_LoganFight1
 	closemessage
-	@
+	@ juking each other out
 	special SpawnCameraObject
 	applymovement LID_LOGAN, AquaHideout_B1F_Movement_LoganFight2_JukeLogan1
 	applymovement EVENT_OBJ_ID_PLAYER, AquaHideout_B1F_Movement_LoganFight2_JukePlayer1
@@ -356,9 +356,18 @@ AquaHideout_B1F_TriggerScript_LoganFight::
 	special RemoveCameraObject
 	@
 	msgbox AquaHideout_B1F_Text_LoganFight3
+	@ make note of how many party members we have now
+	getpartysize
+	copyvar VAR_TEMP_A, VAR_RESULT
+	@ Start a deadly fight!
 	clearflag FLAG_DEATH_PREVENT
 	clearflag FLAG_DEATH_PREVENT_1HP
 	trainerbattle_no_intro TRAINER_LOGAN_HIDEOUT, AquaHideout_B1F_Text_LoganFight4
+	@ make note of how many pokemon we have now
+	@ mon count = prev - curr
+	copyvar VAR_LOGAN_AQUA_FIGHT_LOST_MON_COUNT, VAR_TEMP_A
+	getpartysize
+	subvar VAR_LOGAN_AQUA_FIGHT_LOST_MON_COUNT, VAR_RESULT
 	@
 	markasdialog
 	msgbox AquaHideout_B1F_Text_LoganFight5

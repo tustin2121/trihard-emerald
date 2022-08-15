@@ -148,14 +148,14 @@
 	.2byte \value
 	.endm
 
-	@ Changes the value of destination by adding value to it. Overflow is not prevented (0xFFFF + 1 = 0x0000).
+	@ Changes the value of destination by adding value to it.
 	.macro addvar destination:req, value:req
 	.byte 0x17
 	.2byte \destination
 	.2byte \value
 	.endm
 
-	@ Changes the value of destination by subtracting value to it. Overflow is not prevented (0x0000 - 1 = 0xFFFF).
+	@ Changes the value of destination by subtracting value to it.
 	.macro subvar destination:req, value:req
 	.byte 0x18
 	.2byte \destination
