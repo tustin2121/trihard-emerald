@@ -34,7 +34,7 @@ Route106_TrainerTrio_Tyler_TextAlreadyDone:
 	.string "tomorrow too!$"
 
 Route106_TrainerTrio_Tyler_NewDay:
-	select_if_unset FLAG_MET_TRAINING_TRIO, Route106_TrainerTrio_Tyler_Text1, Route106_TrainerTrio_Tyler_Text2
+	select_if_unset FLAG_MET_TRAINING_TRIO, Route106_TrainerTrio_Tyler_Text1, Route106_TrainerTrio_Tyler_Text1A
 	msgbox_selected MSGBOX_YESNO
 	setflag FLAG_MET_TRAINING_TRIO
 	compare VAR_RESULT, 1
@@ -53,7 +53,7 @@ Route106_TrainerTrio_Tyler_Text1:
 	.string "slack off, right? Friendly fun too!\p"
 	.string "Would you like to join us in our\n"
 	.string "training session today?$"
-Route106_TrainerTrio_Tyler_Text2:
+Route106_TrainerTrio_Tyler_Text1A:
 	.string "Tyler: Heya, you are back!\p"
 	.string "Would you like to train with us\n"
 	.string "today?$"
