@@ -703,13 +703,14 @@ void CB2_StartWallClock(void)
     LZ77UnCompVram(gUnknown_08DCC648, (u16 *)BG_SCREEN_ADDR(7));
 
     taskId = CreateTask(Task_SetClock1, 0);
-    gTasks[taskId].tHours = 10;
-    gTasks[taskId].tMinutes = 0;
-    gTasks[taskId].tMvmtDir = 0;
-    gTasks[taskId].tPeriod = 0;
-    gTasks[taskId].tMvmtSpeed = 0;
-    gTasks[taskId].tMinuteHandAngle = 0;
-    gTasks[taskId].tHourHandAngle = 300;
+    InitClockWithRtc(taskId);
+    // gTasks[taskId].tHours = 10;
+    // gTasks[taskId].tMinutes = 0;
+    // gTasks[taskId].tMvmtDir = 0;
+    // gTasks[taskId].tPeriod = 0;
+    // gTasks[taskId].tMvmtSpeed = 0;
+    // gTasks[taskId].tMinuteHandAngle = 0;
+    // gTasks[taskId].tHourHandAngle = 300;
 
     spriteId = CreateSprite(&gUnknown_085B2250, 120, 80, 1);
     gSprites[spriteId].data[0] = taskId;

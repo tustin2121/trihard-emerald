@@ -56,6 +56,8 @@ PokemonCenter_1F_NurseHealScript_Heal:
 	advancetime 6, 45, 30
 	@ Do the mourning cutscene, if needed
 	domourning
+	clearflag FLAG_DAILY_DAD_CALL
+	clearflag FLAG_DAILY_ALEX_CALL
 	@ TriHard Emerald: Force Save
 	special ForceSaveGame
 	waitstate

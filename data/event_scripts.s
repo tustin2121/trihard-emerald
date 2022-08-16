@@ -1660,6 +1660,8 @@ Common_EventScript_PartyHealSave_Setup::
 	advancetime 7, 30, 30
 	return
 Common_EventScript_PartyHealSave_Save::
+	clearflag FLAG_DAILY_DAD_CALL
+	clearflag FLAG_DAILY_ALEX_CALL
 	@ TriHard Emerald: Force Save
 	special ForceSaveGame
 	waitstate

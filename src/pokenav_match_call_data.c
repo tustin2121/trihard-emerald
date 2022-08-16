@@ -463,11 +463,11 @@ static void MatchCall_GetMessage_Alex(match_call_t matchCall, u8* dest)
     // Handle E4 if the player is in there.
     if (textPtr == NULL && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_WAITING_ROOM1)) {
         switch (gSaveBlock1Ptr->location.mapNum) {
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM1): textPtr = gText_Alex_Pokenav_E4Day1; break;;
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM2): textPtr = gText_Alex_Pokenav_E4Day2; break;;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM1): textPtr = gText_Alex_Pokenav_E4Day1; break;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM2): textPtr = gText_Alex_Pokenav_E4Day2; break;
             case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM3): textPtr = (FlagGet(FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY))? gText_Alex_Pokenav_E4Day3_Hero : gText_Alex_Pokenav_E4Day3; break;
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM4): textPtr = gText_Alex_Pokenav_E4Day4; break;;
-            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM5): textPtr = gText_Alex_Pokenav_E4Day5; break;;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM4): textPtr = gText_Alex_Pokenav_E4Day4; break;
+            case MAP_NUM(EVER_GRANDE_CITY_WAITING_ROOM5): textPtr = gText_Alex_Pokenav_E4Day5; break;
         }
     }
     if (textPtr == NULL && FlagGet(FLAG_LEGENDARIES_IN_SOOTOPOLIS)) {
@@ -475,14 +475,14 @@ static void MatchCall_GetMessage_Alex(match_call_t matchCall, u8* dest)
         FlagSet(FLAG_ALEX_KNOWS_LEGENDARIES); // cheat: if we're getting from here, we have told / are telling Alex about the legendaries
     }
     if (FlagGet(FLAG_LEGENDARIES_CLEARED)) {
-        if (FlagGet(FLAG_DAILY_ALEX_CALL)) textPtr = gText_Alex_Pokenav_Unavailable;
+        if (FlagGet(FLAG_DAILY_ALEX_CALL)) goto afterSelected;
         if (textPtr == NULL) {
             textPtr = MatchCall_GetMessageText_AllOnce(sAlexTextScripts_AfterLegendaries);
         }
         if (textPtr != NULL) FlagSet(FLAG_DAILY_ALEX_CALL);
     }
     else {
-        if (FlagGet(FLAG_DAILY_ALEX_CALL)) textPtr = gText_Alex_Pokenav_Unavailable;
+        if (FlagGet(FLAG_DAILY_ALEX_CALL)) goto afterSelected;
         if (textPtr == NULL) {
             textPtr = MatchCall_GetMessageText_AllOnce(sAlexTextScripts_CatchingUp);
         }
@@ -491,6 +491,7 @@ static void MatchCall_GetMessage_Alex(match_call_t matchCall, u8* dest)
         }
         if (textPtr != NULL) FlagSet(FLAG_DAILY_ALEX_CALL);
     }
+afterSelected:
     if (textPtr == NULL) {
         textPtr = gText_Alex_Pokenav_Unavailable;
     }

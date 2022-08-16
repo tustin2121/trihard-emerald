@@ -918,7 +918,7 @@ DreamScript_1200_Text1:
 	.string "It's not like I paid for it anyway. Just\n"
 	.string "pretend there's sixteen candles on it.{END}{PAUSE 20}\p"
 	.string "You blow out the imaginary candles.{PAUSE 20}\n"
-	.string "She claps, like tūtū did…{PAUSE 40}\p"
+	.string "{RIVAL_They} claps, like tūtū did…{PAUSE 40}\p"
 	.string "$"
 	
 @------------------------------------------------------
