@@ -1123,7 +1123,7 @@
 #define FLAG_HIDE_PETALBURG_CENTER_LOGAN                            0x493 // Trihard
 #define FLAG_ITEM_STOLEN_MARILL_DOLL                                0x494 // Trihard
 #define FLAG_ITEM_STOLEN_FROM_PHOEBE                                0x495 // Trihard
-#define FLAG_ITEM_STOLEN_EVERGRANDE_SOUTH1                              0x496 // Trihard
+#define FLAG_ITEM_STOLEN_EVERGRANDE_SOUTH1                          0x496 // Trihard
 #define FLAG_ITEM_STOLEN_SNORLAX_DOLL                               0x497 // Trihard
 #define FLAG_ITEM_STOLEN_OCCUPIED_CUSHION                           0x498 // Trihard
 #define FLAG_MET_E4_JOEY                                            0x499 // Trihard
@@ -1140,7 +1140,7 @@
 #define FLAG_VISITED_MT_PYRE                                        0x4A4 // Unused Flag
 #define FLAG_HIDE_MAGMA_HIDEOUT_OTHERS                              0x4A5 // Unused Flag
 #define FLAG_MET_TRAINING_TRIO                                      0x4A6 // Unused Flag
-#define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
+#define FLAG_ITEM_STOLEN_FORETREE_CENTER                            0x4A7 // Unused Flag
 #define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
 #define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag
 #define FLAG_UNUSED_0x4AA                                           0x4AA // Unused Flag

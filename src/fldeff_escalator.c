@@ -92,7 +92,7 @@ static void Task_EscalatorAnimateTiles(u8 taskId)
             EscalatorChangeTiles(taskId, sEscalatorMetatiles_DownC, 0);
             break;
         case 7:
-            EscalatorChangeTiles(taskId, sEscalatorMetatiles_DownPlant, 0);
+            EscalatorChangeTiles(taskId, sEscalatorMetatiles_DownPlant, METATILE_COLLISION_MASK);
             break;
     }
 

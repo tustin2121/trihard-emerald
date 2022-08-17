@@ -1,22 +1,7 @@
 LavaridgeTown_PokemonCenter_2F_MapScripts:: @ 81FFC97
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, LavaridgeTown_PokemonCenter_2F_MapScript2_276C3B
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LavaridgeTown_PokemonCenter_2F_MapTable
-	map_script MAP_SCRIPT_ON_LOAD, LavaridgeTown_PokemonCenter_2F_MapScript1_276BBE
 	map_script MAP_SCRIPT_ON_TRANSITION, PokemonCenter_2F_OnTransition
 	.byte 0
-
-LavaridgeTown_PokemonCenter_2F_EventScript_1FFCAC:: @ 81FFCAC
-	call OldaleTown_PokemonCenter_2F_EventScript_276EB7
-	end
-
-LavaridgeTown_PokemonCenter_2F_EventScript_1FFCB2:: @ 81FFCB2
-	call OldaleTown_PokemonCenter_2F_EventScript_2770B2
-	end
-
-LavaridgeTown_PokemonCenter_2F_EventScript_1FFCB8:: @ 81FFCB8
-	call OldaleTown_PokemonCenter_2F_EventScript_2771DB
-	end
-
 
 LavaridgeTown_PokemonCenter_2F_MapTable:
 	map_script_2 VAR_LAST_WARP_ID, 1, Common_EventScript_SetPowerOffWeather

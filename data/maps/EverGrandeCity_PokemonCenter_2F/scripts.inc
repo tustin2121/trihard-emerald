@@ -1,5 +1,4 @@
 EverGrandeCity_PokemonCenter_2F_MapScripts:: @ 8229CE0
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_PokemonCenter_2F_MapScript2_276C3B
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_PokemonCenter_2F_MapTable
 	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_PokemonCenter_2F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, PokemonCenter_2F_OnTransition

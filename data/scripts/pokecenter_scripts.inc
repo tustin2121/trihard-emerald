@@ -7,10 +7,10 @@ PokemonCenter_1F_NurseHealScript:: @ 827191E
 	faceplayer
 	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DIALOG
 	goto_if_set FLAG_TEMP_5, PokemonCenter_1F_NurseHealScript_Talk
-	applymovement VAR_0x800B, PokemonCenter_1F_Movement_NurseBow
+	applymovement VAR_0x800B, PokemonCenter_1F_Movement_NurseBow @ Why is this not just using THIS_EVENT?
 	setyesnotext gYN_Sure, gYN_No
-	msgbox PokemonCenter_1F_NurseText_NurseHealPrompt, MSGBOX_YESNO
-	compare VAR_RESULT, YES
+	msgbox PokemonCenter_1F_NurseText_NurseHealPrompt, MSGBOX_YESNO @ TODO: in future iteration, use selectpointer to load something up
+	compare VAR_RESULT, YES                                         @ TODO: command: loadword_default (to load only when it is null)
 	goto_if_eq PokemonCenter_1F_NurseHealScript_Heal
 	
 	message PokemonCenter_1F_NurseText_NurseGoodbye

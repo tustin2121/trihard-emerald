@@ -52,33 +52,6 @@ OldaleTown_PokemonCenter_2F_EventScript_276B62:: @ 8276B62
 	release
 	end
 
-BattleFrontier_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-DewfordTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-EverGrandeCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-EverGrandeCity_PokemonLeague_2F_MapScript2_276B6C: @ 8276B6C
-FallarborTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-FortreeCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-LavaridgeTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-LilycoveCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-MauvilleCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-MossdeepCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-OldaleTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-PacifidlogTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-PetalburgCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-RustboroCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-SlateportCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-SootopolisCity_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-VerdanturfTown_PokemonCenter_2F_MapScript2_276B6C: @ 8276B6C
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 2, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 5, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 3, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 4, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 6, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 7, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 8, OldaleTown_PokemonCenter_2F_EventScript_276BAE
-	.2byte 0
-
 MossdeepCity_GameCorner_1F_EventScript_276BAE:: @ 8276BAE
 OldaleTown_PokemonCenter_2F_EventScript_276BAE:: @ 8276BAE
 	compare VAR_0x8007, 0
@@ -87,94 +60,6 @@ OldaleTown_PokemonCenter_2F_EventScript_276BAE:: @ 8276BAE
 
 OldaleTown_PokemonCenter_2F_EventScript_276BBD:: @ 8276BBD
 	end
-
-BattleFrontier_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-DewfordTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-EverGrandeCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-EverGrandeCity_PokemonLeague_2F_MapScript1_276BBE: @ 8276BBE
-FallarborTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-FortreeCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-LavaridgeTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-LilycoveCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-MauvilleCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-MossdeepCity_GameCorner_1F_MapScript1_276BBE: @ 8276BBE
-MossdeepCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-OldaleTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-PacifidlogTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-PetalburgCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-RustboroCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-SlateportCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-SootopolisCity_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-VerdanturfTown_PokemonCenter_2F_MapScript1_276BBE: @ 8276BBE
-	@ compare VAR_CABLE_CLUB_STATE, 1
-	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
-	@ compare VAR_CABLE_CLUB_STATE, 2
-	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
-	@ compare VAR_CABLE_CLUB_STATE, 5
-	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C17
-	@ compare VAR_CABLE_CLUB_STATE, 3
-	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C1D
-	@ compare VAR_CABLE_CLUB_STATE, 4
-	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C23
-	@ compare VAR_CABLE_CLUB_STATE, 6
-	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C29
-	@ compare VAR_CABLE_CLUB_STATE, 7
-	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C2F
-	@ compare VAR_CABLE_CLUB_STATE, 8
-	@ goto_if_eq OldaleTown_PokemonCenter_2F_EventScript_276C35
-	end
-
-OldaleTown_PokemonCenter_2F_EventScript_276C17:: @ 8276C17
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
-	end
-
-OldaleTown_PokemonCenter_2F_EventScript_276C1D:: @ 8276C1D
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
-	end
-
-OldaleTown_PokemonCenter_2F_EventScript_276C23:: @ 8276C23
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
-	end
-
-OldaleTown_PokemonCenter_2F_EventScript_276C29:: @ 8276C29
-	call OldaleTown_PokemonCenter_2F_EventScript_277BBE
-	end
-
-OldaleTown_PokemonCenter_2F_EventScript_276C2F:: @ 8276C2F
-	call OldaleTown_PokemonCenter_2F_EventScript_277BE4
-	end
-
-OldaleTown_PokemonCenter_2F_EventScript_276C35:: @ 8276C35
-	call OldaleTown_PokemonCenter_2F_EventScript_277C0A
-	end
-
-BattleFrontier_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-DewfordTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-EverGrandeCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-EverGrandeCity_PokemonLeague_2F_MapScript2_276C3B: @ 8276C3B
-FallarborTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-FortreeCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-LavaridgeTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-LilycoveCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-MauvilleCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-MossdeepCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-OldaleTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-PacifidlogTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-PetalburgCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-RustboroCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-SlateportCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-SootopolisCity_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-VerdanturfTown_PokemonCenter_2F_MapScript2_276C3B: @ 8276C3B
-	@ map_script_2 VAR_FREE_POKEBALL_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276DE0
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 1, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 2, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 5, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 3, OldaleTown_PokemonCenter_2F_EventScript_276CE7
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 4, OldaleTown_PokemonCenter_2F_EventScript_276D2C
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 6, OldaleTown_PokemonCenter_2F_EventScript_276D6C
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 7, OldaleTown_PokemonCenter_2F_EventScript_276C85
-	@ map_script_2 VAR_CABLE_CLUB_STATE, 8, OldaleTown_PokemonCenter_2F_EventScript_276C9D
-	.2byte 0
 
 OldaleTown_PokemonCenter_2F_EventScript_276C85:: @ 8276C85
 	lockall

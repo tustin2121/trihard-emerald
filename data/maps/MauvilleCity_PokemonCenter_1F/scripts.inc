@@ -32,9 +32,29 @@ MauvilleCity_PokemonCenter_1F_EventScript_210E74:: @ 8210E74
 @ -----------------------------------------------------
 
 MauvilleCity_PokemonCenter_1F_NurseScript:: @ 8210E78
-	setvar VAR_0x800B, 1
-	goto PokemonCenter_1F_NurseHealScript
+	setvar VAR_0x800B, 1 @ This is used for ApplyMovement? Why is this not just using THIS_EVENT
+	lock
+	faceplayer
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DIALOG  @ markasdialog
+	goto_if_set FLAG_TEMP_5, PokemonCenter_1F_NurseHealScript_Talk
+	applymovement VAR_0x800B, PokemonCenter_1F_Movement_NurseBow
+	setyesnotext gYN_Sure, gYN_No
+	select_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, PokemonCenter_1F_NurseText_NurseHealPrompt, MauvilleCity_PokemonCenter_1F_NurseText_NurseHealPrompt
+	msgbox_selected MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq PokemonCenter_1F_NurseHealScript_Heal
+	
+	message PokemonCenter_1F_NurseText_NurseGoodbye
+	waitmessage
+	waitbuttonpress
+	release
 	end
+MauvilleCity_PokemonCenter_1F_NurseText_NurseHealPrompt:
+	.string "Welcome to the Pokémon Center!\p"
+	.string "All of our rooms are unavailable at\n"
+	.string "this time, but we can offer cots.\p"
+	.string "Would you like a cot\n"
+	.string "for the {TIME_OF_DAY}?$"
 
 MauvilleCity_PokemonCenter_1F_Hipster::
 	markasdialog
@@ -115,7 +135,7 @@ MauvilleCity_PokemonCenter_1F_Text_210F8A: @ 8210F8A
 	.string "There are rooms upstairs in\n"
 	.string "the Pokémon Center.\p"
 	.string "They built them so trainers can\n"
-	.string "get some rest after travelling!$"
+	.string "get some rest after traveling!$"
 
 
 MauvilleCity_Mart_EventScript_21111C:: @ 821111C

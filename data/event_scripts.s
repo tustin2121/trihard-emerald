@@ -5652,3 +5652,5 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/FortreeCity_House7/scripts.inc"
 
 	.include "data/maps/FortreeCity_House8/scripts.inc"
+
+	@ .include "data/maps/MauvilleCity_PokemonCenter_2F_Alt/scripts.inc"

@@ -25,7 +25,7 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
             "script": "PokemonCenter_2F_EventScript_OccupiedSign",
             "type": "sign",
-            "x": 12,
+            "x": 14,
             "y": 3
         },
         {
@@ -71,6 +71,84 @@
             "trainer_type": "0",
             "x": 7,
             "y": 2
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_CHAIR_ITEMS_2",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "RustboroCity_PokemonCenter_2F_EventScript_AbandonedBag",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 13,
+            "y": 17
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_GAMEBOY_KID",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "FortreeCity_PokemonCenter_2F_EventScript_GBKid",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 2,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_WINONA",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "script": "FortreeCity_PokemonCenter_2F_EventScript_Winona",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 8,
+            "y": 8
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_LITTLE_GIRL",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "FortreeCity_PokemonCenter_2F_EventScript_LittleFan",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 7,
+            "y": 8
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_BOY_2",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "FortreeCity_PokemonCenter_2F_EventScript_SickBoy",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 2,
+            "y": 17
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_NURSE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "FortreeCity_PokemonCenter_2F_EventScript_Nurse",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 5,
+            "y": 17
         }
     ],
     "region_map_section": "MAPSEC_FORTREE_CITY",
@@ -116,7 +194,7 @@
             "dest_map": "MAP_FORTREE_CITY_POKEMON_CENTER_2F",
             "dest_warp_id": 1,
             "elevation": 3,
-            "x": 14,
+            "x": 12,
             "y": 3
         },
         {
