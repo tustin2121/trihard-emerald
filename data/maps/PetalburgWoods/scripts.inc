@@ -159,7 +159,6 @@ PetalburgWoods_TriggerScript_DevonAttack_Right::
 
 #define LID_DEVON 4
 #define LID_BAD 3
-#define LID_PLAYER EVENT_OBJ_ID_PLAYER
 
 PetalburgWoods_EventScript_DevonAttack:: @ 822E079
 	lockall
@@ -248,7 +247,6 @@ PetalburgWoods_EventScript_22E17D:: @ 822E17D
 
 #undef LID_DEVON
 #undef LID_BAD
-#undef LID_PLAYER
 
 PetalburgWoods_Movement_LookAround: @ 822E1B1
 	face_up

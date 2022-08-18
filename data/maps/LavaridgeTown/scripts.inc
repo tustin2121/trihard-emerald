@@ -1,4 +1,5 @@
 LavaridgeTown_MapScripts:: @ 81EA4D3
+	map_script MAP_SCRIPT_ON_LOAD, LavaridgeTown_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LavaridgeTown_MapScript2
 	.byte 0
@@ -42,6 +43,15 @@ LavaridgeTown_EventScript_1EA529:: @ 81EA529
 
 LavaridgeTown_EventScript_1EA543:: @ 81EA543
 	setflag FLAG_HIDE_MAP_NAME_POPUP
+	return
+
+@ -----------------------------------------------------
+
+LavaridgeTown_OnLoad:
+	call_if_unset FLAG_HIDE_AQUA_HIDEOUT_GRUNTS, LavaridgeTown_OnLoad_HideAquaGrunts
+	end
+LavaridgeTown_OnLoad_HideAquaGrunts:
+	setflag FLAG_TEMP_10
 	return
 
 @ -----------------------------------------------------
@@ -149,6 +159,56 @@ LavaridgeTown_Text_1EAF4E: @ 81EAF4E
 	.string "Oh, you like hot springs, do you?\p"
 	.string "That's surprising for one as young\n"
 	.string "as you.$"
+
+
+LavaridgeTown_EventScript_HotSpringGrunt1::
+	msgbox LavaridgeTown_Text_HotSpringGrunt1, MSGBOX_NPC
+	end
+LavaridgeTown_Text_HotSpringGrunt1:
+	.string "Oh, hey. I think I remember seeing you\n"
+	.string "during the Slateport heist.\p"
+	.string "After the Team disbanded, we've been\n"
+	.string "around here, doing our own thing.\p"
+	.string "I've got a guy on one arm, and a\n"
+	.string "girl on the other.\l"
+	.string "I could stay here forever…$"
+
+LavaridgeTown_EventScript_HotSpringGrunt2::
+	msgbox LavaridgeTown_Text_HotSpringGrunt2, MSGBOX_NPC
+	end
+LavaridgeTown_Text_HotSpringGrunt2:
+	.string "I'm trying to de-stress.\n"
+	.string "I was part of the submarine team.\p"
+	.string "The cave collapsed on us as Kyogre\n"
+	.string "dug and clawed its way out!\l"
+	.string "We thought we were gonna die!\p"
+	.string "I don't think I'm ever gonna forget\n"
+	.string "that visceral panic and fear…$"
+
+LavaridgeTown_EventScript_HotSpringGrunt3::
+	goto_if_set FLAG_TEMP_7, LavaridgeTown_EventScript_HotSpringGrunt3Post
+	selectpointer_ongender LavaridgeTown_Text_HotSpringGrunt3m, LavaridgeTown_Text_HotSpringGrunt3f
+	bufferstring 0, 0
+	msgbox LavaridgeTown_Text_HotSpringGrunt3, MSGBOX_NPC
+	setflag FLAG_TEMP_7
+	end
+LavaridgeTown_EventScript_HotSpringGrunt3Post:
+	msgbox LavaridgeTown_Text_HotSpringGrunt3post, MSGBOX_NPC
+	end
+LavaridgeTown_Text_HotSpringGrunt3:
+	.string "{FORCE_SPEED_MID}"
+	.string "Hey {STR_VAR_1}, how you doing?\n"
+	.string "Come to… join us?\p"
+	.string "{RESET_SPEED}"
+	.string "You're what?!{PAUSE 30} Oh!{PAUSE 30} …{PAUSE 30} …{PAUSE 30} Y-You look\n"
+	.string "very mature for…{PAUSE 20} your age…\p" @fallthrough
+LavaridgeTown_Text_HotSpringGrunt3post:
+	.string "Well, I've got a kid sister your age.\n"
+	.string "Maybe she'd be interested, if you are.$"
+LavaridgeTown_Text_HotSpringGrunt3m:
+	.string "handsome$"
+LavaridgeTown_Text_HotSpringGrunt3f:
+	.string "darling$"
 
 @ -----------------------------------------------------
 @ Egg Woman

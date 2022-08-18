@@ -224,6 +224,7 @@ static u16 GetPlayerCurMetatileBehavior(int runningState)
     return MapGridGetMetatileBehaviorAt(x, y);
 }
 
+extern const u8 MossdeepCity_EventScript_TeamPile[];
 static bool8 TryStartInteractionScript(struct MapPosition *position, u16 metatileBehavior, u8 direction)
 {
     const u8 *script = GetInteractionScript(position, metatileBehavior, direction);
@@ -234,7 +235,8 @@ static bool8 TryStartInteractionScript(struct MapPosition *position, u16 metatil
     if (script != EventScript_SecretBasePC
      && script != EventScript_RecordMixingSecretBasePC
      && script != SecretBase_EventScript_DollInteract
-     && script != SecretBase_EventScript_CushionInteract)
+     && script != SecretBase_EventScript_CushionInteract
+     && script != MossdeepCity_EventScript_TeamPile)
         PlaySE(SE_SELECT);
     
     gSpecialVar_InteractX = position->x;

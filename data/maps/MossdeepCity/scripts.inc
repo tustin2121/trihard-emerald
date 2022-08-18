@@ -82,6 +82,8 @@ MossdeepCity_Text_1E541F: @ 81E541F
 MossdeepCity_EventScript_TeamPile:: @ 81E4B2F
 	compare VAR_MOSSDEEP_STATE, 12
 	goto_if_lt Common_EventScript_ReleaseEnd
+	@ This script will not auto-play the select sound
+	playse SE_SELECT
 	msgbox MossdeepCity_Text_TeamPile, MSGBOX_DESCRIBE
 	end
 MossdeepCity_Text_TeamPile: @ 81E541F
