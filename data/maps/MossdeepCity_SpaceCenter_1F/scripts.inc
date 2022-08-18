@@ -331,7 +331,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_AquaBoy::
 	releaseall
 	end
 MossdeepCity_SpaceCenter_1F_Text_AquaBoy1:
-	.string "Oh, good, you're here.$"
+	.string "{AQUA_BOY}: Oh, good, you're here.$"
 MossdeepCity_SpaceCenter_1F_Text_AquaBoy2:
 	.string "I've got limited resources on account of\n"
 	.string "the boss's undersea expedition.\p"

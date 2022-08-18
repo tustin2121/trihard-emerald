@@ -101,7 +101,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS",
-            "graphics_id": "EVENT_OBJ_GFX_FORMER_AQUA_M",
+            "graphics_id": "EVENT_OBJ_GFX_FORMER_AQUA_FRIEND_M",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -114,7 +114,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_MOSSDEEP_CENTER_FORMER_TEAM_MEMBERS",
-            "graphics_id": "EVENT_OBJ_GFX_FORMER_AQUA_F",
+            "graphics_id": "EVENT_OBJ_GFX_FORMER_AQUA_FRIEND_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",

@@ -121,7 +121,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_ROUTE_119_TEAM_AQUA",
-            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_F",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_FRIEND_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",

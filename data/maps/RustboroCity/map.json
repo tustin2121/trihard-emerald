@@ -502,7 +502,7 @@
         {
             "elevation": 0,
             "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS",
-            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_F",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_FRIEND_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -528,7 +528,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_MEMBERS",
-            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_FRIEND_M",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",

@@ -403,8 +403,8 @@ MossdeepCity_EventScript_RainsBegin::
 	lockall
 	getplayerxy VAR_INTERACT_X, VAR_INTERACT_Y
 	subvar VAR_INTERACT_Y, 10
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_AQUA_MEMBER_M
-	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_AQUA_MEMBER_F
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_AQUA_FRIEND_M
+	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_AQUA_FRIEND_F
 	setvar VAR_OBJ_GFX_ID_2, EVENT_OBJ_GFX_MAGMA_MEMBER_M
 	@ "PLAYER!"
 	markasdialog 29 @off the edge of the screen
@@ -568,7 +568,7 @@ MossdeepCity_EventScript_RainsBegin::
 	waitmovement LID_AQUA_BOY
 	delay 16
 	setobjectxyperm LID_AQUA_BOY, 31, 25
-	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_FORMER_AQUA_M
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_FORMER_AQUA_FRIEND_M
 	removeobject LID_AQUA_BOY
 	setmetatile VAR_0x8000, VAR_0x8001, 0x370, FALSE
 	special DrawWholeMapView
@@ -593,7 +593,7 @@ MossdeepCity_EventScript_RainsBegin::
 	waitmovement LID_AQUA_GIRL
 	delay 24
 	setobjectxyperm LID_AQUA_GIRL, 31, 25
-	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_FORMER_AQUA_F
+	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_FORMER_AQUA_FRIEND_F
 	removeobject LID_AQUA_GIRL
 	setmetatile VAR_0x8000, VAR_0x8001, 0x378, FALSE
 	special DrawWholeMapView

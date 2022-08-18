@@ -218,10 +218,14 @@ MossdeepCity_SpaceCenter_2F_Text_224376: @ 8224376
 
 
 MossdeepCity_SpaceCenter_2F_EventScript_GameKid::
-	msgbox MossdeepCity_SpaceCenter_2F_Text_GameKid, MSGBOX_DIALOG
+	selectpointer_ongender MossdeepCity_SpaceCenter_2F_Text_GameKid_M, MossdeepCity_SpaceCenter_2F_Text_GameKid_F
+	msgbox_selected MSGBOX_DIALOG
 	end
-MossdeepCity_SpaceCenter_2F_Text_GameKid:
+MossdeepCity_SpaceCenter_2F_Text_GameKid_M:
 	.string "Not now, mom! I just need\n"
+	.string "to complete this level!$"
+MossdeepCity_SpaceCenter_2F_Text_GameKid_F:
+	.string "Not now, dad! I just need\n"
 	.string "to complete this level!$"
 
 @ -----------------------------------------------------
@@ -424,7 +428,7 @@ MossdeepCity_SpaceCenter_2F_Text_MissedBattle12:
 	.string "{COLOR BLUE}Former {COLOR GREEN}Hoenn Champion {COLOR RED}Steven Stone{END}\l"
 	.string "to pick up. Smell ya later!$"
 MossdeepCity_SpaceCenter_2F_Text_MissedBattle14:
-	.string "{PLAYER}, for the love of\n"
+	.string "{AQUA_BOY}: {PLAYER}, for the love of\n"
 	.string "Arceus above, ignore him!\l"
 	.string "I need you to pay attention…\p"
 	.string "What Maxie said… …{PAUSE 20}\n"

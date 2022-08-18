@@ -337,8 +337,12 @@
 #define EVENT_OBJ_GFX_FORMER_AQUA_M                 0x145
 #define EVENT_OBJ_GFX_FORMER_AQUA_F                 0x146
 #define EVENT_OBJ_GFX_FORMER_MAGMA_M                0x147
+#define EVENT_OBJ_GFX_AQUA_FRIEND_M                 0x148
+#define EVENT_OBJ_GFX_AQUA_FRIEND_F                 0x149
+#define EVENT_OBJ_GFX_FORMER_AQUA_FRIEND_M          0x14A
+#define EVENT_OBJ_GFX_FORMER_AQUA_FRIEND_F          0x14B
 
-#define EVENT_OBJ_GFX_BARD_2                        0x148
+#define EVENT_OBJ_GFX_BARD_2                        0x14C
 #define NUM_OBJECT_GRAPHICS_INFO     EVENT_OBJ_GFX_BARD_2
 
 // These are dynamic object gfx ids.

@@ -3498,3 +3498,50 @@ const struct SpriteFrameImage gEventObjectPicTable_FormerMagmaM[] = {
     overworld_frame(gEventObjectPic_FormerMagmaM, 2, 4, 8),
 };
 
+const struct SpriteFrameImage gEventObjectPicTable_AquaFriendM[] = {
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 0),
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 1),
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 2),
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 3),
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 4),
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 5),
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 6),
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 7),
+    overworld_frame(gEventObjectPic_AquaFriendM, 2, 4, 8),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_AquaFriendF[] = {
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 0),
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 1),
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 2),
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 3),
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 4),
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 5),
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 6),
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 7),
+    overworld_frame(gEventObjectPic_AquaFriendF, 2, 4, 8),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_FormerAquaFriendM[] = {
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 0),
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 1),
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 2),
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 3),
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 4),
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 5),
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 6),
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 7),
+    overworld_frame(gEventObjectPic_FormerAquaFriendM, 2, 4, 8),
+};
+
+const struct SpriteFrameImage gEventObjectPicTable_FormerAquaFriendF[] = {
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 0),
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 1),
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 2),
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 3),
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 4),
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 5),
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 6),
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 7),
+    overworld_frame(gEventObjectPic_FormerAquaFriendF, 2, 4, 8),
+};

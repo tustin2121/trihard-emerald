@@ -147,7 +147,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_AQUA_BOY",
-            "graphics_id": "EVENT_OBJ_GFX_AQUA_MEMBER_M",
+            "graphics_id": "EVENT_OBJ_GFX_AQUA_FRIEND_M",
             "movement_range_x": 1,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
