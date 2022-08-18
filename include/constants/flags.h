@@ -96,7 +96,7 @@
 #define FLAG_RESCUED_BIRCH                                    0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS                        0x53
 #define FLAG_PETALBURG_CENTER_INCIDENT                        0x54  // TriHard
-#define FLAG_UNUSED_0x055                                     0x55  // Unused Flag
+#define FLAG_VERDANTURF_CENTER_INCIDENT                       0x55  // TriHard
 #define FLAG_LINK_CONTEST_POKE_BALL                           0x56
 #define FLAG_MET_RIVAL_MOM                                    0x57
 #define FLAG_BIRCH_AIDE_MET                                   0x58

@@ -95,8 +95,6 @@ VerdanturfTown_Mart_Text_20264C: @ 820264C
 
 VerdanturfTown_Mart_EventScript_NestBallFan:: @ 82025CC
 	msgbox VerdanturfTown_Mart_Text_2026C9, MSGBOX_NPC
-
-
 	end
 VerdanturfTown_Mart_Text_2026C9: @ 82026C9
 	.string "The {ITEM}Nest Ball{END} works better on\n"
@@ -110,7 +108,6 @@ VerdanturfTown_PokemonCenter_1F_SleepingOldMan::
 	msgbox VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text_DESC, MSGBOX_CDESCRIBE
 	releaseall
 	end
-
 VerdanturfTown_PokemonCenter_1F_SleepingOldMan_Text::
 	.string "Zzz…\p"
 	.string "Show you how to catch…!$"

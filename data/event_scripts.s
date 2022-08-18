@@ -5162,6 +5162,7 @@ PacifidlogTown_PokemonCenter_1F_Text_2C7E7A: @ 82C7E7A
 SlateportCity_PokemonFanClub_EventScript_2C7F16:: @ 82C7F16
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_SWAGGER, SlateportCity_PokemonFanClub_EventScript_2C7F74
 	msgbox SlateportCity_PokemonFanClub_Text_2C6E37, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -5191,6 +5192,7 @@ SlateportCity_PokemonFanClub_EventScript_2C7F74:: @ 82C7F74
 MauvilleCity_EventScript_2C7F7E:: @ 82C7F7E
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT, MauvilleCity_EventScript_2C7FDC
 	msgbox MauvilleCity_Text_2C6FDB, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -5220,6 +5222,7 @@ MauvilleCity_EventScript_2C7FDC:: @ 82C7FDC
 VerdanturfTown_PokemonCenter_1F_EventScript_2C7FE6:: @ 82C7FE6
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER, VerdanturfTown_PokemonCenter_1F_EventScript_2C8044
 	msgbox VerdanturfTown_PokemonCenter_1F_Text_2C7174, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -5249,6 +5252,7 @@ VerdanturfTown_PokemonCenter_1F_EventScript_2C8044:: @ 82C8044
 LavaridgeTown_House_EventScript_2C804E:: @ 82C804E
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_MIMIC, LavaridgeTown_House_EventScript_2C80AC
 	msgbox LavaridgeTown_House_Text_2C72B6, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -5338,6 +5342,7 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_2C81E4:: @ 82C81E4
 MossdeepCity_EventScript_2C81EE:: @ 82C81EE
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH, MossdeepCity_EventScript_2C824C
 	msgbox MossdeepCity_Text_2C79A6, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -5369,6 +5374,7 @@ MossdeepCity_EventScript_2C824C:: @ 82C824C
 PacifidlogTown_PokemonCenter_1F_EventScript_2C82BE:: @ 82C82BE
 	lock
 	faceplayer
+	markasdialog
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_EXPLOSION, PacifidlogTown_PokemonCenter_1F_EventScript_2C831C
 	msgbox PacifidlogTown_PokemonCenter_1F_Text_2C7CFA, MSGBOX_YESNO
 	compare VAR_RESULT, 0
