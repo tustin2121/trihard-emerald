@@ -378,12 +378,12 @@ static const match_call_text_data_t sAlexTextScripts_CatchingUp[] = {
 };
 
 static const match_call_text_data_t sAlexTextScripts_BeforeLegendaries[] = {
-    { gText_Alex_Pokenav_Grandma,      FLAG_SAW_DREAM_1200,                 FLAG_ALEX_DISCUSSED_GRANDMA },
-    { gText_Alex_Pokenav_Magma,        FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_MAGMA },
-    { gText_Alex_Pokenav_Stern,        FLAG_TEAM_AQUA_STOLE_SUBMARINE,      FLAG_ALEX_DISCUSSED_STERN },
-    { gText_Alex_Pokenav_SternAfter,   FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_STERN },
-    { gText_Alex_Pokenav_Logan_Base,   FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, FLAG_ALEX_DISCUSSED_LOGAN },
     { gText_Alex_Pokenav_SpaceCenter,  FLAG_DEFEATED_MAGMA_SPACE_CENTER,    FLAG_ALEX_DISCUSSED_SPACE_CENTER },
+    { gText_Alex_Pokenav_Logan_Base,   FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, FLAG_ALEX_DISCUSSED_LOGAN },
+    { gText_Alex_Pokenav_SternAfter,   FLAG_TEAM_AQUA_STOLE_SUBMARINE,      FLAG_ALEX_DISCUSSED_STERN },
+    { gText_Alex_Pokenav_Stern,        FLAG_ALEX_DISCUSSED_MAGMA,           FLAG_ALEX_DISCUSSED_STERN },
+    { gText_Alex_Pokenav_Magma,        FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, FLAG_ALEX_DISCUSSED_MAGMA },
+    { gText_Alex_Pokenav_Grandma,      FLAG_SAW_DREAM_1200,                 FLAG_ALEX_DISCUSSED_GRANDMA },
     { NULL,                            0xFFFF,                         0xFFFF }
 };
 static const match_call_text_data_t sAlexTextScripts_DuringLegendaries[] = {
