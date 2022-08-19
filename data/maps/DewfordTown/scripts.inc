@@ -1,10 +1,37 @@
 DewfordTown_MapScripts:: @ 81E9507
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, DewfordTown_FrameTable
+	map_script MAP_SCRIPT_ON_LOAD, DewfordTown_OnLoad
 	.byte 0
 
 DewfordTown_OnTransition: @ 81E950D
 	setflag FLAG_VISITED_DEWFORD_TOWN
 	end
+
+@ -----------------------------------------------------
+
+DewfordTown_FrameTable:
+	map_script_2 VAR_CROSS_MAP_TRIGGER, 1, DewfordTown_EventScript_LockHouse_Kickout
+	.2byte 0
+	
+DewfordTown_OnLoad:
+	call_if_set FLAG_DAILY_STEALFAIL_DEWFORD1, DewfordTown_EventScript_LockHouse
+	end
+
+DewfordTown_EventScript_LockHouse_Kickout:
+	setvar VAR_CROSS_MAP_TRIGGER, 0
+	setflag FLAG_DAILY_STEALFAIL_DEWFORD1
+	markasdialog 0
+	message DewfordTown_EventScript_LockHouse_KickoutText
+	waitmessage
+	delay 40
+	closemessage
+	@ fallthrough
+DewfordTown_EventScript_LockHouse:
+	setmetatile 8, 8, 0x2FE, TRUE @Set tile to non-warp tile
+	return
+DewfordTown_EventScript_LockHouse_KickoutText:
+	.string "And stay out!!$"
 
 @ -----------------------------------------------------
 @ Briney Sailing

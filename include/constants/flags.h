@@ -1141,7 +1141,7 @@
 #define FLAG_HIDE_MAGMA_HIDEOUT_OTHERS                              0x4A5 // Unused Flag
 #define FLAG_MET_TRAINING_TRIO                                      0x4A6 // Unused Flag
 #define FLAG_ITEM_STOLEN_FORETREE_CENTER                            0x4A7 // Unused Flag
-#define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
+#define FLAG_ITEM_STOLEN_DEWFORD_HOUSE                              0x4A8 // Unused Flag
 #define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag
 #define FLAG_UNUSED_0x4AA                                           0x4AA // Unused Flag
 #define FLAG_UNUSED_0x4AB                                           0x4AB // Unused Flag
@@ -1502,7 +1502,7 @@
 #define FLAG_DAILY_0x95B                            (SYSTEM_FLAGS + 0xFB)
 #define FLAG_DAILY_0x95C                            (SYSTEM_FLAGS + 0xFC)
 #define FLAG_DAILY_0x95D                            (SYSTEM_FLAGS + 0xFD)
-#define FLAG_DAILY_0x95E                            (SYSTEM_FLAGS + 0xFE)
+#define FLAG_DAILY_STEALFAIL_DEWFORD1               (SYSTEM_FLAGS + 0xFE)
 #define FLAG_DAILY_STEALFAIL_EVERGRANDE_SOUTH1      (SYSTEM_FLAGS + 0xFF)
 
 // Special Flags (Unknown)

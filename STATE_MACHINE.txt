@@ -106,3 +106,17 @@ VAR_WEATHER_INSTITUTE_STATE :=
 	1 = Heist Underway
 	2 = Heist Cleared
 	3 = Heist Cleared, everyone back to normal hidden levels
+
+VAR_LUCY_LOCATION :=
+	10 = Rustboro
+	20 = Dewford
+	30 = Slateport
+	40 = Mauville
+	50 = Petalburg
+	60 = Lilycove
+	70 = Mossdeep
+	80 = Fortree
+	90 = Lavaridge
+	100 = Sootopolis
+	200 = Ever Grande
+

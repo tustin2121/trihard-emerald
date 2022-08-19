@@ -134,11 +134,11 @@
 	goto_if_eq Common_EventScript_ReleaseEnd
 	@ Take the item
 	setvar VAR_0x8001, \amount
-	givemoney VAR_0x8001, 0
+	givemoney \amount, 0
 	call Common_EventScript_ReportTheftMoney
 	setflag \flag
 	incrementgamestat GAME_STAT_NUM_NPCS_HARASSED
-	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, \num
+	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, 1
 	.endm
 	
 	.macro faceoriginaldir

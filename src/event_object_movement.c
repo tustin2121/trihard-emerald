@@ -9240,3 +9240,10 @@ u8 MovementAction_Fly_Finish(struct EventObject *eventObject, struct Sprite *spr
 {
     return TRUE;
 }
+
+void GetObjectFacing()
+{
+    // gSpecialVar_0x8000 - event to check
+    if (gSpecialVar_0x8000 >= 16) return;
+    gSpecialVar_Result = gEventObjects[gSpecialVar_0x8000].facingDirection;
+}
