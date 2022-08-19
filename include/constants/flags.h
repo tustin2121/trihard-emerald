@@ -26,7 +26,7 @@
 #define FLAG_TEMP_13    0x13
 #define FLAG_TEMP_14    0x14
 #define FLAG_TEMP_15    0x15
-#define FLAG_TEMP_16    0x16
+#define FLAG_TEMP_16    0x16 // Lucy
 #define FLAG_TEMP_17    0x17
 #define FLAG_TEMP_18    0x18
 #define FLAG_TEMP_19    0x19
@@ -1073,7 +1073,7 @@
 #define FLAG_ITEM_NEW_MAUVILLE_FULL_HEAL                            0x462
 #define FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL                        0x463
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL                      0x464
-#define FLAG_ITEM_STOLEN_RUSTBORO_MART                              0x465 // Trihard
+#define FLAG_UNUSED_0x465                                           0x465 // Trihard
 #define FLAG_ITEM_CONTEST_HALL_LEAF_STONE                           0x466 // Trihard
 #define FLAG_ITEM_STOLEN_TIMER_BALLS                                0x467 // Trihard
 #define FLAG_ITEM_STOLEN_MUDKIP_DOLL                                0x468 // Trihard
@@ -1449,7 +1449,7 @@
 #define FLAG_DAILY_0x926                            (SYSTEM_FLAGS + 0xC6)
 #define FLAG_DAILY_0x927                            (SYSTEM_FLAGS + 0xC7)
 #define FLAG_DAILY_0x928                            (SYSTEM_FLAGS + 0xC8)
-#define FLAG_DAILY_0x929                            (SYSTEM_FLAGS + 0xC9)
+#define FLAG_DAILY_ITEM_STOLEN_RUSTBORO_MART        (SYSTEM_FLAGS + 0xC9)
 #define FLAG_DAILY_PICKED_LOTO_TICKET               (SYSTEM_FLAGS + 0xCA)
 #define FLAG_DAILY_ROUTE_114_RECEIVED_BERRY         (SYSTEM_FLAGS + 0xCB)
 #define FLAG_DAILY_ROUTE_111_RECEIVED_BERRY         (SYSTEM_FLAGS + 0xCC)

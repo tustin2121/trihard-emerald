@@ -1,4 +1,5 @@
 RustboroCity_Mart_MapScripts:: @ 8214F05
+	map_script MAP_SCRIPT_STEAL_CHECK, RustboroCity_Mart_StealCheck
 	.byte 0
 
 @ -----------------------------------------------------
@@ -60,7 +61,7 @@ RustboroCity_Store_Text_Shelves:
 RustboroCity_Store_EventScript_Stealable::
 	lock
 	msgbox RustboroCity_Store_Text_Stealable, MSGBOX_DEFAULT
-	trysteal ITEM_FRESH_WATER, 2, FLAG_ITEM_STOLEN_RUSTBORO_MART
+	trysteal ITEM_FRESH_WATER, 2, FLAG_DAILY_ITEM_STOLEN_RUSTBORO_MART
 	release
 	end
 RustboroCity_Store_Text_Stealable:
@@ -68,3 +69,24 @@ RustboroCity_Store_Text_Stealable:
 	.string "food items…\l"
 	.string "Probably too many to notice…$"
 
+RustboroCity_Mart_StealCheck:
+	random 100 @ 30% chance to fail
+	compare VAR_RESULT, 30
+	goto_if_lt RustboroCity_Mart_StealCheck_Fail
+	setvar VAR_RESULT, 1
+	return
+RustboroCity_Mart_StealCheck_Fail:
+	closemessage
+	applymovement 1, Common_Movement_ExclamationMarkAndWait
+	playse SE_PIN
+	waitmovement 1
+	setflag FLAG_DAILY_ITEM_STOLEN_RUSTBORO_MART
+	markasdialog -18
+	message RustboroCity_Mart_StealCheck_FailText
+	waitmessage
+	waitbuttonpress
+	release
+	end
+RustboroCity_Mart_StealCheck_FailText:
+	.string "Uh, {PLAYER_sir}, can I help you?{PAUSE 30}\n"
+	.string "Up at the counter?$"

@@ -114,7 +114,7 @@
 #define VAR_AQUA_BLUEPRINT1                  0x4061 // Trihard
 #define VAR_AQUA_BLUEPRINT2                  0x4062 // Unused Var
 #define VAR_LOGAN_AQUA_FIGHT_LOST_MON_COUNT  0x4063 // Trihard
-#define VAR_UNUSED_0x4064                    0x4064 // Unused Var
+#define VAR_LUCY_LOCATION                    0x4064 // Trihard
 #define VAR_UNUSED_0x4065                    0x4065 // Unused Var
 #define VAR_UNUSED_0x4066                    0x4066 // Unused Var
 #define VAR_UNUSED_0x4067                    0x4067 // Unused Var
