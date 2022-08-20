@@ -22,6 +22,7 @@ SlateportCity_Mart_Text_KickedOut:
 
 SlateportCity_Mart_EventScript_Stealable::
 	lock
+	@ trysteal - always fails
 	msgbox SlateportCity_Mart_Text_Stealable1, MSGBOX_DEFAULT
 	markasdialog -24
 	playse SE_PIN

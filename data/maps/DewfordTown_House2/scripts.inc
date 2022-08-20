@@ -69,12 +69,12 @@ DewfordTown_House2_StealSpot_Text:
 DewfordTown_House2_StealSpot_StealCheck:
 	@ Check little brother
 	setvar VAR_0x8000, 2
-	callnative GetObjectFacing
+	callnative GetObjectFacingAndPosition
 	compare VAR_RESULT, DIR_EAST
 	goto_if_eq DewfordTown_House2_StealSpot_Caught2
 	@ Check older brother
 	setvar VAR_0x8000, 1
-	callnative GetObjectFacing
+	callnative GetObjectFacingAndPosition
 	compare VAR_RESULT, DIR_NORTH
 	goto_if_eq DewfordTown_House2_StealSpot_Caught1
 	@ Neither noticed, success

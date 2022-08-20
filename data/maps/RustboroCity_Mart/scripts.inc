@@ -70,6 +70,7 @@ RustboroCity_Store_Text_Stealable:
 	.string "Probably too many to notice…$"
 
 RustboroCity_Mart_StealCheck:
+	setflag FLAG_DAILY_ITEM_STOLEN_RUSTBORO_MART @ flag is always set regardless
 	random 100 @ 30% chance to fail
 	compare VAR_RESULT, 30
 	goto_if_lt RustboroCity_Mart_StealCheck_Fail
@@ -80,7 +81,8 @@ RustboroCity_Mart_StealCheck_Fail:
 	applymovement 1, Common_Movement_ExclamationMarkAndWait
 	playse SE_PIN
 	waitmovement 1
-	setflag FLAG_DAILY_ITEM_STOLEN_RUSTBORO_MART
+	applymovement LID_PLAYER, Common_Movement_WalkInPlaceLeft
+	waitmovement LID_PLAYER
 	markasdialog -18
 	message RustboroCity_Mart_StealCheck_FailText
 	waitmessage
