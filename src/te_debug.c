@@ -71,6 +71,8 @@ static void DebugHandle_SetWeather();
 static void DebugHandle_ShowSoundTest();
 static void DebugHandle_SetFlag();
 static void DebugHandle_SetVar();
+static void DebugHandle_CheckFlag();
+static void DebugHandle_CheckVar();
 static void DebugHandle_SetLegendaryFight();
 static void DebugHandle_GiveDebugParty();
 static void DebugHandle_TestScript();
@@ -117,6 +119,8 @@ static const DebugFunc sDebugCommands[] =
 	DebugHandle_UnmarkBoxMon,
 	DebugHandle_ClearStats,
 	DebugHandle_SetTimeOfDay,
+	DebugHandle_CheckFlag,
+	DebugHandle_CheckVar,
 };
 
 #define DEBUGFN_COUNT ((int)(sizeof(sDebugCommands)/sizeof(DebugFunc)))
@@ -257,7 +261,7 @@ void DebugHandle_ShowSoundTest()
 
 extern const u8 gYN_Yes[];
 extern const u8 gYN_No[];
-static const u8 sText_TestStringFlag[] = _("Flag: {STR_VAR_1} -> {STR_VAR_2}{PAUSE 40}");
+static const u8 sText_TestStringSetFlag[] = _("Flag: {STR_VAR_1} = {STR_VAR_3} -> {STR_VAR_2}{PAUSE 40}");
 bool8 ShowFieldAutoScrollMessage(const u8 *str);
 // arguments:
 //   args[0] = 1=set, 0=clear
@@ -271,6 +275,7 @@ void DebugHandle_SetFlag()
 		DebugSetCallbackFailure();
 		return;
 	}
+	StringCopy(gStringVar3, (FlagGet(id))? gYN_Yes : gYN_No);
 	
 	if (set) {
 		FlagSet(id);
@@ -278,16 +283,37 @@ void DebugHandle_SetFlag()
 		FlagClear(id);
 	}
 	
-	ConvertIntToHexStringN(gStringVar1, id, 2, 3);
+	ConvertIntToHexStringN(gStringVar1, id, 2, 4);
 	StringCopy(gStringVar2, (FlagGet(id))? gYN_Yes : gYN_No);
-    StringExpandPlaceholders(gStringVar4, sText_TestStringFlag);
+    StringExpandPlaceholders(gStringVar4, sText_TestStringSetFlag);
     ShowFieldAutoScrollMessage(gStringVar4);
 	ScriptContext1_SetupScript(DebugScript_MessageEnd);
 	
 	DebugSetCallbackSuccess();
 }
 
-static const u8 sText_TestStringVar[] = _("Var: {STR_VAR_1} = {STR_VAR_2} -> {STR_VAR_3}{PAUSE 40}");
+static const u8 sText_TestStringCheckFlag[] = _("Flag: {STR_VAR_1} = {STR_VAR_2}{PAUSE 40}");
+// arguments:
+//   args[2]+2 = flagid
+// returns: none
+static void DebugHandle_CheckFlag()
+{
+	u16 id = T2_READ_16(gDebugInterrupts.args + 2);
+	if (GetFlagPointer(id) == NULL) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	
+	ConvertIntToHexStringN(gStringVar1, id, 2, 4);
+	StringCopy(gStringVar2, (FlagGet(id))? gYN_Yes : gYN_No);
+    StringExpandPlaceholders(gStringVar4, sText_TestStringCheckFlag);
+    ShowFieldAutoScrollMessage(gStringVar4);
+	ScriptContext1_SetupScript(DebugScript_MessageEnd);
+	
+	DebugSetCallbackSuccess();
+}
+
+static const u8 sText_TestStringSetVar[] = _("Var: {STR_VAR_1} = {STR_VAR_2} -> {STR_VAR_3}{PAUSE 40}");
 // arguments:
 //   args[0]+2 = value
 //   args[2]+2 = flagid
@@ -312,7 +338,34 @@ void DebugHandle_SetVar()
 	ConvertIntToHexStringN(gStringVar1, id, 2, 3);
 	ConvertIntToDecimalStringN(gStringVar2, oldval, 2, 3);
 	ConvertIntToDecimalStringN(gStringVar3, VarGet(id+VARS_START), 2, 3);
-    StringExpandPlaceholders(gStringVar4, sText_TestStringVar);
+    StringExpandPlaceholders(gStringVar4, sText_TestStringSetVar);
+    ShowFieldAutoScrollMessage(gStringVar4);
+	ScriptContext1_SetupScript(DebugScript_MessageEnd);
+	
+	DebugSetCallbackSuccess();
+}
+
+static const u8 sText_TestStringCheckVar[] = _("Var: {STR_VAR_1} = {STR_VAR_3}{PAUSE 40}");
+// arguments:
+//   args[0]+2 = value
+//   args[2]+2 = flagid
+// returns: none
+static void DebugHandle_CheckVar()
+{
+	u16 id  = T2_READ_16(gDebugInterrupts.args+2);
+	u16 oldval;
+	if (id > 0xFF) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	if (GetVarPointer(id+VARS_START) == NULL) {
+		DebugSetCallbackFailure();
+		return;
+	}
+	
+	ConvertIntToHexStringN(gStringVar1, id, 2, 3);
+	ConvertIntToDecimalStringN(gStringVar3, VarGet(id+VARS_START), 2, 3);
+    StringExpandPlaceholders(gStringVar4, sText_TestStringCheckVar);
     ShowFieldAutoScrollMessage(gStringVar4);
 	ScriptContext1_SetupScript(DebugScript_MessageEnd);
 	
