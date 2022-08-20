@@ -382,7 +382,7 @@ void DebugHandle_GiveDebugParty()
 void DebugHandle_TestScript()
 {
 	const u8* script;
-	if (gDebugInterrupts.args[0] >= ((int)(DebugScript_TestScriptTable_END - DebugScript_TestScriptTable)/4)) {
+	if (DebugScript_TestScriptTable + gDebugInterrupts.args[0] >= DebugScript_TestScriptTable_END) {
 		DebugSetCallbackFailure();
 		return;
 	}

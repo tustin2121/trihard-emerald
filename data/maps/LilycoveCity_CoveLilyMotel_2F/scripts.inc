@@ -136,3 +136,29 @@ LilycoveCity_CoveLilyMotel_2F_Text_218C33: @ 8218C33
 	.string "to win a CONTEST.\p"
 	.string "Devising CONTEST strategies is one way\n"
 	.string "of becoming a better TRAINER, I'd say.$"
+
+
+@ TODO: StealCheck = can't steal when GF employees are here
+@ TODO: Add tustin from TTH here?
+
+LilycoveCity_CoveLilyMotel_2F_StealSpot::
+	lock
+	msgbox LilycoveCity_CoveLilyMotel_2F_StealSpot_Text, MSGBOX_DEFAULT
+	trysteal ITEM_HEART_SCALE, 20, FLAG_ITEM_STOLEN_LILYCOVE_MOTEL2
+	release
+	end
+LilycoveCity_CoveLilyMotel_2F_StealSpot_Text:
+	.string "That's a lovely diorama made of\n"
+	.string "Heart Scales!$"
+
+LilycoveCity_CoveLilyMotel_2F_Fridge::
+	lock
+	msgbox LilycoveCity_CoveLilyMotel_2F_Fridge_Text, MSGBOX_DEFAULT
+	trysteal ITEM_MALASADA, 2, FLAG_DAILY_ITEM_STOLEN_LILYCOVE_MOTEL
+	release
+	end
+LilycoveCity_CoveLilyMotel_2F_Fridge_Text:
+	.string "Oh! Didn't expect to see a stock of\n"
+	.string "Malasada in here.\p"
+	.string "Does he get shipments from Alola?$"
+

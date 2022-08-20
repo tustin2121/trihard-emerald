@@ -12,3 +12,14 @@ FortreeCity_House7_Text_Boy:
 	.string "through, and it's really scary living\l"
 	.string "so high up in the air!$"
 
+
+FortreeCity_House7_EventScript_StealSpot::
+	lock
+	msgbox FortreeCity_House7_Text_StealSpot, MSGBOX_DEFAULT
+	trysteal_money 1500, FLAG_ITEM_STOLEN_FORTREE_HOUSE
+	release
+	end
+FortreeCity_House7_Text_StealSpot:
+	.string "You peak inside the sock drawer…\p"
+	.string "People really shouldn't stash\n"
+	.string "savings away in places like this.$"

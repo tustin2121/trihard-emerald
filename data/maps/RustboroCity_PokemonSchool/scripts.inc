@@ -255,3 +255,16 @@ RustboroCity_PokemonSchool_Text_2144C8: @ 82144C8
 	.string "Just those alone will give you many\n"
 	.string "topics to study!$"
 
+@ -----------------------------------------------------
+
+RustboroCity_PokemonSchool_StealSpot::
+	lock
+	msgbox RustboroCity_PokemonSchool_StealSpot_Text, MSGBOX_DEFAULT
+	trysteal ITEM_ESCAPE_ROPE, 2, FLAG_ITEM_STOLEN_POKESCHOOL
+	release
+	end
+RustboroCity_PokemonSchool_StealSpot_Text:
+	.string "That's an odd thing to find\n"
+	.string "in a school desk…$"
+
+

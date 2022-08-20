@@ -1,17 +1,30 @@
 LilycoveCity_DepartmentStore_2F_MapScripts:: @ 821FB2C
 	.byte 0
 
+@ -----------------------------------------------------
+
 LilycoveCity_DepartmentStore_2F_EventScript_21FB2D:: @ 821FB2D
 	msgbox LilycoveCity_DepartmentStore_2F_Text_21FBAC, MSGBOX_NPC
 	end
+LilycoveCity_DepartmentStore_2F_Text_21FBAC: @ 821FBAC
+	.string "Learn to use items properly.\n"
+	.string "That's basic, really.$"
 
 LilycoveCity_DepartmentStore_2F_EventScript_21FB36:: @ 821FB36
 	msgbox LilycoveCity_DepartmentStore_2F_Text_21FBDF, MSGBOX_NPC
 	end
+LilycoveCity_DepartmentStore_2F_Text_21FBDF: @ 821FBDF
+	.string "My husband is waiting at home.\n"
+	.string "What would make a good gift for him?$"
 
 LilycoveCity_DepartmentStore_2F_EventScript_21FB3F:: @ 821FB3F
 	msgbox LilycoveCity_DepartmentStore_2F_Text_21FC23, MSGBOX_NPC
 	end
+LilycoveCity_DepartmentStore_2F_Text_21FC23: @ 821FC23
+	.string "I'm leaving on a long journey soon.\n"
+	.string "I need to stock up on items.$"
+
+@ -----------------------------------------------------
 
 LilycoveCity_DepartmentStore_2F_EventScript_21FB48:: @ 821FB48
 	lock
@@ -62,21 +75,22 @@ LilycoveCity_DepartmentStore_2F_Pokemart_21FB94: @ 821FB94
 	.2byte ITEM_REPEL
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_MAX_REPEL
-	.2byte ITEM_WAVE_MAIL
-	.2byte ITEM_MECH_MAIL
+	@ .2byte ITEM_WAVE_MAIL
+	@ .2byte ITEM_MECH_MAIL
 	.2byte ITEM_NONE
 	release
 	end
 
-LilycoveCity_DepartmentStore_2F_Text_21FBAC: @ 821FBAC
-	.string "Learn to use items properly.\n"
-	.string "That's basic, really.$"
+@ -----------------------------------------------------
 
-LilycoveCity_DepartmentStore_2F_Text_21FBDF: @ 821FBDF
-	.string "My husband is waiting at home.\n"
-	.string "What would make a good gift for him?$"
+LilycoveCity_DepartmentStore_2F_StealSpot::
+	lock
+	msgbox LilycoveCity_DepartmentStore_2F_StealSpot_Text, MSGBOX_DEFAULT
+	trysteal ITEM_GREAT_BALL, 5, FLAG_ITEM_STOLEN_LILYCOVE_STORE2
+	release
+	end
+LilycoveCity_DepartmentStore_2F_StealSpot_Text:
+	.string "Oh, these come in packs as well…!$"
 
-LilycoveCity_DepartmentStore_2F_Text_21FC23: @ 821FC23
-	.string "I'm leaving on a long journey soon.\n"
-	.string "I need to stock up on items.$"
+
 

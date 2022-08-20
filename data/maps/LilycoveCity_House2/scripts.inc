@@ -14,18 +14,26 @@ LilycoveCity_House2_EventScript_21ED75:: @ 821ED75
 	msgbox LilycoveCity_House2_Text_21EDF9, MSGBOX_DEFAULT
 	release
 	end
-
-LilycoveCity_House2_EventScript_21EDAC:: @ 821EDAC
-	msgbox LilycoveCity_House2_Text_21EDF9, MSGBOX_DEFAULT
-	release
-	end
-
 LilycoveCity_House2_Text_21EDB6: @ 821EDB6
 	.string "Huh? What? What's that?\p"
 	.string "I'm not near awake yet…\n"
 	.string "You can have this…$"
-
+LilycoveCity_House2_EventScript_21EDAC:: @ 821EDAC
+	msgbox LilycoveCity_House2_Text_21EDF9, MSGBOX_DEFAULT
+	release
+	end
 LilycoveCity_House2_Text_21EDF9: @ 821EDF9
 	.string "Yawn…\p"
 	.string "Sleep is essential for good health…\n"
 	.string "Sleep and regain health…$"
+
+LilycoveCity_House2_StealSpot::
+	lock
+	msgbox LilycoveCity_House2_StealSpot_Text, MSGBOX_DEFAULT
+	trysteal ITEM_LEFTOVERS, 1, FLAG_ITEM_STOLEN_LILYCOVE_HOUSE2
+	release
+	end
+LilycoveCity_House2_StealSpot_Text:
+	.string "That seems unsanitary…$"
+
+

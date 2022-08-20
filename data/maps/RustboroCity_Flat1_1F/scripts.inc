@@ -19,3 +19,13 @@ RustboroCity_Flat1_1F_EventScript_2150D7:: @ 82150D7
 RustboroCity_Flat1_1F_Text_215115: @ 8215115
 	.string "Pokémon are such strange creatures.$"
 
+RustboroCity_Flat1_1F_EventScript_StealSpot::
+	lock
+	msgbox RustboroCity_Flat1_1F_Text_StealSpot, MSGBOX_DEFAULT
+	trysteal ITEM_THUNDER_STONE, 1, FLAG_ITEM_STOLEN_RUSTBORO_FLAT
+	release
+	end
+RustboroCity_Flat1_1F_Text_StealSpot:
+	.string "Hopefully they weren't planning on\n"
+	.string "using that…$"
+

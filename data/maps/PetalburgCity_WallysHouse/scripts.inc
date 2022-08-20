@@ -1,17 +1,14 @@
 PetalburgCity_WallysHouse_MapScripts:: @ 8204229
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_WallysHouse_MapScript2_FrameTable
-	@ map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PetalburgCity_WallysHouse_MapScript2_MapTable
 	map_script MAP_SCRIPT_ON_LOAD, PetalburgCity_WallysHouse_OnLoad
+	map_script MAP_SCRIPT_STEAL_CHECK, PetalburgCity_WallysHouse_EventScript_StealCheck
 	.byte 0
 
 @ -----------------------------------------------------
 
-@ PetalburgCity_WallysHouse_MapScript2_MapTable: @ 8204234
-@ 	map_script_2 VAR_LOGAN_STATE, 0, PetalburgCity_WallysHouse_EventScript_HideActors1
-@ 	map_script_2 VAR_LOGAN_STATE, 1, PetalburgCity_WallysHouse_EventScript_HideActors2
-@ 	map_script_2 VAR_LOGAN_STATE, 2, PetalburgCity_WallysHouse_EventScript_HideActors2
-@ 	map_script_2 VAR_LOGAN_STATE, 3, PetalburgCity_WallysHouse_EventScript_HideActors3
-@ 	.2byte 0
+PetalburgCity_WallysHouse_MapScript2_FrameTable: @ 8204234
+	map_script_2 VAR_TEMP_2, 1, PetalburgCity_WallysHouse_EventScript_NoteAbsence
+	.2byte 0
 
 PetalburgCity_WallysHouse_OnLoad:
 	selectpointer_clamp PetalburgCity_WallysHouse_OnLoad_ScriptTable, VAR_LOGAN_STATE
@@ -34,6 +31,7 @@ PetalburgCity_WallysHouse_EventScript_HideActors2:
 	setflag FLAG_TEMP_10 @ Used to hide Logan's Dad
 	setflag FLAG_TEMP_11 @ Used to hide Logan's Mom
 	setflag FLAG_TEMP_12 @ Used to hide Logan's cousin
+	setvar VAR_TEMP_2, 1
 	end
 
 PetalburgCity_WallysHouse_EventScript_HideActors3:
@@ -47,11 +45,62 @@ PetalburgCity_WallysHouse_EventScript_HideMom:
 @ 	turnobject EVENT_OBJ_ID_PLAYER, 4
 @ 	turnobject 1, 3
 
-@ -----------------------------------------------------
+PetalburgCity_WallysHouse_EventScript_NoteAbsence:
+	setvar VAR_TEMP_2, 2
+	msgbox PetalburgCity_WallysHouse_Text_NoteAbsence, MSGBOX_DESCRIBE
+	end
+PetalburgCity_WallysHouse_Text_NoteAbsence:
+	.string "Looks like nobody's home.\p"
+	.string "…Perfect time to ransack the place…$"
 
-PetalburgCity_WallysHouse_MapScript2_FrameTable: @ 8204247
-	@ map_script_2 VAR_PETALBURG_STATE, 4, PetalburgCity_WallysHouse_EventScript_204251
-	.2byte 0
+
+@ -----------------------------------------------------
+@ Steal Spots
+
+PetalburgCity_WallysHouse_EventScript_StealCheck:
+	@ goto_if_unset FLAG_TEMP_10, PetalburgCity_WallysHouse_EventScript_StealCheckFail  @ Logan's dad isn't paying any attention ever
+	goto_if_unset FLAG_TEMP_11, PetalburgCity_WallysHouse_EventScript_StealCheckFail
+	goto_if_unset FLAG_TEMP_12, PetalburgCity_WallysHouse_EventScript_StealCheckFail
+	setvar VAR_RESULT, 1
+	return
+PetalburgCity_WallysHouse_EventScript_StealCheckFail:
+	msgbox PetalburgCity_WallysHouse_Text_StealCheckFail
+	release
+	end
+PetalburgCity_WallysHouse_Text_StealCheckFail:
+	.string "Hm… Probably shouldn't touch it with\n"
+	.string "witnesses around…$"
+	
+	
+PetalburgCity_WallysHouse_EventScript_Steal1::
+	lock
+	msgbox PetalburgCity_WallysHouse_Text_Steal1
+	trysteal ITEM_BLUE_FLUTE, 1 FLAG_ITEM_STOLEN_WALLY_1
+	release
+	end
+PetalburgCity_WallysHouse_Text_Steal1:
+	.string "Oh, that's a pretty display…$"
+PetalburgCity_WallysHouse_EventScript_Steal2::
+	lock
+	msgbox PetalburgCity_WallysHouse_Text_Steal2
+	trysteal_money 5000, FLAG_ITEM_STOLEN_WALLY_2
+	release
+	end
+PetalburgCity_WallysHouse_Text_Steal2:
+	.string "There's a box in here that says\n"
+	.string "“{RIVAL_HERO}'s College Fund.”\p"
+	.string "You have a feeling {RIVAL_HERO} has no\n"
+	.string "college plans…$"
+PetalburgCity_WallysHouse_EventScript_Steal3::
+	lock
+	msgbox PetalburgCity_WallysHouse_Text_Steal3
+	trysteal ITEM_MOOMOO_MILK, 2, FLAG_DAILY_ITEM_STOLEN_WALLY_3
+	release
+	end
+PetalburgCity_WallysHouse_Text_Steal3:
+	.string "Looks like someone went grocery\n"
+	.string "shopping recently.$"
+
 
 @ -----------------------------------------------------
 @ Mom
