@@ -1,49 +1,59 @@
 {
-  "id": "MAP_SOOTOPOLIS_CITY_HOUSE6",
-  "name": "SootopolisCity_House6",
-  "layout": "LAYOUT_SOOTOPOLIS_CITY_HOUSE3",
-  "music": "MUS_RUNECITY",
-  "region_map_section": "MAPSEC_SOOTOPOLIS_CITY",
-  "requires_flash": false,
-  "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_INDOOR",
-  "allow_bike": false,
-  "allow_escape_rope": false,
-  "allow_running": true,
-  "show_map_name": false,
-  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
-  "object_events": [
-    {
-      "graphics_id": "EVENT_OBJ_GFX_WOMAN_2",
-      "x": 4,
-      "y": 3,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "0",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "SootopolisCity_House6_EventScript_226F5C",
-      "flag": "0"
-    }
-  ],
-  "warp_events": [
-    {
-      "x": 3,
-      "y": 6,
-      "elevation": 0,
-      "dest_map": "MAP_SOOTOPOLIS_CITY",
-      "dest_warp_id": 9
-    },
-    {
-      "x": 4,
-      "y": 6,
-      "elevation": 0,
-      "dest_map": "MAP_SOOTOPOLIS_CITY",
-      "dest_warp_id": 9
-    }
-  ],
-  "coord_events": [],
-  "bg_events": []
+    "allow_bike": false,
+    "allow_escape_rope": false,
+    "allow_running": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+            "script": "SootopolisCity_House6_EventScript_StealSpot",
+            "type": "sign",
+            "x": 0,
+            "y": 2
+        }
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_SOOTOPOLIS_CITY_HOUSE6",
+    "layout": "LAYOUT_SOOTOPOLIS_CITY_HOUSE3",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_RUNECITY",
+    "name": "SootopolisCity_House6",
+    "object_events": [
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "EVENT_OBJ_GFX_WOMAN_2",
+            "movement_range_x": 1,
+            "movement_range_y": 1,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "script": "SootopolisCity_House6_EventScript_226F5C",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 4,
+            "y": 3
+        }
+    ],
+    "region_map_section": "MAPSEC_SOOTOPOLIS_CITY",
+    "requires_flash": false,
+    "show_map_name": false,
+    "warp_events": [
+        {
+            "dest_map": "MAP_SOOTOPOLIS_CITY",
+            "dest_warp_id": 9,
+            "elevation": 0,
+            "x": 3,
+            "y": 6
+        },
+        {
+            "dest_map": "MAP_SOOTOPOLIS_CITY",
+            "dest_warp_id": 9,
+            "elevation": 0,
+            "x": 4,
+            "y": 6
+        }
+    ],
+    "weather": "WEATHER_NONE"
 }

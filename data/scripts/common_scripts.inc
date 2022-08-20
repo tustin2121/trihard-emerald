@@ -475,6 +475,64 @@ Common_Text_FailTheftNoRoom:
 	.string "But then, you don't have the space\n"
 	.string "available anyway…$"
 
+Common_EventScript_StealCheck_CheckSingleNPC_NoRightUp::
+	setvar VAR_0x8000, 1
+	callnative GetObjectFacingAndPosition
+	compare VAR_RESULT, DIR_NORTH
+	goto_if_eq Common_EventScript_StealCheck_CheckSingleNPC_Caught
+	compare VAR_RESULT, DIR_EAST
+	goto_if_eq Common_EventScript_StealCheck_CheckSingleNPC_Caught
+	setvar VAR_RESULT, 1
+	return
+Common_EventScript_StealCheck_CheckSingleNPC_NoRight::
+	setvar VAR_0x8000, 1
+	callnative GetObjectFacingAndPosition
+	compare VAR_RESULT, DIR_EAST
+	goto_if_eq Common_EventScript_StealCheck_CheckSingleNPC_Caught
+	setvar VAR_RESULT, 1
+	return
+Common_EventScript_StealCheck_CheckSingleNPC_NoUp::
+	setvar VAR_0x8000, 1
+	callnative GetObjectFacingAndPosition
+	compare VAR_RESULT, DIR_NORTH
+	goto_if_eq Common_EventScript_StealCheck_CheckSingleNPC_Caught
+	setvar VAR_RESULT, 1
+	return
+Common_EventScript_StealCheck_CheckSingleNPC_NoLeftUp::
+	setvar VAR_0x8000, 1
+	callnative GetObjectFacingAndPosition
+	compare VAR_RESULT, DIR_NORTH
+	goto_if_eq Common_EventScript_StealCheck_CheckSingleNPC_Caught
+	compare VAR_RESULT, DIR_WEST
+	goto_if_eq Common_EventScript_StealCheck_CheckSingleNPC_Caught
+	setvar VAR_RESULT, 1
+	return
+Common_EventScript_StealCheck_CheckSingleNPC_NoLeft::
+	setvar VAR_0x8000, 1
+	callnative GetObjectFacingAndPosition
+	compare VAR_RESULT, DIR_WEST
+	goto_if_eq Common_EventScript_StealCheck_CheckSingleNPC_Caught
+	setvar VAR_RESULT, 1
+	return
+Common_EventScript_StealCheck_CheckSingleNPC_Caught:
+	closemessage
+	applymovement 1, Common_Movement_ExclamationMarkAndWait
+	playse SE_PIN
+	waitmovement 1 @fallthrough
+	message Common_EventScript_StealCheck_CheckSingleNPC_CaughtText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	warptodynamic
+	waitstate
+	release
+	end
+Common_EventScript_StealCheck_CheckSingleNPC_CaughtText:
+	.string "Excuse me, what are you doing?!\n"
+	.string "Get away from there!$"
+
+
+
 @ -----------------------------------------------------
 @ Boat Transport
 

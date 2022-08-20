@@ -1150,9 +1150,9 @@
 #define FLAG_ITEM_STOLEN_LILYCOVE_HOUSE2                            0x4AE // Unused Flag
 #define FLAG_ITEM_STOLEN_LILYCOVE_STORE2                            0x4AF // Unused Flag
 #define FLAG_ITEM_STOLEN_LILYCOVE_MOTEL2                            0x4B0 // Unused Flag
-#define FLAG_UNUSED_0x4B1                                           0x4B1 // Unused Flag
-#define FLAG_UNUSED_0x4B2                                           0x4B2 // Unused Flag
-#define FLAG_UNUSED_0x4B3                                           0x4B3 // Unused Flag
+#define FLAG_ITEM_STOLEN_MOSSDEEP_FISHERMAN                         0x4B1 // Unused Flag
+#define FLAG_ITEM_STOLEN_SOOTOPOLIS_BLACKBELT                       0x4B2 // Unused Flag
+#define FLAG_ITEM_STOLEN_MAUVILLE_HOUSE1                            0x4B3 // Unused Flag
 #define FLAG_UNUSED_0x4B4                                           0x4B4 // Unused Flag
 #define FLAG_UNUSED_0x4B5                                           0x4B5 // Unused Flag
 #define FLAG_UNUSED_0x4B6                                           0x4B6 // Unused Flag
@@ -1444,7 +1444,7 @@
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (SYSTEM_FLAGS + 0xC1)
 #define FLAG_DAILY_SECRET_BASE                      (SYSTEM_FLAGS + 0xC2)
 #define FLAG_DAILY_DADS_LETTER_REMOVED              (SYSTEM_FLAGS + 0xC3)
-#define FLAG_DAILY_0x924                            (SYSTEM_FLAGS + 0xC4)
+#define FLAG_DAILY_ITEM_STOLEN_SOOTOPOLIS_BERRY     (SYSTEM_FLAGS + 0xC4)
 #define FLAG_DAILY_ITEM_STOLEN_LILYCOVE_MOTEL       (SYSTEM_FLAGS + 0xC5)
 #define FLAG_DAILY_ITEM_STOLEN_MOSSDEEP_MART        (SYSTEM_FLAGS + 0xC6)
 #define FLAG_DAILY_ITEM_STOLEN_WALLY_3              (SYSTEM_FLAGS + 0xC7)

@@ -2640,6 +2640,7 @@ bool8 ScrCmd_checksteal(struct ScriptContext *ctx)
         gSpecialVar_Result = FALSE;
         return FALSE;
     }
+    IncrementGameStat(GAME_STAT_NUM_THEFT_ATTEMPTS);
     
     // Check to see if there's a MAP_SCRIPT_STEAL_CHECK header
     checkPtr = MapHeaderGetScriptTable(MAP_SCRIPT_STEAL_CHECK);

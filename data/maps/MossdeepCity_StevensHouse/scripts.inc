@@ -2,6 +2,7 @@ MossdeepCity_StevensHouse_MapScripts:: @ 8222784
 	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_StevensHouse_MapScript1_222794
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_StevensHouse_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_StevensHouse_MapScript2_2227C0
+	map_script MAP_SCRIPT_STEAL_CHECK, MossdeepCity_StevensHouse_EventScript_StealCheck
 	.byte 0
 
 MossdeepCity_StevensHouse_MapScript1_222794: @ 8222794
@@ -133,10 +134,6 @@ MossdeepCity_StevensHouse_EventScript_222901:: @ 8222901
 	releaseall
 	end
 
-MossdeepCity_StevensHouse_EventScript_222909:: @ 8222909
-	msgbox MossdeepCity_StevensHouse_Text_222D97, MSGBOX_SIGN
-	end
-
 MossdeepCity_StevensHouse_EventScript_222912:: @ 8222912
 	msgbox MossdeepCity_StevensHouse_Text_222B11, MSGBOX_NPC
 	end
@@ -212,7 +209,26 @@ MossdeepCity_StevensHouse_Text_222C4E: @ 8222C4E
 	.string "May our paths cross someday.\p"
 	.string "STEVEN STONE$"
 
-MossdeepCity_StevensHouse_Text_222D97: @ 8222D97
+
+
+MossdeepCity_StevensHouse_EventScript_StealCheck:
+	@ Fail if Steven is somehow visible
+	goto_if_unset FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_STEVEN, Common_EventScript_ReleaseEnd
+	setvar VAR_RESULT, 1
+	return
+
+MossdeepCity_StevensHouse_EventScript_RockCollection::
+	lock
+	msgbox MossdeepCity_StevensHouse_Text_RockCollection, MSGBOX_DEFAULT
+	trysteal ITEM_SUN_STONE, 2, FLAG_ITEM_STOLEN_DEWFORD_HOUSE
+	@ extra items in addition to the above
+	giveitem_std ITEM_MOON_STONE, 2
+	giveitem_std ITEM_FIRE_STONE, 1
+	giveitem_std ITEM_LEAF_STONE, 1
+	incrementgamestat GAME_STAT_NUM_THINGS_STOLEN, 4
+	release
+	end
+MossdeepCity_StevensHouse_Text_RockCollection: @ 8222D97
 	.string "It's a collection of rare rocks and\n"
 	.string "stones assembled by STEVEN.$"
 
