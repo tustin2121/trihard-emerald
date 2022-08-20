@@ -1669,6 +1669,8 @@ Common_EventScript_PartyHealSave_Save::
 	delay 1 @ delay 1 frame to allow the save game window to actually close
 	return
 Common_EventScript_PartyHealSave_Complete::
+	@ restore palette post-dreams
+	callnative THE_LoadMessageBoxPalette_Normal
 	clearflag FLAG_DISABLE_FADE_INIT
 	fadescreen 4 @ FADE_FROM_BLACK_NO_WINDOW
 	return

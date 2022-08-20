@@ -24,6 +24,8 @@ const DebugHandle_RenamePlayer = 16;
 const DebugHandle_UnmarkBoxMon = 17;
 const DebugHandle_ClearStats = 18;
 const DebugHandle_SetTimeOfDay = 19;
+const DebugHandle_CheckFlag = 20;
+const DebugHandle_CheckVar = 21;
 
 // Menu Functions
 function initMenuV1() {
@@ -44,9 +46,9 @@ function initMenuV1() {
 		$m.append('<hr/>');
 		$(`<li>Debug Options…</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('debugopts'); });
-		$(`<li>Set Flag…</li>`).appendTo($m)
+		$(`<li>Check/Set Flag…</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('setflag'); });
-		$(`<li>Set Var…</li>`).appendTo($m)
+		$(`<li>Check/Set Var…</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('setvar'); });
 		$(`<li>Set Weather to…</li>`).appendTo($m)
 			.on('click', function(){ switchMenu('weather'); });
@@ -251,6 +253,8 @@ function initMenuV1() {
 			});
 	}{
 		let $m = $subMenus['setflag'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
 		let $n = $(`<input type='text' value="0" />`)
 			.on('change', function(){
 				let n = Number.parseInt($n.val(), 16);
@@ -258,6 +262,15 @@ function initMenuV1() {
 			});
 		$(`<p>Flag ID: 0x</p>`).appendTo($m)
 			.append($n);
+		$(`<li>Check Flag</li>`).appendTo($m)
+			.on('click', function(){
+				let id = Number.parseInt($n.val(), 16);
+				if (Number.isNaN(id)) return;
+				writeInterrupts({ 
+					funcId: DebugHandle_CheckFlag,
+					args: [1, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
+				});
+			});
 		$(`<li>Set Flag</li>`).appendTo($m)
 			.on('click', function(){
 				let id = Number.parseInt($n.val(), 16);
@@ -266,7 +279,6 @@ function initMenuV1() {
 					funcId: DebugHandle_SetFlag,
 					args: [1, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
 				});
-				switchMenu(); 
 			});
 		$(`<li>Clear Flag</li>`).appendTo($m)
 			.on('click', function(){
@@ -276,55 +288,44 @@ function initMenuV1() {
 					funcId: DebugHandle_SetFlag,
 					args: [0, 0, (id >> 0) & 0xFF, (id >> 8) & 0xFF],
 				});
-				switchMenu(); 
-			});
-		$(`<li>Cancel</li>`).appendTo($m)
-			.on('click', function(){
-				switchMenu(); 
 			});
 		$m.append('<hr/>');
 		$(`<li>Give Badge 1 (Cut)</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x67, 0x08], });
-				switchMenu(); 
 			});
 		$(`<li>Give Badge 2 (Flash)</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x68, 0x08], });
-				switchMenu(); 
 			});
 		$(`<li>Give Badge 3 (Rock Smash)</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x69, 0x08], });
-				switchMenu(); 
 			});
 		$(`<li>Give Badge 4 (Strength)</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6A, 0x08], });
-				switchMenu(); 
 			});
 		$(`<li>Give Badge 5 (Surf)</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6B, 0x08], });
-				switchMenu(); 
 			});
 		$(`<li>Give Badge 6 (Fly)</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6C, 0x08], });
-				switchMenu(); 
 			});
 		$(`<li>Give Badge 7 (Dive)</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6D, 0x08], });
-				switchMenu(); 
 			});
 		$(`<li>Give Badge 8 (Waterfall)</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ funcId: DebugHandle_SetFlag, args: [1, 0, 0x6E, 0x08], });
-				switchMenu(); 
 			});
 	}{
 		let $m = $subMenus['setvar'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
 		let $n = $(`<input type='text' value="0" />`)
 			.on('change', function(){
 				let n = Number.parseInt($n.val(), 16);
@@ -334,6 +335,19 @@ function initMenuV1() {
 		$(`<p>`).appendTo($m)
 			.append(`Var ID: 0x`).append($n).append('<br/>')
 			.append(`Value: `).append($v);
+		$(`<li>Check Variable</li>`).appendTo($m)
+			.on('click', function(){
+				let id = Number.parseInt($n.val(), 16);
+				if (Number.isNaN(id)) return;
+				let val = $v.val();
+				writeInterrupts({ 
+					funcId: DebugHandle_CheckVar,
+					args: [
+						(val >> 0) & 0xFF, (val >> 8) & 0xFF,
+						( id >> 0) & 0xFF, ( id >> 8) & 0xFF,
+					],
+				});
+			});
 		$(`<li>Set Variable</li>`).appendTo($m)
 			.on('click', function(){
 				let id = Number.parseInt($n.val(), 16);
@@ -346,17 +360,14 @@ function initMenuV1() {
 						( id >> 0) & 0xFF, ( id >> 8) & 0xFF,
 					],
 				});
-				switchMenu(); 
-			});
-		$(`<li>Cancel</li>`).appendTo($m)
-			.on('click', function(){
-				switchMenu(); 
 			});
 	}{
 		let $m = $subMenus['gowarp'] = $('<ul>').appendTo('body');
 		let $group = $(`<input type='number' value="0" max="128" min="0" />`);
 		let $id    = $(`<input type='number' value="0" max="128" min="0" />`);
 		let $warp  = $(`<input type='number' value="0" max="128" min="0" />`);
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
 		$(`<p>`).appendTo($m)
 			.append(`Group: `).append($group).append('<br/>')
 			.append(`MapId: `).append($id).append('<br/>')
@@ -372,10 +383,6 @@ function initMenuV1() {
 						0xFF, 0xFF,
 					],
 				});
-				switchMenu(); 
-			});
-		$(`<li>Cancel</li>`).appendTo($m)
-			.on('click', function(){
 				switchMenu(); 
 			});
 		$m.append(`<hr>`);
@@ -397,12 +404,14 @@ function initMenuV1() {
 			});
 	}{
 		let $m = $subMenus['timeofday'] = $('<ul>').appendTo('body');
+		$(`<li>&lt; Back</li>`).appendTo($m)
+			.on('click', function(){ switchMenu(); });
 		let $hour = $(`<input type='number' value="0" max="24" min="0" />`);
 		let $min  = $(`<input type='number' value="0" max="60" min="0" />`);
 		$(`<p>`).appendTo($m)
 			.append(`Hour: `).append($hour).append('<br/>')
 			.append(`Minute: `).append($min);
-		$(`<li>Warp</li>`).appendTo($m)
+		$(`<li>Change Time</li>`).appendTo($m)
 			.on('click', function(){
 				writeInterrupts({ 
 					funcId: DebugHandle_SetTimeOfDay,
@@ -411,10 +420,6 @@ function initMenuV1() {
 						$min.val(),
 					],
 				});
-				switchMenu(); 
-			});
-		$(`<li>Cancel</li>`).appendTo($m)
-			.on('click', function(){
 				switchMenu(); 
 			});
 		$m.append(`<hr>`);

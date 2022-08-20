@@ -65,6 +65,8 @@ PokemonCenter_1F_NurseHealScript_Heal:
 	delay 1
 	@ Check for dream cutscenes
 	dodreams
+	@ Restore palette
+	callnative THE_LoadMessageBoxPalette_Normal
 	clearflag FLAG_DISABLE_FADE_INIT
 	fadescreenspeed 4, 2 @ FADE_FROM_BLACK_NO_WINDOW
 	release

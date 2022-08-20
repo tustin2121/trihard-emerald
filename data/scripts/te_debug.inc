@@ -146,7 +146,8 @@ DebugScript_TestScriptTable::
 	.4byte DebugScript_TestScript2
 	@ .4byte DEBUG_DreamScript_0100 @ 1 - done
 	.4byte DebugScript_TestScript3
-	.4byte DEBUG_DreamScript_0150 @ 2 - done
+	@ .4byte DEBUG_DreamScript_0150 @ 2 - done
+	.4byte DebugScript_TestScript4
 	.4byte DEBUG_DreamScript_0200 @ 3 - done
 	.4byte DEBUG_DreamScript_0300 @ 4 - done
 	.4byte DEBUG_DreamScript_0400 @ 5 - done
@@ -325,6 +326,21 @@ DebugScript_TestScript3::
 ScriptText_TS3:
 	.string "Dream 700={STR_VAR_1}  First={STR_VAR_3}\n"
 	.string "Match Call={STR_VAR_2}$"
+
+DebugScript_TestScript4::
+	lockall
+	clearflag FLAG_SAW_DREAM_0100
+	clearflag FLAG_SAW_DREAM_0150
+	clearflag FLAG_SAW_DREAM_0200
+	clearflag FLAG_SAW_DREAM_0300
+	clearflag FLAG_SAW_DREAM_0400
+	clearflag FLAG_SAW_DREAM_0900
+	clearflag FLAG_SAW_DREAM_1000
+	msgbox ScriptText_TS4
+	releaseall
+	end
+ScriptText_TS4:
+	.string "Dreams reset.$"
 
 
 ScriptText_DebugBoxText:
