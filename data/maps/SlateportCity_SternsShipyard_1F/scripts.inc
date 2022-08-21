@@ -30,18 +30,7 @@ SlateportCity_SternsShipyard_1F_Text_2080A5: @ 82080A5
 	.string "Who are you?\p"
 	.string "(Oh, those look like gang colors… Um…)\p"
 	.string "I'm sorry, we don't allow… your kind\n"
-	.string "on these premises. Please leave.\p"
-	@ .string "Hi, I'm Dock.\p"
-	@ .string "Capt. Stern commissioned me to\n"
-	@ .string "design a ferry.\p"
-	@ .string "Oh! That there…\n"
-	@ .string "Are they Devon Goods?\p"
-	@ .string "But, hmm…\n"
-	@ .string "This won't do…\p"
-	@ .string "Capt. Stern went off somewhere.\n"
-	@ .string "He said he had some work to do.\p"
-	@ .string "Could I get you to go find Capt.\n"
-	@ .string "Stern and deliver that to him?$"
+	.string "on these premises. Please leave.$"
 SlateportCity_SternsShipyard_1F_EventScript_207F92:: @ 8207F92
 	faceplayer
 	msgbox SlateportCity_SternsShipyard_1F_Text_208323, MSGBOX_DEFAULT
@@ -55,16 +44,6 @@ SlateportCity_SternsShipyard_1F_Text_208323: @ 8208323
 	.string "make something even better.\p"
 	.string "You know, there's never an end to\n"
 	.string "technology's march.$"
-@ SlateportCity_SternsShipyard_1F_EventScript_207FA6:: @ 8207FA6
-@ 	faceplayer
-@ 	msgbox SlateportCity_SternsShipyard_1F_Text_2082A8, MSGBOX_DEFAULT
-@ 	releaseall
-@ 	end
-@ SlateportCity_SternsShipyard_1F_Text_2082A8: @ 82082A8
-@ 	.string "Dock: Hi! Mr. Briney's joined us to\n"
-@ 	.string "lend us his help.\p"
-@ 	.string "Thanks to the veteran sailor, the\n"
-@ 	.string "ferry is steadily coming together.$"
 SlateportCity_SternsShipyard_1F_EventScript_207FBA:: @ 8207FBA
 	faceplayer
 	msgbox SlateportCity_SternsShipyard_1F_Text_2081A5, MSGBOX_DEFAULT
@@ -76,10 +55,6 @@ SlateportCity_SternsShipyard_1F_Text_2081A5: @ 82081A5
 	.string "Please leave, before I have to call\n"
 	.string "the police.\p"
 	.string "(Oh, I hate confrontation…)$"
-	@ .string "Dock: Where could Capt. Stern have\n"
-	@ .string "gone off to?\p"
-	@ .string "Could you go find Capt. Stern and\n"
-	@ .string "deliver that parcel to him?$"
 SlateportCity_SternsShipyard_1F_EventScript_207FD9:: @ 8207FD9
 	faceplayer
 	msgbox SlateportCity_SternsShipyard_1F_Text_208213, MSGBOX_DEFAULT
@@ -88,14 +63,9 @@ SlateportCity_SternsShipyard_1F_EventScript_207FD9:: @ 8207FD9
 SlateportCity_SternsShipyard_1F_Text_208213: @ 8208213
 	.string "Why are you here again?\p"
 	.string "Oh no, now you're sporting Team Aqua's\n"
-	.string "colors! I'm definately calling the\l"
+	.string "colors! I'm definitely calling the\l"
 	.string "police now!\p"
 	.string "(Once I work up the courage…)$"
-	@ .string "Dock: Shipbuilding is an art.\p"
-	@ .string "A lot of things can't be figured out\n"
-	@ .string "just by calculating.\p"
-	@ .string "I really could use advice from a veteran\n"
-	@ .string "who knows the seas…$"
 
 
 SlateportCity_SternsShipyard_1F_EventScript_207FED:: @ 8207FED
