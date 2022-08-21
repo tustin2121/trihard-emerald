@@ -496,8 +496,8 @@ PokemonCenter_1F_Text_FreePokeballCounter_Glance:
 @@@@ Pokecenter Mr Briney Location @@@@
 
 PokemonCenter_1F_SetMrBrineyLocation:: @ 82718DE
-	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
-	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
+	goto_if_unset FLAG_AQUA_FETCH_QUEST_COMPLETED, Common_EventScript_NopReturn
+	@ goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
 	goto_if_unset FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT, PokemonCenter_1F_SetMrBrineyLocation_A
 	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, PokemonCenter_1F_SetMrBrineyLocation_B
 	goto_if_unset FLAG_HIDE_ROUTE_108_MR_BRINEY, PokemonCenter_1F_SetMrBrineyLocation_C
