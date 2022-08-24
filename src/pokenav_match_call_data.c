@@ -558,7 +558,7 @@ afterSelected:
             StringExpandPlaceholders(gStringVar1, gExpandedPlaceholder_Empty);
         }
     }
-    if (textPtr == gText_Alex_Pokenav_PostReport_BaseHelped || textPtr == gText_Alex_Pokenav_PostReport_BaseKnown || gText_Alex_Pokenav_PostReport_BaseUnknown) {
+    if (textPtr == gText_Alex_Pokenav_PostReport_BaseHelped || textPtr == gText_Alex_Pokenav_PostReport_BaseKnown || textPtr == gText_Alex_Pokenav_PostReport_BaseUnknown) {
         if (FlagGet(FLAG_DEFEATED_LEGENDARIES_SINGLEHANDEDLY)) {
             StringExpandPlaceholders(gStringVar1, gText_Alex_Pokenav_PostReport_OutcomeHero);
         } else {
