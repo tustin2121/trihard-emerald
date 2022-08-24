@@ -220,7 +220,7 @@ MossdeepCity_StevensHouse_EventScript_StealCheck:
 MossdeepCity_StevensHouse_EventScript_RockCollection::
 	lock
 	msgbox MossdeepCity_StevensHouse_Text_RockCollection, MSGBOX_DEFAULT
-	trysteal ITEM_SUN_STONE, 2, FLAG_ITEM_STOLEN_DEWFORD_HOUSE
+	trysteal ITEM_SUN_STONE, 2, FLAG_ITEM_STOLEN_STEVEN_HOUSE
 	@ extra items in addition to the above
 	giveitem_std ITEM_MOON_STONE, 2
 	giveitem_std ITEM_FIRE_STONE, 1

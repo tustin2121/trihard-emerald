@@ -1153,7 +1153,7 @@
 #define FLAG_ITEM_STOLEN_MOSSDEEP_FISHERMAN                         0x4B1 // Unused Flag
 #define FLAG_ITEM_STOLEN_SOOTOPOLIS_BLACKBELT                       0x4B2 // Unused Flag
 #define FLAG_ITEM_STOLEN_MAUVILLE_HOUSE1                            0x4B3 // Unused Flag
-#define FLAG_UNUSED_0x4B4                                           0x4B4 // Unused Flag
+#define FLAG_ITEM_STOLEN_STEVEN_HOUSE                               0x4B4 // Unused Flag
 #define FLAG_UNUSED_0x4B5                                           0x4B5 // Unused Flag
 #define FLAG_UNUSED_0x4B6                                           0x4B6 // Unused Flag
 #define FLAG_UNUSED_0x4B7                                           0x4B7 // Unused Flag
@@ -1194,7 +1194,7 @@
 #define FLAG_ALEX_DISCUSSED_SPACE_CENTER                            0x4D9 // Unused Flag
 #define FLAG_ALEX_KNOWS_LEGENDARY_OUTCOME                           0x4DA // Unused Flag
 #define FLAG_ALEX_KNOWS_E4                                          0x4DB // Unused Flag
-#define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
+#define FLAG_ALEX_EXPOSED_DREAM                                     0x4DC // Unused Flag
 #define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag
 #define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag
 #define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
@@ -1544,9 +1544,9 @@
 #define FLAG_SAW_DREAM_1600                                        0x6010
 #define FLAG_SAW_DREAM_1601                                        0x6011
 #define FLAG_SAW_DREAM_1602                                        0x6012
-#define FLAG_REMEMBERED_0x13                                       0x6013
-#define FLAG_REMEMBERED_0x14                                       0x6014
-#define FLAG_REMEMBERED_0x15                                       0x6015
+#define FLAG_SAW_DREAM_1603                                        0x6013
+#define FLAG_SAW_DREAM_1604                                        0x6014
+#define FLAG_SAW_DREAM_1605                                        0x6015
 #define FLAG_REMEMBERED_0x16                                       0x6016
 #define FLAG_REMEMBERED_0x17                                       0x6017
 #define FLAG_REMEMBERED_0x18                                       0x6018
