@@ -49,6 +49,7 @@ DebugScript_SetLegendaryWeatherBefore::
 	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
 	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
 	clearflag FLAG_SYS_WEATHER_CTRL
+	clearflag FLAG_LEGENDARIES_CLEARED
 	clearflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
 	clearflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
 	clearflag FLAG_DEFEATED_SOOTOPOLIS_GYM
@@ -63,6 +64,7 @@ DebugScript_SetLegendaryWeatherDuring::
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
 	setflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
 	setflag FLAG_SYS_WEATHER_CTRL
+	clearflag FLAG_LEGENDARIES_CLEARED
 	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
 	clearflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
 	clearflag FLAG_DEFEATED_SOOTOPOLIS_GYM
@@ -77,6 +79,7 @@ DebugScript_SetLegendaryWeatherAfter::
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
 	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
 	clearflag FLAG_SYS_WEATHER_CTRL
+	setflag FLAG_LEGENDARIES_CLEARED
 	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
 	setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
 	clearflag FLAG_DEFEATED_SOOTOPOLIS_GYM
@@ -91,6 +94,7 @@ DebugScript_SetLegendaryWeatherAfterGym::
 	setflag FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1
 	clearflag FLAG_LEGENDARIES_IN_SOOTOPOLIS
 	clearflag FLAG_SYS_WEATHER_CTRL
+	setflag FLAG_LEGENDARIES_CLEARED
 	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
 	setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
 	setflag FLAG_DEFEATED_SOOTOPOLIS_GYM
@@ -165,17 +169,17 @@ DebugScript_TestScriptTable::
 	.4byte DEBUG_DreamScript_1600 @ 17 - 
 	.4byte DEBUG_DreamScript_1601 @ 18 - 
 	.4byte DEBUG_DreamScript_1602 @ 19 - 
-	.4byte 0 @ 20 - 
+	.4byte DEBUG_DreamScript_1605 @ 20 - 
 	.4byte 0 @ 21 - 
 	.4byte 0 @ 22 - 
 	.4byte 0 @ 23 - 
-	.4byte 0 @ 24 - 
-	.4byte 0 @ 25 - 
-	.4byte 0 @ 26 - 
-	.4byte 0 @ 27 - 
-	.4byte 0 @ 28 - 
-	.4byte 0 @ 29 - 
-	.4byte 0 @ 30 - 
+	.4byte DEBUG_gText_Alex_Pokenav_FluffCall1 @ 24 - 
+	.4byte DEBUG_gText_Alex_Pokenav_FluffCall2 @ 25 - 
+	.4byte DEBUG_gText_Alex_Pokenav_FluffCall3 @ 26 - 
+	.4byte DEBUG_gText_Alex_Pokenav_FluffCall4 @ 27 - 
+	.4byte DEBUG_gText_Alex_Pokenav_FluffCall5 @ 28 - 
+	.4byte DEBUG_gText_Alex_Pokenav_FluffCall6 @ 29 - 
+	.4byte DEBUG_gText_Alex_Pokenav_FluffCall7 @ 30 - 
 	.4byte DreamScript_Alex_FirstCall @ 31
 	.4byte DreamScript_Alex_LegendaryCall @ 32
 	.4byte DreamScript_Alex_LeagueCall @ 33
@@ -289,6 +293,54 @@ DEBUG_DreamScript_1602:
 	call DebugScript_DreamSetup
 	call DreamScript_1602
 	call DebugScript_DreamTeardown
+	end
+DEBUG_DreamScript_1605:
+	call DebugScript_DreamSetup
+	call DreamScript_1605
+	call DebugScript_DreamTeardown
+	end
+
+DEBUG_gText_Alex_Pokenav_FluffCall1:
+	lockall
+	pokenavcall gText_Alex_Pokenav_FluffCall1
+	waitmessage
+	releaseall
+	end
+DEBUG_gText_Alex_Pokenav_FluffCall2:
+	lockall
+	pokenavcall gText_Alex_Pokenav_FluffCall2
+	waitmessage
+	releaseall
+	end
+DEBUG_gText_Alex_Pokenav_FluffCall3:
+	lockall
+	pokenavcall gText_Alex_Pokenav_FluffCall3
+	waitmessage
+	releaseall
+	end
+DEBUG_gText_Alex_Pokenav_FluffCall4:
+	lockall
+	pokenavcall gText_Alex_Pokenav_FluffCall4
+	waitmessage
+	releaseall
+	end
+DEBUG_gText_Alex_Pokenav_FluffCall5:
+	lockall
+	pokenavcall gText_Alex_Pokenav_FluffCall5
+	waitmessage
+	releaseall
+	end
+DEBUG_gText_Alex_Pokenav_FluffCall6:
+	lockall
+	pokenavcall gText_Alex_Pokenav_FluffCall6
+	waitmessage
+	releaseall
+	end
+DEBUG_gText_Alex_Pokenav_FluffCall7:
+	lockall
+	pokenavcall gText_Alex_Pokenav_FluffCall7
+	waitmessage
+	releaseall
 	end
 
 

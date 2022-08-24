@@ -17,7 +17,7 @@ LinkContestRoom1_OnTransition: @ 823B79F
 	end
 
 LinkContestRoom1_EventScript_23B7AF:: @ 823B7AF
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	special ScriptGetMultiplayerId
 	compare VAR_RESULT, 0
 	call_if_eq LinkContestRoom1_EventScript_23B7EF
@@ -69,7 +69,7 @@ LinkContestRoom1_MapScript2_23B81F: @ 823B81F
 	.2byte 0
 
 LinkContestRoom1_EventScript_23B829:: @ 823B829
-	call LinkContestRoom1_EventScript_279F97
+	call ContestHall_EventScript_DoContest
 	call LinkContestRoom1_EventScript_23BE44
 	end
 

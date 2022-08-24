@@ -484,7 +484,7 @@ void sub_80DA8C8(u8 partyIndex);
 void sub_80DAB8C(u8 contestType, u8 rank);
 void sub_80DACBC(u8 contestType, u8 rank, bool32 isPostgame);
 u8 sub_80DAE0C(struct Pokemon *pkmn);
-void sub_80DB09C(u8 contestCategory);
+void CalculateRound1Points(u8 contestCategory);
 bool8 IsSpeciesNotUnown(u16 species);
 bool8 Contest_IsMonsTurnDisabled(u8 a);
 void SaveLinkContestResults(void);

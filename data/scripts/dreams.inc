@@ -1200,6 +1200,40 @@ DreamScript_1602_Text2:
 	.string "$"
 
 
+DreamScript_1605::
+	fadenewbgm MUS_HIDERI
+	delay 60
+	setvar VAR_TEXTBOX_TYPE, MSGTYPE_DREAM
+	message DreamScript_1605_Text1
+	waitmessage
+	select_if_set FLAG_HUGGED_ALEX, DreamScript_1605_Text2a, DreamScript_1605_Text2b
+	message 0
+	waitmessage
+	closemessage
+	fadenewbgm MUS_DUMMY
+	delay 90
+	fadedefaultbgm
+	return
+DreamScript_1605_Text1:
+	.string "… … … …\p"
+	.string "You stare out the window, over the\n"
+	.string "the plane's wing, at the island below.{PAUSE 20}\p"
+	.string "{MAN_SPEAKING}"
+	.string "I'm sorry, {PLAYER_buddy}.{END}{PAUSE 30}\n"
+	.string "Dad speaks from the seat next to you.{PAUSE 20}\p"
+	.string "{MAN_SPEAKING}"
+	.string "If there was any way to stay in Alola…{PAUSE 30}\p"
+	.string "You fold your arms.{PAUSE 30} He stops speaking.{PAUSE 30}\p"
+	.string "$"
+DreamScript_1605_Text2a:
+	.string "… … … The lingering feeling of {RIVAL_ALOLA}'s\n"
+	.string "last hug is your only source of comfort…\p"
+	.string "$"
+DreamScript_1605_Text2b:
+	.string "… … … You deeply regret not\n"
+	.string "accepting that hug from {RIVAL_ALOLA}…\p"
+	.string "$"
+
 
 @------------------------------------------------------
 
@@ -1662,7 +1696,7 @@ gText_Alex_Pokenav_PostResearch::
 	.string "I imagine it'd be hard to miss!\p"
 	.string "Good luck! And stay safe!$"
 
-@ TODO: Post legendaries pokenav calls
+@ Post legendaries pokenav calls
 gText_Alex_Pokenav_PostReport_BaseUnknown::
 	.string "{RIVAL_ALOLA}: {PLAYER}! You're alright!\n"
 	.string "I just heard the news about the\l"
@@ -1706,7 +1740,159 @@ gText_Alex_Pokenav_PostReport_OutcomeHero::
 	.string "KILLED!! What were you THINKING?!\p"
 	.string "I gotta lie down. I'll… I'll…\n"
 	.string "Tapu Bulu give me strength…$"
-	
+
+@ Endgame pokenav calls
+gText_Alex_Pokenav_FluffCall1::
+	.string "{RIVAL_ALOLA}: Hey, {PLAYER}.\n"
+	.string "How's it going?\p"
+	.string "You're asking about me?{PAUSE 20} Wow,\n"
+	.string "I thought you'd never ask.\l"
+	.string "I'm teasing, haha!\p"
+	.string "Well, my foster mom's actually doing\n"
+	.string "the paperwork to finally adopt me.{PAUSE 10}\p"
+	.string "I know, right? Only seventeen\n"
+	.string "years too late, right? Ha!\p"
+	.string "She's actually really nice to me.\n"
+	.string "It's…{PAUSE 30} actually nice.\p"
+	.string "I'm sure you can work something\n"
+	.string "out with your dad, {PLAYER}.\p"
+	.string "He really does care, he's just…\n"
+	.string "always busy…\p"
+	.string "Yeah, sorry for the downer…\n"
+	.string "I'll talk to you later.$"
+gText_Alex_Pokenav_FluffCall2::
+	.string "{RIVAL_ALOLA}: Hey, {PLAYER}.\n"
+	.string "What'cha up to?\p"
+	.string "Me?{PAUSE 30} Heh…{PAUSE 30} Okay,{PAUSE 20} don't laugh…{PAUSE 60}\n"
+	.string "I'm{PAUSE 60} studying.{PAUSE 30}\p"
+	.string "I said don't laugh! Hahaha!{PAUSE 30}\n"
+	.string "I'm serious!\p"
+	.string "I think I might actually have a shot\n"
+	.string "at this college! Actually, you know,\l"
+	.string "do something with my life…\p"
+	.string "You should apply too, you know!\n"
+	.string "I've seen how you work on those\l"
+	.string "CAD drawings… the blueprints…?\p"
+	.string "You've got a mind for that, and\n"
+	.string "if you apply yourself… … …\p"
+	.string "Yes, I get it…\n"
+	.string "I sound like your tūtū…\l"
+	.string "I am serious though…\p"
+	.string "Just think on it, alright?\n"
+	.string "Talk to ya later, {PLAYER}.$"
+gText_Alex_Pokenav_FluffCall3::
+	.string "{RIVAL_ALOLA}: Hey, {PLAYER}!\n"
+	.string "Anything fun happening?\p"
+	.string "You should see some of the things\n"
+	.string "the old team has been up to.\p"
+	.string "Community gardening…{PAUSE 30}\n"
+	.string "The fire brigade…{PAUSE 30} Charity events!{PAUSE 20}\p"
+	.string "They raised like ¥50,000 for the\n"
+	.string "local {POKEMON} shelter last week!\p"
+	.string "You know what they were doing?{PAUSE 50}\n"
+	.string "Graffiti!{PAUSE 50} Legal graffiti!{PAUSE 20}\p"
+	.string "They created a mural on the side of\n"
+	.string "Community Center!{PAUSE 20} It looks amazing!\p"
+	.string "I should send you photos… somehow.\n"
+	.string "You gotta see it!\p"
+	.string "I'll try and remember to send you\n"
+	.string "something! Talk to ya later!$"
+gText_Alex_Pokenav_FluffCall4::
+	.string "{RIVAL_ALOLA}: Hey, {PLAYER}…\n"
+	.string "I-I gotta ask you something…\p"
+	.string "You think…{PAUSE 20} you'll ever come back\n"
+	.string "to Alola?\p"
+	.string "I just… … …{PAUSE 40} I had a dream\n"
+	.string "about you the other night…{PAUSE 20}\p"
+	.string "We…{PAUSE 20} We were on the beach,{PAUSE 20} in our\n"
+	.string "swimsuits,{PAUSE 20} just finished surfing…{PAUSE 20}\p"
+	.string "I was staring out at the ocean…{PAUSE 30}\n"
+	.string "You were lying on my legs…\p"
+	.string "Your sandy hair was wrapped\n"
+	.string "around my fingers and I…{PAUSE 20} …{PAUSE 20} …{PAUSE 20}\p"
+	.string "… … … … …\p"
+	.string "{FORCE_AUTOSCROLL_ON}{FORCE_SPEED_YES}"
+	.string "Holy deities! This is embarrassing!\n"
+	.string "I'm sorry, I gotta go!\l"
+	.string "I'm sorry for dumping on you!\l"
+	.string "I'll talk to you later!\l"
+	.string "I'm so sorry! Bye!\l"
+	.string "I'm sorry! Bye! Sorry! Bye!!\p"
+	.string "{FORCE_AUTOSCROLL_OFF}{RESET_SPEED}"
+	.string "… … … Click!{PAUSE 30}$"
+gText_Alex_Pokenav_FluffCall5::
+	.string "{RIVAL_ALOLA}: Hey, {PLAYER}!\n"
+	.string "What's happening?\p"
+	.string "So, uh… I've been meaning to\n"
+	.string "tell you… for a while now…\p"
+	.string "So, I got your number from your\n"
+	.string "mom, right?{PAUSE 30} Well…{PAUSE 20} I work for her…\p"
+	.string "I work at her office, as an\n"
+	.string "as an intern, you know?\p"
+	.string "She hated me at first.\p"
+	.string "Yeah, she knew who I was. I mean,\n"
+	.string "I swung by your house how often?\p"
+	.string "But like, we got to know each\n"
+	.string "other a little more, right?\p"
+	.string "We're not…{PAUSE 30} friends…{PAUSE 20} But we…{PAUSE 10}\n"
+	.string "I dunno, respect each other?\p"
+	.string "I hope you're not mad…{PAUSE 30}\n"
+	.string "Please don't be mad…\p"
+	.string "You're too quiet, I know that\n"
+	.string "means you're mad at me…\p"
+	.string "Okay, well…{PAUSE 20} call me back when\n"
+	.string "you're done being mad…{PAUSE 20} Okay?\p"
+	.string "I'll talk to you later.$"
+gText_Alex_Pokenav_FluffCall6::
+	.string "{RIVAL_ALOLA}: Hey, {PLAYER}.\n"
+	.string "You good? That's good.\p"
+	.string "How's your thing with…{PAUSE 20}\n"
+	.string "{POKEMON}…{PAUSE 20} going?\p"
+	.string "{PLAYER}, don't play dumb with me.\p"
+	.string "Your anger always came out in how\n"
+	.string "you battled with your {POKEMON}!\p"
+	.string "You drove them too hard sometimes!{PAUSE 30}\n"
+	.string "I'd worry when you did that!\p"
+	.string "You're not…{PAUSE 20} still doing it…{PAUSE 20}\n"
+	.string "are you?{PAUSE 40} Please tell me no…{PAUSE 20}\p"
+	.string "…{PAUSE 20} …{PAUSE 20} Not answering me is\n"
+	.string "almost as bad, {PLAYER}…\p"
+	.string "Remember the breathing technique\n"
+	.string "I taught you? Do that more often.\p"
+	.string "{FORCE_SPEED_MID}"
+	.string "In through the nose…{PAUSE 60}{PAUSE 30}\n"
+	.string "Out through the mouth…{PAUSE 60}{PAUSE 40}\p"
+	.string "{RESET_SPEED}"
+	.string "Feel better?{PAUSE 20} Try it more often.{PAUSE 40}\n"
+	.string "Talk to you later, {PLAYER}.$"
+gText_Alex_Pokenav_FluffCall7::
+	.string "{RIVAL_ALOLA}: {PLAYER}! Hey!\n"
+	.string "How are things in Hoenn?\p"
+	.string "I have it on good authority that\n"
+	.string "there's a lot of oceans in Hoenn.\p"
+	.string "Is that true?{PAUSE 50} Sorry, wha--?{PAUSE 20}\n"
+	.string "How--?{PAUSE 20} What do you mean?!\l"
+	.string "How can you have “too much water”?!\l"
+	.string "That's absurd!\p"
+	.string "How are the waves? Are they at all\n"
+	.string "like Alola's big crashing waves?\p"
+	.string "… … … Sorry, what did you say?\n"
+	.string "You were… FISHING?! For real?!\p"
+	.string "Ha ha! He TOLD you!! Remember when,\n"
+	.string "down by the docks, a bunch of us were\l"
+	.string "slagging off those fishermen?!\p"
+	.string "And Nanu said we'd be just like\n"
+	.string "them one day? Remember?\p"
+	.string "And lo and behold! Hahaha!\p"
+	.string "Look I'm sure Mr. Briney is a\n"
+	.string "wonderful person, but I just can't\l"
+	.string "get the image out of my head!\p"
+	.string "You just sitting on a little boat\n"
+	.string "bored to tears, waiting for a catch!\p"
+	.string "I'm not making fun! It's just funny!\n"
+	.string "Lighten up, ha ha ha! Later!$"
+
+
 @ One reacting to it finishing
 @ One reacting to the player being a hero
 @ 1-2 just talking afterwards.

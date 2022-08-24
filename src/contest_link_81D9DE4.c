@@ -128,7 +128,7 @@ static void sub_81D9F68(u8 taskId)
 
 static void sub_81DA10C(u8 taskId)
 {
-    sub_80DB09C(gSpecialVar_ContestCategory);
+    CalculateRound1Points(gSpecialVar_ContestCategory);
     SetTaskFuncWithFollowupFunc(taskId, sub_80FCF40, sub_81DA138);
 }
 

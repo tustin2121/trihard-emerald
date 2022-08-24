@@ -368,6 +368,13 @@ extern const u8 gText_Alex_Pokenav_PostReport_BaseKnown[];
 extern const u8 gText_Alex_Pokenav_PostReport_BaseUnknown[];
 extern const u8 gText_Alex_Pokenav_PostReport_OutcomeNormal[];
 extern const u8 gText_Alex_Pokenav_PostReport_OutcomeHero[];
+extern const u8 gText_Alex_Pokenav_FluffCall1[];
+extern const u8 gText_Alex_Pokenav_FluffCall2[];
+extern const u8 gText_Alex_Pokenav_FluffCall3[];
+extern const u8 gText_Alex_Pokenav_FluffCall4[];
+extern const u8 gText_Alex_Pokenav_FluffCall5[];
+extern const u8 gText_Alex_Pokenav_FluffCall6[];
+extern const u8 gText_Alex_Pokenav_FluffCall7[];
 extern const u8 gExpandedPlaceholder_Empty[];
 
 static const match_call_text_data_t sAlexTextScripts_CatchingUp[] = {
@@ -398,6 +405,16 @@ static const match_call_text_data_t sAlexTextScripts_AfterLegendaries[] = {
     { gText_Alex_Pokenav_PostReport_BaseUnknown, 0xFFFF,                      FLAG_ALEX_KNOWS_LEGENDARY_OUTCOME },
 //  { gText_Alex_Pokenav_PostReport_BaseUnknown, FLAG_ALEX_KNOWS_E4,          FLAG_ALEX_KNOWS_LEGENDARY_OUTCOME },
     { NULL,                                      0xFFFF,                      0xFFFF }
+};
+static const match_call_text_data_t sAlexTextScripts_PostFluff[] = {
+    { gText_Alex_Pokenav_FluffCall1, 0xFFFF, 0xFFFF },
+    { gText_Alex_Pokenav_FluffCall2, 0xFFFF, 0xFFFF },
+    { gText_Alex_Pokenav_FluffCall3, 0xFFFF, 0xFFFF },
+    { gText_Alex_Pokenav_FluffCall4, 0xFFFF, FLAG_ALEX_EXPOSED_DREAM },
+    { gText_Alex_Pokenav_FluffCall5, 0xFFFF, 0xFFFF },
+    { gText_Alex_Pokenav_FluffCall6, 0xFFFF, 0xFFFF },
+//  { gText_Alex_Pokenav_FluffCall7, 0xFFFF, 0xFFFF }, // Needs redone
+    { NULL,                          0xFFFF, 0xFFFF }
 };
 
 static const struct MatchCallStructNPC sAlexMatchCallHeader =
@@ -457,6 +474,39 @@ static const u8* MatchCall_GetMessageText_NewestOnly(const match_call_text_data_
     return textData[i].text;
 }
 
+static const u8* MatchCall_GetMessageText_RoundRobin(const match_call_text_data_t *textData, u16 var)
+{
+    u32 i;
+	#define REQ_FLAG textData[i].flag
+	#define DONE_FLAG textData[i].flag2
+    
+    for (i = 0; i < VarGet(var); i++) {
+        // Find the entry or the bottom. If we find the bottom, reset!
+		if (textData[i].text == NULL) { i = 0; break; }
+    }
+    
+    for (; TRUE; i++) {
+        // If we reached the sentinel at the bottom, loop
+		if (textData[i].text == NULL) { i = 0; }
+        // Something went wrong! Panic!
+		if (textData[i].text == NULL) { return NULL; }
+        
+        // Skip entries which don't meet the prerequisite
+        if (REQ_FLAG != 0xFFFF && FlagGet(REQ_FLAG) == FALSE) continue;
+        // Skip entires which have already been done
+        if (DONE_FLAG != 0xFFFF && FlagGet(DONE_FLAG) == TRUE) continue;
+        // Entires with neither of the above are always chosen
+        break;
+    }
+    // If there's a flag2 specified, set it as part of this call
+    if (DONE_FLAG != 0xffff) {
+        FlagSet(DONE_FLAG);
+    }
+    VarSet(VAR_ALEX_FLUFF_COUNTER, i+1);
+    // Return the text of the entry
+    return textData[i].text;
+}
+
 static void MatchCall_GetMessage_Alex(match_call_t matchCall, u8* dest)
 {
     const u8* textPtr = NULL;
@@ -478,6 +528,9 @@ static void MatchCall_GetMessage_Alex(match_call_t matchCall, u8* dest)
         if (FlagGet(FLAG_DAILY_ALEX_CALL)) goto afterSelected;
         if (textPtr == NULL) {
             textPtr = MatchCall_GetMessageText_AllOnce(sAlexTextScripts_AfterLegendaries);
+        }
+        if (textPtr == NULL) {
+            textPtr = MatchCall_GetMessageText_RoundRobin(sAlexTextScripts_PostFluff, VAR_ALEX_FLUFF_COUNTER);
         }
         if (textPtr != NULL) FlagSet(FLAG_DAILY_ALEX_CALL);
     }

@@ -184,7 +184,7 @@ LilycoveCity_ContestLobby_EventScript_279F87:: @ 8279F87
 	setvar VAR_LINK_CONTEST_ROOM_STATE, 1
 	return
 
-LinkContestRoom1_EventScript_279F97:: @ 8279F97
+ContestHall_EventScript_DoContest:: @ 8279F97
 	special sub_80F90DC
 	setvar VAR_0x8006, 0
 	lockall
@@ -193,13 +193,13 @@ LinkContestRoom1_EventScript_279F97:: @ 8279F97
 	applymovement 1, LinkContestRoom1_Movement_27AD09
 	waitmovement 0
 	releaseall
-	call LinkContestRoom1_EventScript_27A133
-	call LinkContestRoom1_EventScript_279FF2
-	call LinkContestRoom1_EventScript_27A03C
-	call LinkContestRoom1_EventScript_27A097
-	call LinkContestRoom1_EventScript_27A0F5
-	call LinkContestRoom1_EventScript_27A801
-	call LinkContestRoom1_EventScript_27A8A5
+	call ContestHall_EventScript_TryWaitForLink
+	call ContestHall_EventScript_GetContestRankStringId
+	call ContestHall_EventScript_GetContestCategory
+	call ContestHall_EventScript_ContestGettingStarted
+	call ContestHall_EventScript_ShowContestMons
+	call ContestHall_EventScript_DoContestAppeals
+	call ContestHall_EventScript_ContestResults
 	call LinkContestRoom1_EventScript_27A987
 	call LinkContestRoom1_EventScript_27A9D4
 	call LinkContestRoom1_EventScript_27AA1B
@@ -208,7 +208,7 @@ LinkContestRoom1_EventScript_279F97:: @ 8279F97
 	warptodynamic
 	return
 
-LinkContestRoom1_EventScript_279FF2:: @ 8279FF2
+ContestHall_EventScript_GetContestRankStringId:: @ 8279FF2
 	switch VAR_CONTEST_RANK
 	case 0, LinkContestRoom1_EventScript_27A024
 	case 1, LinkContestRoom1_EventScript_27A02A
@@ -232,7 +232,7 @@ LinkContestRoom1_EventScript_27A036:: @ 827A036
 	setvar VAR_0x8009, 8
 	return
 
-LinkContestRoom1_EventScript_27A03C:: @ 827A03C
+ContestHall_EventScript_GetContestCategory:: @ 827A03C
 	switch VAR_CONTEST_CATEGORY
 	case 0, LinkContestRoom1_EventScript_27A079
 	case 1, LinkContestRoom1_EventScript_27A07F
@@ -261,7 +261,7 @@ LinkContestRoom1_EventScript_27A091:: @ 827A091
 	setvar VAR_0x8008, 4
 	return
 
-LinkContestRoom1_EventScript_27A097:: @ 827A097
+ContestHall_EventScript_ContestGettingStarted:: @ 827A097
 	buffercontesttypestring 1, 32776
 	bufferstdstring 2, VAR_0x8009
 	call LinkContestRoom1_EventScript_27A0B1
@@ -290,28 +290,28 @@ LinkContestRoom1_EventScript_27A0C7:: @ 827A0C7
 LinkContestRoom1_EventScript_27A0DE:: @ 827A0DE
 	messageautoscroll LinkContestRoom1_Text_27C929
 	waitmessage
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27C972
 	waitmessage
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	return
 
-LinkContestRoom1_EventScript_27A0F5:: @ 827A0F5
-	call LinkContestRoom1_EventScript_27A149
-	call LinkContestRoom1_EventScript_27A1D2
-	call LinkContestRoom1_EventScript_27A34F
-	call LinkContestRoom1_EventScript_27A2D5
-	call LinkContestRoom1_EventScript_27A77A
-	call LinkContestRoom1_EventScript_27A133
-	call LinkContestRoom1_EventScript_27A133
+ContestHall_EventScript_ShowContestMons:: @ 827A0F5
+	call ContestHall_EventScript_ContestantWalkToCenter
+	call ContestHall_EventScript_ShowContestMonPic
+	call ContestHall_EventScript_AudienceHeartEmotes
+	call ContestHall_EventScript_AudienceReactToContestant
+	call ContestHall_EventScript_ContestantReturn
+	call ContestHall_EventScript_TryWaitForLink
+	call ContestHall_EventScript_TryWaitForLink
 	addvar VAR_0x8006, 1
 	compare VAR_0x8006, 4
-	goto_if_ne LinkContestRoom1_EventScript_27A0F5
+	goto_if_ne ContestHall_EventScript_ShowContestMons
 	call LinkContestRoom1_EventScript_27A230
 	setvar VAR_TEMP_1, 6
 	return
 
-LinkContestRoom1_EventScript_27A133:: @ 827A133
+ContestHall_EventScript_TryWaitForLink:: @ 827A133
 	specialvar VAR_RESULT, sub_80F9160
 	compare VAR_RESULT, 1
 	goto_if_eq LinkContestRoom1_EventScript_27A144
@@ -322,7 +322,7 @@ LinkContestRoom1_EventScript_27A144:: @ 827A144
 	waitstate
 	return
 
-LinkContestRoom1_EventScript_27A149:: @ 827A149
+ContestHall_EventScript_ContestantWalkToCenter:: @ 827A149
 	compare VAR_0x8006, 0
 	goto_if_eq LinkContestRoom1_EventScript_27A176
 	compare VAR_0x8006, 1
@@ -334,7 +334,7 @@ LinkContestRoom1_EventScript_27A149:: @ 827A149
 	return
 
 LinkContestRoom1_EventScript_27A176:: @ 827A176
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	lockall
 	applymovement 3, LinkContestRoom1_Movement_27AD52
 	waitmovement 0
@@ -343,7 +343,7 @@ LinkContestRoom1_EventScript_27A176:: @ 827A176
 	return
 
 LinkContestRoom1_EventScript_27A18D:: @ 827A18D
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	lockall
 	applymovement 4, LinkContestRoom1_Movement_27AD5E
 	waitmovement 0
@@ -352,7 +352,7 @@ LinkContestRoom1_EventScript_27A18D:: @ 827A18D
 	return
 
 LinkContestRoom1_EventScript_27A1A4:: @ 827A1A4
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	lockall
 	applymovement 5, LinkContestRoom1_Movement_27AD66
 	waitmovement 0
@@ -361,7 +361,7 @@ LinkContestRoom1_EventScript_27A1A4:: @ 827A1A4
 	return
 
 LinkContestRoom1_EventScript_27A1BB:: @ 827A1BB
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	lockall
 	applymovement 14, LinkContestRoom1_Movement_27AD6E
 	waitmovement 0
@@ -369,7 +369,7 @@ LinkContestRoom1_EventScript_27A1BB:: @ 827A1BB
 	setvar VAR_0x800B, 14
 	return
 
-LinkContestRoom1_EventScript_27A1D2:: @ 827A1D2
+ContestHall_EventScript_ShowContestMonPic:: @ 827A1D2
 	special sub_80F8850
 	addvar VAR_0x8006, 1
 	buffernumberstring 1, VAR_0x8006
@@ -377,7 +377,7 @@ LinkContestRoom1_EventScript_27A1D2:: @ 827A1D2
 	applymovement VAR_0x800B, LinkContestRoom1_Movement_27AD20
 	waitmovement 0
 	releaseall
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	call LinkContestRoom1_EventScript_27AD80
 	addobject 13
 	playse SE_DANSA
@@ -436,13 +436,13 @@ LinkContestRoom1_EventScript_27A280:: @ 827A280
 LinkContestRoom1_EventScript_27A297:: @ 827A297
 	messageautoscroll LinkContestRoom1_Text_27C9AF
 	waitmessage
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27CA04
 	waitmessage
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27CA42
 	waitmessage
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	return
 
 LinkContestRoom1_EventScript_27A2B9:: @ 827A2B9
@@ -453,11 +453,11 @@ LinkContestRoom1_EventScript_27A2B9:: @ 827A2B9
 
 LinkContestRoom1_EventScript_27A2CA:: @ 827A2CA
 	messageautoscroll LinkContestRoom1_Text_27B8F2
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	return
 
-LinkContestRoom1_EventScript_27A2D5:: @ 827A2D5
-	call LinkContestRoom1_EventScript_27A133
+ContestHall_EventScript_AudienceReactToContestant:: @ 827A2D5
+	call ContestHall_EventScript_TryWaitForLink
 	applymovement 1, LinkContestRoom1_Movement_27AD33
 	waitmovement 0
 	playse SE_W227B
@@ -479,10 +479,10 @@ LinkContestRoom1_EventScript_27A2D5:: @ 827A2D5
 	applymovement 2, LinkContestRoom1_Movement_27AD49
 	waitmovement 0
 	releaseall
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	return
 
-LinkContestRoom1_EventScript_27A34F:: @ 827A34F
+ContestHall_EventScript_AudienceHeartEmotes:: @ 827A34F
 	special sub_80F82FC
 	compare VAR_CONTEST_LOCATION, 1
 	call_if_eq LinkContestRoom1_EventScript_27A454
@@ -774,12 +774,12 @@ LinkContestRoom1_EventScript_27A756:: @ 827A756
 LinkContestRoom1_EventScript_27A779:: @ 827A779
 	return
 
-LinkContestRoom1_EventScript_27A77A:: @ 827A77A
+ContestHall_EventScript_ContestantReturn:: @ 827A77A
 	closemessage
 	release
 	removeobject 13
 	special sub_80F8EB8
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	switch VAR_0x8006
 	case 0, LinkContestRoom1_EventScript_27A7B9
 	case 1, LinkContestRoom1_EventScript_27A7CB
@@ -788,7 +788,7 @@ LinkContestRoom1_EventScript_27A77A:: @ 827A77A
 	return
 
 LinkContestRoom1_EventScript_27A7B9:: @ 827A7B9
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	lockall
 	applymovement VAR_0x800B, LinkContestRoom1_Movement_27AD58
 	waitmovement 0
@@ -796,7 +796,7 @@ LinkContestRoom1_EventScript_27A7B9:: @ 827A7B9
 	return
 
 LinkContestRoom1_EventScript_27A7CB:: @ 827A7CB
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	lockall
 	applymovement VAR_0x800B, LinkContestRoom1_Movement_27AD62
 	waitmovement 0
@@ -804,7 +804,7 @@ LinkContestRoom1_EventScript_27A7CB:: @ 827A7CB
 	return
 
 LinkContestRoom1_EventScript_27A7DD:: @ 827A7DD
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	lockall
 	applymovement VAR_0x800B, LinkContestRoom1_Movement_27AD6A
 	waitmovement 0
@@ -812,25 +812,25 @@ LinkContestRoom1_EventScript_27A7DD:: @ 827A7DD
 	return
 
 LinkContestRoom1_EventScript_27A7EF:: @ 827A7EF
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	lockall
 	applymovement VAR_0x800B, LinkContestRoom1_Movement_27AD74
 	waitmovement 0
 	releaseall
 	return
 
-LinkContestRoom1_EventScript_27A801:: @ 827A801
+ContestHall_EventScript_DoContestAppeals:: @ 827A801
 	lockall
 	applymovement 1, LinkContestRoom1_Movement_27AD27
 	waitmovement 0
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	call LinkContestRoom1_EventScript_27A853
 	waitmessage
 	applymovement 1, LinkContestRoom1_Movement_27AD15
 	applymovement 2, LinkContestRoom1_Movement_27AD19
 	waitmovement 0
 	releaseall
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	setvar VAR_TEMP_9, 1
 	special sub_80F910C
 	startcontest
@@ -858,30 +858,30 @@ LinkContestRoom1_EventScript_27A867:: @ 827A867
 	return
 
 LinkContestRoom1_EventScript_27A87E:: @ 827A87E
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27CA71
 	waitmessage
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27CAD0
 	waitmessage
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27CB55
 	waitmessage
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	return
 
-LinkContestRoom1_EventScript_27A8A5:: @ 827A8A5
-	call LinkContestRoom1_EventScript_27A133
+ContestHall_EventScript_ContestResults:: @ 827A8A5
+	call ContestHall_EventScript_TryWaitForLink
 	call LinkContestRoom1_EventScript_27A8FB
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	call LinkContestRoom1_EventScript_27A91E
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	applymovement 1, LinkContestRoom1_Movement_27AD0F
 	waitmovement 0
 	call LinkContestRoom1_EventScript_27A941
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	call LinkContestRoom1_EventScript_27A964
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	applymovement 1, LinkContestRoom1_Movement_27AD13
 	waitmovement 0
 	closemessage
@@ -900,7 +900,7 @@ LinkContestRoom1_EventScript_27A8FB:: @ 827A8FB
 	return
 
 LinkContestRoom1_EventScript_27A90F:: @ 827A90F
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27BA15
 	waitmessage
 	delay 30
@@ -913,7 +913,7 @@ LinkContestRoom1_EventScript_27A91E:: @ 827A91E
 	return
 
 LinkContestRoom1_EventScript_27A932:: @ 827A932
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27BA30
 	waitmessage
 	delay 30
@@ -926,7 +926,7 @@ LinkContestRoom1_EventScript_27A941:: @ 827A941
 	return
 
 LinkContestRoom1_EventScript_27A955:: @ 827A955
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27BAAC
 	waitmessage
 	delay 30
@@ -939,7 +939,7 @@ LinkContestRoom1_EventScript_27A964:: @ 827A964
 	return
 
 LinkContestRoom1_EventScript_27A978:: @ 827A978
-	call LinkContestRoom1_EventScript_27A133
+	call ContestHall_EventScript_TryWaitForLink
 	messageautoscroll LinkContestRoom1_Text_27BB25
 	waitmessage
 	delay 30

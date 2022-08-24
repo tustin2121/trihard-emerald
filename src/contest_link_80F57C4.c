@@ -2512,7 +2512,7 @@ void sub_80F7F30(void)
     if (result)
     {
         sub_80DAB8C(gSpecialVar_ContestCategory, gSpecialVar_ContestRank);
-        sub_80DB09C(gSpecialVar_ContestCategory);
+        CalculateRound1Points(gSpecialVar_ContestCategory);
     }
 
     gSpecialVar_Result = result;
@@ -2785,7 +2785,7 @@ static void sub_80F85BC(u8 taskId)
         sp4[i] = gTasks[taskId].data[i + 5];
 
     gUnknown_02039F2B = sub_80F86E0(sp4);
-    sub_80DB09C(gSpecialVar_ContestCategory);
+    CalculateRound1Points(gSpecialVar_ContestCategory);
     SetTaskFuncWithFollowupFunc(taskId, sub_80FCF40, sub_80F86B8);
 }
 

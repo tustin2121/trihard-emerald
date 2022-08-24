@@ -176,6 +176,7 @@ extern const u8 DreamScript_1300[];
 extern const u8 DreamScript_1600[];
 extern const u8 DreamScript_1601[];
 extern const u8 DreamScript_1602[];
+extern const u8 DreamScript_1605[];
 
 struct DreamDataStruct {
 	const u8 *script;
@@ -206,8 +207,9 @@ static const struct DreamDataStruct sDreamScripts[] = {
 	{ DreamScript_0600, FLAG_DEFEATED_MAGMA_SPACE_CENTER, FLAG_SAW_DREAM_0600,     0xFFFF},
 	// Lowest priority
 	{ DreamScript_1601, FLAG_SAW_DREAM_1600,              FLAG_SAW_DREAM_1601,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
-//	{ DreamScript_1602, FLAG_SAW_DREAM_1601,              FLAG_SAW_DREAM_1602,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
+	{ DreamScript_1602, FLAG_SAW_DREAM_1601,              FLAG_SAW_DREAM_1602,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
 //	{ DreamScript_1603, FLAG_SAW_DREAM_1602,              FLAG_SAW_DREAM_1603,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
+	{ DreamScript_1605, FLAG_SAW_DREAM_1602,              FLAG_SAW_DREAM_1605,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
 //	{ DreamScript_1604, FLAG_SAW_DREAM_1603,              FLAG_SAW_DREAM_1604,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
 //	{ DreamScript_1605, FLAG_SAW_DREAM_1604,              FLAG_SAW_DREAM_1605,     MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_1F},
 	{ DreamScript_0801, FLAG_SAW_DREAM_0800,              FLAG_SKIPPED_NIGHT_0801, 0xFFFF},

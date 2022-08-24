@@ -177,7 +177,7 @@ PetalburgCity_WallysHouse_Text_MotherState3no:
 	.string "Or worst of all, never shower another\l"
 	.string "day in his life!{PAUSE 20}$"
 PetalburgCity_WallysHouse_Text_MotherState3no2:
-	.string "Oh Lord Acerus, help me find him!$"
+	.string "Oh Lord Arceus, help me find him!$"
 			
 
 @ -----------------------------------------------------

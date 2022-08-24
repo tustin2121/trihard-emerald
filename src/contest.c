@@ -2904,7 +2904,7 @@ static void PrintContestantMonNameWithColor(u8 contestant, u8 color)
     Contest_PrintTextToBg0WindowAt(gContestantTurnOrder[contestant], gDisplayedStringBattle, 5, 1, 7);
 }
 
-static u16 sub_80DAFE0(u8 who, u8 contestCategory)
+static u16 CalculateContestantRound1Points(u8 who, u8 contestCategory)
 {
     u8 statMain;
     u8 statSub1;
@@ -2942,12 +2942,12 @@ static u16 sub_80DAFE0(u8 who, u8 contestCategory)
     return statMain + (statSub1 + statSub2 + gContestMons[who].sheen) / 2;
 }
 
-void sub_80DB09C(u8 contestCategory)
+void CalculateRound1Points(u8 contestCategory)
 {
     s32 i;
 
     for (i = 0; i < 4; i++)
-        gContestMonConditions[i] = sub_80DAFE0(i, contestCategory);
+        gContestMonConditions[i] = CalculateContestantRound1Points(i, contestCategory);
 }
 
 static u8 sub_80DB0C4(void)
