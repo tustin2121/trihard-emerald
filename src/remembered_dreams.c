@@ -232,6 +232,8 @@ void CheckIsWeatherAlternating()
 bool8 DoDreamCutscenes(struct ScriptContext *ctx)
 {
 	u32 i;
+	// Reset to description textbox before calling to dreams
+	gSpecialVar_TextboxType = FIELD_MESSAGE_TYPE_DESCRIBE;
 	if (ShouldLegendaryMusicPlayAtLocation(&gSaveBlock1Ptr->location)) {
 		// If we can't change the music at this location (ie, in the center 
 		// during the legendary fight). Don't do the dreams
