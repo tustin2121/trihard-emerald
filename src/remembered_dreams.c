@@ -11,6 +11,7 @@
 #include "constants/flags.h"
 #include "constants/weather.h"
 #include "remembered_dreams.h"
+#include "field_message_box.h"
 
 #define SENTINAL 0xA0
 #define VERSION 1
