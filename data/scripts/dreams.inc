@@ -1911,7 +1911,7 @@ gText_Alex_Pokenav_E4Day1::
 gText_Alex_Pokenav_E4Day2::
 	.string "{RIVAL_ALOLA}: {PLAYER}!\n"
 	.string "You did so well yesterday!\p"
-	.string "I can't beleive how good you've\n"
+	.string "I can't believe how good you've\n"
 	.string "gotten at handling {POKEMON}!\p"
 	.string "Like, you've always been the best\n"
 	.string "of us at it, but going against the\l"
