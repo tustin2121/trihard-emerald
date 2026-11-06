@@ -1222,7 +1222,7 @@ DreamScript_1605_Text1:
 	.string "I'm sorry, {PLAYER_buddy}.{END}{PAUSE 30}\n"
 	.string "Dad speaks from the seat next to you.{PAUSE 20}\p"
 	.string "{MAN_SPEAKING}"
-	.string "If there was any way to stay in Alola…{PAUSE 30}\p"
+	.string "If there was any way to stay in Alola…{END}{PAUSE 30}\p"
 	.string "You fold your arms.{PAUSE 30} He stops speaking.{PAUSE 30}\p"
 	.string "$"
 DreamScript_1605_Text2a:
@@ -1828,7 +1828,7 @@ gText_Alex_Pokenav_FluffCall5::
 	.string "So, I got your number from your\n"
 	.string "mom, right?{PAUSE 30} Well…{PAUSE 20} I work for her…\p"
 	.string "I work at her office, as an\n"
-	.string "as an intern, you know?\p"
+	.string "intern, you know?\p"
 	.string "She hated me at first.\p"
 	.string "Yeah, she knew who I was. I mean,\n"
 	.string "I swung by your house how often?\p"
